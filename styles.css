@@ -68,16 +68,20 @@ body {
 .hero {
     min-height: 70vh;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40px;
     padding: 0 48px;
 }
 
 .hero__content {
-    max-width: 720px;
+    max-width: 620px;
+    padding-top: 117px;
+    margin-top: 33px;
 }
 
 .hero h1 {
-    font-size: 64px;
+    font-size: 40px;
     color: #f8fafc;
     margin-bottom: 24px;
 }
@@ -86,12 +90,249 @@ body {
     font-size: 22px;
     line-height: 1.5;
     color: #cbd5e1;
+    max-width: 42ch;
+    text-wrap: balance;
     margin-bottom: 36px
+}
+
+.hero__search {
+    width: min(100%, 396px);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px;
+    margin-bottom: 26px;
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.55);
+    box-shadow: inset 0 0 0 1px rgba(5, 9, 13, 0.25);
+}
+
+.hero__search-input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #f8fafc;
+    font-size: 15px;
+    padding: 8px 12px;
+}
+
+.hero__search-input::placeholder {
+    color: #94a3b8;
+}
+
+.hero__search-btn {
+    border: none;
+    border-radius: 999px;
+    padding: 9px 16px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #00121f;
+    background: #00d9ff;
+    cursor: pointer;
+    transition: transform 250ms ease, box-shadow 250ms ease;
+}
+
+.hero__search-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 0 14px rgba(0, 217, 255, 0.45);
 }
 
 .hero__actions {
     display: flex;
     gap: 20px;
+}
+
+.hero__season-indicator {
+    margin-top: 16px;
+}
+
+.hero__season-dots {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.hero__season-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 999px;
+    border: 1.5px solid rgba(203, 213, 225, 0.7);
+    background: transparent;
+}
+
+.hero__season-dot.is-active {
+    border-color: var(--season-accent);
+    background: var(--season-accent);
+    box-shadow: 0 0 12px var(--season-glow);
+}
+
+.hero__season {
+    --season-accent: #ff9f43;
+    --season-glow: rgba(255, 159, 67, 0.35);
+    --season-prev-glow: rgba(96, 165, 250, 0.35);
+    --season-next-glow: rgba(139, 233, 255, 0.35);
+    width: min(420px, 100%);
+    margin-top: 10px;
+}
+
+.hero__season-stage {
+    position: relative;
+    min-height: 500px;
+}
+
+.hero__season-main {
+    position: relative;
+    z-index: 3;
+    width: 94%;
+    margin: 0 auto;
+    padding: 22px 24px;
+    border-radius: 18px;
+    border: 1px solid rgba(248, 250, 252, 0.16);
+    background:
+        radial-gradient(circle at top right, var(--season-glow), rgba(5, 9, 13, 0) 58%),
+        linear-gradient(165deg, rgba(8, 14, 24, 0.97), rgba(8, 14, 24, 0.92));
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+.hero__season-back {
+    position: absolute;
+    width: 100%;
+    padding: 22px 24px;
+    border: 1px solid rgba(248, 250, 252, 0.14);
+    border-radius: 18px;
+    color: rgba(248, 250, 252, 0.6);
+    background:
+        radial-gradient(circle at top right, var(--peek-glow), rgba(5, 9, 13, 0) 65%),
+        linear-gradient(165deg, rgba(248, 250, 252, 0.06), rgba(248, 250, 252, 0.02));
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.hero__season-title--back {
+    font-size: 24px;
+    opacity: 0.62;
+}
+
+.hero__season-back--prev {
+    --peek-glow: var(--season-prev-glow);
+    z-index: 1;
+    top: 24px;
+    left: -42px;
+    transform: rotate(-3deg) scale(0.94);
+    opacity: 0.5;
+}
+
+.hero__season-back--next {
+    --peek-glow: var(--season-next-glow);
+    z-index: 2;
+    top: 34px;
+    right: -42px;
+    transform: rotate(3deg) scale(0.94);
+    opacity: 0.56;
+}
+
+.hero__season-list--back {
+    opacity: 0.42;
+}
+
+.hero__season-controls {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.hero__season-control {
+    flex: 1;
+    border: 1px solid rgba(248, 250, 252, 0.2);
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.65);
+    color: #f8fafc;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: border-color 220ms ease, transform 220ms ease;
+}
+
+.hero__season-control:hover {
+    border-color: rgba(248, 250, 252, 0.4);
+    transform: translateY(-1px);
+}
+
+.hero__season-kicker {
+    margin-bottom: 10px;
+    color: var(--season-accent);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.hero__season-title {
+    margin-bottom: 14px;
+    font-size: 30px;
+    line-height: 1.1;
+    color: #f8fafc;
+}
+
+.hero__season-list {
+    list-style: none;
+    display: grid;
+    gap: 14px;
+}
+
+.hero__season-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(248, 250, 252, 0.12);
+}
+
+.hero__season-list li:last-child {
+    border-bottom: none;
+}
+
+.hero__season-list span {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #94a3b8;
+}
+
+.hero__season-list strong {
+    font-size: 20px;
+    line-height: 1.2;
+    color: #f8fafc;
+}
+
+.hero__season-text {
+    display: grid;
+    gap: 2px;
+}
+
+.hero__season-thumb {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    border: 1px solid rgba(248, 250, 252, 0.18);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+    object-fit: cover;
+    background: rgba(148, 163, 184, 0.2);
+}
+
+.hero__season-list em {
+    font-style: normal;
+    color: #cbd5e1;
+    font-size: 15px;
 }
 
 .btn {
@@ -133,5 +374,53 @@ body {
         gap: 14px 18px;
         margin-bottom: 0;
         top: 0;
+    }
+
+    .hero {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 0 20px 40px;
+    }
+
+    .hero__content {
+        max-width: 100%;
+        padding-top: 24px;
+        margin-top: 0;
+    }
+
+    .hero p {
+        max-width: 100%;
+    }
+
+    .hero__search {
+        width: min(100%, 460px);
+    }
+
+    .hero__season {
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .hero__season-stage {
+        min-height: 0;
+    }
+
+    .hero__season-back {
+        position: static;
+        width: 100%;
+        transform: none;
+        margin-bottom: 8px;
+        opacity: 1;
+    }
+
+    .hero__season-main {
+        position: static;
+        width: 100%;
+        margin: 0;
+    }
+
+    .hero__season-controls {
+        margin-top: 8px;
     }
 }
