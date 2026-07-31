@@ -1,0 +1,137 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #05090d;
+    color: #f8fafc;
+    font-family: Arial, sans serif;
+}
+
+.header {
+    width: 100%;
+    padding: 20px 28px;
+    background: 05090d;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 18px;
+}
+
+.nav__links {
+    display: flex;
+    gap: 26px;
+    list-style: none;
+    align-self: center;
+    margin-bottom: 0;
+    position: relative;
+    top: -20px;
+}
+
+.logo {
+    width: clamp(260px, 34vw, 460px);
+    max-width: 100%;
+    display: block;
+    transition: transform 300ms ease, filter 300ms ease;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+}
+
+.nav__links a {
+    color: #f8fafc;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    transition: color 300ms ease, text-shadow 300ms ease;
+}
+
+.nav__links a:hover {
+    color: #00d9ff;
+    text-shadow: 0 0 10 px rgba(0, 217, 255, 0.8);
+}
+
+.logo:hover {
+    transform: scale(1.03);
+    filter: drop-shadow(0 0 12px rgba(0, 255, 255, 0.8));
+}
+
+/* Main */
+
+.hero {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    padding: 0 48px;
+}
+
+.hero__content {
+    max-width: 720px;
+}
+
+.hero h1 {
+    font-size: 64px;
+    color: #f8fafc;
+    margin-bottom: 24px;
+}
+
+.hero p {
+    font-size: 22px;
+    line-height: 1.5;
+    color: #cbd5e1;
+    margin-bottom: 36px
+}
+
+.hero__actions {
+    display: flex;
+    gap: 20px;
+}
+
+.btn {
+    padding: 14px 28px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: transform 300ms ease, box-shadow 300 ms ease;
+}
+
+.btn-primary {
+    background: #00d9ff;
+    color: #00d9ff;
+}
+
+.btn--secondary {
+    border: 2px solid #00d9ff;
+    color: #00d9ff;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 18px rgba(0, 217, 255, 0.6);
+}
+
+@media (max-width: 900px) {
+    .header {
+        padding: 16px 18px;
+    }
+
+    .nav {
+        align-items: center;
+        gap: 16px;
+    }
+
+    .nav__links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px 18px;
+        margin-bottom: 0;
+        top: 0;
+    }
+}

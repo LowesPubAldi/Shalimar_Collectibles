@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="600"
+   height="500"
+   viewBox="0 0 158.75 132.29167"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.4 (dcaf3e7, 2026-05-05)"
+   sodipodi:docname="Shalimar-card-icon.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.62448793"
+     inkscape:cx="397.12537"
+     inkscape:cy="433.15489"
+     inkscape:window-width="1680"
+     inkscape:window-height="961"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <rect
+       x="187.3535"
+       y="134.5102"
+       width="46.891442"
+       height="64.316925"
+       id="rect1" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <ellipse
+       style="font-variation-settings:'opsz' 36, 'wght' 600;fill:#00ffff;stroke-width:1.54404"
+       id="path1-0"
+       cx="82.430183"
+       cy="59.740669"
+       rx="60.00005"
+       ry="59.99995"
+       inkscape:transform-center-x="-1.0325017"
+       inkscape:transform-center-y="-0.57958377"
+       transform="matrix(0.99999505,0.00314545,-0.00287581,0.99999586,0,0)" />
+    <circle
+       style="font-variation-settings:'opsz' 36, 'wght' 600;fill:#4d4d4d;stroke-width:1.25074"
+       id="ellipse1"
+       cx="82.732353"
+       cy="60.123009"
+       r="50" />
+    <text
+       xml:space="preserve"
+       transform="matrix(2.0976825,0,0,1.4192288,-346.65027,-171.15841)"
+       id="text1"
+       style="font-size:42.5372px;font-family:'Segoe UI Variable';-inkscape-font-specification:'Segoe UI Variable, @opsz=36,wght=600';font-variation-settings:'opsz' 36, 'wght' 600;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect1);shape-padding:4.08796;fill:#00ffff;stroke-width:5.05701"><tspan
+         x="191.44141"
+         y="176.91323"
+         id="tspan2">S</tspan></text>
+  </g>
+</svg>
