@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shalimar Collectibles</title>
-    <link rel="stylesheet" href="styles.css?v=2">
-    <script src="index.js?v=5" defer></script>
+    <link rel="stylesheet" href="styles.css?v=17">
+    <script src="index.js?v=7" defer></script>
 </head>
 
 <body>
@@ -13,8 +13,8 @@
         <nav class="nav">
             <a href="#" class="logo-link">
                 <img 
-                src="./assets/logo-v4.svg"
-                alt="Shalimar Cards logo"
+                src="./assets/logo-v4.svg?v=3"
+                alt="Shalimar Collectibles logo"
                 class="logo"
                 />
                 </a>
@@ -75,7 +75,79 @@
             </div>
         </aside>
     </section>
+
+    <section class="game-lanes" aria-label="Game sections">
+        <article class="game-lane">
+            <div class="game-lane__placeholder" aria-hidden="true">
+                <span class="game-lane__chip"></span>
+                <span class="game-lane__line game-lane__line--short"></span>
+                <span class="game-lane__line"></span>
+            </div>
+            <h3 class="game-lane__title">Pokemon</h3>
+            <label class="game-lane__set-label" for="pokemon-set-select">Sets</label>
+            <select class="game-lane__set-select" id="pokemon-set-select" name="pokemon-set-select" aria-label="Pokemon sets dropdown">
+                <option>Newest Set Placeholder 01</option>
+                <option>Newest Set Placeholder 02</option>
+                <option>Newest Set Placeholder 03</option>
+                <option>Newest Set Placeholder 04</option>
+                <option>Newest Set Placeholder 05</option>
+                <option>Newest Set Placeholder 06</option>
+                <option>Use search bar to find older cards</option>
+            </select>
+        </article>
+
+        <article class="game-lane">
+            <div class="game-lane__placeholder" aria-hidden="true">
+                <span class="game-lane__chip"></span>
+                <span class="game-lane__line game-lane__line--short"></span>
+                <span class="game-lane__line"></span>
+            </div>
+            <h3 class="game-lane__title">Yu-Gi-Oh</h3>
+            <label class="game-lane__set-label" for="yugioh-set-select">Sets</label>
+            <select class="game-lane__set-select" id="yugioh-set-select" name="yugioh-set-select" aria-label="Yu-Gi-Oh sets dropdown">
+                <option>Newest Set Placeholder 01</option>
+                <option>Newest Set Placeholder 02</option>
+                <option>Newest Set Placeholder 03</option>
+                <option>Newest Set Placeholder 04</option>
+                <option>Newest Set Placeholder 05</option>
+                <option>Newest Set Placeholder 06</option>
+                <option>Use search bar to find older cards</option>
+            </select>
+        </article>
+
+        <article class="game-lane">
+            <div class="game-lane__placeholder" aria-hidden="true">
+                <span class="game-lane__chip"></span>
+                <span class="game-lane__line game-lane__line--short"></span>
+                <span class="game-lane__line"></span>
+            </div>
+            <h3 class="game-lane__title">Yu Yu Hakusho</h3>
+            <label class="game-lane__set-label" for="yyh-set-select">Sets</label>
+            <select class="game-lane__set-select" id="yyh-set-select" name="yyh-set-select" aria-label="Yu Yu Hakusho sets dropdown">
+                <option>Main Set Placeholder 01</option>
+                <option>Main Set Placeholder 02</option>
+                <option>Main Set Placeholder 03</option>
+                <option>Main Set Placeholder 04</option>
+                <option>Main Set Placeholder 05</option>
+                <option>Main Set Placeholder 06</option>
+                <option>Use search bar to find older cards</option>
+            </select>
+        </article>
+    </section>
 </main>
+
+<footer class="site-footer" aria-label="Site footer">
+    <div class="site-footer__inner">
+        <p class="site-footer__brand">Shalimar Collectibles</p>
+        <p class="site-footer__meta">Built for collectors of Pokemon, Yu-Gi-Oh, and Yu Yu Hakusho.</p>
+        <p class="site-footer__copyright">&copy; 2026 Shalimar Collectibles. All rights reserved.</p>
+        <nav class="site-footer__nav" aria-label="Footer navigation">
+            <a href="inventory.html">Inventory</a>
+            <a href="sets.html">Sets</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+</footer>
     
 </body>
 </html>

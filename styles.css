@@ -4,6 +4,10 @@
     padding: 0;
 }
 
+:root {
+    --brand-tertiary-magenta: #ff4fd8;
+}
+
 body {
     background: #05090d;
     color: #f8fafc;
@@ -66,12 +70,15 @@ body {
 /* Main */
 
 .hero {
-    min-height: 70vh;
+    min-height: 0;
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
-    gap: 40px;
-    padding: 0 48px;
+    justify-content: flex-start;
+    gap: clamp(24px, 3.5vw, 56px);
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 0 48px 16px;
+    border-bottom: 3px solid color-mix(in srgb, var(--brand-tertiary-magenta) 48%, transparent);
 }
 
 .hero__content {
@@ -146,7 +153,11 @@ body {
 }
 
 .hero__season-indicator {
-    margin-top: 16px;
+    width: 100%;
+    margin-top: 28px;
+    display: flex;
+    justify-content: center;
+    transform: translateX(-60px);
 }
 
 .hero__season-dots {
@@ -165,9 +176,9 @@ body {
 }
 
 .hero__season-dot.is-active {
-    border-color: var(--season-accent);
-    background: var(--season-accent);
-    box-shadow: 0 0 12px var(--season-glow);
+    border-color: #00d9ff;
+    background: #00d9ff;
+    box-shadow: 0 0 14px rgba(0, 217, 255, 0.75);
 }
 
 .hero__season {
@@ -181,7 +192,7 @@ body {
 
 .hero__season-stage {
     position: relative;
-    min-height: 500px;
+    min-height: 520px;
 }
 
 .hero__season-main {
@@ -190,6 +201,7 @@ body {
     width: 94%;
     margin: 0 auto;
     padding: 22px 24px;
+    min-height: 500px;
     border-radius: 18px;
     border: 1px solid rgba(248, 250, 252, 0.16);
     background:
@@ -200,7 +212,8 @@ body {
 
 .hero__season-back {
     position: absolute;
-    width: 100%;
+    width: 94%;
+    min-height: 500px;
     padding: 22px 24px;
     border: 1px solid rgba(248, 250, 252, 0.14);
     border-radius: 18px;
@@ -221,18 +234,18 @@ body {
 .hero__season-back--prev {
     --peek-glow: var(--season-prev-glow);
     z-index: 1;
-    top: 24px;
-    left: -42px;
-    transform: rotate(-3deg) scale(0.94);
+    top: 12px;
+    left: -68px;
+    transform: rotate(-7deg) scale(0.95);
     opacity: 0.5;
 }
 
 .hero__season-back--next {
     --peek-glow: var(--season-next-glow);
     z-index: 2;
-    top: 34px;
-    right: -42px;
-    transform: rotate(3deg) scale(0.94);
+    top: 12px;
+    right: -68px;
+    transform: rotate(7deg) scale(0.95);
     opacity: 0.56;
 }
 
@@ -340,12 +353,14 @@ body {
     border-radius: 999px;
     text-decoration: none;
     font-weight: 700;
-    transition: transform 300ms ease, box-shadow 300 ms ease;
+    transition: transform 300ms ease, box-shadow 300ms ease, border-color 300ms ease, background-color 300ms ease;
 }
 
+.btn--primary,
 .btn-primary {
-    background: #00d9ff;
-    color: #00d9ff;
+    border: 2px solid #00d9ff;
+    background: rgba(0, 217, 255, 0.12);
+    color: #dff8ff;
 }
 
 .btn--secondary {
@@ -356,6 +371,150 @@ body {
 .btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 0 18px rgba(0, 217, 255, 0.6);
+}
+
+.game-lanes {
+    max-width: 1220px;
+    margin: 32px auto 0;
+    padding: 0 48px 32px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.game-lane {
+    display: grid;
+    justify-items: center;
+    gap: 16px;
+    padding: 20px 18px 24px;
+    border-radius: 14px;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    background: linear-gradient(180deg, rgba(12, 18, 28, 0.75), rgba(12, 18, 28, 0.35));
+    opacity: 0;
+    transform: translateX(24px);
+    transition: transform 500ms cubic-bezier(0.22, 0.61, 0.36, 1), opacity 500ms ease;
+    transition-delay: calc(var(--lane-index, 0) * 90ms);
+}
+
+.game-lanes.is-visible .game-lane {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.game-lane__placeholder {
+    width: 96px;
+    height: 96px;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(248, 250, 252, 0.2);
+    background: #1f2937;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+    display: grid;
+    grid-template-rows: 1fr auto auto;
+    gap: 8px;
+}
+
+.game-lane__chip {
+    border-radius: 6px;
+    background: #334155;
+}
+
+.game-lane__line {
+    height: 6px;
+    border-radius: 999px;
+    background: #64748b;
+}
+
+.game-lane__line--short {
+    width: 68%;
+}
+
+.game-lane__title {
+    font-size: 22px;
+    color: #f8fafc;
+    letter-spacing: 0.02em;
+}
+
+.game-lane__set-label {
+    width: min(100%, 280px);
+    font-size: 12px;
+    color: #94a3b8;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.game-lane__set-select {
+    width: min(100%, 280px);
+    border-radius: 10px;
+    border: 1px solid rgba(148, 163, 184, 0.45);
+    background: rgba(15, 23, 42, 0.85);
+    color: #f8fafc;
+    padding: 10px 12px;
+    font-size: 14px;
+    line-height: 1.3;
+}
+
+.game-lane__set-select:focus {
+    outline: 2px solid rgba(0, 217, 255, 0.65);
+    outline-offset: 2px;
+}
+
+.site-footer {
+    margin-top: 0;
+    border-top: 1px solid rgba(148, 163, 184, 0.28);
+    background: linear-gradient(180deg, rgba(8, 12, 20, 0.35), rgba(8, 12, 20, 0.7));
+}
+
+.site-footer__inner {
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 20px 48px 28px;
+    display: grid;
+    gap: 8px;
+    justify-items: center;
+    text-align: center;
+}
+
+.site-footer__brand {
+    font-size: 18px;
+    font-weight: 700;
+    color: #e2e8f0;
+}
+
+.site-footer__meta {
+    font-size: 14px;
+    color: #94a3b8;
+}
+
+.site-footer__copyright {
+    font-size: 12px;
+    color: #64748b;
+}
+
+.site-footer__nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 4px;
+    justify-content: center;
+}
+
+.site-footer__nav a {
+    color: #00d9ff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.site-footer__nav a:hover {
+    text-shadow: 0 0 12px rgba(0, 217, 255, 0.65);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .game-lane {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
 }
 
 @media (max-width: 900px) {
@@ -422,5 +581,20 @@ body {
 
     .hero__season-controls {
         margin-top: 8px;
+    }
+
+    .game-lanes {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 8px 20px 28px;
+    }
+
+    .game-lane {
+        justify-items: flex-start;
+        gap: 10px;
+    }
+
+    .site-footer__inner {
+        padding: 18px 20px 24px;
     }
 }

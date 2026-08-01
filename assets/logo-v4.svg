@@ -88,9 +88,9 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:53.3333px;font-family:'Segoe UI Variable';-inkscape-font-specification:'Segoe UI Variable, @opsz=36,wght=700';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'opsz' 36, 'wght' 700;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect2);display:inline;fill:#00ffff"
        inkscape:transform-center-x="-143.15698"
        inkscape:transform-center-y="10.435801"><tspan
-         x="361.89648"
+             x="313"
          y="171.34099"
-         id="tspan3">Cards</tspan></text>
+         id="tspan3">Collectibles</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.7333589,0,0,1.9698713,-172.62724,-100.80302)"
@@ -108,8 +108,8 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:53.3333px;font-family:'Segoe UI Variable';-inkscape-font-specification:'Segoe UI Variable, @opsz=36,wght=700';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'opsz' 36, 'wght' 700;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect2-5);display:inline;fill:#4d4d4d"
        inkscape:transform-center-x="-143.15698"
        inkscape:transform-center-y="10.435801"><tspan
-         x="361.89648"
+             x="313"
          y="171.34099"
-         id="tspan5">Cards</tspan></text>
+         id="tspan5">Collectibles</tspan></text>
   </g>
 </svg>

@@ -109,9 +109,9 @@ const seasonalThemes = {
 		accent: "#f97316",
 		glow: "rgba(249, 115, 22, 0.35)",
 		spotlight: [
-			{ game: "Pokemon", card: "Trevenant", person: "Associated: Agatha", thumbColors: ["#22c55e", "#3f6212"] },
+			{ game: "Pokemon", card: "Trevenant", person: "Associated: Valerie", thumbColors: ["#22c55e", "#3f6212"] },
 			{ game: "Yu Yu Hakusho", card: "Hiei", person: "Associated: Kurama", thumbColors: ["#a855f7", "#3b0764"] },
-			{ game: "Yu-Gi-Oh", card: "Pumpking the King of Ghosts", person: "Associated: Bakura", thumbColors: ["#fb923c", "#7c2d12"] }
+			{ game: "Yu-Gi-Oh", card: "Pumpking the King of Ghosts", person: "Associated: Bones", thumbColors: ["#fb923c", "#7c2d12"] }
 		]
 	},
 	10: {
@@ -343,4 +343,50 @@ function applySeasonTheme() {
 	renderMonth(activeMonth);
 }
 
+function initGameLanesReveal() {
+	const hero = document.querySelector(".hero");
+	const gameLanes = document.querySelector(".game-lanes");
+	if (!hero || !gameLanes) {
+		return;
+	}
+
+	const laneItems = gameLanes.querySelectorAll(".game-lane");
+	laneItems.forEach((lane, index) => {
+		lane.style.setProperty("--lane-index", String(index));
+	});
+
+	const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+	if (prefersReducedMotion) {
+		gameLanes.classList.add("is-visible");
+		return;
+	}
+
+	let revealed = false;
+	const revealWhenHalfwayDownHero = () => {
+		if (revealed) {
+			return;
+		}
+
+		const heroTop = hero.offsetTop;
+		const heroMidpoint = heroTop + (hero.offsetHeight / 2);
+		const heroRect = hero.getBoundingClientRect();
+		const heroMidpointInViewport = heroRect.top + (heroRect.height / 2);
+		const reachedByScroll = window.scrollY >= heroMidpoint;
+		const reachedInViewport = window.innerHeight >= heroMidpointInViewport;
+		const shouldReveal = reachedByScroll || reachedInViewport;
+
+		if (shouldReveal) {
+			revealed = true;
+			gameLanes.classList.add("is-visible");
+			window.removeEventListener("scroll", revealWhenHalfwayDownHero);
+			window.removeEventListener("resize", revealWhenHalfwayDownHero);
+		}
+	};
+
+	window.addEventListener("scroll", revealWhenHalfwayDownHero, { passive: true });
+	window.addEventListener("resize", revealWhenHalfwayDownHero);
+	revealWhenHalfwayDownHero();
+}
+
 applySeasonTheme();
+initGameLanesReveal();
