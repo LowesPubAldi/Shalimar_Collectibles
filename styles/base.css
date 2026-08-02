@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg-base: #05090d;
+    --text-main: #f8fafc;
+    --text-muted: #cbd5e1;
+    --text-soft: #94a3b8;
+    --brand-cyan: #00d9ff;
+    --brand-magenta: #ff4fd8;
+    --surface-1: rgba(15, 23, 42, 0.75);
+    --surface-2: rgba(12, 18, 28, 0.75);
+    --border-soft: rgba(148, 163, 184, 0.28);
+}
+
+body {
+    background: var(--bg-base);
+    color: var(--text-main);
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+}
+
+a {
+    color: inherit;
+}
+
+.main {
+    width: 100%;
+}
