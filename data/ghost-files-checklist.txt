@@ -1,0 +1,240 @@
+﻿Ghost Files Checklist
+
+
+[ ] C1/176 Risho
+[ ] C2/176 Suzaku
+[ ] R3/176 Suzuka
+[ ] R4/176 Risho, Butajiri's Henchman
+[ ] R5/176 Yusuke, Resurrected
+[ ] ST6/176 Chu
+[ ] ST7/176 Dr. Ichigaki
+[ ] ST8/176 Younger Toguro
+[ ] ST9/176 Yusuke
+[ ] U10/176 Chu, The Team Captain
+[ ] U11/176 Suzaku, Makai Master
+[ ] C12/176 Chinpoh, The Wanderer
+[ ] C13/176 Gama
+[ ] C14/176 Imajin
+[ ] C15/176 Gatasubal
+[ ] C16/176 Gokumonki
+[ ] C17/176 Hirue
+[ ] C18/176 Inmaki
+[ ] C19/176 Jyaki
+[ ] C20/176 Kazamaru
+[ ] C21/176 Kibano
+[ ] C22/176 Kuroda, Contract Killer
+[ ] C23/176 Miyuki
+[ ] C24/176 Mushashi
+[ ] C25/176 Rugby
+[ ] C26/176 Shishi Wakamaru
+[ ] C27/176 Shorin
+[ ] C28/176 Spider Demon
+[ ] C29/176 The Minotaur
+[ ] C30/176 Touya
+[ ] C31/176 Ura Urashima
+[ ] R32/176 Hiei, The Swordsman
+[ ] R33/176 Jin
+[ ] R34/176 Kuro Momotaru
+[ ] R35/176 Kuwabara, Street Fighter
+[ ] R36/176 Rando
+[ ] ST37/176 Bui
+[ ] ST38/176 Elder Toguro
+[ ] ST39/176 Hiei
+[ ] ST40/176 Karasu
+[ ] ST41/176 Kurama
+[ ] ST42/176 Kuwabara
+[ ] ST43/176 M1
+[ ] ST44/176 M2
+[ ] ST45/176 M3
+[ ] ST46/176 Rinku
+[ ] ST47/176 Roto
+[ ] ST48/176 Zeru
+[ ] S49/176 Genkai, The Young
+[ ] S50/176 Shishi Wakamaru, Soul Stealer
+[ ] S51/176 Touya, The Ice Master
+[ ] C52/176 Abnormal Endurance
+[ ] C53/176 Alley Fight For Eikichi
+[ ] C54/176 Climactic Finish
+[ ] C55/176 Deadly Attack
+[ ] C56/176 Defensive Posture
+[ ] C57/176 Efflux
+[ ] C58/176 Evil Tendencies
+[ ] C59/176 Fervor Of Fury
+[ ] C60/176 Flurry Of Blows
+[ ] C61/176 Overpowered
+[ ] C62/176 Guru Of Engagement
+[ ] C63/176 Heroic Team
+[ ] C64/176 Hiei's Sword Mastery
+[ ] C65/176 Improvised Weapon
+[ ] C66/176 Kidnapping
+[ ] C67/176 Zombies On The Hunt
+[ ] C68/176 Maze Castle
+[ ] C69/176 Mistaken Fatality
+[ ] C70/176 Shinobi Disguise
+[ ] C71/176 Overexertion
+[ ] C72/176 Physical Intensification
+[ ] C73/176 Protective Restraint
+[ ] C74/176 Rokuyukai Advantage
+[ ] C75/176 Sabotage
+[ ] C76/176 Spirit Dump
+[ ] C77/176 Spiritual Safeguard
+[ ] C78/176 Teamwork
+[ ] C79/176 Tears Of Blood
+[ ] C80/176 The Best Defense Is…
+[ ] C81/176 Theft In The Dark
+[ ] C82/176 Time Out
+[ ] C83/176 Weapons Master
+[ ] R84/176 All For One And One For All
+[ ] R85/176 Dr. Ichigaki's Control
+[ ] R86/176 Kitty Love
+[ ] R87/176 "Lucky" Winners
+[ ] R88/176 Masterful Speed
+[ ] R89/176 Overwhelming Kill
+[ ] R90/176 Rash Brawling
+[ ] R91/176 Signature Moves
+[ ] R92/176 Transcendent Might
+[ ] R93/176 Ultimate Test
+[ ] ST94/176 A Man's Promise
+[ ] ST95/176 Botan's Healing
+[ ] ST96/176 Desperate Decision
+[ ] ST97/176 Feast Of Souls
+[ ] ST98/176 Good Ref
+[ ] ST99/176 Investigation
+[ ] ST100/176 Koenma's Opening
+[ ] ST101/176 No Mercy
+[ ] ST102/176 Rando Appears
+[ ] ST103/176 Stunned
+[ ] S104/176 Busted
+[ ] S105/176 Kayko's Promise
+[ ] S106/176 Party Time
+[ ] S107/176 The Genkai Bunch
+[ ] U108/176 Demonic Tricks
+[ ] U109/176 Double Teaming
+[ ] U110/176 Power Strike
+[ ] U111/176 Recuperation
+[ ] U112/176 Substitute
+[ ] C113/176 Backyard Dummy
+[ ] C114/176 Combat Knives
+[ ] C115/176 Idunn Box
+[ ] C116/176 Communication Mirror
+[ ] C117/176 Demon Compass
+[ ] C118/176 Psychic Spyglass
+[ ] C119/176 Deadly Ninja Throwing Stars
+[ ] C120/176 Tape Of The Mission
+[ ] R121/176 Trace-Eyes
+[ ] R122/176 Hospital Bed
+[ ] R123/176 Makai Whistle
+[ ] R124/176 Shadow Sword
+[ ] R125/176 Spirit Beast Egg
+[ ] R126/176 Spirit Cuffs
+[ ] R127/176 Steaming Sphere
+[ ] ST128/176 Baseball Bat
+[ ] ST129/176 Botan's Oar
+[ ] ST130/176 Fishing Pole
+[ ] ST131/176 Bamboo
+[ ] ST132/176 Power Serum
+[ ] ST133/176 Really Big Axe
+[ ] ST134/176 Rose Whip
+[ ] ST135/176 Senseless Helmet
+[ ] ST136/176 Serpent Yo-Yos
+[ ] ST137/176 Spirit Ring
+[ ] S138/176 Armor Of Clay
+[ ] S139/176 School Girl Outfit
+[ ] U140/176 Banshee Shriek
+[ ] U141/176 Ogre Killer
+[ ] C142/176 Armor Of The Ape
+[ ] C143/176 Axe-Blade Fist
+[ ] C144/176 Desperate Temper
+[ ] C145/176 Grizzly Claw
+[ ] C146/176 Headbutt
+[ ] C147/176 Ice Dragon
+[ ] C148/176 Jagan Eye
+[ ] C149/176 Make-Up Of Chains
+[ ] C150/176 Prism Of Seven
+[ ] C151/176 Reduction
+[ ] C152/176 Rose Whiplash
+[ ] C153/176 Shotgun
+[ ] C154/176 Spirit Gun Double
+[ ] C155/176 Spirit Gun Focus
+[ ] F156/176 Storm Of Torment
+[ ] R157/176 Banzai Missle
+[ ] R158/176 Fists Of The Mortal Flame
+[ ] R159/176 Meteor Charge
+[ ] R160/176 Renkinyoujutsu
+[ ] R161/176 Reversal
+[ ] R162/176 Spirit Sword Double
+[ ] R163/176 Spirit Wave
+[ ] R164/176 Tornado Fists
+[ ] ST165/176 Armor Of The Hyena
+[ ] ST166/176 Power Slam
+[ ] ST167/176 Circles Of Inferno
+[ ] ST168/176 Power Of Love
+[ ] ST169/176 Shards Of Winter
+[ ] ST170/176 Shibattou Shining Sword
+[ ] ST171/176 Spirit Fist
+[ ] ST172/176 Spirit Palm Blast
+[ ] ST173/176 Spirit Sword Monster Beast Donut
+[ ] S174/176 Dragon Of The Darkness Flame
+[ ] U175/176 Death Plant
+[ ] U176/176 Sword Of The Darkness Flame
+[ ] G177/176 Younger Toguro, Latent Warrior
+[ ] G178/176 Burst Of Power
+[ ] G179/176 Halt!
+[ ] G180/176 I'm Callin' You Out!
+
+
+[ ] P1/3 Genkai
+[ ] P2/3 Sacrifice Of Life
+[ ] P3/3 Verruca
+[ ] V1/4 Singing Potential
+[ ] V2/4 Perfect Balance
+[ ] V3/4 Under Pressure
+[ ] V4/4 Life Threads
+[ ] G1/0 Epic Tales
+[ ] C154/176 Spirit Gun Double (Stamped)
+[ ] C156/176 Storm Of Torment (1st Edition Corrected Version)
+
+
+[ ] TC1/22 Bakken
+[ ] TC2/22 Genbu
+[ ] TC3/22 Gouki
+[ ] TC4/22 Makintaro
+[ ] TC5/22 Seiryu
+[ ] TC6/22 Batting Practice
+[ ] TC7/22 Befriend
+[ ] TC8/22 Shinobi Of The Spirit World
+[ ] TC9/22 Unconsious
+[ ] TC10/22 Prism Storm Of Torment
+[ ] TC11/22 Slice, Dice, And Incise
+[ ] TR12/22 Byakko
+[ ] TR13/22 Kurama, Reformed Demon
+[ ] TR14/22 The White Mist
+[ ] TR15/22 Death Of A Hero
+[ ] TR16/22 Lost
+[ ] TR17/22 Rose Whip Thorn Wheel
+[ ] TS18/22 Grand Victory
+[ ] TS19/22 Headband Of Love
+[ ] TS20/22 Angel Blades
+[ ] TU21/22 Ice Blade
+[ ] TU22/22 Katana
+[ ] TG23/22 Orb Of Baast
+
+
+Pre-Release Cards:
+[ ] Origins Card Insert
+[ ] Any Last Requests? (DBZ Buu Saga Insert)
+[ ] Any Last Requests? (DBZ Fusion Saga Insert)
+
+
+Demo Deck Pack:
+[ ] ST9/176 Yusuke (non-foil)
+[ ] C20/176 Kazamaru
+[ ] R36/176 Rando
+[ ] C52/176 Abnormal Endurance
+[ ] C59/176 Fervor of Fury
+[ ] R93/176 Ultimate Test
+[ ] C114/176 Combat Knives
+[ ] C116/176 Pocket Communicator
+[ ] C144/176 Desperate Temper
+[ ] C154/176 Spirit Gun Double
+[ ] Yusuke/Rando Deck Checklist

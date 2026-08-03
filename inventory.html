@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="styles/base.css?v=1">
     <link rel="stylesheet" href="styles/components/nav.css?v=1">
     <link rel="stylesheet" href="styles/components/footer.css?v=1">
-    <link rel="stylesheet" href="styles/pages/inventory.css?v=1">
+    <link rel="stylesheet" href="styles/pages/inventory.css?v=4">
     <script src="scripts/components/mobile-nav.js?v=1" defer></script>
-    <script src="scripts/pages/inventory-filters.js?v=2" defer></script>
+    <script src="scripts/pages/inventory-filters.js?v=11" defer></script>
 </head>
 <body>
     <header class="header">
         <nav class="nav">
-            <a href="item.html" class="logo-link" aria-label="Go to homepage">
+            <a href="index.html" class="logo-link" aria-label="Go to homepage">
                 <img
                     src="./assets/logo-v4.svg?v=3"
                     alt="Shalimar Collectibles logo"
@@ -34,7 +34,7 @@
                 <span class="mobile-nav-toggle__bar" aria-hidden="true"></span>
             </button>
             <ul class="nav__links" id="primaryNavLinks">
-                <li><a href="home.html">Home</a></li>
+                <li><a href="contributors.html">Contributors</a></li>
                 <li><a href="inventory.html" aria-current="page">Inventory</a></li>
                 <li><a href="sets.html">Sets</a></li>
                 <li><a href="about.html">About</a></li>
@@ -52,7 +52,13 @@
             </div>
 
             <form class="inventory-controls" aria-label="Inventory filters">
-                <input class="inventory-control" type="search" placeholder="Search by card name" aria-label="Search by card name" />
+                <input
+                    class="inventory-control"
+                    id="inventory-search-filter"
+                    type="search"
+                    placeholder="Search by card name"
+                    aria-label="Search by card name"
+                />
                 <select class="inventory-control" id="inventory-game-filter" aria-label="Filter by game">
                     <option>All Games</option>
                     <option>Yu Yu Hakusho</option>
@@ -60,13 +66,16 @@
                     <option>Pokemon</option>
                 </select>
                 <select class="inventory-control" id="inventory-set-filter" aria-label="Filter by set">
-                    <option>All Sets</option>
-                    <option>Set Placeholder 01</option>
-                    <option>Set Placeholder 02</option>
-                    <option>Set Placeholder 03</option>
-                    <option>Set Placeholder 04</option>
-                    <option>Set Placeholder 05</option>
-                    <option>Set Placeholder 06</option>
+                    <option selected>All Sets</option>
+                    <option>Ghost Files</option>
+                    <option>Dark Tournament</option>
+                    <option>Exile</option>
+                    <option>Betrayal</option>
+                    <option>Alliance</option>
+                    <option>Gateway</option>
+                    <option>Pre-Release Cards</option>
+                    <option>Products</option>
+                    <option>Extra Cards</option>
                 </select>
                 <select class="inventory-control" id="inventory-type-filter" aria-label="Filter by type">
                     <option>All Types</option>
@@ -74,6 +83,10 @@
                 <select class="inventory-control" id="inventory-rarity-filter" aria-label="Filter by rarity">
                     <option>All Rarities</option>
                 </select>
+                <label class="inventory-variants-toggle" for="inventory-variants-toggle">
+                    <input id="inventory-variants-toggle" type="checkbox" />
+                    <span>Show all variants</span>
+                </label>
             </form>
 
             <div class="inventory-filter-notes" aria-label="Filter notes">
@@ -82,63 +95,19 @@
                 <p class="inventory-filter-note">Set note: reserved for V1 guidance.</p>
                 <p class="inventory-filter-note">Type note: reserved for V1 guidance.</p>
                 <p class="inventory-filter-note">Rarity note: options are game-specific and update based on selected game.</p>
+                <p class="inventory-filter-note" id="inventory-data-note">YYH inventory reads live API data and supports full card datasets; source credit remains with inviso (Mike) and the Yu Yu Hakusho TCG Database.</p>
             </div>
 
             <div class="inventory-results-head">
                 <h2>Results</h2>
-                <p class="inventory-results-meta">24 placeholder cards • sorted by newest</p>
+                <p class="inventory-results-meta" id="inventory-results-meta">Loading records...</p>
             </div>
 
-            <section class="inventory-grid" aria-label="Inventory card results">
-                <article class="inventory-card">
-                    <div class="inventory-card__image" aria-hidden="true"></div>
-                    <h3 class="inventory-card__title">Card Placeholder 001</h3>
-                    <p class="inventory-card__meta">ID-001 • Type Placeholder • Rarity Placeholder</p>
-                    <span class="inventory-card__tag">Variant Placeholder</span>
-                </article>
-                <article class="inventory-card">
-                    <div class="inventory-card__image" aria-hidden="true"></div>
-                    <h3 class="inventory-card__title">Card Placeholder 002</h3>
-                    <p class="inventory-card__meta">ID-002 • Type Placeholder • Rarity Placeholder</p>
-                    <span class="inventory-card__tag">Variant Placeholder</span>
-                </article>
-                <article class="inventory-card">
-                    <div class="inventory-card__image" aria-hidden="true"></div>
-                    <h3 class="inventory-card__title">Card Placeholder 003</h3>
-                    <p class="inventory-card__meta">ID-003 • Type Placeholder • Rarity Placeholder</p>
-                    <span class="inventory-card__tag">Variant Placeholder</span>
-                </article>
-                <article class="inventory-card">
-                    <div class="inventory-card__image" aria-hidden="true"></div>
-                    <h3 class="inventory-card__title">Card Placeholder 004</h3>
-                    <p class="inventory-card__meta">ID-004 • Type Placeholder • Rarity Placeholder</p>
-                    <span class="inventory-card__tag">Variant Placeholder</span>
-                </article>
-                <article class="inventory-card">
-                    <div class="inventory-card__image" aria-hidden="true"></div>
-                    <h3 class="inventory-card__title">Card Placeholder 005</h3>
-                    <p class="inventory-card__meta">ID-005 • Type Placeholder • Rarity Placeholder</p>
-                    <span class="inventory-card__tag">Variant Placeholder</span>
-                </article>
-                <article class="inventory-card">
-                    <div class="inventory-card__image" aria-hidden="true"></div>
-                    <h3 class="inventory-card__title">Card Placeholder 006</h3>
-                    <p class="inventory-card__meta">ID-006 • Type Placeholder • Rarity Placeholder</p>
-                    <span class="inventory-card__tag">Variant Placeholder</span>
-                </article>
-                <article class="inventory-card">
-                    <div class="inventory-card__image" aria-hidden="true"></div>
-                    <h3 class="inventory-card__title">Card Placeholder 007</h3>
-                    <p class="inventory-card__meta">ID-007 • Type Placeholder • Rarity Placeholder</p>
-                    <span class="inventory-card__tag">Variant Placeholder</span>
-                </article>
-                <article class="inventory-card">
-                    <div class="inventory-card__image" aria-hidden="true"></div>
-                    <h3 class="inventory-card__title">Card Placeholder 008</h3>
-                    <p class="inventory-card__meta">ID-008 • Type Placeholder • Rarity Placeholder</p>
-                    <span class="inventory-card__tag">Variant Placeholder</span>
-                </article>
-            </section>
+            <section class="inventory-grid" id="inventory-results-grid" aria-label="Inventory card results"></section>
+            <div class="inventory-load-more-wrap">
+                <button class="inventory-load-more" id="inventory-load-more" type="button" hidden>Load More Cards</button>
+                <p class="inventory-load-more-progress" id="inventory-load-more-progress" hidden></p>
+            </div>
         </section>
     </main>
 

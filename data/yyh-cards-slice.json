@@ -1,0 +1,110 @@
+[
+  {
+    "id": "GF-001",
+    "game": "Yu Yu Hakusho",
+    "set": "Ghost Files",
+    "name": "Yusuke, Spirit Detective",
+    "type": "Character",
+    "rarity": "C - Common",
+    "variant": "Standard"
+  },
+  {
+    "id": "GF-014",
+    "game": "Yu Yu Hakusho",
+    "set": "Ghost Files",
+    "name": "Kazuma Kuwabara",
+    "type": "Character",
+    "rarity": "R - Rare (standard)",
+    "variant": "Standard"
+  },
+  {
+    "id": "DT-009",
+    "game": "Yu Yu Hakusho",
+    "set": "Dark Tournament",
+    "name": "Chu",
+    "type": "Character",
+    "rarity": "U - Uber Rare",
+    "variant": "Foil"
+  },
+  {
+    "id": "DT-027",
+    "game": "Yu Yu Hakusho",
+    "set": "Dark Tournament",
+    "name": "Botan",
+    "type": "Spirit",
+    "rarity": "C - Common",
+    "variant": "Standard"
+  },
+  {
+    "id": "EX-018",
+    "game": "Yu Yu Hakusho",
+    "set": "Exile",
+    "name": "Hiei",
+    "type": "Character",
+    "rarity": "S - Spirit Rare",
+    "variant": "Foil"
+  },
+  {
+    "id": "EX-041",
+    "game": "Yu Yu Hakusho",
+    "set": "Exile",
+    "name": "Counter Strike",
+    "type": "Technique",
+    "rarity": "R - Rare (standard)",
+    "variant": "Standard"
+  },
+  {
+    "id": "BT-011",
+    "game": "Yu Yu Hakusho",
+    "set": "Betrayal",
+    "name": "Kurama",
+    "type": "Character",
+    "rarity": "U - Uber Rare",
+    "variant": "Foil"
+  },
+  {
+    "id": "BT-036",
+    "game": "Yu Yu Hakusho",
+    "set": "Betrayal",
+    "name": "Meditation",
+    "type": "Technique",
+    "rarity": "C - Common",
+    "variant": "Standard"
+  },
+  {
+    "id": "AL-004",
+    "game": "Yu Yu Hakusho",
+    "set": "Alliance",
+    "name": "Raizen",
+    "type": "Character",
+    "rarity": "G - Ghost Rare",
+    "variant": "Foil"
+  },
+  {
+    "id": "AL-028",
+    "game": "Yu Yu Hakusho",
+    "set": "Alliance",
+    "name": "Mukuro",
+    "type": "Character",
+    "rarity": "R - Rare (standard)",
+    "variant": "Standard"
+  },
+  {
+    "id": "GW-017",
+    "game": "Yu Yu Hakusho",
+    "set": "Gateway",
+    "name": "Yukina",
+    "type": "Spirit",
+    "rarity": "P - Promo",
+    "variant": "Stamped"
+  },
+  {
+    "id": "GW-045",
+    "game": "Yu Yu Hakusho",
+    "set": "Gateway",
+    "name": "Ura Otoko",
+    "type": "Character",
+    "rarity": "ST - Starter Deck",
+    "variant": "Standard"
+  }
+]

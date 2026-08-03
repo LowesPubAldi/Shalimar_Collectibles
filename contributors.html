@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shalimar Collectibles | Contributors</title>
+    <link rel="stylesheet" href="styles/base.css?v=1">
+    <link rel="stylesheet" href="styles/components/nav.css?v=1">
+    <link rel="stylesheet" href="styles/components/footer.css?v=1">
+    <link rel="stylesheet" href="styles/pages/contributors.css?v=1">
+    <script src="scripts/components/mobile-nav.js?v=1" defer></script>
+    <script src="scripts/pages/contributors-slider.js?v=1" defer></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="logo-link" aria-label="Go to homepage">
+                <img
+                    src="./assets/logo-v4.svg?v=3"
+                    alt="Shalimar Collectibles logo"
+                    class="logo"
+                />
+            </a>
+            <button
+                class="mobile-nav-toggle"
+                id="mobileNavToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="primaryNavLinks"
+            >
+                <span class="mobile-nav-toggle__bar" aria-hidden="true"></span>
+                <span class="mobile-nav-toggle__bar" aria-hidden="true"></span>
+                <span class="mobile-nav-toggle__bar" aria-hidden="true"></span>
+            </button>
+            <ul class="nav__links" id="primaryNavLinks">
+                <li><a href="contributors.html" aria-current="page">Contributors</a></li>
+                <li><a href="inventory.html">Inventory</a></li>
+                <li><a href="sets.html">Sets</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="mobile-nav-overlay" id="mobileNavOverlay" type="button" aria-label="Close navigation menu"></button>
+    </header>
+
+    <main class="main">
+        <section class="contributors-hero" aria-label="Contributors overview">
+            <div class="contributors-hero__content">
+                <p class="contributors-hero__eyebrow">Contributors</p>
+                <h1>Built with respect for the collectors who kept Yu Yu Hakusho alive.</h1>
+                <p>
+                    This project stands on community research and years of careful record-keeping.
+                    The Yu Yu Hakusho database maintained by inviso (Mike) is a primary source for
+                    our YYH buildout and set validation.
+                </p>
+                <a class="contributors-hero__link" href="https://sites.google.com/site/yuyuhakushotcgdatabase/welcome?authuser=0" target="_blank" rel="noopener noreferrer">
+                    Visit the Yu Yu Hakusho TCG Database
+                </a>
+            </div>
+            <div class="contributors-hero__media" aria-hidden="true">
+                <img src="assets/yyh-source/yu-yu-hakusho1.jpg" alt="" />
+            </div>
+        </section>
+
+        <section class="contributors-slider-shell" aria-label="Contributor spotlight">
+            <div class="contributors-slider-head">
+                <h2>Community Spotlight</h2>
+                <p>Inspired by your NFT slider pattern: card focus, side peeks, and smooth transitions.</p>
+            </div>
+
+            <div class="contributors-slider" data-contributors-slider>
+                <button class="contributors-slider__nav contributors-slider__nav--prev" type="button" aria-label="View previous contributor card" data-slider-prev>
+                    <span aria-hidden="true">&#10094;</span>
+                </button>
+
+                <div class="contributors-slider__viewport" aria-live="polite">
+                    <div class="contributors-slider__track" data-slider-track>
+                        <article class="contributor-card">
+                            <p class="contributor-card__kicker">Primary Source</p>
+                            <h3>inviso / Mike</h3>
+                            <p>Creator and maintainer of the Yu Yu Hakusho TCG Database. The project has been curated for over a decade with detailed card, set, variant, and update notes.</p>
+                            <a href="https://sites.google.com/site/yuyuhakushotcgdatabase/welcome?authuser=0" target="_blank" rel="noopener noreferrer">Open Database</a>
+                        </article>
+
+                        <article class="contributor-card">
+                            <p class="contributor-card__kicker">Community Depth</p>
+                            <h3>Collector Network + Archive</h3>
+                            <p>The database links to active collector channels, forum discussion, and long-form update history, which helps cross-check changes as new information appears.</p>
+                            <a href="https://www.facebook.com/groups/yuyuhakushotcgmarketplace/" target="_blank" rel="noopener noreferrer">View Marketplace Group</a>
+                        </article>
+
+                        <article class="contributor-card">
+                            <p class="contributor-card__kicker">Shalimar Direction</p>
+                            <h3>YYH Build Integration</h3>
+                            <p>Our YYH roadmap uses this research base to accelerate set navigation, rarity mapping, and card detail fidelity while keeping contributor credit visible.</p>
+                            <a href="inventory.html">Preview Inventory Shell</a>
+                        </article>
+                    </div>
+                </div>
+
+                <button class="contributors-slider__nav contributors-slider__nav--next" type="button" aria-label="View next contributor card" data-slider-next>
+                    <span aria-hidden="true">&#10095;</span>
+                </button>
+            </div>
+
+            <div class="contributors-slider__dots" role="tablist" aria-label="Spotlight slide controls">
+                <button type="button" role="tab" aria-selected="true" aria-label="Show spotlight 1" data-slider-dot="0"></button>
+                <button type="button" role="tab" aria-selected="false" aria-label="Show spotlight 2" data-slider-dot="1"></button>
+                <button type="button" role="tab" aria-selected="false" aria-label="Show spotlight 3" data-slider-dot="2"></button>
+            </div>
+        </section>
+
+        <section class="contributors-credit" aria-label="Credit statement">
+            <h2>Attribution</h2>
+            <p>
+                Yu Yu Hakusho source data and ongoing collector research are credited to inviso (Mike)
+                via the Yu Yu Hakusho TCG Database.
+            </p>
+        </section>
+    </main>
+
+    <footer class="site-footer site-footer--yyh" aria-label="Site footer">
+        <div class="site-footer__inner">
+            <p class="site-footer__brand">Shalimar Collectibles</p>
+            <p class="site-footer__meta">Contributor credits and source links are included for data transparency.</p>
+            <p class="site-footer__yyh-credit">YYH data credit: inviso (Mike), Yu Yu Hakusho TCG Database.</p>
+            <p class="site-footer__copyright">&copy; 2026 Shalimar Collectibles. All rights reserved.</p>
+            <nav class="site-footer__nav" aria-label="Footer navigation">
+                <a href="contributors.html">Contributors</a>
+                <a href="inventory.html">Inventory</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </footer>
+</body>
+</html>

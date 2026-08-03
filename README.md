@@ -63,3 +63,126 @@ If it does not clearly support V1 launch goals, move it to the V2 backlog.
 - Homepage design and seasonal spotlight UI: in progress
 - API/data source research (especially Yu Yu Hakusho): in progress
 - Feature roadmap defined in this README: complete
+
+## Phase 1 Backend (YYH API Starter)
+
+We now have a beginner-friendly API starter so the frontend can request data from a backend route.
+
+### What This Means (Simple)
+
+- Frontend (Inventory page) asks backend for cards.
+- Backend reads card data from the first available file in this order:
+	- `data/yyh-cards-full.json`
+	- `data/yyh-cards.json`
+	- `data/yyh-cards-slice.json`
+- Backend sends card records back as JSON.
+
+Think of it like this:
+
+- Frontend = customer
+- API route = checkout counter
+- JSON file = shelf with card records
+
+### Backend Files
+
+- `server.js` -> Express server and API routes
+- `data/yyh-cards-slice.json` -> starter YYH card data
+- `data/yyh-cards-full.json` (optional) -> full YYH inventory data (preferred when present)
+- `scripts/pages/inventory-filters.js` -> frontend request + render logic
+
+### Run The Backend
+
+1. Open terminal in project root.
+2. Run `npm install` (only needed first time).
+3. Run `npm start`.
+
+You should see:
+
+- `Shalimar API running at http://127.0.0.1:3000`
+
+### Test API Endpoints
+
+- Health check:
+	- `http://127.0.0.1:3000/api/health`
+
+- All YYH starter cards:
+	- `http://127.0.0.1:3000/api/yyh/cards`
+
+- Query example:
+	- `http://127.0.0.1:3000/api/yyh/cards?q=kurama`
+
+- Sets endpoint:
+	- `http://127.0.0.1:3000/api/yyh/sets`
+
+- Sets summary endpoint:
+	- `http://127.0.0.1:3000/api/yyh/sets/summary?game=Yu%20Yu%20Hakusho`
+
+### Current API Query Params
+
+- `q` -> text search
+- `game` -> exact game filter
+- `set` -> exact set filter
+- `type` -> exact type filter
+- `rarity` -> exact rarity filter
+- `limit` -> page size
+- `offset` -> starting row
+
+### Cards Response Shape
+
+`/api/yyh/cards` now returns:
+
+- `items` -> array of cards for this page
+- `total` -> total matching cards before pagination
+- `limit` -> active page size
+- `offset` -> active starting row
+- `hasMore` -> true when another page exists
+
+### Safety Fallback
+
+If the API is unavailable, Inventory falls back to local JSON data so the page still works.
+
+### Full Inventory Notes
+
+- To show more than 12 cards, add your full export as `data/yyh-cards-full.json`.
+- Different card number formats are supported. The loader automatically maps common fields like `id`, `number`, `cardNumber`, and `card_number`.
+
+### Convert YYH PDF To JSON
+
+- Source PDF: `assets/yyh-source/yyh-card-library-source.pdf`
+- Converter script: `scripts/tools/convert_yyh_pdf_to_json.py`
+- Run command:
+	- `python scripts/tools/convert_yyh_pdf_to_json.py`
+- Output file:
+	- `data/yyh-cards-full.json`
+
+### Apply Ghost Files Checklist Mapping
+
+- Checklist source file:
+	- `data/ghost-files-checklist.txt`
+- Mapping script:
+	- `scripts/tools/apply_ghost_files_checklist.py`
+- Run command:
+	- `python scripts/tools/apply_ghost_files_checklist.py`
+- What it does:
+	- Normalizes matching cards to `set = Ghost Files`
+	- Applies rarity labels from checklist code prefixes (for example `C`, `R`, `ST`, `U`, `S`, `G`, `TC`, `TR`)
+	- Adds checklist-only cards not found in PDF parse so the set is complete in Inventory/API
+	- Writes parsed checklist entries to `data/ghost-files-checklist.json`
+
+### Apply Any Set Checklist
+
+- Generic importer:
+	- `scripts/tools/apply_set_checklist.py`
+- Example command:
+	- `python scripts/tools/apply_set_checklist.py --checklist data/dark-tournament-checklist.txt --set "Dark Tournament" --source "dark-tournament-checklist.txt" --write-checklist-json`
+- Result:
+	- Merges checklist entries into `data/yyh-cards-full.json`
+	- Adds missing checklist-only entries so the full checklist is visible in Inventory/API
+
+- Current imported checklist files:
+	- `data/ghost-files-checklist.txt`
+	- `data/dark-tournament-checklist.txt`
+	- `data/gateway-checklist.txt`
+	- `data/exile-checklist.txt`
+	- `data/betrayal-checklist.txt`
+	- `data/alliance-checklist.txt`
