@@ -1,0 +1,126 @@
+{
+    "set": "Ghost Files",
+    "currency": "USD",
+    "updatedAt": "2026-08-04",
+    "fallbackPricing": [
+        {
+            "name": "Non-Foil Commons",
+            "minPriceUsd": 0.05,
+            "maxPriceUsd": 1.0,
+            "status": "Priced",
+            "notes": "$0.05 - $1",
+            "match": {
+                "rarityPrefix": "C - Common",
+                "foil": false
+            }
+        },
+        {
+            "name": "Non-Foil Rares",
+            "minPriceUsd": 0.25,
+            "maxPriceUsd": 1.25,
+            "status": "Priced",
+            "notes": "$0.25 - $1.25",
+            "match": {
+                "rarityPrefix": "R - Rare (standard)",
+                "foil": false
+            }
+        },
+        {
+            "name": "Non-Foil Starter Deck Cards",
+            "minPriceUsd": 0.35,
+            "maxPriceUsd": 1.0,
+            "status": "Priced",
+            "notes": "$0.35 - $1",
+            "match": {
+                "rarityPrefix": "ST - Starter Deck",
+                "foil": false
+            }
+        },
+        {
+            "name": "Foil Starter Deck Cards",
+            "minPriceUsd": 3.0,
+            "maxPriceUsd": 5.0,
+            "status": "Priced",
+            "notes": "$3 - $5",
+            "match": {
+                "rarityPrefix": "ST - Starter Deck",
+                "foil": true
+            }
+        },
+        {
+            "name": "Storm of Torment Misprint Marker",
+            "minPriceUsd": 0.05,
+            "maxPriceUsd": 1.0,
+            "status": "Priced",
+            "notes": "$0.05 - $1 estimated from common non-foil range",
+            "match": {
+                "rarityPrefix": "F - Storm of Torment misprint marker",
+                "foil": false
+            }
+        }
+    ],
+    "items": [
+        { "id": "U10/176", "name": "Chu, the Team Captain", "variant": "Standard", "priceUsd": 7.5, "compsCount": 0, "status": "Priced", "notes": "$6 - $9" },
+        { "id": "U11/176", "name": "Suzaku, Makai Master", "variant": "Standard", "priceUsd": 10.5, "compsCount": 0, "status": "Priced", "notes": "$8 - $13" },
+        { "id": "S49/176", "name": "Genkai, the Young", "variant": "Standard", "priceUsd": 13.5, "compsCount": 0, "status": "Priced", "notes": "$10 - $17" },
+        { "id": "S50/176", "name": "Shishi Wakamaru, Soul Stealer", "variant": "Standard", "priceUsd": 4.5, "compsCount": 0, "status": "Priced", "notes": "$3 - $6" },
+        { "id": "S51/176", "name": "Touya, the Ice Master", "variant": "Standard", "priceUsd": 4.5, "compsCount": 0, "status": "Priced", "notes": "$3 - $6" },
+        { "id": "S104/176", "name": "Busted", "variant": "Standard", "priceUsd": 4.5, "compsCount": 0, "status": "Priced", "notes": "$3 - $6" },
+        { "id": "S105/176", "name": "Kayko's Promise", "variant": "Standard", "priceUsd": 4.0, "compsCount": 0, "status": "Priced", "notes": "$3 - $5" },
+        { "id": "S106/176", "name": "Party Time", "variant": "Standard", "priceUsd": 3.0, "compsCount": 0, "status": "Priced", "notes": "$2 - $4" },
+        { "id": "S107/176", "name": "The Genkai Bunch", "variant": "Standard", "priceUsd": 4.0, "compsCount": 0, "status": "Priced", "notes": "$3 - $5" },
+        { "id": "U108/176", "name": "Demonic Tricks", "variant": "Standard", "priceUsd": 17.5, "compsCount": 0, "status": "Priced", "notes": "$15 - $20" },
+        { "id": "U109/176", "name": "Double Teaming", "variant": "Standard", "priceUsd": 9.5, "compsCount": 0, "status": "Priced", "notes": "$7 - $12" },
+        { "id": "U110/176", "name": "Power Strike", "variant": "Standard", "priceUsd": 10.0, "compsCount": 0, "status": "Priced", "notes": "$8 - $12" },
+        { "id": "U111/176", "name": "Recuperation", "variant": "Standard", "priceUsd": 6.0, "compsCount": 0, "status": "Priced", "notes": "$5 - $7" },
+        { "id": "U112/176", "name": "Substitute", "variant": "Standard", "priceUsd": 6.5, "compsCount": 0, "status": "Priced", "notes": "$5 - $8" },
+        { "id": "S138/176", "name": "Armor of Clay", "variant": "Standard", "priceUsd": 3.75, "compsCount": 0, "status": "Priced", "notes": "$2.50 - $5" },
+        { "id": "S139/176", "name": "School Girl Outfit", "variant": "Standard", "priceUsd": 4.0, "compsCount": 0, "status": "Priced", "notes": "$3 - $5" },
+        { "id": "U140/176", "name": "Banshee Shriek", "variant": "Standard", "priceUsd": 7.0, "compsCount": 0, "status": "Priced", "notes": "$5 - $9" },
+        { "id": "U141/176", "name": "Ogre Killer", "variant": "Standard", "priceUsd": 9.0, "compsCount": 0, "status": "Priced", "notes": "$7 - $11" },
+        { "id": "S174/176", "name": "Dragon of the Darkness Flame", "variant": "Standard", "priceUsd": 8.0, "compsCount": 0, "status": "Priced", "notes": "$6 - $10" },
+        { "id": "U175/176", "name": "Death Plant", "variant": "Standard", "priceUsd": 7.5, "compsCount": 0, "status": "Priced", "notes": "$6 - $9" },
+        { "id": "U176/176", "name": "Sword of the Darkness Flame", "variant": "Standard", "priceUsd": 12.5, "compsCount": 0, "status": "Priced", "notes": "$10 - $15" },
+        { "id": "G177/176", "name": "Younger Toguro, Latent Warrior", "variant": "Standard", "priceUsd": 25.0, "compsCount": 0, "status": "Priced", "notes": "$20 - $30" },
+        { "id": "G178/176", "name": "Burst of Power", "variant": "Standard", "priceUsd": 15.0, "compsCount": 0, "status": "Priced", "notes": "$12 - $18" },
+        { "id": "G179/176", "name": "Halt!", "variant": "Standard", "priceUsd": 17.5, "compsCount": 0, "status": "Priced", "notes": "$15 - $20" },
+        { "id": "G180/176", "name": "I'm Callin' You Out!", "variant": "Standard", "priceUsd": 9.0, "compsCount": 0, "status": "Priced", "notes": "$7 - $11" },
+
+        { "id": "TC1/22", "name": "Bakken", "variant": "Standard", "priceUsd": 3.0, "compsCount": 0, "status": "Priced", "notes": "$2 - $4" },
+        { "id": "TC2/22", "name": "Genbu", "variant": "Standard", "priceUsd": 3.0, "compsCount": 0, "status": "Priced", "notes": "$2 - $4" },
+        { "id": "TC3/22", "name": "Gouki", "variant": "Standard", "priceUsd": 4.0, "compsCount": 0, "status": "Priced", "notes": "$3 - $5" },
+        { "id": "TC4/22", "name": "Makintaro", "variant": "Standard", "priceUsd": 2.5, "compsCount": 0, "status": "Priced", "notes": "$2 - $3" },
+        { "id": "TC5/22", "name": "Seiryu", "variant": "Standard", "priceUsd": 4.0, "compsCount": 0, "status": "Priced", "notes": "$3 - $5" },
+        { "id": "TC6/22", "name": "Batting Practice", "variant": "Standard", "priceUsd": 5.0, "compsCount": 0, "status": "Priced", "notes": "$4 - $6" },
+        { "id": "TC7/22", "name": "Befriend", "variant": "Standard", "priceUsd": 4.0, "compsCount": 0, "status": "Priced", "notes": "$3 - $5" },
+        { "id": "TC8/22", "name": "Shinobi of the Spirit World", "variant": "Standard", "priceUsd": 3.0, "compsCount": 0, "status": "Priced", "notes": "$2 - $4" },
+        { "id": "TC9/22", "name": "Unconsious", "variant": "Standard", "priceUsd": 5.0, "compsCount": 0, "status": "Priced", "notes": "$4 - $6" },
+        { "id": "TC10/22", "name": "Prism Storm of Torment", "variant": "Standard", "priceUsd": 4.0, "compsCount": 0, "status": "Priced", "notes": "$3 - $5" },
+        { "id": "TC11/22", "name": "Slice, Dice, and Incise", "variant": "Standard", "priceUsd": 4.0, "compsCount": 0, "status": "Priced", "notes": "$3 - $5" },
+        { "id": "TR12/22", "name": "Byakko", "variant": "Standard", "priceUsd": 6.0, "compsCount": 0, "status": "Priced", "notes": "$5 - $7" },
+        { "id": "TR13/22", "name": "Kurama, Reformed Demon", "variant": "Standard", "priceUsd": 13.5, "compsCount": 0, "status": "Priced", "notes": "$11 - $16" },
+        { "id": "TR14/22", "name": "The White Mist", "variant": "Standard", "priceUsd": 6.0, "compsCount": 0, "status": "Priced", "notes": "$5 - $7" },
+        { "id": "TR15/22", "name": "Death of a Hero", "variant": "Standard", "priceUsd": 5.0, "compsCount": 0, "status": "Priced", "notes": "$4 - $6" },
+        { "id": "TR16/22", "name": "Lost", "variant": "Standard", "priceUsd": 6.5, "compsCount": 0, "status": "Priced", "notes": "$5 - $8" },
+        { "id": "TR17/22", "name": "Rose Whip Thorn Wheel", "variant": "Standard", "priceUsd": 4.0, "compsCount": 0, "status": "Priced", "notes": "$3 - $5" },
+        { "id": "TS18/22", "name": "Grand Victory", "variant": "Standard", "priceUsd": 7.5, "compsCount": 0, "status": "Priced", "notes": "$6 - $9" },
+        { "id": "TS19/22", "name": "Headband of Love", "variant": "Standard", "priceUsd": 7.0, "compsCount": 0, "status": "Priced", "notes": "$6 - $8" },
+        { "id": "TS20/22", "name": "Angel Blades", "variant": "Standard", "priceUsd": 6.0, "compsCount": 0, "status": "Priced", "notes": "$5 - $7" },
+        { "id": "TU21/22", "name": "Ice Blade", "variant": "Standard", "priceUsd": 25.0, "compsCount": 0, "status": "Priced", "notes": "$20 - $30" },
+        { "id": "TU22/22", "name": "Katana", "variant": "Standard", "priceUsd": 21.5, "compsCount": 0, "status": "Priced", "notes": "$18 - $25" },
+        { "id": "TG23/22", "name": "Orb of Baast", "variant": "Standard", "priceUsd": 100.0, "compsCount": 0, "status": "Priced", "notes": "$90 - $110" },
+
+        { "id": "P1/3", "name": "Genkai", "variant": "Standard", "priceUsd": 10.0, "compsCount": 0, "status": "Priced", "notes": "$8 - $12" },
+        { "id": "P2/3", "name": "Sacrifice of Life", "variant": "Standard", "priceUsd": 3.0, "compsCount": 0, "status": "Priced", "notes": "$2 - $4" },
+        { "id": "P3/3", "name": "Verruca", "variant": "Standard", "priceUsd": 7.5, "compsCount": 0, "status": "Priced", "notes": "$6 - $9" },
+        { "id": "V1/4", "name": "Singing Potential", "variant": "Standard", "priceUsd": 5.0, "compsCount": 0, "status": "Priced", "notes": "$4 - $6" },
+        { "id": "V2/4", "name": "Perfect Balance", "variant": "Standard", "priceUsd": 5.5, "compsCount": 0, "status": "Priced", "notes": "$4 - $7" },
+        { "id": "V3/4", "name": "Under Pressure", "variant": "Standard", "priceUsd": 10.0, "compsCount": 0, "status": "Priced", "notes": "$8 - $12" },
+        { "id": "V4/4", "name": "Life Threads", "variant": "Standard", "priceUsd": 12.5, "compsCount": 0, "status": "Priced", "notes": "$10 - $15" },
+
+        { "id": "G1/0", "name": "Epic Tales", "variant": "Standard", "priceUsd": 57.5, "compsCount": 0, "status": "Priced", "notes": "$45 - $70" },
+        { "id": "C154/176", "name": "Spirit Gun Double (Stamped)", "variant": "Score Stamped", "priceUsd": 87.5, "compsCount": 0, "status": "Priced", "notes": "$75 - $100; previous sale $97" },
+        { "id": "C156/176", "name": "Storm of Torment (Corrected Version)", "variant": "Corrected", "priceUsd": 50.0, "compsCount": 0, "status": "Priced", "notes": "$40 - $60" },
+        { "name": "Origins Pre-Release Card", "variant": "Standard", "priceUsd": 55.0, "compsCount": 0, "status": "Priced", "notes": "$45 - $65" }
+    ]
+}

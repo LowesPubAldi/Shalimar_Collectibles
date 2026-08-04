@@ -1,0 +1,46 @@
+{
+    "scope": "YYH Complete King Sets",
+    "updatedAt": "2026-08-04",
+    "notes": "Tracked separately from per-card pricing notes.",
+    "sets": [
+        {
+            "set": "Exile",
+            "completeKingSets": [
+                {
+                    "name": "Yusuke, the Raver (Complete King)",
+                    "minPriceUsd": 225,
+                    "maxPriceUsd": 275,
+                    "notes": "Edition makes a difference."
+                },
+                {
+                    "name": "Mukuro, Enslaved Soul (Complete King)",
+                    "minPriceUsd": 175,
+                    "maxPriceUsd": 225,
+                    "notes": "Edition makes a difference."
+                }
+            ]
+        },
+        {
+            "set": "Betrayal",
+            "completeKingSets": [
+                {
+                    "name": "Yomi, Sightless God (Complete King)",
+                    "minPriceUsd": 200,
+                    "maxPriceUsd": 225,
+                    "notes": ""
+                }
+            ]
+        },
+        {
+            "set": "Alliance",
+            "completeKingSets": [
+                {
+                    "name": "Raizen, Thunder God (Complete King)",
+                    "minPriceUsd": 500,
+                    "maxPriceUsd": 950,
+                    "notes": "1st Edition is much more highly sought after!"
+                }
+            ]
+        }
+    ]
+}

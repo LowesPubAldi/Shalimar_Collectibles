@@ -1,0 +1,169 @@
+{
+    "set": "Exile",
+    "currency": "USD",
+    "updatedAt": "2026-08-04",
+    "fallbackPricing": [
+        {
+            "name": "Non-Foil Commons",
+            "minPriceUsd": 0.25,
+            "maxPriceUsd": 0.5,
+            "status": "Priced",
+            "notes": "$0.25 - $0.50",
+            "match": {
+                "rarityPrefix": "C - Common",
+                "foil": false
+            }
+        },
+        {
+            "name": "Non-Foil Rares",
+            "minPriceUsd": 0.75,
+            "maxPriceUsd": 1.25,
+            "status": "Priced",
+            "notes": "$0.75 - $1.25",
+            "match": {
+                "rarityPrefix": "R - Rare (standard)",
+                "foil": false
+            }
+        },
+        {
+            "name": "Common Non-Character Foils",
+            "minPriceUsd": 3.0,
+            "maxPriceUsd": 6.0,
+            "status": "Priced",
+            "notes": "$3 - $6",
+            "match": {
+                "rarityPrefix": "C - Common",
+                "foil": true,
+                "typeExcludes": ["character"]
+            }
+        },
+        {
+            "name": "Common Character Foils",
+            "minPriceUsd": 5.0,
+            "maxPriceUsd": 8.0,
+            "status": "Priced",
+            "notes": "$5 - $8",
+            "match": {
+                "rarityPrefix": "C - Common",
+                "foil": true,
+                "typeIncludes": ["character"]
+            }
+        },
+        {
+            "name": "Rare Foils",
+            "minPriceUsd": 4.0,
+            "maxPriceUsd": 7.0,
+            "status": "Priced",
+            "notes": "$4 - $7",
+            "match": {
+                "rarityPrefix": "R - Rare (standard)",
+                "foil": true
+            }
+        },
+        {
+            "name": "Non-Foil Starter Deck Cards",
+            "minPriceUsd": 0.35,
+            "maxPriceUsd": 1.0,
+            "status": "Priced",
+            "notes": "$0.35 - $1",
+            "match": {
+                "rarityPrefix": "ST - Starter Deck",
+                "foil": false
+            }
+        }
+    ],
+    "items": [
+        { "id": "G1", "name": "Horrified", "variant": "Standard", "priceUsd": 12.5, "compsCount": 0, "status": "Priced", "notes": "$10 - $15" },
+        { "id": "G2", "name": "In Shadow", "variant": "Standard", "priceUsd": 20.0, "compsCount": 0, "status": "Priced", "notes": "$15 - $25" },
+        { "id": "G3", "name": "Meow", "variant": "Standard", "priceUsd": 47.5, "compsCount": 0, "status": "Priced", "notes": "$35 - $60" },
+        { "id": "G4", "name": "Yusuke, the Raver (Upper Left)", "variant": "Standard", "priceUsd": 80.0, "compsCount": 0, "status": "Priced", "notes": "$70 - $90" },
+        { "id": "G5", "name": "Powerful Demons", "variant": "Standard", "priceUsd": 13.5, "compsCount": 0, "status": "Priced", "notes": "$10 - $17" },
+        { "id": "G6", "name": "Regeneration", "variant": "Standard", "priceUsd": 18.5, "compsCount": 0, "status": "Priced", "notes": "$16 - $21" },
+        { "id": "G7", "name": "Villionaire Wages", "variant": "Standard", "priceUsd": 50.0, "compsCount": 0, "status": "Priced", "notes": "$40 - $60" },
+        { "id": "G8", "name": "Yusuke's Altar", "variant": "Standard", "priceUsd": 13.0, "compsCount": 0, "status": "Priced", "notes": "$11 - $15" },
+        { "id": "G9", "name": "Mukuro, Enslaved Soul (Upper Right)", "variant": "Standard", "priceUsd": 75.0, "compsCount": 0, "status": "Priced", "notes": "$65 - $85" },
+        { "id": "G10", "name": "Yusuke, The Raver (Upper Right)", "variant": "Standard", "priceUsd": 70.0, "compsCount": 0, "status": "Priced", "notes": "$60 - $80" },
+
+        { "id": "U11", "name": "All You Need is the Ground", "variant": "Standard", "priceUsd": 7.0, "compsCount": 0, "status": "Priced", "notes": "$6 - $8" },
+        { "id": "U12", "name": "Flee", "variant": "Standard", "priceUsd": 8.5, "compsCount": 0, "status": "Priced", "notes": "$7 - $10" },
+        { "id": "U13", "name": "Gloom", "variant": "Standard", "priceUsd": 10.5, "compsCount": 0, "status": "Priced", "notes": "$8 - $13" },
+        { "id": "U14", "name": "Grand Entrance", "variant": "Standard", "priceUsd": 8.0, "compsCount": 0, "status": "Priced", "notes": "$6 - $10" },
+        { "id": "U15", "name": "Reckless Charge", "variant": "Standard", "priceUsd": 9.0, "compsCount": 0, "status": "Priced", "notes": "$7 - $11" },
+        { "id": "U16", "name": "Unknown Allies", "variant": "Standard", "priceUsd": 9.5, "compsCount": 0, "status": "Priced", "notes": "$8 - $11" },
+        { "id": "U17", "name": "Yukina's Tears", "variant": "Standard", "priceUsd": 9.5, "compsCount": 0, "status": "Priced", "notes": "$8 - $11" },
+        { "id": "U18", "name": "Mukuro, Enslaved Soul (Lower Left)", "variant": "Standard", "priceUsd": 45.0, "compsCount": 0, "status": "Priced", "notes": "$40 - $50" },
+        { "id": "U19", "name": "Mukuro, Enslaved Soul (Lower Right)", "variant": "Standard", "priceUsd": 45.0, "compsCount": 0, "status": "Priced", "notes": "$40 - $50" },
+        { "id": "U20", "name": "Yusuke, the Raver (Lower Left)", "variant": "Standard", "priceUsd": 45.0, "compsCount": 0, "status": "Priced", "notes": "$40 - $50" },
+        { "id": "U21", "name": "Yusuke, the Raver (Lower Right)", "variant": "Standard", "priceUsd": 45.0, "compsCount": 0, "status": "Priced", "notes": "$40 - $50" },
+        { "id": "U22", "name": "Hasty Slash", "variant": "Standard", "priceUsd": 7.5, "compsCount": 0, "status": "Priced", "notes": "$6 - $9" },
+        { "id": "U23", "name": "Spin Kick", "variant": "Standard", "priceUsd": 7.0, "compsCount": 0, "status": "Priced", "notes": "$6 - $8" },
+        { "id": "U24", "name": "Spirit Dragon", "variant": "Standard", "priceUsd": 10.0, "compsCount": 0, "status": "Priced", "notes": "$8 - $12" },
+
+        { "id": "S25", "name": "Angelic Embrace", "variant": "Standard", "priceUsd": 5.5, "compsCount": 0, "status": "Priced", "notes": "$4 - $7" },
+        { "id": "S26", "name": "Awaken", "variant": "Standard", "priceUsd": 7.0, "compsCount": 0, "status": "Priced", "notes": "$6 - $8" },
+        { "id": "S27", "name": "Breaking Point", "variant": "Standard", "priceUsd": 6.0, "compsCount": 0, "status": "Priced", "notes": "$5 - $7" },
+        { "id": "S28", "name": "Bui's Final Strike", "variant": "Standard", "priceUsd": 5.0, "compsCount": 0, "status": "Priced", "notes": "$4 - $6" },
+        { "id": "S29", "name": "Carnage", "variant": "Standard", "priceUsd": 7.0, "compsCount": 0, "status": "Priced", "notes": "$6 - $8" },
+        { "id": "S30", "name": "Challenge of Wills", "variant": "Standard", "priceUsd": 6.5, "compsCount": 0, "status": "Priced", "notes": "$5 - $8" },
+        { "id": "S31", "name": "Congregate", "variant": "Standard", "priceUsd": 7.5, "compsCount": 0, "status": "Priced", "notes": "$6 - $9" },
+        { "id": "S32", "name": "Crucial Encounter", "variant": "Standard", "priceUsd": 7.5, "compsCount": 0, "status": "Priced", "notes": "$6 - $9" },
+        { "id": "S33", "name": "Delude", "variant": "Standard", "priceUsd": 5.5, "compsCount": 0, "status": "Priced", "notes": "$4 - $7" },
+        { "id": "S34", "name": "Demonic Presence", "variant": "Standard", "priceUsd": 8.0, "compsCount": 0, "status": "Priced", "notes": "$7 - $9" },
+        { "id": "S35", "name": "Destructive Lust", "variant": "Standard", "priceUsd": 7.5, "compsCount": 0, "status": "Priced", "notes": "$6 - $9" },
+        { "id": "S36", "name": "Intensive Training", "variant": "Standard", "priceUsd": 5.5, "compsCount": 0, "status": "Priced", "notes": "$4 - $7" },
+        { "id": "S37", "name": "Intimidate", "variant": "Standard", "priceUsd": 5.0, "compsCount": 0, "status": "Priced", "notes": "$4 - $6" },
+        { "id": "S38", "name": "Later", "variant": "Standard", "priceUsd": 9.5, "compsCount": 0, "status": "Priced", "notes": "$8 - $11" },
+        { "id": "S39", "name": "Malevolent Influence", "variant": "Standard", "priceUsd": 5.0, "compsCount": 0, "status": "Priced", "notes": "$4 - $6" },
+        { "id": "S40", "name": "Mukuro's Unforgiving Glare", "variant": "Standard", "priceUsd": 6.5, "compsCount": 0, "status": "Priced", "notes": "$5 - $8" },
+        { "id": "S41", "name": "Perfect Timing", "variant": "Standard", "priceUsd": 5.0, "compsCount": 0, "status": "Priced", "notes": "$4 - $6" },
+        { "id": "S42", "name": "Rose Petal Shower", "variant": "Standard", "priceUsd": 6.0, "compsCount": 0, "status": "Priced", "notes": "$5 - $7" },
+        { "id": "S43", "name": "Spirit Force Emerges", "variant": "Standard", "priceUsd": 6.5, "compsCount": 0, "status": "Priced", "notes": "$5 - $8" },
+        { "id": "S44", "name": "Spirit Force Starter", "variant": "Standard", "priceUsd": 5.0, "compsCount": 0, "status": "Priced", "notes": "$4 - $6" },
+        { "id": "S45", "name": "Time Freeze!", "variant": "Standard", "priceUsd": 8.0, "compsCount": 0, "status": "Priced", "notes": "$6 - $10" },
+        { "id": "S46", "name": "Yusuke's Alliance", "variant": "Standard", "priceUsd": 11.0, "compsCount": 0, "status": "Priced", "notes": "$9 - $13" },
+        { "name": "Yusuke, Tribal Fighter", "variant": "Foil", "priceUsd": 16.0, "compsCount": 0, "status": "Priced", "notes": "$14 - $18" },
+        { "name": "Suzaku, Lightning Master", "variant": "Foil", "priceUsd": 11.0, "compsCount": 0, "status": "Priced", "notes": "$9 - $13" },
+        { "name": "King's Conflict", "variant": "Foil", "priceUsd": 5.5, "compsCount": 0, "status": "Priced", "notes": "$4 - $7" },
+        { "name": "Raise Your Team IQ", "variant": "Foil", "priceUsd": 6.0, "compsCount": 0, "status": "Priced", "notes": "$5 - $7" },
+
+        { "id": "L1", "name": "Code", "variant": "Standard", "priceUsd": 10.0, "compsCount": 0, "status": "Priced", "notes": "$8 - $12" },
+        { "id": "L2", "name": "Remembrance", "variant": "Standard", "priceUsd": 9.0, "compsCount": 0, "status": "Priced", "notes": "$7 - $11" },
+        { "id": "L3", "name": "Villainous Energy", "variant": "Standard", "priceUsd": 15.5, "compsCount": 0, "status": "Priced", "notes": "$13 - $18" },
+        { "id": "L4", "name": "Hiei, Arrogant Demon", "variant": "Standard", "priceUsd": 15.0, "compsCount": 0, "status": "Priced", "notes": "$13 - $17" },
+        { "id": "L5", "name": "Koenma, Loyal Friend", "variant": "Standard", "priceUsd": 14.0, "compsCount": 0, "status": "Priced", "notes": "$12 - $16" },
+        { "id": "L6", "name": "Kurama, Gloomy Shadow", "variant": "Standard", "priceUsd": 14.0, "compsCount": 0, "status": "Priced", "notes": "$12 - $16" },
+        { "id": "L7", "name": "Kuwabara, Old Rival", "variant": "Standard", "priceUsd": 10.5, "compsCount": 0, "status": "Priced", "notes": "$9 - $12" },
+        { "id": "L8", "name": "Mr. Ukimura, Friendly Chef", "variant": "Standard", "priceUsd": 4.5, "compsCount": 0, "status": "Priced", "notes": "$3 - $6" },
+        { "id": "L9", "name": "Energy Spiral", "variant": "Standard", "priceUsd": 10.0, "compsCount": 0, "status": "Priced", "notes": "$8 - $12" },
+        { "id": "L10", "name": "Piercing Beam", "variant": "Standard", "priceUsd": 9.5, "compsCount": 0, "status": "Priced", "notes": "$8 - $11" },
+
+        { "id": "P1", "name": "Malefic Grenade", "variant": "Standard", "priceUsd": 8.5, "compsCount": 0, "status": "Priced", "notes": "$7 - $10" },
+        { "id": "P2", "name": "Hatred", "variant": "Standard", "priceUsd": 45.0, "compsCount": 0, "status": "Priced", "notes": "$40 - $50" },
+        { "id": "P3", "name": "Banished", "variant": "Standard", "priceUsd": 11.5, "compsCount": 0, "status": "Priced", "notes": "$9 - $14" },
+        { "id": "P4", "name": "Peek!", "variant": "Standard", "priceUsd": 12.0, "compsCount": 0, "status": "Priced", "notes": "$10 - $14" },
+        { "id": "P5", "name": "Coalition", "variant": "Standard", "priceUsd": 7.5, "compsCount": 0, "status": "Priced", "notes": "$6 - $9" },
+        { "id": "TP3", "name": "The End", "variant": "Standard", "priceUsd": 11.5, "compsCount": 0, "status": "Priced", "notes": "$10 - $13" },
+
+        { "id": "TG1", "name": "Mukuro, Enslaved Soul (Upper Left)", "variant": "Standard", "priceUsd": 107.5, "compsCount": 0, "status": "Priced", "notes": "$90 - $125" },
+        { "id": "TU2", "name": "Concealed Darkness", "variant": "Standard", "priceUsd": 17.5, "compsCount": 0, "status": "Priced", "notes": "$15 - $20" },
+        { "id": "TU3", "name": "Rejected!", "variant": "Standard", "priceUsd": 8.0, "compsCount": 0, "status": "Priced", "notes": "$6 - $10" },
+        { "id": "TS4", "name": "Demoralized", "variant": "Standard", "priceUsd": 9.5, "compsCount": 0, "status": "Priced", "notes": "$8 - $11" },
+        { "id": "TS5", "name": "Dragon's Victory", "variant": "Standard", "priceUsd": 13.0, "compsCount": 0, "status": "Priced", "notes": "$11 - $15" },
+        { "id": "TS6", "name": "Purgatory", "variant": "Standard", "priceUsd": 9.5, "compsCount": 0, "status": "Priced", "notes": "$8 - $11" },
+        { "id": "TR7", "name": "An Old Demon Rises", "variant": "Standard", "priceUsd": 3.0, "compsCount": 0, "status": "Priced", "notes": "$2 - $4" },
+        { "id": "TR8", "name": "Awestruck", "variant": "Standard", "priceUsd": 3.5, "compsCount": 0, "status": "Priced", "notes": "$2 - $5" },
+        { "id": "TR9", "name": "Chaos", "variant": "Standard", "priceUsd": 5.5, "compsCount": 0, "status": "Priced", "notes": "$4 - $7" },
+        { "id": "TR10", "name": "Consumed", "variant": "Standard", "priceUsd": 4.5, "compsCount": 0, "status": "Priced", "notes": "$3 - $6" },
+        { "id": "TR11", "name": "Remember Us?", "variant": "Standard", "priceUsd": 3.5, "compsCount": 0, "status": "Priced", "notes": "$2 - $5" },
+        { "id": "TR12", "name": "Kurama, Loving Friend", "variant": "Standard", "priceUsd": 15.5, "compsCount": 0, "status": "Priced", "notes": "$13 - $18" },
+        { "id": "TC13", "name": "Resurgence of Power", "variant": "Standard", "priceUsd": 3.0, "compsCount": 0, "status": "Priced", "notes": "$2 - $4" },
+        { "id": "TC14", "name": "Game Machine", "variant": "Standard", "priceUsd": 2.5, "compsCount": 0, "status": "Priced", "notes": "$2 - $3" },
+        { "id": "TC15", "name": "Rose Petals", "variant": "Standard", "priceUsd": 3.0, "compsCount": 0, "status": "Priced", "notes": "$2 - $4" },
+        { "id": "TC16", "name": "Shackles", "variant": "Standard", "priceUsd": 3.0, "compsCount": 0, "status": "Priced", "notes": "$2 - $4" },
+        { "id": "TC17", "name": "Kuroko, Former Spirit Detective", "variant": "Standard", "priceUsd": 5.0, "compsCount": 0, "status": "Priced", "notes": "$4 - $6" },
+        { "id": "TC18", "name": "Double Finger Block", "variant": "Standard", "priceUsd": 2.5, "compsCount": 0, "status": "Priced", "notes": "$2 - $3" },
+        { "id": "TC19", "name": "Scatter Shot", "variant": "Standard", "priceUsd": 3.0, "compsCount": 0, "status": "Priced", "notes": "$2 - $4" },
+        { "id": "TC20", "name": "Spirit Flare", "variant": "Standard", "priceUsd": 3.0, "compsCount": 0, "status": "Priced", "notes": "$2 - $4" },
+        { "id": "TC21", "name": "Byakko, Feline Warrior", "variant": "Standard", "priceUsd": 3.5, "compsCount": 0, "status": "Priced", "notes": "$2 - $5" }
+    ]
+}

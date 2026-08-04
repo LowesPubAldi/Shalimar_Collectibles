@@ -1,0 +1,207 @@
+﻿{
+    "set": "Gateway",
+    "currency": "USD",
+    "updatedAt": "2026-08-04",
+    "fallbackPricing": [
+        {
+            "name": "Non-Foil Commons",
+            "minPriceUsd": 0.25,
+            "maxPriceUsd": 0.75,
+            "status": "Priced",
+            "notes": "$0.25 - $0.75",
+            "match": {
+                "rarityPrefix": "C - Common",
+                "foil": false
+            }
+        },
+        {
+            "name": "Non-Foil Rares",
+            "minPriceUsd": 0.75,
+            "maxPriceUsd": 1.25,
+            "status": "Priced",
+            "notes": "$0.75 - $1.25",
+            "match": {
+                "rarityPrefix": "R - Rare (standard)",
+                "foil": false
+            }
+        },
+        {
+            "name": "Common Single Rainbow Foils",
+            "minPriceUsd": 2.0,
+            "maxPriceUsd": 5.0,
+            "status": "Priced",
+            "notes": "$2 - $5",
+            "match": {
+                "rarityPrefix": "C - Common",
+                "foil": true,
+                "variantIncludes": ["single", "rainbow"]
+            }
+        },
+        {
+            "name": "Rare Single Rainbow Foils",
+            "minPriceUsd": 3.0,
+            "maxPriceUsd": 7.0,
+            "status": "Priced",
+            "notes": "$3 - $7",
+            "match": {
+                "rarityPrefix": "R - Rare (standard)",
+                "foil": true,
+                "variantIncludes": ["single", "rainbow"]
+            }
+        },
+        {
+            "name": "Team Bonus Single Rainbow Foils",
+            "minPriceUsd": 3.0,
+            "maxPriceUsd": 6.0,
+            "status": "Priced",
+            "notes": "$3 - $6",
+            "match": {
+                "rarityPrefix": "X - Team Challenge/Box Topper",
+                "foil": true,
+                "variantIncludes": ["single", "rainbow"]
+            }
+        },
+        {
+            "name": "Common Double Rainbow Foils",
+            "minPriceUsd": 6.0,
+            "maxPriceUsd": 9.0,
+            "status": "Priced",
+            "notes": "$6 - $9",
+            "match": {
+                "rarityPrefix": "C - Common",
+                "foil": true,
+                "variantIncludes": ["double", "rainbow"]
+            }
+        },
+        {
+            "name": "Rare Double Rainbow Foils",
+            "minPriceUsd": 8.0,
+            "maxPriceUsd": 12.0,
+            "status": "Priced",
+            "notes": "$8 - $12",
+            "match": {
+                "rarityPrefix": "R - Rare (standard)",
+                "foil": true,
+                "variantIncludes": ["double", "rainbow"]
+            }
+        },
+        {
+            "name": "Team Bonus Double Rainbow Foils",
+            "minPriceUsd": 5.0,
+            "maxPriceUsd": 8.0,
+            "status": "Priced",
+            "notes": "$5 - $8",
+            "match": {
+                "rarityPrefix": "X - Team Challenge/Box Topper",
+                "foil": true,
+                "variantIncludes": ["double", "rainbow"]
+            }
+        }
+    ],
+    "items": [
+        { "id": "G1", "name": "Bull's-Eye", "variant": "Standard", "priceUsd": 82.5, "compsCount": 0, "status": "Priced", "notes": "$70 - $95" },
+        { "id": "G2", "name": "Darkness Approaches", "variant": "Standard", "priceUsd": 6.0, "compsCount": 0, "status": "Priced", "notes": "$4 - $8" },
+        { "id": "G3", "name": "Faces of Sensui", "variant": "Standard", "priceUsd": 21.0, "compsCount": 0, "status": "Priced", "notes": "$17 - $25" },
+        { "id": "G4", "name": "Sinning Tree", "variant": "Standard", "priceUsd": 10.5, "compsCount": 0, "status": "Priced", "notes": "$8 - $13" },
+        { "id": "U5", "name": "Apocalypse", "variant": "Standard", "priceUsd": 8.5, "compsCount": 0, "status": "Priced", "notes": "$7 - $10" },
+        { "id": "U6", "name": "Bang!", "variant": "Standard", "priceUsd": 7.5, "compsCount": 0, "status": "Priced", "notes": "$5 - $10" },
+        { "id": "U7", "name": "Gateway", "variant": "Standard", "priceUsd": 7.5, "compsCount": 0, "status": "Priced", "notes": "$5 - $10" },
+        { "id": "U8", "name": "Spectacular Battle", "variant": "Standard", "priceUsd": 8.5, "compsCount": 0, "status": "Priced", "notes": "$6 - $11" },
+        { "id": "U9", "name": "Surprised?", "variant": "Standard", "priceUsd": 4.0, "compsCount": 0, "status": "Priced", "notes": "$3 - $5" },
+        { "id": "U10", "name": "Sayaka, the Investigator", "variant": "Standard", "priceUsd": 4.5, "compsCount": 0, "status": "Priced", "notes": "$3 - $6" },
+        { "id": "U11", "name": "Doushi, Raizen's Messenger", "variant": "Standard", "priceUsd": 15.0, "compsCount": 0, "status": "Priced", "notes": "$12 - $18" },
+        { "id": "S12", "name": "Big Brother", "variant": "Standard", "priceUsd": 4.0, "compsCount": 0, "status": "Priced", "notes": "$3 - $5" },
+        { "id": "S13", "name": "Blade Storm", "variant": "Standard", "priceUsd": 4.0, "compsCount": 0, "status": "Priced", "notes": "$3 - $5" },
+        { "id": "S14", "name": "Contemplate", "variant": "Standard", "priceUsd": 5.5, "compsCount": 0, "status": "Priced", "notes": "$4 - $7" },
+        { "id": "S15", "name": "Dark Ritual", "variant": "Standard", "priceUsd": 4.0, "compsCount": 0, "status": "Priced", "notes": "$3 - $5" },
+        { "id": "S16", "name": "Distractions", "variant": "Standard", "priceUsd": 4.0, "compsCount": 0, "status": "Priced", "notes": "$3 - $5" },
+        { "id": "S17", "name": "Double Block", "variant": "Standard", "priceUsd": 5.5, "compsCount": 0, "status": "Priced", "notes": "$4 - $7" },
+        { "id": "S18", "name": "Sorrow", "variant": "Standard", "priceUsd": 7.0, "compsCount": 0, "status": "Priced", "notes": "$6 - $8" },
+        { "id": "S19", "name": "Torture", "variant": "Standard", "priceUsd": 3.5, "compsCount": 0, "status": "Priced", "notes": "$2 - $5" },
+        { "id": "S20", "name": "What Friends Are For", "variant": "Standard", "priceUsd": 7.5, "compsCount": 0, "status": "Priced", "notes": "$5 - $10" },
+        { "id": "S21", "name": "Decoy", "variant": "Standard", "priceUsd": 4.0, "compsCount": 0, "status": "Priced", "notes": "$3 - $5" },
+        { "id": "S22", "name": "Koenma's Pacifier", "variant": "Standard", "priceUsd": 6.0, "compsCount": 0, "status": "Priced", "notes": "$4 - $8" },
+
+        { "id": "R38", "name": "Genkai, Resurrected", "variant": "Standard", "priceUsd": 22.5, "compsCount": 0, "status": "Priced", "notes": "$20 - $25" },
+        { "id": "R39", "name": "Koenma, Disguised Leader", "variant": "Standard", "priceUsd": 20.5, "compsCount": 0, "status": "Priced", "notes": "$18 - $23" },
+        { "id": "R40", "name": "Yusuke, Entranced", "variant": "Standard", "priceUsd": 20.5, "compsCount": 0, "status": "Priced", "notes": "$18 - $23" },
+        { "id": "R41", "name": "Sensui, Dark Detective", "variant": "Standard", "priceUsd": 14.5, "compsCount": 0, "status": "Priced", "notes": "$12 - $17" },
+        { "id": "C97", "name": "Koenma, Young Ruler", "variant": "Standard", "priceUsd": 12.5, "compsCount": 0, "status": "Priced", "notes": "$10 - $15" },
+        { "id": "C98", "name": "Kuwabara, Righteous Warrior (Blue Jacket)", "variant": "Standard", "priceUsd": 16.0, "compsCount": 0, "status": "Priced", "notes": "$14 - $18" },
+        { "id": "C99", "name": "Sensui, Kazuya's Personality", "variant": "Standard", "priceUsd": 20.0, "compsCount": 0, "status": "Priced", "notes": "$17 - $23" },
+        { "id": "C119", "name": "Kuwabara, Righteous Warrior (White Jacket)", "variant": "Standard", "priceUsd": 15.0, "compsCount": 0, "status": "Priced", "notes": "$13 - $17" },
+
+        { "id": "C35", "name": "Hiei Exile Set Teaser Insert", "variant": "Standard", "priceUsd": 57.5, "compsCount": 0, "status": "Priced", "notes": "$50 - $65" },
+        { "name": "Join A League Insert", "variant": "Standard", "priceUsd": 20.0, "compsCount": 0, "status": "Priced", "notes": "$15 - $25" },
+
+        { "id": "R33/176", "name": "Jin", "variant": "Reprint", "priceUsd": 7.5, "compsCount": 0, "status": "Priced", "notes": "$6 - $9" },
+        { "id": "C82/176", "name": "Time Out", "variant": "Reprint", "priceUsd": 5.5, "compsCount": 0, "status": "Priced", "notes": "$4 - $7" },
+        { "id": "R86/176", "name": "Kitty Love", "variant": "Reprint", "priceUsd": 5.0, "compsCount": 0, "status": "Priced", "notes": "$4 - $6" },
+        { "id": "R90/176", "name": "Rash Brawling", "variant": "Reprint", "priceUsd": 6.0, "compsCount": 0, "status": "Priced", "notes": "$4 - $8" },
+        { "id": "C113/176", "name": "Backyard Dummy", "variant": "Reprint", "priceUsd": 6.5, "compsCount": 0, "status": "Priced", "notes": "$5 - $8" },
+        { "id": "C117/176", "name": "Demon Compass", "variant": "Reprint", "priceUsd": 6.0, "compsCount": 0, "status": "Priced", "notes": "$4 - $8" },
+        { "id": "R121/176", "name": "Trace-Eyes", "variant": "Reprint", "priceUsd": 7.0, "compsCount": 0, "status": "Priced", "notes": "$5 - $9" },
+        { "id": "R126/176", "name": "Spirit Cuffs", "variant": "Reprint", "priceUsd": 7.0, "compsCount": 0, "status": "Priced", "notes": "$5 - $9" },
+        { "id": "ST130/176", "name": "Fishing Pole", "variant": "Reprint", "priceUsd": 7.0, "compsCount": 0, "status": "Priced", "notes": "$5 - $9" },
+        { "id": "TC9/22", "name": "Unconsious", "variant": "Reprint", "priceUsd": 6.5, "compsCount": 0, "status": "Priced", "notes": "$5 - $8" },
+
+        { "id": "L1", "name": "Yusuke, Noble Fighter (Single Rainbow)", "variant": "Single Rainbow", "priceUsd": 30.0, "compsCount": 0, "status": "Priced", "notes": "$25 - $35" },
+        { "id": "L1", "name": "Yusuke, Noble Fighter (Double Rainbow)", "variant": "Double Rainbow", "priceUsd": 20.0, "compsCount": 0, "status": "Priced", "notes": "$15 - $25" },
+        { "id": "L2", "name": "Yusuke's Tainted Glare (Single Rainbow)", "variant": "Single Rainbow", "priceUsd": 7.5, "compsCount": 0, "status": "Priced", "notes": "$6 - $9" },
+        { "id": "L2", "name": "Yusuke's Tainted Glare (Double Rainbow)", "variant": "Double Rainbow", "priceUsd": 7.0, "compsCount": 0, "status": "Priced", "notes": "$6 - $8" },
+        { "id": "L3", "name": "Hiei, Dark Fighter (Single Rainbow)", "variant": "Single Rainbow", "priceUsd": 15.5, "compsCount": 0, "status": "Priced", "notes": "$13 - $18" },
+        { "id": "L3", "name": "Hiei, Dark Fighter (Double Rainbow)", "variant": "Double Rainbow", "priceUsd": 17.5, "compsCount": 0, "status": "Priced", "notes": "$15 - $20" },
+        { "id": "L4", "name": "Hiei's Tainted Glare (Single Rainbow)", "variant": "Single Rainbow", "priceUsd": 8.5, "compsCount": 0, "status": "Priced", "notes": "$7 - $10" },
+        { "id": "L4", "name": "Hiei's Tainted Glare (Double Rainbow)", "variant": "Double Rainbow", "priceUsd": 6.5, "compsCount": 0, "status": "Priced", "notes": "$5 - $8" },
+        { "id": "L5", "name": "Kurama, Legendary Fighter (Single Rainbow)", "variant": "Single Rainbow", "priceUsd": 17.5, "compsCount": 0, "status": "Priced", "notes": "$15 - $20" },
+        { "id": "L5", "name": "Kurama, Legendary Fighter (Double Rainbow)", "variant": "Double Rainbow", "priceUsd": 14.0, "compsCount": 0, "status": "Priced", "notes": "$12 - $16" },
+        { "id": "L6", "name": "Kurama's Tainted Glare (Single Rainbow)", "variant": "Single Rainbow", "priceUsd": 9.0, "compsCount": 0, "status": "Priced", "notes": "$7 - $11" },
+        { "id": "L6", "name": "Kurama's Tainted Glare (Double Rainbow)", "variant": "Double Rainbow", "priceUsd": 7.0, "compsCount": 0, "status": "Priced", "notes": "$6 - $8" },
+        { "id": "L7", "name": "Kuwabara, Emotional Fighter (Single Rainbow)", "variant": "Single Rainbow", "priceUsd": 9.0, "compsCount": 0, "status": "Priced", "notes": "$7 - $11" },
+        { "id": "L7", "name": "Kuwabara, Emotional Fighter (Double Rainbow)", "variant": "Double Rainbow", "priceUsd": 9.0, "compsCount": 0, "status": "Priced", "notes": "$7 - $11" },
+        { "id": "L8", "name": "Kuwabara's Tainted Glare (Single Rainbow)", "variant": "Single Rainbow", "priceUsd": 8.0, "compsCount": 0, "status": "Priced", "notes": "$6 - $10" },
+        { "id": "L8", "name": "Kuwabara's Tainted Glare (Double Rainbow)", "variant": "Double Rainbow", "priceUsd": 7.0, "compsCount": 0, "status": "Priced", "notes": "$6 - $8" },
+        { "id": "L9", "name": "Tag Team (Single Rainbow)", "variant": "Single Rainbow", "priceUsd": 7.0, "compsCount": 0, "status": "Priced", "notes": "$6 - $8" },
+        { "id": "L9", "name": "Tag Team (Double Rainbow)", "variant": "Double Rainbow", "priceUsd": 7.0, "compsCount": 0, "status": "Priced", "notes": "$6 - $8" },
+        { "id": "L10", "name": "Mad Bomb (Single Rainbow)", "variant": "Single Rainbow", "priceUsd": 6.0, "compsCount": 0, "status": "Priced", "notes": "$5 - $7" },
+        { "id": "L10", "name": "Mad Bomb (Double Rainbow)", "variant": "Double Rainbow", "priceUsd": 5.0, "compsCount": 0, "status": "Priced", "notes": "$4 - $6" },
+
+        { "id": "P1", "name": "Hiei, Determined Warrior (Single Rainbow)", "variant": "Single Rainbow", "priceUsd": 35.0, "compsCount": 0, "status": "Priced", "notes": "$30 - $40" },
+        { "id": "P1", "name": "Hiei, Determined Warrior (Double Rainbow)", "variant": "Double Rainbow", "priceUsd": 500.0, "compsCount": 1, "status": "Priced", "notes": "Only sale to occur on 4/22/16 was for $500." },
+        { "id": "P2", "name": "Crazy World (Single Rainbow)", "variant": "Single Rainbow", "priceUsd": 3.0, "compsCount": 0, "status": "Priced", "notes": "$2 - $4" },
+        { "id": "P2", "name": "Crazy World (Double Rainbow)", "variant": "Double Rainbow", "priceUsd": 20.0, "compsCount": 0, "status": "Priced", "notes": "$15 - $25" },
+        { "id": "P3", "name": "Head-On Assault (Single Rainbow)", "variant": "Single Rainbow", "priceUsd": 15.0, "compsCount": 0, "status": "Priced", "notes": "$12 - $18" },
+        { "id": "P3", "name": "Head-On Assault (Double Rainbow)", "variant": "Double Rainbow", "priceUsd": 162.5, "compsCount": 0, "status": "Priced", "notes": "Last sales: $80, $250, $150 - Only 6 known to exist currently." },
+        { "id": "X0", "name": "Kuwabara, Noble Champion (Single Rainbow)", "variant": "Single Rainbow", "priceUsd": 9.5, "compsCount": 0, "status": "Priced", "notes": "$7 - $12" },
+        { "id": "X0", "name": "Kuwabara, Noble Champion (SR - Unlimited)", "variant": "SR - Unlimited", "priceUsd": 50.0, "compsCount": 0, "status": "Priced", "notes": "Small number of sales due to it likely being an error card." },
+        { "id": "X0", "name": "Kuwabara, Noble Champion (Double Rainbow)", "variant": "Double Rainbow", "priceUsd": 11.0, "compsCount": 0, "status": "Priced", "notes": "$9 - $13" },
+        { "id": "X1", "name": "Ura-Otoko (Single Rainbow)", "variant": "Single Rainbow", "priceUsd": 675.0, "compsCount": 0, "status": "Priced", "notes": "Last sales: $325 (damaged), $900 (graded), $650 (raw on 9/28/23)" },
+        { "id": "TP2", "name": "Meditation (Single Rainbow)", "variant": "Single Rainbow", "priceUsd": 87.5, "compsCount": 0, "status": "Priced", "notes": "$75 - $100" },
+        { "id": "SK1", "name": "Yusuke, Raizen's Successor (Single Rainbow)", "variant": "Single Rainbow", "priceUsd": 350.0, "compsCount": 0, "status": "Priced", "notes": "Last sale on 12/28/22 of 350 was graded and another sale on 11/28/23 of 350 was raw. 5/15/26 sale of 305 on eBay" },
+        { "id": "R2", "name": "Counter Strike (Single Rainbow)", "variant": "Single Rainbow", "priceUsd": 4.0, "compsCount": 0, "status": "Priced", "notes": "$3 - $5" },
+
+        { "id": "TG1", "name": "I Got Something For You!", "variant": "Standard", "priceUsd": 150.0, "compsCount": 0, "status": "Priced", "notes": "$125 - $175" },
+        { "id": "TU2", "name": "Gathering of Villains", "variant": "Standard", "priceUsd": 16.5, "compsCount": 0, "status": "Priced", "notes": "$13 - $20" },
+        { "id": "TU3", "name": "Protecting the Innocent", "variant": "Standard", "priceUsd": 18.5, "compsCount": 0, "status": "Priced", "notes": "$15 - $22" },
+        { "id": "TS4", "name": "Concealed Blade", "variant": "Standard", "priceUsd": 7.5, "compsCount": 0, "status": "Priced", "notes": "$5 - $10" },
+        { "id": "TS5", "name": "Kurama, Skilled Assassin", "variant": "Standard", "priceUsd": 35.0, "compsCount": 0, "status": "Priced", "notes": "$30 - $40" },
+        { "id": "TS6", "name": "Energy Release", "variant": "Standard", "priceUsd": 40.0, "compsCount": 0, "status": "Priced", "notes": "$30 - $50" },
+        { "id": "TR7", "name": "Game Battler", "variant": "Standard", "priceUsd": 4.0, "compsCount": 0, "status": "Priced", "notes": "$3 - $5" },
+        { "id": "TR8", "name": "Mini Game, Flight Shooter", "variant": "Standard", "priceUsd": 5.0, "compsCount": 0, "status": "Priced", "notes": "$4 - $6" },
+        { "id": "TR9", "name": "Mini Game, Master Quiz", "variant": "Standard", "priceUsd": 4.0, "compsCount": 0, "status": "Priced", "notes": "$3 - $5" },
+        { "id": "TR10", "name": "Mini Game, Tennis", "variant": "Standard", "priceUsd": 5.0, "compsCount": 0, "status": "Priced", "notes": "$4 - $6" },
+        { "id": "TR11", "name": "Recall", "variant": "Standard", "priceUsd": 4.0, "compsCount": 0, "status": "Priced", "notes": "$3 - $5" },
+        { "id": "TR12", "name": "Sensui, Spirit Detective", "variant": "Standard", "priceUsd": 9.0, "compsCount": 0, "status": "Priced", "notes": "$7 - $11" },
+        { "id": "TC13", "name": "Allure", "variant": "Standard", "priceUsd": 5.0, "compsCount": 0, "status": "Priced", "notes": "$4 - $6" },
+        { "id": "TC14", "name": "Full Tilt", "variant": "Standard", "priceUsd": 3.0, "compsCount": 0, "status": "Priced", "notes": "$2 - $4" },
+        { "id": "TC15", "name": "Natural Reaction", "variant": "Standard", "priceUsd": 3.0, "compsCount": 0, "status": "Priced", "notes": "$2 - $4" },
+        { "id": "TC16", "name": "Possessed", "variant": "Standard", "priceUsd": 3.0, "compsCount": 0, "status": "Priced", "notes": "$2 - $4" },
+        { "id": "TC17", "name": "Virus Carriers", "variant": "Standard", "priceUsd": 4.0, "compsCount": 0, "status": "Priced", "notes": "$3 - $5" },
+        { "id": "TC18", "name": "Demonic Strike", "variant": "Standard", "priceUsd": 3.0, "compsCount": 0, "status": "Priced", "notes": "$2 - $4" },
+        { "id": "TC19", "name": "Splinter Resshuuken", "variant": "Standard", "priceUsd": 6.5, "compsCount": 0, "status": "Priced", "notes": "$5 - $8" },
+        { "id": "TC20", "name": "Tough Love", "variant": "Standard", "priceUsd": 4.5, "compsCount": 0, "status": "Priced", "notes": "$3 - $6" },
+        { "id": "TC21", "name": "Whip Mastery", "variant": "Standard", "priceUsd": 6.0, "compsCount": 0, "status": "Priced", "notes": "$5 - $7" },
+        { "id": "TC22", "name": "Hagiri, the Hunter", "variant": "Standard", "priceUsd": 5.0, "compsCount": 0, "status": "Priced", "notes": "$4 - $6" },
+        { "id": "TC23", "name": "Kamiya, the Doctor", "variant": "Standard", "priceUsd": 6.5, "compsCount": 0, "status": "Priced", "notes": "$5 - $8" }
+    ]
+}

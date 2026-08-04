@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="styles/base.css?v=1">
     <link rel="stylesheet" href="styles/components/nav.css?v=1">
     <link rel="stylesheet" href="styles/components/footer.css?v=1">
-    <link rel="stylesheet" href="styles/pages/inventory.css?v=4">
+    <link rel="stylesheet" href="styles/pages/inventory.css?v=24">
     <script src="scripts/components/mobile-nav.js?v=1" defer></script>
-    <script src="scripts/pages/inventory-filters.js?v=11" defer></script>
+    <script src="scripts/pages/inventory-filters.js?v=39" defer></script>
 </head>
 <body>
     <header class="header">
@@ -83,6 +83,35 @@
                 <select class="inventory-control" id="inventory-rarity-filter" aria-label="Filter by rarity">
                     <option>All Rarities</option>
                 </select>
+                <select class="inventory-control" id="inventory-edition-filter" aria-label="Filter by edition">
+                    <option selected>All Editions</option>
+                    <option>Unlimited / Not Marked</option>
+                    <option>1st Edition</option>
+                    <option>Unspecified / Likely Both</option>
+                </select>
+                <select class="inventory-control" id="inventory-variant-focus-filter" aria-label="Filter by finish">
+                    <option selected>All Finishes</option>
+                    <option>Standard Only</option>
+                    <option>Foils Only</option>
+                    <option>Rainbow Only</option>
+                </select>
+                <select class="inventory-control" id="inventory-price-status-filter" aria-label="Filter by price status">
+                    <option selected>All Price Statuses</option>
+                    <option>Unpriced</option>
+                    <option>Priced</option>
+                    <option>Needs Review</option>
+                </select>
+                <select class="inventory-control" id="inventory-sort-filter" aria-label="Sort cards">
+                    <option selected>Card Number (Low-High)</option>
+                    <option>Card Number (High-Low)</option>
+                    <option>Name (A-Z)</option>
+                    <option>Name (Z-A)</option>
+                    <option>Rarity (A-Z)</option>
+                    <option>Set (A-Z)</option>
+                    <option>Price (High-Low)</option>
+                    <option>Price (Low-High)</option>
+                    <option>Variant Premium (High-Low)</option>
+                </select>
                 <label class="inventory-variants-toggle" for="inventory-variants-toggle">
                     <input id="inventory-variants-toggle" type="checkbox" />
                     <span>Show all variants</span>
@@ -90,13 +119,19 @@
             </form>
 
             <div class="inventory-filter-notes" aria-label="Filter notes">
-                <p class="inventory-filter-note">Search note: reserved for V1 guidance.</p>
+                <p class="inventory-filter-note">Search note: enter 3+ characters to run search.</p>
                 <p class="inventory-filter-note">Game note: reserved for V1 guidance.</p>
-                <p class="inventory-filter-note">Set note: reserved for V1 guidance.</p>
+                <p class="inventory-filter-note">Set note: set-specific pricing context appears below when available.</p>
                 <p class="inventory-filter-note">Type note: reserved for V1 guidance.</p>
                 <p class="inventory-filter-note">Rarity note: options are game-specific and update based on selected game.</p>
+                <p class="inventory-filter-note">Edition note: use this for 1st vs unlimited print runs.</p>
+                <p class="inventory-filter-note">Finish note: quick isolate standard, foil, and rainbow cards.</p>
+                <p class="inventory-filter-note">Pricing note: load a set pricing file to mark priced cards and sort by value.</p>
+                <p class="inventory-filter-note">Sort note: ordering applies across all loaded pages.</p>
                 <p class="inventory-filter-note" id="inventory-data-note">YYH inventory reads live API data and supports full card datasets; source credit remains with inviso (Mike) and the Yu Yu Hakusho TCG Database.</p>
             </div>
+
+            <section class="inventory-set-context" id="inventory-set-context" aria-label="Set pricing context" hidden></section>
 
             <div class="inventory-results-head">
                 <h2>Results</h2>
