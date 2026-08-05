@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="styles/base.css?v=1">
     <link rel="stylesheet" href="styles/components/nav.css?v=1">
     <link rel="stylesheet" href="styles/components/footer.css?v=1">
-    <link rel="stylesheet" href="styles/pages/inventory.css?v=24">
+    <link rel="stylesheet" href="styles/pages/inventory.css?v=27">
     <script src="scripts/components/mobile-nav.js?v=1" defer></script>
-    <script src="scripts/pages/inventory-filters.js?v=39" defer></script>
+    <script src="scripts/pages/inventory-filters.js?v=43" defer></script>
 </head>
 <body>
     <header class="header">
@@ -58,6 +58,13 @@
                     type="search"
                     placeholder="Search by card name"
                     aria-label="Search by card name"
+                />
+                <input
+                    class="inventory-control"
+                    id="inventory-number-filter"
+                    type="search"
+                    placeholder="Filter by card number (ex: C56, ST1)"
+                    aria-label="Filter by card number"
                 />
                 <select class="inventory-control" id="inventory-game-filter" aria-label="Filter by game">
                     <option>All Games</option>
@@ -120,6 +127,7 @@
 
             <div class="inventory-filter-notes" aria-label="Filter notes">
                 <p class="inventory-filter-note">Search note: enter 3+ characters to run search.</p>
+                <p class="inventory-filter-note">Number note: supports full or partial card IDs like C56, ST1, or C156/176.</p>
                 <p class="inventory-filter-note">Game note: reserved for V1 guidance.</p>
                 <p class="inventory-filter-note">Set note: set-specific pricing context appears below when available.</p>
                 <p class="inventory-filter-note">Type note: reserved for V1 guidance.</p>

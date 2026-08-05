@@ -14,27 +14,87 @@ This roadmap is our guideline for feature planning.
 
 Focus: deliver the most requested foundational tools first.
 
+#### V1 Execution Checklist (Current Build Order)
+
+- [x] Confirm pricing coverage and set-context behavior for YYH inventory
+- [x] Finalize core Inventory filters (name, card number, set, type, rarity, edition, finish, price status)
+- [x] Complete Inventory responsiveness for tablet and mobile layouts
+- [ ] Run final V1 QA pass (filter combinations, load-more behavior, image hydration, edge-case searches)
+- [ ] Build release checklist (content copy, basic analytics events, and bug triage flow)
+
 - [ ] Card database pages for supported games
-- [ ] Strong search + filters
-- [ ] Filter by name
-- [ ] Filter by set
-- [ ] Filter by card number
-- [ ] Filter by card type
-- [ ] Filter by rarity
-- [ ] Card image library
+- [x] Strong search + filters
+- [x] Filter by name
+- [x] Filter by set
+- [x] Filter by card number
+- [x] Filter by card type
+- [x] Filter by rarity
+- [x] Card image library
 - [ ] Set lists and set-level views
 - [ ] Card detail page basics (name, set, number, rarity, image)
 - [ ] Starter deck list pages
 - [ ] Basic collection tracker
-- [ ] Track print/finish variants (non-foil, single rainbow, double rainbow, limited/unlimited)
+- [x] Track print/finish variants (non-foil, single rainbow, double rainbow, limited/unlimited)
 
 ### Version 2 (Expansion Release)
 
 Focus: deepen utility after V1 is stable and feedback is collected.
 
+V2 is split into practical phases so we can ship useful gameplay tools without overbuilding.
+
+#### V2A (Immediate Groundwork, Next Week)
+
+- [ ] Responsive pass for Inventory page (desktop/tablet/mobile)
+- [ ] Build About page
+- [ ] Build Contact page
+- [ ] Individual card page basics (text, cost/use, stats, price)
+- [ ] King set display mode on card page (show all four quadrants together)
+
+#### V2B (Gameplay + Reference Utility)
+
+- [ ] Ban list / limited list pages
+- [ ] Team Bonus reference pages
+- [ ] Tournament report archive
+- [ ] Rulebook and rulings reference pages
+- [ ] Judge test / practice module
+- [ ] Better search quality (saved filters, faster results, more filter combinations)
+
+#### V2C (Pricing + Data Reliability)
+
 - [ ] Pricing guide system (beta)
 - [ ] Automated/assisted price updates from available market data
-- [ ] Advanced collection tools (totals, gaps, duplicates)
+- [ ] Pricing confidence model (sample size + recency + outlier flags)
+- [ ] Price history snapshots per card (store change timeline)
+- [ ] Manual price override workflow with audit notes (source + reason)
+- [ ] Standardized comp ingestion schema (eBay/API/manual entry all map to one format)
+- [ ] Scheduled pricing refresh jobs + retry logging
+- [ ] Structured notes model (set notes, king-set notes, pricing notes in one consistent schema)
+
+#### V2D (V3 Foundation Layer)
+
+- [ ] Canonical card identity model across printings/variants (stable key for links and caching)
+- [ ] Card detail API contract v1 (single endpoint shape used by all future card pages)
+- [ ] Set detail API contract v1 (summary stats + rarity/variant counts)
+- [ ] Normalized media naming convention + fallback image policy
+- [ ] Event/analytics instrumentation plan (search usage, filter usage, card click-through)
+- [ ] Background task queue foundation (for imports, pricing sync, and long-running jobs)
+- [ ] Feature flag support for staged rollouts and safer launches
+- [ ] API response versioning strategy for backwards-compatible frontend updates
+
+#### V2 Cadence Note
+
+- [ ] Collect eBay sold data for one focused week (set by set)
+- [ ] Apply pricing updates on a biweekly rhythm
+- [ ] Take a planned 48-hour no-code break after the next weekly push
+
+### Version 3 (Community Release)
+
+Focus: trusted community interactions once gameplay and reference tools are stable.
+
+- [ ] Message boards (game + set channels)
+- [ ] Ref/reputation system for trades, buying, and selling
+- [ ] Trade/swap matching between users
+- [ ] Public discussion threads on cards, sets, and rulings
 - [ ] Deck Showcase feed (listing-style deck cards)
 - [ ] Public deck detail pages with full card quantities
 - [ ] Deck metadata (format, archetype, condition notes, value range)
@@ -44,8 +104,8 @@ Focus: deepen utility after V1 is stable and feedback is collected.
 - [ ] Deck comments and ratings
 - [ ] Deck version history
 - [ ] Deck price roll-up from card data
-- [ ] Trade/swap matching between users
-- [ ] Better search quality (saved filters, faster results, more filter combinations)
+- [ ] Advanced collection tools (totals, gaps, duplicates)
+- [ ] Role/permissions baseline (admin/editor/viewer) for moderation and submissions
 - [ ] User accounts and synced collections (optional)
 
 ## Scope Guardrails

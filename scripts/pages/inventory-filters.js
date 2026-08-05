@@ -6,7 +6,11 @@ const INVENTORY_FALLBACK_DATA_URLS = [
     "data/yyh-cards-slice.json"
 ];
 const INVENTORY_DEFAULT_OFFSET = 0;
-const INVENTORY_PAGE_LIMIT = 120;
+const INVENTORY_PAGE_LIMIT_DESKTOP = 120;
+const INVENTORY_PAGE_LIMIT_TABLET = 72;
+const INVENTORY_PAGE_LIMIT_MOBILE = 48;
+const INVENTORY_PAGE_LIMIT_MOBILE_NARROW = 24;
+const INVENTORY_PAGE_LIMIT_MOBILE_COMPACT = 16;
 const MIN_SEARCH_CHARACTERS = 3;
 const DEFAULT_SORT_OPTION = "Card Number (Low-High)";
 const DEFAULT_EDITION_OPTION = "All Editions";
@@ -47,6 +51,26 @@ const YYH_IMAGE_SET_FOLDERS = {
 let fallbackDataCache = null;
 let pricingDataCache = new Map();
 let kingSetNotesCache = null;
+
+function getInventoryPageLimit() {
+    if (window.innerWidth <= 420) {
+        return INVENTORY_PAGE_LIMIT_MOBILE_COMPACT;
+    }
+
+    if (window.innerWidth <= 560) {
+        return INVENTORY_PAGE_LIMIT_MOBILE_NARROW;
+    }
+
+    if (window.innerWidth <= 768) {
+        return INVENTORY_PAGE_LIMIT_MOBILE;
+    }
+
+    if (window.innerWidth <= 1100) {
+        return INVENTORY_PAGE_LIMIT_TABLET;
+    }
+
+    return INVENTORY_PAGE_LIMIT_DESKTOP;
+}
 
 const FILTER_OPTIONS_BY_GAME = {
     "All Games": {
@@ -763,6 +787,7 @@ function filterRecords(records, filterState) {
     const searchTokens = getSearchTokens(filterState.query);
     const rawQuery = String(filterState.query || "").trim();
     const normalizedQuery = normalizeForSearch(rawQuery);
+    const numberQuery = normalizeCardNumberForFilter(filterState.cardNumber);
     const hasPunctuationQuery = /[^a-z0-9\s]/i.test(rawQuery);
     const queryTooShort = normalizedQuery.length > 0 && normalizedQuery.length < MIN_SEARCH_CHARACTERS;
 
@@ -803,6 +828,13 @@ function filterRecords(records, filterState) {
             return false;
         }
 
+        if (numberQuery) {
+            const recordNumber = normalizeCardNumberForFilter(record.id || record.number);
+            if (!recordNumber.includes(numberQuery)) {
+                return false;
+            }
+        }
+
         if (queryTooShort) {
             return false;
         }
@@ -831,6 +863,13 @@ function normalizeForSearch(value) {
     return String(value || "")
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, " ")
+        .trim();
+}
+
+function normalizeCardNumberForFilter(value) {
+    return String(value || "")
+        .toUpperCase()
+        .replace(/\s+/g, "")
         .trim();
 }
 
@@ -1610,9 +1649,10 @@ function sortInventoryRecords(records, sortOption) {
     return sorted;
 }
 
-function makeFilterState(searchFilter, gameFilter, setFilter, typeFilter, rarityFilter, editionFilter, variantFocusFilter, priceStatusFilter, sortFilter, variantsToggle) {
+function makeFilterState(searchFilter, numberFilter, gameFilter, setFilter, typeFilter, rarityFilter, editionFilter, variantFocusFilter, priceStatusFilter, sortFilter, variantsToggle) {
     return {
         query: searchFilter.value,
+        cardNumber: numberFilter.value,
         game: gameFilter.value,
         set: setFilter.value,
         type: typeFilter.value,
@@ -1629,6 +1669,7 @@ function readInitialFiltersFromUrl() {
     const params = new URLSearchParams(window.location.search);
     return {
         query: params.get("q") || params.get("search") || "",
+        cardNumber: params.get("number") || params.get("cardNumber") || params.get("id") || "",
         game: params.get("game") || "",
         set: params.get("set") || "",
         type: params.get("type") || "",
@@ -1718,9 +1759,14 @@ async function loadSetsForAllGames(records) {
 function buildApiQueryString(filterState, offset = INVENTORY_DEFAULT_OFFSET) {
     const params = new URLSearchParams();
     const query = filterState.query.trim();
+    const cardNumber = String(filterState.cardNumber || "").trim();
+    const pageLimit = getInventoryPageLimit();
 
     if (query) {
         params.set("q", query);
+    }
+    if (cardNumber) {
+        params.set("number", cardNumber);
     }
     if (filterState.game !== "All Games") {
         params.set("game", filterState.game);
@@ -1734,7 +1780,7 @@ function buildApiQueryString(filterState, offset = INVENTORY_DEFAULT_OFFSET) {
     if (filterState.rarity !== "All Rarities") {
         params.set("rarity", filterState.rarity);
     }
-    params.set("limit", String(INVENTORY_PAGE_LIMIT));
+    params.set("limit", String(pageLimit));
     params.set("offset", String(offset));
 
     return params.toString();
@@ -1778,7 +1824,8 @@ async function loadInventoryData(filterState, offset = INVENTORY_DEFAULT_OFFSET)
     } catch {
         const fallbackRecords = await loadFallbackData();
         const filteredItems = filterRecords(fallbackRecords, filterState);
-        const items = filteredItems.slice(offset, offset + INVENTORY_PAGE_LIMIT);
+        const pageLimit = getInventoryPageLimit();
+        const items = filteredItems.slice(offset, offset + pageLimit);
 
         return {
             items,
@@ -1790,6 +1837,7 @@ async function loadInventoryData(filterState, offset = INVENTORY_DEFAULT_OFFSET)
 
 async function initInventoryFilters() {
     const searchFilter = document.getElementById("inventory-search-filter");
+    const numberFilter = document.getElementById("inventory-number-filter");
     const gameFilter = document.getElementById("inventory-game-filter");
     const setFilter = document.getElementById("inventory-set-filter");
     const typeFilter = document.getElementById("inventory-type-filter");
@@ -1806,7 +1854,7 @@ async function initInventoryFilters() {
     const setContextElement = document.getElementById("inventory-set-context");
     const initialFilters = readInitialFiltersFromUrl();
 
-    if (!searchFilter || !gameFilter || !setFilter || !typeFilter || !rarityFilter || !editionFilter || !variantFocusFilter || !priceStatusFilter || !sortFilter || !variantsToggle || !resultsMeta || !resultsGrid || !loadMoreButton || !loadMoreProgress || !setContextElement) {
+    if (!searchFilter || !numberFilter || !gameFilter || !setFilter || !typeFilter || !rarityFilter || !editionFilter || !variantFocusFilter || !priceStatusFilter || !sortFilter || !variantsToggle || !resultsMeta || !resultsGrid || !loadMoreButton || !loadMoreProgress || !setContextElement) {
         return;
     }
 
@@ -1870,7 +1918,7 @@ async function initInventoryFilters() {
 
     const renderResults = async (append = false) => {
         const requestId = ++renderRequestId;
-        const filterState = makeFilterState(searchFilter, gameFilter, setFilter, typeFilter, rarityFilter, editionFilter, variantFocusFilter, priceStatusFilter, sortFilter, variantsToggle);
+        const filterState = makeFilterState(searchFilter, numberFilter, gameFilter, setFilter, typeFilter, rarityFilter, editionFilter, variantFocusFilter, priceStatusFilter, sortFilter, variantsToggle);
         const normalizedQuery = normalizeForSearch(filterState.query);
         const queryTooShort = normalizedQuery.length > 0 && normalizedQuery.length < MIN_SEARCH_CHARACTERS;
         const offset = append ? cardsShown : INVENTORY_DEFAULT_OFFSET;
@@ -1955,7 +2003,7 @@ async function initInventoryFilters() {
                 <article class="inventory-card">
                     <div class="inventory-card__image" aria-hidden="true"></div>
                     <h3 class="inventory-card__title">No matching cards found</h3>
-                    <p class="inventory-card__meta">Try adjusting game, set, rarity, or search text.</p>
+                    <p class="inventory-card__meta">Try adjusting game, set, rarity, card number, or search text.</p>
                     <span class="inventory-card__tag">YYH searchable inventory</span>
                 </article>
             `;
@@ -1966,7 +2014,8 @@ async function initInventoryFilters() {
             return;
         }
 
-        const renderedItems = sourceRecords.slice(offset, offset + INVENTORY_PAGE_LIMIT);
+        const pageLimit = getInventoryPageLimit();
+        const renderedItems = sourceRecords.slice(offset, offset + pageLimit);
 
         if (append) {
             resultsGrid.insertAdjacentHTML("beforeend", renderedItems.map((cardRecord) => makeInventoryCard(cardRecord, collisionCountMap, variantFamilyCountMap, showCardIdInMeta, showPricing)).join(""));
@@ -2032,6 +2081,7 @@ async function initInventoryFilters() {
             inventoryRecords,
             {
                 query: searchFilter.value,
+                cardNumber: numberFilter.value,
                 game: gameFilter.value,
                 set: setFilter.value,
                 type: typeFilter.value,
@@ -2052,6 +2102,7 @@ async function initInventoryFilters() {
 
         const scopedEditionOptions = getScopedEditionOptions(inventoryRecords, {
             query: searchFilter.value,
+            cardNumber: numberFilter.value,
             game: gameFilter.value,
             set: setFilter.value,
             type: typeFilter.value,
@@ -2094,6 +2145,9 @@ async function initInventoryFilters() {
     if (initialFilters.query) {
         searchFilter.value = initialFilters.query;
     }
+    if (initialFilters.cardNumber) {
+        numberFilter.value = initialFilters.cardNumber;
+    }
     if (initialFilters.game && Array.from(gameFilter.options).some((option) => option.value === initialFilters.game)) {
         gameFilter.value = initialFilters.game;
     }
@@ -2126,6 +2180,9 @@ async function initInventoryFilters() {
     searchFilter.addEventListener("input", () => {
         syncConditionalFilters();
     });
+    numberFilter.addEventListener("input", () => {
+        void renderResults(false);
+    });
     variantsToggle.addEventListener("change", () => {
         void renderResults(false);
     });
@@ -2135,6 +2192,24 @@ async function initInventoryFilters() {
         }
 
         void renderResults(true);
+    });
+
+    let lastPageLimit = getInventoryPageLimit();
+    let resizeTimer = null;
+    window.addEventListener("resize", () => {
+        if (resizeTimer) {
+            clearTimeout(resizeTimer);
+        }
+
+        resizeTimer = setTimeout(() => {
+            const nextPageLimit = getInventoryPageLimit();
+            if (nextPageLimit === lastPageLimit) {
+                return;
+            }
+
+            lastPageLimit = nextPageLimit;
+            void renderResults(false);
+        }, 120);
     });
 
     syncConditionalFilters();
