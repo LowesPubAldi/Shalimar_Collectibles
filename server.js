@@ -1,9 +1,17 @@
 const express = require("express");
 const fs = require("fs/promises");
 const path = require("path");
+const dotenv = require("dotenv");
+
+dotenv.config({ path: path.join(__dirname, ".env.local") });
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const EBAY_CONFIG = {
+    appId: process.env.EBAY_APP_ID || "",
+    devId: process.env.EBAY_DEV_ID || "",
+    clientSecret: process.env.EBAY_CLIENT_SECRET || ""
+};
 const DATA_FILE_PATHS = [
     path.join(__dirname, "data", "yyh-cards-full.json"),
     path.join(__dirname, "data", "yyh-cards.json"),
@@ -182,6 +190,7 @@ app.get("/api/health", (req, res) => {
     res.json({
         status: "ok",
         service: "shalimar-cards-api",
+        ebayConfigured: Boolean(EBAY_CONFIG.appId && EBAY_CONFIG.devId && EBAY_CONFIG.clientSecret),
         timestamp: new Date().toISOString()
     });
 });

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shalimar Collectibles | Contact</title>
+    <link rel="stylesheet" href="styles/base.css?v=1">
+    <link rel="stylesheet" href="styles/components/nav.css?v=1">
+    <link rel="stylesheet" href="styles/components/footer.css?v=1">
+    <link rel="stylesheet" href="styles/pages/contact.css?v=1">
+    <script src="scripts/components/mobile-nav.js?v=1" defer></script>
+    <script src="scripts/pages/contact.js?v=1" defer></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="logo-link" aria-label="Go to homepage">
+                <img
+                    src="./assets/logo-v4.svg?v=3"
+                    alt="Shalimar Collectibles logo"
+                    class="logo"
+                />
+            </a>
+            <button
+                class="mobile-nav-toggle"
+                id="mobileNavToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="primaryNavLinks"
+            >
+                <span class="mobile-nav-toggle__bar" aria-hidden="true"></span>
+                <span class="mobile-nav-toggle__bar" aria-hidden="true"></span>
+                <span class="mobile-nav-toggle__bar" aria-hidden="true"></span>
+            </button>
+            <ul class="nav__links" id="primaryNavLinks">
+                <li><a href="contributors.html">Contributors</a></li>
+                <li><a href="inventory.html">Inventory</a></li>
+                <li><a href="sets.html">Sets</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html" aria-current="page">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="mobile-nav-overlay" id="mobileNavOverlay" type="button" aria-label="Close navigation menu"></button>
+    </header>
+
+    <main class="main">
+        <section class="contact-hero" aria-label="Contact Shalimar Collectibles">
+            <div class="contact-hero__content">
+                <p class="contact-hero__eyebrow">Contact</p>
+                <h1>Send a quick message, drop a reference link, or include supporting files for follow-up.</h1>
+                <p>
+                    Contact is staying intentionally small for now. The core intake is simple: your name, your email,
+                    and a brief message. If you have a listing, reference page, spreadsheet, or image set that adds
+                    context, you can include that too.
+                </p>
+            </div>
+
+            <aside class="contact-hero__panel" aria-label="Contact form summary">
+                <p class="contact-hero__panel-label">Current Intake</p>
+                <ul class="contact-hero__list">
+                    <li>Required: name, email address, brief message</li>
+                    <li>Optional: one link for listings, references, or docs</li>
+                    <li>Optional: upload documents or images for follow-up context</li>
+                </ul>
+            </aside>
+        </section>
+
+        <section class="contact-shell" aria-label="Contact intake form">
+            <article class="contact-shell__details">
+                <h2>What this page covers</h2>
+                <p>
+                    This version is focused on clean intake only. It captures the exact fields needed for tomorrow's
+                    email and upload handling without bloating the page with extra sections.
+                </p>
+                <div class="contact-shell__notes">
+                    <p>Best for:</p>
+                    <ul>
+                        <li>pricing questions</li>
+                        <li>collection follow-up</li>
+                        <li>reference links for card research</li>
+                        <li>images, spreadsheets, or notes to review later</li>
+                    </ul>
+                </div>
+            </article>
+
+            <form class="contact-form" data-contact-form aria-label="Contact request form" novalidate>
+                <div class="contact-form__grid">
+                    <label class="contact-field">
+                        <span>Name</span>
+                        <input type="text" name="name" autocomplete="name" required />
+                    </label>
+
+                    <label class="contact-field">
+                        <span>Email Address</span>
+                        <input type="email" name="email" autocomplete="email" required />
+                    </label>
+                </div>
+
+                <label class="contact-field">
+                    <span>Brief Message</span>
+                    <textarea name="message" rows="7" required></textarea>
+                </label>
+
+                <label class="contact-field">
+                    <span>Reference Link</span>
+                    <input type="url" name="referenceLink" placeholder="https://example.com/listing-or-reference" inputmode="url" />
+                </label>
+
+                <label class="contact-field">
+                    <span>Upload Documents or Images</span>
+                    <input
+                        id="contact-attachments"
+                        type="file"
+                        name="attachments"
+                        accept=".pdf,.doc,.docx,.txt,.csv,.png,.jpg,.jpeg,.webp"
+                        multiple
+                    />
+                </label>
+
+                <p class="contact-form__file-summary" data-contact-file-summary>No files selected.</p>
+                <p class="contact-form__note">
+                    The intake fields are ready now. Direct email delivery and file handling will be connected in the
+                    next backend pass.
+                </p>
+
+                <button class="contact-form__submit" type="submit">Save Contact Flow</button>
+                <p class="contact-form__status" data-contact-status aria-live="polite"></p>
+            </form>
+        </section>
+    </main>
+
+    <footer class="site-footer" aria-label="Site footer">
+        <div class="site-footer__inner">
+            <p class="site-footer__brand">Shalimar Collectibles</p>
+            <p class="site-footer__meta">Contact intake is ready for tomorrow's email and upload routing work.</p>
+            <p class="site-footer__copyright">&copy; 2026 Shalimar Collectibles. All rights reserved.</p>
+            <nav class="site-footer__nav" aria-label="Footer navigation">
+                <a href="contributors.html">Contributors</a>
+                <a href="inventory.html">Inventory</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </footer>
+</body>
+</html>

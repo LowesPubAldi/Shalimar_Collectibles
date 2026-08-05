@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/LowesPubAldi/Module-5-Project#readme",
   "dependencies": {
+    "dotenv": "^17.4.2",
     "express": "^5.2.1"
   }
 }
