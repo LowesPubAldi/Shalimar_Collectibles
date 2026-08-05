@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shalimar Collectibles | About</title>
+    <script>
+        (function () {
+            const params = new URLSearchParams(window.location.search);
+            const preview = params.get("preview");
+            if (preview === "tablet") {
+                document.documentElement.classList.add("preview-tablet");
+            }
+            if (preview === "mobile") {
+                document.documentElement.classList.add("preview-mobile");
+            }
+        }());
+    </script>
+    <link rel="stylesheet" href="styles/base.css?v=1">
+    <link rel="stylesheet" href="styles/components/nav.css?v=1">
+    <link rel="stylesheet" href="styles/components/footer.css?v=1">
+    <link rel="stylesheet" href="styles/pages/about.css?v=2">
+    <script src="scripts/components/mobile-nav.js?v=1" defer></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="logo-link" aria-label="Go to homepage">
+                <img
+                    src="./assets/logo-v4.svg?v=3"
+                    alt="Shalimar Collectibles logo"
+                    class="logo"
+                />
+            </a>
+            <button
+                class="mobile-nav-toggle"
+                id="mobileNavToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="primaryNavLinks"
+            >
+                <span class="mobile-nav-toggle__bar" aria-hidden="true"></span>
+                <span class="mobile-nav-toggle__bar" aria-hidden="true"></span>
+                <span class="mobile-nav-toggle__bar" aria-hidden="true"></span>
+            </button>
+            <ul class="nav__links" id="primaryNavLinks">
+                <li><a href="contributors.html">Contributors</a></li>
+                <li><a href="inventory.html">Inventory</a></li>
+                <li><a href="sets.html">Sets</a></li>
+                <li><a href="about.html" aria-current="page">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="mobile-nav-overlay" id="mobileNavOverlay" type="button" aria-label="Close navigation menu"></button>
+    </header>
+
+    <main class="main">
+        <section class="about-hero" aria-label="About Shalimar Collectibles">
+            <div class="about-hero__layout">
+                <div class="about-hero__content">
+                    <p class="about-hero__eyebrow">Why This Exists</p>
+                    <h1>Shalimar Collectibles was made to preserve the cards and stories that shaped my love for collecting.</h1>
+                    <p>
+                        This project started as a place to organize what I could never find in one clean location: card details,
+                        set context, and real collector-focused tools for Yu Yu Hakusho and the games that grew alongside it.
+                        The goal is simple: build something useful first, then make it deeper with community feedback.
+                    </p>
+                </div>
+
+                <aside class="about-hero-fan" aria-label="Favorite card thumbnails">
+                    <p class="about-hero-fan__label">Favorite Card Snapshot</p>
+                    <div class="about-hero-fan__stage" role="img" aria-label="Five Yu Yu Hakusho card thumbnails fanned out">
+                        <img class="about-hero-fan__card about-hero-fan__card--one" src="assets/seasonal/yyh-source/ghost-files/001.jpg" alt="Yu Yu Hakusho card thumbnail" loading="lazy" />
+                        <img class="about-hero-fan__card about-hero-fan__card--two" src="assets/seasonal/yyh-source/ghost-files/030.jpg" alt="Yu Yu Hakusho card thumbnail" loading="lazy" />
+                        <img class="about-hero-fan__card about-hero-fan__card--three" src="assets/seasonal/yyh-source/ghost-files/066.jpg" alt="Yu Yu Hakusho card thumbnail" loading="lazy" />
+                        <img class="about-hero-fan__card about-hero-fan__card--four" src="assets/seasonal/yyh-source/ghost-files/101.jpg" alt="Yu Yu Hakusho card thumbnail" loading="lazy" />
+                        <img class="about-hero-fan__card about-hero-fan__card--five" src="assets/seasonal/yyh-source/ghost-files/137.jpg" alt="Yu Yu Hakusho card thumbnail" loading="lazy" />
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section class="about-story" aria-label="Creator story and site direction">
+            <article class="about-story__panel">
+                <h2>Why Shalimar Collectibles Was Built</h2>
+                <p>
+                    I wanted a card resource that feels practical, honest, and personal. Most platforms are either too generic
+                    or too hard to navigate when you only need specific details. Shalimar Collectibles focuses on clear filters,
+                    reliable set information, and a user experience made for collectors who actually use this data every day.
+                </p>
+                <p>
+                    This is a long-term build. Version 1 is about fundamentals: searchable inventory, set navigation,
+                    and dependable card records. Later versions will expand into community features, richer pricing systems,
+                    and collector workflows that are useful without being overwhelming.
+                </p>
+            </article>
+
+            <aside class="about-audio" aria-label="Audio roadmap">
+                <p class="about-audio__label">Accessibility Roadmap</p>
+                <h3>Audio version coming soon</h3>
+                <p>
+                    This page is text-first right now so the message is clear and editable as the project evolves.
+                    A narrated audio version is planned so visitors can listen instead of read.
+                </p>
+                <ul>
+                    <li>Planned feature: full-page narration</li>
+                    <li>Planned feature: section-by-section playback</li>
+                    <li>Planned feature: transcript sync for accessibility</li>
+                </ul>
+            </aside>
+        </section>
+
+        <section class="about-favorites" aria-label="Favorite Yu Yu Hakusho cards and characters">
+            <div class="about-favorites__head">
+                <p class="about-favorites__kicker">Current Display Placeholder</p>
+                <h2>Favorite Yu Yu Hakusho Cards and Characters</h2>
+                <p>
+                    Until display-piece photos are ready, this gallery highlights favorite characters and the cards
+                    that represent their impact.
+                </p>
+            </div>
+
+            <div class="about-favorites__grid">
+                <article class="favorite-card">
+                    <p class="favorite-card__tier">Display Focus</p>
+                    <h3>Mukuro Enslaved Soul</h3>
+                    <div class="favorite-card__piece-grid" aria-label="Mukuro Enslaved Soul four-piece display">
+                        <figure class="favorite-card__piece">
+                            <img src="assets/seasonal/yyh-source/exile/T01.jpg" alt="Mukuro Enslaved Soul top left piece" loading="lazy" />
+                        </figure>
+                        <figure class="favorite-card__piece">
+                            <img src="assets/seasonal/yyh-source/exile/009.jpg" alt="Mukuro Enslaved Soul top right piece" loading="lazy" />
+                        </figure>
+                        <figure class="favorite-card__piece">
+                            <img src="assets/seasonal/yyh-source/exile/018.jpg" alt="Mukuro Enslaved Soul bottom left piece" loading="lazy" />
+                        </figure>
+                        <figure class="favorite-card__piece">
+                            <img src="assets/seasonal/yyh-source/exile/019.jpg" alt="Mukuro Enslaved Soul bottom right piece" loading="lazy" />
+                        </figure>
+                    </div>
+                    <p class="favorite-card__layout">A slave turned into royalty.</p>
+                </article>
+
+                <div class="favorite-card-cluster" aria-label="Additional featured cards">
+                    <article class="favorite-card">
+                        <p class="favorite-card__tier">Display Focus</p>
+                        <h3>Bang!</h3>
+                        <figure class="favorite-card__single-art">
+                            <img src="assets/seasonal/yyh-source/gateway/006L.jpg" alt="Bang card art (Gateway, lined variant)" loading="lazy" />
+                        </figure>
+                        <p class="favorite-card__layout">Rose petals vs bombs.</p>
+                    </article>
+
+                    <article class="favorite-card">
+                        <p class="favorite-card__tier">Display Focus</p>
+                        <h3>Youko Kurama</h3>
+                        <figure class="favorite-card__single-art">
+                            <img src="assets/seasonal/yyh-source/dark-tournament/002.jpg" alt="Youko Kurama card art" loading="lazy" />
+                        </figure>
+                        <p class="favorite-card__layout">The Legend is back!!</p>
+                    </article>
+
+                    <article class="favorite-card">
+                        <p class="favorite-card__tier">Display Focus</p>
+                        <h3>Yusuke Champion of the People</h3>
+                        <figure class="favorite-card__single-art">
+                            <img src="assets/seasonal/yyh-source/alliance/017.jpg" alt="Yusuke Champion of the People card art" loading="lazy" />
+                        </figure>
+                        <p class="favorite-card__layout">Teenage delinquent turned to human/demon hybrid.</p>
+                    </article>
+
+                    <article class="favorite-card">
+                        <p class="favorite-card__tier">Display Focus</p>
+                        <h3>Splinter Reshueken</h3>
+                        <figure class="favorite-card__single-art">
+                            <img src="assets/seasonal/yyh-source/gateway/T19DR.jpg" alt="Splinter Reshueken card art" loading="lazy" />
+                        </figure>
+                        <p class="favorite-card__layout">Cannonball kick to 3d minefield.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer" aria-label="Site footer">
+        <div class="site-footer__inner">
+            <p class="site-footer__brand">Shalimar Collectibles</p>
+            <p class="site-footer__meta">Built for collectors who value clear records, trusted context, and long-term community growth.</p>
+            <p class="site-footer__copyright">&copy; 2026 Shalimar Collectibles. All rights reserved.</p>
+            <nav class="site-footer__nav" aria-label="Footer navigation">
+                <a href="contributors.html">Contributors</a>
+                <a href="inventory.html">Inventory</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </footer>
+</body>
+</html>
