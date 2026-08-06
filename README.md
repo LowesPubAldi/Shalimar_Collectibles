@@ -1,147 +1,96 @@
-# Shalimar_Collectibles
+# Shalimar Collectibles
 
-Shalimar Collectibles is a trading card resource platform focused on Pokemon, Yu-Gi-Oh, and Yu Yu Hakusho.
+Shalimar Collectibles is a simple trading card site for Pokemon, Yu-Gi-Oh, and Yu Yu Hakusho.
 
 ## Project Goal
 
-Build a clean, searchable card resource for collectors and players, then expand features based on real community feedback.
+Build a clean place to search cards, view sets, and check prices, then keep improving it based on feedback.
+
+## What Is Already Built
+
+The site is past the starter stage. It already has a working inventory, card pages, and a basic backend for API work.
+
+### Already Built
+
+- Inventory search and filters for names, sets, numbers, types, rarities, editions, finishes, and price status
+- Tablet and mobile inventory layouts
+- Card images and image loading
+- Variant tracking for card printings and versions
+- Individual card pages with a hero, quick facts, notes, and a variant picker
+- Starter backend routes for YYH card data
+- Starter eBay login/search code in the local Express server
+
+### In Progress
+
+- Final inventory QA
+- Vercel preview deployment cleanup
+- eBay API setup and testing
+- Planning for the new set-card-list API after the 18th
 
 ## Roadmap
 
-This roadmap is our guideline for feature planning.
+This is the clean version of the roadmap so it is easier to follow.
 
-### Version 1 (Core Release)
+### Version 2
 
-Focus: deliver the most requested foundational tools first.
+Version 2 is the next big step. The goal is to make the site more useful and more reliable before moving to community features.
 
-#### V1 Execution Checklist (Current Build Order)
+#### V2A - Near-Term UI Work
 
-- [x] Confirm pricing coverage and set-context behavior for YYH inventory
-- [x] Finalize core Inventory filters (name, card number, set, type, rarity, edition, finish, price status)
-- [x] Complete Inventory responsiveness for tablet and mobile layouts
-- [ ] Run final V1 QA pass (filter combinations, load-more behavior, image hydration, edge-case searches)
-- [ ] Build release checklist (content copy, basic analytics events, and bug triage flow)
+- Inventory layout polish
+- About page and Contact page
+- Better individual card pages
+- Set lists and set detail pages
 
-- [ ] Card database pages for supported games
-- [x] Strong search + filters
-- [x] Filter by name
-- [x] Filter by set
-- [x] Filter by card number
-- [x] Filter by card type
-- [x] Filter by rarity
-- [x] Card image library
-- [ ] Set lists and set-level views
-- [ ] Card detail page basics (name, set, number, rarity, image)
-- [ ] Starter deck list pages
-- [ ] Basic collection tracker
-- [x] Track print/finish variants (non-foil, single rainbow, double rainbow, limited/unlimited)
+#### V2B - Data and Pricing Foundation
 
-### Version 2 (Expansion Release)
+- eBay pricing updates
+- Price history snapshots
+- Better price confidence notes
+- One clean format for API and manual pricing data
+- Cleaner notes for sets, cards, and prices
 
-Focus: deepen utility after V1 is stable and feedback is collected.
+#### V2C - Platform Foundation
 
-V2 is split into practical phases so we can ship useful gameplay tools without overbuilding.
+- One stable ID system for every card printing and variant
+- Shared data shape for cards and sets
+- Better image naming and fallback rules
+- Background jobs for imports and syncs
+- Feature flags for safer launches
 
-#### V2A (Immediate Groundwork, Next Week)
+### Version 3
 
-- [ ] Responsive pass for Inventory page (desktop/tablet/mobile)
-- [ ] Build About page
-- [ ] Build Contact page
-- [ ] Individual card page basics (text, cost/use, stats, price)
-- [ ] King set display mode on card page (show all four quadrants together)
+Version 3 is the community layer after the catalog and pricing tools are stable.
 
-#### V2B (Gameplay + Reference Utility)
-
-- [ ] Ban list / limited list pages
-- [ ] Team Bonus reference pages
-- [ ] Tournament report archive
-- [ ] Rulebook and rulings reference pages
-- [ ] Judge test / practice module
-- [ ] Better search quality (saved filters, faster results, more filter combinations)
-
-#### V2C (Pricing + Data Reliability)
-
-- [ ] Pricing guide system (beta)
-- [ ] Automated/assisted price updates from available market data
-- [ ] Pricing confidence model (sample size + recency + outlier flags)
-- [ ] Price history snapshots per card (store change timeline)
-- [ ] Manual price override workflow with audit notes (source + reason)
-- [ ] Standardized comp ingestion schema (eBay/API/manual entry all map to one format)
-- [ ] Scheduled pricing refresh jobs + retry logging
-- [ ] Structured notes model (set notes, king-set notes, pricing notes in one consistent schema)
-
-#### V2D (V3 Foundation Layer)
-
-- [ ] Canonical card identity model across printings/variants (stable key for links and caching)
-- [ ] Card detail API contract v1 (single endpoint shape used by all future card pages)
-- [ ] Set detail API contract v1 (summary stats + rarity/variant counts)
-- [ ] Normalized media naming convention + fallback image policy
-- [ ] Event/analytics instrumentation plan (search usage, filter usage, card click-through)
-- [ ] Background task queue foundation (for imports, pricing sync, and long-running jobs)
-- [ ] Feature flag support for staged rollouts and safer launches
-- [ ] API response versioning strategy for backwards-compatible frontend updates
-
-#### V2 Cadence Note
-
-- [ ] Collect eBay sold data for one focused week (set by set)
-- [ ] Apply pricing updates on a biweekly rhythm
-- [ ] Take a planned 48-hour no-code break after the next weekly push
-
-### Version 3 (Community Release)
-
-Focus: trusted community interactions once gameplay and reference tools are stable.
-
-- [ ] Message boards (game + set channels)
-- [ ] Ref/reputation system for trades, buying, and selling
-- [ ] Trade/swap matching between users
-- [ ] Public discussion threads on cards, sets, and rulings
-- [ ] Deck Showcase feed (listing-style deck cards)
-- [ ] Public deck detail pages with full card quantities
-- [ ] Deck metadata (format, archetype, condition notes, value range)
-- [ ] Shareable deck URLs
-- [ ] Save/share/contact actions for deck owners
-- [ ] Community-submitted deck lists and improvements
-- [ ] Deck comments and ratings
-- [ ] Deck version history
-- [ ] Deck price roll-up from card data
-- [ ] Advanced collection tools (totals, gaps, duplicates)
-- [ ] Role/permissions baseline (admin/editor/viewer) for moderation and submissions
-- [ ] User accounts and synced collections (optional)
+- Message boards and discussion threads
+- Trades, swaps, and reputation
+- Deck showcase pages
+- Public deck pages with deck details
+- Community submissions and moderation tools
+- User accounts and synced collections
 
 ## Scope Guardrails
 
-To keep momentum, new requests are evaluated in this order:
+To keep the project moving, new ideas are checked in this order:
 
-1. Does it improve V1 search, card discovery, or collection tracking?
-2. Is it required for launch, or can it wait for V2?
-3. Does it depend on a reliable API/data source?
+1. Does it help search, discovery, or collection tracking?
+2. Does it belong in the next version, or can it wait?
+3. Does it need a reliable API or data source?
 
-If it does not clearly support V1 launch goals, move it to the V2 backlog.
+If it does not clearly fit the current version, it goes into the next version backlog.
 
-## Current Status
+## Backend Starter (YYH API)
 
-- Homepage design and seasonal spotlight UI: in progress
-- API/data source research (especially Yu Yu Hakusho): in progress
-- Feature roadmap defined in this README: complete
+The site now has a simple backend starter so the frontend can ask for card data from an API route.
 
-## Phase 1 Backend (YYH API Starter)
+### What This Means
 
-We now have a beginner-friendly API starter so the frontend can request data from a backend route.
-
-### What This Means (Simple)
-
-- Frontend (Inventory page) asks backend for cards.
-- Backend reads card data from the first available file in this order:
+- The inventory page asks the backend for cards.
+- The backend looks for card data in this order:
 	- `data/yyh-cards-full.json`
 	- `data/yyh-cards.json`
 	- `data/yyh-cards-slice.json`
-- Backend sends card records back as JSON.
-
-Think of it like this:
-
-- Frontend = customer
-- API route = checkout counter
-- JSON file = shelf with card records
+- The backend sends the cards back as JSON.
 
 ### Backend Files
 
@@ -156,9 +105,7 @@ Think of it like this:
 2. Run `npm install` (only needed first time).
 3. Run `npm start`.
 
-You should see:
-
-- `Shalimar API running at http://127.0.0.1:3000`
+You should see the API start at `http://127.0.0.1:3000`.
 
 ### Test API Endpoints
 
@@ -177,9 +124,9 @@ You should see:
 - Sets summary endpoint:
 	- `http://127.0.0.1:3000/api/yyh/sets/summary?game=Yu%20Yu%20Hakusho`
 
-### eBay API Starter (One-Pass Setup)
+### eBay API Starter
 
-Backend now includes OAuth token handling and a starter search route for eBay Browse API.
+The backend also has starter code for eBay login and eBay search.
 
 Required `.env.local` values:
 
@@ -234,7 +181,7 @@ Search query params:
 
 ### Safety Fallback
 
-If the API is unavailable, Inventory falls back to local JSON data so the page still works.
+If the API is down, Inventory falls back to local JSON so the page still works.
 
 ### Full Inventory Notes
 
@@ -281,3 +228,78 @@ If the API is unavailable, Inventory falls back to local JSON data so the page s
 	- `data/exile-checklist.txt`
 	- `data/betrayal-checklist.txt`
 	- `data/alliance-checklist.txt`
+
+### Compare Completed Listings Against Baseline Ranges
+
+- Script:
+	- `scripts/tools/compare_completed_listings.js`
+- Input:
+	- A CSV export of completed/sold listings from eBay (or your own archive)
+- Example command:
+	- `node scripts/tools/compare_completed_listings.js --csv data/exports/yyh-completed-32-months.csv --out-json data/exports/yyh-comparison-report.json --out-csv data/exports/yyh-comparison-report.csv`
+- Optional tolerance when a price note does not include an explicit range:
+	- `--fallback-tolerance 20` (default is +/- 20% around `priceUsd`)
+- Output:
+	- Summary counts of cards above range, below range, and in range
+	- Top out-of-range cards sorted by variance
+	- Full per-card report in JSON/CSV when output paths are provided
+
+### Update YYH Prices To Completed-Listing Medians
+
+- Script:
+	- `scripts/tools/update_yyh_median_pricing.js`
+- Purpose:
+	- Uses one or more completed-listing CSV batches to calculate cumulative per-card medians
+	- Updates `data/pricing/yyh/*-pricing.json` `priceUsd` and `compsCount`
+	- Writes a median audit note in each updated card's `notes`
+- Recommended workflow:
+	1. Save each eBay export as its own CSV file (piece by piece over time).
+	2. Run a dry run first to see proposed updates.
+	3. Re-run with `--write` to apply.
+- Example dry run:
+	- `npm run yyh:update-medians -- --csv tmp-visible-sold-sample-3.csv --min-samples 2 --report-json data/yyh-median-update-report.json`
+- Example write:
+	- `npm run yyh:update-medians -- --csv tmp-visible-sold-sample-3.csv --min-samples 2 --write --report-json data/yyh-median-update-report.json`
+- Multiple CSVs at once:
+	- Repeat `--csv` for each file
+	- or use `--csv-dir <folder>` to load all CSV files in that folder
+- Useful options:
+	- `--set "Dark Tournament"` to limit updates to one set
+	- `--min-samples <n>` to require at least `n` sales per card (default `2`)
+	- `--score-threshold <n>` to make title matching stricter (default `25`)
+	- `--suspicious-delta-pct <n>` flags cards whose median is more than `n%` outside baseline range (default `25`)
+	- `--apply-suspicious` includes flagged cards in write mode (default is to skip flagged cards)
+	- `--suspicious-json <path>` writes a suspicious-only review queue JSON
+	- `--suspicious-csv <path>` writes a suspicious-only review queue CSV
+	- `--fallback-tolerance <n>` baseline fallback when notes do not include a range (default `20`)
+
+- Suspicious card handling:
+	- If a card is flagged and you do not pass `--apply-suspicious`, price updates are skipped.
+	- In `--write` mode, flagged cards are automatically marked `Needs Review`.
+	- Use `--no-mark-suspicious-needs-review` to disable that auto-status behavior.
+
+### Apply Approved Suspicious Prices
+
+- Script:
+	- `scripts/tools/apply_yyh_suspicious_approvals.js`
+- Purpose:
+	- Reads the suspicious queue and applies only approved entries back into pricing files.
+	- Resets approved cards to `status = Priced` with an approval audit note.
+- Example dry run (approve all):
+	- `npm run yyh:apply-suspicious -- --queue-json data/yyh-median-update-report.suspicious.json --approve-all --report-json data/yyh-suspicious-approval-report.json`
+- Example write (approve all):
+	- `npm run yyh:apply-suspicious -- --queue-json data/yyh-median-update-report.suspicious.json --approve-all --write --report-json data/yyh-suspicious-approval-report.json`
+- Example with manual approvals file:
+	- `npm run yyh:apply-suspicious -- --queue-json data/yyh-median-update-report.suspicious.json --approvals-json data/yyh-suspicious-approvals.json --write --report-json data/yyh-suspicious-approval-report.json`
+- Manual approvals file shape:
+	- `{ "approvals": [{ "set": "Dark Tournament", "id": "S21", "name": "Yusuke, Unleashed", "variant": "Standard", "approved": true, "approvedPriceUsd": 10.5, "note": "confirmed from comps" }] }`
+
+### Current Working Window
+
+- As of today, the live eBay sold-results view we are using is narrowed to:
+	- Yu Yu Hakusho TCG
+	- CCG Individual Cards
+	- English only
+	- Sold/completed only
+- The visible date span currently runs from Jul 11, 2026 back to May 8, 2026 on the paging we checked.
+- This is the starting anchor for the rolling comparison work, not the full 32-month archive yet.

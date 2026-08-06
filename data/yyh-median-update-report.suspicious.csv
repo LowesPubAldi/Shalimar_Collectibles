@@ -1,0 +1,3 @@
+set,id,name,variant,oldPriceUsd,newPriceUsd,baselineMinUsd,baselineMaxUsd,deltaPct,compsCount,observedMinUsd,observedMaxUsd,reason
+Ghost Files,G178/176,Burst of Power,Standard,32.75,32.75,12,18,81.94,2,15.5,50,Median is 81.94% above baseline ceiling $18.00
+Dark Tournament,S21,"Yusuke, Unleashed",Standard,10.5,10.5,15,23,30,2,9,12.01,Median is 30% below baseline floor $15.00

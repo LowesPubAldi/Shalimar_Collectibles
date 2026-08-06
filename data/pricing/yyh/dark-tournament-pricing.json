@@ -1,7 +1,7 @@
 {
     "set": "Dark Tournament",
     "currency": "USD",
-    "updatedAt": "2026-08-04",
+    "updatedAt": "2026-08-06",
     "fallbackPricing": [
         {
             "name": "Non-Foil Commons",
@@ -17,7 +17,7 @@
         {
             "name": "Non-Foil Rares",
             "minPriceUsd": 0.5,
-            "maxPriceUsd": 1.0,
+            "maxPriceUsd": 1,
             "status": "Priced",
             "notes": "$0.50 - $1",
             "match": {
@@ -27,8 +27,8 @@
         },
         {
             "name": "Common Foils",
-            "minPriceUsd": 2.0,
-            "maxPriceUsd": 5.0,
+            "minPriceUsd": 2,
+            "maxPriceUsd": 5,
             "status": "Priced",
             "notes": "$2 - $5",
             "match": {
@@ -38,8 +38,8 @@
         },
         {
             "name": "Rare Foils",
-            "minPriceUsd": 4.0,
-            "maxPriceUsd": 8.0,
+            "minPriceUsd": 4,
+            "maxPriceUsd": 8,
             "status": "Priced",
             "notes": "$4 - $8",
             "match": {
@@ -49,74 +49,590 @@
         }
     ],
     "items": [
-        { "id": "G1", "name": "Wind Shinobi (Black Background)", "variant": "Standard", "priceUsd": 13.0, "compsCount": 0, "status": "Priced", "notes": "$11 - $15" },
-        { "id": "G1", "name": "Wind Shinobi (Blue Background)", "variant": "Standard", "priceUsd": 8.5, "compsCount": 0, "status": "Priced", "notes": "$7 - $10" },
-        { "id": "G2", "name": "Yoko, the Spirit Fox", "variant": "Standard", "priceUsd": 90.0, "compsCount": 0, "status": "Priced", "notes": "$80 - $100" },
-        { "id": "G3", "name": "Together Until the End of Time", "variant": "Standard", "priceUsd": 22.5, "compsCount": 0, "status": "Priced", "notes": "$20 - $25" },
-        { "id": "G4", "name": "Forlorn Hope", "variant": "Standard", "priceUsd": 20.0, "compsCount": 0, "status": "Priced", "notes": "$15 - $25" },
-        { "id": "U5", "name": "Hiei, the Stern", "variant": "Standard", "priceUsd": 10.5, "compsCount": 0, "status": "Priced", "notes": "$8 - $13" },
-        { "id": "U6", "name": "Yukina, Ice Princess", "variant": "Standard", "priceUsd": 6.5, "compsCount": 0, "status": "Priced", "notes": "$5 - $8" },
-        { "id": "U7", "name": "Allied Forces", "variant": "Standard", "priceUsd": 5.0, "compsCount": 0, "status": "Priced", "notes": "$4 - $6" },
-        { "id": "U8", "name": "King Yama's Wrath", "variant": "Standard", "priceUsd": 6.0, "compsCount": 0, "status": "Priced", "notes": "$5 - $7" },
-        { "id": "U9", "name": "The Dark Angel's Presence", "variant": "Standard", "priceUsd": 4.0, "compsCount": 0, "status": "Priced", "notes": "$3 - $5" },
-        { "id": "U10", "name": "Botan's Tool Box", "variant": "Standard", "priceUsd": 5.0, "compsCount": 0, "status": "Priced", "notes": "$4 - $6" },
-        { "id": "U11", "name": "Spiked Club", "variant": "Standard", "priceUsd": 5.0, "compsCount": 0, "status": "Priced", "notes": "$4 - $6" },
-        { "id": "S12", "name": "Chu, Drunken Master", "variant": "Standard", "priceUsd": 5.5, "compsCount": 0, "status": "Priced", "notes": "$4 - $7" },
-        { "id": "S13", "name": "Dr. Ichigaki, the Demon", "variant": "Standard", "priceUsd": 4.0, "compsCount": 0, "status": "Priced", "notes": "$3 - $5" },
-        { "id": "S14", "name": "Genkai, the Mentor", "variant": "Standard", "priceUsd": 5.5, "compsCount": 0, "status": "Priced", "notes": "$4 - $7" },
-        { "id": "S15", "name": "Koenma, Disguised", "variant": "Standard", "priceUsd": 4.0, "compsCount": 0, "status": "Priced", "notes": "$3 - $5" },
-        { "id": "S16", "name": "Onji, the Experienced Fighter", "variant": "Standard", "priceUsd": 3.0, "compsCount": 0, "status": "Priced", "notes": "$2 - $4" },
-        { "id": "S17", "name": "Earth Shinobi", "variant": "Standard", "priceUsd": 4.5, "compsCount": 0, "status": "Priced", "notes": "$3 - $6" },
-        { "id": "S18", "name": "Suzaku, the Fierce", "variant": "Standard", "priceUsd": 6.0, "compsCount": 0, "status": "Priced", "notes": "$5 - $7" },
-        { "id": "S19", "name": "Younger Toguro, Transformed", "variant": "Standard", "priceUsd": 6.0, "compsCount": 0, "status": "Priced", "notes": "$5 - $7" },
-        { "id": "S20", "name": "Yusuke, the Student", "variant": "Standard", "priceUsd": 7.5, "compsCount": 0, "status": "Priced", "notes": "$5 - $10" },
-        { "id": "S21", "name": "Yusuke, Unleashed", "variant": "Standard", "priceUsd": 19.0, "compsCount": 0, "status": "Priced", "notes": "$15 - $23" },
-        { "id": "S22", "name": "Zeru, the Phoenix", "variant": "Standard", "priceUsd": 4.0, "compsCount": 0, "status": "Priced", "notes": "$3 - $5" },
-
-        { "id": "G0", "name": "The Dark One (Signed)", "variant": "signed", "priceUsd": 2600.0, "compsCount": 0, "status": "Priced", "notes": "$1900 - $3300" },
-        { "id": "G0", "name": "The Dark One (Unsigned)", "variant": "unsigned", "priceUsd": 2250.0, "compsCount": 0, "status": "Priced", "notes": "$1500 - $3000" },
-        { "id": "G0", "name": "The Dark One (Reprint)", "variant": "Reprint", "priceUsd": 125.0, "compsCount": 0, "status": "Priced", "notes": "$100 - $150" },
-
-        { "id": "TP1", "name": "Gotcha!", "variant": "Standard", "priceUsd": 12.5, "compsCount": 0, "status": "Priced", "notes": "$10 - $15" },
-        { "id": "P1", "name": "Mist Shinobi", "variant": "Standard", "priceUsd": 62.5, "compsCount": 0, "status": "Priced", "notes": "$50 - $75" },
-        { "id": "P2", "name": "Kurama's Last Stand", "variant": "Standard", "priceUsd": 9.0, "compsCount": 0, "status": "Priced", "notes": "$7 - $11" },
-        { "id": "P3", "name": "Power Strike", "variant": "Standard", "priceUsd": 10.0, "compsCount": 0, "status": "Priced", "notes": "$8 - $12" },
-        { "id": "R1", "name": "Burst of Power", "variant": "Standard", "priceUsd": 10.0, "compsCount": 0, "status": "Priced", "notes": "$8 - $12" },
-        { "id": "R1", "name": "Burst of Power (Sealed)", "variant": "Sealed", "priceUsd": 15.0, "compsCount": 0, "status": "Priced", "notes": "$13 - $17" },
-
-        { "id": "L1", "name": "Botan, the Lovely", "variant": "Standard", "priceUsd": 17.5, "compsCount": 0, "status": "Priced", "notes": "$15 - $20" },
-        { "id": "L2", "name": "Hiei, Unpredictable Warrior", "variant": "Standard", "priceUsd": 18.5, "compsCount": 0, "status": "Priced", "notes": "$16 - $21" },
-        { "id": "L3", "name": "Kayko, the Cute", "variant": "Standard", "priceUsd": 17.5, "compsCount": 0, "status": "Priced", "notes": "$15 - $20" },
-        { "id": "L4", "name": "Koenma, Noble Leader", "variant": "Standard", "priceUsd": 15.5, "compsCount": 0, "status": "Priced", "notes": "$13 - $18" },
-        { "id": "L5", "name": "Kuwabara, Honorable Friend", "variant": "Standard", "priceUsd": 17.5, "compsCount": 0, "status": "Priced", "notes": "$15 - $20" },
-        { "id": "L6", "name": "Kurama, Caring Fighter", "variant": "Standard", "priceUsd": 18.5, "compsCount": 0, "status": "Priced", "notes": "$16 - $21" },
-        { "id": "L7", "name": "Yusuke, Recourceful Apprentice", "variant": "Standard", "priceUsd": 22.5, "compsCount": 0, "status": "Priced", "notes": "$20 - $25" },
-        { "id": "L8", "name": "Binding Shinobi", "variant": "Standard", "priceUsd": 15.5, "compsCount": 0, "status": "Priced", "notes": "$13 - $18" },
-        { "id": "L9", "name": "Substitute", "variant": "Standard", "priceUsd": 8.5, "compsCount": 0, "status": "Priced", "notes": "$7 - $10" },
-        { "id": "L10", "name": "Whip Slam", "variant": "Standard", "priceUsd": 9.0, "compsCount": 0, "status": "Priced", "notes": "$7 - $11" },
-
-        { "id": "TG1", "name": "Halt!", "variant": "Standard", "priceUsd": 125.0, "compsCount": 0, "status": "Priced", "notes": "$100 - $150" },
-        { "id": "TU2", "name": "Epic Showdown", "variant": "Standard", "priceUsd": 12.5, "compsCount": 0, "status": "Priced", "notes": "$10 - $15" },
-        { "id": "TU3", "name": "I'm Calling You Out!", "variant": "Standard", "priceUsd": 27.5, "compsCount": 0, "status": "Priced", "notes": "$25 - $30" },
-        { "id": "TS4", "name": "Ice Shinobi", "variant": "Standard", "priceUsd": 21.0, "compsCount": 0, "status": "Priced", "notes": "$19 - $23" },
-        { "id": "TS5", "name": "Yuu Kaitou, Taboo Master", "variant": "Standard", "priceUsd": 11.5, "compsCount": 0, "status": "Priced", "notes": "$10 - $13" },
-        { "id": "TS6", "name": "Flee the Arena", "variant": "Standard", "priceUsd": 5.5, "compsCount": 0, "status": "Priced", "notes": "$4 - $7" },
-        { "id": "TR7", "name": "Genkai, Young Fighter", "variant": "Standard", "priceUsd": 9.5, "compsCount": 0, "status": "Priced", "notes": "$7 - $12" },
-        { "id": "TR8", "name": "Display of Power", "variant": "Standard", "priceUsd": 7.5, "compsCount": 0, "status": "Priced", "notes": "$5 - $10" },
-        { "id": "TR9", "name": "Persevere", "variant": "Standard", "priceUsd": 4.0, "compsCount": 0, "status": "Priced", "notes": "$3 - $5" },
-        { "id": "TR10", "name": "Precise Evasion", "variant": "Standard", "priceUsd": 4.0, "compsCount": 0, "status": "Priced", "notes": "$3 - $5" },
-        { "id": "TR11", "name": "Trial Sword", "variant": "Standard", "priceUsd": 3.0, "compsCount": 0, "status": "Priced", "notes": "$2 - $4" },
-        { "id": "TR12", "name": "Acid Blast", "variant": "Standard", "priceUsd": 4.0, "compsCount": 0, "status": "Priced", "notes": "$3 - $5" },
-        { "id": "TC13", "name": "Koto, the Experienced", "variant": "Standard", "priceUsd": 5.0, "compsCount": 0, "status": "Priced", "notes": "$4 - $6" },
-        { "id": "TC14", "name": "Confrontation", "variant": "Standard", "priceUsd": 4.0, "compsCount": 0, "status": "Priced", "notes": "$3 - $5" },
-        { "id": "TC15", "name": "Dark Power", "variant": "Standard", "priceUsd": 5.0, "compsCount": 0, "status": "Priced", "notes": "$4 - $6" },
-        { "id": "TC16", "name": "Heroic Stand", "variant": "Standard", "priceUsd": 4.0, "compsCount": 0, "status": "Priced", "notes": "$3 - $5" },
-        { "id": "TC17", "name": "Hiei's Essence", "variant": "Standard", "priceUsd": 6.5, "compsCount": 0, "status": "Priced", "notes": "$5 - $8" },
-        { "id": "TC18", "name": "Broom Stick", "variant": "Standard", "priceUsd": 5.0, "compsCount": 0, "status": "Priced", "notes": "$4 - $6" },
-        { "id": "TC19", "name": "Souls", "variant": "Standard", "priceUsd": 5.5, "compsCount": 0, "status": "Priced", "notes": "$4 - $7" },
-        { "id": "TC20", "name": "Watch", "variant": "Standard", "priceUsd": 4.5, "compsCount": 0, "status": "Priced", "notes": "$3 - $6" },
-        { "id": "TC21", "name": "Dark Sphere of No Return", "variant": "Standard", "priceUsd": 3.0, "compsCount": 0, "status": "Priced", "notes": "$2 - $4" },
-        { "id": "TC22", "name": "Double Barrel Blast", "variant": "Standard", "priceUsd": 1.0, "compsCount": 0, "status": "Priced", "notes": "$0.50 - $1.50" },
-        { "id": "TC23", "name": "Tornado Fist Double", "variant": "Standard", "priceUsd": 4.5, "compsCount": 0, "status": "Priced", "notes": "$3 - $6" }
+        {
+            "id": "G1",
+            "name": "Wind Shinobi (Black Background)",
+            "variant": "Standard",
+            "priceUsd": 13,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$11 - $15"
+        },
+        {
+            "id": "G1",
+            "name": "Wind Shinobi (Blue Background)",
+            "variant": "Standard",
+            "priceUsd": 8.5,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$7 - $10"
+        },
+        {
+            "id": "G2",
+            "name": "Yoko, the Spirit Fox",
+            "variant": "Standard",
+            "priceUsd": 90,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$80 - $100"
+        },
+        {
+            "id": "G3",
+            "name": "Together Until the End of Time",
+            "variant": "Standard",
+            "priceUsd": 22.5,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$20 - $25"
+        },
+        {
+            "id": "G4",
+            "name": "Forlorn Hope",
+            "variant": "Standard",
+            "priceUsd": 20,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$15 - $25"
+        },
+        {
+            "id": "U5",
+            "name": "Hiei, the Stern",
+            "variant": "Standard",
+            "priceUsd": 19.99,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$8 - $13"
+        },
+        {
+            "id": "U6",
+            "name": "Yukina, Ice Princess",
+            "variant": "Standard",
+            "priceUsd": 6.5,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$5 - $8"
+        },
+        {
+            "id": "U7",
+            "name": "Allied Forces",
+            "variant": "Standard",
+            "priceUsd": 5,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$4 - $6"
+        },
+        {
+            "id": "U8",
+            "name": "King Yama's Wrath",
+            "variant": "Standard",
+            "priceUsd": 6,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$5 - $7"
+        },
+        {
+            "id": "U9",
+            "name": "The Dark Angel's Presence",
+            "variant": "Standard",
+            "priceUsd": 4,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$3 - $5"
+        },
+        {
+            "id": "U10",
+            "name": "Botan's Tool Box",
+            "variant": "Standard",
+            "priceUsd": 5,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$4 - $6"
+        },
+        {
+            "id": "U11",
+            "name": "Spiked Club",
+            "variant": "Standard",
+            "priceUsd": 5,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$4 - $6"
+        },
+        {
+            "id": "S12",
+            "name": "Chu, Drunken Master",
+            "variant": "Standard",
+            "priceUsd": 5.5,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$4 - $7"
+        },
+        {
+            "id": "S13",
+            "name": "Dr. Ichigaki, the Demon",
+            "variant": "Standard",
+            "priceUsd": 4,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$3 - $5"
+        },
+        {
+            "id": "S14",
+            "name": "Genkai, the Mentor",
+            "variant": "Standard",
+            "priceUsd": 5.5,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$4 - $7"
+        },
+        {
+            "id": "S15",
+            "name": "Koenma, Disguised",
+            "variant": "Standard",
+            "priceUsd": 4,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$3 - $5"
+        },
+        {
+            "id": "S16",
+            "name": "Onji, the Experienced Fighter",
+            "variant": "Standard",
+            "priceUsd": 3,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$2 - $4"
+        },
+        {
+            "id": "S17",
+            "name": "Earth Shinobi",
+            "variant": "Standard",
+            "priceUsd": 4.5,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$3 - $6"
+        },
+        {
+            "id": "S18",
+            "name": "Suzaku, the Fierce",
+            "variant": "Standard",
+            "priceUsd": 6,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$5 - $7"
+        },
+        {
+            "id": "S19",
+            "name": "Younger Toguro, Transformed",
+            "variant": "Standard",
+            "priceUsd": 6,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$5 - $7"
+        },
+        {
+            "id": "S20",
+            "name": "Yusuke, the Student",
+            "variant": "Standard",
+            "priceUsd": 7.5,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$5 - $10"
+        },
+        {
+            "id": "S21",
+            "name": "Yusuke, Unleashed",
+            "variant": "Standard",
+            "priceUsd": 10.5,
+            "compsCount": 2,
+            "status": "Needs Review",
+            "notes": "Median comps: n=2, min=$9.00, max=$12.01, updated=2026-08-06 | Baseline: $15 - $23 | Suspicious median review: Median is 30% below baseline floor $15.00; n=2; observed=$9.00-$12.01; median=$10.50; flagged=2026-08-06"
+        },
+        {
+            "id": "S22",
+            "name": "Zeru, the Phoenix",
+            "variant": "Standard",
+            "priceUsd": 4,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$3 - $5"
+        },
+        {
+            "id": "G0",
+            "name": "The Dark One (Signed)",
+            "variant": "signed",
+            "priceUsd": 2600,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$1900 - $3300"
+        },
+        {
+            "id": "G0",
+            "name": "The Dark One (Unsigned)",
+            "variant": "unsigned",
+            "priceUsd": 2250,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$1500 - $3000"
+        },
+        {
+            "id": "G0",
+            "name": "The Dark One (Reprint)",
+            "variant": "Reprint",
+            "priceUsd": 125,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$100 - $150"
+        },
+        {
+            "id": "TP1",
+            "name": "Gotcha!",
+            "variant": "Standard",
+            "priceUsd": 12.5,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$10 - $15"
+        },
+        {
+            "id": "P1",
+            "name": "Mist Shinobi",
+            "variant": "Standard",
+            "priceUsd": 62.5,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$50 - $75"
+        },
+        {
+            "id": "P2",
+            "name": "Kurama's Last Stand",
+            "variant": "Standard",
+            "priceUsd": 9,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$7 - $11"
+        },
+        {
+            "id": "P3",
+            "name": "Power Strike",
+            "variant": "Standard",
+            "priceUsd": 10,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$8 - $12"
+        },
+        {
+            "id": "R1",
+            "name": "Burst of Power",
+            "variant": "Standard",
+            "priceUsd": 10,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$8 - $12"
+        },
+        {
+            "id": "R1",
+            "name": "Burst of Power (Sealed)",
+            "variant": "Sealed",
+            "priceUsd": 15,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$13 - $17"
+        },
+        {
+            "id": "L1",
+            "name": "Botan, the Lovely",
+            "variant": "Standard",
+            "priceUsd": 17.5,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$15 - $20"
+        },
+        {
+            "id": "L2",
+            "name": "Hiei, Unpredictable Warrior",
+            "variant": "Standard",
+            "priceUsd": 18.5,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$16 - $21"
+        },
+        {
+            "id": "L3",
+            "name": "Kayko, the Cute",
+            "variant": "Standard",
+            "priceUsd": 17.5,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$15 - $20"
+        },
+        {
+            "id": "L4",
+            "name": "Koenma, Noble Leader",
+            "variant": "Standard",
+            "priceUsd": 15.5,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$13 - $18"
+        },
+        {
+            "id": "L5",
+            "name": "Kuwabara, Honorable Friend",
+            "variant": "Standard",
+            "priceUsd": 17.5,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$15 - $20"
+        },
+        {
+            "id": "L6",
+            "name": "Kurama, Caring Fighter",
+            "variant": "Standard",
+            "priceUsd": 18.5,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$16 - $21"
+        },
+        {
+            "id": "L7",
+            "name": "Yusuke, Recourceful Apprentice",
+            "variant": "Standard",
+            "priceUsd": 22.5,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$20 - $25"
+        },
+        {
+            "id": "L8",
+            "name": "Binding Shinobi",
+            "variant": "Standard",
+            "priceUsd": 13,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$13 - $18"
+        },
+        {
+            "id": "L9",
+            "name": "Substitute",
+            "variant": "Standard",
+            "priceUsd": 8.5,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$7 - $10"
+        },
+        {
+            "id": "L10",
+            "name": "Whip Slam",
+            "variant": "Standard",
+            "priceUsd": 9,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$7 - $11"
+        },
+        {
+            "id": "TG1",
+            "name": "Halt!",
+            "variant": "Standard",
+            "priceUsd": 125,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$100 - $150"
+        },
+        {
+            "id": "TU2",
+            "name": "Epic Showdown",
+            "variant": "Standard",
+            "priceUsd": 12.5,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$10 - $15"
+        },
+        {
+            "id": "TU3",
+            "name": "I'm Calling You Out!",
+            "variant": "Standard",
+            "priceUsd": 27.5,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$25 - $30"
+        },
+        {
+            "id": "TS4",
+            "name": "Ice Shinobi",
+            "variant": "Standard",
+            "priceUsd": 21,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$19 - $23"
+        },
+        {
+            "id": "TS5",
+            "name": "Yuu Kaitou, Taboo Master",
+            "variant": "Standard",
+            "priceUsd": 11.5,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$10 - $13"
+        },
+        {
+            "id": "TS6",
+            "name": "Flee the Arena",
+            "variant": "Standard",
+            "priceUsd": 5.5,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$4 - $7"
+        },
+        {
+            "id": "TR7",
+            "name": "Genkai, Young Fighter",
+            "variant": "Standard",
+            "priceUsd": 9.5,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$7 - $12"
+        },
+        {
+            "id": "TR8",
+            "name": "Display of Power",
+            "variant": "Standard",
+            "priceUsd": 7.5,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$5 - $10"
+        },
+        {
+            "id": "TR9",
+            "name": "Persevere",
+            "variant": "Standard",
+            "priceUsd": 4,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$3 - $5"
+        },
+        {
+            "id": "TR10",
+            "name": "Precise Evasion",
+            "variant": "Standard",
+            "priceUsd": 4,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$3 - $5"
+        },
+        {
+            "id": "TR11",
+            "name": "Trial Sword",
+            "variant": "Standard",
+            "priceUsd": 3,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$2 - $4"
+        },
+        {
+            "id": "TR12",
+            "name": "Acid Blast",
+            "variant": "Standard",
+            "priceUsd": 4,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$3 - $5"
+        },
+        {
+            "id": "TC13",
+            "name": "Koto, the Experienced",
+            "variant": "Standard",
+            "priceUsd": 5,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$4 - $6"
+        },
+        {
+            "id": "TC14",
+            "name": "Confrontation",
+            "variant": "Standard",
+            "priceUsd": 4,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$3 - $5"
+        },
+        {
+            "id": "TC15",
+            "name": "Dark Power",
+            "variant": "Standard",
+            "priceUsd": 5,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$4 - $6"
+        },
+        {
+            "id": "TC16",
+            "name": "Heroic Stand",
+            "variant": "Standard",
+            "priceUsd": 4,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$3 - $5"
+        },
+        {
+            "id": "TC17",
+            "name": "Hiei's Essence",
+            "variant": "Standard",
+            "priceUsd": 6.5,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$5 - $8"
+        },
+        {
+            "id": "TC18",
+            "name": "Broom Stick",
+            "variant": "Standard",
+            "priceUsd": 5,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$4 - $6"
+        },
+        {
+            "id": "TC19",
+            "name": "Souls",
+            "variant": "Standard",
+            "priceUsd": 5.5,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$4 - $7"
+        },
+        {
+            "id": "TC20",
+            "name": "Watch",
+            "variant": "Standard",
+            "priceUsd": 4.5,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$3 - $6"
+        },
+        {
+            "id": "TC21",
+            "name": "Dark Sphere of No Return",
+            "variant": "Standard",
+            "priceUsd": 3,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$2 - $4"
+        },
+        {
+            "id": "TC22",
+            "name": "Double Barrel Blast",
+            "variant": "Standard",
+            "priceUsd": 1,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$0.50 - $1.50"
+        },
+        {
+            "id": "TC23",
+            "name": "Tornado Fist Double",
+            "variant": "Standard",
+            "priceUsd": 4.5,
+            "compsCount": 0,
+            "status": "Priced",
+            "notes": "$3 - $6"
+        }
     ]
 }

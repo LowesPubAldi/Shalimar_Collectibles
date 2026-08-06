@@ -1,9 +1,10 @@
 const express = require("express");
 const fs = require("fs/promises");
 const path = require("path");
+const crypto = require("crypto");
 const dotenv = require("dotenv");
 
-dotenv.config({ path: path.join(__dirname, ".env.local") });
+dotenv.config({ path: path.join(__dirname, ".env.local"), override: true });
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -23,10 +24,23 @@ const EBAY_IDENTITY_BASE_URLS = {
     sandbox: "https://api.sandbox.ebay.com",
     production: "https://api.ebay.com"
 };
+const EBAY_AUTH_BASE_URLS = {
+    sandbox: "https://auth.sandbox.ebay.com",
+    production: "https://auth.ebay.com"
+};
 const EBAY_TOKEN_EXPIRY_BUFFER_MS = 60 * 1000;
+const EBAY_AUTH_REDIRECT_URI = process.env.EBAY_REDIRECT_URI || "http://localhost:3000/api/ebay/auth/callback";
+const EBAY_AUTH_SCOPES = (process.env.EBAY_AUTH_SCOPES || "https://api.ebay.com/oauth/api_scope").split(",").map((value) => value.trim()).filter(Boolean);
 let ebayTokenCache = {
     accessToken: "",
     expiresAt: 0,
+    scope: ""
+};
+let ebayUserTokenCache = {
+    accessToken: "",
+    refreshToken: "",
+    expiresAt: 0,
+    tokenType: "",
     scope: ""
 };
 const DATA_FILE_PATHS = [
@@ -36,6 +50,8 @@ const DATA_FILE_PATHS = [
 ];
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(__dirname));
 
 // Allow the frontend to call this API even when the site is served by another local server.
 app.use((req, res, next) => {
@@ -215,8 +231,27 @@ function getEbayIdentityBaseUrl() {
     return EBAY_IDENTITY_BASE_URLS[EBAY_CONFIG.environment];
 }
 
+function getEbayAuthBaseUrl() {
+    return EBAY_AUTH_BASE_URLS[EBAY_CONFIG.environment];
+}
+
 function getEbayTokenUrl() {
     return `${getEbayIdentityBaseUrl()}/identity/v1/oauth2/token`;
+}
+
+function getEbayAuthorizationUrl(state, redirectUri = EBAY_AUTH_REDIRECT_URI) {
+    const params = new URLSearchParams({
+        client_id: EBAY_CONFIG.appId,
+        redirect_uri: redirectUri,
+        response_type: "code",
+        scope: EBAY_AUTH_SCOPES.join(" ")
+    });
+
+    if (state) {
+        params.set("state", state);
+    }
+
+    return `${getEbayAuthBaseUrl()}/oauth/authorize?${params.toString()}`;
 }
 
 function getEbayBrowseSearchUrl() {
@@ -314,6 +349,74 @@ async function fetchEbayAccessToken(forceRefresh = false) {
     };
 
     return accessToken;
+}
+
+function userTokenIsFresh() {
+    return Boolean(
+        ebayUserTokenCache.accessToken &&
+        ebayUserTokenCache.expiresAt - Date.now() > EBAY_TOKEN_EXPIRY_BUFFER_MS
+    );
+}
+
+async function exchangeEbayAuthorizationCode(code, redirectUri = EBAY_AUTH_REDIRECT_URI) {
+    if (!code) {
+        throw new Error("Missing authorization code from eBay callback");
+    }
+
+    const tokenUrl = getEbayTokenUrl();
+    const body = new URLSearchParams({
+        grant_type: "authorization_code",
+        code,
+        redirect_uri: redirectUri
+    });
+
+    const tokenResponse = await fetch(tokenUrl, {
+        method: "POST",
+        headers: {
+            Authorization: buildEbayBasicAuthHeader(),
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: body.toString()
+    });
+
+    let payload = null;
+    try {
+        payload = await tokenResponse.json();
+    } catch {
+        payload = null;
+    }
+
+    if (!tokenResponse.ok) {
+        const mappedErrors = mapEbayError(payload);
+        const topLevelMessage = payload && typeof payload.error_description === "string"
+            ? payload.error_description
+            : payload && typeof payload.error === "string"
+                ? payload.error
+                : "Unable to exchange eBay authorization code";
+
+        const err = new Error(topLevelMessage);
+        err.statusCode = tokenResponse.status;
+        err.ebayErrors = mappedErrors;
+        throw err;
+    }
+
+    const accessToken = payload && typeof payload.access_token === "string" ? payload.access_token : "";
+    const refreshToken = payload && typeof payload.refresh_token === "string" ? payload.refresh_token : "";
+    const expiresInSeconds = payload && Number.isFinite(payload.expires_in) ? payload.expires_in : 0;
+
+    if (!accessToken || expiresInSeconds <= 0) {
+        throw new Error("eBay authorization response did not include a valid access token");
+    }
+
+    ebayUserTokenCache = {
+        accessToken,
+        refreshToken,
+        expiresAt: Date.now() + expiresInSeconds * 1000,
+        tokenType: payload && typeof payload.token_type === "string" ? payload.token_type : "",
+        scope: payload && typeof payload.scope === "string" ? payload.scope : ""
+    };
+
+    return ebayUserTokenCache;
 }
 
 function buildSearchParams(query) {
@@ -418,6 +521,88 @@ app.get("/api/health", (req, res) => {
     });
 });
 
+app.get("/api/health", (req, res) => {
+    res.json({
+        status: "ok",
+        service: "shalimar-cards-api",
+        ebayConfigured: isEbayConfigured(),
+        ebayEnvironment: EBAY_CONFIG.environment,
+        ebayMarketplaceId: EBAY_CONFIG.marketplaceId,
+        timestamp: new Date().toISOString()
+    });
+});
+
+app.get("/api/ebay/auth/start", (req, res) => {
+    if (!isEbayConfigured()) {
+        return res.status(400).json({
+            error: "eBay credentials are missing in .env.local",
+            details: "Set EBAY_APP_ID, EBAY_DEV_ID, and EBAY_CLIENT_SECRET first"
+        });
+    }
+
+    const state = typeof req.query.state === "string" && req.query.state.trim()
+        ? req.query.state.trim()
+        : crypto.randomUUID();
+    const redirectUri = typeof req.query.redirect_uri === "string" && req.query.redirect_uri.trim()
+        ? req.query.redirect_uri.trim()
+        : EBAY_AUTH_REDIRECT_URI;
+    const authUrl = getEbayAuthorizationUrl(state, redirectUri);
+
+    if (req.query.redirect === "1" || req.query.redirect === "true") {
+        return res.redirect(authUrl);
+    }
+
+    return res.json({
+        authUrl,
+        state,
+        redirectUri,
+        scopes: EBAY_AUTH_SCOPES
+    });
+});
+
+app.get("/api/ebay/auth/callback", async (req, res) => {
+    try {
+        const code = typeof req.query.code === "string" ? req.query.code.trim() : "";
+        const state = typeof req.query.state === "string" ? req.query.state.trim() : "";
+        const error = typeof req.query.error === "string" ? req.query.error : "";
+        const errorDescription = typeof req.query.error_description === "string" ? req.query.error_description : "";
+
+        if (error) {
+            return res.status(400).json({
+                error: "eBay authorization failed",
+                details: errorDescription || error
+            });
+        }
+
+        const token = await exchangeEbayAuthorizationCode(code, EBAY_AUTH_REDIRECT_URI);
+        return res.json({
+            status: "ok",
+            message: "eBay user token exchanged successfully",
+            state,
+            accessToken: token.accessToken,
+            tokenType: token.tokenType,
+            tokenExpiresAt: new Date(token.expiresAt).toISOString(),
+            tokenScope: token.scope
+        });
+    } catch (error) {
+        const statusCode = Number.isInteger(error.statusCode) ? error.statusCode : 500;
+        return res.status(statusCode).json({
+            error: "Failed to exchange eBay authorization code",
+            details: error instanceof Error ? error.message : "Unknown eBay auth error",
+            ebayErrors: Array.isArray(error.ebayErrors) ? error.ebayErrors : []
+        });
+    }
+});
+
+app.get("/api/ebay/auth/status", (req, res) => {
+    res.json({
+        hasUserAccessToken: Boolean(ebayUserTokenCache.accessToken),
+        tokenExpiresAt: ebayUserTokenCache.expiresAt ? new Date(ebayUserTokenCache.expiresAt).toISOString() : null,
+        tokenScope: ebayUserTokenCache.scope,
+        tokenType: ebayUserTokenCache.tokenType
+    });
+});
+
 app.get("/api/ebay/test", async (req, res) => {
     try {
         const token = await fetchEbayAccessToken(Boolean(req.query.refresh));
@@ -428,7 +613,9 @@ app.get("/api/ebay/test", async (req, res) => {
             marketplaceId: EBAY_CONFIG.marketplaceId,
             hasAccessToken: Boolean(token),
             tokenExpiresAt: new Date(ebayTokenCache.expiresAt).toISOString(),
-            tokenScope: ebayTokenCache.scope
+            tokenScope: ebayTokenCache.scope,
+            hasUserAccessToken: Boolean(ebayUserTokenCache.accessToken),
+            userTokenExpiresAt: ebayUserTokenCache.expiresAt ? new Date(ebayUserTokenCache.expiresAt).toISOString() : null
         });
     } catch (error) {
         const statusCode = Number.isInteger(error.statusCode) ? error.statusCode : 500;
@@ -537,6 +724,6 @@ app.get("/api/yyh/sets/summary", async (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
-    console.log(`Shalimar API running at http://127.0.0.1:${PORT}`);
+app.listen(PORT, "127.0.0.1", () => {
+    console.log(`Shalimar API running at http://localhost:${PORT}`);
 });

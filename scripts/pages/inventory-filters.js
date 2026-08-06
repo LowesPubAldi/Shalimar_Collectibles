@@ -50,7 +50,16 @@ const YYH_IMAGE_SET_FOLDERS = {
 };
 let fallbackDataCache = null;
 let pricingDataCache = new Map();
+let allYyhSetPricingCache = null;
 let kingSetNotesCache = null;
+
+function createEmptyPricingData() {
+    return {
+        pricingByLookupKey: new Map(),
+        fallbackPricingRules: [],
+        setNotes: []
+    };
+}
 
 function getInventoryPageLimit() {
     if (window.innerWidth <= 420) {
@@ -610,6 +619,37 @@ function buildVariantFamilyCountMap(records) {
     return counts;
 }
 
+function buildCardPageUrl(cardRecord) {
+    const destination = new URL("card-template.html", window.location.href);
+    const game = resolveFirstNonEmpty(cardRecord.game);
+    const setName = resolveFirstNonEmpty(cardRecord.set);
+    const id = resolveFirstNonEmpty(cardRecord.id, cardRecord.number);
+    const name = resolveFirstNonEmpty(cardRecord.name);
+    const variant = resolveFirstNonEmpty(cardRecord.variant);
+
+    if (name) {
+        destination.searchParams.set("q", name);
+    }
+
+    if (game) {
+        destination.searchParams.set("game", game);
+    }
+
+    if (setName) {
+        destination.searchParams.set("set", setName);
+    }
+
+    if (id) {
+        destination.searchParams.set("id", id);
+    }
+
+    if (variant) {
+        destination.searchParams.set("variant", variant);
+    }
+
+    return destination.toString();
+}
+
 function makeInventoryCard(cardRecord, collisionCountMap, variantFamilyCountMap, showCardIdInMeta = true, showPricing = true) {
     const collisionKey = [cardRecord.name, cardRecord.set, cardRecord.variant]
         .map((value) => String(value || "").trim().toLowerCase())
@@ -644,26 +684,34 @@ function makeInventoryCard(cardRecord, collisionCountMap, variantFamilyCountMap,
         metaPieces.unshift(cardRecord.id);
     }
 
+    const priceStatus = cardRecord.priceStatus || PRICE_STATUS_UNPRICED_OPTION;
+    const cardPageUrl = buildCardPageUrl(cardRecord);
+
     return `
-        <article class="${cardClassName}">
-            ${rarityChipMarkup}
-            <div class="inventory-card__image" aria-hidden="true">
-                <img
-                    class="inventory-card__image-media"
-                    data-inventory-card-image="true"
-                    data-card-id="${escapeHtml(cardRecord.id)}"
-                    data-card-number="${escapeHtml(cardRecord.number || "") }"
-                    data-card-set="${escapeHtml(cardRecord.set)}"
-                    data-card-name="${escapeHtml(cardRecord.name)}"
-                    data-card-variant="${escapeHtml(cardRecord.variant || "") }"
-                    alt="${escapeHtml(cardRecord.name)}"
-                    decoding="async"
-                />
-            </div>
-            <h3 class="inventory-card__title">${escapeHtml(displayTitle)}</h3>
-            <p class="inventory-card__meta">${escapeHtml(metaPieces.join(" • "))}</p>
-            ${showPricing ? `<p class="inventory-card__price">${escapeHtml(formatPriceLabel(cardRecord))}</p>` : ""}
-            <span class="inventory-card__tag">${escapeHtml(cardRecord.set)} • ${escapeHtml(cardRecord.variant)}</span>
+        <article class="${cardClassName}" data-price-status="${escapeHtml(priceStatus)}">
+            <a class="inventory-card__link" href="${escapeHtml(cardPageUrl)}" aria-label="Open ${escapeHtml(displayTitle)} card page">
+                ${rarityChipMarkup}
+                <div class="inventory-card__image" aria-hidden="true">
+                    <img
+                        class="inventory-card__image-media"
+                        data-inventory-card-image="true"
+                        data-card-id="${escapeHtml(cardRecord.id)}"
+                        data-card-number="${escapeHtml(cardRecord.number || "") }"
+                        data-card-set="${escapeHtml(cardRecord.set)}"
+                        data-card-name="${escapeHtml(cardRecord.name)}"
+                        data-card-variant="${escapeHtml(cardRecord.variant || "") }"
+                        alt="${escapeHtml(cardRecord.name)}"
+                        decoding="async"
+                    />
+                </div>
+                <h3 class="inventory-card__title">${escapeHtml(displayTitle)}</h3>
+                <p class="inventory-card__meta">${escapeHtml(metaPieces.join(" • "))}</p>
+                ${showPricing ? `<p class="inventory-card__price">${escapeHtml(formatPriceLabel(cardRecord))}</p>` : ""}
+                <div class="inventory-card__actions">
+                    <span class="inventory-card__tag">${escapeHtml(cardRecord.set)} • ${escapeHtml(cardRecord.variant)}</span>
+                    <span class="inventory-card__view">View Card</span>
+                </div>
+            </a>
         </article>
     `;
 }
@@ -1149,7 +1197,9 @@ function parseSetPricingPayload(payload, setName) {
         const compsCount = normalizeCompsCount(item.compsCount ?? item.ebayComps ?? item.comps);
         const notes = resolveFirstNonEmpty(item.notes, item.note);
         const declaredStatus = normalizePriceStatusLabel(item.status);
-        const status = priceUsd !== null ? PRICE_STATUS_PRICED_OPTION : declaredStatus;
+        const status = declaredStatus === PRICE_STATUS_REVIEW_OPTION
+            ? PRICE_STATUS_REVIEW_OPTION
+            : (priceUsd !== null ? PRICE_STATUS_PRICED_OPTION : declaredStatus);
 
         const lookupCandidates = getPricingLookupCandidates({
             set: itemSet,
@@ -1188,11 +1238,7 @@ function buildSetPricingUrl(setName) {
 async function loadSetPricingMap(setName) {
     const normalizedSet = String(setName || "").trim();
     if (!normalizedSet || normalizedSet === "All Sets") {
-        return {
-            pricingByLookupKey: new Map(),
-            fallbackPricingRules: [],
-            setNotes: []
-        };
+        return createEmptyPricingData();
     }
 
     if (pricingDataCache.has(normalizedSet)) {
@@ -1203,11 +1249,7 @@ async function loadSetPricingMap(setName) {
     try {
         const response = await fetch(sourceUrl, { cache: "no-store" });
         if (!response.ok) {
-            pricingDataCache.set(normalizedSet, {
-                pricingByLookupKey: new Map(),
-                fallbackPricingRules: [],
-                setNotes: []
-            });
+            pricingDataCache.set(normalizedSet, createEmptyPricingData());
             return pricingDataCache.get(normalizedSet);
         }
 
@@ -1216,13 +1258,53 @@ async function loadSetPricingMap(setName) {
         pricingDataCache.set(normalizedSet, parsedMap);
         return parsedMap;
     } catch {
-        pricingDataCache.set(normalizedSet, {
-            pricingByLookupKey: new Map(),
-            fallbackPricingRules: [],
-            setNotes: []
-        });
+        pricingDataCache.set(normalizedSet, createEmptyPricingData());
         return pricingDataCache.get(normalizedSet);
     }
+}
+
+async function loadAllYyhSetPricingMap(records) {
+    if (allYyhSetPricingCache) {
+        return allYyhSetPricingCache;
+    }
+
+    const yyhSets = Array.from(
+        new Set(
+            (Array.isArray(records) ? records : [])
+                .filter((record) => String(record.game || "").trim() === "Yu Yu Hakusho")
+                .map((record) => String(record.set || "").trim())
+                .filter((setName) => Boolean(setName) && setName !== "All Sets")
+        )
+    );
+
+    if (yyhSets.length === 0) {
+        allYyhSetPricingCache = createEmptyPricingData();
+        return allYyhSetPricingCache;
+    }
+
+    const perSetPricing = await Promise.all(yyhSets.map((setName) => loadSetPricingMap(setName)));
+    const mergedPricingByLookupKey = new Map();
+    const mergedFallbackPricingRules = [];
+
+    for (const setPricing of perSetPricing) {
+        for (const [lookupKey, pricingRecord] of (setPricing.pricingByLookupKey || new Map()).entries()) {
+            if (!mergedPricingByLookupKey.has(lookupKey)) {
+                mergedPricingByLookupKey.set(lookupKey, pricingRecord);
+            }
+        }
+
+        if (Array.isArray(setPricing.fallbackPricingRules)) {
+            mergedFallbackPricingRules.push(...setPricing.fallbackPricingRules);
+        }
+    }
+
+    allYyhSetPricingCache = {
+        pricingByLookupKey: mergedPricingByLookupKey,
+        fallbackPricingRules: mergedFallbackPricingRules,
+        setNotes: []
+    };
+
+    return allYyhSetPricingCache;
 }
 
 async function loadKingSetNotesMap() {
@@ -1387,17 +1469,21 @@ function formatPriceLabel(cardRecord) {
         return "Unpriced";
     }
 
+    const needsReview = (cardRecord.priceStatus || "") === PRICE_STATUS_REVIEW_OPTION;
+
     if (typeof pricing.minPriceUsd === "number" && typeof pricing.maxPriceUsd === "number") {
-        return `$${pricing.minPriceUsd.toFixed(2)}-$${pricing.maxPriceUsd.toFixed(2)}`;
+        const rangeLabel = `$${pricing.minPriceUsd.toFixed(2)}-$${pricing.maxPriceUsd.toFixed(2)}`;
+        return needsReview ? `${rangeLabel} • Needs Review` : rangeLabel;
     }
 
     const amount = `$${Number(pricing.priceUsd).toFixed(2)}`;
     const compsCount = Number(pricing.compsCount || 0);
+    const suffix = needsReview ? " • Needs Review" : "";
     if (compsCount > 0) {
-        return `${amount} • ${compsCount} comps`;
+        return `${amount} • ${compsCount} comps${suffix}`;
     }
 
-    return amount;
+    return `${amount}${suffix}`;
 }
 
 function renderInventoryError(resultsGrid, resultsMeta, message) {
@@ -1974,8 +2060,10 @@ async function initInventoryFilters() {
         }
 
         const setPricingData = filterState.game === "Yu Yu Hakusho"
-            ? await loadSetPricingMap(filterState.set)
-            : { pricingByLookupKey: new Map(), fallbackPricingRules: [], setNotes: [] };
+            ? (filterState.set === "All Sets"
+                ? await loadAllYyhSetPricingMap(inventoryRecords)
+                : await loadSetPricingMap(filterState.set))
+            : createEmptyPricingData();
         const kingSetNotesMap = filterState.game === "Yu Yu Hakusho"
             ? await loadKingSetNotesMap()
             : new Map();
@@ -1985,7 +2073,7 @@ async function initInventoryFilters() {
         const filteredRecords = filterRecords(recordsWithPricing, filterState);
         const sortedRecords = sortInventoryRecords(filteredRecords, filterState.sort);
         const showCardIdInMeta = false;
-        const showPricing = filterState.game === "Yu Yu Hakusho" && filterState.set !== "All Sets";
+        const showPricing = filterState.game === "Yu Yu Hakusho";
         const sourceRecords = filterState.includeVariants
             ? sortedRecords
             : sortedRecords.filter((record, index, allRecords) => {

@@ -6,6 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "api": "node server.js",
+    "yyh:update-medians": "node scripts/tools/update_yyh_median_pricing.js",
+    "yyh:apply-suspicious": "node scripts/tools/apply_yyh_suspicious_approvals.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

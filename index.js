@@ -147,6 +147,30 @@ const seasonalThemes = {
 // };
 const seasonalOverrides = {};
 
+const YYH_SPOTLIGHT_THUMBNAILS = {
+	"yusuke mazoku form": "assets/seasonal/yyh-source/betrayal/013.jpg",
+	"botan": "assets/seasonal/yyh-source/dark-tournament/001.jpg",
+	"raizen": "assets/seasonal/yyh-source/alliance/001.jpg",
+	"kurama": "assets/seasonal/yyh-source/ghost-files/013.jpg",
+	"mukuro": "assets/seasonal/yyh-source/exile/018.jpg",
+	"kuwabara jigen to": "assets/seasonal/yyh-source/gateway/100.jpg",
+	"yusuke": "assets/seasonal/yyh-source/dark-tournament/020.jpg",
+	"chu": "assets/seasonal/yyh-source/dark-tournament/012.jpg",
+	"kazuma kuwabara": "assets/seasonal/yyh-source/gateway/100.jpg",
+	"hiei": "assets/seasonal/yyh-source/dark-tournament/005.jpg",
+	"gourmet": "assets/seasonal/yyh-source/exile/014.jpg",
+	"yukina": "assets/seasonal/yyh-source/dark-tournament/006.jpg"
+};
+
+let spotlightViewerElements = null;
+
+function normalizeForSearch(value) {
+	return String(value || "")
+		.toLowerCase()
+		.replace(/[^a-z0-9]+/g, " ")
+		.trim();
+}
+
 function mergeSpotlight(baseSpotlight, overrideSpotlight) {
 	if (!Array.isArray(overrideSpotlight) || overrideSpotlight.length === 0) {
 		return baseSpotlight;
@@ -189,6 +213,115 @@ const STATIC_THUMB_PLACEHOLDER = `data:image/svg+xml;charset=utf-8,${encodeURICo
 
 function makeThumbDataUri() {
 	return STATIC_THUMB_PLACEHOLDER;
+}
+
+function resolveSpotlightThumb(entry) {
+	if (!entry) {
+		return STATIC_THUMB_PLACEHOLDER;
+	}
+
+	const normalizedGame = normalizeForSearch(entry.game);
+	if (normalizedGame !== "yu yu hakusho") {
+		return STATIC_THUMB_PLACEHOLDER;
+	}
+
+	const normalizedCard = normalizeForSearch(entry.card).replace(/\s+/g, " ");
+	return YYH_SPOTLIGHT_THUMBNAILS[normalizedCard] || STATIC_THUMB_PLACEHOLDER;
+}
+
+function buildSpotlightCardUrl(entry) {
+	const destination = new URL("card-template.html", window.location.href);
+	const cardQuery = String(entry?.card || "").trim();
+	const gameQuery = String(entry?.game || "").trim();
+
+	if (cardQuery) {
+		destination.searchParams.set("q", cardQuery);
+	}
+
+	if (gameQuery) {
+		destination.searchParams.set("game", gameQuery);
+	}
+
+	return destination.toString();
+}
+
+function ensureSpotlightViewer() {
+	if (spotlightViewerElements) {
+		return spotlightViewerElements;
+	}
+
+	const overlay = document.createElement("div");
+	overlay.className = "spotlight-viewer";
+	overlay.hidden = true;
+	overlay.setAttribute("aria-hidden", "true");
+	overlay.innerHTML = `
+		<div class="spotlight-viewer__backdrop" data-role="viewer-close"></div>
+		<div class="spotlight-viewer__dialog" role="dialog" aria-modal="true" aria-label="Spotlight card preview">
+			<button class="spotlight-viewer__close" type="button" aria-label="Close preview" data-role="viewer-close">Close</button>
+			<img class="spotlight-viewer__image" alt="Spotlight card image" />
+			<div class="spotlight-viewer__meta">
+				<p class="spotlight-viewer__game"></p>
+				<h3 class="spotlight-viewer__title"></h3>
+				<a class="btn btn--primary spotlight-viewer__link" href="inventory.html">Go to Card Page</a>
+			</div>
+		</div>
+	`;
+
+	document.body.appendChild(overlay);
+
+	const image = overlay.querySelector(".spotlight-viewer__image");
+	const game = overlay.querySelector(".spotlight-viewer__game");
+	const title = overlay.querySelector(".spotlight-viewer__title");
+	const link = overlay.querySelector(".spotlight-viewer__link");
+
+	const close = () => {
+		overlay.hidden = true;
+		overlay.setAttribute("aria-hidden", "true");
+		document.body.classList.remove("spotlight-viewer-open");
+	};
+
+	overlay.addEventListener("click", (event) => {
+		if (event.target instanceof HTMLElement && event.target.dataset.role === "viewer-close") {
+			close();
+		}
+	});
+
+	document.addEventListener("keydown", (event) => {
+		if (event.key === "Escape" && !overlay.hidden) {
+			close();
+		}
+	});
+
+	spotlightViewerElements = {
+		overlay,
+		image,
+		game,
+		title,
+		link,
+		close
+	};
+
+	return spotlightViewerElements;
+}
+
+function openSpotlightViewer(entry, imageSrc) {
+	const viewer = ensureSpotlightViewer();
+	if (!viewer || !viewer.image || !viewer.game || !viewer.title || !viewer.link) {
+		return;
+	}
+
+	viewer.image.src = imageSrc;
+	viewer.image.alt = `${entry.card} card preview`;
+	viewer.image.onerror = () => {
+		viewer.image.src = STATIC_THUMB_PLACEHOLDER;
+	};
+	viewer.game.textContent = String(entry.game || "");
+	viewer.title.textContent = String(entry.card || "");
+	viewer.link.href = buildSpotlightCardUrl(entry);
+
+	viewer.overlay.hidden = false;
+	viewer.overlay.setAttribute("aria-hidden", "false");
+	document.body.classList.add("spotlight-viewer-open");
 }
 
 function getPreviewMonth() {
@@ -260,10 +393,22 @@ function renderSpotlightItems(listElement, spotlight) {
 
 		const thumb = document.createElement("img");
 		thumb.className = "hero__season-thumb";
-		thumb.src = makeThumbDataUri(entry.card, entry.thumbColors);
+		thumb.src = resolveSpotlightThumb(entry);
 		thumb.alt = `${entry.card} thumbnail`;
+		thumb.addEventListener("error", () => {
+			thumb.src = STATIC_THUMB_PLACEHOLDER;
+		}, { once: true });
 
-		item.append(textWrap, thumb);
+		const thumbButton = document.createElement("button");
+		thumbButton.className = "hero__season-thumb-btn";
+		thumbButton.type = "button";
+		thumbButton.setAttribute("aria-label", `Preview ${entry.card}`);
+		thumbButton.appendChild(thumb);
+		thumbButton.addEventListener("click", () => {
+			openSpotlightViewer(entry, thumb.currentSrc || thumb.src || STATIC_THUMB_PLACEHOLDER);
+		});
+
+		item.append(textWrap, thumbButton);
 		listElement.appendChild(item);
 	}
 }
@@ -445,6 +590,29 @@ function initMobileNav() {
 	}
 }
 
+function initHomeSearch() {
+	const searchForm = document.querySelector(".hero__search");
+	const searchInput = document.querySelector(".hero__search-input");
+	if (!searchForm || !searchInput) {
+		return;
+	}
+
+	searchForm.addEventListener("submit", (event) => {
+		event.preventDefault();
+
+		const query = String(searchInput.value || "").trim();
+		const destination = new URL("inventory.html", window.location.href);
+
+		if (query) {
+			destination.searchParams.set("q", query);
+			destination.searchParams.set("game", "Yu Yu Hakusho");
+		}
+
+		window.location.href = destination.toString();
+	});
+}
+
 applySeasonTheme();
 initGameLanesReveal();
 initMobileNav();
+initHomeSearch();
