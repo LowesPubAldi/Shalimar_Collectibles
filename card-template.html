@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shalimar Collectibles | Card Template</title>
+    <link rel="stylesheet" href="styles/base.css?v=1">
+    <link rel="stylesheet" href="styles/components/nav.css?v=1">
+    <link rel="stylesheet" href="styles/components/footer.css?v=1">
+    <link rel="stylesheet" href="styles/pages/card.css?v=1">
+    <script src="scripts/components/mobile-nav.js?v=1" defer></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="logo-link" aria-label="Go to homepage">
+                <img
+                    src="./assets/logo-v4.svg?v=3"
+                    alt="Shalimar Collectibles logo"
+                    class="logo"
+                />
+            </a>
+            <button
+                class="mobile-nav-toggle"
+                id="mobileNavToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="primaryNavLinks"
+            >
+                <span class="mobile-nav-toggle__bar" aria-hidden="true"></span>
+                <span class="mobile-nav-toggle__bar" aria-hidden="true"></span>
+                <span class="mobile-nav-toggle__bar" aria-hidden="true"></span>
+            </button>
+            <ul class="nav__links" id="primaryNavLinks">
+                <li><a href="contributors.html">Contributors</a></li>
+                <li><a href="inventory.html">Inventory</a></li>
+                <li><a href="sets.html">Sets</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="mobile-nav-overlay" id="mobileNavOverlay" type="button" aria-label="Close navigation menu"></button>
+    </header>
+
+    <main class="main card-page">
+        <section class="card-hero" aria-label="Card overview">
+            <div class="card-hero__content">
+                <p class="card-hero__eyebrow">Card Page Boilerplate</p>
+                <h1>Card Name Goes Here</h1>
+                <p>
+                    This page is the reusable shell for card{random}.html pages. It gives us a place for the image,
+                    card details, pricing notes, and anything else we decide to attach to a specific card.
+                </p>
+            </div>
+
+            <aside class="card-hero__panel" aria-label="Card summary">
+                <p class="card-hero__panel-label">Quick Facts</p>
+                <ul class="card-hero__list">
+                    <li>Set: Kings</li>
+                    <li>Card number: placeholder</li>
+                    <li>Rarity: placeholder</li>
+                    <li>Edition / finish: placeholder</li>
+                </ul>
+            </aside>
+        </section>
+
+        <section class="card-shell" aria-label="Card detail sections">
+            <article class="card-panel card-panel--image">
+                <div class="card-frame" aria-hidden="true">
+                    <span>Image Placeholder</span>
+                </div>
+            </article>
+
+            <article class="card-panel card-panel--details">
+                <h2>Card Details</h2>
+                <p>
+                    Put the practical card information here: set, rarity, edition, variant, source notes, and any
+                    pricing context we decide to track later.
+                </p>
+                <ul>
+                    <li>Set / collection context</li>
+                    <li>Price range or market notes</li>
+                    <li>Release or print details</li>
+                    <li>Source and update notes</li>
+                </ul>
+            </article>
+
+            <article class="card-panel card-panel--notes">
+                <h2>Notes</h2>
+                <p>
+                    This boilerplate is intentionally simple so we can duplicate it across the King Set without
+                    rethinking the layout every time.
+                </p>
+                <p>
+                    Tomorrow, this can become a real card page once we know the actual card data and filenames.
+                </p>
+                <a class="card-panel__backlink" href="kings.html">Back to Kings</a>
+            </article>
+        </section>
+    </main>
+
+    <footer class="site-footer" aria-label="Site footer">
+        <div class="site-footer__inner">
+            <p class="site-footer__brand">Shalimar Collectibles</p>
+            <p class="site-footer__meta">Reusable card page boilerplate for the King Set build.</p>
+            <p class="site-footer__copyright">&copy; 2026 Shalimar Collectibles. All rights reserved.</p>
+            <nav class="site-footer__nav" aria-label="Footer navigation">
+                <a href="contributors.html">Contributors</a>
+                <a href="inventory.html">Inventory</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </footer>
+</body>
+</html>
