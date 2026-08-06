@@ -10,7 +10,24 @@ const PORT = process.env.PORT || 3000;
 const EBAY_CONFIG = {
     appId: process.env.EBAY_APP_ID || "",
     devId: process.env.EBAY_DEV_ID || "",
-    clientSecret: process.env.EBAY_CLIENT_SECRET || ""
+    clientSecret: process.env.EBAY_CLIENT_SECRET || "",
+    environment: (process.env.EBAY_ENV || "sandbox").trim().toLowerCase() === "production" ? "production" : "sandbox",
+    marketplaceId: process.env.EBAY_MARKETPLACE_ID || "EBAY-US"
+};
+const EBAY_SCOPES = ["https://api.ebay.com/oauth/api_scope"]; 
+const EBAY_API_BASE_URLS = {
+    sandbox: "https://api.sandbox.ebay.com",
+    production: "https://api.ebay.com"
+};
+const EBAY_IDENTITY_BASE_URLS = {
+    sandbox: "https://api.sandbox.ebay.com",
+    production: "https://api.ebay.com"
+};
+const EBAY_TOKEN_EXPIRY_BUFFER_MS = 60 * 1000;
+let ebayTokenCache = {
+    accessToken: "",
+    expiresAt: 0,
+    scope: ""
 };
 const DATA_FILE_PATHS = [
     path.join(__dirname, "data", "yyh-cards-full.json"),
@@ -186,13 +203,263 @@ function clampLimit(value, defaultValue, maxValue) {
     return Math.min(requested, maxValue);
 }
 
+function isEbayConfigured() {
+    return Boolean(EBAY_CONFIG.appId && EBAY_CONFIG.devId && EBAY_CONFIG.clientSecret);
+}
+
+function getEbayApiBaseUrl() {
+    return EBAY_API_BASE_URLS[EBAY_CONFIG.environment];
+}
+
+function getEbayIdentityBaseUrl() {
+    return EBAY_IDENTITY_BASE_URLS[EBAY_CONFIG.environment];
+}
+
+function getEbayTokenUrl() {
+    return `${getEbayIdentityBaseUrl()}/identity/v1/oauth2/token`;
+}
+
+function getEbayBrowseSearchUrl() {
+    return `${getEbayApiBaseUrl()}/buy/browse/v1/item_summary/search`;
+}
+
+function buildEbayBasicAuthHeader() {
+    const raw = `${EBAY_CONFIG.appId}:${EBAY_CONFIG.clientSecret}`;
+    const encoded = Buffer.from(raw, "utf8").toString("base64");
+    return `Basic ${encoded}`;
+}
+
+function tokenIsFresh() {
+    return Boolean(
+        ebayTokenCache.accessToken &&
+        ebayTokenCache.expiresAt - Date.now() > EBAY_TOKEN_EXPIRY_BUFFER_MS
+    );
+}
+
+function mapEbayError(errorPayload) {
+    if (!errorPayload || typeof errorPayload !== "object") {
+        return [];
+    }
+
+    if (Array.isArray(errorPayload.errors)) {
+        return errorPayload.errors.map((entry) => ({
+            errorId: entry.errorId,
+            domain: entry.domain,
+            category: entry.category,
+            message: entry.message,
+            longMessage: entry.longMessage,
+            inputRefIds: entry.inputRefIds
+        }));
+    }
+
+    return [];
+}
+
+async function fetchEbayAccessToken(forceRefresh = false) {
+    if (!forceRefresh && tokenIsFresh()) {
+        return ebayTokenCache.accessToken;
+    }
+
+    if (!isEbayConfigured()) {
+        throw new Error("eBay credentials are missing in .env.local");
+    }
+
+    const tokenUrl = getEbayTokenUrl();
+    const body = new URLSearchParams({
+        grant_type: "client_credentials",
+        scope: EBAY_SCOPES.join(" ")
+    });
+
+    const tokenResponse = await fetch(tokenUrl, {
+        method: "POST",
+        headers: {
+            Authorization: buildEbayBasicAuthHeader(),
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: body.toString()
+    });
+
+    let payload = null;
+    try {
+        payload = await tokenResponse.json();
+    } catch {
+        payload = null;
+    }
+
+    if (!tokenResponse.ok) {
+        const mappedErrors = mapEbayError(payload);
+        const topLevelMessage = payload && typeof payload.error_description === "string"
+            ? payload.error_description
+            : payload && typeof payload.error === "string"
+                ? payload.error
+                : "Unable to obtain OAuth token from eBay";
+
+        const err = new Error(topLevelMessage);
+        err.statusCode = tokenResponse.status;
+        err.ebayErrors = mappedErrors;
+        throw err;
+    }
+
+    const accessToken = payload && typeof payload.access_token === "string" ? payload.access_token : "";
+    const expiresInSeconds = payload && Number.isFinite(payload.expires_in) ? payload.expires_in : 0;
+
+    if (!accessToken || expiresInSeconds <= 0) {
+        throw new Error("eBay OAuth response did not include a valid access token");
+    }
+
+    ebayTokenCache = {
+        accessToken,
+        expiresAt: Date.now() + expiresInSeconds * 1000,
+        scope: payload.scope || ""
+    };
+
+    return accessToken;
+}
+
+function buildSearchParams(query) {
+    const q = typeof query.q === "string" ? query.q.trim() : "";
+    const limit = clampLimit(query.limit, 20, 200);
+    const offset = parseNonNegativeInt(query.offset, 0);
+    const categoryIds = typeof query.category_ids === "string" ? query.category_ids.trim() : "";
+    const sort = typeof query.sort === "string" ? query.sort.trim() : "";
+    const filter = typeof query.filter === "string" ? query.filter.trim() : "";
+
+    const params = new URLSearchParams();
+    if (q) {
+        params.set("q", q);
+    }
+    params.set("limit", String(limit));
+    params.set("offset", String(offset));
+    if (categoryIds) {
+        params.set("category_ids", categoryIds);
+    }
+    if (sort) {
+        params.set("sort", sort);
+    }
+    if (filter) {
+        params.set("filter", filter);
+    }
+
+    return params;
+}
+
+function normalizeBrowseItem(item) {
+    return {
+        itemId: item.itemId || "",
+        legacyItemId: item.legacyItemId || "",
+        title: item.title || "",
+        condition: item.condition || "",
+        imageUrl: item.image && item.image.imageUrl ? item.image.imageUrl : "",
+        itemWebUrl: item.itemWebUrl || "",
+        sellerUsername: item.seller && item.seller.username ? item.seller.username : "",
+        currentPrice: item.price && item.price.value ? item.price.value : "",
+        currentPriceCurrency: item.price && item.price.currency ? item.price.currency : "",
+        shippingCost: item.shippingOptions && item.shippingOptions[0] && item.shippingOptions[0].shippingCost
+            ? item.shippingOptions[0].shippingCost.value
+            : "",
+        shippingCurrency: item.shippingOptions && item.shippingOptions[0] && item.shippingOptions[0].shippingCost
+            ? item.shippingOptions[0].shippingCost.currency
+            : ""
+    };
+}
+
+async function runEbayBrowseSearch(reqQuery) {
+    const accessToken = await fetchEbayAccessToken();
+    const params = buildSearchParams(reqQuery);
+    const searchUrl = `${getEbayBrowseSearchUrl()}?${params.toString()}`;
+
+    const response = await fetch(searchUrl, {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "X-EBAY-C-MARKETPLACE-ID": EBAY_CONFIG.marketplaceId,
+            "Content-Type": "application/json"
+        }
+    });
+
+    let payload = null;
+    try {
+        payload = await response.json();
+    } catch {
+        payload = null;
+    }
+
+    if (!response.ok) {
+        const mappedErrors = mapEbayError(payload);
+        const topLevelMessage = payload && typeof payload.message === "string"
+            ? payload.message
+            : "eBay browse search failed";
+        const err = new Error(topLevelMessage);
+        err.statusCode = response.status;
+        err.ebayErrors = mappedErrors;
+        throw err;
+    }
+
+    const rawItems = Array.isArray(payload && payload.itemSummaries) ? payload.itemSummaries : [];
+
+    return {
+        href: payload && payload.href ? payload.href : "",
+        total: Number.isFinite(payload && payload.total) ? payload.total : rawItems.length,
+        limit: Number.isFinite(payload && payload.limit) ? payload.limit : rawItems.length,
+        offset: Number.isFinite(payload && payload.offset) ? payload.offset : 0,
+        next: payload && payload.next ? payload.next : "",
+        items: rawItems.map(normalizeBrowseItem)
+    };
+}
+
 app.get("/api/health", (req, res) => {
     res.json({
         status: "ok",
         service: "shalimar-cards-api",
-        ebayConfigured: Boolean(EBAY_CONFIG.appId && EBAY_CONFIG.devId && EBAY_CONFIG.clientSecret),
+        ebayConfigured: isEbayConfigured(),
+        ebayEnvironment: EBAY_CONFIG.environment,
+        ebayMarketplaceId: EBAY_CONFIG.marketplaceId,
         timestamp: new Date().toISOString()
     });
+});
+
+app.get("/api/ebay/test", async (req, res) => {
+    try {
+        const token = await fetchEbayAccessToken(Boolean(req.query.refresh));
+        res.json({
+            status: "ok",
+            configured: isEbayConfigured(),
+            environment: EBAY_CONFIG.environment,
+            marketplaceId: EBAY_CONFIG.marketplaceId,
+            hasAccessToken: Boolean(token),
+            tokenExpiresAt: new Date(ebayTokenCache.expiresAt).toISOString(),
+            tokenScope: ebayTokenCache.scope
+        });
+    } catch (error) {
+        const statusCode = Number.isInteger(error.statusCode) ? error.statusCode : 500;
+        res.status(statusCode).json({
+            error: "Failed to authenticate with eBay",
+            details: error instanceof Error ? error.message : "Unknown eBay auth error",
+            ebayErrors: Array.isArray(error.ebayErrors) ? error.ebayErrors : []
+        });
+    }
+});
+
+app.get("/api/ebay/search", async (req, res) => {
+    try {
+        const queryValue = typeof req.query.q === "string" ? req.query.q.trim() : "";
+        if (!queryValue) {
+            return res.status(400).json({
+                error: "Missing required query parameter",
+                details: "Provide q (example: /api/ebay/search?q=yu+yuhakusho+tcg)"
+            });
+        }
+
+        const result = await runEbayBrowseSearch(req.query);
+        res.json(result);
+    } catch (error) {
+        const statusCode = Number.isInteger(error.statusCode) ? error.statusCode : 500;
+        res.status(statusCode).json({
+            error: "Failed to query eBay browse API",
+            details: error instanceof Error ? error.message : "Unknown eBay API error",
+            ebayErrors: Array.isArray(error.ebayErrors) ? error.ebayErrors : []
+        });
+    }
 });
 
 app.get("/api/yyh/cards", async (req, res) => {

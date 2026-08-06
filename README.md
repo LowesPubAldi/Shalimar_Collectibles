@@ -177,6 +177,41 @@ You should see:
 - Sets summary endpoint:
 	- `http://127.0.0.1:3000/api/yyh/sets/summary?game=Yu%20Yu%20Hakusho`
 
+### eBay API Starter (One-Pass Setup)
+
+Backend now includes OAuth token handling and a starter search route for eBay Browse API.
+
+Required `.env.local` values:
+
+- `EBAY_APP_ID`
+- `EBAY_DEV_ID`
+- `EBAY_CLIENT_SECRET`
+
+Optional `.env.local` values:
+
+- `EBAY_ENV` -> `sandbox` (default) or `production`
+- `EBAY_MARKETPLACE_ID` -> defaults to `EBAY-US`
+
+Test endpoints:
+
+- eBay auth test:
+	- `http://127.0.0.1:3000/api/ebay/test`
+
+- eBay auth refresh test:
+	- `http://127.0.0.1:3000/api/ebay/test?refresh=1`
+
+- eBay browse search:
+	- `http://127.0.0.1:3000/api/ebay/search?q=yu%20yu%20hakusho%20tcg&limit=20`
+
+Search query params:
+
+- `q` (required)
+- `limit` (optional, max 200)
+- `offset` (optional)
+- `category_ids` (optional)
+- `sort` (optional)
+- `filter` (optional, eBay Browse API filter string)
+
 ### Current API Query Params
 
 - `q` -> text search

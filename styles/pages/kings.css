@@ -140,10 +140,24 @@
     padding: 16px;
     display: grid;
     gap: 8px;
+    color: inherit;
+    text-decoration: none;
     background:
         linear-gradient(135deg, rgba(8, 17, 28, 0.9), rgba(13, 22, 38, 0.86)),
         radial-gradient(circle at top right, rgba(0, 217, 255, 0.15), transparent 48%);
     box-shadow: inset 0 0 0 1px rgba(var(--king-glow-rgb), 0.22);
+}
+
+.kings-king-card,
+.kings-king-card:link,
+.kings-king-card:visited,
+.kings-king-card:hover,
+.kings-king-card:focus,
+.kings-king-card:active,
+.kings-king-card *,
+.kings-king-card *:hover,
+.kings-king-card *:focus {
+    text-decoration: none !important;
 }
 
 .kings-king-card--yusuke {

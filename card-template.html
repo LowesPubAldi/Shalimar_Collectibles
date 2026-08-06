@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shalimar Collectibles | Card Template</title>
+    <title>Shalimar Collectibles | Card</title>
     <link rel="stylesheet" href="styles/base.css?v=1">
     <link rel="stylesheet" href="styles/components/nav.css?v=1">
     <link rel="stylesheet" href="styles/components/footer.css?v=1">
-    <link rel="stylesheet" href="styles/pages/card.css?v=1">
+    <link rel="stylesheet" href="styles/pages/card.css?v=2">
     <script src="scripts/components/mobile-nav.js?v=1" defer></script>
+    <script src="scripts/pages/card-page.js?v=1" defer></script>
 </head>
 <body>
     <header class="header">
@@ -46,64 +47,75 @@
     <main class="main card-page">
         <section class="card-hero" aria-label="Card overview">
             <div class="card-hero__content">
-                <p class="card-hero__eyebrow">Card Page Boilerplate</p>
-                <h1>Card Name Goes Here</h1>
-                <p>
-                    This page is the reusable shell for card{random}.html pages. It gives us a place for the image,
-                    card details, pricing notes, and anything else we decide to attach to a specific card.
+                <p class="card-hero__eyebrow" id="cardEyebrow">Single Card</p>
+                <h1 id="cardTitle">Loading card...</h1>
+                <p id="cardIntro">
+                    Loading the selected card details.
                 </p>
+                <div class="card-hero__badges" id="cardBadges" aria-label="Card badges"></div>
             </div>
 
             <aside class="card-hero__panel" aria-label="Card summary">
                 <p class="card-hero__panel-label">Quick Facts</p>
-                <ul class="card-hero__list">
-                    <li>Set: Kings</li>
-                    <li>Card number: placeholder</li>
-                    <li>Rarity: placeholder</li>
-                    <li>Edition / finish: placeholder</li>
+                <ul class="card-hero__list" id="cardFacts">
+                    <li>Set: Loading...</li>
+                    <li>Card number: Loading...</li>
+                    <li>Type: Loading...</li>
+                    <li>Rarity: Loading...</li>
                 </ul>
             </aside>
         </section>
 
         <section class="card-shell" aria-label="Card detail sections">
             <article class="card-panel card-panel--image">
-                <div class="card-frame" aria-hidden="true">
-                    <span>Image Placeholder</span>
+                <div class="card-panel__head">
+                    <h2>Variant Picker</h2>
+                    <p id="cardVariantsIntro">Pick the scan you want to view.</p>
+                </div>
+                <div class="card-variant-controls" id="cardVariantControls" aria-label="Choose a variant to show"></div>
+                <div class="card-variant-stage" aria-label="Selected variant scan">
+                    <img id="cardVariantImage" class="card-variant-stage__image" alt="Selected variant scan" loading="lazy" />
+                    <div class="card-variant-stage__caption">
+                        <span id="cardVariantName">Variant</span>
+                        <span id="cardVariantMeta">Select a variant above</span>
+                    </div>
                 </div>
             </article>
 
             <article class="card-panel card-panel--details">
-                <h2>Card Details</h2>
-                <p>
-                    Put the practical card information here: set, rarity, edition, variant, source notes, and any
-                    pricing context we decide to track later.
-                </p>
-                <ul>
+                <div class="card-panel__head">
+                    <h2>Card Details</h2>
+                    <p id="cardDetailsIntro">
+                        Card facts, effect text, and collector notes live here.
+                    </p>
+                </div>
+                <ul class="card-details-list" id="cardDetailsList">
                     <li>Set / collection context</li>
-                    <li>Price range or market notes</li>
-                    <li>Release or print details</li>
-                    <li>Source and update notes</li>
+                    <li>Card number</li>
+                    <li>Type</li>
                 </ul>
             </article>
 
             <article class="card-panel card-panel--notes">
-                <h2>Notes</h2>
-                <p>
-                    This boilerplate is intentionally simple so we can duplicate it across the King Set without
-                    rethinking the layout every time.
-                </p>
-                <p>
-                    Tomorrow, this can become a real card page once we know the actual card data and filenames.
-                </p>
-                <a class="card-panel__backlink" href="kings.html">Back to Kings</a>
+                <div class="card-panel__head">
+                    <h2>Notes</h2>
+                    <p id="cardNotesIntro">
+                        Pricing and source notes for the card are surfaced here.
+                    </p>
+                </div>
+                <div class="card-notes" id="cardNotes">
+                    <p>Loading notes...</p>
+                </div>
+                <a class="card-panel__backlink" href="inventory.html">Back to Inventory</a>
             </article>
         </section>
+
     </main>
 
     <footer class="site-footer" aria-label="Site footer">
         <div class="site-footer__inner">
             <p class="site-footer__brand">Shalimar Collectibles</p>
-            <p class="site-footer__meta">Reusable card page boilerplate for the King Set build.</p>
+            <p class="site-footer__meta">Single-card pages for the Yu Yu Hakusho inventory.</p>
             <p class="site-footer__copyright">&copy; 2026 Shalimar Collectibles. All rights reserved.</p>
             <nav class="site-footer__nav" aria-label="Footer navigation">
                 <a href="contributors.html">Contributors</a>
