@@ -143,6 +143,7 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
 
 .hero__search {
     width: min(100%, 396px);
+    position: relative;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -184,6 +185,65 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
 .hero__search-btn:hover {
     transform: translateY(-1px);
     box-shadow: 0 0 14px rgba(0, 217, 255, 0.45);
+}
+
+.hero__search-suggestions {
+    position: absolute;
+    left: 0;
+    top: calc(100% + 8px);
+    width: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 6px;
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    border-radius: 14px;
+    background: rgba(15, 23, 42, 0.96);
+    box-shadow: 0 16px 30px rgba(2, 6, 23, 0.45);
+    z-index: 15;
+}
+
+.hero__search-suggestion {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.hero__search-suggestion + .hero__search-suggestion {
+    margin-top: 4px;
+}
+
+.hero__search-suggestion-btn {
+    width: 100%;
+    border: 0;
+    background: transparent;
+    color: #f8fafc;
+    display: grid;
+    gap: 2px;
+    text-align: left;
+    padding: 9px 10px;
+    cursor: pointer;
+}
+
+.hero__search-suggestion-name {
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+.hero__search-suggestion-meta {
+    font-size: 11px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+}
+
+.hero__search-suggestion:hover .hero__search-suggestion-btn,
+.hero__search-suggestion.is-active .hero__search-suggestion-btn {
+    background: rgba(30, 41, 59, 0.9);
+}
+
+.hero__search-suggestion--empty {
+    padding: 9px 10px;
+    color: #94a3b8;
+    font-size: 13px;
 }
 
 .hero__actions {
@@ -421,6 +481,10 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
     place-items: center;
 }
 
+.spotlight-viewer[hidden] {
+    display: none !important;
+}
+
 .spotlight-viewer__backdrop {
     position: absolute;
     inset: 0;
@@ -431,7 +495,7 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
 
 .spotlight-viewer__dialog {
     position: relative;
-    width: min(92vw, 640px);
+    width: min(92vw, 420px);
     border: 1px solid rgba(148, 163, 184, 0.35);
     border-radius: 16px;
     background: linear-gradient(160deg, rgba(15, 23, 42, 0.98), rgba(17, 24, 39, 0.98));
@@ -453,12 +517,14 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
 }
 
 .spotlight-viewer__image {
-    width: 100%;
+    width: auto;
+    max-width: 100%;
     max-height: 70vh;
     object-fit: contain;
     border-radius: 12px;
     border: 1px solid rgba(148, 163, 184, 0.28);
     background: rgba(2, 6, 23, 0.6);
+    justify-self: center;
 }
 
 .spotlight-viewer__meta {

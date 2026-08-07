@@ -90,7 +90,7 @@ const seasonalThemes = {
 		glow: "rgba(255, 159, 67, 0.35)",
 		spotlight: [
 			{ game: "Pokemon", card: "Charizard", person: "Associated: Red", thumbColors: ["#ff8a3d", "#9a3412"] },
-			{ game: "Yu Yu Hakusho", card: "Chu", person: "Associated: Yusuke", thumbColors: ["#7c3aed", "#1e293b"] },
+			{ game: "Yu Yu Hakusho", card: "Chu Drunken Master", person: "Associated: Yusuke", thumbColors: ["#7c3aed", "#1e293b"] },
 			{ game: "Yu-Gi-Oh", card: "Number 39: Utopia", person: "Associated: Yuma Tsukumo", thumbColors: ["#67e8f9", "#155e75"] }
 		]
 	},
@@ -120,7 +120,7 @@ const seasonalThemes = {
 		glow: "rgba(245, 158, 11, 0.35)",
 		spotlight: [
 			{ game: "Pokemon", card: "Appletun", person: "Associated: Milo", thumbColors: ["#84cc16", "#b45309"] },
-			{ game: "Yu Yu Hakusho", card: "Gourmet", person: "Associated: Sensui Arc", thumbColors: ["#f97316", "#7c2d12"] },
+			{ game: "Yu Yu Hakusho", card: "Elder Toguro, The Indestructible", person: "Associated: Sensui Arc", thumbColors: ["#f97316", "#7c2d12"] },
 			{ game: "Yu-Gi-Oh", card: "Odd-Eyes Pendulum Dragon", person: "Associated: Yuya Sakaki", thumbColors: ["#f472b6", "#6d28d9"] }
 		]
 	},
@@ -149,17 +149,24 @@ const seasonalOverrides = {};
 
 const YYH_SPOTLIGHT_THUMBNAILS = {
 	"yusuke mazoku form": "assets/seasonal/yyh-source/betrayal/013.jpg",
-	"botan": "assets/seasonal/yyh-source/dark-tournament/001.jpg",
+	"botan": "assets/seasonal/yyh-source/dark-tournament/023.jpg",
 	"raizen": "assets/seasonal/yyh-source/alliance/001.jpg",
-	"kurama": "assets/seasonal/yyh-source/ghost-files/013.jpg",
+	"kurama": "assets/seasonal/yyh-source/ghost-files/041.jpg",
 	"mukuro": "assets/seasonal/yyh-source/exile/018.jpg",
-	"kuwabara jigen to": "assets/seasonal/yyh-source/gateway/100.jpg",
+	"kuwabara jigen to": "assets/seasonal/yyh-source/exile/099.jpg",
 	"yusuke": "assets/seasonal/yyh-source/dark-tournament/020.jpg",
 	"chu": "assets/seasonal/yyh-source/dark-tournament/012.jpg",
-	"kazuma kuwabara": "assets/seasonal/yyh-source/gateway/100.jpg",
+	"chu drunken master": "assets/seasonal/yyh-source/dark-tournament/012.jpg",
+	"kazuma kuwabara": "assets/seasonal/yyh-source/gateway/098C.jpg",
+	"consumer": "assets/seasonal/yyh-source/gateway/100.jpg",
 	"hiei": "assets/seasonal/yyh-source/dark-tournament/005.jpg",
-	"gourmet": "assets/seasonal/yyh-source/exile/014.jpg",
+	"gourmet": "assets/seasonal/yyh-source/gateway/117.jpg",
+	"elder toguro the indestructible": "assets/seasonal/yyh-source/gateway/112.jpg",
 	"yukina": "assets/seasonal/yyh-source/dark-tournament/006.jpg"
+};
+
+const SPOTLIGHT_DISPLAY_NAME_OVERRIDES = {
+	"yu yu hakusho::chu": "Chu Drunken Master"
 };
 
 let spotlightViewerElements = null;
@@ -245,6 +252,13 @@ function buildSpotlightCardUrl(entry) {
 	return destination.toString();
 }
 
+function resolveSpotlightDisplayName(entry) {
+	const game = normalizeForSearch(entry?.game).replace(/\s+/g, " ");
+	const card = normalizeForSearch(entry?.card).replace(/\s+/g, " ");
+	const key = `${game}::${card}`;
+	return SPOTLIGHT_DISPLAY_NAME_OVERRIDES[key] || String(entry?.card || "").trim();
+}
+
 function ensureSpotlightViewer() {
 	if (spotlightViewerElements) {
 		return spotlightViewerElements;
@@ -269,6 +283,9 @@ function ensureSpotlightViewer() {
 
 	document.body.appendChild(overlay);
 
+	const backdrop = overlay.querySelector(".spotlight-viewer__backdrop");
+	const dialog = overlay.querySelector(".spotlight-viewer__dialog");
+	const closeButton = overlay.querySelector(".spotlight-viewer__close");
 	const image = overlay.querySelector(".spotlight-viewer__image");
 	const game = overlay.querySelector(".spotlight-viewer__game");
 	const title = overlay.querySelector(".spotlight-viewer__title");
@@ -280,11 +297,25 @@ function ensureSpotlightViewer() {
 		document.body.classList.remove("spotlight-viewer-open");
 	};
 
+	if (closeButton instanceof HTMLElement) {
+		closeButton.addEventListener("click", close);
+	}
+
+	if (backdrop instanceof HTMLElement) {
+		backdrop.addEventListener("click", close);
+	}
+
 	overlay.addEventListener("click", (event) => {
-		if (event.target instanceof HTMLElement && event.target.dataset.role === "viewer-close") {
+		if (event.target === overlay) {
 			close();
 		}
 	});
+
+	if (dialog instanceof HTMLElement) {
+		dialog.addEventListener("click", (event) => {
+			event.stopPropagation();
+		});
+	}
 
 	document.addEventListener("keydown", (event) => {
 		if (event.key === "Escape" && !overlay.hidden) {
@@ -316,8 +347,10 @@ function openSpotlightViewer(entry, imageSrc) {
 		viewer.image.src = STATIC_THUMB_PLACEHOLDER;
 	};
 	viewer.game.textContent = String(entry.game || "");
-	viewer.title.textContent = String(entry.card || "");
+	const cardTitle = resolveSpotlightDisplayName(entry);
+	viewer.title.textContent = cardTitle;
 	viewer.link.href = buildSpotlightCardUrl(entry);
+	viewer.link.textContent = "Go to Card Page";
 
 	viewer.overlay.hidden = false;
 	viewer.overlay.setAttribute("aria-hidden", "false");
@@ -597,18 +630,243 @@ function initHomeSearch() {
 		return;
 	}
 
-	searchForm.addEventListener("submit", (event) => {
-		event.preventDefault();
+	const SUGGESTION_MIN_CHARS = 3;
+	const SUGGESTION_LIMIT = 5;
+	const DEBOUNCE_MS = 280;
+	const suggestionList = document.createElement("ul");
+	suggestionList.className = "hero__search-suggestions";
+	suggestionList.id = "heroSearchSuggestions";
+	suggestionList.hidden = true;
+	suggestionList.setAttribute("role", "listbox");
+	searchForm.appendChild(suggestionList);
 
-		const query = String(searchInput.value || "").trim();
+	searchInput.setAttribute("autocomplete", "off");
+	searchInput.setAttribute("aria-autocomplete", "list");
+	searchInput.setAttribute("aria-controls", suggestionList.id);
+
+	let debounceTimer = null;
+	let activeIndex = -1;
+	let currentSuggestions = [];
+	let pendingRequestController = null;
+
+	const closeSuggestions = () => {
+		suggestionList.hidden = true;
+		suggestionList.innerHTML = "";
+		activeIndex = -1;
+		currentSuggestions = [];
+		searchInput.setAttribute("aria-expanded", "false");
+	};
+
+	const openSuggestions = () => {
+		suggestionList.hidden = false;
+		searchInput.setAttribute("aria-expanded", "true");
+	};
+
+	const navigateToInventory = (query) => {
 		const destination = new URL("inventory.html", window.location.href);
-
 		if (query) {
 			destination.searchParams.set("q", query);
 			destination.searchParams.set("game", "Yu Yu Hakusho");
 		}
 
 		window.location.href = destination.toString();
+	};
+
+	const renderSuggestions = (suggestions, query) => {
+		suggestionList.innerHTML = "";
+		currentSuggestions = suggestions;
+		activeIndex = -1;
+
+		if (!query || query.length < SUGGESTION_MIN_CHARS) {
+			closeSuggestions();
+			return;
+		}
+
+		if (suggestions.length === 0) {
+			const emptyItem = document.createElement("li");
+			emptyItem.className = "hero__search-suggestion hero__search-suggestion--empty";
+			emptyItem.textContent = "No matching cards found";
+			suggestionList.appendChild(emptyItem);
+			openSuggestions();
+			return;
+		}
+
+		suggestions.forEach((item, index) => {
+			const row = document.createElement("li");
+			row.className = "hero__search-suggestion";
+			row.setAttribute("role", "option");
+			row.id = `heroSearchSuggestion-${index}`;
+
+			const button = document.createElement("button");
+			button.type = "button";
+			button.className = "hero__search-suggestion-btn";
+			const metaParts = [item.set];
+			if (item.cardNumber) {
+				metaParts.push(item.cardNumber);
+			}
+			button.innerHTML = `
+				<span class="hero__search-suggestion-name">${item.name}</span>
+				<span class="hero__search-suggestion-meta">${metaParts.join(" • ")}</span>
+			`;
+
+			button.addEventListener("click", () => {
+				searchInput.value = item.name;
+				closeSuggestions();
+				navigateToInventory(item.name);
+			});
+
+			row.appendChild(button);
+			suggestionList.appendChild(row);
+		});
+
+		openSuggestions();
+	};
+
+	const fetchSuggestions = async (query) => {
+		if (pendingRequestController) {
+			pendingRequestController.abort();
+		}
+
+		pendingRequestController = new AbortController();
+		const endpoint = new URL("api/yyh/cards", window.location.href);
+		endpoint.searchParams.set("q", query);
+		endpoint.searchParams.set("game", "Yu Yu Hakusho");
+		endpoint.searchParams.set("limit", "48");
+		endpoint.searchParams.set("offset", "0");
+
+		const response = await fetch(endpoint.toString(), {
+			cache: "no-store",
+			signal: pendingRequestController.signal
+		});
+
+		if (!response.ok) {
+			throw new Error(`Search request failed (${response.status})`);
+		}
+
+		const payload = await response.json();
+		const items = Array.isArray(payload?.items) ? payload.items : [];
+		const deduped = [];
+		const seen = new Set();
+
+		for (const item of items) {
+			const name = String(item?.name || "").trim();
+			const setName = String(item?.set || "").trim();
+			const cardNumber = String(
+				item?.cardNumber ||
+				item?.number ||
+				item?.cardId ||
+				item?.id ||
+				""
+			).trim();
+			if (!name || !setName) {
+				continue;
+			}
+
+			const key = `${normalizeForSearch(name)}||${normalizeForSearch(setName)}`;
+			if (seen.has(key)) {
+				continue;
+			}
+
+			seen.add(key);
+			deduped.push({
+				name,
+				set: setName,
+				cardNumber
+			});
+
+			if (deduped.length >= SUGGESTION_LIMIT) {
+				break;
+			}
+		}
+
+		return deduped;
+	};
+
+	const runDebouncedSearch = () => {
+		const query = String(searchInput.value || "").trim();
+		if (debounceTimer) {
+			clearTimeout(debounceTimer);
+		}
+
+		if (query.length < SUGGESTION_MIN_CHARS) {
+			if (pendingRequestController) {
+				pendingRequestController.abort();
+			}
+			closeSuggestions();
+			return;
+		}
+
+		debounceTimer = setTimeout(async () => {
+			const liveQuery = String(searchInput.value || "").trim();
+			if (liveQuery.length < SUGGESTION_MIN_CHARS) {
+				closeSuggestions();
+				return;
+			}
+
+			try {
+				const suggestions = await fetchSuggestions(liveQuery);
+				if (String(searchInput.value || "").trim() !== liveQuery) {
+					return;
+				}
+				renderSuggestions(suggestions, liveQuery);
+			} catch (error) {
+				if (error && error.name === "AbortError") {
+					return;
+				}
+				closeSuggestions();
+			}
+		}, DEBOUNCE_MS);
+	};
+
+	searchInput.addEventListener("input", runDebouncedSearch);
+
+	searchInput.addEventListener("keydown", (event) => {
+		if (suggestionList.hidden || currentSuggestions.length === 0) {
+			return;
+		}
+
+		const options = Array.from(suggestionList.querySelectorAll(".hero__search-suggestion"));
+		if (event.key === "ArrowDown") {
+			event.preventDefault();
+			activeIndex = (activeIndex + 1) % options.length;
+		} else if (event.key === "ArrowUp") {
+			event.preventDefault();
+			activeIndex = (activeIndex - 1 + options.length) % options.length;
+		} else if (event.key === "Escape") {
+			closeSuggestions();
+			return;
+		} else if (event.key === "Enter" && activeIndex >= 0 && currentSuggestions[activeIndex]) {
+			event.preventDefault();
+			navigateToInventory(currentSuggestions[activeIndex].name);
+			return;
+		} else {
+			return;
+		}
+
+		options.forEach((option, index) => {
+			option.classList.toggle("is-active", index === activeIndex);
+		});
+	});
+
+	searchInput.addEventListener("focus", () => {
+		const query = String(searchInput.value || "").trim();
+		if (query.length >= SUGGESTION_MIN_CHARS && currentSuggestions.length > 0) {
+			openSuggestions();
+		}
+	});
+
+	document.addEventListener("click", (event) => {
+		if (!searchForm.contains(event.target)) {
+			closeSuggestions();
+		}
+	});
+
+	searchForm.addEventListener("submit", (event) => {
+		event.preventDefault();
+
+		const query = String(searchInput.value || "").trim();
+		closeSuggestions();
+		navigateToInventory(query);
 	});
 }
 
