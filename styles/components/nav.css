@@ -153,7 +153,7 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
     }
 
     .logo {
-        width: 148px;
+        width: 170px;
     }
 
     .mobile-nav-toggle {
@@ -227,6 +227,6 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
 
 @media (max-width: 768px) and (min-width: 561px) {
     .logo {
-        width: clamp(186px, 31vw, 228px);
+        width: 170px;
     }
 }

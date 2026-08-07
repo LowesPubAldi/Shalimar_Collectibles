@@ -56,4 +56,51 @@ function initMobileNav() {
     }
 }
 
-document.addEventListener("DOMContentLoaded", initMobileNav);
+const FOOTER_LINKS = [
+    { label: "Home", href: "index.html" },
+    { label: "Inventory", href: "inventory.html" },
+    { label: "Sets", href: "sets.html" },
+    { label: "Contributors", href: "contributors.html" },
+    { label: "About", href: "about.html" },
+    { label: "Contact", href: "contact.html" },
+];
+
+function getCurrentPageName() {
+    const pathname = window.location.pathname.toLowerCase();
+    const fileName = pathname.split("/").pop() || "index.html";
+
+    if (fileName === "" || fileName === "index.html" || pathname.endsWith("/")) {
+        return "index.html";
+    }
+
+    return fileName;
+}
+
+function initFooterNav() {
+    const footerNavs = document.querySelectorAll(".site-footer__nav");
+
+    if (!footerNavs.length) {
+        return;
+    }
+
+    const currentPage = getCurrentPageName();
+    const footerLinks = currentPage === "index.html"
+        ? FOOTER_LINKS
+        : FOOTER_LINKS.filter((link) => link.href !== currentPage);
+    const navMarkup = footerLinks
+        .map((link) => {
+            const isCurrentHome = currentPage === "index.html" && link.href === "index.html";
+            const currentAttribute = isCurrentHome ? ' aria-current="page"' : "";
+            return `<a href="${link.href}"${currentAttribute}>${link.label}</a>`;
+        })
+        .join("");
+
+    footerNavs.forEach((footerNav) => {
+        footerNav.innerHTML = navMarkup;
+    });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    initMobileNav();
+    initFooterNav();
+});

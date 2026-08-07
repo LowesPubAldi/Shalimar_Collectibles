@@ -42,16 +42,34 @@
 
 .site-footer__nav {
     display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
+    flex-wrap: nowrap;
+    gap: 12px;
     margin-top: 4px;
     justify-content: center;
+    max-width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    -ms-overflow-style: none;
+}
+
+.site-footer__nav::-webkit-scrollbar {
+    display: none;
 }
 
 .site-footer__nav a {
     color: var(--brand-cyan);
     text-decoration: none;
     font-weight: 600;
+    flex: 0 0 auto;
+}
+
+.site-footer__nav a[aria-current="page"] {
+    color: #f8fafc;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: default;
+    pointer-events: none;
+    text-shadow: 0 0 10px rgba(0, 217, 255, 0.35);
 }
 
 .site-footer__nav a:hover {

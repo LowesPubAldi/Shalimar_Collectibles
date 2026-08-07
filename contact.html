@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles/components/nav.css?v=1">
     <link rel="stylesheet" href="styles/components/footer.css?v=1">
     <link rel="stylesheet" href="styles/pages/contact.css?v=1">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="scripts/components/mobile-nav.js?v=1" defer></script>
     <script src="scripts/pages/contact.js?v=1" defer></script>
 </head>
@@ -47,55 +48,146 @@
     <main class="main">
         <section class="contact-hero" aria-label="Contact Shalimar Collectibles">
             <div class="contact-hero__content">
-                <p class="contact-hero__eyebrow">Contact</p>
-                <h1>Send a quick message, drop a reference link, or include supporting files for follow-up.</h1>
+                <p class="contact-hero__eyebrow">Contact Desk</p>
+                <h1>Open a new request, add a link, and route it straight to the inbox.</h1>
                 <p>
-                    Contact is staying intentionally small for now. The core intake is simple: your name, your email,
-                    and a brief message. If you have a listing, reference page, spreadsheet, or image set that adds
-                    context, you can include that too.
+                    This is the working intake for collector questions and follow-up. It uses the same EmailJS flow
+                    from my portfolio, with attachments and reference links included.
                 </p>
             </div>
 
-            <aside class="contact-hero__panel" aria-label="Contact form summary">
-                <p class="contact-hero__panel-label">Current Intake</p>
+            <aside class="contact-hero__panel" aria-label="Contact routing status">
+                <p class="contact-hero__panel-label">Routing</p>
                 <ul class="contact-hero__list">
-                    <li>Required: name, email address, brief message</li>
-                    <li>Optional: one link for listings, references, or docs</li>
-                    <li>Optional: upload documents or images for follow-up context</li>
+                    <li>EmailJS connected for message delivery</li>
+                    <li>Required fields: name, email address, subject, brief message</li>
+                    <li>Reference links and attachments supported</li>
+                    <li>Replies return to the email you submit</li>
                 </ul>
             </aside>
         </section>
 
         <section class="contact-shell" aria-label="Contact intake form">
             <article class="contact-shell__details">
-                <h2>What this page covers</h2>
+                <div class="contact-shell__status-row">
+                    <p class="contact-shell__status-label">Submission State</p>
+                    <p class="contact-shell__status-pill">Live</p>
+                </div>
+                <h2>Request queue</h2>
                 <p>
-                    This version is focused on clean intake only. It captures the exact fields needed for tomorrow's
-                    email and upload handling without bloating the page with extra sections.
+                    Send collector questions, upload supporting files, or hand over a reference link without leaving
+                    the page.
                 </p>
                 <div class="contact-shell__notes">
-                    <p>Best for:</p>
+                    <p>Accepted inputs</p>
                     <ul>
-                        <li>pricing questions</li>
-                        <li>collection follow-up</li>
-                        <li>reference links for card research</li>
-                        <li>images, spreadsheets, or notes to review later</li>
+                        <li>collector questions and pricing notes</li>
+                        <li>reference links and listing URLs</li>
+                        <li>images, spreadsheets, and documents</li>
+                        <li>follow-up requests for the inbox queue</li>
                     </ul>
+                </div>
+
+                <div class="contact-shell__seal" aria-label="Collector seal">
+                    <div class="contact-shell__seal-coin" role="img" aria-label="Shalimar collector seal">
+                        <p class="contact-shell__seal-top">Shalimar Collectibles</p>
+                        <p class="contact-shell__seal-center">Collector Seal</p>
+                        <p class="contact-shell__seal-bottom">Verified Ongoing Updates</p>
+                    </div>
                 </div>
             </article>
 
+            <section class="contact-updates" aria-label="Development roadmap">
+                <div class="contact-updates__header">
+                    <div>
+                        <p class="contact-updates__eyebrow">Development roadmap</p>
+                        <h2>What I’m building next</h2>
+                    </div>
+                    <p class="contact-updates__meta">Use this as a rough guide for feedback, offers, and feature requests.</p>
+                </div>
+
+                <div class="contact-updates__grid">
+                    <article class="contact-update-card">
+                        <p class="contact-update-card__label">Now</p>
+                        <h3>Inventory cleanup and contact flow polish</h3>
+                        <p>
+                            Tightening the current pages, checking card data paths, and making the contact workflow
+                            feel like a real app instead of a draft.
+                        </p>
+                    </article>
+
+                    <article class="contact-update-card">
+                        <p class="contact-update-card__label">Next</p>
+                        <h3>Buyer and seller inquiry guidance</h3>
+                        <p>
+                            Adding clearer signals for people who want to buy from me, sell to me, or send a reference
+                            link so I can respond faster and with better context.
+                        </p>
+                    </article>
+
+                    <article class="contact-update-card">
+                        <p class="contact-update-card__label">Later</p>
+                        <h3>Feature ideas I already have mapped</h3>
+                        <p>
+                            Update notes, marketplace-style filters, stronger pricing context, and a few page passes that
+                            will turn feedback into concrete follow-ups instead of one-off ideas.
+                        </p>
+                    </article>
+
+                    <article class="contact-update-card">
+                        <p class="contact-update-card__label">V2 + Pricing API</p>
+                        <h3>Version 2 features and eBay pricing refresh</h3>
+                        <p>
+                            Planned Version 2 work includes deeper set pages, stronger filters, and regular eBay API pricing
+                            updates to keep sold-listing signals current for feedback, buy, and sell decisions.
+                        </p>
+                    </article>
+
+                    <article class="contact-update-card">
+                        <p class="contact-update-card__label">Marketplace flow</p>
+                        <h3>Buy and sell intake refinement</h3>
+                        <p>
+                            Adding clearer pathways for people selling collections to me and buyers asking for card lots,
+                            so outreach starts with the details needed to reply quickly.
+                        </p>
+                    </article>
+
+                    <article class="contact-update-card">
+                        <p class="contact-update-card__label">Data cadence</p>
+                        <h3>Roadmap notes and QA pass</h3>
+                        <p>
+                            Posting regular roadmap notes for major changes and running consistency checks across inventory,
+                            set pages, and price context before new updates go live.
+                        </p>
+                    </article>
+                </div>
+            </section>
+
             <form class="contact-form" data-contact-form aria-label="Contact request form" novalidate>
+                <div class="contact-form__header">
+                    <div>
+                        <p class="contact-form__eyebrow">Contact Intake</p>
+                        <h2>New message</h2>
+                    </div>
+                    <p class="contact-form__header-note">EmailJS connected</p>
+                </div>
+
                 <div class="contact-form__grid">
                     <label class="contact-field">
                         <span>Name</span>
-                        <input type="text" name="name" autocomplete="name" required />
+                        <input type="text" name="user_name" autocomplete="name" required />
                     </label>
 
                     <label class="contact-field">
                         <span>Email Address</span>
-                        <input type="email" name="email" autocomplete="email" required />
+                        <input type="email" name="user_email" autocomplete="email" required />
                     </label>
                 </div>
+
+                <label class="contact-field">
+                    <span>Subject</span>
+                    <input type="text" name="subject" required />
+                </label>
 
                 <label class="contact-field">
                     <span>Brief Message</span>
@@ -120,11 +212,10 @@
 
                 <p class="contact-form__file-summary" data-contact-file-summary>No files selected.</p>
                 <p class="contact-form__note">
-                    The intake fields are ready now. Direct email delivery and file handling will be connected in the
-                    next backend pass.
+                    Messages route through EmailJS and return to the address you submit.
                 </p>
 
-                <button class="contact-form__submit" type="submit">Save Contact Flow</button>
+                <button class="contact-form__submit" type="submit">Send Request</button>
                 <p class="contact-form__status" data-contact-status aria-live="polite"></p>
             </form>
         </section>
@@ -133,7 +224,7 @@
     <footer class="site-footer" aria-label="Site footer">
         <div class="site-footer__inner">
             <p class="site-footer__brand">Shalimar Collectibles</p>
-            <p class="site-footer__meta">Contact intake is ready for tomorrow's email and upload routing work.</p>
+            <p class="site-footer__meta">Contact requests route through EmailJS with file support enabled.</p>
             <p class="site-footer__copyright">&copy; 2026 Shalimar Collectibles. All rights reserved.</p>
             <nav class="site-footer__nav" aria-label="Footer navigation">
                 <a href="contributors.html">Contributors</a>
