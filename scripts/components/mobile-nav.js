@@ -42,7 +42,7 @@ function initMobileNav() {
         }
     });
 
-    const mobileNavQuery = window.matchMedia("(max-width: 560px)");
+    const mobileNavQuery = window.matchMedia("(max-width: 768px)");
     const syncNavState = () => {
         if (!mobileNavQuery.matches) {
             closeNav();

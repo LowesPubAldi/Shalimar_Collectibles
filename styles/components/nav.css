@@ -112,28 +112,34 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
 
 @media (max-width: 768px) {
     .header {
-        padding: 14px 16px;
+        padding: 10px 12px;
     }
 
     .nav {
-        gap: 12px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 6px;
     }
 
     .logo {
-        width: clamp(205px, 35vw, 260px);
+        width: clamp(146px, 23vw, 180px);
     }
 
     .nav__links {
-        gap: 10px 12px;
-        top: -6px;
+        margin-left: auto;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        gap: 4px 6px;
+        top: 0;
+        margin-right: 0;
     }
 
     .nav__links a {
-        font-size: 15px;
+        font-size: 12px;
     }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 768px) {
     .header {
         position: relative;
         z-index: 110;
@@ -154,6 +160,8 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
         display: inline-flex;
         flex-direction: column;
         margin-left: auto;
+        margin-right: 4px;
+        flex: 0 0 44px;
         position: relative;
     }
 
@@ -168,14 +176,17 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
         border-left: 1px solid rgba(0, 217, 255, 0.3);
         background: linear-gradient(180deg, rgba(6, 10, 17, 0.98), rgba(6, 10, 17, 0.94));
         box-shadow: -18px 0 38px rgba(0, 0, 0, 0.45);
-        display: flex;
+        display: none;
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
         gap: 14px;
         top: 0;
-        transform: translateX(106%);
-        transition: transform 280ms ease;
+        transform: none;
+        clip-path: inset(0 0 0 100%);
+        opacity: 0;
+        pointer-events: none;
+        transition: clip-path 280ms ease, opacity 220ms ease;
         z-index: 1100;
     }
 
@@ -201,12 +212,21 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
     }
 
     body.is-mobile-nav-open .nav__links {
-        transform: translateX(0);
+        display: flex;
+        clip-path: inset(0 0 0 0);
+        opacity: 1;
+        pointer-events: auto;
     }
 
     body.is-mobile-nav-open .mobile-nav-overlay {
         visibility: visible;
         opacity: 1;
         pointer-events: auto;
+    }
+}
+
+@media (max-width: 768px) and (min-width: 561px) {
+    .logo {
+        width: clamp(186px, 31vw, 228px);
     }
 }

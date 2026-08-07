@@ -15,8 +15,18 @@ function initContributorsSlider() {
         return;
     }
 
-    const slideCount = dotButtons.length;
-    let currentIndex = 0;
+    const slideCount = cards.length;
+    const TRANSITION_MS = 680;
+    const TRANSITION_EASING = "cubic-bezier(0.2, 0.8, 0.2, 1)";
+    const firstClone = cards[0].cloneNode(true);
+    const lastClone = cards[cards.length - 1].cloneNode(true);
+    firstClone.setAttribute("aria-hidden", "true");
+    lastClone.setAttribute("aria-hidden", "true");
+    track.appendChild(firstClone);
+    track.insertBefore(lastClone, track.firstChild);
+
+    const allSlides = Array.from(track.querySelectorAll(".contributor-card"));
+    let currentIndex = 1;
     let autoRotateTimer = null;
     let slideWidth = 0;
 
@@ -26,28 +36,50 @@ function initContributorsSlider() {
         return !prefersReducedMotion && !isTouchLike;
     };
 
+    const getRealIndex = () => {
+        if (currentIndex === 0) {
+            return slideCount - 1;
+        }
+        if (currentIndex === slideCount + 1) {
+            return 0;
+        }
+        return currentIndex - 1;
+    };
+
+    const syncDots = () => {
+        const realIndex = getRealIndex();
+        dotButtons.forEach((dotButton, index) => {
+            dotButton.setAttribute("aria-selected", index === realIndex ? "true" : "false");
+        });
+    };
+
     const applyTransform = () => {
         track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
     };
 
     const syncLayout = () => {
         slideWidth = viewport.clientWidth;
-        track.style.width = `${slideCount * slideWidth}px`;
-        for (const card of cards) {
+        track.style.width = `${allSlides.length * slideWidth}px`;
+        for (const card of allSlides) {
             card.style.width = `${slideWidth}px`;
             card.style.flex = `0 0 ${slideWidth}px`;
         }
         applyTransform();
     };
 
-    const setIndex = (nextIndex) => {
-        currentIndex = (nextIndex + slideCount) % slideCount;
+    const setTrackIndex = (nextIndex, animate = true) => {
+        track.style.transition = animate ? `transform ${TRANSITION_MS}ms ${TRANSITION_EASING}` : "none";
+        currentIndex = nextIndex;
         applyTransform();
+        syncDots();
+    };
 
-        dotButtons.forEach((dotButton, index) => {
-            const isActive = index === currentIndex;
-            dotButton.setAttribute("aria-selected", isActive ? "true" : "false");
-        });
+    const normalizeWrapIfNeeded = () => {
+        if (currentIndex === 0) {
+            setTrackIndex(slideCount, false);
+        } else if (currentIndex === slideCount + 1) {
+            setTrackIndex(1, false);
+        }
     };
 
     const stopAutoRotate = () => {
@@ -63,17 +95,17 @@ function initContributorsSlider() {
             return;
         }
         autoRotateTimer = window.setInterval(() => {
-            setIndex(currentIndex + 1);
+            setTrackIndex(currentIndex + 1, true);
         }, 6000);
     };
 
     prevButton.addEventListener("click", () => {
-        setIndex(currentIndex - 1);
+        setTrackIndex(currentIndex - 1, true);
         startAutoRotate();
     });
 
     nextButton.addEventListener("click", () => {
-        setIndex(currentIndex + 1);
+        setTrackIndex(currentIndex + 1, true);
         startAutoRotate();
     });
 
@@ -83,10 +115,12 @@ function initContributorsSlider() {
             if (Number.isNaN(nextIndex)) {
                 return;
             }
-            setIndex(nextIndex);
+            setTrackIndex(nextIndex + 1, true);
             startAutoRotate();
         });
     });
+
+    track.addEventListener("transitionend", normalizeWrapIfNeeded);
 
     slider.addEventListener("mouseenter", stopAutoRotate);
     slider.addEventListener("mouseleave", startAutoRotate);
@@ -95,7 +129,7 @@ function initContributorsSlider() {
     window.addEventListener("resize", syncLayout);
 
     syncLayout();
-    setIndex(0);
+    setTrackIndex(1, false);
     startAutoRotate();
 }
 
