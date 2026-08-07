@@ -466,6 +466,206 @@ function normalizeBrowseItem(item) {
     };
 }
 
+function parseUsdAmount(value) {
+    if (typeof value === "number" && Number.isFinite(value)) {
+        return value;
+    }
+
+    const cleaned = String(value || "").replace(/[^0-9.-]+/g, "").trim();
+    if (!cleaned) {
+        return null;
+    }
+
+    const parsed = Number(cleaned);
+    return Number.isFinite(parsed) ? parsed : null;
+}
+
+function median(values) {
+    if (!Array.isArray(values) || values.length === 0) {
+        return null;
+    }
+
+    const sorted = [...values].sort((a, b) => a - b);
+    const middle = Math.floor(sorted.length / 2);
+    if (sorted.length % 2 === 0) {
+        return (sorted[middle - 1] + sorted[middle]) / 2;
+    }
+
+    return sorted[middle];
+}
+
+function getDefaultYyhSets() {
+    return [
+        "Alliance",
+        "Betrayal",
+        "Dark Tournament",
+        "Exile",
+        "Gateway",
+        "Ghost Files"
+    ];
+}
+
+function buildYyhSealedSearchQuery(setName) {
+    return `${setName} yu yu hakusho tcg booster box sealed`;
+}
+
+function getEbayFindingCompletedUrl(query) {
+    const params = new URLSearchParams({
+        "OPERATION-NAME": "findCompletedItems",
+        "SERVICE-VERSION": "1.13.0",
+        "SECURITY-APPNAME": EBAY_CONFIG.appId,
+        "RESPONSE-DATA-FORMAT": "JSON",
+        "REST-PAYLOAD": "true",
+        keywords: query,
+        "paginationInput.entriesPerPage": "100",
+        "itemFilter(0).name": "SoldItemsOnly",
+        "itemFilter(0).value": "true",
+        "sortOrder": "EndTimeSoonest"
+    });
+
+    return `https://svcs.ebay.com/services/search/FindingService/v1?${params.toString()}`;
+}
+
+function extractFindingItems(payload) {
+    const responseRoot = Array.isArray(payload && payload.findCompletedItemsResponse)
+        ? payload.findCompletedItemsResponse[0]
+        : null;
+    const searchResult = responseRoot && Array.isArray(responseRoot.searchResult)
+        ? responseRoot.searchResult[0]
+        : null;
+    const rawItems = searchResult && Array.isArray(searchResult.item)
+        ? searchResult.item
+        : [];
+
+    return rawItems.map((item) => {
+        const title = Array.isArray(item.title) ? item.title[0] : "";
+        const viewUrl = Array.isArray(item.viewItemURL) ? item.viewItemURL[0] : "";
+        const sellingStatus = Array.isArray(item.sellingStatus) ? item.sellingStatus[0] : null;
+        const currentPrice = sellingStatus && Array.isArray(sellingStatus.currentPrice)
+            ? sellingStatus.currentPrice[0]
+            : null;
+        const priceValue = currentPrice && typeof currentPrice.__value__ === "string"
+            ? currentPrice.__value__
+            : "";
+        const currency = currentPrice && typeof currentPrice["@currencyId"] === "string"
+            ? currentPrice["@currencyId"]
+            : "USD";
+
+        return {
+            title,
+            itemWebUrl: viewUrl,
+            currentPrice: priceValue,
+            currentPriceCurrency: currency
+        };
+    });
+}
+
+function normalizeTitleForFilter(value) {
+    return String(value || "")
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, " ")
+        .trim();
+}
+
+function itemLooksLikeSealedBoosterBox(item, setName) {
+    const titleNorm = normalizeTitleForFilter(item.title);
+    const setTokens = normalizeTitleForFilter(setName).split(" ").filter(Boolean);
+
+    const includesSet = setTokens.every((token) => titleNorm.includes(token));
+    const includesCoreTerms =
+        titleNorm.includes("booster") &&
+        titleNorm.includes("box") &&
+        titleNorm.includes("yu") &&
+        titleNorm.includes("hakusho") &&
+        titleNorm.includes("sealed");
+
+    const excludedTerms = [
+        "pack",
+        "blister",
+        "lot",
+        "case",
+        "starter",
+        "deck",
+        "single",
+        "wrapper",
+        "empty",
+        "box only",
+        "just the box"
+    ];
+    const hasExcludedTerm = excludedTerms.some((term) => titleNorm.includes(term));
+
+    return includesSet && includesCoreTerms && !hasExcludedTerm;
+}
+
+async function runEbayCompletedSearch(query) {
+    if (!EBAY_CONFIG.appId) {
+        throw new Error("Missing EBAY_APP_ID in .env.local");
+    }
+
+    const url = getEbayFindingCompletedUrl(query);
+    const response = await fetch(url, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+
+    let payload = null;
+    try {
+        payload = await response.json();
+    } catch {
+        payload = null;
+    }
+
+    if (!response.ok) {
+        const err = new Error(`eBay completed listings search failed (HTTP ${response.status})`);
+        err.statusCode = response.status;
+        throw err;
+    }
+
+    const items = extractFindingItems(payload);
+
+    return {
+        items,
+        total: items.length,
+        href: url
+    };
+}
+
+async function fetchYyhSetSealedPrice(setName) {
+    const query = buildYyhSealedSearchQuery(setName);
+    const searchResult = await runEbayCompletedSearch(query);
+
+    const filteredItems = searchResult.items.filter((item) => itemLooksLikeSealedBoosterBox(item, setName));
+
+    const priceCandidates = [];
+    let currency = "USD";
+
+    for (const item of filteredItems) {
+        const parsedPrice = parseUsdAmount(item.currentPrice);
+        if (parsedPrice === null) {
+            continue;
+        }
+
+        priceCandidates.push(parsedPrice);
+        if (item.currentPriceCurrency) {
+            currency = item.currentPriceCurrency;
+        }
+    }
+
+    const medianPrice = median(priceCandidates);
+
+    return {
+        set: setName,
+        query,
+        sampleCount: priceCandidates.length,
+        medianPrice,
+        currency,
+        source: "ebay-completed",
+        inspectedCount: searchResult.items.length
+    };
+}
+
 async function runEbayBrowseSearch(reqQuery) {
     const accessToken = await fetchEbayAccessToken();
     const params = buildSearchParams(reqQuery);
@@ -719,6 +919,51 @@ app.get("/api/yyh/sets/summary", async (req, res) => {
         const message = error instanceof Error ? error.message : "Unknown API error";
         res.status(500).json({
             error: "Failed to load YYH set summary",
+            details: message
+        });
+    }
+});
+
+app.get("/api/yyh/sets/sealed-prices", async (req, res) => {
+    if (!isEbayConfigured()) {
+        return res.status(400).json({
+            error: "eBay credentials are missing in .env.local",
+            details: "Set EBAY_APP_ID, EBAY_DEV_ID, and EBAY_CLIENT_SECRET first"
+        });
+    }
+
+    try {
+        const rawSets = typeof req.query.sets === "string" ? req.query.sets : "";
+        const requestedSets = rawSets
+            ? rawSets.split(",").map((value) => value.trim()).filter(Boolean)
+            : getDefaultYyhSets();
+
+        const items = await Promise.all(requestedSets.map(async (setName) => {
+            try {
+                return await fetchYyhSetSealedPrice(setName);
+            } catch (error) {
+                return {
+                    set: setName,
+                    query: buildYyhSealedSearchQuery(setName),
+                    sampleCount: 0,
+                    medianPrice: null,
+                    currency: "USD",
+                    source: "ebay-completed",
+                    error: error instanceof Error ? error.message : "Unknown eBay API error"
+                };
+            }
+        }));
+
+        res.json({
+            items,
+            totalSets: items.length,
+            source: "ebay-completed",
+            fetchedAt: new Date().toISOString()
+        });
+    } catch (error) {
+        const message = error instanceof Error ? error.message : "Unknown API error";
+        res.status(500).json({
+            error: "Failed to load YYH sealed set prices",
             details: message
         });
     }

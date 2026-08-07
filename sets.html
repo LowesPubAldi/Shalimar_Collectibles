@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="styles/base.css?v=1">
     <link rel="stylesheet" href="styles/components/nav.css?v=1">
     <link rel="stylesheet" href="styles/components/footer.css?v=1">
-    <link rel="stylesheet" href="styles/pages/sets.css?v=1">
+    <link rel="stylesheet" href="styles/pages/sets.css?v=4">
     <script src="scripts/components/mobile-nav.js?v=1" defer></script>
-    <script src="scripts/pages/sets.js?v=2" defer></script>
+    <script src="scripts/pages/sets.js?v=7" defer></script>
 </head>
 <body>
     <header class="header">
@@ -57,8 +57,23 @@
 
         <section class="sets-shell" aria-label="Yu Yu Hakusho set directory">
             <div class="sets-head">
-                <h2>Set Directory</h2>
-                <p class="sets-meta" id="sets-meta">Loading set summary...</p>
+                <div class="sets-head__title">
+                    <h2>Set Directory</h2>
+                    <p class="sets-note">BB = Booster Box</p>
+                    <p class="sets-note">Lower/mid end if damaged, mid/higher end if mint.</p>
+                </div>
+                <div class="sets-head__controls">
+                    <p class="sets-meta" id="sets-meta">Loading set summary...</p>
+                    <label class="sets-sort" for="sets-sort">
+                        <span>Sort</span>
+                        <select id="sets-sort" name="sets-sort">
+                            <option value="release-asc" selected>Release: Soonest to Latest</option>
+                            <option value="release-desc">Release: Latest to Soonest</option>
+                            <option value="alpha-asc">Alphabetical: A to Z</option>
+                            <option value="alpha-desc">Alphabetical: Z to A</option>
+                        </select>
+                    </label>
+                </div>
             </div>
             <section class="sets-grid" id="sets-grid" aria-label="Set list results"></section>
         </section>

@@ -41,6 +41,7 @@ Version 2 is the next big step. The goal is to make the site more useful and mor
 - About page and Contact page
 - Better individual card pages
 - Set lists and set detail pages
+- Sets page gameplay format filters (planned for v2)
 
 #### V2B - Data and Pricing Foundation
 
