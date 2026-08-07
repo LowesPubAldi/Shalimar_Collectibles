@@ -51,7 +51,18 @@ const DATA_FILE_PATHS = [
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(__dirname));
+app.use(express.static(__dirname, {
+    etag: false,
+    lastModified: false,
+    setHeaders: (res, filePath) => {
+        if (/\.(html|css|js)$/i.test(filePath)) {
+            res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
+            res.setHeader("Pragma", "no-cache");
+            res.setHeader("Expires", "0");
+            res.setHeader("Surrogate-Control", "no-store");
+        }
+    }
+}));
 
 // Allow the frontend to call this API even when the site is served by another local server.
 app.use((req, res, next) => {

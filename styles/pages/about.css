@@ -71,6 +71,17 @@
     height: 236px;
 }
 
+.about-card-link {
+    display: inline-block;
+    line-height: 0;
+    cursor: pointer;
+}
+
+.about-card-link:focus-visible {
+    outline: 2px solid rgba(125, 211, 252, 0.95);
+    outline-offset: 3px;
+}
+
 .about-hero-fan__card {
     position: absolute;
     bottom: 14px;
@@ -78,11 +89,17 @@
     aspect-ratio: 2 / 3;
     border-radius: 8px;
     border: 1px solid rgba(203, 213, 225, 0.58);
-    object-fit: cover;
+    overflow: hidden;
     transform-origin: center 92%;
     box-shadow:
         0 14px 22px rgba(0, 0, 0, 0.45),
         0 4px 8px rgba(2, 6, 23, 0.3);
+}
+
+.about-hero-fan__card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .about-hero-fan__card--one {
@@ -280,6 +297,12 @@
     gap: 3px;
 }
 
+.favorite-card__piece .about-card-link,
+.favorite-card__single-art .about-card-link {
+    border-radius: 6px;
+    overflow: hidden;
+}
+
 .favorite-card__piece img {
     width: 100%;
     aspect-ratio: 2 / 3;
@@ -308,7 +331,51 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.36);
 }
 
+.about-card-preview {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: min(260px, 44vw);
+    padding: 10px;
+    border-radius: 14px;
+    border: 1px solid rgba(125, 211, 252, 0.46);
+    background: linear-gradient(155deg, rgba(6, 14, 24, 0.96), rgba(9, 20, 34, 0.94));
+    box-shadow:
+        0 18px 32px rgba(2, 6, 23, 0.7),
+        inset 0 1px 0 rgba(248, 250, 252, 0.12);
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+    transition: opacity 140ms ease, transform 160ms ease;
+    z-index: 65;
+}
+
+.about-card-preview.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.about-card-preview img {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    border-radius: 10px;
+    border: 1px solid rgba(148, 163, 184, 0.52);
+    object-fit: cover;
+}
+
+.about-card-preview p {
+    margin-top: 8px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #c7f4ff;
+}
+
 @media (max-width: 768px) {
+    .about-card-preview {
+        display: none;
+    }
+
     .about-hero,
     .about-story,
     .about-favorites {
@@ -323,32 +390,33 @@
     }
 
     .about-hero__layout {
-        grid-template-columns: minmax(0, 1fr) 228px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 16px;
         align-items: start;
     }
 
     .about-hero__content {
         max-width: none;
+        width: 100%;
     }
 
     .about-hero h1 {
-        max-width: 14ch;
+        max-width: 100%;
         font-size: 30px;
         line-height: 1.03;
     }
 
     .about-hero p {
-        max-width: 36ch;
+        max-width: 100%;
         font-size: 13px;
         line-height: 1.46;
     }
 
     .about-hero-fan {
-        justify-self: end;
+        justify-self: stretch;
         align-self: start;
-        width: 228px;
-        justify-items: center;
+        width: 100%;
+        justify-items: stretch;
         margin-left: 0;
         transform: none;
     }
@@ -356,39 +424,49 @@
     .about-hero-fan__stage {
         order: 1;
         width: 100%;
-        height: 188px;
-        justify-self: center;
-        transform: translateX(-56px);
+        height: auto;
+        justify-self: stretch;
+        transform: none;
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 8px;
+        padding: 4px 0 8px;
+        overflow: hidden;
     }
 
     .about-hero-fan__card {
-        width: 82px;
-        bottom: 10px;
+        position: relative;
+        left: auto;
+        bottom: auto;
+        width: 100%;
+        transform: none;
+        z-index: auto;
+        justify-self: stretch;
     }
 
     .about-hero-fan__card--one {
-        left: 6px;
-        transform: rotate(-18deg) translateY(12px);
+        left: auto;
+        transform: none;
     }
 
     .about-hero-fan__card--two {
-        left: 39px;
-        transform: rotate(-9deg) translateY(6px);
+        left: auto;
+        transform: none;
     }
 
     .about-hero-fan__card--three {
-        left: 72px;
-        transform: rotate(0deg) translateY(0);
+        left: auto;
+        transform: none;
     }
 
     .about-hero-fan__card--four {
-        left: 105px;
-        transform: rotate(9deg) translateY(6px);
+        left: auto;
+        transform: none;
     }
 
     .about-hero-fan__card--five {
-        left: 138px;
-        transform: rotate(18deg) translateY(12px);
+        left: auto;
+        transform: none;
     }
 
     .about-hero-fan__label {
@@ -502,6 +580,38 @@
     }
 }
 
+@media (max-width: 420px) {
+    .about-hero__layout {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .about-hero__content {
+        width: 100%;
+        max-width: 34ch;
+        margin: 0 auto;
+    }
+
+    .about-hero h1,
+    .about-hero p {
+        max-width: none;
+    }
+
+    .about-hero-fan {
+        display: none;
+    }
+
+    .favorite-card-cluster {
+        grid-template-columns: 1fr;
+    }
+
+    .favorite-card-cluster > .favorite-card:nth-of-type(n + 3) {
+        display: none;
+    }
+}
+
 html.preview-tablet .about-hero,
 html.preview-tablet .about-story,
 html.preview-tablet .about-favorites {
@@ -513,6 +623,20 @@ html.preview-tablet .about-favorites {
 html.preview-tablet body {
     max-width: 768px;
     margin: 0 auto;
+}
+
+html.preview-tablet,
+html.preview-tablet body {
+    overflow-x: hidden;
+}
+
+html.preview-tablet .header,
+html.preview-tablet .main,
+html.preview-tablet .site-footer,
+html.preview-tablet .about-hero,
+html.preview-tablet .about-story,
+html.preview-tablet .about-favorites {
+    overflow-x: hidden;
 }
 
 html.preview-tablet .nav {
@@ -537,8 +661,8 @@ html.preview-tablet .about-hero {
 }
 
 html.preview-tablet .about-hero__layout {
-    grid-template-columns: minmax(0, 1fr) 212px;
-    gap: 16px;
+    grid-template-columns: minmax(0, 1fr) 262px;
+    gap: 14px;
     align-items: start;
 }
 
@@ -547,21 +671,21 @@ html.preview-tablet .about-hero__content {
 }
 
 html.preview-tablet .about-hero h1 {
-    max-width: 15ch;
-    font-size: 28px;
-    line-height: 1.03;
+    max-width: 19ch;
+    font-size: 22px;
+    line-height: 1.1;
 }
 
 html.preview-tablet .about-hero p {
-    max-width: 36ch;
-    font-size: 13px;
-    line-height: 1.46;
+    max-width: 56ch;
+    font-size: 12px;
+    line-height: 1.42;
 }
 
 html.preview-tablet .about-hero-fan {
     justify-self: end;
     align-self: start;
-    width: 212px;
+    width: 262px;
     justify-items: center;
     margin-left: 0;
     transform: none;
@@ -570,44 +694,56 @@ html.preview-tablet .about-hero-fan {
 html.preview-tablet .about-hero-fan__stage {
     order: 1;
     width: 100%;
-    height: 176px;
+    height: auto;
     justify-self: center;
-    transform: translateX(-56px);
+    transform: none;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 6px;
+    padding: 4px 0;
+    overflow: hidden;
 }
 
 html.preview-tablet .about-hero-fan__card {
-    width: 76px;
-    bottom: 8px;
+    position: relative;
+    left: auto;
+    bottom: auto;
+    width: 46px;
+    transform: none;
+    z-index: auto;
+    justify-self: center;
 }
 
 html.preview-tablet .about-hero-fan__card--one {
-    left: 4px;
-    transform: rotate(-18deg) translateY(10px);
+    left: auto;
+    transform: none;
 }
 
 html.preview-tablet .about-hero-fan__card--two {
-    left: 34px;
-    transform: rotate(-9deg) translateY(5px);
+    left: auto;
+    transform: none;
 }
 
 html.preview-tablet .about-hero-fan__card--three {
-    left: 66px;
-    transform: rotate(0deg) translateY(0);
+    left: auto;
+    transform: none;
 }
 
 html.preview-tablet .about-hero-fan__card--four {
-    left: 98px;
-    transform: rotate(9deg) translateY(5px);
+    left: auto;
+    transform: none;
 }
 
 html.preview-tablet .about-hero-fan__card--five {
-    left: 130px;
-    transform: rotate(18deg) translateY(10px);
+    left: auto;
+    transform: none;
+    grid-column: auto;
 }
 
 html.preview-tablet .about-hero-fan__label {
     order: 2;
-    margin-top: 2px;
+    margin-top: 6px;
+    text-align: center;
 }
 
 html.preview-tablet .about-story {

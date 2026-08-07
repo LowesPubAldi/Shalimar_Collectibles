@@ -35,7 +35,8 @@ const YYH_SET_RELEASE_DATES = {
 
 const YYH_SET_MEDIA = {
     alliance: {
-        box: "assets/seasonal/yyh-source/products/Booster-Blister Products/Alliance Booster Box Standard Edition.jpg"
+        box: "assets/seasonal/yyh-source/products/Booster-Blister Products/Alliance Booster Box Standard Edition.jpg",
+        pack: "https://tools.toywiz.com/_images/_webp/_products/lg/yuyuhatrcaga17.webp"
     },
     betrayal: {
         box: "assets/seasonal/yyh-source/products/Booster-Blister Products/Betrayal Booster Box Standard Edition.jpg",

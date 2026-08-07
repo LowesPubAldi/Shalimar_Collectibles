@@ -80,4 +80,10 @@
     .site-footer__inner {
         padding: 16px 16px 22px;
     }
+
+    .site-footer__nav {
+        gap: 8px;
+        justify-content: flex-start;
+        padding-inline: 4px;
+    }
 }

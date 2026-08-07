@@ -95,6 +95,7 @@ function resolveSpecialImageAliases(cardRecord) {
     const setName = String(cardRecord.set || "").trim();
     const cardId = String(cardRecord.id || cardRecord.number || "").trim().toUpperCase();
     const normalizedName = normalizeForSearch(cardRecord.name).replace(/\s+/g, "");
+    const normalizedVariant = normalizeForSearch(cardRecord.variant).replace(/\s+/g, "");
     const aliases = [];
 
     if (setName === "Gateway") {
@@ -104,6 +105,18 @@ function resolveSpecialImageAliases(cardRecord) {
 
         if (normalizedName === "joinaleagueinsert") {
             aliases.push("Insert02");
+        }
+    }
+
+    if (setName === "Exile" && normalizedName === "mukuroenslavedsoul") {
+        if (normalizedVariant === "topleft") {
+            aliases.push("T01");
+        } else if (normalizedVariant === "topright") {
+            aliases.push("009");
+        } else if (normalizedVariant === "bottomleft") {
+            aliases.push("018");
+        } else if (normalizedVariant === "bottomright") {
+            aliases.push("019");
         }
     }
 
@@ -188,15 +201,35 @@ function toMaybeNumber(value) {
     return null;
 }
 
+function normalizeQueryAliases(context) {
+    const setToken = normalizeForSearch(context.setQuery);
+    const idToken = normalizeForSearch(context.idQuery);
+
+    // Legacy About page links used Exile scan token T01 for Mukuro's top-left piece.
+    // Resolve that alias to the canonical catalog id so routing is deterministic.
+    if (setToken === "exile" && idToken === "t01") {
+        return {
+            ...context,
+            cardQuery: resolveFirstNonEmpty(context.cardQuery, "Mukuro, Enslaved Soul"),
+            idQuery: "TG1",
+            variantQuery: resolveFirstNonEmpty(context.variantQuery, "Top Left")
+        };
+    }
+
+    return context;
+}
+
 function parseQueryContext() {
     const params = new URLSearchParams(window.location.search);
-    return {
+    const context = {
         cardQuery: resolveFirstNonEmpty(params.get("card"), params.get("q")),
         idQuery: resolveFirstNonEmpty(params.get("id"), params.get("number")),
         setQuery: resolveFirstNonEmpty(params.get("set")),
         gameQuery: resolveFirstNonEmpty(params.get("game"), "Yu Yu Hakusho"),
         variantQuery: resolveFirstNonEmpty(params.get("variant"))
     };
+
+    return normalizeQueryAliases(context);
 }
 
 async function fetchCards(query) {

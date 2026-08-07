@@ -27,6 +27,30 @@ The site is past the starter stage. It already has a working inventory, card pag
 - eBay API setup and testing
 - Planning for the new set-card-list API after the 18th
 
+## Today's Done Checklist (2026-08-07)
+
+- [x] Contributors page responsive cleanup and polish
+- [x] Contributors page clipping/overflow fixes across desktop, tablet, and mobile
+- [x] Sets page hero styling polish and visual parity pass
+- [x] Sets page right-side product thumbnail support (box/pack)
+- [x] Sets page image toggle behavior and linked inventory gallery clicks
+- [x] Sets page manual pricing overrides for YYH set sealed products
+- [x] Sets page release-date hover tooltip support
+- [x] Sets page sort controls (alphabetical/reverse/release order)
+- [x] Sets page sort persistence in local storage
+- [x] Sets page tablet/mobile layout balancing and alignment pass
+
+## Version 1 Punch List
+
+- [ ] Complete final Inventory QA pass (search, filters, sort, card links)
+- [x] Add Alliance pack image to Sets page
+- [ ] Optional hardening: replace external Alliance pack image with a stable local hosted asset
+- [ ] Add one final mobile + tablet sweep on all primary pages before ship
+- [ ] Confirm all static assets use intentional cache-busting versions
+- [ ] Verify eBay-related endpoints fail gracefully with user-friendly fallback text
+- [ ] Add final production content pass for About and Contact copy accuracy
+- [ ] Prepare a short release note/changelog for Version 1 handoff
+
 ## Roadmap
 
 This is the clean version of the roadmap so it is easier to follow.
@@ -40,7 +64,7 @@ Version 2 is the next big step. The goal is to make the site more useful and mor
 - Inventory layout polish
 - About page and Contact page
 - Better individual card pages
-- Set lists and set detail pages
+- Set lists complete; set detail page polish pass pending
 - Sets page gameplay format filters (planned for v2)
 
 #### V2B - Data and Pricing Foundation
