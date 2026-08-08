@@ -16,6 +16,7 @@ const DEFAULT_SORT_OPTION = "Card Number (Low-High)";
 const DEFAULT_EDITION_OPTION = "All Editions";
 const DEFAULT_VARIANT_FOCUS_OPTION = "All Finishes";
 const DEFAULT_PRICE_STATUS_OPTION = "All Price Statuses";
+const DEFAULT_GAMEPLAY_STATUS_OPTION = "All Gameplay Statuses";
 const PRICE_STATUS_UNPRICED_OPTION = "Unpriced";
 const PRICE_STATUS_PRICED_OPTION = "Priced";
 const PRICE_STATUS_REVIEW_OPTION = "Needs Review";
@@ -24,6 +25,11 @@ const PRICE_STATUS_OPTIONS = [
     PRICE_STATUS_UNPRICED_OPTION,
     PRICE_STATUS_PRICED_OPTION,
     PRICE_STATUS_REVIEW_OPTION
+];
+const GAMEPLAY_STATUS_OPTIONS = [
+    DEFAULT_GAMEPLAY_STATUS_OPTION,
+    "Banned",
+    "Limit 1 per Deck"
 ];
 const EDITION_UNLIMITED_OPTION = "Unlimited / Not Marked";
 const EDITION_FIRST_OPTION = "1st Edition";
@@ -47,6 +53,36 @@ const YYH_IMAGE_SET_FOLDERS = {
     "Ghost Files": "ghost-files",
     "Pre-Release Cards": "pre-release-cards",
     "Products": "products"
+};
+const YYH_GAMEPLAY_STATUS_BY_CARD = {
+    "bui's final strike||exile": "Banned",
+    "demonic clash||exile": "Banned",
+    "dragon's victory||exile": "Banned",
+    "enki, the champion||alliance": "Banned",
+    "psychic scalpel||alliance": "Banned",
+    "rinku's rush||exile": "Banned",
+    "angelic embrace||exile": "Limit 1 per Deck",
+    "breaking point||exile": "Limit 1 per Deck",
+    "challenge of wills||exile": "Limit 1 per Deck",
+    "code||exile": "Limit 1 per Deck",
+    "desu button||alliance": "Limit 1 per Deck",
+    "double slash||exile": "Limit 1 per Deck",
+    "humans on the hunt||gateway": "Limit 1 per Deck",
+    "malefic grenade||exile": "Limit 1 per Deck",
+    "malevolent influence||exile": "Limit 1 per Deck",
+    "mini game, flight shooter||gateway": "Limit 1 per Deck",
+    "mukuro's unforgiving glare||exile": "Limit 1 per Deck",
+    "overpowered||ghost files": "Limit 1 per Deck",
+    "overwhelming odds||betrayal": "Limit 1 per Deck",
+    "reckless charge||exile": "Limit 1 per Deck",
+    "rejected||exile": "Limit 1 per Deck",
+    "rejected!||exile": "Limit 1 per Deck",
+    "sacrifice of life||ghost files": "Limit 1 per Deck",
+    "scatter shot||exile": "Limit 1 per Deck",
+    "take me!||exile": "Limit 1 per Deck",
+    "team raizen's support||exile": "Limit 1 per Deck",
+    "unconsious||ghost files": "Limit 1 per Deck",
+    "yusuke's fury||betrayal": "Limit 1 per Deck"
 };
 let fallbackDataCache = null;
 let pricingDataCache = new Map();
@@ -216,6 +252,29 @@ function escapeHtml(value) {
         .replace(/'/g, "&#39;");
 }
 
+function normalizeGameplayLookupValue(value) {
+    return String(value || "")
+        .trim()
+        .toLowerCase();
+}
+
+function getGameplayStatus(cardRecord) {
+    if (normalizeGameplayLookupValue(cardRecord.game) !== "yu yu hakusho") {
+        return "";
+    }
+
+    const lookupKey = [cardRecord.name, cardRecord.set]
+        .map(normalizeGameplayLookupValue)
+        .join("||");
+
+    return YYH_GAMEPLAY_STATUS_BY_CARD[lookupKey] || "";
+}
+
+function isLikelyCardNumberQuery(value) {
+    const normalized = normalizeCardNumberForFilter(value);
+    return normalized.length >= 2 && /\d/.test(normalized);
+}
+
 function slugifySetName(setName) {
     return String(setName || "")
         .trim()
@@ -320,6 +379,10 @@ function resolveSpecialImageAliases(cardRecord) {
         if (normalizedName === "joinaleagueinsert") {
             aliases.push("Insert02");
         }
+
+        if (cardId === "TR8" || normalizedName === "minigameflightshooter") {
+            aliases.push("T08");
+        }
     }
 
     return aliases;
@@ -399,7 +462,7 @@ function hydrateInventoryCardImages(rootElement) {
         });
 
         if (candidates.length === 0) {
-            imageElement.remove();
+            imageElement.removeAttribute("src");
             continue;
         }
 
@@ -410,7 +473,23 @@ function hydrateInventoryCardImages(rootElement) {
 
             if (!nextSource) {
                 imageElement.onerror = null;
-                imageElement.remove();
+                imageElement.removeAttribute("src");
+
+                const retryCount = Number(imageElement.dataset.imageRetryCount || "0");
+                if (retryCount < 1) {
+                    imageElement.dataset.imageRetryCount = String(retryCount + 1);
+                    imageElement.dataset.imageHydrated = "retry-pending";
+
+                    window.setTimeout(() => {
+                        if (!imageElement.isConnected) {
+                            return;
+                        }
+
+                        imageElement.dataset.imageHydrated = "";
+                        hydrateInventoryCardImages(rootElement);
+                    }, 350);
+                }
+
                 return;
             }
 
@@ -686,11 +765,16 @@ function makeInventoryCard(cardRecord, collisionCountMap, variantFamilyCountMap,
 
     const priceStatus = cardRecord.priceStatus || PRICE_STATUS_UNPRICED_OPTION;
     const cardPageUrl = buildCardPageUrl(cardRecord);
+    const gameplayStatus = getGameplayStatus(cardRecord);
+    const gameplayChipMarkup = gameplayStatus
+        ? `<span class="inventory-card__gameplay-chip inventory-card__gameplay-chip--${escapeHtml(gameplayStatus === "Banned" ? "banned" : "limited")}" data-gameplay-status="Gameplay Status: ${escapeHtml(gameplayStatus)}" title="Gameplay Status: ${escapeHtml(gameplayStatus)}" aria-label="Gameplay status ${escapeHtml(gameplayStatus)}">${escapeHtml(gameplayStatus === "Banned" ? "Banned" : "Limit 1")}</span>`
+        : "";
 
     return `
         <article class="${cardClassName}" data-price-status="${escapeHtml(priceStatus)}">
             <a class="inventory-card__link" href="${escapeHtml(cardPageUrl)}" aria-label="Open ${escapeHtml(displayTitle)} card page">
                 ${rarityChipMarkup}
+                ${gameplayChipMarkup}
                 <div class="inventory-card__image" aria-hidden="true">
                     <img
                         class="inventory-card__image-media"
@@ -709,7 +793,6 @@ function makeInventoryCard(cardRecord, collisionCountMap, variantFamilyCountMap,
                 ${showPricing ? `<p class="inventory-card__price">${escapeHtml(formatPriceLabel(cardRecord))}</p>` : ""}
                 <div class="inventory-card__actions">
                     <span class="inventory-card__tag">${escapeHtml(cardRecord.set)} • ${escapeHtml(cardRecord.variant)}</span>
-                    <span class="inventory-card__view">View Card</span>
                 </div>
             </a>
         </article>
@@ -835,9 +918,11 @@ function filterRecords(records, filterState) {
     const searchTokens = getSearchTokens(filterState.query);
     const rawQuery = String(filterState.query || "").trim();
     const normalizedQuery = normalizeForSearch(rawQuery);
-    const numberQuery = normalizeCardNumberForFilter(filterState.cardNumber);
+    const cardNumberQuery = isLikelyCardNumberQuery(rawQuery)
+        ? normalizeCardNumberForFilter(rawQuery)
+        : "";
     const hasPunctuationQuery = /[^a-z0-9\s]/i.test(rawQuery);
-    const queryTooShort = normalizedQuery.length > 0 && normalizedQuery.length < MIN_SEARCH_CHARACTERS;
+    const queryTooShort = normalizedQuery.length > 0 && normalizedQuery.length < MIN_SEARCH_CHARACTERS && !cardNumberQuery;
 
     return records.filter((record) => {
         if (filterState.game !== "All Games" && record.game !== filterState.game) {
@@ -876,9 +961,8 @@ function filterRecords(records, filterState) {
             return false;
         }
 
-        if (numberQuery) {
-            const recordNumber = normalizeCardNumberForFilter(record.id || record.number);
-            if (!recordNumber.includes(numberQuery)) {
+        if (filterState.gameplayStatus && filterState.gameplayStatus !== DEFAULT_GAMEPLAY_STATUS_OPTION) {
+            if (getGameplayStatus(record) !== filterState.gameplayStatus) {
                 return false;
             }
         }
@@ -887,19 +971,28 @@ function filterRecords(records, filterState) {
             return false;
         }
 
-        if (searchTokens.length === 0) {
+        if (searchTokens.length === 0 && !cardNumberQuery) {
             return true;
         }
 
+        const recordNumber = normalizeCardNumberForFilter(record.id || record.number);
+        const cardNumberMatches = cardNumberQuery ? recordNumber.includes(cardNumberQuery) : false;
+
         if (hasPunctuationQuery && normalizedQuery) {
             const strictName = normalizeForSearch(record.name);
-            if (!strictName.includes(normalizedQuery)) {
-                return false;
+            if (strictName.includes(normalizedQuery)) {
+                return true;
             }
+
+            return cardNumberMatches;
         }
 
         const nameWords = normalizeForSearch(record.name).split(" ").filter(Boolean);
-        return searchTokens.every((token) => nameWords.some((word) => word.startsWith(token)));
+        const nameMatches = searchTokens.length > 0
+            ? searchTokens.every((token) => nameWords.some((word) => word.startsWith(token)))
+            : false;
+
+        return nameMatches || cardNumberMatches;
     });
 }
 
@@ -1735,10 +1828,9 @@ function sortInventoryRecords(records, sortOption) {
     return sorted;
 }
 
-function makeFilterState(searchFilter, numberFilter, gameFilter, setFilter, typeFilter, rarityFilter, editionFilter, variantFocusFilter, priceStatusFilter, sortFilter, variantsToggle) {
+function makeFilterState(searchFilter, gameFilter, setFilter, typeFilter, rarityFilter, editionFilter, variantFocusFilter, priceStatusFilter, gameplayStatusFilter, sortFilter, variantsToggle) {
     return {
         query: searchFilter.value,
-        cardNumber: numberFilter.value,
         game: gameFilter.value,
         set: setFilter.value,
         type: typeFilter.value,
@@ -1746,6 +1838,7 @@ function makeFilterState(searchFilter, numberFilter, gameFilter, setFilter, type
         edition: editionFilter.value,
         variantFocus: variantFocusFilter.value,
         priceStatus: priceStatusFilter.value,
+        gameplayStatus: gameplayStatusFilter.value,
         sort: sortFilter.value,
         includeVariants: Boolean(variantsToggle.checked)
     };
@@ -1754,8 +1847,7 @@ function makeFilterState(searchFilter, numberFilter, gameFilter, setFilter, type
 function readInitialFiltersFromUrl() {
     const params = new URLSearchParams(window.location.search);
     return {
-        query: params.get("q") || params.get("search") || "",
-        cardNumber: params.get("number") || params.get("cardNumber") || params.get("id") || "",
+        query: params.get("q") || params.get("search") || params.get("number") || params.get("cardNumber") || params.get("id") || "",
         game: params.get("game") || "",
         set: params.get("set") || "",
         type: params.get("type") || "",
@@ -1763,6 +1855,7 @@ function readInitialFiltersFromUrl() {
         edition: params.get("edition") || "",
         variantFocus: params.get("variantFocus") || params.get("finish") || "",
         priceStatus: params.get("priceStatus") || params.get("pricing") || "",
+        gameplayStatus: params.get("gameplayStatus") || params.get("gameplay") || "",
         sort: params.get("sort") || "",
         variants: params.get("variants") || ""
     };
@@ -1845,14 +1938,10 @@ async function loadSetsForAllGames(records) {
 function buildApiQueryString(filterState, offset = INVENTORY_DEFAULT_OFFSET) {
     const params = new URLSearchParams();
     const query = filterState.query.trim();
-    const cardNumber = String(filterState.cardNumber || "").trim();
     const pageLimit = getInventoryPageLimit();
 
     if (query) {
         params.set("q", query);
-    }
-    if (cardNumber) {
-        params.set("number", cardNumber);
     }
     if (filterState.game !== "All Games") {
         params.set("game", filterState.game);
@@ -1923,7 +2012,6 @@ async function loadInventoryData(filterState, offset = INVENTORY_DEFAULT_OFFSET)
 
 async function initInventoryFilters() {
     const searchFilter = document.getElementById("inventory-search-filter");
-    const numberFilter = document.getElementById("inventory-number-filter");
     const gameFilter = document.getElementById("inventory-game-filter");
     const setFilter = document.getElementById("inventory-set-filter");
     const typeFilter = document.getElementById("inventory-type-filter");
@@ -1931,6 +2019,7 @@ async function initInventoryFilters() {
     const editionFilter = document.getElementById("inventory-edition-filter");
     const variantFocusFilter = document.getElementById("inventory-variant-focus-filter");
     const priceStatusFilter = document.getElementById("inventory-price-status-filter");
+    const gameplayStatusFilter = document.getElementById("inventory-gameplay-status-filter");
     const sortFilter = document.getElementById("inventory-sort-filter");
     const variantsToggle = document.getElementById("inventory-variants-toggle");
     const resultsMeta = document.getElementById("inventory-results-meta");
@@ -1940,7 +2029,7 @@ async function initInventoryFilters() {
     const setContextElement = document.getElementById("inventory-set-context");
     const initialFilters = readInitialFiltersFromUrl();
 
-    if (!searchFilter || !numberFilter || !gameFilter || !setFilter || !typeFilter || !rarityFilter || !editionFilter || !variantFocusFilter || !priceStatusFilter || !sortFilter || !variantsToggle || !resultsMeta || !resultsGrid || !loadMoreButton || !loadMoreProgress || !setContextElement) {
+    if (!searchFilter || !gameFilter || !setFilter || !typeFilter || !rarityFilter || !editionFilter || !variantFocusFilter || !priceStatusFilter || !gameplayStatusFilter || !sortFilter || !variantsToggle || !resultsMeta || !resultsGrid || !loadMoreButton || !loadMoreProgress || !setContextElement) {
         return;
     }
 
@@ -2004,9 +2093,11 @@ async function initInventoryFilters() {
 
     const renderResults = async (append = false) => {
         const requestId = ++renderRequestId;
-        const filterState = makeFilterState(searchFilter, numberFilter, gameFilter, setFilter, typeFilter, rarityFilter, editionFilter, variantFocusFilter, priceStatusFilter, sortFilter, variantsToggle);
+        const filterState = makeFilterState(searchFilter, gameFilter, setFilter, typeFilter, rarityFilter, editionFilter, variantFocusFilter, priceStatusFilter, gameplayStatusFilter, sortFilter, variantsToggle);
         const normalizedQuery = normalizeForSearch(filterState.query);
-        const queryTooShort = normalizedQuery.length > 0 && normalizedQuery.length < MIN_SEARCH_CHARACTERS;
+        const queryTooShort = normalizedQuery.length > 0
+            && normalizedQuery.length < MIN_SEARCH_CHARACTERS
+            && !isLikelyCardNumberQuery(filterState.query);
         const offset = append ? cardsShown : INVENTORY_DEFAULT_OFFSET;
 
         if (filterState.game === "All Games") {
@@ -2091,7 +2182,7 @@ async function initInventoryFilters() {
                 <article class="inventory-card">
                     <div class="inventory-card__image" aria-hidden="true"></div>
                     <h3 class="inventory-card__title">No matching cards found</h3>
-                    <p class="inventory-card__meta">Try adjusting game, set, rarity, card number, or search text.</p>
+                    <p class="inventory-card__meta">Try adjusting game, set, rarity, gameplay status, or search text.</p>
                     <span class="inventory-card__tag">YYH searchable inventory</span>
                 </article>
             `;
@@ -2135,13 +2226,17 @@ async function initInventoryFilters() {
         const previousEdition = editionFilter.value;
         const previousVariantFocus = variantFocusFilter.value;
         const previousPriceStatus = priceStatusFilter.value;
+        const previousGameplayStatus = gameplayStatusFilter.value;
         const previousSort = sortFilter.value;
         const hasSelectedGame = selectedGame !== "All Games";
+        const isYyhSelected = selectedGame === "Yu Yu Hakusho";
 
         replaceSelectOptions(setFilter, gameOptions.sets);
         replaceSelectOptions(typeFilter, gameOptions.types);
         replaceSelectOptions(variantFocusFilter, VARIANT_FOCUS_OPTIONS);
         replaceSelectOptions(priceStatusFilter, PRICE_STATUS_OPTIONS);
+        replaceSelectOptions(gameplayStatusFilter, isYyhSelected ? GAMEPLAY_STATUS_OPTIONS : [DEFAULT_GAMEPLAY_STATUS_OPTION]);
+        gameplayStatusFilter.disabled = !isYyhSelected;
         replaceSelectOptions(sortFilter, [
             DEFAULT_SORT_OPTION,
             "Card Number (High-Low)",
@@ -2169,7 +2264,6 @@ async function initInventoryFilters() {
             inventoryRecords,
             {
                 query: searchFilter.value,
-                cardNumber: numberFilter.value,
                 game: gameFilter.value,
                 set: setFilter.value,
                 type: typeFilter.value,
@@ -2177,6 +2271,7 @@ async function initInventoryFilters() {
                 edition: editionFilter.value,
                 variantFocus: variantFocusFilter.value,
                 priceStatus: priceStatusFilter.value,
+                gameplayStatus: gameplayStatusFilter.value,
                 sort: sortFilter.value,
                 includeVariants: Boolean(variantsToggle.checked)
             },
@@ -2190,7 +2285,6 @@ async function initInventoryFilters() {
 
         const scopedEditionOptions = getScopedEditionOptions(inventoryRecords, {
             query: searchFilter.value,
-            cardNumber: numberFilter.value,
             game: gameFilter.value,
             set: setFilter.value,
             type: typeFilter.value,
@@ -2198,6 +2292,7 @@ async function initInventoryFilters() {
             edition: DEFAULT_EDITION_OPTION,
             variantFocus: variantFocusFilter.value,
             priceStatus: priceStatusFilter.value,
+            gameplayStatus: gameplayStatusFilter.value,
             sort: sortFilter.value,
             includeVariants: Boolean(variantsToggle.checked)
         });
@@ -2221,6 +2316,12 @@ async function initInventoryFilters() {
             priceStatusFilter.value = DEFAULT_PRICE_STATUS_OPTION;
         }
 
+        if (isYyhSelected && GAMEPLAY_STATUS_OPTIONS.includes(previousGameplayStatus)) {
+            gameplayStatusFilter.value = previousGameplayStatus;
+        } else {
+            gameplayStatusFilter.value = DEFAULT_GAMEPLAY_STATUS_OPTION;
+        }
+
         if (Array.from(sortFilter.options).some((option) => option.value === previousSort)) {
             sortFilter.value = previousSort;
         } else {
@@ -2232,9 +2333,6 @@ async function initInventoryFilters() {
 
     if (initialFilters.query) {
         searchFilter.value = initialFilters.query;
-    }
-    if (initialFilters.cardNumber) {
-        numberFilter.value = initialFilters.cardNumber;
     }
     if (initialFilters.game && Array.from(gameFilter.options).some((option) => option.value === initialFilters.game)) {
         gameFilter.value = initialFilters.game;
@@ -2262,14 +2360,14 @@ async function initInventoryFilters() {
     priceStatusFilter.addEventListener("change", () => {
         void renderResults(false);
     });
+    gameplayStatusFilter.addEventListener("change", () => {
+        void renderResults(false);
+    });
     sortFilter.addEventListener("change", () => {
         void renderResults(false);
     });
     searchFilter.addEventListener("input", () => {
         syncConditionalFilters();
-    });
-    numberFilter.addEventListener("input", () => {
-        void renderResults(false);
     });
     variantsToggle.addEventListener("change", () => {
         void renderResults(false);
@@ -2319,6 +2417,9 @@ async function initInventoryFilters() {
     }
     if (initialFilters.priceStatus && Array.from(priceStatusFilter.options).some((option) => option.value === initialFilters.priceStatus)) {
         priceStatusFilter.value = initialFilters.priceStatus;
+    }
+    if (initialFilters.gameplayStatus && Array.from(gameplayStatusFilter.options).some((option) => option.value === initialFilters.gameplayStatus)) {
+        gameplayStatusFilter.value = initialFilters.gameplayStatus;
     }
     if (initialFilters.sort && Array.from(sortFilter.options).some((option) => option.value === initialFilters.sort)) {
         sortFilter.value = initialFilters.sort;

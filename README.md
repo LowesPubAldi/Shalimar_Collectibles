@@ -29,6 +29,8 @@ The site is past the starter stage. It already has a working inventory, card pag
 
 ## Today's Done Checklist (2026-08-07)
 
+- [x] About page content pass, interaction pass, and responsive polish
+- [x] Contact page copy and trading-card themed visual polish
 - [x] Contributors page responsive cleanup and polish
 - [x] Contributors page clipping/overflow fixes across desktop, tablet, and mobile
 - [x] Sets page hero styling polish and visual parity pass
@@ -48,7 +50,7 @@ The site is past the starter stage. It already has a working inventory, card pag
 - [ ] Add one final mobile + tablet sweep on all primary pages before ship
 - [ ] Confirm all static assets use intentional cache-busting versions
 - [ ] Verify eBay-related endpoints fail gracefully with user-friendly fallback text
-- [ ] Add final production content pass for About and Contact copy accuracy
+- [x] Add final production content pass for About and Contact copy accuracy
 - [ ] Prepare a short release note/changelog for Version 1 handoff
 
 ## Roadmap
@@ -62,7 +64,7 @@ Version 2 is the next big step. The goal is to make the site more useful and mor
 #### V2A - Near-Term UI Work
 
 - Inventory layout polish
-- About page and Contact page
+- About page and Contact page (completed)
 - Better individual card pages
 - Set lists complete; set detail page polish pass pending
 - Sets page gameplay format filters (planned for v2)

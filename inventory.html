@@ -56,15 +56,8 @@
                     class="inventory-control"
                     id="inventory-search-filter"
                     type="search"
-                    placeholder="Search by card name"
-                    aria-label="Search by card name"
-                />
-                <input
-                    class="inventory-control"
-                    id="inventory-number-filter"
-                    type="search"
-                    placeholder="Filter by card number (ex: C56, ST1)"
-                    aria-label="Filter by card number"
+                    placeholder="Search by card name or card ID"
+                    aria-label="Search by card name or card ID"
                 />
                 <select class="inventory-control" id="inventory-game-filter" aria-label="Filter by game">
                     <option>All Games</option>
@@ -108,6 +101,11 @@
                     <option>Priced</option>
                     <option>Needs Review</option>
                 </select>
+                <select class="inventory-control" id="inventory-gameplay-status-filter" aria-label="Filter by gameplay status">
+                    <option selected>All Gameplay Statuses</option>
+                    <option>Banned</option>
+                    <option>Limit 1 per Deck</option>
+                </select>
                 <select class="inventory-control" id="inventory-sort-filter" aria-label="Sort cards">
                     <option selected>Card Number (Low-High)</option>
                     <option>Card Number (High-Low)</option>
@@ -126,8 +124,8 @@
             </form>
 
             <div class="inventory-filter-notes" aria-label="Filter notes">
-                <p class="inventory-filter-note">Search note: enter 3+ characters to run search.</p>
-                <p class="inventory-filter-note">Number note: supports full or partial card IDs like C56, ST1, or C156/176.</p>
+                <p class="inventory-filter-note">Search note: enter 3+ characters for names, or use short card IDs like P2 directly.</p>
+                <p class="inventory-filter-note">Search note: card IDs like P2, C56, ST1, or C156/176 also work here.</p>
                 <p class="inventory-filter-note">Game note: reserved for V1 guidance.</p>
                 <p class="inventory-filter-note">Set note: set-specific pricing context appears below when available.</p>
                 <p class="inventory-filter-note">Type note: reserved for V1 guidance.</p>
@@ -135,6 +133,7 @@
                 <p class="inventory-filter-note">Edition note: use this for 1st vs unlimited print runs.</p>
                 <p class="inventory-filter-note">Finish note: quick isolate standard, foil, and rainbow cards.</p>
                 <p class="inventory-filter-note">Pricing note: load a set pricing file to mark priced cards and sort by value.</p>
+                <p class="inventory-filter-note">Gameplay note: YYH-only banned and limit 1 status can be filtered here.</p>
                 <p class="inventory-filter-note">Sort note: ordering applies across all loaded pages.</p>
                 <p class="inventory-filter-note" id="inventory-data-note">YYH inventory reads live API data and supports full card datasets; source credit remains with inviso (Mike) and the Yu Yu Hakusho TCG Database.</p>
             </div>
