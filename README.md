@@ -8,7 +8,7 @@ Build a clean place to search cards, view sets, and check prices, then keep impr
 
 ## What Is Already Built
 
-The site is past the starter stage. It already has a working inventory, card pages, and a basic backend for API work.
+The site is now at a production-ready v1 baseline for the YYH launch scope.
 
 ### Already Built
 
@@ -17,41 +17,46 @@ The site is past the starter stage. It already has a working inventory, card pag
 - Card images and image loading
 - Variant tracking for card printings and versions
 - Individual card pages with a hero, quick facts, notes, and a variant picker
+- Individual card pages with foil-tier premium treatment and shimmer staging for foil-like variants
+- Kings set page pricing context with piece-level hover pricing support
+- Shared mobile nav system with sticky mobile header behavior and hardened startup initialization
 - Starter backend routes for YYH card data
 - Starter eBay login/search code in the local Express server
+- Drafted release-notes workflow and tagged v1.0.0 release baseline
 
 ### In Progress
 
-- Final inventory QA
 - Vercel preview deployment cleanup
-- eBay API setup and testing
-- Planning for the new set-card-list API after the 18th
+- Expanded eBay API setup and production validation
+- Continuing checklist/data expansion for non-YYH lanes
+- Planning the next set-card-list API phase
 
-## Today's Done Checklist (2026-08-07)
+## Today's Done Checklist (2026-08-08)
 
-- [x] About page content pass, interaction pass, and responsive polish
-- [x] Contact page copy and trading-card themed visual polish
-- [x] Contributors page responsive cleanup and polish
-- [x] Contributors page clipping/overflow fixes across desktop, tablet, and mobile
-- [x] Sets page hero styling polish and visual parity pass
-- [x] Sets page right-side product thumbnail support (box/pack)
-- [x] Sets page image toggle behavior and linked inventory gallery clicks
-- [x] Sets page manual pricing overrides for YYH set sealed products
-- [x] Sets page release-date hover tooltip support
-- [x] Sets page sort controls (alphabetical/reverse/release order)
-- [x] Sets page sort persistence in local storage
-- [x] Sets page tablet/mobile layout balancing and alignment pass
+- [x] Kings set polish completed and fully integrated into site nav
+- [x] Legacy `item.html` route converted into redirect shim to `card-template.html` (query/hash preserved)
+- [x] Card-page variant details synchronization bug fixed
+- [x] Premium foil-vs-standard treatment shipped on individual card pages
+- [x] Mobile header/nav behavior hardened and kept pinned at top
+- [x] Mobile footer nav links hidden to prevent clipping and overlap
+- [x] CSS compatibility warnings cleaned (`color-mix`/`text-wrap` replacements)
+- [x] Broken-link sweep completed with zero internal href/src breaks
+- [x] Placeholder/content sweep completed for YYH v1 launch scope
+- [x] Release notes drafted and updated with final nav reliability details
+- [x] v1.0.0 tag moved to latest release commit baseline
 
-## Version 1 Punch List
+## Version 1 Release Status (2026-08-08)
 
-- [ ] Complete final Inventory QA pass (search, filters, sort, card links)
-- [x] Add Alliance pack image to Sets page
-- [ ] Optional hardening: replace external Alliance pack image with a stable local hosted asset
-- [ ] Add one final mobile + tablet sweep on all primary pages before ship
-- [ ] Confirm all static assets use intentional cache-busting versions
-- [ ] Verify eBay-related endpoints fail gracefully with user-friendly fallback text
-- [x] Add final production content pass for About and Contact copy accuracy
-- [ ] Prepare a short release note/changelog for Version 1 handoff
+- [x] Core YYH inventory and card-page journey validated
+- [x] Final mobile nav/footer behavior validated across Home and card pages
+- [x] Individual card page foil premium styling shipped
+- [x] Compatibility cleanup completed for key CSS warnings
+- [x] v1 draft release notes prepared and maintained
+- [x] Release tag `v1.0.0` aligned to latest release commit
+
+Carry-forward items after v1 launch:
+- Optional hardening: replace external Alliance pack image with a stable local hosted asset
+- Continue eBay endpoint resilience and user-facing fallback copy tuning
 
 ## Roadmap
 
@@ -61,13 +66,19 @@ This is the clean version of the roadmap so it is easier to follow.
 
 Version 2 is the next big step. The goal is to make the site more useful and more reliable before moving to community features.
 
+#### V2 Footholds Already Established
+
+- Reusable card-variant logic now supports tiered finish presentation, making future variant UX extension lower risk.
+- Shared mobile-nav component now uses idempotent initialization and startup isolation, reducing cross-page regressions.
+- Sets pricing override workflow is already wired for sealed product display and can be expanded set-by-set.
+- Suspicious-pricing review/apply scripts already exist, enabling safer iterative pricing automation.
+
 #### V2A - Near-Term UI Work
 
-- Inventory layout polish
-- About page and Contact page (completed)
-- Better individual card pages
-- Set lists complete; set detail page polish pass pending
-- Sets page gameplay format filters (planned for v2)
+- Finish inventory layout polish and broader QA automation checks
+- Expand individual card pages with richer print history and pricing confidence context
+- Complete remaining set-detail polish and gameplay format filters
+- Add clearer cross-game lane labeling as non-YYH content expands
 
 #### V2B - Data and Pricing Foundation
 
