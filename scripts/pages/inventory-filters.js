@@ -1,5 +1,5 @@
-const INVENTORY_API_URL = "http://127.0.0.1:3000/api/yyh/cards";
-const INVENTORY_SETS_API_URL = "http://127.0.0.1:3000/api/yyh/sets";
+const INVENTORY_API_URL = "/api/yyh/cards";
+const INVENTORY_SETS_API_URL = "/api/yyh/sets";
 const INVENTORY_FALLBACK_DATA_URLS = [
     "data/yyh-cards-full.json",
     "data/yyh-cards.json",
@@ -390,6 +390,7 @@ function resolveSpecialImageAliases(cardRecord) {
 
 function buildCardImageCandidates(cardRecord) {
     const setFolder = resolveImageSetFolder(cardRecord.set);
+    const normalizedSet = normalizeForSearch(cardRecord.set);
     const cardId = String(cardRecord.id || "").trim();
     const cardNumber = String(cardRecord.number || "").trim();
     const normalizedId = normalizeImageToken(cardId);
@@ -406,6 +407,7 @@ function buildCardImageCandidates(cardRecord) {
     const paddedTwoDigitNumber = firstNumber ? firstNumber.padStart(2, "0") : "";
     const specialAliases = resolveSpecialImageAliases(cardRecord);
     const primaryAlias = specialAliases[0] || "";
+    const isGatewayReprintVariant = normalizedSet === "gateway" && Boolean(primaryVariantShortToken);
 
     const candidateNames = [
         primaryAlias && primaryVariantShortToken ? `${primaryAlias}${primaryVariantShortToken}` : "",
@@ -421,9 +423,8 @@ function buildCardImageCandidates(cardRecord) {
         primaryVariantShortToken && firstAlpha && firstNumber ? `${firstAlpha}${firstNumber}${primaryVariantShortToken}` : "",
         primaryVariantShortToken && alphaPrefix && firstNumber ? `${alphaPrefix}${firstNumber}${primaryVariantShortToken}` : "",
         primaryVariantShortToken && firstAlpha && paddedTwoDigitNumber ? `${firstAlpha}${paddedTwoDigitNumber}${primaryVariantShortToken}` : "",
-        variantToken && firstNumber ? `Reprint${firstNumber}${variantToken}` : "",
-        primaryVariantShortToken && firstNumber ? `Reprint${firstNumber}${primaryVariantShortToken}` : "",
-        firstNumber ? `Reprint${firstNumber}` : "",
+        isGatewayReprintVariant && primaryVariantShortToken && paddedThreeDigitNumber ? `Reprint${paddedThreeDigitNumber}${primaryVariantShortToken}` : "",
+        isGatewayReprintVariant && primaryVariantShortToken && alphaPrefix && paddedTwoDigitNumber ? `Reprint${alphaPrefix}${paddedTwoDigitNumber}${primaryVariantShortToken}` : "",
         firstAlpha && firstNumber ? `${firstAlpha}${firstNumber.padStart(2, "0")}` : "",
         firstAlpha && firstNumber ? `${firstAlpha}${firstNumber}` : "",
         alphaPrefix && firstNumber ? `${alphaPrefix}${firstNumber}` : "",

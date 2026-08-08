@@ -1,5 +1,5 @@
-const YYH_SETS_SUMMARY_URL = "http://127.0.0.1:3000/api/yyh/sets/summary?game=Yu%20Yu%20Hakusho";
-const YYH_SEALED_PRICES_URL = "http://127.0.0.1:3000/api/yyh/sets/sealed-prices";
+const YYH_SETS_SUMMARY_URL = "/api/yyh/sets/summary?game=Yu%20Yu%20Hakusho";
+const YYH_SEALED_PRICES_URL = "/api/yyh/sets/sealed-prices";
 const YYH_CARDS_FALLBACK_URLS = [
     "data/yyh-cards-full.json",
     "data/yyh-cards.json",

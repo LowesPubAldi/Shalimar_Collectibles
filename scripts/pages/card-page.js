@@ -1,4 +1,9 @@
-const CARD_API_URL = "http://127.0.0.1:3000/api/yyh/cards";
+const CARD_API_URL = "/api/yyh/cards";
+const CARD_FALLBACK_DATA_URLS = [
+    "data/yyh-cards-full.json",
+    "data/yyh-cards.json",
+    "data/yyh-cards-slice.json"
+];
 const YYH_PRICING_DATA_ROOT = "data/pricing/yyh";
 const YYH_IMAGE_ROOT = "assets/seasonal/yyh-source";
 const YYH_IMAGE_SET_FOLDERS = {
@@ -14,6 +19,7 @@ const YYH_IMAGE_SET_FOLDERS = {
 };
 
 const DEFAULT_PRICE_STATUS = "Unpriced";
+let fallbackCardsPromise = null;
 
 function escapeHtml(value) {
     return String(value)
@@ -44,6 +50,94 @@ function normalizeForSearch(value) {
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, " ")
         .trim();
+}
+
+function getSearchTokens(value) {
+    const normalized = normalizeForSearch(value);
+    return normalized ? normalized.split(" ").filter(Boolean) : [];
+}
+
+function normalizeFallbackCardRecord(rawCard) {
+    const id = resolveFirstNonEmpty(
+        rawCard.id,
+        rawCard.number,
+        rawCard.cardNumber,
+        rawCard.card_number,
+        rawCard.cardNo,
+        rawCard.code,
+        rawCard.cardId
+    ) || "UNKNOWN";
+
+    return {
+        id,
+        number: resolveFirstNonEmpty(rawCard.number, rawCard.cardNumber, rawCard.card_number, id),
+        game: resolveFirstNonEmpty(rawCard.game, rawCard.gameName) || "Yu Yu Hakusho",
+        set: resolveFirstNonEmpty(rawCard.set, rawCard.setName) || "Unknown Set",
+        name: resolveFirstNonEmpty(rawCard.name, rawCard.cardName, rawCard.title) || "Unnamed Card",
+        type: resolveFirstNonEmpty(rawCard.type, rawCard.cardType, rawCard.kind) || "Unknown Type",
+        rarity: resolveFirstNonEmpty(rawCard.rarity, rawCard.rarityCode, rawCard.rarity_name) || "Unknown Rarity",
+        variant: resolveFirstNonEmpty(rawCard.variant, rawCard.finish, rawCard.foil, rawCard.version) || "Standard",
+        effect: resolveFirstNonEmpty(rawCard.effect, rawCard.text, rawCard.notes),
+        source: resolveFirstNonEmpty(rawCard.source, "YYH catalog")
+    };
+}
+
+async function loadFallbackCards() {
+    if (!fallbackCardsPromise) {
+        fallbackCardsPromise = (async () => {
+            for (const sourceUrl of CARD_FALLBACK_DATA_URLS) {
+                try {
+                    const response = await fetch(sourceUrl, { cache: "no-store" });
+                    if (!response.ok) {
+                        continue;
+                    }
+
+                    const payload = await response.json();
+                    if (!Array.isArray(payload)) {
+                        continue;
+                    }
+
+                    return payload.map(normalizeFallbackCardRecord);
+                } catch {
+                    // Keep trying fallback files until one succeeds.
+                }
+            }
+
+            throw new Error("No fallback card data found.");
+        })();
+    }
+
+    try {
+        return await fallbackCardsPromise;
+    } catch (error) {
+        fallbackCardsPromise = null;
+        throw error;
+    }
+}
+
+function filterFallbackCards(cards, query) {
+    const searchTokens = getSearchTokens(query.q);
+    const game = normalizeForSearch(query.game);
+    const set = normalizeForSearch(query.set);
+
+    return cards.filter((card) => {
+        if (game && normalizeForSearch(card.game) !== game) {
+            return false;
+        }
+
+        if (set && normalizeForSearch(card.set) !== set) {
+            return false;
+        }
+
+        if (searchTokens.length === 0) {
+            return true;
+        }
+
+        const haystack = normalizeForSearch(
+            `${card.name} ${card.id} ${card.number} ${card.set} ${card.type} ${card.rarity} ${card.variant} ${card.effect || ""}`
+        );
+        return searchTokens.every((token) => haystack.includes(token));
+    });
 }
 
 function normalizeVariantLabel(variant) {
@@ -289,7 +383,7 @@ function parseQueryContext() {
 }
 
 async function fetchCards(query) {
-    const url = new URL(CARD_API_URL);
+    const url = new URL(CARD_API_URL, window.location.origin);
 
     if (query.game) {
         url.searchParams.set("game", query.game);
@@ -305,13 +399,18 @@ async function fetchCards(query) {
 
     url.searchParams.set("limit", "5000");
 
-    const response = await fetch(url.toString(), { cache: "no-store" });
-    if (!response.ok) {
-        throw new Error(`Failed to load card data (${response.status})`);
-    }
+    try {
+        const response = await fetch(url.toString(), { cache: "no-store" });
+        if (!response.ok) {
+            throw new Error(`Failed to load card data (${response.status})`);
+        }
 
-    const payload = await response.json();
-    return Array.isArray(payload.items) ? payload.items : [];
+        const payload = await response.json();
+        return Array.isArray(payload.items) ? payload.items : [];
+    } catch {
+        const fallbackCards = await loadFallbackCards();
+        return filterFallbackCards(fallbackCards, query);
+    }
 }
 
 function scoreCardMatch(card, context) {
