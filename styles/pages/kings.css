@@ -87,7 +87,7 @@
 }
 
 .kings-panel--intro,
-.kings-panel--notes {
+.kings-panel--pricing {
     padding: 22px;
 }
 
@@ -195,6 +195,12 @@
     text-shadow: 0 0 10px rgba(var(--king-glow-rgb), 0.26);
 }
 
+.kings-king-card__price {
+    font-size: 13px;
+    line-height: 1.35;
+    color: #bdefff;
+}
+
 .kings-king-card__piece-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -203,6 +209,7 @@
 
 .kings-king-card__piece {
     margin: 0;
+    position: relative;
 }
 
 .kings-king-card__piece img {
@@ -218,6 +225,45 @@
     transform: scale(1.015);
     border-color: var(--king-accent);
     box-shadow: 0 0 16px rgba(var(--king-glow-rgb), 0.26);
+}
+
+.kings-king-card__piece-price {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    padding: 5px 8px;
+    border-radius: 999px;
+    background: rgba(2, 6, 23, 0.84);
+    border: 1px solid rgba(148, 163, 184, 0.24);
+    color: #e2e8f0;
+    font-size: 11px;
+    line-height: 1;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translate(-50%, -4px);
+    transition: opacity 180ms ease, transform 180ms ease;
+    pointer-events: none;
+    visibility: hidden;
+    z-index: 2;
+}
+
+.kings-king-card__piece:hover .kings-king-card__piece-price,
+.kings-king-card__piece:focus-within .kings-king-card__piece-price {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+.kings-price-list {
+    padding-left: 18px;
+    display: grid;
+    gap: 10px;
+}
+
+.kings-price-list__label {
+    color: #d8f7ff;
+    font-weight: 700;
 }
 
 .kings-king-card__meta {
