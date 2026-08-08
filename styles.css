@@ -1033,7 +1033,7 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
     }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 768px) {
     .nav {
         align-items: center;
         gap: 10px;

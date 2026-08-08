@@ -57,10 +57,10 @@ function initMobileNav() {
 }
 
 const FOOTER_LINKS = [
+	{ label: "Contributors", href: "contributors.html" },
     { label: "Inventory", href: "inventory.html" },
     { label: "Sets", href: "sets.html" },
     { label: "Kings", href: "kings.html" },
-    { label: "Contributors", href: "contributors.html" },
     { label: "About", href: "about.html" },
     { label: "Contact", href: "contact.html" },
 ];

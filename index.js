@@ -684,7 +684,7 @@ function initMobileNav() {
 		}
 	});
 
-	const mobileNavQuery = window.matchMedia("(max-width: 560px)");
+	const mobileNavQuery = window.matchMedia("(max-width: 768px)");
 	const syncNavState = () => {
 		if (!mobileNavQuery.matches) {
 			closeNav();
@@ -973,11 +973,32 @@ function initHomeSetSelects() {
 		{ elementId: "yyh-set-select", game: "Yu Yu Hakusho" }
 	];
 
+	const yyhSetNameByNormalizedValue = {
+		"ghost files": "Ghost Files",
+		"dark tournament": "Dark Tournament",
+		exile: "Exile",
+		betrayal: "Betrayal",
+		alliance: "Alliance",
+		gateway: "Gateway",
+		"pre release cards": "Pre-Release Cards",
+		products: "Products",
+		"extra cards": "Extra Cards"
+	};
+
 	const isPlaceholderOption = (value) => {
 		const normalized = normalizeForSearch(value);
 		return !normalized
 			|| normalized.includes("placeholder")
 			|| normalized.includes("use search bar");
+	};
+
+	const resolveCanonicalSetName = (game, rawSetName) => {
+		if (game !== "Yu Yu Hakusho") {
+			return rawSetName;
+		}
+
+		const normalizedSetName = normalizeForSearch(rawSetName);
+		return yyhSetNameByNormalizedValue[normalizedSetName] || rawSetName;
 	};
 
 	const navigateToSetInventory = (game, setName) => {
@@ -999,12 +1020,16 @@ function initHomeSetSelects() {
 		select.dataset.homeSetNavInitialized = "true";
 
 		select.addEventListener("change", () => {
-			const selectedValue = String(select.value || "").trim();
-			if (isPlaceholderOption(selectedValue)) {
+			const selectedOption = select.options[select.selectedIndex] || null;
+			const selectedValue = String(selectedOption?.value || "").trim();
+			const selectedLabel = String(selectedOption?.textContent || selectedValue).trim();
+			const selectedSetName = selectedValue || selectedLabel;
+
+			if (isPlaceholderOption(selectedSetName)) {
 				return;
 			}
 
-			navigateToSetInventory(game, selectedValue);
+			navigateToSetInventory(game, resolveCanonicalSetName(game, selectedSetName));
 		});
 	}
 }
