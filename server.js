@@ -29,7 +29,7 @@ const EBAY_AUTH_BASE_URLS = {
     production: "https://auth.ebay.com"
 };
 const EBAY_TOKEN_EXPIRY_BUFFER_MS = 60 * 1000;
-const EBAY_AUTH_REDIRECT_URI = process.env.EBAY_REDIRECT_URI || "http://localhost:3000/api/ebay/auth/callback";
+const EBAY_AUTH_REDIRECT_URI = process.env.EBAY_REDIRECT_URI || "https://shalimar-collectibles-inky.vercel.app/api/ebay/auth/callback";
 const EBAY_AUTH_SCOPES = (process.env.EBAY_AUTH_SCOPES || "https://api.ebay.com/oauth/api_scope").split(",").map((value) => value.trim()).filter(Boolean);
 let ebayTokenCache = {
     accessToken: "",
