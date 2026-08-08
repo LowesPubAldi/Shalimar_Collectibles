@@ -966,6 +966,49 @@ function initHomeSearch() {
 	});
 }
 
+function initHomeSetSelects() {
+	const setSelectConfigs = [
+		{ elementId: "pokemon-set-select", game: "Pokemon" },
+		{ elementId: "yugioh-set-select", game: "Yu-Gi-Oh" },
+		{ elementId: "yyh-set-select", game: "Yu Yu Hakusho" }
+	];
+
+	const isPlaceholderOption = (value) => {
+		const normalized = normalizeForSearch(value);
+		return !normalized
+			|| normalized.includes("placeholder")
+			|| normalized.includes("use search bar");
+	};
+
+	const navigateToSetInventory = (game, setName) => {
+		const destination = new URL("inventory.html", window.location.href);
+		destination.searchParams.set("game", game);
+		destination.searchParams.set("set", setName);
+		window.location.href = destination.toString();
+	};
+
+	for (const { elementId, game } of setSelectConfigs) {
+		const select = document.getElementById(elementId);
+		if (!(select instanceof HTMLSelectElement)) {
+			continue;
+		}
+
+		if (select.dataset.homeSetNavInitialized === "true") {
+			continue;
+		}
+		select.dataset.homeSetNavInitialized = "true";
+
+		select.addEventListener("change", () => {
+			const selectedValue = String(select.value || "").trim();
+			if (isPlaceholderOption(selectedValue)) {
+				return;
+			}
+
+			navigateToSetInventory(game, selectedValue);
+		});
+	}
+}
+
 function runHomeInitializer(label, initializer) {
 	try {
 		initializer();
@@ -978,7 +1021,9 @@ runHomeInitializer("applySeasonTheme", applySeasonTheme);
 runHomeInitializer("initGameLanesReveal", initGameLanesReveal);
 runHomeInitializer("initMobileNav", initMobileNav);
 runHomeInitializer("initHomeSearch", initHomeSearch);
+runHomeInitializer("initHomeSetSelects", initHomeSetSelects);
 
 document.addEventListener("DOMContentLoaded", () => {
 	runHomeInitializer("initMobileNav", initMobileNav);
+	runHomeInitializer("initHomeSetSelects", initHomeSetSelects);
 });

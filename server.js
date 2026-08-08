@@ -980,6 +980,10 @@ app.get("/api/yyh/sets/sealed-prices", async (req, res) => {
     }
 });
 
-app.listen(PORT, "127.0.0.1", () => {
-    console.log(`Shalimar API running at http://localhost:${PORT}`);
-});
+if (require.main === module) {
+    app.listen(PORT, "127.0.0.1", () => {
+        console.log(`Shalimar API running at http://localhost:${PORT}`);
+    });
+}
+
+module.exports = app;
