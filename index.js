@@ -170,12 +170,82 @@ const SPOTLIGHT_DISPLAY_NAME_OVERRIDES = {
 };
 
 let spotlightViewerElements = null;
+const HOME_SEARCH_FALLBACK_DATA_URLS = [
+	"data/yyh-cards-full.json",
+	"data/yyh-cards.json",
+	"data/yyh-cards-slice.json"
+];
+let homeSearchFallbackDataPromise = null;
 
 function normalizeForSearch(value) {
 	return String(value || "")
 		.toLowerCase()
 		.replace(/[^a-z0-9]+/g, " ")
 		.trim();
+}
+
+function resolveFirstNonEmpty(...values) {
+	for (const value of values) {
+		if (typeof value !== "string") {
+			continue;
+		}
+
+		const trimmed = value.trim();
+		if (trimmed) {
+			return trimmed;
+		}
+	}
+
+	return "";
+}
+
+function normalizeHomeSearchCard(rawCard) {
+	return {
+		name: resolveFirstNonEmpty(rawCard?.name, rawCard?.cardName, rawCard?.title),
+		set: resolveFirstNonEmpty(rawCard?.set, rawCard?.setName),
+		game: resolveFirstNonEmpty(rawCard?.game, rawCard?.gameName) || "Yu Yu Hakusho",
+		cardNumber: resolveFirstNonEmpty(
+			rawCard?.cardNumber,
+			rawCard?.number,
+			rawCard?.card_number,
+			rawCard?.id,
+			rawCard?.cardId,
+			rawCard?.code
+		)
+	};
+}
+
+async function loadHomeSearchFallbackData() {
+	if (!homeSearchFallbackDataPromise) {
+		homeSearchFallbackDataPromise = (async () => {
+			for (const sourceUrl of HOME_SEARCH_FALLBACK_DATA_URLS) {
+				try {
+					const response = await fetch(sourceUrl, { cache: "no-store" });
+					if (!response.ok) {
+						continue;
+					}
+
+					const payload = await response.json();
+					if (!Array.isArray(payload)) {
+						continue;
+					}
+
+					return payload.map(normalizeHomeSearchCard);
+				} catch {
+					// Keep trying fallback files until one succeeds.
+				}
+			}
+
+			throw new Error("No fallback data file found for home search.");
+		})();
+	}
+
+	try {
+		return await homeSearchFallbackDataPromise;
+	} catch (error) {
+		homeSearchFallbackDataPromise = null;
+		throw error;
+	}
 }
 
 function mergeSpotlight(baseSpotlight, overrideSpotlight) {
@@ -667,6 +737,54 @@ function initHomeSearch() {
 		searchInput.setAttribute("aria-expanded", "true");
 	};
 
+	const mapSuggestionsFromItems = (items, query) => {
+		const searchTokens = normalizeForSearch(query).split(" ").filter(Boolean);
+		const deduped = [];
+		const seen = new Set();
+
+		for (const item of items) {
+			const name = String(item?.name || "").trim();
+			const setName = String(item?.set || "").trim();
+			const game = String(item?.game || "Yu Yu Hakusho").trim() || "Yu Yu Hakusho";
+			const cardNumber = String(
+				item?.cardNumber ||
+				item?.number ||
+				item?.cardId ||
+				item?.id ||
+				""
+			).trim();
+
+			if (!name || !setName || game !== "Yu Yu Hakusho") {
+				continue;
+			}
+
+			if (searchTokens.length > 0) {
+				const haystack = normalizeForSearch(`${name} ${setName} ${cardNumber}`);
+				if (!searchTokens.every((token) => haystack.includes(token))) {
+					continue;
+				}
+			}
+
+			const key = `${normalizeForSearch(name)}||${normalizeForSearch(setName)}`;
+			if (seen.has(key)) {
+				continue;
+			}
+
+			seen.add(key);
+			deduped.push({
+				name,
+				set: setName,
+				cardNumber
+			});
+
+			if (deduped.length >= SUGGESTION_LIMIT) {
+				break;
+			}
+		}
+
+		return deduped;
+	};
+
 	const navigateToInventory = (query) => {
 		const destination = new URL("inventory.html", window.location.href);
 		if (query) {
@@ -739,52 +857,25 @@ function initHomeSearch() {
 		endpoint.searchParams.set("limit", "48");
 		endpoint.searchParams.set("offset", "0");
 
-		const response = await fetch(endpoint.toString(), {
-			cache: "no-store",
-			signal: pendingRequestController.signal
-		});
-
-		if (!response.ok) {
-			throw new Error(`Search request failed (${response.status})`);
-		}
-
-		const payload = await response.json();
-		const items = Array.isArray(payload?.items) ? payload.items : [];
-		const deduped = [];
-		const seen = new Set();
-
-		for (const item of items) {
-			const name = String(item?.name || "").trim();
-			const setName = String(item?.set || "").trim();
-			const cardNumber = String(
-				item?.cardNumber ||
-				item?.number ||
-				item?.cardId ||
-				item?.id ||
-				""
-			).trim();
-			if (!name || !setName) {
-				continue;
-			}
-
-			const key = `${normalizeForSearch(name)}||${normalizeForSearch(setName)}`;
-			if (seen.has(key)) {
-				continue;
-			}
-
-			seen.add(key);
-			deduped.push({
-				name,
-				set: setName,
-				cardNumber
+		try {
+			const response = await fetch(endpoint.toString(), {
+				cache: "no-store",
+				signal: pendingRequestController.signal
 			});
 
-			if (deduped.length >= SUGGESTION_LIMIT) {
-				break;
+			if (response.ok) {
+				const payload = await response.json();
+				const items = Array.isArray(payload?.items) ? payload.items : [];
+				return mapSuggestionsFromItems(items, query);
+			}
+		} catch (error) {
+			if (error && error.name === "AbortError") {
+				throw error;
 			}
 		}
 
-		return deduped;
+		const fallbackItems = await loadHomeSearchFallbackData();
+		return mapSuggestionsFromItems(fallbackItems, query);
 	};
 
 	const runDebouncedSearch = () => {
