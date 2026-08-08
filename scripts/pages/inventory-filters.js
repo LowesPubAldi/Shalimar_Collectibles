@@ -2156,9 +2156,15 @@ async function initInventoryFilters() {
                 ? await loadAllYyhSetPricingMap(inventoryRecords)
                 : await loadSetPricingMap(filterState.set))
             : createEmptyPricingData();
+        if (requestId !== renderRequestId) {
+            return;
+        }
         const kingSetNotesMap = filterState.game === "Yu Yu Hakusho"
             ? await loadKingSetNotesMap()
             : new Map();
+        if (requestId !== renderRequestId) {
+            return;
+        }
         renderSetContext(setContextElement, filterState, setPricingData, kingSetNotesMap);
         const recordsWithPricing = applyPricingToRecords(inventoryRecords, setPricingData);
 
@@ -2196,6 +2202,9 @@ async function initInventoryFilters() {
 
         const pageLimit = getInventoryPageLimit();
         const renderedItems = sourceRecords.slice(offset, offset + pageLimit);
+        if (requestId !== renderRequestId) {
+            return;
+        }
 
         if (append) {
             resultsGrid.insertAdjacentHTML("beforeend", renderedItems.map((cardRecord) => makeInventoryCard(cardRecord, collisionCountMap, variantFamilyCountMap, showCardIdInMeta, showPricing)).join(""));
@@ -2218,7 +2227,7 @@ async function initInventoryFilters() {
         }
     };
 
-    const syncConditionalFilters = () => {
+    const syncConditionalFilters = (shouldRender = true) => {
         const selectedGame = gameFilter.value;
         const gameOptions = FILTER_OPTIONS_BY_GAME[selectedGame] || FILTER_OPTIONS_BY_GAME["All Games"];
         const previousSet = setFilter.value;
@@ -2329,7 +2338,9 @@ async function initInventoryFilters() {
             sortFilter.value = DEFAULT_SORT_OPTION;
         }
 
-        void renderResults(false);
+        if (shouldRender) {
+            void renderResults(false);
+        }
     };
 
     if (initialFilters.query) {
@@ -2399,7 +2410,7 @@ async function initInventoryFilters() {
         }, 120);
     });
 
-    syncConditionalFilters();
+    syncConditionalFilters(false);
 
     if (initialFilters.set && Array.from(setFilter.options).some((option) => option.value === initialFilters.set)) {
         setFilter.value = initialFilters.set;
