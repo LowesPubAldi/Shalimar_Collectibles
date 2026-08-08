@@ -14,6 +14,7 @@ Shalimar Collectibles v1 focuses on a polished Yu Yu Hakusho collector experienc
 - Mobile UX updates:
   - Header/nav remains pinned at top.
   - Footer nav links are hidden on mobile to prevent clipping.
+  - Home page mobile-nav initialization is hardened so menu behavior remains reliable during startup.
 
 ## Stability and Compatibility
 - Static responses use no-store/no-cache behavior to reduce stale-client mismatches during iteration.
@@ -29,9 +30,9 @@ Shalimar Collectibles v1 focuses on a polished Yu Yu Hakusho collector experienc
 
 ## QA Snapshot (Pre-Launch)
 - Internal local HTML href/src broken-link sweep: pass.
-- Mobile nav behavior (open/close via toggle and Escape): pass.
+- Mobile nav behavior across Home and card pages (open/close via toggle, Escape, and link/overlay close): pass.
 - Footer clipping issue on mobile: resolved by hiding footer nav links at mobile breakpoints.
 - Content placeholder sweep under YYH launch scope: effectively complete.
 
 ## Commit Baseline
-- Suggested release commit: cecd45a
+- Suggested release commit: latest main after final Home mobile-nav reliability commit.

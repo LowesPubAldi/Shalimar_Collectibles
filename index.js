@@ -574,6 +574,11 @@ function initMobileNav() {
 		return;
 	}
 
+	if (toggle.dataset.mobileNavInitialized === "true") {
+		return;
+	}
+	toggle.dataset.mobileNavInitialized = "true";
+
 	const closeNav = () => {
 		document.body.classList.remove("is-mobile-nav-open");
 		toggle.setAttribute("aria-expanded", "false");
@@ -870,7 +875,19 @@ function initHomeSearch() {
 	});
 }
 
-applySeasonTheme();
-initGameLanesReveal();
-initMobileNav();
-initHomeSearch();
+function runHomeInitializer(label, initializer) {
+	try {
+		initializer();
+	} catch (error) {
+		console.error(`Home initializer failed: ${label}`, error);
+	}
+}
+
+runHomeInitializer("applySeasonTheme", applySeasonTheme);
+runHomeInitializer("initGameLanesReveal", initGameLanesReveal);
+runHomeInitializer("initMobileNav", initMobileNav);
+runHomeInitializer("initHomeSearch", initHomeSearch);
+
+document.addEventListener("DOMContentLoaded", () => {
+	runHomeInitializer("initMobileNav", initMobileNav);
+});
