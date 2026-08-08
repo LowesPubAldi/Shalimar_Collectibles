@@ -117,7 +117,7 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
     max-width: 1220px;
     margin: 0 auto;
     padding: 0 48px 16px;
-    border-bottom: 3px solid color-mix(in srgb, var(--brand-tertiary-magenta) 48%, transparent);
+    border-bottom: 3px solid rgba(255, 79, 216, 0.48);
 }
 
 .hero__content {
@@ -137,7 +137,7 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
     line-height: 1.5;
     color: #cbd5e1;
     max-width: 42ch;
-    text-wrap: balance;
+    overflow-wrap: break-word;
     margin-bottom: 36px
 }
 
@@ -320,7 +320,7 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
     border-color: var(--season-accent);
     box-shadow:
         0 12px 40px rgba(0, 0, 0, 0.35),
-        0 0 0 2px color-mix(in srgb, var(--season-accent) 85%, transparent);
+        0 0 0 2px var(--season-accent);
 }
 
 .hero__season-back {
@@ -886,6 +886,9 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
 
 @media (max-width: 768px) {
     .header {
+        position: sticky;
+        top: 0;
+        z-index: 1200;
         padding: 14px 16px;
     }
 
@@ -1024,6 +1027,10 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
     .site-footer__inner {
         padding: 16px 16px 22px;
     }
+
+    .site-footer__nav {
+        display: none;
+    }
 }
 
 @media (max-width: 560px) {
@@ -1037,7 +1044,7 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
         flex-direction: column;
         margin-left: auto;
         position: relative;
-        z-index: 1101;
+        z-index: 1211;
     }
 
     .nav__links {
@@ -1059,7 +1066,7 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
         top: 0;
         transform: translateX(106%);
         transition: transform 280ms ease;
-        z-index: 1100;
+        z-index: 1210;
     }
 
     .nav__links a {
@@ -1076,7 +1083,7 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
         opacity: 0;
         pointer-events: none;
         transition: opacity 220ms ease;
-        z-index: 1099;
+        z-index: 1209;
     }
 
     body.is-mobile-nav-open {
@@ -1232,10 +1239,10 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
 .hero__season-stage:hover .hero__season-back,
 .hero__season-stage:focus-within .hero__season-back {
     border-width: 3px;
-    border-color: color-mix(in srgb, var(--season-accent) 75%, rgba(248, 250, 252, 0.2));
+    border-color: var(--season-accent);
     box-shadow:
         0 8px 24px rgba(0, 0, 0, 0.22),
-        0 0 0 2px color-mix(in srgb, var(--season-accent) 80%, transparent);
+        0 0 0 2px var(--season-accent);
 }
 
 .hero__season:hover .hero__season-back--prev,

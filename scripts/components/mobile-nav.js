@@ -57,7 +57,6 @@ function initMobileNav() {
 }
 
 const FOOTER_LINKS = [
-    { label: "Home", href: "index.html" },
     { label: "Inventory", href: "inventory.html" },
     { label: "Sets", href: "sets.html" },
     { label: "Kings", href: "kings.html" },
@@ -90,8 +89,7 @@ function initFooterNav() {
         : FOOTER_LINKS.filter((link) => link.href !== currentPage);
     const navMarkup = footerLinks
         .map((link) => {
-            const isCurrentHome = currentPage === "index.html" && link.href === "index.html";
-            const currentAttribute = isCurrentHome ? ' aria-current="page"' : "";
+            const currentAttribute = currentPage === link.href ? ' aria-current="page"' : "";
             return `<a href="${link.href}"${currentAttribute}>${link.label}</a>`;
         })
         .join("");

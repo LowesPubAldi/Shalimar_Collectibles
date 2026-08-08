@@ -141,8 +141,9 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
 
 @media (max-width: 768px) {
     .header {
-        position: relative;
-        z-index: 110;
+        position: sticky;
+        top: 0;
+        z-index: 1200;
         padding: 12px;
     }
 
@@ -163,6 +164,7 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
         margin-right: 4px;
         flex: 0 0 44px;
         position: relative;
+        z-index: 1211;
     }
 
     .nav__links {
@@ -187,7 +189,7 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
         opacity: 0;
         pointer-events: none;
         transition: clip-path 280ms ease, opacity 220ms ease;
-        z-index: 1100;
+        z-index: 1210;
     }
 
     .nav__links a {
@@ -204,7 +206,7 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
         opacity: 0;
         pointer-events: none;
         transition: opacity 220ms ease;
-        z-index: 1099;
+        z-index: 1209;
     }
 
     body.is-mobile-nav-open {

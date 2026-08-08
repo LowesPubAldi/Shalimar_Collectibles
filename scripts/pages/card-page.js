@@ -46,6 +46,62 @@ function normalizeForSearch(value) {
         .trim();
 }
 
+function normalizeVariantLabel(variant) {
+    const normalized = String(variant || "").trim().toLowerCase();
+    return normalized || "standard";
+}
+
+function isStandardLikeVariant(variant) {
+    const normalized = normalizeVariantLabel(variant);
+    return normalized === "standard" || normalized === "unlimited" || normalized === "common";
+}
+
+function isRainbowVariant(variant) {
+    const normalized = normalizeVariantLabel(variant);
+    return normalized.includes("rainbow") || normalized.includes("spirit rare") || normalized.includes("dark rare");
+}
+
+function isDoubleRainbowVariant(variant) {
+    const normalized = normalizeVariantLabel(variant);
+    return normalized.includes("double rainbow") || normalized.includes("dark rare");
+}
+
+function isFoilLikeVariant(variant) {
+    const normalized = normalizeVariantLabel(variant);
+    if (isStandardLikeVariant(normalized)) {
+        return false;
+    }
+
+    return normalized.includes("foil")
+        || normalized.includes("rainbow")
+        || normalized.includes("lined")
+        || normalized.includes("cloudy")
+        || normalized.includes("jagged")
+        || normalized.includes("dark rare")
+        || normalized.includes("spirit rare")
+        || normalized.includes("team leader")
+        || normalized.includes("score stamped")
+        || normalized.includes("corrected");
+}
+
+function getVariantPremiumTier(variant) {
+    const normalized = normalizeVariantLabel(variant);
+
+    if (isDoubleRainbowVariant(normalized)) {
+        return "foil-ultra";
+    }
+
+    if (isRainbowVariant(normalized)) {
+        return "foil-strong";
+    }
+
+    if (isFoilLikeVariant(normalized)) {
+        return "foil";
+    }
+
+    return "standard";
+}
+
 function slugifySetName(setName) {
     return String(setName || "")
         .trim()
@@ -413,9 +469,10 @@ function createBadge(label) {
     return span;
 }
 
-function createDetailItem(label, value) {
+function createDetailItem(label, value, valueId = "") {
     const item = document.createElement("li");
-    item.innerHTML = `<strong>${escapeHtml(label)}:</strong> ${escapeHtml(value)}`;
+    const valueIdAttribute = valueId ? ` id="${escapeHtml(valueId)}"` : "";
+    item.innerHTML = `<strong>${escapeHtml(label)}:</strong> <span${valueIdAttribute}>${escapeHtml(value)}</span>`;
     return item;
 }
 
@@ -487,6 +544,7 @@ function renderCardPage(cardContext) {
     const cardVariantImage = document.getElementById("cardVariantImage");
     const cardVariantName = document.getElementById("cardVariantName");
     const cardVariantMeta = document.getElementById("cardVariantMeta");
+    const cardVariantStage = document.querySelector(".card-variant-stage");
     const cardPage = document.querySelector(".card-page");
 
     const pricing = cardContext.pricing;
@@ -529,8 +587,11 @@ function renderCardPage(cardContext) {
     const detailsList = document.getElementById("cardDetailsList");
     detailsList.innerHTML = "";
     details.forEach(([label, value]) => {
-        detailsList.appendChild(createDetailItem(label, value));
+        const valueId = label === "Variant" ? "cardDetailsVariantValue" : "";
+        detailsList.appendChild(createDetailItem(label, value, valueId));
     });
+
+    const cardDetailsVariantValue = document.getElementById("cardDetailsVariantValue");
 
     const noteLines = [];
     if (card.effect) {
@@ -552,14 +613,38 @@ function renderCardPage(cardContext) {
     const renderSelectedVariant = (variantName) => {
         selectedVariantName = variantName;
         const selectedVariant = variantOptions.find((variant) => variant.name === variantName) || variantOptions[0];
+        const variantPremiumTier = getVariantPremiumTier(selectedVariant.record?.variant || selectedVariant.name);
 
         cardVariantControls.querySelectorAll("button").forEach((button) => {
-            button.setAttribute("aria-pressed", String(button.dataset.variant === selectedVariantName));
+            const isActiveButton = button.dataset.variant === selectedVariantName;
+            button.setAttribute("aria-pressed", String(isActiveButton));
+            button.classList.toggle("card-variant-controls__button--foil-active", isActiveButton && variantPremiumTier !== "standard");
+            button.classList.toggle("card-variant-controls__button--foil-strong-active", isActiveButton && variantPremiumTier === "foil-strong");
+            button.classList.toggle("card-variant-controls__button--foil-ultra-active", isActiveButton && variantPremiumTier === "foil-ultra");
         });
+
+        if (cardVariantStage) {
+            cardVariantStage.classList.remove("card-variant-stage--foil", "card-variant-stage--foil-strong", "card-variant-stage--foil-ultra");
+
+            if (variantPremiumTier === "foil") {
+                cardVariantStage.classList.add("card-variant-stage--foil");
+            }
+
+            if (variantPremiumTier === "foil-strong") {
+                cardVariantStage.classList.add("card-variant-stage--foil", "card-variant-stage--foil-strong");
+            }
+
+            if (variantPremiumTier === "foil-ultra") {
+                cardVariantStage.classList.add("card-variant-stage--foil", "card-variant-stage--foil-strong", "card-variant-stage--foil-ultra");
+            }
+        }
 
         applyImageCandidates(cardVariantImage, selectedVariant.imageCandidates, `${selectedVariant.name} scan`);
         cardVariantName.textContent = selectedVariant.name;
         cardVariantMeta.textContent = `${card.set} | ${card.cardNumber}`;
+        if (cardDetailsVariantValue) {
+            cardDetailsVariantValue.textContent = selectedVariant.name;
+        }
     };
 
     cardVariantControls.innerHTML = "";

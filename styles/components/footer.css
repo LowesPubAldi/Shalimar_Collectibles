@@ -82,8 +82,6 @@
     }
 
     .site-footer__nav {
-        gap: 8px;
-        justify-content: flex-start;
-        padding-inline: 4px;
+        display: none;
     }
 }
