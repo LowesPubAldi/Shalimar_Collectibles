@@ -3,165 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shalimar Collectibles</title>
-    <link rel="stylesheet" href="styles.css?v=32">
-    <script src="index.js?v=9" defer></script>
+    <title>Shalimar Collectibles | Redirecting...</title>
+    <meta http-equiv="refresh" content="0; url=card-template.html">
 </head>
-
 <body>
-    <header class="header">
-        <nav class="nav">
-            <a href="#" class="logo-link">
-                <img 
-                src="./assets/logo-v4.svg?v=3"
-                alt="Shalimar Collectibles logo"
-                class="logo"
-                />
-                </a>
-            <button
-                class="mobile-nav-toggle"
-                id="mobileNavToggle"
-                type="button"
-                aria-label="Open navigation menu"
-                aria-expanded="false"
-                aria-controls="primaryNavLinks"
-            >
-                <span class="mobile-nav-toggle__bar" aria-hidden="true"></span>
-                <span class="mobile-nav-toggle__bar" aria-hidden="true"></span>
-                <span class="mobile-nav-toggle__bar" aria-hidden="true"></span>
-            </button>
-        <ul class="nav__links" id="primaryNavLinks">
-            <li><a href="contributors.html">Contributors</a></li>
-            <li><a href="inventory.html">Inventory</a></li>
-            <li><a href="sets.html">Sets</a></li>
-            <li><a href="kings.html">Kings</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-        </nav>
-        <button class="mobile-nav-overlay" id="mobileNavOverlay" type="button" aria-label="Close navigation menu"></button>
-    </header>
-<main>
-    <section class="hero" id="home">
-        <div class="hero__content">
-            <h1>Find Your Next Card</h1>
-            <p>Search Pokemon, Yu-Gi-Oh, and Yu Yu Hakusho cards from one growing card platform.
-
-            </p>
-            <form class="hero__search" role="search" aria-label="Search cards">
-                <input
-                    type="search"
-                    class="hero__search-input"
-                    placeholder="Search cards, sets, or characters"
-                    aria-label="Search cards"
-                />
-                <button type="submit" class="hero__search-btn">Search</button>
-            </form>
-            <div class="hero__actions">
-                <a href="inventory" class="btn btn--primary"> Search Inventory</a>
-                <a href="sets" class="btn btn--secondary"> Browse Sets</a>
-            </div>
-            <div class="hero__season-indicator" id="seasonIndicator" aria-label="Active spotlight month indicator">
-                <div class="hero__season-dots" id="seasonMonthDots"></div>
-            </div>
-        </div>
-        <aside class="hero__season" id="seasonSpotlight" aria-label="Seasonal card spotlight">
-            <div class="hero__season-stage">
-                <div class="hero__season-back hero__season-back--prev" id="seasonPrevPeek" aria-hidden="true">
-                    <p class="hero__season-kicker" id="seasonPrevMonthLabel">July Spotlight</p>
-                    <h3 class="hero__season-title hero__season-title--back" id="seasonPrevTitle">Stars and Duelists</h3>
-                    <ul class="hero__season-list hero__season-list--back" id="seasonPrevList"></ul>
-                </div>
-                <div class="hero__season-back hero__season-back--next" id="seasonNextPeek" aria-hidden="true">
-                    <p class="hero__season-kicker" id="seasonNextMonthLabel">September Spotlight</p>
-                    <h3 class="hero__season-title hero__season-title--back" id="seasonNextTitle">Back-to-Duel Season</h3>
-                    <ul class="hero__season-list hero__season-list--back" id="seasonNextList"></ul>
-                </div>
-                <div class="hero__season-main" id="seasonMainCard">
-                    <p class="hero__season-kicker" id="seasonMonthLabel">August Seasonal Spotlight</p>
-                    <h2 class="hero__season-title" id="seasonThemeTitle">Summer Rivalry Arc</h2>
-                    <ul class="hero__season-list" id="seasonSpotlightList"></ul>
-                </div>
-            </div>
-            <div class="hero__season-controls">
-                <button class="hero__season-control" id="seasonPrevBtn" type="button">View Last Month</button>
-                <button class="hero__season-control" id="seasonNextBtn" type="button">View Next Month</button>
-            </div>
-        </aside>
-    </section>
-
-    <section class="game-lanes" aria-label="Game sections">
-        <article class="game-lane">
-            <div class="game-lane__placeholder" aria-hidden="true">
-                <span class="game-lane__chip"></span>
-                <span class="game-lane__line game-lane__line--short"></span>
-                <span class="game-lane__line"></span>
-            </div>
-            <h3 class="game-lane__title">Pokemon</h3>
-            <label class="game-lane__set-label" for="pokemon-set-select">Sets</label>
-            <select class="game-lane__set-select" id="pokemon-set-select" name="pokemon-set-select" aria-label="Pokemon sets dropdown">
-                <option>Newest Set Placeholder 01</option>
-                <option>Newest Set Placeholder 02</option>
-                <option>Newest Set Placeholder 03</option>
-                <option>Newest Set Placeholder 04</option>
-                <option>Newest Set Placeholder 05</option>
-                <option>Newest Set Placeholder 06</option>
-                <option>Use search bar to find specific cards</option>
-            </select>
-        </article>
-
-        <article class="game-lane">
-            <div class="game-lane__placeholder" aria-hidden="true">
-                <span class="game-lane__chip"></span>
-                <span class="game-lane__line game-lane__line--short"></span>
-                <span class="game-lane__line"></span>
-            </div>
-            <h3 class="game-lane__title">Yu-Gi-Oh</h3>
-            <label class="game-lane__set-label" for="yugioh-set-select">Sets</label>
-            <select class="game-lane__set-select" id="yugioh-set-select" name="yugioh-set-select" aria-label="Yu-Gi-Oh sets dropdown">
-                <option>Newest Set Placeholder 01</option>
-                <option>Newest Set Placeholder 02</option>
-                <option>Newest Set Placeholder 03</option>
-                <option>Newest Set Placeholder 04</option>
-                <option>Newest Set Placeholder 05</option>
-                <option>Newest Set Placeholder 06</option>
-                <option>Use search bar to find specific cards</option>
-            </select>
-        </article>
-
-        <article class="game-lane">
-            <div class="game-lane__placeholder" aria-hidden="true">
-                <span class="game-lane__chip"></span>
-                <span class="game-lane__line game-lane__line--short"></span>
-                <span class="game-lane__line"></span>
-            </div>
-            <h3 class="game-lane__title">Yu Yu Hakusho</h3>
-            <label class="game-lane__set-label" for="yyh-set-select">Sets</label>
-            <select class="game-lane__set-select" id="yyh-set-select" name="yyh-set-select" aria-label="Yu Yu Hakusho sets dropdown">
-                <option>Main Set Placeholder 01</option>
-                <option>Main Set Placeholder 02</option>
-                <option>Main Set Placeholder 03</option>
-                <option>Main Set Placeholder 04</option>
-                <option>Main Set Placeholder 05</option>
-                <option>Main Set Placeholder 06</option>
-                <option>Use search bar to find specific cards</option>
-            </select>
-        </article>
-    </section>
-</main>
-
-<footer class="site-footer" aria-label="Site footer">
-    <div class="site-footer__inner">
-        <p class="site-footer__brand">Shalimar Collectibles</p>
-        <p class="site-footer__meta">Built for collectors of Pokemon, Yu-Gi-Oh, and Yu Yu Hakusho.</p>
-        <p class="site-footer__copyright">&copy; 2026 Shalimar Collectibles. All rights reserved.</p>
-        <nav class="site-footer__nav" aria-label="Footer navigation">
-            <a href="inventory.html">Inventory</a>
-            <a href="sets.html">Sets</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </div>
-</footer>
-    
+    <script>
+        (function redirectToCardTemplate() {
+            const target = `card-template.html${window.location.search}${window.location.hash}`;
+            window.location.replace(target);
+        })();
+    </script>
+    <p>Redirecting to the individual card page...</p>
+    <p>If you are not redirected, <a href="card-template.html">open the card page</a>.</p>
 </body>
 </html>
