@@ -480,8 +480,8 @@ function resolveSpecialImageAliases(cardRecord) {
         teamkuroko: "TB1",
         teammukuro: "TB2",
         teamraizen: "TB3",
-        teamyomi: "TB4",
-        spiritdefenseforce: "TB5"
+        teamyomi: "TB5",
+        spiritdefenseforce: "TB4"
     };
 
     if (setName === "Gateway") {
