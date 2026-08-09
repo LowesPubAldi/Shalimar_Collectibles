@@ -100,10 +100,10 @@
             "id": "S51/176",
             "name": "Touya, the Ice Master",
             "variant": "Standard",
-            "priceUsd": 4.5,
+            "priceUsd": 4.99,
             "compsCount": 0,
             "status": "Priced",
-            "notes": "$3 - $6"
+            "notes": "$4 - $6"
         },
         {
             "id": "S104/176",
@@ -118,10 +118,10 @@
             "id": "S105/176",
             "name": "Kayko's Promise",
             "variant": "Standard",
-            "priceUsd": 4,
+            "priceUsd": 1.99,
             "compsCount": 0,
             "status": "Priced",
-            "notes": "$3 - $5"
+            "notes": "$1.50 - $3"
         },
         {
             "id": "S106/176",
@@ -199,10 +199,10 @@
             "id": "S139/176",
             "name": "School Girl Outfit",
             "variant": "Standard",
-            "priceUsd": 4,
+            "priceUsd": 3,
             "compsCount": 0,
             "status": "Priced",
-            "notes": "$3 - $5"
+            "notes": "$2.50 - $4"
         },
         {
             "id": "U140/176",
@@ -264,8 +264,8 @@
             "variant": "Standard",
             "priceUsd": 32.75,
             "compsCount": 2,
-            "status": "Needs Review",
-            "notes": "Median comps: n=2, min=$15.50, max=$50.00, updated=2026-08-06 | Baseline: $12 - $18 | Suspicious median review: Median is 81.94% above baseline ceiling $18.00; n=2; observed=$15.50-$50.00; median=$32.75; flagged=2026-08-06"
+            "status": "Priced",
+            "notes": "$20 - $50"
         },
         {
             "id": "G179/176",

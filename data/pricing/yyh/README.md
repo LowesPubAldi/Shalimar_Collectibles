@@ -30,3 +30,13 @@ Create one file per set using this naming pattern:
 2. Populate the matching set pricing file.
 3. Reload inventory and filter to that set.
 4. Use `Price Status` filter and `Price` sort options.
+
+## Price Change History
+- File: `price-change-log.csv`
+- Purpose: append one row per pricing adjustment so historical graphs can be built later.
+- Suggested minimum columns:
+  - `date`, `set`, `id`, `name`, `variant`
+  - `oldPriceUsd`, `newPriceUsd`
+  - `oldRange`, `newRange`
+  - `sampleCount`, `observedMinUsd`, `observedMedianUsd`, `observedMaxUsd`
+  - `sourceCsv`, `reason`

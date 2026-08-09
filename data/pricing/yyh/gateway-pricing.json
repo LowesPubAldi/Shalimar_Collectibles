@@ -104,7 +104,7 @@
         { "id": "G3", "name": "Faces of Sensui", "variant": "Standard", "priceUsd": 21.0, "compsCount": 0, "status": "Priced", "notes": "$17 - $25" },
         { "id": "G4", "name": "Sinning Tree", "variant": "Standard", "priceUsd": 10.5, "compsCount": 0, "status": "Priced", "notes": "$8 - $13" },
         { "id": "U5", "name": "Apocalypse", "variant": "Standard", "priceUsd": 8.5, "compsCount": 0, "status": "Priced", "notes": "$7 - $10" },
-        { "id": "U6", "name": "Bang!", "variant": "Standard", "priceUsd": 7.5, "compsCount": 0, "status": "Priced", "notes": "$5 - $10" },
+        { "id": "U6", "name": "Bang!", "variant": "Standard", "priceUsd": 10.0, "compsCount": 0, "status": "Priced", "notes": "$8 - $12" },
         { "id": "U7", "name": "Gateway", "variant": "Standard", "priceUsd": 7.5, "compsCount": 0, "status": "Priced", "notes": "$5 - $10" },
         { "id": "U8", "name": "Spectacular Battle", "variant": "Standard", "priceUsd": 8.5, "compsCount": 0, "status": "Priced", "notes": "$6 - $11" },
         { "id": "U9", "name": "Surprised?", "variant": "Standard", "priceUsd": 4.0, "compsCount": 0, "status": "Priced", "notes": "$3 - $5" },

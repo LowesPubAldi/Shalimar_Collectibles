@@ -244,8 +244,8 @@
             "variant": "Standard",
             "priceUsd": 10.5,
             "compsCount": 2,
-            "status": "Needs Review",
-            "notes": "Median comps: n=2, min=$9.00, max=$12.01, updated=2026-08-06 | Baseline: $15 - $23 | Suspicious median review: Median is 30% below baseline floor $15.00; n=2; observed=$9.00-$12.01; median=$10.50; flagged=2026-08-06"
+            "status": "Priced",
+            "notes": "$9 - $12"
         },
         {
             "id": "S22",
@@ -485,10 +485,10 @@
             "id": "TR7",
             "name": "Genkai, Young Fighter",
             "variant": "Standard",
-            "priceUsd": 9.5,
+            "priceUsd": 17.99,
             "compsCount": 0,
             "status": "Priced",
-            "notes": "$7 - $12"
+            "notes": "$15 - $21"
         },
         {
             "id": "TR8",

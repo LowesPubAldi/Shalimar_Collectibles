@@ -134,7 +134,7 @@
         { "id": "L6", "name": "Kurama, Gloomy Shadow", "variant": "Standard", "priceUsd": 14.0, "compsCount": 0, "status": "Priced", "notes": "$12 - $16" },
         { "id": "L7", "name": "Kuwabara, Old Rival", "variant": "Standard", "priceUsd": 10.5, "compsCount": 0, "status": "Priced", "notes": "$9 - $12" },
         { "id": "L8", "name": "Mr. Ukimura, Friendly Chef", "variant": "Standard", "priceUsd": 4.5, "compsCount": 0, "status": "Priced", "notes": "$3 - $6" },
-        { "id": "L9", "name": "Energy Spiral", "variant": "Standard", "priceUsd": 10.0, "compsCount": 0, "status": "Priced", "notes": "$8 - $12" },
+        { "id": "L9", "name": "Energy Spiral", "variant": "Standard", "priceUsd": 14.99, "compsCount": 0, "status": "Priced", "notes": "$12 - $18" },
         { "id": "L10", "name": "Piercing Beam", "variant": "Standard", "priceUsd": 9.5, "compsCount": 0, "status": "Priced", "notes": "$8 - $11" },
 
         { "id": "P1", "name": "Malefic Grenade", "variant": "Standard", "priceUsd": 8.5, "compsCount": 0, "status": "Priced", "notes": "$7 - $10" },
