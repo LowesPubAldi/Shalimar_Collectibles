@@ -567,11 +567,11 @@ function resolveSpecialImageAliases(cardRecord) {
 
     if (setName === "Alliance") {
         if (normalizedName === "raizensalliance") {
-            aliases.push("Tb 02", "Tb02", "TB02", "T02");
+            aliases.push("TB02", "Tb02", "Tb 02", "T02");
         }
 
         if (normalizedName === "teamkurama") {
-            aliases.push("Tb 01", "Tb01", "TB01", "T01");
+            aliases.push("TB01", "Tb01", "Tb 01", "T01");
         }
     }
 
