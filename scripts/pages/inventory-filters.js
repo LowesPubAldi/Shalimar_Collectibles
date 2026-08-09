@@ -17,6 +17,7 @@ const DEFAULT_EDITION_OPTION = "All Editions";
 const DEFAULT_VARIANT_FOCUS_OPTION = "All Finishes";
 const DEFAULT_PRICE_STATUS_OPTION = "All Price Statuses";
 const DEFAULT_GAMEPLAY_STATUS_OPTION = "All Gameplay Statuses";
+const YYH_PROMO_FAMILY_RARITY_OPTION = "Promo Family (P/V/X/TX/SK)";
 const PRICE_STATUS_UNPRICED_OPTION = "Unpriced";
 const PRICE_STATUS_PRICED_OPTION = "Priced";
 const PRICE_STATUS_REVIEW_OPTION = "Needs Review";
@@ -209,6 +210,7 @@ const FILTER_OPTIONS_BY_GAME = {
             "TR - Tournament Rare",
             "TC - Tournament Common",
             "P - Promo",
+            YYH_PROMO_FAMILY_RARITY_OPTION,
             "TP - Tournament Promo",
             "R - Redemption (redemption card)",
             "V - Video",
@@ -483,6 +485,12 @@ function resolveSpecialImageAliases(cardRecord) {
     };
 
     if (setName === "Gateway") {
+        const gatewayTournamentMatch = cardId.match(/^(TG|TU|TS|TR|TC)(\d+)/);
+        if (gatewayTournamentMatch) {
+            const tournamentNumber = gatewayTournamentMatch[2].padStart(2, "0");
+            aliases.push(`T${tournamentNumber}`);
+        }
+
         if (cardId === "TC17" || normalizedName === "viruscarriers") {
             if (normalizedVariant === "lined") {
                 aliases.push("T17L");
@@ -507,6 +515,14 @@ function resolveSpecialImageAliases(cardRecord) {
 
         if (cardId === "TR10" || normalizedName === "minigametennis") {
             aliases.push("T10");
+        }
+
+        if (cardId === "TR11" || normalizedName === "recall") {
+            aliases.push("T11");
+        }
+
+        if (cardId === "TR12" || normalizedName === "sensuispiritdetective") {
+            aliases.push("T12");
         }
 
         const gatewayTeamBonusAlias = gatewayTeamBonusAliasByName[normalizedName] || "";
@@ -535,6 +551,10 @@ function resolveSpecialImageAliases(cardRecord) {
     }
 
     if (setName === "Betrayal") {
+        if (cardId === "TX1" || normalizedName === "grimdetermination") {
+            aliases.push("TX1");
+        }
+
         if (cardId === "TP4" || normalizedName === "hajime") {
             aliases.push("TP4");
         }
@@ -1121,8 +1141,14 @@ function filterRecords(records, filterState) {
             return false;
         }
 
-        if (filterState.rarity !== "All Rarities" && record.rarity !== filterState.rarity) {
-            return false;
+        if (filterState.rarity !== "All Rarities") {
+            if (filterState.rarity === YYH_PROMO_FAMILY_RARITY_OPTION) {
+                if (!isYyhPromoFamilyRarity(record.rarity)) {
+                    return false;
+                }
+            } else if (record.rarity !== filterState.rarity) {
+                return false;
+            }
         }
 
         if (filterState.edition !== DEFAULT_EDITION_OPTION && resolveCardEdition(record) !== filterState.edition) {
@@ -1822,7 +1848,17 @@ function getScopedRarityOptions(records, filterState, gameOptions) {
     };
     const scopedRecords = filterRecords(records, lookupState);
     const presentRarities = new Set(scopedRecords.map((record) => record.rarity));
-    const scopedOptions = baseRarities.filter((rarityOption) => rarityOption === "All Rarities" || presentRarities.has(rarityOption));
+    const scopedOptions = baseRarities.filter((rarityOption) => {
+        if (rarityOption === "All Rarities") {
+            return true;
+        }
+
+        if (rarityOption === YYH_PROMO_FAMILY_RARITY_OPTION) {
+            return scopedRecords.some((record) => isYyhPromoFamilyRarity(record.rarity));
+        }
+
+        return presentRarities.has(rarityOption);
+    });
 
     if (scopedOptions.length === 0) {
         return ["All Rarities"];
@@ -1833,6 +1869,16 @@ function getScopedRarityOptions(records, filterState, gameOptions) {
     }
 
     return scopedOptions;
+}
+
+function isYyhPromoFamilyRarity(rarityValue) {
+    const rarityLabel = String(rarityValue || "").toUpperCase();
+    const rarityPrefix = rarityLabel.split("-")[0].trim();
+    return rarityPrefix === "P"
+        || rarityPrefix === "V"
+        || rarityPrefix === "X"
+        || rarityPrefix === "TX"
+        || rarityPrefix === "SK";
 }
 
 function getScopedEditionOptions(records, filterState) {

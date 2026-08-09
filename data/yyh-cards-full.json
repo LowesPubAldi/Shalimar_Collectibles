@@ -10080,6 +10080,42 @@
     "source": "gateway-checklist.txt"
   },
   {
+    "id": "INSERT02",
+    "number": "INSERT02",
+    "game": "Yu Yu Hakusho",
+    "set": "Gateway",
+    "name": "Join A League Insert",
+    "type": "Unknown Type",
+    "rarity": "C - Common",
+    "variant": "Lined",
+    "effect": "Effect text not available in checklist source.",
+    "source": "gateway-checklist.txt"
+  },
+  {
+    "id": "INSERT02",
+    "number": "INSERT02",
+    "game": "Yu Yu Hakusho",
+    "set": "Gateway",
+    "name": "Join A League Insert",
+    "type": "Unknown Type",
+    "rarity": "C - Common",
+    "variant": "Cloudy",
+    "effect": "Effect text not available in checklist source.",
+    "source": "gateway-checklist.txt"
+  },
+  {
+    "id": "INSERT02",
+    "number": "INSERT02",
+    "game": "Yu Yu Hakusho",
+    "set": "Gateway",
+    "name": "Join A League Insert",
+    "type": "Unknown Type",
+    "rarity": "C - Common",
+    "variant": "Jagged",
+    "effect": "Effect text not available in checklist source.",
+    "source": "gateway-checklist.txt"
+  },
+  {
     "id": "R33/176",
     "number": "R33/176",
     "game": "Yu Yu Hakusho",

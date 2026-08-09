@@ -283,6 +283,12 @@ function resolveSpecialImageAliases(cardRecord) {
     };
 
     if (setName === "Gateway") {
+        const gatewayTournamentMatch = cardId.match(/^(TG|TU|TS|TR|TC)(\d+)/);
+        if (gatewayTournamentMatch) {
+            const tournamentNumber = gatewayTournamentMatch[2].padStart(2, "0");
+            aliases.push(`T${tournamentNumber}`);
+        }
+
         if (cardId === "TC17" || normalizedName === "viruscarriers") {
             if (normalizedVariant === "lined") {
                 aliases.push("T17L");
@@ -301,12 +307,24 @@ function resolveSpecialImageAliases(cardRecord) {
             aliases.push("T07");
         }
 
+        if (cardId === "TR8" || normalizedName === "minigameflightshooter") {
+            aliases.push("T08");
+        }
+
         if (cardId === "TR9" || normalizedName === "minigamemasterquiz") {
             aliases.push("T09");
         }
 
         if (cardId === "TR10" || normalizedName === "minigametennis") {
             aliases.push("T10");
+        }
+
+        if (cardId === "TR11" || normalizedName === "recall") {
+            aliases.push("T11");
+        }
+
+        if (cardId === "TR12" || normalizedName === "sensuispiritdetective") {
+            aliases.push("T12");
         }
 
         const gatewayTeamBonusAlias = gatewayTeamBonusAliasByName[normalizedName] || "";
@@ -331,6 +349,10 @@ function resolveSpecialImageAliases(cardRecord) {
     }
 
     if (setName === "Betrayal") {
+        if (cardId === "TX1" || normalizedName === "grimdetermination") {
+            aliases.push("TX1");
+        }
+
         if (cardId === "TP4" || normalizedName === "hajime") {
             aliases.push("TP4");
         }
@@ -389,8 +411,8 @@ function buildCardImageCandidates(cardRecord) {
     const primaryAlias = resolveSpecialImageAliases(cardRecord)[0] || "";
 
     const candidateNames = [
-        primaryAlias,
         primaryAlias && primaryVariantShortToken ? `${primaryAlias}${primaryVariantShortToken}` : "",
+        primaryAlias,
         paddedThreeDigitNumber,
         primaryVariantShortToken && paddedThreeDigitNumber ? `${paddedThreeDigitNumber}${primaryVariantShortToken}` : "",
         firstNumber,
