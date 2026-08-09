@@ -248,13 +248,96 @@ function resolveSpecialImageAliases(cardRecord) {
     const normalizedVariant = normalizeForSearch(cardRecord.variant).replace(/\s+/g, "");
     const aliases = [];
 
+    const gatewayTeamBonusAliasByName = {
+        teamgenkai: "TB01",
+        teamichigaki: "TB02",
+        teamkoenma: "TB03",
+        teammasho: "TB04",
+        teamrokuyukai: "TB05",
+        teamsarayashki: "TB06",
+        teamsensui: "TB07",
+        teamstbeasts: "TB08",
+        teamtoguro: "TB09",
+        teamurameshi: "TB10",
+        teamuraotogi: "TB11"
+    };
+
+    const darkTournamentTeamBonusAliasByName = {
+        teamgenkai: "TB01",
+        teamichigaki: "TB02",
+        teammasho: "TB03",
+        teamrokuyukai: "TB04",
+        teamsarayashki: "TB05",
+        teamstbeasts: "TB06",
+        teamtoguro: "TB07",
+        teamurameshi: "TB08",
+        teamuraotogi: "TB09"
+    };
+
+    const betrayalTeamBonusAliasByName = {
+        teamkuroko: "TB1",
+        teammukuro: "TB2",
+        teamraizen: "TB3",
+        teamyomi: "TB4",
+        spiritdefenseforce: "TB5"
+    };
+
     if (setName === "Gateway") {
+        if (cardId === "TC17" || normalizedName === "viruscarriers") {
+            if (normalizedVariant === "lined") {
+                aliases.push("T17L");
+            } else if (normalizedVariant === "cloudy") {
+                aliases.push("T17C");
+            } else if (normalizedVariant === "jagged") {
+                aliases.push("T17J");
+            } else if (normalizedVariant === "doublerainbow") {
+                aliases.push("T17DR");
+            } else {
+                aliases.push("T17");
+            }
+        }
+
+        if (cardId === "TR7" || normalizedName === "gamebattler") {
+            aliases.push("T07");
+        }
+
+        if (cardId === "TR9" || normalizedName === "minigamemasterquiz") {
+            aliases.push("T09");
+        }
+
+        if (cardId === "TR10" || normalizedName === "minigametennis") {
+            aliases.push("T10");
+        }
+
+        const gatewayTeamBonusAlias = gatewayTeamBonusAliasByName[normalizedName] || "";
+        if (gatewayTeamBonusAlias) {
+            aliases.push(gatewayTeamBonusAlias);
+        }
+
         if (cardId === "C35" || normalizedName === "hieiinsert") {
             aliases.push("Insert01");
         }
 
         if (normalizedName === "joinaleagueinsert") {
             aliases.push("Insert02");
+        }
+    }
+
+    if (setName === "Dark Tournament") {
+        const darkTournamentTeamBonusAlias = darkTournamentTeamBonusAliasByName[normalizedName] || "";
+        if (darkTournamentTeamBonusAlias) {
+            aliases.push(darkTournamentTeamBonusAlias);
+        }
+    }
+
+    if (setName === "Betrayal") {
+        if (cardId === "TP4" || normalizedName === "hajime") {
+            aliases.push("TP4");
+        }
+
+        const betrayalTeamBonusAlias = betrayalTeamBonusAliasByName[normalizedName] || "";
+        if (betrayalTeamBonusAlias) {
+            aliases.push(betrayalTeamBonusAlias);
         }
     }
 
@@ -267,6 +350,22 @@ function resolveSpecialImageAliases(cardRecord) {
             aliases.push("018");
         } else if (normalizedVariant === "bottomright") {
             aliases.push("019");
+        }
+    }
+
+    if (setName === "Alliance") {
+        if (normalizedName === "raizensalliance") {
+            aliases.push("Tb 02", "Tb02", "TB02", "T02");
+        }
+
+        if (normalizedName === "teamkurama") {
+            aliases.push("Tb 01", "Tb01", "TB01", "T01");
+        }
+    }
+
+    if (setName === "Exile") {
+        if (cardId === "TP3" || normalizedName === "theend") {
+            aliases.push("TP3");
         }
     }
 

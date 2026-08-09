@@ -29,7 +29,8 @@ const PRICE_STATUS_OPTIONS = [
 const GAMEPLAY_STATUS_OPTIONS = [
     DEFAULT_GAMEPLAY_STATUS_OPTION,
     "Banned",
-    "Limit 1 per Deck"
+    "Limit 1 per Deck",
+    "Limit 2 per Deck"
 ];
 const EDITION_UNLIMITED_OPTION = "Unlimited / Not Marked";
 const EDITION_FIRST_OPTION = "1st Edition";
@@ -71,7 +72,6 @@ const YYH_GAMEPLAY_STATUS_BY_CARD = {
     "malefic grenade||exile": "Limit 1 per Deck",
     "malevolent influence||exile": "Limit 1 per Deck",
     "mini game, flight shooter||gateway": "Limit 1 per Deck",
-    "mukuro's unforgiving glare||exile": "Limit 1 per Deck",
     "overpowered||ghost files": "Limit 1 per Deck",
     "overwhelming odds||betrayal": "Limit 1 per Deck",
     "reckless charge||exile": "Limit 1 per Deck",
@@ -81,8 +81,59 @@ const YYH_GAMEPLAY_STATUS_BY_CARD = {
     "scatter shot||exile": "Limit 1 per Deck",
     "take me!||exile": "Limit 1 per Deck",
     "team raizen's support||exile": "Limit 1 per Deck",
+    "together until the end of time||dark tournament": "Limit 1 per Deck",
     "unconsious||ghost files": "Limit 1 per Deck",
-    "yusuke's fury||betrayal": "Limit 1 per Deck"
+    "yusuke's fury||betrayal": "Limit 1 per Deck",
+    "recuperation||ghost files": "Limit 1 per Deck",
+    "recuperation||betrayal": "Limit 1 per Deck",
+    "burst of power||ghost files": "Limit 1 per Deck",
+    "burst of power||dark tournament": "Limit 1 per Deck",
+    "forlorn hope||dark tournament": "Limit 1 per Deck",
+    "allied forces||dark tournament": "Limit 1 per Deck",
+    "ooops||dark tournament": "Limit 1 per Deck",
+    "ooops!||dark tournament": "Limit 1 per Deck",
+    "genkai's hat||dark tournament": "Limit 1 per Deck",
+    "mini game, action battle||gateway": "Limit 1 per Deck",
+    "invasion||gateway": "Limit 1 per Deck",
+    "yusuke's tainted glare||gateway": "Limit 1 per Deck",
+    "hiei's tainted glare||gateway": "Limit 1 per Deck",
+    "kurama's tainted glare||gateway": "Limit 1 per Deck",
+    "kuwabara's tainted glare||gateway": "Limit 1 per Deck",
+    "mad bomb||gateway": "Limit 1 per Deck",
+    "in shadow||exile": "Limit 1 per Deck",
+    "yusuke's altar||exile": "Limit 1 per Deck",
+    "grand entrance||exile": "Limit 1 per Deck",
+    "unknown allies||exile": "Limit 1 per Deck",
+    "bizarre!||exile": "Limit 1 per Deck",
+    "dark artifacts||exile": "Limit 1 per Deck",
+    "magical drink||exile": "Limit 1 per Deck",
+    "the end||exile": "Limit 1 per Deck",
+    "villainous energy||exile": "Limit 1 per Deck",
+    "grudge match||betrayal": "Limit 1 per Deck",
+    "quick freeze||alliance": "Limit 1 per Deck",
+    "double block||gateway": "Limit 1 per Deck",
+    "virus carriers||gateway": "Limit 1 per Deck",
+    "stand off||dark tournament": "Limit 2 per Deck",
+    "freak show||dark tournament": "Limit 2 per Deck"
+};
+const YYH_LIMIT_ONE_EXCLUSION_LOOKUP = {
+    "molotov cocktail||alliance": true,
+    "kaitou's rules||alliance": true,
+    "bond of friends||betrayal": true,
+    "bond of friends||dark tournament": true,
+    "jin, the wind master||betrayal": true,
+    "koto, the mc||betrayal": true,
+    "mother's tears||betrayal": true,
+    "determination||dark tournament": true,
+    "ace of spades||dark tournament": true,
+    "genkai, young fighter||dark tournament": true,
+    "flee the arena||dark tournament": true,
+    "mukuro's unforgiving glare||exile": true,
+    "kuroko, former spirit detective||exile": true,
+    "kuwabara, righteous warrior||gateway": true,
+    "surprised?||gateway": true,
+    "sayaka, the investigator||gateway": true,
+    "game battler||gateway": true
 };
 let fallbackDataCache = null;
 let pricingDataCache = new Map();
@@ -258,6 +309,17 @@ function normalizeGameplayLookupValue(value) {
         .toLowerCase();
 }
 
+function hasLimitOnePerDeckText(effectText) {
+    const normalizedEffect = normalizeForSearch(effectText);
+    if (!normalizedEffect) {
+        return false;
+    }
+
+    // Handles common OCR/typing variants such as "limt 1 per deck" and "limit 1 deck".
+    return /\blim(?:it|t)\s+1\s+per\s+deck\b/.test(normalizedEffect)
+        || /\blim(?:it|t)\s+1\s+deck\b/.test(normalizedEffect);
+}
+
 function getGameplayStatus(cardRecord) {
     if (normalizeGameplayLookupValue(cardRecord.game) !== "yu yu hakusho") {
         return "";
@@ -266,8 +328,22 @@ function getGameplayStatus(cardRecord) {
     const lookupKey = [cardRecord.name, cardRecord.set]
         .map(normalizeGameplayLookupValue)
         .join("||");
+    const isLimitOneExclusion = Boolean(YYH_LIMIT_ONE_EXCLUSION_LOOKUP[lookupKey]);
 
-    return YYH_GAMEPLAY_STATUS_BY_CARD[lookupKey] || "";
+    const explicitStatus = YYH_GAMEPLAY_STATUS_BY_CARD[lookupKey] || "";
+    if (explicitStatus === "Limit 1 per Deck" && isLimitOneExclusion) {
+        return "";
+    }
+
+    if (explicitStatus) {
+        return explicitStatus;
+    }
+
+    if (isLimitOneExclusion) {
+        return "";
+    }
+
+    return "";
 }
 
 function isLikelyCardNumberQuery(value) {
@@ -369,9 +445,75 @@ function resolveSpecialImageAliases(cardRecord) {
     const setName = String(cardRecord.set || "").trim();
     const cardId = String(cardRecord.id || cardRecord.number || "").trim().toUpperCase();
     const normalizedName = normalizeForSearch(cardRecord.name).replace(/\s+/g, "");
+    const normalizedVariant = normalizeForSearch(cardRecord.variant).replace(/\s+/g, "");
     const aliases = [];
 
+    const gatewayTeamBonusAliasByName = {
+        teamgenkai: "TB01",
+        teamichigaki: "TB02",
+        teamkoenma: "TB03",
+        teammasho: "TB04",
+        teamrokuyukai: "TB05",
+        teamsarayashki: "TB06",
+        teamsensui: "TB07",
+        teamstbeasts: "TB08",
+        teamtoguro: "TB09",
+        teamurameshi: "TB10",
+        teamuraotogi: "TB11"
+    };
+
+    const darkTournamentTeamBonusAliasByName = {
+        teamgenkai: "TB01",
+        teamichigaki: "TB02",
+        teammasho: "TB03",
+        teamrokuyukai: "TB04",
+        teamsarayashki: "TB05",
+        teamstbeasts: "TB06",
+        teamtoguro: "TB07",
+        teamurameshi: "TB08",
+        teamuraotogi: "TB09"
+    };
+
+    const betrayalTeamBonusAliasByName = {
+        teamkuroko: "TB1",
+        teammukuro: "TB2",
+        teamraizen: "TB3",
+        teamyomi: "TB4",
+        spiritdefenseforce: "TB5"
+    };
+
     if (setName === "Gateway") {
+        if (cardId === "TC17" || normalizedName === "viruscarriers") {
+            if (normalizedVariant === "lined") {
+                aliases.push("T17L");
+            } else if (normalizedVariant === "cloudy") {
+                aliases.push("T17C");
+            } else if (normalizedVariant === "jagged") {
+                aliases.push("T17J");
+            } else if (normalizedVariant === "doublerainbow") {
+                aliases.push("T17DR");
+            } else {
+                aliases.push("T17");
+            }
+        }
+
+        if (cardId === "TR7" || normalizedName === "gamebattler") {
+            aliases.push("T07");
+        }
+
+        if (cardId === "TR9" || normalizedName === "minigamemasterquiz") {
+            aliases.push("T09");
+        }
+
+        if (cardId === "TR10" || normalizedName === "minigametennis") {
+            aliases.push("T10");
+        }
+
+        const gatewayTeamBonusAlias = gatewayTeamBonusAliasByName[normalizedName] || "";
+        if (gatewayTeamBonusAlias) {
+            aliases.push(gatewayTeamBonusAlias);
+        }
+
         if (cardId === "C35" || normalizedName === "hieiinsert") {
             aliases.push("Insert01");
         }
@@ -382,6 +524,40 @@ function resolveSpecialImageAliases(cardRecord) {
 
         if (cardId === "TR8" || normalizedName === "minigameflightshooter") {
             aliases.push("T08");
+        }
+    }
+
+    if (setName === "Dark Tournament") {
+        const darkTournamentTeamBonusAlias = darkTournamentTeamBonusAliasByName[normalizedName] || "";
+        if (darkTournamentTeamBonusAlias) {
+            aliases.push(darkTournamentTeamBonusAlias);
+        }
+    }
+
+    if (setName === "Betrayal") {
+        if (cardId === "TP4" || normalizedName === "hajime") {
+            aliases.push("TP4");
+        }
+
+        const betrayalTeamBonusAlias = betrayalTeamBonusAliasByName[normalizedName] || "";
+        if (betrayalTeamBonusAlias) {
+            aliases.push(betrayalTeamBonusAlias);
+        }
+    }
+
+    if (setName === "Alliance") {
+        if (normalizedName === "raizensalliance") {
+            aliases.push("Tb 02", "Tb02", "TB02", "T02");
+        }
+
+        if (normalizedName === "teamkurama") {
+            aliases.push("Tb 01", "Tb01", "TB01", "T01");
+        }
+    }
+
+    if (setName === "Exile") {
+        if (cardId === "TP3" || normalizedName === "theend") {
+            aliases.push("TP3");
         }
     }
 
@@ -767,8 +943,14 @@ function makeInventoryCard(cardRecord, collisionCountMap, variantFamilyCountMap,
     const priceStatus = cardRecord.priceStatus || PRICE_STATUS_UNPRICED_OPTION;
     const cardPageUrl = buildCardPageUrl(cardRecord);
     const gameplayStatus = getGameplayStatus(cardRecord);
+    const gameplayClass = gameplayStatus === "Banned" ? "banned" : "limited";
+    const gameplayBadgeText = gameplayStatus === "Banned"
+        ? "B"
+        : gameplayStatus === "Limit 2 per Deck"
+            ? "2"
+            : "1";
     const gameplayChipMarkup = gameplayStatus
-        ? `<span class="inventory-card__gameplay-chip inventory-card__gameplay-chip--${escapeHtml(gameplayStatus === "Banned" ? "banned" : "limited")}" data-gameplay-status="Gameplay Status: ${escapeHtml(gameplayStatus)}" title="Gameplay Status: ${escapeHtml(gameplayStatus)}" aria-label="Gameplay status ${escapeHtml(gameplayStatus)}">${escapeHtml(gameplayStatus === "Banned" ? "Banned" : "Limit 1")}</span>`
+        ? `<span class="inventory-card__gameplay-chip inventory-card__gameplay-chip--${escapeHtml(gameplayClass)}" data-gameplay-status="Gameplay Status: ${escapeHtml(gameplayStatus)}" title="Gameplay Status: ${escapeHtml(gameplayStatus)}" aria-label="Gameplay status ${escapeHtml(gameplayStatus)}">${escapeHtml(gameplayBadgeText)}</span>`
         : "";
 
     return `
@@ -855,7 +1037,8 @@ function normalizeCardRecord(card) {
         type: resolveFirstNonEmpty(card.type, card.cardType, card.kind) || "Unknown Type",
         rarity: resolveFirstNonEmpty(card.rarity, card.rarityCode, card.rarity_name) || "Unknown Rarity",
         variant,
-        edition: resolveFirstNonEmpty(card.edition, card.printing)
+        edition: resolveFirstNonEmpty(card.edition, card.printing),
+        effect: resolveFirstNonEmpty(card.effect, card.text, card.notes)
     };
 }
 
@@ -1703,6 +1886,39 @@ function getVariantSortRank(variant) {
     return 2;
 }
 
+function isYyhCardRecord(cardRecord) {
+    return normalizeGameplayLookupValue(cardRecord?.game) === "yu yu hakusho";
+}
+
+function getYyhRarityChecklistRank(cardRecord) {
+    const rarityLabel = String(cardRecord?.rarity || "").toUpperCase();
+    const rarityPrefix = rarityLabel.split("-")[0].trim();
+    const rankByPrefix = {
+        G: 0,
+        U: 1,
+        S: 2,
+        R: 3,
+        C: 4,
+        TG: 5,
+        TU: 6,
+        TS: 7,
+        TR: 8,
+        TC: 9,
+        P: 10,
+        V: 11,
+        X: 12,
+        TX: 13,
+        SK: 14,
+        ST: 15
+    };
+
+    if (Object.prototype.hasOwnProperty.call(rankByPrefix, rarityPrefix)) {
+        return rankByPrefix[rarityPrefix];
+    }
+
+    return 99;
+}
+
 function compareCardNumberOrder(a, b, direction = 1) {
     const aParts = parseCardIdParts(a);
     const bParts = parseCardIdParts(b);
@@ -1710,6 +1926,14 @@ function compareCardNumberOrder(a, b, direction = 1) {
     const setCompare = a.set.localeCompare(b.set);
     if (setCompare !== 0) {
         return setCompare;
+    }
+
+    // YYH checklist order is rarity-bucket-first inside each set.
+    if (isYyhCardRecord(a) && isYyhCardRecord(b)) {
+        const rarityRankCompare = getYyhRarityChecklistRank(a) - getYyhRarityChecklistRank(b);
+        if (rarityRankCompare !== 0) {
+            return rarityRankCompare * direction;
+        }
     }
 
     const prefixCompare = aParts.prefix.localeCompare(bParts.prefix);

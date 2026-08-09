@@ -58,6 +58,89 @@ Carry-forward items after v1 launch:
 - Optional hardening: replace external Alliance pack image with a stable local hosted asset
 - Continue eBay endpoint resilience and user-facing fallback copy tuning
 
+Possible V1 follow-up items after source database review:
+- A few edge-case collector notes and historical corrections, especially for uncommon card text or set annotations
+- Uncut sheet and production-sheet documentation for select sets and rarities
+- A small number of rare promo / foil confirmation gaps where the source site still flags unknowns
+- Any remaining card-name, set-name, or rarity normalization issues discovered during feedback review
+- Data completeness for archival collector context, excluding gameplay, message boards, and Universus coverage
+
+## Authoritative Team Bonus + Insert Reference (2026-08-09)
+
+This section captures the current source-of-truth details you provided for Team Bonus text and insert coverage targets.
+
+### Team Bonus Text
+
+- Team Urameshi: Gain 1 extra Spirit Energy during your Draw Step. When you pay the Attack Cost of an attack, the cards you discard are put at the bottom of your Deck in any order instead of being discarded.
+- Team Saint Beasts: At the end of your turn, draw a card.
+- Team Toguro: When you use an attack, you may discard up to 2 cards from your hand. That attack gains +3000 Attack Value for this turn for each card discarded in this way.
+- Team Masho: During Setup, after both you and your opponent reveal your 4 starting characters and you show that you have the Masho Team Bonus, search your Deck for a 5th character and reveal it. Put all 5 characters into your hand. Choose 1 of your 5 characters and put it into the Arena face-up and the other 4 facedown in the Match Slots of your choosing. Your characters only flip face-up when a card affects them, or when they enter the Arena. If you qualify for the Team Bonus after the game has started, then you just turn your characters facedown, without rearranging them.
+- Team Rokuyukai: Your characters with the Rokuyukai Team Symbol gain +2000 Defense Value.
+- Team Ichigaki: Cards attached to your opponent's characters on the Sideline are face-up instead of facedown.
+- Team Uraotogi: Your opponent cannot discard below 1 card in his hand when he pays for Attack Cost. Your opponent cannot draw cards while he has 6 or more cards in his hand.
+- Team Genkai: When 1 of your characters with the Genkai Team Symbol enters the Arena, you may search your Deck for a technique and put it in your hand.
+- Team Sarayashki: Once per turn, you may discard 1 of your face-up items in play and pay 1 Spirit Energy to search through your Deck for an item and put it in your hand.
+- Team Sensui: All of your characters with the Sensui Team Symbol are both Heroes and Villains for your card effects.
+- Team Koenma: When your opponent attacks one of your characters with the Koenma Team Symbol, discard the top two cards of your Deck. For each event discarded this way, your opponent's attacks gain -2000 Attack Value to a minimum of 0 Attack Value for this attack.
+- Team Mukuro: When your fighter deals damage to an opposing character, discard the top two cards of that player's Deck for each point of damage dealt.
+- Spirit Defense Force: All attacks used by your characters with the Spirit Defense Force Team Symbol gain +1000 Attack Value for each villain your opponent has in play.
+- Team Kuroko: You may use the face-up attacks on any of your characters in play. All of your attacks used by characters that do not have the Kuroko Team Symbol gain +1 Attack Cost.
+- Team Raizen: All of your Team Leaders gain +2000 Attack Value, and +2000 Defense Value.
+- Team Yomi: Once per turn, you can pay 2 Spirit Energy to play a card from your opponent's Discard Pile as if it were in your hand. If you do, shuffle that card into your opponent's deck when it gets discarded from play.
+- Team Kurama: The number of Team Symbols you require to gain a Team Bonus is reduced by 1.
+- Raizen's Alliance: Events you play with a Spirit Energy of 1 or more gain -1 Spirit Energy to a minimum of 1.
+
+### Insert Checklist Targets By Set
+
+Ghost Files Insert (Pre-Release Cards):
+- [ ] Origins Card Insert
+
+Dark Tournament Inserts:
+- [ ] Team Genkai
+- [ ] Team Ichigaki
+- [ ] Team Masho
+- [ ] Team Rokuyukai
+- [ ] Team Sarayashki
+- [ ] Team St. Beasts
+- [ ] Team Toguro
+- [ ] Team Urameshi
+- [ ] Team Uraotogi
+
+Gateway Inserts:
+- [ ] Team Genkai (Single Rainbow)
+- [ ] Team Genkai (Double Rainbow)
+- [ ] Team Ichigaki (Single Rainbow)
+- [ ] Team Ichigaki (Double Rainbow)
+- [ ] Team Koenma (Single Rainbow)
+- [ ] Team Koenma (Double Rainbow)
+- [ ] Team Masho (Single Rainbow)
+- [ ] Team Masho (Double Rainbow)
+- [ ] Team Rokuyukai (Single Rainbow)
+- [ ] Team Rokuyukai (Double Rainbow)
+- [ ] Team Sarayashki (Single Rainbow)
+- [ ] Team Sarayashki (Double Rainbow)
+- [ ] Team Sensui (Single Rainbow)
+- [ ] Team Sensui (Double Rainbow)
+- [ ] Team St. Beasts (Single Rainbow)
+- [ ] Team St. Beasts (Double Rainbow)
+- [ ] Team Toguro (Single Rainbow)
+- [ ] Team Toguro (Double Rainbow)
+- [ ] Team Uraotogi (Single Rainbow)
+- [ ] Team Uraotogi (Double Rainbow)
+- [ ] Team Urameshi (Single Rainbow)
+- [ ] Team Urameshi (Double Rainbow)
+
+Betrayal Inserts:
+- [ ] Team Kuroko
+- [ ] Team Mukuro
+- [ ] Team Raizen
+- [ ] Team Yomi
+- [ ] Spirit Defense Force
+
+Alliance Inserts:
+- [ ] Raizen's Alliance
+- [ ] Team Kurama
+
 ## Roadmap
 
 This is the clean version of the roadmap so it is easier to follow.
