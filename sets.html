@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shalimar Collectibles | Sets</title>
-    <link rel="stylesheet" href="styles/base.css?v=1">
-    <link rel="stylesheet" href="styles/components/nav.css?v=1">
-    <link rel="stylesheet" href="styles/components/footer.css?v=1">
-    <link rel="stylesheet" href="styles/pages/sets.css?v=4">
+    <link rel="stylesheet" href="styles/base.css?v=2">
+    <link rel="stylesheet" href="styles/components/nav.css?v=2">
+    <link rel="stylesheet" href="styles/components/footer.css?v=2">
+    <link rel="stylesheet" href="styles/pages/sets.css?v=9">
     <script src="scripts/components/mobile-nav.js?v=1" defer></script>
-    <script src="scripts/pages/sets.js?v=7" defer></script>
+    <script src="scripts/pages/sets.js?v=11" defer></script>
 </head>
 <body>
     <header class="header">
@@ -44,24 +44,24 @@
     <main class="main">
         <section class="sets-hero" aria-label="Sets overview">
             <div class="sets-hero__content">
-                <p class="sets-hero__eyebrow">YYH Sets</p>
-                <h1>Yu Yu Hakusho set list is now API-driven.</h1>
+                <p class="sets-hero__eyebrow">Yu-Gi-Oh Sets</p>
+                <h1>Browse the Yu-Gi-Oh set archive.</h1>
                 <p>
-                    This page reads set information directly from the backend endpoint, then links each set
-                    into a prefiltered Inventory view so you can inspect cards quickly.
+                    This page pulls the live set list from YGOPRODeck, then links each entry into a prefiltered
+                    Inventory view so you can inspect cards by set quickly.
                 </p>
             </div>
             <div class="sets-hero__media" aria-hidden="true">
-                <img src="assets/yyh-source/yu-yu-hakusho1.jpg" alt="" />
+                <img src="https://storefronts-assets.tcgplayer.com/media/b98ce717-bfc5-4519-9db6-2bc4bf7b3d13/37249d12-6bdf-4ce0-98ce-a4a47cb8626f/yugioh-banner@2x.jpg" alt="Yu-Gi-Oh banner" />
             </div>
         </section>
 
-        <section class="sets-shell" aria-label="Yu Yu Hakusho set directory">
+        <section class="sets-shell" aria-label="Yu-Gi-Oh set directory">
             <div class="sets-head">
                 <div class="sets-head__title">
                     <h2>Set Directory</h2>
-                    <p class="sets-note">BB = Booster Box</p>
-                    <p class="sets-note">Lower/mid end if damaged, mid/higher end if mint.</p>
+                    <p class="sets-note">Organized by anime era and series association.</p>
+                    <p class="sets-note">Live set counts and print totals stay connected to the YGOPRODeck feed.</p>
                 </div>
                 <div class="sets-head__controls">
                     <p class="sets-meta" id="sets-meta">Loading set summary...</p>
@@ -76,15 +76,17 @@
                     </label>
                 </div>
             </div>
+            <div class="sets-category-filters" id="sets-category-filters" aria-label="Filter set categories"></div>
             <section class="sets-grid" id="sets-grid" aria-label="Set list results"></section>
         </section>
+
     </main>
 
     <footer class="site-footer site-footer--yyh" aria-label="Site footer">
         <div class="site-footer__inner">
             <p class="site-footer__brand">Shalimar Collectibles</p>
-            <p class="site-footer__meta">YYH set discovery powered by live API routes.</p>
-            <p class="site-footer__yyh-credit">YYH data credit: inviso (Mike), Yu Yu Hakusho TCG Database.</p>
+            <p class="site-footer__meta">Yu-Gi-Oh set discovery powered by the live YGOPRODeck set feed.</p>
+            <p class="site-footer__yyh-credit">Data credit: YGOPRODeck API.</p>
             <p class="site-footer__copyright">&copy; 2026 Shalimar Collectibles. All rights reserved.</p>
             <nav class="site-footer__nav" aria-label="Footer navigation">
                 <a href="contributors.html">Contributors</a>
