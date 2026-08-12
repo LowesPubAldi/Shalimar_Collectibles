@@ -19,6 +19,10 @@
                 class="logo"
                 />
                 </a>
+            <div class="game-mode-controls">
+                <button class="game-mode-switch" id="homeGameModeSwitch" type="button" hidden>Switch Game</button>
+                <span class="game-mode-badge" id="homeGameModeBadge" hidden></span>
+            </div>
             <button
                 class="mobile-nav-toggle"
                 id="mobileNavToggle"
@@ -44,6 +48,18 @@
     </header>
 <main>
     <section class="hero" id="hero">
+        <div class="game-mode-modal" id="gameModeModal" role="dialog" aria-modal="true" aria-labelledby="gameModeModalTitle" aria-describedby="gameModeModalDescription">
+            <div class="game-mode-modal__panel">
+                <p class="game-mode-modal__eyebrow">Choose Your Game Mode</p>
+                <h2 class="game-mode-modal__title" id="gameModeModalTitle">Select Your TCG Focus</h2>
+                <p class="game-mode-modal__description" id="gameModeModalDescription">Pick a game to tailor nav links, spotlight cards, and home lane content.</p>
+                <div class="game-mode-modal__options">
+                    <button class="game-mode-modal__option" type="button" data-game-mode="yyh">Yu Yu Hakusho</button>
+                    <button class="game-mode-modal__option" type="button" data-game-mode="ygo">Yu-Gi-Oh</button>
+                    <button class="game-mode-modal__option" type="button" data-game-mode="pokemon">Pokemon</button>
+                </div>
+            </div>
+        </div>
         <div class="hero__content">
             <h1>Find Your Next Card</h1>
             <p>Search Pokemon, Yu-Gi-Oh, and Yu Yu Hakusho cards from one growing card platform.</p>
@@ -90,7 +106,7 @@
     </section>
 
     <section class="game-lanes" id="game-lanes" aria-label="Game sections">
-        <article class="game-lane">
+        <article class="game-lane game-lane--pokemon" data-game-mode="pokemon">
             <div class="game-lane__placeholder" aria-hidden="true">
                 <span class="game-lane__chip"></span>
                 <span class="game-lane__line game-lane__line--short"></span>
@@ -122,11 +138,9 @@
             </select>
         </article>
 
-        <article class="game-lane">
-            <div class="game-lane__placeholder" aria-hidden="true">
-                <span class="game-lane__chip"></span>
-                <span class="game-lane__line game-lane__line--short"></span>
-                <span class="game-lane__line"></span>
+        <article class="game-lane game-lane--ygo" data-game-mode="ygo">
+            <div class="game-lane__placeholder game-lane__placeholder--image" aria-hidden="true">
+                <img src="https://storefronts-assets.tcgplayer.com/media/b98ce717-bfc5-4519-9db6-2bc4bf7b3d13/37249d12-6bdf-4ce0-98ce-a4a47cb8626f/yugioh-banner@2x.jpg" alt="" class="game-lane__placeholder-image" />
             </div>
             <h3 class="game-lane__title">Yu-Gi-Oh</h3>
             <label class="game-lane__set-label" for="yugioh-set-select">Sets</label>
@@ -141,7 +155,7 @@
             </select>
         </article>
 
-        <article class="game-lane game-lane--yyh">
+        <article class="game-lane game-lane--yyh" data-game-mode="yyh">
             <div class="game-lane__placeholder game-lane__placeholder--image" aria-hidden="true">
                 <img src="assets/yyh-source/yu-yu-hakusho1.jpg" alt="" class="game-lane__placeholder-image" />
             </div>

@@ -149,6 +149,13 @@ This is the clean version of the roadmap so it is easier to follow.
 
 Version 2 is the next big step. The goal is to make the site more useful and more reliable before moving to community features.
 
+#### Pokemon Rollout Note (Format-First)
+
+- Pokemon will follow a different rollout pattern based on actual gameplay format structure.
+- Phase 1: start with the currently relevant format window (the most recent playable set range first).
+- Phase 2: backfill older pre-window sets in small batches, one to two sets at a time.
+- This keeps gameplay relevance high first, then expands archival depth in controlled steps.
+
 #### V2 Footholds Already Established
 
 - Reusable card-variant logic now supports tiered finish presentation, making future variant UX extension lower risk.

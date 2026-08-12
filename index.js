@@ -169,19 +169,365 @@ const SPOTLIGHT_DISPLAY_NAME_OVERRIDES = {
 	"yu yu hakusho::chu": "Chu Drunken Master"
 };
 
+const YGO_SPOTLIGHT_NAME_ALIASES = {
+	"frost flame dragon": ["Frost and Flame Dragon"]
+};
+
+const YGO_SPOTLIGHT_RIVAL_MATCHUPS = {
+	"yu gi oh::blue eyes white dragon": {
+		card: "Dark Magician",
+		person: "Associated: Yugi Muto"
+	},
+	"yu gi oh::dark magician girl": {
+		card: "Gellenduo",
+		person: "Associated: Fairy Counterplay"
+	},
+	"yu gi oh::noble knight artorigus": {
+		card: "Naturia Beast",
+		person: "Associated: Anti-Spell Pressure"
+	},
+	"yu gi oh::black rose dragon": {
+		card: "Ash Blossom & Joyous Spring",
+		person: "Associated: Hand Trap Presence"
+	},
+	"yu gi oh::stardust dragon": {
+		card: "Red Dragon Archfiend",
+		person: "Associated: Jack Atlas"
+	},
+	"yu gi oh::frost flame dragon": {
+		card: "Cyber Dragon",
+		person: "Associated: Zane Truesdale"
+	},
+	"yu gi oh::elemental hero neos": {
+		card: "Elemental HERO Stratos",
+		person: "Associated: Jaden Yuki"
+	},
+	"yu gi oh::number 39 utopia": {
+		card: "Galaxy-Eyes Photon Dragon",
+		person: "Associated: Kite Tenjo"
+	},
+	"yu gi oh::u a midfielder": {
+		card: "U.A. Perfect Ace",
+		person: "Associated: Tetsu Trudge"
+	},
+	"yu gi oh::pumpking the king of ghosts": {
+		card: "Evilswarm Ophion",
+		person: "Associated: Lockdown Pressure"
+	},
+	"yu gi oh::odd eyes pendulum dragon": {
+		card: "Token Thanksgiving",
+		person: "Associated: Side Deck Chaos"
+	},
+	"yu gi oh::santa claws": {
+		card: "Ghost Reaper & Winter Cherries",
+		person: "Associated: Winter Endgame"
+	}
+};
+
+const YGO_ACTIVE_PANEL_THIRD_SPOTLIGHTS = {
+	0: {
+		card: "Red-Eyes Black Dragon",
+		person: "Associated: Joey Wheeler"
+	},
+	5: {
+		card: "Red-Eyes Darkness Dragon",
+		person: "Associated: Atticus Rhodes"
+	},
+	6: {
+		card: "Destiny HERO - Plasma",
+		person: "Associated: Aster Phoenix"
+	},
+	9: {
+		card: "Ghostrick Lantern",
+		person: "Associated: Halloween Spirit"
+	}
+};
+
 let spotlightViewerElements = null;
+const ygoSpotlightThumbCache = new Map();
 const HOME_SEARCH_FALLBACK_DATA_URLS = [
 	"data/yyh-cards-full.json",
 	"data/yyh-cards.json",
 	"data/yyh-cards-slice.json"
 ];
 let homeSearchFallbackDataPromise = null;
+const HOME_GAME_MODE_STORAGE_KEY = "home_game_mode";
+const HOME_GAME_MODES = {
+	yyh: {
+		key: "yyh",
+		name: "Yu Yu Hakusho",
+		searchGame: "Yu Yu Hakusho",
+		featureLabel: "Kings",
+		featureHref: "kings.html",
+		heroDescription: "Search Yu Yu Hakusho cards from one growing card platform.",
+		spotlightGame: "Yu Yu Hakusho"
+	},
+	ygo: {
+		key: "ygo",
+		name: "Yu-Gi-Oh",
+		searchGame: "Yu-Gi-Oh",
+		featureLabel: "Win Cons",
+		featureHref: "kings.html?game=Yu-Gi-Oh&mode=wincons",
+		heroDescription: "Search Yu-Gi-Oh cards from one growing card platform.",
+		spotlightGame: "Yu-Gi-Oh"
+	},
+	pokemon: {
+		key: "pokemon",
+		name: "Pokemon",
+		searchGame: "Pokemon",
+		featureLabel: "Starters",
+		featureHref: "kings.html?game=Pokemon&mode=starters",
+		heroDescription: "Search Pokemon cards from one growing card platform.",
+		spotlightGame: "Pokemon"
+	}
+};
+let activeHomeGameMode = null;
+let rerenderSeasonTheme = null;
+let laneSwapAnimationTimer = null;
 
 function normalizeForSearch(value) {
 	return String(value || "")
 		.toLowerCase()
 		.replace(/[^a-z0-9]+/g, " ")
 		.trim();
+}
+
+function getHomeGameModeConfig(modeKey) {
+	return HOME_GAME_MODES[modeKey] || null;
+}
+
+function getSavedHomeGameMode() {
+	try {
+		const raw = localStorage.getItem(HOME_GAME_MODE_STORAGE_KEY) || "";
+		return getHomeGameModeConfig(raw) ? raw : "";
+	} catch {
+		return "";
+	}
+}
+
+function setSavedHomeGameMode(modeKey) {
+	try {
+		localStorage.setItem(HOME_GAME_MODE_STORAGE_KEY, modeKey);
+	} catch {
+		// Ignore storage errors to keep home usable in restricted contexts.
+	}
+}
+
+function buildGameScopedUrl(path, gameName) {
+	const destination = new URL(path, window.location.href);
+	if (gameName) {
+		destination.searchParams.set("game", gameName);
+	}
+
+	return `${destination.pathname}${destination.search}${destination.hash}`;
+}
+
+function updateNavLinkSet(container, modeConfig) {
+	if (!(container instanceof HTMLElement) || !modeConfig) {
+		return;
+	}
+
+	const links = Array.from(container.querySelectorAll("a"));
+	if (links.length < 4) {
+		return;
+	}
+
+	const inventoryLink = links[1] || null;
+	const setsLink = links[2] || null;
+	const featureLink = links[3] || null;
+
+	if (inventoryLink) {
+		inventoryLink.href = buildGameScopedUrl("inventory.html", modeConfig.searchGame);
+	}
+
+	if (setsLink) {
+		setsLink.href = buildGameScopedUrl("sets.html", modeConfig.searchGame);
+	}
+
+	if (featureLink) {
+		featureLink.textContent = modeConfig.featureLabel;
+		featureLink.href = modeConfig.featureHref;
+	}
+}
+
+function syncGameModeSwitchVisibility() {
+	const switchButton = document.getElementById("homeGameModeSwitch");
+	const modeBadge = document.getElementById("homeGameModeBadge");
+	if (!(switchButton instanceof HTMLButtonElement)) {
+		return;
+	}
+
+	const hasSelectedMode = Boolean(getHomeGameModeConfig(activeHomeGameMode || ""));
+	switchButton.hidden = !hasSelectedMode;
+	if (modeBadge instanceof HTMLElement) {
+		modeBadge.hidden = !hasSelectedMode;
+	}
+}
+
+function updateHomeGameModeBadge(modeConfig) {
+	const modeBadge = document.getElementById("homeGameModeBadge");
+	if (!(modeBadge instanceof HTMLElement)) {
+		return;
+	}
+
+	modeBadge.textContent = modeConfig ? `${modeConfig.name} Mode` : "";
+}
+
+function animateActiveGameLane(modeKey) {
+	const lane = document.querySelector(`.game-lane[data-game-mode="${modeKey}"]`);
+	if (!(lane instanceof HTMLElement)) {
+		return;
+	}
+
+	if (laneSwapAnimationTimer) {
+		clearTimeout(laneSwapAnimationTimer);
+		laneSwapAnimationTimer = null;
+	}
+
+	lane.classList.remove("is-mode-active");
+	void lane.offsetWidth;
+	lane.classList.add("is-mode-active");
+	laneSwapAnimationTimer = setTimeout(() => {
+		lane.classList.remove("is-mode-active");
+		laneSwapAnimationTimer = null;
+	}, 420);
+}
+
+function applyHomeGameModeUi(modeKey, options = {}) {
+	const modeConfig = getHomeGameModeConfig(modeKey);
+	if (!modeConfig) {
+		return;
+	}
+
+	activeHomeGameMode = modeConfig.key;
+	if (options.persist !== false) {
+		setSavedHomeGameMode(modeConfig.key);
+	}
+
+	const heroDescription = document.querySelector(".hero__content > p");
+	if (heroDescription instanceof HTMLElement) {
+		heroDescription.textContent = modeConfig.heroDescription;
+	}
+
+	const heroInventoryButton = document.querySelector('.hero__actions a[href*="inventory.html"]');
+	if (heroInventoryButton instanceof HTMLAnchorElement) {
+		heroInventoryButton.href = buildGameScopedUrl("inventory.html", modeConfig.searchGame);
+	}
+
+	const heroSetsButton = document.querySelector('.hero__actions a[href*="sets.html"]');
+	if (heroSetsButton instanceof HTMLAnchorElement) {
+		heroSetsButton.href = buildGameScopedUrl("sets.html", modeConfig.searchGame);
+	}
+
+	updateNavLinkSet(document.getElementById("primaryNavLinks"), modeConfig);
+	updateNavLinkSet(document.querySelector(".site-footer__nav"), modeConfig);
+
+	const gameLanes = document.querySelector(".game-lanes");
+	const laneCards = document.querySelectorAll(".game-lane[data-game-mode]");
+	laneCards.forEach((laneCard) => {
+		const laneMode = laneCard.getAttribute("data-game-mode") || "";
+		laneCard.classList.toggle("is-game-mode-hidden", laneMode !== modeConfig.key);
+	});
+
+	if (gameLanes) {
+		gameLanes.classList.add("game-lanes--single");
+	}
+
+	if (typeof rerenderSeasonTheme === "function") {
+		rerenderSeasonTheme();
+	}
+
+	updateHomeGameModeBadge(modeConfig);
+	syncGameModeSwitchVisibility();
+	animateActiveGameLane(modeConfig.key);
+}
+
+function getActiveSearchGameName() {
+	const modeConfig = getHomeGameModeConfig(activeHomeGameMode || "");
+	return modeConfig ? modeConfig.searchGame : "";
+}
+
+function filterSpotlightByActiveMode(spotlightEntries) {
+	if (!Array.isArray(spotlightEntries) || spotlightEntries.length === 0) {
+		return [];
+	}
+
+	const modeConfig = getHomeGameModeConfig(activeHomeGameMode || "");
+	if (!modeConfig) {
+		return spotlightEntries;
+	}
+
+	const targetGame = normalizeForSearch(modeConfig.spotlightGame);
+	return spotlightEntries.filter((entry) => normalizeForSearch(entry?.game) === targetGame);
+}
+
+function expandSpotlightWithRival(spotlightEntries) {
+	if (!Array.isArray(spotlightEntries) || spotlightEntries.length === 0) {
+		return [];
+	}
+
+	const [primaryEntry] = spotlightEntries;
+	if (!primaryEntry) {
+		return [];
+	}
+
+	if (normalizeForSearch(primaryEntry.game) !== "yu gi oh") {
+		return [primaryEntry];
+	}
+
+	const normalizedKey = makeSpotlightCardKey(primaryEntry).replace(/::/g, "::").replace(/\s+/g, " ");
+	const rivalConfig = YGO_SPOTLIGHT_RIVAL_MATCHUPS[normalizedKey] || null;
+	if (!rivalConfig) {
+		return [primaryEntry];
+	}
+
+	const rivalEntry = {
+		...primaryEntry,
+		card: rivalConfig.card,
+		person: rivalConfig.person
+	};
+
+	const seen = new Set();
+	const result = [];
+	for (const entry of [primaryEntry, rivalEntry]) {
+		const entryKey = makeSpotlightCardKey(entry);
+		if (seen.has(entryKey)) {
+			continue;
+		}
+		seen.add(entryKey);
+		result.push(entry);
+	}
+
+	return result;
+}
+
+function expandActivePanelSpotlightEntries(spotlightEntries, monthIndex, isActivePanel = false) {
+	const baseEntries = expandSpotlightWithRival(spotlightEntries);
+	if (!isActivePanel) {
+		return baseEntries;
+	}
+
+	const thirdSpotlightConfig = YGO_ACTIVE_PANEL_THIRD_SPOTLIGHTS[monthIndex];
+	if (!thirdSpotlightConfig || baseEntries.length === 0) {
+		return baseEntries;
+	}
+
+	const firstEntry = baseEntries[0];
+	if (!firstEntry || normalizeForSearch(firstEntry.game) !== "yu gi oh") {
+		return baseEntries;
+	}
+
+	const thirdEntry = {
+		...firstEntry,
+		card: thirdSpotlightConfig.card,
+		person: thirdSpotlightConfig.person
+	};
+	const thirdKey = makeSpotlightCardKey(thirdEntry);
+	if (baseEntries.some((entry) => makeSpotlightCardKey(entry) === thirdKey)) {
+		return baseEntries;
+	}
+
+	return [...baseEntries, thirdEntry];
 }
 
 function resolveFirstNonEmpty(...values) {
@@ -304,6 +650,92 @@ function resolveSpotlightThumb(entry) {
 
 	const normalizedCard = normalizeForSearch(entry.card).replace(/\s+/g, " ");
 	return YYH_SPOTLIGHT_THUMBNAILS[normalizedCard] || STATIC_THUMB_PLACEHOLDER;
+}
+
+function makeSpotlightCardKey(entry) {
+	return `${normalizeForSearch(entry?.game)}::${normalizeForSearch(entry?.card)}`;
+}
+
+async function fetchYugiohSpotlightThumb(entry) {
+	const normalizedGame = normalizeForSearch(entry?.game);
+	if (normalizedGame !== "yu gi oh") {
+		return null;
+	}
+
+	const cardName = String(entry?.card || "").trim();
+	if (!cardName) {
+		return null;
+	}
+
+	const cacheKey = makeSpotlightCardKey(entry);
+	if (ygoSpotlightThumbCache.has(cacheKey)) {
+		return ygoSpotlightThumbCache.get(cacheKey);
+	}
+
+	const tryFetchThumbByParams = async (queryKey, queryValue) => {
+		const endpoint = new URL("https://db.ygoprodeck.com/api/v7/cardinfo.php");
+		endpoint.searchParams.set(queryKey, queryValue);
+		endpoint.searchParams.set("num", "1");
+		endpoint.searchParams.set("offset", "0");
+
+		const response = await fetch(endpoint.toString(), { cache: "no-store" });
+		if (!response.ok) {
+			return null;
+		}
+
+		const payload = await response.json();
+		const firstCard = Array.isArray(payload?.data) ? payload.data[0] : null;
+		const firstImage = Array.isArray(firstCard?.card_images) ? firstCard.card_images[0] : null;
+		return resolveFirstNonEmpty(firstImage?.image_url_small, firstImage?.image_url, firstImage?.image_url_cropped) || null;
+	};
+
+	try {
+		const normalizedCardName = normalizeForSearch(cardName);
+		const aliasNames = YGO_SPOTLIGHT_NAME_ALIASES[normalizedCardName] || [];
+		const candidateNames = [cardName, ...aliasNames];
+
+		let thumbUrl = null;
+		for (const candidateName of candidateNames) {
+			thumbUrl = await tryFetchThumbByParams("name", candidateName);
+			if (thumbUrl) {
+				break;
+			}
+		}
+
+		if (!thumbUrl) {
+			thumbUrl = await tryFetchThumbByParams("fname", cardName);
+		}
+
+		ygoSpotlightThumbCache.set(cacheKey, thumbUrl || null);
+		return thumbUrl || null;
+	} catch {
+		ygoSpotlightThumbCache.set(cacheKey, null);
+		return null;
+	}
+}
+
+async function hydrateSpotlightThumbs(listElement, entries) {
+	if (!(listElement instanceof HTMLElement) || !Array.isArray(entries) || entries.length === 0) {
+		return;
+	}
+
+	const ygoEntries = entries.filter((entry) => normalizeForSearch(entry?.game) === "yu gi oh");
+	if (ygoEntries.length === 0) {
+		return;
+	}
+
+	await Promise.all(ygoEntries.map(async (entry) => {
+		const thumbUrl = await fetchYugiohSpotlightThumb(entry);
+		if (!thumbUrl) {
+			return;
+		}
+
+		const cardKey = normalizeForSearch(entry?.card);
+		const img = listElement.querySelector(`.hero__season-thumb[data-game="ygo"][data-card="${cardKey}"]`);
+		if (img instanceof HTMLImageElement) {
+			img.src = thumbUrl;
+		}
+	}));
 }
 
 function buildSpotlightCardUrl(entry) {
@@ -473,12 +905,17 @@ function setActiveMonthDot(container, monthIndex) {
 	});
 }
 
-function renderSpotlightItems(listElement, spotlight) {
+function renderSpotlightItems(listElement, spotlight, options = {}) {
 	listElement.innerHTML = "";
+	const isTripleSpotlight = Array.isArray(spotlight) && spotlight.length >= 3;
+	listElement.classList.toggle("hero__season-list--triple", isTripleSpotlight);
 
-	for (const entry of spotlight) {
+	for (const [index, entry] of spotlight.entries()) {
 		const item = document.createElement("li");
 		item.className = "hero__season-item";
+		item.classList.toggle("hero__season-item--primary", index === 0);
+		item.classList.toggle("hero__season-item--chaser", index === 1);
+		item.classList.toggle("hero__season-item--third", index === 2);
 
 		const textWrap = document.createElement("div");
 		textWrap.className = "hero__season-text";
@@ -496,6 +933,11 @@ function renderSpotlightItems(listElement, spotlight) {
 
 		const thumb = document.createElement("img");
 		thumb.className = "hero__season-thumb";
+		thumb.classList.toggle("hero__season-thumb--primary", index === 0);
+		thumb.classList.toggle("hero__season-thumb--chaser", index === 1);
+		thumb.classList.toggle("hero__season-thumb--third", index === 2);
+		thumb.dataset.game = normalizeForSearch(entry.game) === "yu gi oh" ? "ygo" : "other";
+		thumb.dataset.card = normalizeForSearch(entry.card);
 		thumb.src = resolveSpotlightThumb(entry);
 		thumb.alt = `${entry.card} thumbnail`;
 		thumb.addEventListener("error", () => {
@@ -504,6 +946,9 @@ function renderSpotlightItems(listElement, spotlight) {
 
 		const thumbButton = document.createElement("button");
 		thumbButton.className = "hero__season-thumb-btn";
+		thumbButton.classList.toggle("hero__season-thumb-btn--primary", index === 0);
+		thumbButton.classList.toggle("hero__season-thumb-btn--chaser", index === 1);
+		thumbButton.classList.toggle("hero__season-thumb-btn--third", index === 2);
 		thumbButton.type = "button";
 		thumbButton.setAttribute("aria-label", `Preview ${entry.card}`);
 		thumbButton.appendChild(thumb);
@@ -553,18 +998,24 @@ function applySeasonTheme() {
 		const nextMonthIndex = normalizeMonthIndex(activeMonth + 1);
 		const previousTheme = resolveTheme(previousMonthIndex);
 		const nextTheme = resolveTheme(nextMonthIndex);
+		const previousSpotlight = expandSpotlightWithRival(filterSpotlightByActiveMode(previousTheme.spotlight || []));
+		const nextSpotlight = expandSpotlightWithRival(filterSpotlightByActiveMode(nextTheme.spotlight || []));
+		const activePanelSpotlight = expandActivePanelSpotlightEntries(filterSpotlightByActiveMode(activeTheme.spotlight || []), activeMonth, true);
 
 		monthLabel.textContent = `${monthNames[activeMonth]} Seasonal Spotlight`;
 		themeTitle.textContent = activeTheme.themeTitle;
 		setActiveMonthDot(monthDots, activeMonth);
-		renderSpotlightItems(spotlightList, activeTheme.spotlight || []);
+		renderSpotlightItems(spotlightList, activePanelSpotlight, { monthIndex: activeMonth, isActivePanel: true });
 
 		prevMonth.textContent = `${monthNames[previousMonthIndex]} Spotlight`;
 		nextMonth.textContent = `${monthNames[nextMonthIndex]} Spotlight`;
 		prevTitle.textContent = previousTheme.themeTitle;
 		nextTitle.textContent = nextTheme.themeTitle;
-		renderSpotlightItems(prevList, previousTheme.spotlight || []);
-		renderSpotlightItems(nextList, nextTheme.spotlight || []);
+		renderSpotlightItems(prevList, previousSpotlight);
+		renderSpotlightItems(nextList, nextSpotlight);
+		hydrateSpotlightThumbs(spotlightList, activePanelSpotlight);
+		hydrateSpotlightThumbs(prevList, previousSpotlight);
+		hydrateSpotlightThumbs(nextList, nextSpotlight);
 		prevPeek.dataset.targetMonth = String(previousMonthIndex);
 		nextPeek.dataset.targetMonth = String(nextMonthIndex);
 		prevBtn.dataset.targetMonth = String(previousMonthIndex);
@@ -588,6 +1039,7 @@ function applySeasonTheme() {
 		renderMonth(target);
 	});
 
+	rerenderSeasonTheme = () => renderMonth(activeMonth);
 	renderMonth(activeMonth);
 }
 
@@ -698,6 +1150,63 @@ function initMobileNav() {
 	}
 }
 
+function initHomeGameModeSelector() {
+	const modal = document.getElementById("gameModeModal");
+	if (!(modal instanceof HTMLElement)) {
+		return;
+	}
+	const switchButton = document.getElementById("homeGameModeSwitch");
+
+	const optionButtons = Array.from(modal.querySelectorAll("[data-game-mode]"));
+	if (optionButtons.length === 0) {
+		return;
+	}
+
+	const hideModal = () => {
+		modal.hidden = true;
+		modal.setAttribute("aria-hidden", "true");
+	};
+
+	const showModal = () => {
+		modal.hidden = false;
+		modal.setAttribute("aria-hidden", "false");
+	};
+
+	const savedModeKey = getSavedHomeGameMode();
+	if (savedModeKey) {
+		applyHomeGameModeUi(savedModeKey, { persist: false });
+		hideModal();
+	} else {
+		activeHomeGameMode = null;
+		updateHomeGameModeBadge(null);
+		syncGameModeSwitchVisibility();
+		showModal();
+	}
+
+	if (switchButton instanceof HTMLButtonElement && switchButton.dataset.modeSwitchInitialized !== "true") {
+		switchButton.dataset.modeSwitchInitialized = "true";
+		switchButton.addEventListener("click", () => {
+			showModal();
+		});
+	}
+
+	for (const button of optionButtons) {
+		if (!(button instanceof HTMLButtonElement)) {
+			continue;
+		}
+
+		button.addEventListener("click", () => {
+			const modeKey = String(button.dataset.gameMode || "").trim();
+			if (!getHomeGameModeConfig(modeKey)) {
+				return;
+			}
+
+			applyHomeGameModeUi(modeKey);
+			hideModal();
+		});
+	}
+}
+
 function initHomeSearch() {
 	const searchForm = document.querySelector(".hero__search");
 	const searchInput = document.querySelector(".hero__search-input");
@@ -706,8 +1215,11 @@ function initHomeSearch() {
 	}
 
 	const SUGGESTION_MIN_CHARS = 3;
-	const SUGGESTION_LIMIT = 5;
+	const SUGGESTION_LIMIT = 8;
 	const DEBOUNCE_MS = 280;
+	const YYH_SUGGESTION_LIMIT = 24;
+	const YGO_SUGGESTION_LIMIT = 24;
+	const POKEMON_SUGGESTION_LIMIT = 24;
 	const suggestionList = document.createElement("ul");
 	suggestionList.className = "hero__search-suggestions";
 	suggestionList.id = "heroSearchSuggestions";
@@ -744,8 +1256,8 @@ function initHomeSearch() {
 
 		for (const item of items) {
 			const name = String(item?.name || "").trim();
-			const setName = String(item?.set || "").trim();
-			const game = String(item?.game || "Yu Yu Hakusho").trim() || "Yu Yu Hakusho";
+			const setName = String(item?.set || "Unknown Set").trim() || "Unknown Set";
+			const game = String(item?.game || "Unknown Game").trim() || "Unknown Game";
 			const cardNumber = String(
 				item?.cardNumber ||
 				item?.number ||
@@ -754,18 +1266,18 @@ function initHomeSearch() {
 				""
 			).trim();
 
-			if (!name || !setName || game !== "Yu Yu Hakusho") {
+			if (!name) {
 				continue;
 			}
 
 			if (searchTokens.length > 0) {
-				const haystack = normalizeForSearch(`${name} ${setName} ${cardNumber}`);
+				const haystack = normalizeForSearch(`${name} ${setName} ${cardNumber} ${game}`);
 				if (!searchTokens.every((token) => haystack.includes(token))) {
 					continue;
 				}
 			}
 
-			const key = `${normalizeForSearch(name)}||${normalizeForSearch(setName)}`;
+			const key = `${normalizeForSearch(game)}||${normalizeForSearch(name)}||${normalizeForSearch(setName)}||${normalizeForSearch(cardNumber)}`;
 			if (seen.has(key)) {
 				continue;
 			}
@@ -774,6 +1286,7 @@ function initHomeSearch() {
 			deduped.push({
 				name,
 				set: setName,
+				game,
 				cardNumber
 			});
 
@@ -785,11 +1298,16 @@ function initHomeSearch() {
 		return deduped;
 	};
 
-	const navigateToInventory = (query) => {
+	const navigateToInventory = (query, game = "") => {
 		const destination = new URL("inventory.html", window.location.href);
 		if (query) {
 			destination.searchParams.set("q", query);
-			destination.searchParams.set("game", "Yu Yu Hakusho");
+		}
+
+		const selectedGame = String(game || getActiveSearchGameName() || "").trim();
+		const normalizedGame = normalizeForSearch(selectedGame);
+		if (normalizedGame === "yu yu hakusho" || normalizedGame === "yu gi oh" || normalizedGame === "pokemon") {
+			destination.searchParams.set("game", selectedGame);
 		}
 
 		window.location.href = destination.toString();
@@ -823,7 +1341,7 @@ function initHomeSearch() {
 			const button = document.createElement("button");
 			button.type = "button";
 			button.className = "hero__search-suggestion-btn";
-			const metaParts = [item.set];
+			const metaParts = [item.game, item.set];
 			if (item.cardNumber) {
 				metaParts.push(item.cardNumber);
 			}
@@ -835,7 +1353,7 @@ function initHomeSearch() {
 			button.addEventListener("click", () => {
 				searchInput.value = item.name;
 				closeSuggestions();
-				navigateToInventory(item.name);
+				navigateToInventory(item.name, item.game);
 			});
 
 			row.appendChild(button);
@@ -845,28 +1363,129 @@ function initHomeSearch() {
 		openSuggestions();
 	};
 
+	const mapYyhApiItems = (items) => {
+		if (!Array.isArray(items)) {
+			return [];
+		}
+
+		return items.map((item) => ({
+			name: String(item?.name || "").trim(),
+			set: String(item?.set || "Unknown Set").trim() || "Unknown Set",
+			game: "Yu Yu Hakusho",
+			cardNumber: String(item?.cardNumber || item?.number || item?.id || "").trim()
+		}));
+	};
+
+	const mapYugiohApiItems = (items) => {
+		if (!Array.isArray(items)) {
+			return [];
+		}
+
+		return items.map((item) => {
+			const firstSet = Array.isArray(item?.card_sets) && item.card_sets.length > 0
+				? item.card_sets[0]
+				: null;
+
+			return {
+				name: String(item?.name || "").trim(),
+				set: String(firstSet?.set_name || "Various Sets").trim() || "Various Sets",
+				game: "Yu-Gi-Oh",
+				cardNumber: String(item?.id || "").trim()
+			};
+		});
+	};
+
+	const mapPokemonApiItems = (items) => {
+		if (!Array.isArray(items)) {
+			return [];
+		}
+
+		return items.map((item) => {
+			const cardId = String(item?.id || "").trim();
+			const derivedSetFromId = cardId.includes("-") ? cardId.split("-")[0] : "";
+			const setName = typeof item?.set === "object"
+				? resolveFirstNonEmpty(item.set?.name, item.set?.id)
+				: resolveFirstNonEmpty(item?.set);
+
+			return {
+				name: String(item?.name || "").trim(),
+				set: setName || (derivedSetFromId ? `Set ${derivedSetFromId.toUpperCase()}` : "Unknown Set"),
+				game: "Pokemon",
+				cardNumber: String(item?.localId || cardId || "").trim()
+			};
+		});
+	};
+
+	const fetchYyhSuggestions = async (query, signal) => {
+		const endpoint = new URL("api/yyh/cards", window.location.href);
+		endpoint.searchParams.set("q", query);
+		endpoint.searchParams.set("game", "Yu Yu Hakusho");
+		endpoint.searchParams.set("limit", String(YYH_SUGGESTION_LIMIT));
+		endpoint.searchParams.set("offset", "0");
+
+		const response = await fetch(endpoint.toString(), {
+			cache: "no-store",
+			signal
+		});
+
+		if (!response.ok) {
+			return [];
+		}
+
+		const payload = await response.json();
+		const items = Array.isArray(payload?.items) ? payload.items : [];
+		return mapYyhApiItems(items);
+	};
+
+	const fetchYugiohSuggestions = async (query, signal) => {
+		const endpoint = new URL("https://db.ygoprodeck.com/api/v7/cardinfo.php");
+		endpoint.searchParams.set("fname", query);
+		endpoint.searchParams.set("num", String(YGO_SUGGESTION_LIMIT));
+		endpoint.searchParams.set("offset", "0");
+
+		const response = await fetch(endpoint.toString(), {
+			cache: "no-store",
+			signal
+		});
+
+		if (!response.ok) {
+			return [];
+		}
+
+		const payload = await response.json();
+		return mapYugiohApiItems(Array.isArray(payload?.data) ? payload.data : []);
+	};
+
+	const fetchPokemonSuggestions = async (query, signal) => {
+		const endpoint = new URL("https://api.tcgdex.net/v2/en/cards");
+		endpoint.searchParams.set("name", query);
+		endpoint.searchParams.set("pagination:itemsPerPage", String(POKEMON_SUGGESTION_LIMIT));
+
+		const response = await fetch(endpoint.toString(), {
+			cache: "no-store",
+			signal
+		});
+
+		if (!response.ok) {
+			return [];
+		}
+
+		const payload = await response.json();
+		return mapPokemonApiItems(payload);
+	};
+
 	const fetchSuggestions = async (query) => {
 		if (pendingRequestController) {
 			pendingRequestController.abort();
 		}
 
 		pendingRequestController = new AbortController();
-		const endpoint = new URL("api/yyh/cards", window.location.href);
-		endpoint.searchParams.set("q", query);
-		endpoint.searchParams.set("game", "Yu Yu Hakusho");
-		endpoint.searchParams.set("limit", "48");
-		endpoint.searchParams.set("offset", "0");
 
 		try {
-			const response = await fetch(endpoint.toString(), {
-				cache: "no-store",
-				signal: pendingRequestController.signal
-			});
-
-			if (response.ok) {
-				const payload = await response.json();
-				const items = Array.isArray(payload?.items) ? payload.items : [];
-				return mapSuggestionsFromItems(items, query);
+			const signal = pendingRequestController.signal;
+			const ygoItems = await fetchYugiohSuggestions(query, signal);
+			if (ygoItems.length > 0) {
+				return mapSuggestionsFromItems(ygoItems, query);
 			}
 		} catch (error) {
 			if (error && error.name === "AbortError") {
@@ -874,8 +1493,7 @@ function initHomeSearch() {
 			}
 		}
 
-		const fallbackItems = await loadHomeSearchFallbackData();
-		return mapSuggestionsFromItems(fallbackItems, query);
+		return [];
 	};
 
 	const runDebouncedSearch = () => {
@@ -933,7 +1551,7 @@ function initHomeSearch() {
 			return;
 		} else if (event.key === "Enter" && activeIndex >= 0 && currentSuggestions[activeIndex]) {
 			event.preventDefault();
-			navigateToInventory(currentSuggestions[activeIndex].name);
+			navigateToInventory(currentSuggestions[activeIndex].name, currentSuggestions[activeIndex].game);
 			return;
 		} else {
 			return;
@@ -967,6 +1585,11 @@ function initHomeSearch() {
 }
 
 function initHomeSetSelects() {
+	const YGO_CARD_SETS_API_URL = "https://db.ygoprodeck.com/api/v7/cardsets.php";
+	const YGO_HOME_SET_LIMIT = 9;
+	const HOME_SET_SELECT_PLACEHOLDER_TEXT = "Select a Set";
+	const HOME_SET_SEARCH_FALLBACK_TEXT = "Use search bar to find specific cards";
+
 	const setSelectConfigs = [
 		{ elementId: "pokemon-set-select", game: "Pokemon" },
 		{ elementId: "yugioh-set-select", game: "Yu-Gi-Oh" },
@@ -1008,10 +1631,88 @@ function initHomeSetSelects() {
 		window.location.href = destination.toString();
 	};
 
+	const parseSetDateValue = (value) => {
+		if (typeof value !== "string") {
+			return Number.NaN;
+		}
+
+		const parsed = new Date(value).getTime();
+		return Number.isFinite(parsed) ? parsed : Number.NaN;
+	};
+
+	const replaceSelectOptions = (select, options) => {
+		select.innerHTML = "";
+
+		for (const optionData of options) {
+			const option = document.createElement("option");
+			option.value = optionData.value;
+			option.textContent = optionData.label;
+			if (optionData.disabled) {
+				option.disabled = true;
+			}
+			if (optionData.selected) {
+				option.selected = true;
+			}
+			select.appendChild(option);
+		}
+	};
+
+	const populateYugiohSetSelect = async (select) => {
+		if (!(select instanceof HTMLSelectElement)) {
+			return;
+		}
+
+		if (select.dataset.ygoSetOptionsInitialized === "true") {
+			return;
+		}
+
+		try {
+			const response = await fetch(YGO_CARD_SETS_API_URL, { cache: "no-store" });
+			if (!response.ok) {
+				throw new Error(`YGO set request failed with status ${response.status}`);
+			}
+
+			const payload = await response.json();
+			if (!Array.isArray(payload)) {
+				throw new Error("YGO set payload was not an array");
+			}
+
+			const setRows = payload
+				.map((item) => ({
+					setName: String(item?.set_name || "").trim(),
+					dateValue: parseSetDateValue(item?.tcg_date)
+				}))
+				.filter((item) => item.setName && Number.isFinite(item.dateValue));
+
+			if (setRows.length === 0) {
+				throw new Error("No dated YGO sets found in payload");
+			}
+
+			const newestSlice = [...setRows]
+				.sort((a, b) => b.dateValue - a.dateValue || a.setName.localeCompare(b.setName))
+				.slice(0, YGO_HOME_SET_LIMIT)
+				.sort((a, b) => a.dateValue - b.dateValue || a.setName.localeCompare(b.setName));
+
+			replaceSelectOptions(select, [
+				{ value: "", label: HOME_SET_SELECT_PLACEHOLDER_TEXT, disabled: true, selected: true },
+				...newestSlice.map((row) => ({ value: row.setName, label: row.setName })),
+				{ value: "", label: HOME_SET_SEARCH_FALLBACK_TEXT }
+			]);
+
+			select.dataset.ygoSetOptionsInitialized = "true";
+		} catch (error) {
+			console.error("Failed to populate Yu-Gi-Oh set options", error);
+		}
+	};
+
 	for (const { elementId, game } of setSelectConfigs) {
 		const select = document.getElementById(elementId);
 		if (!(select instanceof HTMLSelectElement)) {
 			continue;
+		}
+
+		if (game === "Yu-Gi-Oh") {
+			populateYugiohSetSelect(select);
 		}
 
 		if (select.dataset.homeSetNavInitialized === "true") {
@@ -1047,8 +1748,10 @@ runHomeInitializer("initGameLanesReveal", initGameLanesReveal);
 runHomeInitializer("initMobileNav", initMobileNav);
 runHomeInitializer("initHomeSearch", initHomeSearch);
 runHomeInitializer("initHomeSetSelects", initHomeSetSelects);
+runHomeInitializer("initHomeGameModeSelector", initHomeGameModeSelector);
 
 document.addEventListener("DOMContentLoaded", () => {
 	runHomeInitializer("initMobileNav", initMobileNav);
 	runHomeInitializer("initHomeSetSelects", initHomeSetSelects);
+	runHomeInitializer("initHomeGameModeSelector", initHomeGameModeSelector);
 });

@@ -34,5 +34,9 @@ Shalimar Collectibles v1 focuses on a polished Yu Yu Hakusho collector experienc
 - Footer clipping issue on mobile: resolved by hiding footer nav links at mobile breakpoints.
 - Content placeholder sweep under YYH launch scope: effectively complete.
 
+## Hotfix Notes (2026-08-09)
+- Corrected Betrayal Team Bonus insert alias mapping so `Team Yomi` resolves to `TB5` and `Spirit Defense Force` resolves to `TB4`.
+- Confirmed fix in production after redeploy to address inventory thumbnail mismatch.
+
 ## Commit Baseline
 - Suggested release commit: latest main after final Home mobile-nav reliability commit.
