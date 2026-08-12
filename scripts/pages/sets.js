@@ -91,11 +91,77 @@ const YYH_SET_PRICE_OVERRIDES = {
     }
 };
 
+const SETS_GAME_NAV_CONFIG = {
+    "All Games": {
+        featureLabel: "Kings",
+        featureHref: "kings.html",
+        inventoryHref: "inventory.html",
+        setsHref: "sets.html"
+    },
+    "Yu Yu Hakusho": {
+        featureLabel: "Kings",
+        featureHref: "kings.html",
+        inventoryHref: "inventory.html?game=Yu%20Yu%20Hakusho",
+        setsHref: "sets.html?game=Yu%20Yu%20Hakusho"
+    },
+    "Yu-Gi-Oh": {
+        featureLabel: "Win Cons",
+        featureHref: "kings.html?game=Yu-Gi-Oh&mode=wincons",
+        inventoryHref: "inventory.html?game=Yu-Gi-Oh",
+        setsHref: "sets.html?game=Yu-Gi-Oh"
+    },
+    "Pokemon": {
+        featureLabel: "Starters",
+        featureHref: "kings.html?game=Pokemon&mode=starters",
+        inventoryHref: "inventory.html?game=Pokemon",
+        setsHref: "sets.html?game=Pokemon"
+    }
+};
+
 function normalizeSetKey(value) {
     return String(value || "")
         .toLowerCase()
         .replace(/\s+/g, " ")
         .trim();
+}
+
+function getSelectedSetsGame() {
+    const params = new URLSearchParams(window.location.search);
+    const game = String(params.get("game") || "").trim();
+    return SETS_GAME_NAV_CONFIG[game] ? game : "Yu Yu Hakusho";
+}
+
+function syncSetsNav(selectedGame) {
+    const navConfig = SETS_GAME_NAV_CONFIG[selectedGame] || SETS_GAME_NAV_CONFIG["Yu Yu Hakusho"];
+    const updateLinkSet = (container) => {
+        if (!(container instanceof HTMLElement)) {
+            return;
+        }
+
+        const links = Array.from(container.querySelectorAll("a"));
+        const inventoryLink = links.find((link) => String(link.textContent || "").trim() === "Inventory") || null;
+        const setsLink = links.find((link) => String(link.textContent || "").trim() === "Sets") || null;
+        const featureLink = links.find((link) => {
+            const text = String(link.textContent || "").trim();
+            return text === "Kings" || text === "Win Cons" || text === "Starters";
+        }) || null;
+
+        if (inventoryLink instanceof HTMLAnchorElement) {
+            inventoryLink.href = navConfig.inventoryHref;
+        }
+
+        if (setsLink instanceof HTMLAnchorElement) {
+            setsLink.href = navConfig.setsHref;
+        }
+
+        if (featureLink instanceof HTMLAnchorElement) {
+            featureLink.textContent = navConfig.featureLabel;
+            featureLink.href = navConfig.featureHref;
+        }
+    };
+
+    updateLinkSet(document.getElementById("primaryNavLinks"));
+    updateLinkSet(document.querySelector(".site-footer__nav"));
 }
 
 function formatUsd(value) {
@@ -470,6 +536,8 @@ async function initSetsPage() {
     if (!meta || !grid) {
         return;
     }
+
+    syncSetsNav(getSelectedSetsGame());
 
     wireSetMediaToggle(grid);
 

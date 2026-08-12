@@ -81,6 +81,9 @@
                 <select class="inventory-control" id="inventory-type-filter" aria-label="Filter by type">
                     <option>All Types</option>
                 </select>
+                <select class="inventory-control" id="inventory-archetype-filter" aria-label="Filter by archetype">
+                    <option>All Archetypes</option>
+                </select>
                 <select class="inventory-control" id="inventory-rarity-filter" aria-label="Filter by rarity">
                     <option>All Rarities</option>
                 </select>
@@ -118,10 +121,13 @@
                     <option>Price (Low-High)</option>
                     <option>Variant Premium (High-Low)</option>
                 </select>
-                <label class="inventory-variants-toggle" for="inventory-variants-toggle">
-                    <input id="inventory-variants-toggle" type="checkbox" />
-                    <span>Show all variants</span>
-                </label>
+                <div class="inventory-variants-toggle-wrap">
+                    <label class="inventory-variants-toggle" for="inventory-variants-toggle">
+                        <input id="inventory-variants-toggle" type="checkbox" />
+                        <span>Show all variants</span>
+                    </label>
+                    <p class="inventory-variants-summary" id="inventory-variants-summary">Collapsed view groups printings into one card entry.</p>
+                </div>
             </form>
 
             <div class="inventory-filter-notes" aria-label="Filter notes">
@@ -134,9 +140,9 @@
                 <p class="inventory-filter-note">Edition note: use this for 1st vs unlimited print runs.</p>
                 <p class="inventory-filter-note">Finish note: quick isolate standard, foil, and rainbow cards.</p>
                 <p class="inventory-filter-note">Pricing note: load a set pricing file to mark priced cards and sort by value.</p>
-                <p class="inventory-filter-note">Gameplay note: YYH-only banned and limit 1 status can be filtered here.</p>
+                <p class="inventory-filter-note" id="inventory-gameplay-note" hidden></p>
                 <p class="inventory-filter-note">Sort note: ordering applies across all loaded pages.</p>
-                <p class="inventory-filter-note" id="inventory-data-note">YYH inventory reads live API data and supports full card datasets; source credit remains with inviso (Mike) and the Yu Yu Hakusho TCG Database.</p>
+                <p class="inventory-filter-note" id="inventory-data-note" hidden></p>
             </div>
 
             <section class="inventory-set-context" id="inventory-set-context" aria-label="Set pricing context" hidden></section>

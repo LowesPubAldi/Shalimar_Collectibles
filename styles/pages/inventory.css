@@ -43,6 +43,19 @@
     cursor: pointer;
 }
 
+.inventory-variants-toggle-wrap {
+    display: grid;
+    gap: 6px;
+    align-content: start;
+}
+
+.inventory-variants-summary {
+    margin: 0;
+    font-size: 11px;
+    line-height: 1.35;
+    color: #7f93ad;
+}
+
 .inventory-variants-toggle input {
     margin: 0;
 }

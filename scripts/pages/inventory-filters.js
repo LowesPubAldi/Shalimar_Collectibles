@@ -1,5 +1,8 @@
 const INVENTORY_API_URL = "/api/yyh/cards";
 const INVENTORY_SETS_API_URL = "/api/yyh/sets";
+const YGO_CARDINFO_API_URL = "https://db.ygoprodeck.com/api/v7/cardinfo.php";
+const YGO_CARDSETS_API_URL = "https://db.ygoprodeck.com/api/v7/cardsets.php";
+const YGO_ARCHETYPES_API_URL = "https://db.ygoprodeck.com/api/v7/archetypes.php";
 const INVENTORY_FALLBACK_DATA_URLS = [
     "data/yyh-cards-full.json",
     "data/yyh-cards.json",
@@ -11,12 +14,20 @@ const INVENTORY_PAGE_LIMIT_TABLET = 72;
 const INVENTORY_PAGE_LIMIT_MOBILE = 48;
 const INVENTORY_PAGE_LIMIT_MOBILE_NARROW = 24;
 const INVENTORY_PAGE_LIMIT_MOBILE_COMPACT = 16;
+const YGO_VARIANT_FETCH_LIMIT = 2000;
 const MIN_SEARCH_CHARACTERS = 3;
 const DEFAULT_SORT_OPTION = "Card Number (Low-High)";
+const YGO_DEFAULT_SORT_OPTION = "Set Release (Latest First)";
 const DEFAULT_EDITION_OPTION = "All Editions";
 const DEFAULT_VARIANT_FOCUS_OPTION = "All Finishes";
 const DEFAULT_PRICE_STATUS_OPTION = "All Price Statuses";
 const DEFAULT_GAMEPLAY_STATUS_OPTION = "All Gameplay Statuses";
+const YGO_DEFAULT_ARCHETYPE_OPTION = "All Archetypes";
+const YGO_DEFAULT_ATTRIBUTE_OPTION = "All Attributes";
+const YGO_DEFAULT_RACE_OPTION = "All Races";
+const YGO_DEFAULT_FORMAT_OPTION = "All Formats";
+const YGO_DEFAULT_EFFECT_OPTION = "All Effect Types";
+const YGO_DEFAULT_LEVEL_OPTION = "All Levels / Ranks";
 const YYH_PROMO_FAMILY_RARITY_OPTION = "Promo Family (P/V/X/TX/SK)";
 const PRICE_STATUS_UNPRICED_OPTION = "Unpriced";
 const PRICE_STATUS_PRICED_OPTION = "Priced";
@@ -41,6 +52,81 @@ const VARIANT_FOCUS_OPTIONS = [
     "Standard Only",
     "Foils Only",
     "Rainbow Only"
+];
+const YGO_ATTRIBUTE_OPTIONS = [
+    YGO_DEFAULT_ATTRIBUTE_OPTION,
+    "DARK",
+    "DIVINE",
+    "EARTH",
+    "FIRE",
+    "LIGHT",
+    "WATER",
+    "WIND"
+];
+const YGO_RACE_OPTIONS = [
+    YGO_DEFAULT_RACE_OPTION,
+    "Aqua",
+    "Beast",
+    "Beast-Warrior",
+    "Creator-God",
+    "Cyberse",
+    "Dinosaur",
+    "Divine-Beast",
+    "Dragon",
+    "Fairy",
+    "Fiend",
+    "Fish",
+    "Insect",
+    "Machine",
+    "Plant",
+    "Psychic",
+    "Pyro",
+    "Reptile",
+    "Rock",
+    "Sea Serpent",
+    "Spellcaster",
+    "Thunder",
+    "Warrior",
+    "Winged Beast",
+    "Wyrm",
+    "Zombie",
+    "Normal",
+    "Field",
+    "Equip",
+    "Continuous",
+    "Quick-Play",
+    "Ritual",
+    "Counter"
+];
+const YGO_FORMAT_OPTIONS = [
+    YGO_DEFAULT_FORMAT_OPTION,
+    "TCG",
+    "OCG",
+    "Goat",
+    "Speed Duel",
+    "Duel Links",
+    "Master Duel",
+    "Rush Duel"
+];
+const YGO_EFFECT_OPTIONS = [
+    YGO_DEFAULT_EFFECT_OPTION,
+    "Has Effect Text",
+    "No Effect Text"
+];
+const YGO_LEVEL_OPTIONS = [
+    YGO_DEFAULT_LEVEL_OPTION,
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12"
 ];
 const YYH_IMAGE_ROOT = "assets/seasonal/yyh-source";
 const YYH_PRICING_DATA_ROOT = "data/pricing/yyh";
@@ -140,6 +226,10 @@ let fallbackDataCache = null;
 let pricingDataCache = new Map();
 let allYyhSetPricingCache = null;
 let kingSetNotesCache = null;
+let ygoSetOptionsCache = null;
+let ygoSetReleaseDateCache = new Map();
+let ygoArchetypeOptionsCache = null;
+let ygoVariantInventoryCache = new Map();
 
 function createEmptyPricingData() {
     return {
@@ -230,7 +320,21 @@ const FILTER_OPTIONS_BY_GAME = {
             "YGO Set Placeholder 05",
             "YGO Set Placeholder 06"
         ],
-        types: ["All Types", "Monster", "Spell", "Trap", "Fusion", "Synchro", "Xyz", "Link"],
+        types: [
+            "All Types",
+            "Normal Monster",
+            "Effect Monster",
+            "Ritual Monster",
+            "Fusion Monster",
+            "Synchro Monster",
+            "XYZ Monster",
+            "Link Monster",
+            "Pendulum Effect Monster",
+            "Spell Card",
+            "Trap Card",
+            "Token",
+            "Skill Card"
+        ],
         rarities: [
             "All Rarities",
             "Common",
@@ -283,6 +387,33 @@ const FILTER_OPTIONS_BY_GAME = {
             "Hyper Rare",
             "Mega Hyper Rare"
         ]
+    }
+};
+
+const INVENTORY_GAME_NAV_CONFIG = {
+    "All Games": {
+        featureLabel: "Kings",
+        featureHref: "kings.html",
+        inventoryHref: "inventory.html",
+        setsHref: "sets.html"
+    },
+    "Yu Yu Hakusho": {
+        featureLabel: "Kings",
+        featureHref: "kings.html",
+        inventoryHref: "inventory.html?game=Yu%20Yu%20Hakusho",
+        setsHref: "sets.html?game=Yu%20Yu%20Hakusho"
+    },
+    "Yu-Gi-Oh": {
+        featureLabel: "Win Cons",
+        featureHref: "kings.html?game=Yu-Gi-Oh&mode=wincons",
+        inventoryHref: "inventory.html?game=Yu-Gi-Oh",
+        setsHref: "sets.html?game=Yu-Gi-Oh"
+    },
+    "Pokemon": {
+        featureLabel: "Starters",
+        featureHref: "kings.html?game=Pokemon&mode=starters",
+        inventoryHref: "inventory.html?game=Pokemon",
+        setsHref: "sets.html?game=Pokemon"
     }
 };
 
@@ -650,6 +781,13 @@ function hydrateInventoryCardImages(rootElement) {
         }
 
         imageElement.dataset.imageHydrated = "true";
+        const directImageUrl = String(imageElement.dataset.cardImageUrl || "").trim();
+        if (directImageUrl) {
+            imageElement.onerror = null;
+            imageElement.src = directImageUrl;
+            continue;
+        }
+
         const candidates = buildCardImageCandidates({
             id: imageElement.dataset.cardId || "",
             number: imageElement.dataset.cardNumber || "",
@@ -987,6 +1125,7 @@ function makeInventoryCard(cardRecord, collisionCountMap, variantFamilyCountMap,
                         data-card-set="${escapeHtml(cardRecord.set)}"
                         data-card-name="${escapeHtml(cardRecord.name)}"
                         data-card-variant="${escapeHtml(cardRecord.variant || "") }"
+                        data-card-image-url="${escapeHtml(cardRecord.imageUrl || "") }"
                         alt="${escapeHtml(cardRecord.name)}"
                         decoding="async"
                     />
@@ -1058,7 +1197,14 @@ function normalizeCardRecord(card) {
         rarity: resolveFirstNonEmpty(card.rarity, card.rarityCode, card.rarity_name) || "Unknown Rarity",
         variant,
         edition: resolveFirstNonEmpty(card.edition, card.printing),
-        effect: resolveFirstNonEmpty(card.effect, card.text, card.notes)
+        effect: resolveFirstNonEmpty(card.effect, card.text, card.notes),
+        imageUrl: resolveFirstNonEmpty(
+            card.imageUrl,
+            card.image_url_small,
+            card.image_url,
+            card.image_url_cropped
+        ),
+        setReleaseDate: resolveFirstNonEmpty(card.setReleaseDate)
     };
 }
 
@@ -1693,6 +1839,75 @@ function renderSetContext(setContextElement, filterState, setPricingData, kingSe
     setContextElement.hidden = false;
 }
 
+function syncInventoryNotes(filterState) {
+    const gameplayNote = document.getElementById("inventory-gameplay-note");
+    const dataNote = document.getElementById("inventory-data-note");
+    const isYyhSelected = filterState.game === "Yu Yu Hakusho";
+
+    if (gameplayNote instanceof HTMLElement) {
+        gameplayNote.hidden = !isYyhSelected;
+        gameplayNote.textContent = isYyhSelected
+            ? "Gameplay note: YYH-only banned and limit 1 status can be filtered here."
+            : "";
+    }
+
+    if (dataNote instanceof HTMLElement) {
+        dataNote.hidden = !isYyhSelected;
+        dataNote.textContent = isYyhSelected
+            ? "YYH inventory reads live API data and supports full card datasets; source credit remains with inviso (Mike) and the Yu Yu Hakusho TCG Database."
+            : "";
+    }
+}
+
+function syncInventoryNav(selectedGame) {
+    const navConfig = INVENTORY_GAME_NAV_CONFIG[selectedGame] || INVENTORY_GAME_NAV_CONFIG["All Games"];
+    const updateLinkSet = (container) => {
+        if (!(container instanceof HTMLElement)) {
+            return;
+        }
+
+        const links = Array.from(container.querySelectorAll("a"));
+        const inventoryLink = links.find((link) => String(link.textContent || "").trim() === "Inventory") || null;
+        const setsLink = links.find((link) => String(link.textContent || "").trim() === "Sets") || null;
+        const featureLink = links.find((link) => {
+            const text = String(link.textContent || "").trim();
+            return text === "Kings" || text === "Win Cons" || text === "Starters";
+        }) || null;
+
+        if (inventoryLink instanceof HTMLAnchorElement) {
+            inventoryLink.href = navConfig.inventoryHref;
+        }
+
+        if (setsLink instanceof HTMLAnchorElement) {
+            setsLink.href = navConfig.setsHref;
+        }
+
+        if (featureLink instanceof HTMLAnchorElement) {
+            featureLink.textContent = navConfig.featureLabel;
+            featureLink.href = navConfig.featureHref;
+        }
+    };
+
+    updateLinkSet(document.getElementById("primaryNavLinks"));
+    updateLinkSet(document.querySelector(".site-footer__nav"));
+}
+
+function syncYgoFilterLabels(rarityFilter, editionFilter, variantFocusFilter, priceStatusFilter, gameplayStatusFilter) {
+    rarityFilter.setAttribute("aria-label", "Filter by attribute");
+    editionFilter.setAttribute("aria-label", "Filter by race");
+    variantFocusFilter.setAttribute("aria-label", "Filter by format");
+    priceStatusFilter.setAttribute("aria-label", "Filter by effect text");
+    gameplayStatusFilter.setAttribute("aria-label", "Filter by level or rank");
+}
+
+function syncDefaultFilterLabels(rarityFilter, editionFilter, variantFocusFilter, priceStatusFilter, gameplayStatusFilter) {
+    rarityFilter.setAttribute("aria-label", "Filter by rarity");
+    editionFilter.setAttribute("aria-label", "Filter by edition");
+    variantFocusFilter.setAttribute("aria-label", "Filter by finish");
+    priceStatusFilter.setAttribute("aria-label", "Filter by price status");
+    gameplayStatusFilter.setAttribute("aria-label", "Filter by gameplay status");
+}
+
 function getFallbackPricingForRecord(cardRecord, fallbackPricingRules) {
     if (!Array.isArray(fallbackPricingRules) || fallbackPricingRules.length === 0) {
         return null;
@@ -1932,6 +2147,11 @@ function getVariantSortRank(variant) {
     return 2;
 }
 
+function parseComparableReleaseDate(value) {
+    const timestamp = new Date(String(value || "")).getTime();
+    return Number.isFinite(timestamp) ? timestamp : Number.NaN;
+}
+
 function isYyhCardRecord(cardRecord) {
     return normalizeGameplayLookupValue(cardRecord?.game) === "yu yu hakusho";
 }
@@ -2023,6 +2243,46 @@ function sortInventoryRecords(records, sortOption) {
     };
 
     switch (sortOption) {
+    case "Set Release (Latest First)":
+        sorted.sort((a, b) => {
+            const aDate = parseComparableReleaseDate(a.setReleaseDate);
+            const bDate = parseComparableReleaseDate(b.setReleaseDate);
+            const aHasDate = Number.isFinite(aDate);
+            const bHasDate = Number.isFinite(bDate);
+
+            if (aHasDate && bHasDate && aDate !== bDate) {
+                return bDate - aDate;
+            }
+            if (aHasDate && !bHasDate) {
+                return -1;
+            }
+            if (!aHasDate && bHasDate) {
+                return 1;
+            }
+
+            return compareCardNumberOrder(a, b, 1);
+        });
+        break;
+    case "Set Release (Earliest First)":
+        sorted.sort((a, b) => {
+            const aDate = parseComparableReleaseDate(a.setReleaseDate);
+            const bDate = parseComparableReleaseDate(b.setReleaseDate);
+            const aHasDate = Number.isFinite(aDate);
+            const bHasDate = Number.isFinite(bDate);
+
+            if (aHasDate && bHasDate && aDate !== bDate) {
+                return aDate - bDate;
+            }
+            if (aHasDate && !bHasDate) {
+                return -1;
+            }
+            if (!aHasDate && bHasDate) {
+                return 1;
+            }
+
+            return compareCardNumberOrder(a, b, 1);
+        });
+        break;
     case "Price (High-Low)":
         sorted.sort((a, b) => {
             const aPrice = getPriceValue(a);
@@ -2100,11 +2360,13 @@ function sortInventoryRecords(records, sortOption) {
 }
 
 function makeFilterState(searchFilter, gameFilter, setFilter, typeFilter, rarityFilter, editionFilter, variantFocusFilter, priceStatusFilter, gameplayStatusFilter, sortFilter, variantsToggle) {
+    const archetypeFilter = document.getElementById("inventory-archetype-filter");
     return {
         query: searchFilter.value,
         game: gameFilter.value,
         set: setFilter.value,
         type: typeFilter.value,
+        archetype: archetypeFilter instanceof HTMLSelectElement ? archetypeFilter.value : YGO_DEFAULT_ARCHETYPE_OPTION,
         rarity: rarityFilter.value,
         edition: editionFilter.value,
         variantFocus: variantFocusFilter.value,
@@ -2122,6 +2384,7 @@ function readInitialFiltersFromUrl() {
         game: params.get("game") || "",
         set: params.get("set") || "",
         type: params.get("type") || "",
+        archetype: params.get("archetype") || "",
         rarity: params.get("rarity") || "",
         edition: params.get("edition") || "",
         variantFocus: params.get("variantFocus") || params.get("finish") || "",
@@ -2188,6 +2451,291 @@ async function loadFallbackData() {
     }
 
     throw new Error("No fallback data file found.");
+}
+
+async function loadYgoSetOptions() {
+    if (Array.isArray(ygoSetOptionsCache) && ygoSetOptionsCache.length > 0) {
+        return ygoSetOptionsCache;
+    }
+
+    try {
+        const response = await fetch(YGO_CARDSETS_API_URL, { cache: "no-store" });
+        if (!response.ok) {
+            throw new Error(`YGO set request failed with status ${response.status}`);
+        }
+
+        const payload = await response.json();
+        if (!Array.isArray(payload)) {
+            throw new Error("Invalid YGO set payload shape");
+        }
+
+        const setNames = payload
+            .map((item) => String(item?.set_name || "").trim())
+            .filter(Boolean)
+            .sort((a, b) => a.localeCompare(b));
+
+        ygoSetReleaseDateCache = new Map(
+            payload
+                .map((item) => {
+                    const setName = String(item?.set_name || "").trim();
+                    const tcgDate = String(item?.tcg_date || "").trim();
+                    return setName ? [setName, tcgDate] : null;
+                })
+                .filter(Boolean)
+        );
+
+        ygoSetOptionsCache = ["All Sets", ...Array.from(new Set(setNames))];
+        FILTER_OPTIONS_BY_GAME["Yu-Gi-Oh"].sets = ygoSetOptionsCache;
+        return ygoSetOptionsCache;
+    } catch {
+        return FILTER_OPTIONS_BY_GAME["Yu-Gi-Oh"].sets;
+    }
+}
+
+async function loadYgoArchetypeOptions() {
+    if (Array.isArray(ygoArchetypeOptionsCache) && ygoArchetypeOptionsCache.length > 0) {
+        return ygoArchetypeOptionsCache;
+    }
+
+    try {
+        const response = await fetch(YGO_ARCHETYPES_API_URL, { cache: "no-store" });
+        if (!response.ok) {
+            throw new Error(`YGO archetype request failed with status ${response.status}`);
+        }
+
+        const payload = await response.json();
+        const archetypeNames = Array.isArray(payload)
+            ? payload.map((item) => String(item?.archetype_name || item?.archetype || "").trim()).filter(Boolean)
+            : [];
+
+        ygoArchetypeOptionsCache = [YGO_DEFAULT_ARCHETYPE_OPTION, ...Array.from(new Set(archetypeNames)).sort((a, b) => a.localeCompare(b))];
+        return ygoArchetypeOptionsCache;
+    } catch {
+        return [YGO_DEFAULT_ARCHETYPE_OPTION];
+    }
+}
+
+function getSelectedYgoSetEntry(cardPayload, selectedSetName) {
+    const setRows = Array.isArray(cardPayload?.card_sets) ? cardPayload.card_sets : [];
+    if (selectedSetName && selectedSetName !== "All Sets") {
+        const exactMatch = setRows.find((row) => String(row?.set_name || "").trim() === selectedSetName);
+        if (exactMatch) {
+            return exactMatch;
+        }
+    }
+
+    return setRows[0] || null;
+}
+
+function getSelectedYgoSetEntries(cardPayload, selectedSetName, includeVariants = false) {
+    const setRows = Array.isArray(cardPayload?.card_sets) ? cardPayload.card_sets : [];
+    if (setRows.length === 0) {
+        return [null];
+    }
+
+    const scopedRows = selectedSetName && selectedSetName !== "All Sets"
+        ? setRows.filter((row) => String(row?.set_name || "").trim() === selectedSetName)
+        : setRows;
+
+    const selectedRows = scopedRows.length > 0 ? scopedRows : setRows;
+    if (!includeVariants) {
+        return [selectedRows[0] || null];
+    }
+
+    return selectedRows;
+}
+
+function mapYgoCardToInventoryRecord(cardPayload, setEntry, includeVariants = false) {
+    const firstImage = Array.isArray(cardPayload?.card_images) ? cardPayload.card_images[0] : null;
+    const setCode = String(setEntry?.set_code || cardPayload?.id || "").trim() || String(cardPayload?.id || "UNKNOWN");
+    const variantLabel = includeVariants
+        ? resolveFirstNonEmpty(setEntry?.set_code, setEntry?.set_rarity, "Standard")
+        : "Standard";
+
+    return normalizeCardRecord({
+        id: setCode,
+        number: setCode,
+        game: "Yu-Gi-Oh",
+        set: String(setEntry?.set_name || "Various Sets").trim() || "Various Sets",
+        name: String(cardPayload?.name || "").trim(),
+        archetype: resolveFirstNonEmpty(cardPayload?.archetype),
+        type: String(cardPayload?.type || cardPayload?.race || "Unknown Type").trim(),
+        rarity: String(setEntry?.set_rarity || "Unknown Rarity").trim() || "Unknown Rarity",
+        variant: variantLabel,
+        edition: resolveFirstNonEmpty(setEntry?.set_edition),
+        effect: String(cardPayload?.desc || "").trim(),
+        setReleaseDate: resolveFirstNonEmpty(ygoSetReleaseDateCache.get(String(setEntry?.set_name || "").trim())),
+        imageUrl: resolveFirstNonEmpty(
+            firstImage?.image_url_small,
+            firstImage?.image_url,
+            firstImage?.image_url_cropped
+        )
+    });
+}
+
+function buildYgoVariantCacheKey(filterState) {
+    return JSON.stringify({
+        query: String(filterState.query || "").trim(),
+        game: filterState.game,
+        set: filterState.set,
+        type: filterState.type,
+        archetype: filterState.archetype,
+        attribute: filterState.rarity,
+        race: filterState.edition,
+        format: filterState.variantFocus,
+        effect: filterState.priceStatus,
+        level: filterState.gameplayStatus
+    });
+}
+
+async function loadAllYgoVariantRecords(filterState) {
+    const cacheKey = buildYgoVariantCacheKey(filterState);
+    if (ygoVariantInventoryCache.has(cacheKey)) {
+        return ygoVariantInventoryCache.get(cacheKey);
+    }
+
+    const collectedCards = [];
+    let offset = 0;
+    let totalRows = Number.POSITIVE_INFINITY;
+
+    while (collectedCards.length < totalRows) {
+        const endpoint = new URL(YGO_CARDINFO_API_URL);
+        const query = String(filterState.query || "").trim();
+
+        if (query) {
+            if (/^\d+$/.test(query)) {
+                endpoint.searchParams.set("id", query);
+            } else {
+                endpoint.searchParams.set("fname", query);
+            }
+        }
+
+        if (filterState.set && filterState.set !== "All Sets") {
+            endpoint.searchParams.set("cardset", filterState.set);
+        }
+        if (filterState.type && filterState.type !== "All Types") {
+            endpoint.searchParams.set("type", filterState.type);
+        }
+        if (filterState.archetype && filterState.archetype !== YGO_DEFAULT_ARCHETYPE_OPTION) {
+            endpoint.searchParams.set("archetype", filterState.archetype);
+        }
+        if (filterState.rarity && filterState.rarity !== YGO_DEFAULT_ATTRIBUTE_OPTION) {
+            endpoint.searchParams.set("attribute", filterState.rarity);
+        }
+        if (filterState.edition && filterState.edition !== YGO_DEFAULT_RACE_OPTION) {
+            endpoint.searchParams.set("race", filterState.edition);
+        }
+        if (filterState.variantFocus && filterState.variantFocus !== YGO_DEFAULT_FORMAT_OPTION) {
+            endpoint.searchParams.set("format", filterState.variantFocus);
+        }
+        if (filterState.priceStatus === "Has Effect Text") {
+            endpoint.searchParams.set("has_effect", "true");
+        } else if (filterState.priceStatus === "No Effect Text") {
+            endpoint.searchParams.set("has_effect", "false");
+        }
+        if (filterState.gameplayStatus && filterState.gameplayStatus !== YGO_DEFAULT_LEVEL_OPTION) {
+            endpoint.searchParams.set("level", filterState.gameplayStatus);
+        }
+
+        endpoint.searchParams.set("num", String(YGO_VARIANT_FETCH_LIMIT));
+        endpoint.searchParams.set("offset", String(offset));
+
+        const response = await fetch(endpoint.toString(), { cache: "no-store" });
+        if (!response.ok) {
+            throw new Error(`YGO variant request failed with status ${response.status}`);
+        }
+
+        const payload = await response.json();
+        const pageCards = Array.isArray(payload?.data) ? payload.data : [];
+        const metaTotalRows = Number(payload?.meta?.total_rows);
+        totalRows = Number.isFinite(metaTotalRows) ? metaTotalRows : pageCards.length;
+        collectedCards.push(...pageCards);
+
+        if (pageCards.length === 0 || collectedCards.length >= totalRows) {
+            break;
+        }
+
+        offset += pageCards.length;
+    }
+
+    const expandedRecords = collectedCards.flatMap((cardPayload) => {
+        const setEntries = getSelectedYgoSetEntries(cardPayload, filterState.set, true);
+        return setEntries.map((setEntry) => mapYgoCardToInventoryRecord(cardPayload, setEntry, true));
+    });
+
+    ygoVariantInventoryCache.set(cacheKey, expandedRecords);
+    return expandedRecords;
+}
+
+async function loadYgoInventoryPage(filterState, offset = INVENTORY_DEFAULT_OFFSET) {
+    const endpoint = new URL(YGO_CARDINFO_API_URL);
+    const query = String(filterState.query || "").trim();
+    const pageLimit = getInventoryPageLimit();
+
+    if (query) {
+        if (/^\d+$/.test(query)) {
+            endpoint.searchParams.set("id", query);
+        } else {
+            endpoint.searchParams.set("fname", query);
+        }
+    }
+
+    if (filterState.set && filterState.set !== "All Sets") {
+        endpoint.searchParams.set("cardset", filterState.set);
+    }
+
+    if (filterState.type && filterState.type !== "All Types") {
+        endpoint.searchParams.set("type", filterState.type);
+    }
+    if (filterState.archetype && filterState.archetype !== YGO_DEFAULT_ARCHETYPE_OPTION) {
+        endpoint.searchParams.set("archetype", filterState.archetype);
+    }
+
+    if (filterState.rarity && filterState.rarity !== YGO_DEFAULT_ATTRIBUTE_OPTION) {
+        endpoint.searchParams.set("attribute", filterState.rarity);
+    }
+
+    if (filterState.edition && filterState.edition !== YGO_DEFAULT_RACE_OPTION) {
+        endpoint.searchParams.set("race", filterState.edition);
+    }
+
+    if (filterState.variantFocus && filterState.variantFocus !== YGO_DEFAULT_FORMAT_OPTION) {
+        endpoint.searchParams.set("format", filterState.variantFocus);
+    }
+
+    if (filterState.priceStatus === "Has Effect Text") {
+        endpoint.searchParams.set("has_effect", "true");
+    } else if (filterState.priceStatus === "No Effect Text") {
+        endpoint.searchParams.set("has_effect", "false");
+    }
+
+    if (filterState.gameplayStatus && filterState.gameplayStatus !== YGO_DEFAULT_LEVEL_OPTION) {
+        endpoint.searchParams.set("level", filterState.gameplayStatus);
+    }
+
+    endpoint.searchParams.set("num", String(pageLimit));
+    endpoint.searchParams.set("offset", String(offset));
+
+    const response = await fetch(endpoint.toString(), { cache: "no-store" });
+    if (!response.ok) {
+        throw new Error(`YGO inventory request failed with status ${response.status}`);
+    }
+
+    const payload = await response.json();
+    const items = Array.isArray(payload?.data)
+        ? payload.data.map((cardPayload) => {
+            const setEntry = getSelectedYgoSetEntries(cardPayload, filterState.set, false)[0] || getSelectedYgoSetEntry(cardPayload, filterState.set);
+            return mapYgoCardToInventoryRecord(cardPayload, setEntry, false);
+        })
+        : [];
+    const total = Number(payload?.meta?.total_rows) || items.length;
+    const rowsRemaining = Number(payload?.meta?.rows_remaining);
+
+    return {
+        items,
+        total,
+        hasMore: Number.isFinite(rowsRemaining) ? rowsRemaining > 0 : offset + items.length < total
+    };
 }
 
 async function loadSetsForAllGames(records) {
@@ -2286,6 +2834,7 @@ async function initInventoryFilters() {
     const gameFilter = document.getElementById("inventory-game-filter");
     const setFilter = document.getElementById("inventory-set-filter");
     const typeFilter = document.getElementById("inventory-type-filter");
+    const archetypeFilter = document.getElementById("inventory-archetype-filter");
     const rarityFilter = document.getElementById("inventory-rarity-filter");
     const editionFilter = document.getElementById("inventory-edition-filter");
     const variantFocusFilter = document.getElementById("inventory-variant-focus-filter");
@@ -2298,9 +2847,10 @@ async function initInventoryFilters() {
     const loadMoreButton = document.getElementById("inventory-load-more");
     const loadMoreProgress = document.getElementById("inventory-load-more-progress");
     const setContextElement = document.getElementById("inventory-set-context");
+    const variantsSummary = document.getElementById("inventory-variants-summary");
     const initialFilters = readInitialFiltersFromUrl();
 
-    if (!searchFilter || !gameFilter || !setFilter || !typeFilter || !rarityFilter || !editionFilter || !variantFocusFilter || !priceStatusFilter || !gameplayStatusFilter || !sortFilter || !variantsToggle || !resultsMeta || !resultsGrid || !loadMoreButton || !loadMoreProgress || !setContextElement) {
+    if (!searchFilter || !gameFilter || !setFilter || !typeFilter || !archetypeFilter || !rarityFilter || !editionFilter || !variantFocusFilter || !priceStatusFilter || !gameplayStatusFilter || !sortFilter || !variantsToggle || !resultsMeta || !resultsGrid || !loadMoreButton || !loadMoreProgress || !setContextElement || !variantsSummary) {
         return;
     }
 
@@ -2317,6 +2867,8 @@ async function initInventoryFilters() {
     FILTER_OPTIONS_BY_GAME["All Games"].sets = allSets;
     FILTER_OPTIONS_BY_GAME["Yu Yu Hakusho"].sets = allSets;
     updateSetOptionsForAllGames(setFilter, inventoryRecords);
+    await loadYgoSetOptions();
+    await loadYgoArchetypeOptions();
 
     let renderRequestId = 0;
     let cardsShown = 0;
@@ -2340,6 +2892,21 @@ async function initInventoryFilters() {
     const hideLoadMoreProgress = () => {
         loadMoreProgress.hidden = true;
         loadMoreProgress.textContent = "";
+    };
+
+    const updateVariantsSummary = (filterState, totalCount) => {
+        if (!(variantsSummary instanceof HTMLElement)) {
+            return;
+        }
+
+        if (filterState.game === "Yu-Gi-Oh") {
+            variantsSummary.textContent = filterState.includeVariants
+                ? `Expanded view shows ${Number(totalCount || 0).toLocaleString()} total printings.`
+                : `Collapsed view groups printings into ${Number(totalCount || 0).toLocaleString()} unique cards.`;
+            return;
+        }
+
+        variantsSummary.textContent = "Collapsed view groups printings into one card entry.";
     };
 
     const updateLoadMoreButtonState = () => {
@@ -2382,6 +2949,7 @@ async function initInventoryFilters() {
             updateLoadMoreButtonState();
             hideLoadMoreProgress();
             renderSetContext(setContextElement, filterState, null, new Map());
+            updateVariantsSummary(filterState, 0);
             renderGameSelectionPrompt(resultsGrid, resultsMeta);
             return;
         }
@@ -2413,11 +2981,85 @@ async function initInventoryFilters() {
             canLoadMore = false;
             updateLoadMoreButtonState();
             setLoadMoreProgress(0, 0, filterState.includeVariants);
+            updateVariantsSummary(filterState, 0);
             resultsMeta.textContent = `Type ${MIN_SEARCH_CHARACTERS} or more characters to search`;
             return;
         }
 
         if (requestId !== renderRequestId) {
+            return;
+        }
+
+        if (filterState.game === "Yu-Gi-Oh") {
+            let sourceRecords = [];
+            let ygoTotal = 0;
+            let ygoHasMore = false;
+
+            try {
+                if (filterState.includeVariants) {
+                    const ygoVariantRecords = await loadAllYgoVariantRecords(filterState);
+                    if (requestId !== renderRequestId) {
+                        return;
+                    }
+
+                    const sortedVariantRecords = sortInventoryRecords(ygoVariantRecords, filterState.sort);
+                    ygoTotal = sortedVariantRecords.length;
+                    sourceRecords = sortedVariantRecords.slice(offset, offset + getInventoryPageLimit());
+                    ygoHasMore = offset + sourceRecords.length < ygoTotal;
+                } else {
+                    const ygoResult = await loadYgoInventoryPage(filterState, offset);
+                    if (requestId !== renderRequestId) {
+                        return;
+                    }
+
+                    sourceRecords = sortInventoryRecords(ygoResult.items, filterState.sort);
+                    ygoTotal = ygoResult.total;
+                    ygoHasMore = Boolean(ygoResult.hasMore);
+                }
+            } catch (error) {
+                const reason = error instanceof Error ? error.message : "Unknown loading error";
+                renderInventoryError(resultsGrid, resultsMeta, `Unable to load Yu-Gi-Oh data (${reason}).`);
+                return;
+            }
+
+            const collisionCountMap = buildCollisionCountMap(sourceRecords);
+            const variantFamilyCountMap = buildVariantFamilyCountMap(sourceRecords);
+
+            if (!append && sourceRecords.length === 0) {
+                resultsGrid.hidden = false;
+                resultsGrid.classList.remove("inventory-grid--thumbnail-mode");
+                resultsGrid.innerHTML = `
+                    <article class="inventory-card">
+                        <div class="inventory-card__image" aria-hidden="true"></div>
+                        <h3 class="inventory-card__title">No matching cards found</h3>
+                        <p class="inventory-card__meta">Try adjusting game, set, type, rarity, or search text.</p>
+                        <span class="inventory-card__tag">Searchable inventory</span>
+                    </article>
+                `;
+                canLoadMore = false;
+                updateLoadMoreButtonState();
+                setLoadMoreProgress(0, 0, filterState.includeVariants);
+                updateVariantsSummary(filterState, 0);
+                resultsMeta.textContent = "0 cards matched • searchable inventory";
+                return;
+            }
+
+            if (append) {
+                resultsGrid.insertAdjacentHTML("beforeend", sourceRecords.map((cardRecord) => makeInventoryCard(cardRecord, collisionCountMap, variantFamilyCountMap, false, false)).join(""));
+                resultsGrid.classList.add("inventory-grid--thumbnail-mode");
+            } else {
+                resultsGrid.innerHTML = sourceRecords.map((cardRecord) => makeInventoryCard(cardRecord, collisionCountMap, variantFamilyCountMap, false, false)).join("");
+            }
+
+            cardsShown = append ? cardsShown + sourceRecords.length : sourceRecords.length;
+            canLoadMore = ygoHasMore;
+            updateLoadMoreButtonState();
+            setLoadMoreProgress(cardsShown, ygoTotal, filterState.includeVariants);
+            updateVariantsSummary(filterState, ygoTotal);
+            hydrateInventoryCardImages(resultsGrid);
+            resultsMeta.textContent = filterState.includeVariants
+                ? `${cardsShown} of ${ygoTotal} total printings shown • searchable inventory`
+                : `${cardsShown} of ${ygoTotal} cards shown • searchable inventory`;
             return;
         }
 
@@ -2460,13 +3102,14 @@ async function initInventoryFilters() {
                     <div class="inventory-card__image" aria-hidden="true"></div>
                     <h3 class="inventory-card__title">No matching cards found</h3>
                     <p class="inventory-card__meta">Try adjusting game, set, rarity, gameplay status, or search text.</p>
-                    <span class="inventory-card__tag">YYH searchable inventory</span>
+                    <span class="inventory-card__tag">Searchable inventory</span>
                 </article>
             `;
             canLoadMore = false;
             updateLoadMoreButtonState();
             setLoadMoreProgress(0, 0, filterState.includeVariants);
-            resultsMeta.textContent = "0 cards matched • YYH searchable inventory";
+            updateVariantsSummary(filterState, 0);
+            resultsMeta.textContent = "0 cards matched • searchable inventory";
             return;
         }
 
@@ -2487,13 +3130,14 @@ async function initInventoryFilters() {
         canLoadMore = cardsShown < totalForDisplay;
         updateLoadMoreButtonState();
         setLoadMoreProgress(cardsShown, totalForDisplay, filterState.includeVariants);
+        updateVariantsSummary(filterState, totalForDisplay);
         hydrateInventoryCardImages(resultsGrid);
         if (filterState.includeVariants) {
-            resultsMeta.textContent = `${cardsShown} of ${totalForDisplay} total entries • YYH searchable inventory`;
+            resultsMeta.textContent = `${cardsShown} of ${totalForDisplay} total entries • searchable inventory`;
         } else if (totalForDisplay > cardsShown) {
-            resultsMeta.textContent = `${cardsShown} unique cards shown • ${totalForDisplay} unique total • YYH searchable inventory`;
+            resultsMeta.textContent = `${cardsShown} unique cards shown • ${totalForDisplay} unique total • searchable inventory`;
         } else {
-            resultsMeta.textContent = `${cardsShown} unique cards shown • YYH searchable inventory`;
+            resultsMeta.textContent = `${cardsShown} unique cards shown • searchable inventory`;
         }
     };
 
@@ -2502,6 +3146,7 @@ async function initInventoryFilters() {
         const gameOptions = FILTER_OPTIONS_BY_GAME[selectedGame] || FILTER_OPTIONS_BY_GAME["All Games"];
         const previousSet = setFilter.value;
         const previousType = typeFilter.value;
+        const previousArchetype = archetypeFilter.value;
         const previousRarity = rarityFilter.value;
         const previousEdition = editionFilter.value;
         const previousVariantFocus = variantFocusFilter.value;
@@ -2510,14 +3155,53 @@ async function initInventoryFilters() {
         const previousSort = sortFilter.value;
         const hasSelectedGame = selectedGame !== "All Games";
         const isYyhSelected = selectedGame === "Yu Yu Hakusho";
+        const isYgoSelected = selectedGame === "Yu-Gi-Oh";
 
-        replaceSelectOptions(setFilter, gameOptions.sets);
+        syncInventoryNav(selectedGame);
+        syncInventoryNotes({ game: selectedGame });
+
+        const selectedGameSetOptions = selectedGame === "Yu-Gi-Oh"
+            ? (Array.isArray(ygoSetOptionsCache) && ygoSetOptionsCache.length > 0
+                ? ygoSetOptionsCache
+                : gameOptions.sets)
+            : gameOptions.sets;
+
+        replaceSelectOptions(setFilter, selectedGameSetOptions);
         replaceSelectOptions(typeFilter, gameOptions.types);
-        replaceSelectOptions(variantFocusFilter, VARIANT_FOCUS_OPTIONS);
-        replaceSelectOptions(priceStatusFilter, PRICE_STATUS_OPTIONS);
-        replaceSelectOptions(gameplayStatusFilter, isYyhSelected ? GAMEPLAY_STATUS_OPTIONS : [DEFAULT_GAMEPLAY_STATUS_OPTION]);
-        gameplayStatusFilter.disabled = !isYyhSelected;
-        replaceSelectOptions(sortFilter, [
+        if (isYgoSelected) {
+            replaceSelectOptions(archetypeFilter, Array.isArray(ygoArchetypeOptionsCache) && ygoArchetypeOptionsCache.length > 0
+                ? ygoArchetypeOptionsCache
+                : [YGO_DEFAULT_ARCHETYPE_OPTION]);
+            archetypeFilter.disabled = false;
+        } else {
+            replaceSelectOptions(archetypeFilter, [YGO_DEFAULT_ARCHETYPE_OPTION]);
+            archetypeFilter.disabled = true;
+        }
+        if (isYgoSelected) {
+            replaceSelectOptions(rarityFilter, YGO_ATTRIBUTE_OPTIONS);
+            replaceSelectOptions(editionFilter, YGO_RACE_OPTIONS);
+            replaceSelectOptions(variantFocusFilter, YGO_FORMAT_OPTIONS);
+            replaceSelectOptions(priceStatusFilter, YGO_EFFECT_OPTIONS);
+            replaceSelectOptions(gameplayStatusFilter, YGO_LEVEL_OPTIONS);
+            gameplayStatusFilter.disabled = false;
+            syncYgoFilterLabels(rarityFilter, editionFilter, variantFocusFilter, priceStatusFilter, gameplayStatusFilter);
+        } else {
+            replaceSelectOptions(variantFocusFilter, VARIANT_FOCUS_OPTIONS);
+            replaceSelectOptions(priceStatusFilter, PRICE_STATUS_OPTIONS);
+            replaceSelectOptions(gameplayStatusFilter, isYyhSelected ? GAMEPLAY_STATUS_OPTIONS : [DEFAULT_GAMEPLAY_STATUS_OPTION]);
+            gameplayStatusFilter.disabled = !isYyhSelected;
+            syncDefaultFilterLabels(rarityFilter, editionFilter, variantFocusFilter, priceStatusFilter, gameplayStatusFilter);
+        }
+        replaceSelectOptions(sortFilter, isYgoSelected ? [
+            YGO_DEFAULT_SORT_OPTION,
+            "Set Release (Earliest First)",
+            "Card Number (Low-High)",
+            "Card Number (High-Low)",
+            "Name (A-Z)",
+            "Name (Z-A)",
+            "Rarity (A-Z)",
+            "Set (A-Z)"
+        ] : [
             DEFAULT_SORT_OPTION,
             "Card Number (High-Low)",
             "Name (A-Z)",
@@ -2540,43 +3224,56 @@ async function initInventoryFilters() {
         } else if (!hasSelectedGame) {
             typeFilter.value = "All Types";
         }
-        const scopedRarityOptions = getScopedRarityOptions(
-            inventoryRecords,
-            {
-                query: searchFilter.value,
-                game: gameFilter.value,
-                set: setFilter.value,
-                type: typeFilter.value,
-                rarity: "All Rarities",
-                edition: editionFilter.value,
-                variantFocus: variantFocusFilter.value,
-                priceStatus: priceStatusFilter.value,
-                gameplayStatus: gameplayStatusFilter.value,
-                sort: sortFilter.value,
-                includeVariants: Boolean(variantsToggle.checked)
-            },
-            gameOptions
-        );
+        if (isYgoSelected && Array.from(archetypeFilter.options).some((option) => option.value === previousArchetype)) {
+            archetypeFilter.value = previousArchetype;
+        } else {
+            archetypeFilter.value = YGO_DEFAULT_ARCHETYPE_OPTION;
+        }
+        const scopedRarityOptions = selectedGame === "Yu-Gi-Oh"
+            ? YGO_ATTRIBUTE_OPTIONS
+            : getScopedRarityOptions(
+                inventoryRecords,
+                {
+                    query: searchFilter.value,
+                    game: gameFilter.value,
+                    set: setFilter.value,
+                    type: typeFilter.value,
+                    archetype: archetypeFilter.value,
+                    rarity: "All Rarities",
+                    edition: editionFilter.value,
+                    variantFocus: variantFocusFilter.value,
+                    priceStatus: priceStatusFilter.value,
+                    gameplayStatus: gameplayStatusFilter.value,
+                    sort: sortFilter.value,
+                    includeVariants: Boolean(variantsToggle.checked)
+                },
+                gameOptions
+            );
         replaceSelectOptions(rarityFilter, scopedRarityOptions);
+        rarityFilter.disabled = false;
 
         if (scopedRarityOptions.includes(previousRarity)) {
             rarityFilter.value = previousRarity;
         }
 
-        const scopedEditionOptions = getScopedEditionOptions(inventoryRecords, {
-            query: searchFilter.value,
-            game: gameFilter.value,
-            set: setFilter.value,
-            type: typeFilter.value,
-            rarity: rarityFilter.value,
-            edition: DEFAULT_EDITION_OPTION,
-            variantFocus: variantFocusFilter.value,
-            priceStatus: priceStatusFilter.value,
-            gameplayStatus: gameplayStatusFilter.value,
-            sort: sortFilter.value,
-            includeVariants: Boolean(variantsToggle.checked)
-        });
+        const scopedEditionOptions = selectedGame === "Yu-Gi-Oh"
+            ? YGO_RACE_OPTIONS
+            : getScopedEditionOptions(inventoryRecords, {
+                query: searchFilter.value,
+                game: gameFilter.value,
+                set: setFilter.value,
+                type: typeFilter.value,
+                archetype: archetypeFilter.value,
+                rarity: rarityFilter.value,
+                edition: DEFAULT_EDITION_OPTION,
+                variantFocus: variantFocusFilter.value,
+                priceStatus: priceStatusFilter.value,
+                gameplayStatus: gameplayStatusFilter.value,
+                sort: sortFilter.value,
+                includeVariants: Boolean(variantsToggle.checked)
+            });
         replaceSelectOptions(editionFilter, scopedEditionOptions);
+        editionFilter.disabled = false;
 
         if (scopedEditionOptions.includes(previousEdition)) {
             editionFilter.value = previousEdition;
@@ -2587,25 +3284,33 @@ async function initInventoryFilters() {
         if (VARIANT_FOCUS_OPTIONS.includes(previousVariantFocus)) {
             variantFocusFilter.value = previousVariantFocus;
         } else {
-            variantFocusFilter.value = DEFAULT_VARIANT_FOCUS_OPTION;
+            variantFocusFilter.value = isYgoSelected ? YGO_DEFAULT_FORMAT_OPTION : DEFAULT_VARIANT_FOCUS_OPTION;
         }
+        variantFocusFilter.disabled = false;
 
-        if (PRICE_STATUS_OPTIONS.includes(previousPriceStatus)) {
+        if ((isYgoSelected ? YGO_EFFECT_OPTIONS : PRICE_STATUS_OPTIONS).includes(previousPriceStatus)) {
             priceStatusFilter.value = previousPriceStatus;
         } else {
-            priceStatusFilter.value = DEFAULT_PRICE_STATUS_OPTION;
+            priceStatusFilter.value = isYgoSelected ? YGO_DEFAULT_EFFECT_OPTION : DEFAULT_PRICE_STATUS_OPTION;
         }
+        priceStatusFilter.disabled = false;
 
-        if (isYyhSelected && GAMEPLAY_STATUS_OPTIONS.includes(previousGameplayStatus)) {
+        if (isYgoSelected && YGO_LEVEL_OPTIONS.includes(previousGameplayStatus)) {
+            gameplayStatusFilter.value = previousGameplayStatus;
+        } else if (isYyhSelected && GAMEPLAY_STATUS_OPTIONS.includes(previousGameplayStatus)) {
             gameplayStatusFilter.value = previousGameplayStatus;
         } else {
-            gameplayStatusFilter.value = DEFAULT_GAMEPLAY_STATUS_OPTION;
+            gameplayStatusFilter.value = isYgoSelected ? YGO_DEFAULT_LEVEL_OPTION : DEFAULT_GAMEPLAY_STATUS_OPTION;
         }
 
         if (Array.from(sortFilter.options).some((option) => option.value === previousSort)) {
             sortFilter.value = previousSort;
         } else {
-            sortFilter.value = DEFAULT_SORT_OPTION;
+            sortFilter.value = isYgoSelected ? YGO_DEFAULT_SORT_OPTION : DEFAULT_SORT_OPTION;
+        }
+
+        if (variantsToggle instanceof HTMLInputElement) {
+            variantsToggle.disabled = false;
         }
 
         if (shouldRender) {
@@ -2619,6 +3324,7 @@ async function initInventoryFilters() {
     if (initialFilters.game && Array.from(gameFilter.options).some((option) => option.value === initialFilters.game)) {
         gameFilter.value = initialFilters.game;
     }
+    syncInventoryNav(gameFilter.value || "All Games");
     if (initialFilters.variants.toLowerCase() === "all") {
         variantsToggle.checked = true;
     }
@@ -2628,6 +3334,9 @@ async function initInventoryFilters() {
         syncConditionalFilters();
     });
     typeFilter.addEventListener("change", () => {
+        syncConditionalFilters();
+    });
+    archetypeFilter.addEventListener("change", () => {
         syncConditionalFilters();
     });
     rarityFilter.addEventListener("change", () => {
@@ -2688,6 +3397,9 @@ async function initInventoryFilters() {
     if (initialFilters.type && Array.from(typeFilter.options).some((option) => option.value === initialFilters.type)) {
         typeFilter.value = initialFilters.type;
     }
+    if (initialFilters.archetype && Array.from(archetypeFilter.options).some((option) => option.value === initialFilters.archetype)) {
+        archetypeFilter.value = initialFilters.archetype;
+    }
     if (initialFilters.rarity && Array.from(rarityFilter.options).some((option) => option.value === initialFilters.rarity)) {
         rarityFilter.value = initialFilters.rarity;
     }
@@ -2706,7 +3418,7 @@ async function initInventoryFilters() {
     if (initialFilters.sort && Array.from(sortFilter.options).some((option) => option.value === initialFilters.sort)) {
         sortFilter.value = initialFilters.sort;
     } else {
-        sortFilter.value = DEFAULT_SORT_OPTION;
+        sortFilter.value = gameFilter.value === "Yu-Gi-Oh" ? YGO_DEFAULT_SORT_OPTION : DEFAULT_SORT_OPTION;
     }
 
     void renderResults(false);

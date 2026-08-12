@@ -1,4 +1,5 @@
 const CARD_API_URL = "/api/yyh/cards";
+const YGO_CARDINFO_API_URL = "https://db.ygoprodeck.com/api/v7/cardinfo.php";
 const CARD_FALLBACK_DATA_URLS = [
     "data/yyh-cards-full.json",
     "data/yyh-cards.json",
@@ -16,6 +17,30 @@ const YYH_IMAGE_SET_FOLDERS = {
     "Ghost Files": "ghost-files",
     "Pre-Release Cards": "pre-release-cards",
     "Products": "products"
+};
+
+const CARD_PAGE_GAME_NAV_CONFIG = {
+    "Yu Yu Hakusho": {
+        featureLabel: "Kings",
+        featureHref: "kings.html",
+        inventoryHref: "inventory.html?game=Yu%20Yu%20Hakusho",
+        setsHref: "sets.html?game=Yu%20Yu%20Hakusho",
+        footerMeta: "Single-card pages for the Yu Yu Hakusho inventory."
+    },
+    "Yu-Gi-Oh": {
+        featureLabel: "Win Cons",
+        featureHref: "kings.html?game=Yu-Gi-Oh&mode=wincons",
+        inventoryHref: "inventory.html?game=Yu-Gi-Oh",
+        setsHref: "sets.html?game=Yu-Gi-Oh",
+        footerMeta: "Single-card pages for the Yu-Gi-Oh inventory."
+    },
+    "Pokemon": {
+        featureLabel: "Starters",
+        featureHref: "kings.html?game=Pokemon&mode=starters",
+        inventoryHref: "inventory.html?game=Pokemon",
+        setsHref: "sets.html?game=Pokemon",
+        footerMeta: "Single-card pages for the Pokemon inventory."
+    }
 };
 
 const DEFAULT_PRICE_STATUS = "Unpriced";
@@ -78,8 +103,79 @@ function normalizeFallbackCardRecord(rawCard) {
         rarity: resolveFirstNonEmpty(rawCard.rarity, rawCard.rarityCode, rawCard.rarity_name) || "Unknown Rarity",
         variant: resolveFirstNonEmpty(rawCard.variant, rawCard.finish, rawCard.foil, rawCard.version) || "Standard",
         effect: resolveFirstNonEmpty(rawCard.effect, rawCard.text, rawCard.notes),
-        source: resolveFirstNonEmpty(rawCard.source, "YYH catalog")
+        source: resolveFirstNonEmpty(rawCard.source, "YYH catalog"),
+        imageUrl: resolveFirstNonEmpty(rawCard.imageUrl, rawCard.image_url_small, rawCard.image_url, rawCard.image_url_cropped)
     };
+}
+
+function normalizeYgoCardRecord(cardPayload, setEntry) {
+    const firstImage = Array.isArray(cardPayload?.card_images) ? cardPayload.card_images[0] : null;
+    const setCode = resolveFirstNonEmpty(setEntry?.set_code, String(cardPayload?.id || "")) || "UNKNOWN";
+    const setPrice = Number(setEntry?.set_price);
+
+    return {
+        id: setCode,
+        number: setCode,
+        passcode: String(cardPayload?.id || "").trim(),
+        game: "Yu-Gi-Oh",
+        set: resolveFirstNonEmpty(setEntry?.set_name, "Various Sets"),
+        name: resolveFirstNonEmpty(cardPayload?.name, "Unnamed Card"),
+        type: resolveFirstNonEmpty(cardPayload?.type, cardPayload?.race, "Unknown Type"),
+        rarity: resolveFirstNonEmpty(setEntry?.set_rarity, "Unknown Rarity"),
+        variant: resolveFirstNonEmpty(setEntry?.set_code, setEntry?.set_rarity, "Standard"),
+        effect: resolveFirstNonEmpty(cardPayload?.desc),
+        source: "YGOPRODeck API",
+        imageUrl: resolveFirstNonEmpty(firstImage?.image_url, firstImage?.image_url_small, firstImage?.image_url_cropped),
+        pricing: Number.isFinite(setPrice)
+            ? { priceUsd: setPrice, status: "Priced", notes: "Set print pricing from YGOPRODeck." }
+            : null
+    };
+}
+
+function isYgoGame(value) {
+    return normalizeForSearch(value) === "yu gi oh";
+}
+
+function getCardPageNavConfig(gameName) {
+    return CARD_PAGE_GAME_NAV_CONFIG[gameName] || CARD_PAGE_GAME_NAV_CONFIG["Yu Yu Hakusho"];
+}
+
+function syncCardPageNav(gameName) {
+    const navConfig = getCardPageNavConfig(gameName);
+    const updateLinkSet = (container) => {
+        if (!(container instanceof HTMLElement)) {
+            return;
+        }
+
+        const links = Array.from(container.querySelectorAll("a"));
+        const inventoryLink = links.find((link) => String(link.textContent || "").trim() === "Inventory") || null;
+        const setsLink = links.find((link) => String(link.textContent || "").trim() === "Sets") || null;
+        const featureLink = links.find((link) => {
+            const text = String(link.textContent || "").trim();
+            return text === "Kings" || text === "Win Cons" || text === "Starters";
+        }) || null;
+
+        if (inventoryLink instanceof HTMLAnchorElement) {
+            inventoryLink.href = navConfig.inventoryHref;
+        }
+
+        if (setsLink instanceof HTMLAnchorElement) {
+            setsLink.href = navConfig.setsHref;
+        }
+
+        if (featureLink instanceof HTMLAnchorElement) {
+            featureLink.textContent = navConfig.featureLabel;
+            featureLink.href = navConfig.featureHref;
+        }
+    };
+
+    updateLinkSet(document.getElementById("primaryNavLinks"));
+    updateLinkSet(document.querySelector(".site-footer__nav"));
+
+    const footerMeta = document.querySelector(".site-footer__meta");
+    if (footerMeta instanceof HTMLElement) {
+        footerMeta.textContent = navConfig.footerMeta;
+    }
 }
 
 async function loadFallbackCards() {
@@ -504,6 +600,54 @@ function parseQueryContext() {
 }
 
 async function fetchCards(query) {
+    if (isYgoGame(query.game)) {
+        const exactName = resolveFirstNonEmpty(query.q);
+        const queryId = resolveFirstNonEmpty(query.id);
+        const attempts = [];
+
+        if (exactName && query.set) {
+            attempts.push({ name: exactName, cardset: query.set });
+        }
+        if (exactName) {
+            attempts.push({ name: exactName });
+            attempts.push({ fname: exactName, ...(query.set ? { cardset: query.set } : {}) });
+        }
+        if (/^\d+$/.test(queryId)) {
+            attempts.push({ id: queryId });
+        }
+        if (queryId && !/^\d+$/.test(queryId)) {
+            attempts.push({ fname: queryId, ...(query.set ? { cardset: query.set } : {}) });
+        }
+
+        let lastStatus = 0;
+        for (const attempt of attempts) {
+            const url = new URL(YGO_CARDINFO_API_URL);
+            Object.entries(attempt).forEach(([key, value]) => {
+                if (value) {
+                    url.searchParams.set(key, value);
+                }
+            });
+
+            const response = await fetch(url.toString(), { cache: "no-store" });
+            if (!response.ok) {
+                lastStatus = response.status;
+                continue;
+            }
+
+            const payload = await response.json();
+            const items = Array.isArray(payload?.data) ? payload.data : [];
+            return items.flatMap((cardPayload) => {
+                const setRows = Array.isArray(cardPayload?.card_sets) && cardPayload.card_sets.length > 0
+                    ? cardPayload.card_sets.filter((row) => !query.set || String(row?.set_name || "").trim() === query.set)
+                    : [null];
+                const scopedRows = setRows.length > 0 ? setRows : [null];
+                return scopedRows.map((setEntry) => normalizeYgoCardRecord(cardPayload, setEntry));
+            });
+        }
+
+        throw new Error(`Failed to load Yu-Gi-Oh card data (${lastStatus || 400})`);
+    }
+
     const url = new URL(CARD_API_URL, window.location.origin);
 
     if (query.game) {
@@ -650,7 +794,7 @@ function buildVariantOptions(records) {
 
         byLabel.set(label, {
             name: label,
-            imageCandidates: buildCardImageCandidates(record),
+            imageCandidates: record.imageUrl ? [record.imageUrl] : buildCardImageCandidates(record),
             record
         });
     }
@@ -882,13 +1026,16 @@ function renderCardPage(cardContext) {
 }
 
 async function buildCardContext(context) {
-    const searchText = resolveFirstNonEmpty(context.idQuery, context.cardQuery);
+    const searchText = isYgoGame(context.gameQuery)
+        ? resolveFirstNonEmpty(context.cardQuery, context.idQuery)
+        : resolveFirstNonEmpty(context.idQuery, context.cardQuery);
     if (!searchText) {
         return null;
     }
 
     let candidateCards = await fetchCards({
         q: searchText,
+        id: context.idQuery,
         game: context.gameQuery,
         set: context.setQuery
     });
@@ -896,12 +1043,13 @@ async function buildCardContext(context) {
     if (candidateCards.length === 0 && context.setQuery) {
         candidateCards = await fetchCards({
             q: searchText,
+            id: context.idQuery,
             game: context.gameQuery
         });
     }
 
     if (candidateCards.length === 0) {
-        candidateCards = await fetchCards({ q: searchText });
+        candidateCards = await fetchCards({ q: searchText, id: context.idQuery, game: context.gameQuery });
     }
 
     const selected = pickBestCardMatch(candidateCards, context);
@@ -911,6 +1059,7 @@ async function buildCardContext(context) {
 
     const relatedCards = await fetchCards({
         q: selected.name,
+        id: selected.passcode,
         game: selected.game,
         set: selected.set
     });
@@ -923,27 +1072,30 @@ async function buildCardContext(context) {
         ? variantOptions.find((option) => normalizeForSearch(option.name) === normalizeForSearch(context.variantQuery)).name
         : fallbackVariant;
 
-    const pricingPayload = await loadSetPricing(selected.set);
-    const pricing = resolvePricingEntry(pricingPayload, {
-        id: selected.id,
-        number: selected.number,
-        name: selected.name,
-        variant: selectedVariantName
-    });
+    let pricing = selected.pricing || null;
+    if (!isYgoGame(selected.game)) {
+        const pricingPayload = await loadSetPricing(selected.set);
+        pricing = resolvePricingEntry(pricingPayload, {
+            id: selected.id,
+            number: selected.number,
+            name: selected.name,
+            variant: selectedVariantName
+        });
+    }
 
     return {
         card: {
             title: resolveFirstNonEmpty(selected.name, "Unnamed Card"),
-            intro: selected.effect
-                ? "Card details loaded from the YYH catalog for this specific card."
-                : "Card details loaded from the YYH catalog.",
+            intro: isYgoGame(selected.game)
+                ? (selected.effect ? "Card details loaded from the Yu-Gi-Oh API for this specific print." : "Card details loaded from the Yu-Gi-Oh API.")
+                : (selected.effect ? "Card details loaded from the YYH catalog for this specific card." : "Card details loaded from the YYH catalog."),
             game: resolveFirstNonEmpty(selected.game, "Yu Yu Hakusho"),
             set: resolveFirstNonEmpty(selected.set, "Unknown Set"),
             cardNumber: resolveFirstNonEmpty(selected.id, selected.number, "Unknown"),
             type: resolveFirstNonEmpty(selected.type, "Unknown Type"),
             rarity: resolveFirstNonEmpty(selected.rarity, "Unknown Rarity"),
             variant: resolveFirstNonEmpty(selected.variant, "Standard"),
-            source: resolveFirstNonEmpty(selected.source, "YYH catalog"),
+            source: resolveFirstNonEmpty(selected.source, isYgoGame(selected.game) ? "YGOPRODeck API" : "YYH catalog"),
             effect: resolveFirstNonEmpty(selected.effect)
         },
         pricing,
@@ -954,6 +1106,7 @@ async function buildCardContext(context) {
 
 async function initCardPage() {
     const context = parseQueryContext();
+    syncCardPageNav(context.gameQuery || "Yu Yu Hakusho");
 
     try {
         const cardContext = await buildCardContext(context);
