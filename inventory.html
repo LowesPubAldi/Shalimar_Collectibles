@@ -53,80 +53,116 @@
             </div>
 
             <form class="inventory-controls" aria-label="Inventory filters">
-                <input
-                    class="inventory-control"
-                    id="inventory-search-filter"
-                    type="search"
-                    placeholder="Search by card name or card ID"
-                    aria-label="Search by card name or card ID"
-                />
-                <select class="inventory-control" id="inventory-game-filter" aria-label="Filter by game">
-                    <option>All Games</option>
-                    <option>Yu Yu Hakusho</option>
-                    <option>Yu-Gi-Oh</option>
-                    <option>Pokemon</option>
-                </select>
-                <select class="inventory-control" id="inventory-set-filter" aria-label="Filter by set">
-                    <option selected>All Sets</option>
-                    <option>Ghost Files</option>
-                    <option>Dark Tournament</option>
-                    <option>Exile</option>
-                    <option>Betrayal</option>
-                    <option>Alliance</option>
-                    <option>Gateway</option>
-                    <option>Pre-Release Cards</option>
-                    <option>Products</option>
-                    <option>Extra Cards</option>
-                </select>
-                <select class="inventory-control" id="inventory-type-filter" aria-label="Filter by type">
-                    <option>All Types</option>
-                </select>
-                <select class="inventory-control" id="inventory-archetype-filter" aria-label="Filter by archetype">
-                    <option>All Archetypes</option>
-                </select>
-                <select class="inventory-control" id="inventory-rarity-filter" aria-label="Filter by rarity">
-                    <option>All Rarities</option>
-                </select>
-                <select class="inventory-control" id="inventory-edition-filter" aria-label="Filter by edition">
-                    <option selected>All Editions</option>
-                    <option>Unlimited / Not Marked</option>
-                    <option>1st Edition</option>
-                    <option>Unspecified / Likely Both</option>
-                </select>
-                <select class="inventory-control" id="inventory-variant-focus-filter" aria-label="Filter by finish">
-                    <option selected>All Finishes</option>
-                    <option>Standard Only</option>
-                    <option>Foils Only</option>
-                    <option>Rainbow Only</option>
-                </select>
-                <select class="inventory-control" id="inventory-price-status-filter" aria-label="Filter by price status">
-                    <option selected>All Price Statuses</option>
-                    <option>Unpriced</option>
-                    <option>Priced</option>
-                    <option>Needs Review</option>
-                </select>
-                <select class="inventory-control" id="inventory-gameplay-status-filter" aria-label="Filter by gameplay status">
-                    <option selected>All Gameplay Statuses</option>
-                    <option>Banned</option>
-                    <option>Limit 1 per Deck</option>
-                </select>
-                <select class="inventory-control" id="inventory-sort-filter" aria-label="Sort cards">
-                    <option selected>Card Number (Low-High)</option>
-                    <option>Card Number (High-Low)</option>
-                    <option>Name (A-Z)</option>
-                    <option>Name (Z-A)</option>
-                    <option>Rarity (A-Z)</option>
-                    <option>Set (A-Z)</option>
-                    <option>Price (High-Low)</option>
-                    <option>Price (Low-High)</option>
-                    <option>Variant Premium (High-Low)</option>
-                </select>
-                <div class="inventory-variants-toggle-wrap">
-                    <label class="inventory-variants-toggle" for="inventory-variants-toggle">
-                        <input id="inventory-variants-toggle" type="checkbox" />
-                        <span>Show all variants</span>
-                    </label>
-                    <p class="inventory-variants-summary" id="inventory-variants-summary">Collapsed view groups printings into one card entry.</p>
+                <div class="inventory-control-wrap">
+                    <span class="inventory-badge" aria-hidden="true">01</span>
+                    <input
+                        class="inventory-control"
+                        id="inventory-search-filter"
+                        type="search"
+                        placeholder="Search by card name or card ID"
+                        aria-label="Search by card name or card ID"
+                    />
+                </div>
+                <div class="inventory-control-wrap">
+                    <span class="inventory-badge" aria-hidden="true">02</span>
+                    <select class="inventory-control" id="inventory-game-filter" aria-label="Filter by game">
+                        <option>All Games</option>
+                        <option>Yu Yu Hakusho</option>
+                        <option>Yu-Gi-Oh</option>
+                        <option>Pokemon</option>
+                    </select>
+                </div>
+                <div class="inventory-control-wrap">
+                    <span class="inventory-badge" aria-hidden="true">03</span>
+                    <select class="inventory-control" id="inventory-set-filter" aria-label="Filter by set">
+                        <option selected>All Sets</option>
+                        <option>Ghost Files</option>
+                        <option>Dark Tournament</option>
+                        <option>Exile</option>
+                        <option>Betrayal</option>
+                        <option>Alliance</option>
+                        <option>Gateway</option>
+                        <option>Pre-Release Cards</option>
+                        <option>Products</option>
+                        <option>Extra Cards</option>
+                    </select>
+                </div>
+                <div class="inventory-control-wrap">
+                    <span class="inventory-badge" aria-hidden="true">04</span>
+                    <select class="inventory-control" id="inventory-type-filter" aria-label="Filter by type">
+                        <option>All Types</option>
+                    </select>
+                </div>
+                <div class="inventory-control-wrap">
+                    <span class="inventory-badge" aria-hidden="true">05</span>
+                    <select class="inventory-control" id="inventory-archetype-filter" aria-label="Filter by archetype">
+                        <option>All Archetypes</option>
+                    </select>
+                </div>
+                <div class="inventory-control-wrap">
+                    <span class="inventory-badge" aria-hidden="true">06</span>
+                    <select class="inventory-control" id="inventory-rarity-filter" aria-label="Filter by attribute">
+                        <option>All Attributes</option>
+                    </select>
+                </div>
+                <div class="inventory-control-wrap">
+                    <span class="inventory-badge" aria-hidden="true">07</span>
+                    <select class="inventory-control" id="inventory-edition-filter" aria-label="Filter by edition">
+                        <option selected>All Editions</option>
+                        <option>Unlimited / Not Marked</option>
+                        <option>1st Edition</option>
+                        <option>Unspecified / Likely Both</option>
+                    </select>
+                </div>
+                <div class="inventory-control-wrap">
+                    <span class="inventory-badge" aria-hidden="true">08</span>
+                    <select class="inventory-control" id="inventory-variant-focus-filter" aria-label="Filter by finish">
+                        <option selected>All Finishes</option>
+                        <option>Standard Only</option>
+                        <option>Foils Only</option>
+                        <option>Rainbow Only</option>
+                    </select>
+                </div>
+                <div class="inventory-control-wrap">
+                    <span class="inventory-badge" aria-hidden="true">09</span>
+                    <select class="inventory-control" id="inventory-price-status-filter" aria-label="Filter by price status">
+                        <option selected>All Price Statuses</option>
+                        <option>Unpriced</option>
+                        <option>Priced</option>
+                        <option>Needs Review</option>
+                    </select>
+                </div>
+                <div class="inventory-control-wrap">
+                    <span class="inventory-badge" aria-hidden="true">10</span>
+                    <select class="inventory-control" id="inventory-gameplay-status-filter" aria-label="Filter by gameplay status">
+                        <option selected>All Gameplay Statuses</option>
+                        <option>Banned</option>
+                        <option>Limit 1 per Deck</option>
+                    </select>
+                </div>
+                <div class="inventory-control-wrap">
+                    <span class="inventory-badge" aria-hidden="true">11</span>
+                    <select class="inventory-control" id="inventory-sort-filter" aria-label="Sort cards">
+                        <option selected>Card Number (Low-High)</option>
+                        <option>Card Number (High-Low)</option>
+                        <option>Name (A-Z)</option>
+                        <option>Name (Z-A)</option>
+                        <option>Rarity (A-Z)</option>
+                        <option>Set (A-Z)</option>
+                        <option>Price (High-Low)</option>
+                        <option>Price (Low-High)</option>
+                        <option>Variant Premium (High-Low)</option>
+                    </select>
+                </div>
+                <div class="inventory-control-wrap inventory-control-wrap--toggle">
+                    <span class="inventory-badge" aria-hidden="true">12</span>
+                    <div class="inventory-variants-toggle-wrap">
+                        <label class="inventory-variants-toggle" for="inventory-variants-toggle">
+                            <input id="inventory-variants-toggle" type="checkbox" />
+                            <span>Show all variants</span>
+                        </label>
+                        <p class="inventory-variants-summary" id="inventory-variants-summary">Collapsed view groups printings into one card entry.</p>
+                    </div>
                 </div>
             </form>
 

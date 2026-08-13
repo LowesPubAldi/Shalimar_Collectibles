@@ -16,6 +16,15 @@
     --border-soft: rgba(148, 163, 184, 0.28);
 }
 
+html,
+body {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
 body {
     background: var(--bg-base);
     color: var(--text-main);
@@ -29,4 +38,5 @@ a {
 
 .main {
     width: 100%;
+    max-width: none;
 }

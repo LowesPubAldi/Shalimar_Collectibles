@@ -948,6 +948,22 @@ function getVariantEmphasisClass(cardRecord, familyVariantCount) {
 function getRarityAccentClass(cardRecord) {
     const rarity = String(cardRecord.rarity || "").toLowerCase();
 
+    if (rarity.includes("gold rare")) {
+        return "inventory-card--rarity-gold";
+    }
+
+    if (rarity.includes("ultimate rare")) {
+        return "inventory-card--rarity-ultimate";
+    }
+
+    if (rarity.includes("secret rare")) {
+        return "inventory-card--rarity-secret";
+    }
+
+    if (rarity.includes("super rare")) {
+        return "inventory-card--rarity-super";
+    }
+
     if (rarity.includes("ghost rare")) {
         return "inventory-card--rarity-ghost";
     }
@@ -970,6 +986,38 @@ function getRarityAccentClass(cardRecord) {
 function getRarityChipData(cardRecord) {
     const rarityText = String(cardRecord.rarity || "").trim();
     const normalizedRarity = rarityText.toLowerCase();
+
+    if (normalizedRarity.includes("ultimate rare")) {
+        return {
+            label: "Ult R",
+            chipClass: "inventory-card__rarity-chip--ultimate",
+            ariaLabel: `${rarityText} rarity`
+        };
+    }
+
+    if (normalizedRarity.includes("secret rare")) {
+        return {
+            label: "SCR",
+            chipClass: "inventory-card__rarity-chip--secret",
+            ariaLabel: `${rarityText} rarity`
+        };
+    }
+
+    if (normalizedRarity.includes("super rare")) {
+        return {
+            label: "SR",
+            chipClass: "inventory-card__rarity-chip--super",
+            ariaLabel: `${rarityText} rarity`
+        };
+    }
+
+    if (normalizedRarity.includes("ultra rare")) {
+        return {
+            label: "UR",
+            chipClass: "inventory-card__rarity-chip--ultra",
+            ariaLabel: `${rarityText} rarity`
+        };
+    }
 
     if (isCommonRarityLabel(normalizedRarity)) {
         return {
@@ -1090,7 +1138,7 @@ function makeInventoryCard(cardRecord, collisionCountMap, variantFamilyCountMap,
     const cardClassName = cardClasses.join(" ");
     const rarityChipData = getRarityChipData(cardRecord);
     const rarityChipMarkup = rarityChipData
-        ? `<span class="inventory-card__rarity-chip ${rarityChipData.chipClass}" aria-label="${escapeHtml(rarityChipData.ariaLabel)}">${escapeHtml(rarityChipData.label)}</span>`
+        ? `<span class="inventory-card__rarity-chip ${rarityChipData.chipClass}" aria-label="${escapeHtml(rarityChipData.ariaLabel)}" data-rarity-tooltip="${escapeHtml(cardRecord.rarity)}" title="${escapeHtml(cardRecord.rarity)}">${escapeHtml(rarityChipData.label)}</span>`
         : "";
 
     const metaPieces = [cardRecord.type, cardRecord.rarity].filter(Boolean);
@@ -2996,7 +3044,24 @@ async function initInventoryFilters() {
             let ygoHasMore = false;
 
             try {
-                if (filterState.includeVariants) {
+                if (normalizedQuery) {
+                    const allSearchRecords = await loadAllYgoVariantRecords(filterState);
+                    if (requestId !== renderRequestId) {
+                        return;
+                    }
+
+                    const groupedSearchRecords = filterState.includeVariants
+                        ? allSearchRecords
+                        : allSearchRecords.filter((record, index, records) => {
+                            const displayKey = getCardDisplayKey(record);
+                            return records.findIndex((item) => getCardDisplayKey(item) === displayKey) === index;
+                        });
+                    const sortedSearchRecords = sortInventoryRecords(groupedSearchRecords, "Name (A-Z)");
+
+                    ygoTotal = sortedSearchRecords.length;
+                    sourceRecords = sortedSearchRecords.slice(offset, offset + getInventoryPageLimit());
+                    ygoHasMore = offset + sourceRecords.length < ygoTotal;
+                } else if (filterState.includeVariants) {
                     const ygoVariantRecords = await loadAllYgoVariantRecords(filterState);
                     if (requestId !== renderRequestId) {
                         return;
