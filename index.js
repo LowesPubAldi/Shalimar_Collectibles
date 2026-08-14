@@ -212,7 +212,11 @@ const YYH_SPOTLIGHT_THUMBNAILS = {
 	"youko transformation": "assets/seasonal/yyh-source/betrayal/056.jpg",
 	"demon beast aura": "assets/seasonal/yyh-source/exile/145.jpg",
 	"steel beam": "assets/seasonal/yyh-source/alliance/178.jpg",
+	"team raizen support": "assets/seasonal/yyh-source/exile/057.jpg",
+	"team raizen s support": "assets/seasonal/yyh-source/exile/057.jpg",
 	"team raizens support": "assets/seasonal/yyh-source/exile/057.jpg",
+	"team toguro surprise": "assets/seasonal/yyh-source/exile/060.jpg",
+	"team toguro s surprise": "assets/seasonal/yyh-source/exile/060.jpg",
 	"team toguros surprise": "assets/seasonal/yyh-source/exile/060.jpg"
 };
 
@@ -1035,6 +1039,17 @@ function applySeasonTheme() {
 	}
 
 	renderMonthDots(monthDots);
+	monthDots.onclick = (event) => {
+		const dot = event.target instanceof HTMLElement ? event.target.closest(".hero__season-dot") : null;
+		if (!(dot instanceof HTMLElement)) {
+			return;
+		}
+
+		const targetMonth = Number(dot.dataset.monthIndex);
+		if (!Number.isNaN(targetMonth)) {
+			renderMonth(targetMonth);
+		}
+	};
 
 	const previewMonth = getPreviewMonth();
 	const currentMonth = new Date().getMonth();
