@@ -198,7 +198,19 @@ const YYH_SPOTLIGHT_THUMBNAILS = {
 	"hiei": "assets/seasonal/yyh-source/dark-tournament/005.jpg",
 	"gourmet": "assets/seasonal/yyh-source/gateway/117.jpg",
 	"elder toguro the indestructible": "assets/seasonal/yyh-source/gateway/112.jpg",
-	"yukina": "assets/seasonal/yyh-source/dark-tournament/006.jpg"
+	"yukina": "assets/seasonal/yyh-source/dark-tournament/006.jpg",
+	"ogre killer": "assets/seasonal/yyh-source/ghost-files/141.jpg",
+	"rose whip": "assets/seasonal/yyh-source/ghost-files/134.jpg",
+	"spirit gun focus": "assets/seasonal/yyh-source/ghost-files/155.jpg",
+	"sword mastery": "assets/seasonal/yyh-source/gateway/128.jpg",
+	"dimensional sword": "assets/seasonal/yyh-source/dark-tournament/156.jpg",
+	"demon flame": "assets/seasonal/yyh-source/exile/089.jpg",
+	"muscle evolution": "assets/seasonal/yyh-source/gateway/127.jpg",
+	"ice crystal": "assets/seasonal/yyh-source/gateway/162.jpg",
+	"spirit energy surge": "assets/seasonal/yyh-source/betrayal/152.jpg",
+	"youko transformation": "assets/seasonal/yyh-source/betrayal/056.jpg",
+	"demon beast aura": "assets/seasonal/yyh-source/exile/145.jpg",
+	"steel beam": "assets/seasonal/yyh-source/alliance/178.jpg"
 };
 
 const SPOTLIGHT_DISPLAY_NAME_OVERRIDES = {
