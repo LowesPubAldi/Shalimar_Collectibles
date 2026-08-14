@@ -207,7 +207,7 @@ const YYH_SPOTLIGHT_THUMBNAILS = {
 	"dimensional sword": "assets/seasonal/yyh-source/dark-tournament/115.jpg",
 	"demon flame": "assets/seasonal/yyh-source/exile/089.jpg",
 	"muscle evolution": "assets/seasonal/yyh-source/gateway/120.jpg",
-	"ice crystal": "assets/seasonal/yyh-source/gateway/113.jpg",
+	"ice crystal": "assets/seasonal/yyh-source/exile/017.jpg",
 	"spirit energy surge": "assets/seasonal/yyh-source/exile/152.jpg",
 	"youko transformation": "assets/seasonal/yyh-source/betrayal/056.jpg",
 	"demon beast aura": "assets/seasonal/yyh-source/exile/145.jpg",

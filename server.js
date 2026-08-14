@@ -469,6 +469,8 @@ function normalizeBrowseItem(item) {
         sellerUsername: item.seller && item.seller.username ? item.seller.username : "",
         currentPrice: item.price && item.price.value ? item.price.value : "",
         currentPriceCurrency: item.price && item.price.currency ? item.price.currency : "",
+        itemCreationDate: item.itemCreationDate || "",
+        itemEndDate: item.itemEndDate || "",
         shippingCost: item.shippingOptions && item.shippingOptions[0] && item.shippingOptions[0].shippingCost
             ? item.shippingOptions[0].shippingCost.value
             : "",
@@ -490,6 +492,100 @@ function parseUsdAmount(value) {
 
     const parsed = Number(cleaned);
     return Number.isFinite(parsed) ? parsed : null;
+}
+
+function decodeHtmlEntities(value) {
+    return String(value || "")
+        .replace(/&nbsp;/gi, " ")
+        .replace(/&amp;/gi, "&")
+        .replace(/&quot;/gi, '"')
+        .replace(/&#39;|&#x27;/gi, "'")
+        .replace(/&lt;/gi, "<")
+        .replace(/&gt;/gi, ">");
+}
+
+function stripHtml(value) {
+    return decodeHtmlEntities(String(value || "").replace(/<[^>]*>/g, " ")).replace(/\s+/g, " ").trim();
+}
+
+function parseDateBoundary(value, isEndBoundary = false) {
+    if (typeof value !== "string" || !value.trim()) {
+        return null;
+    }
+
+    const raw = value.trim();
+    const explicit = /^\d{4}-\d{2}-\d{2}$/i.test(raw) ? `${raw}T00:00:00.000Z` : raw;
+    const parsedMs = Date.parse(explicit);
+    if (!Number.isFinite(parsedMs)) {
+        return null;
+    }
+
+    const date = new Date(parsedMs);
+    if (isEndBoundary) {
+        date.setUTCHours(23, 59, 59, 999);
+    } else {
+        date.setUTCHours(0, 0, 0, 0);
+    }
+
+    return date;
+}
+
+function parseEbaySoldDateFromText(value) {
+    const match = String(value || "").match(/Sold\s+([A-Za-z]{3}\s+\d{1,2},\s+\d{4})/i);
+    if (!match) {
+        return null;
+    }
+
+    const parsedMs = Date.parse(match[1]);
+    if (!Number.isFinite(parsedMs)) {
+        return null;
+    }
+
+    const date = new Date(parsedMs);
+    date.setUTCHours(12, 0, 0, 0);
+    return date;
+}
+
+function parseSoldDate(value) {
+    if (typeof value !== "string" || !value.trim()) {
+        return null;
+    }
+
+    const parsedMs = Date.parse(value.trim());
+    if (!Number.isFinite(parsedMs)) {
+        return parseEbaySoldDateFromText(value);
+    }
+
+    return new Date(parsedMs);
+}
+
+function itemIsInsideDateWindow(item, startDate, endDate) {
+    if (!startDate && !endDate) {
+        return true;
+    }
+
+    const soldDate = parseSoldDate(item && item.soldDate ? item.soldDate : "");
+    if (!soldDate) {
+        return false;
+    }
+
+    if (startDate && soldDate < startDate) {
+        return false;
+    }
+
+    if (endDate && soldDate > endDate) {
+        return false;
+    }
+
+    return true;
+}
+
+function filterItemsByDateWindow(items, startDate, endDate) {
+    if (!Array.isArray(items)) {
+        return [];
+    }
+
+    return items.filter((item) => itemIsInsideDateWindow(item, startDate, endDate));
 }
 
 function median(values) {
@@ -538,6 +634,19 @@ function getEbayFindingCompletedUrl(query) {
     return `https://svcs.ebay.com/services/search/FindingService/v1?${params.toString()}`;
 }
 
+function getEbaySoldListingsHtmlUrl(query, page = 1) {
+    const params = new URLSearchParams({
+        _nkw: query,
+        LH_Sold: "1",
+        LH_Complete: "1",
+        _sop: "13",
+        _ipg: "240",
+        _pgn: String(Math.max(1, Number(page) || 1))
+    });
+
+    return `https://www.ebay.com/sch/i.html?${params.toString()}`;
+}
+
 function extractFindingItems(payload) {
     const responseRoot = Array.isArray(payload && payload.findCompletedItemsResponse)
         ? payload.findCompletedItemsResponse[0]
@@ -556,20 +665,99 @@ function extractFindingItems(payload) {
         const currentPrice = sellingStatus && Array.isArray(sellingStatus.currentPrice)
             ? sellingStatus.currentPrice[0]
             : null;
+        const listingInfo = Array.isArray(item.listingInfo) ? item.listingInfo[0] : null;
         const priceValue = currentPrice && typeof currentPrice.__value__ === "string"
             ? currentPrice.__value__
             : "";
         const currency = currentPrice && typeof currentPrice["@currencyId"] === "string"
             ? currentPrice["@currencyId"]
             : "USD";
+        const soldDate = listingInfo && Array.isArray(listingInfo.endTime) && typeof listingInfo.endTime[0] === "string"
+            ? listingInfo.endTime[0]
+            : "";
 
         return {
             title,
             itemWebUrl: viewUrl,
             currentPrice: priceValue,
-            currentPriceCurrency: currency
+            currentPriceCurrency: currency,
+            soldDate
         };
     });
+}
+
+function extractSoldItemsFromHtml(html) {
+    const blocks = String(html || "").match(/<li[^>]*class="[^"]*\bs-item\b[^"]*"[^>]*>[\s\S]*?<\/li>/gi) || [];
+    const items = [];
+
+    for (const block of blocks) {
+        const titleMatch = block.match(/class="s-item__title[^\"]*"[^>]*>([\s\S]*?)<\/[^>]+>/i);
+        const linkMatch = block.match(/class="s-item__link"[^>]*href="([^"]+)"/i);
+        const priceMatch = block.match(/class="s-item__price"[^>]*>([\s\S]*?)<\/span>/i);
+        const soldMatch = block.match(/Sold\s+[A-Za-z]{3}\s+\d{1,2},\s+\d{4}/i);
+
+        const title = stripHtml(titleMatch ? titleMatch[1] : "");
+        if (!title || /^shop on ebay$/i.test(title)) {
+            continue;
+        }
+
+        const itemWebUrl = decodeHtmlEntities(linkMatch ? linkMatch[1] : "");
+        const currentPrice = stripHtml(priceMatch ? priceMatch[1] : "").replace(/^[A-Za-z]{2}\s*/i, "");
+        const soldLabel = soldMatch ? soldMatch[0] : "";
+        const soldDate = parseEbaySoldDateFromText(soldLabel);
+
+        items.push({
+            title,
+            itemWebUrl,
+            currentPrice,
+            currentPriceCurrency: "USD",
+            soldDate: soldDate ? soldDate.toISOString() : ""
+        });
+    }
+
+    return items;
+}
+
+async function runEbayCompletedSearchViaHtml(query, options = {}) {
+    const maxPages = Math.min(Math.max(parsePositiveInt(options.maxPages, 3), 1), 8);
+    const allItems = [];
+    let firstHref = "";
+
+    for (let page = 1; page <= maxPages; page += 1) {
+        const href = getEbaySoldListingsHtmlUrl(query, page);
+        if (!firstHref) {
+            firstHref = href;
+        }
+
+        const response = await fetch(href, {
+            method: "GET",
+            headers: {
+                "User-Agent": "Mozilla/5.0",
+                Accept: "text/html"
+            }
+        });
+
+        if (!response.ok) {
+            const err = new Error(`eBay sold listings HTML search failed (HTTP ${response.status})`);
+            err.statusCode = response.status;
+            throw err;
+        }
+
+        const html = await response.text();
+        const pageItems = extractSoldItemsFromHtml(html);
+        if (pageItems.length === 0) {
+            break;
+        }
+
+        allItems.push(...pageItems);
+    }
+
+    return {
+        items: allItems,
+        total: allItems.length,
+        href: firstHref,
+        source: "ebay-sold-html"
+    };
 }
 
 function normalizeTitleForFilter(value) {
@@ -609,7 +797,141 @@ function itemLooksLikeSealedBoosterBox(item, setName) {
     return includesSet && includesCoreTerms && !hasExcludedTerm;
 }
 
-async function runEbayCompletedSearch(query) {
+function itemLooksLikeSingleCard(item, setName) {
+    const titleNorm = normalizeTitleForFilter(item.title);
+    const setTokens = normalizeTitleForFilter(setName).split(" ").filter(Boolean);
+
+    const includesSet = setTokens.every((token) => titleNorm.includes(token));
+    const includesCoreTerms =
+        titleNorm.includes("yu") &&
+        titleNorm.includes("hakusho") &&
+        titleNorm.includes("tcg");
+
+    const excludedTerms = [
+        "booster",
+        "box",
+        "pack",
+        "blister",
+        "starter",
+        "deck",
+        "display",
+        "case",
+        "sealed",
+        "lot",
+        "binder",
+        "collection",
+        "playset",
+        "set of",
+        "factory",
+        "empty"
+    ];
+    const hasExcludedTerm = excludedTerms.some((term) => titleNorm.includes(term));
+
+    return includesSet && includesCoreTerms && !hasExcludedTerm;
+}
+
+function splitCsvLine(line) {
+    const cells = [];
+    let current = "";
+    let inQuotes = false;
+
+    for (let i = 0; i < line.length; i += 1) {
+        const char = line[i];
+
+        if (char === '"') {
+            const next = line[i + 1];
+            if (inQuotes && next === '"') {
+                current += '"';
+                i += 1;
+                continue;
+            }
+
+            inQuotes = !inQuotes;
+            continue;
+        }
+
+        if (char === "," && !inQuotes) {
+            cells.push(current.trim());
+            current = "";
+            continue;
+        }
+
+        current += char;
+    }
+
+    cells.push(current.trim());
+    return cells;
+}
+
+function parseCsvRows(rawCsv) {
+    const lines = String(rawCsv || "").split(/\r?\n/).filter((line) => line.trim().length > 0);
+    if (lines.length < 2) {
+        return [];
+    }
+
+    const headers = splitCsvLine(lines[0]).map((cell) => normalizeForSearch(cell));
+    return lines.slice(1).map((line) => {
+        const values = splitCsvLine(line);
+        const row = {};
+        for (let index = 0; index < headers.length; index += 1) {
+            row[headers[index]] = values[index] || "";
+        }
+        return row;
+    });
+}
+
+function resolveCsvPath(csvPathInput) {
+    const csvPath = typeof csvPathInput === "string" ? csvPathInput.trim() : "";
+    if (!csvPath) {
+        return "";
+    }
+
+    const resolved = path.resolve(__dirname, csvPath);
+    if (!resolved.startsWith(__dirname)) {
+        throw new Error("csv_path must stay inside the project workspace");
+    }
+
+    return resolved;
+}
+
+function normalizeLocalSoldCsvRow(row) {
+    const title = row.title || row["item title"] || row.name || "";
+    const soldPrice = row["sold price"] || row.price || row.amount || "";
+    const soldDateRaw = row.date || row["sold date"] || row["end date"] || "";
+    const parsedDate = parseDateBoundary(soldDateRaw, false);
+
+    return {
+        title: String(title || "").trim(),
+        itemWebUrl: "",
+        currentPrice: String(soldPrice || "").trim(),
+        currentPriceCurrency: "USD",
+        soldDate: parsedDate ? parsedDate.toISOString() : ""
+    };
+}
+
+async function runEbayCompletedSearchViaLocalCsv(csvPathInput) {
+    const csvPath = resolveCsvPath(csvPathInput);
+    if (!csvPath) {
+        throw new Error("Missing csv_path for local completed-listings fallback");
+    }
+
+    const raw = await fs.readFile(csvPath, "utf8");
+    const rows = parseCsvRows(raw);
+    const items = rows.map(normalizeLocalSoldCsvRow).filter((item) => item.title);
+
+    return {
+        items,
+        total: items.length,
+        href: csvPath,
+        source: "local-sold-csv"
+    };
+}
+
+async function runEbayCompletedSearch(query, options = {}) {
+    if (options.localCsvPath) {
+        return runEbayCompletedSearchViaLocalCsv(options.localCsvPath);
+    }
+
     if (!EBAY_CONFIG.appId) {
         throw new Error("Missing EBAY_APP_ID in .env.local");
     }
@@ -630,6 +952,10 @@ async function runEbayCompletedSearch(query) {
     }
 
     if (!response.ok) {
+        if (response.status === 418 || response.status === 403) {
+            return runEbayCompletedSearchViaHtml(query, options);
+        }
+
         const err = new Error(`eBay completed listings search failed (HTTP ${response.status})`);
         err.statusCode = response.status;
         throw err;
@@ -640,15 +966,32 @@ async function runEbayCompletedSearch(query) {
     return {
         items,
         total: items.length,
-        href: url
+        href: url,
+        source: "ebay-completed"
     };
 }
 
-async function fetchYyhSetSealedPrice(setName) {
+async function fetchYyhSetSealedPrice(setName, options = {}) {
     const query = buildYyhSealedSearchQuery(setName);
-    const searchResult = await runEbayCompletedSearch(query);
+    let searchResult;
 
-    const filteredItems = searchResult.items.filter((item) => itemLooksLikeSealedBoosterBox(item, setName));
+    try {
+        searchResult = await runEbayCompletedSearch(query, options);
+    } catch (error) {
+        if (options.localCsvPath) {
+            throw error;
+        }
+
+        searchResult = await runEbayBrowseSealedSearch(setName, options);
+    }
+
+    const startDate = options.startDate || null;
+    const endDate = options.endDate || null;
+    const dateScopedItems = searchResult.source === "ebay-browse-live"
+        ? searchResult.items
+        : filterItemsByDateWindow(searchResult.items, startDate, endDate);
+
+    const filteredItems = dateScopedItems.filter((item) => itemLooksLikeSealedBoosterBox(item, setName));
 
     const priceCandidates = [];
     let currency = "USD";
@@ -673,8 +1016,176 @@ async function fetchYyhSetSealedPrice(setName) {
         sampleCount: priceCandidates.length,
         medianPrice,
         currency,
-        source: "ebay-completed",
-        inspectedCount: searchResult.items.length
+        source: searchResult.source || "ebay-completed",
+        inspectedCount: dateScopedItems.length,
+        startDate: startDate ? startDate.toISOString() : null,
+        endDate: endDate ? endDate.toISOString() : null
+    };
+}
+
+function itemHasDateInsideWindow(item, startDate, endDate, candidateFields) {
+    if (!startDate && !endDate) {
+        return true;
+    }
+
+    for (const fieldName of candidateFields) {
+        const parsed = parseSoldDate(item && item[fieldName] ? item[fieldName] : "");
+        if (!parsed) {
+            continue;
+        }
+
+        if (startDate && parsed < startDate) {
+            continue;
+        }
+
+        if (endDate && parsed > endDate) {
+            continue;
+        }
+
+        return true;
+    }
+
+    return false;
+}
+
+async function runEbayBrowseSealedSearch(setName, options = {}) {
+    const startDate = options.startDate || null;
+    const endDate = options.endDate || null;
+    const query = buildYyhSealedSearchQuery(setName);
+    const perPage = 200;
+    const maxPages = Math.min(Math.max(parsePositiveInt(options.maxPages, 3), 1), 6);
+    const matched = [];
+
+    for (let page = 0; page < maxPages; page += 1) {
+        const result = await runEbayBrowseSearch({
+            q: query,
+            limit: String(perPage),
+            offset: String(page * perPage),
+            sort: "newlyListed"
+        });
+
+        if (!Array.isArray(result.items) || result.items.length === 0) {
+            break;
+        }
+
+        for (const item of result.items) {
+            if (!itemLooksLikeSealedBoosterBox(item, setName)) {
+                continue;
+            }
+
+            if (!itemHasDateInsideWindow(item, startDate, endDate, ["itemCreationDate", "itemEndDate"])) {
+                continue;
+            }
+
+            matched.push(item);
+        }
+
+        if (result.items.length < perPage) {
+            break;
+        }
+    }
+
+    return {
+        items: matched,
+        total: matched.length,
+        href: `${getEbayBrowseSearchUrl()}?q=${encodeURIComponent(query)}`,
+        source: "ebay-browse-live"
+    };
+}
+
+function average(values) {
+    if (!Array.isArray(values) || values.length === 0) {
+        return null;
+    }
+
+    const total = values.reduce((sum, value) => sum + value, 0);
+    return total / values.length;
+}
+
+function buildYyhSinglesSearchQuery(setName) {
+    return `${setName} yu yu hakusho tcg`;
+}
+
+async function runEbayBrowseSinglesSearch(setName, options = {}) {
+    const startDate = options.startDate || null;
+    const endDate = options.endDate || null;
+    const query = buildYyhSinglesSearchQuery(setName);
+    const perPage = 200;
+    const maxPages = Math.min(Math.max(parsePositiveInt(options.maxPages, 3), 1), 6);
+    const matched = [];
+
+    for (let page = 0; page < maxPages; page += 1) {
+        const result = await runEbayBrowseSearch({
+            q: query,
+            limit: String(perPage),
+            offset: String(page * perPage),
+            sort: "newlyListed"
+        });
+
+        if (!Array.isArray(result.items) || result.items.length === 0) {
+            break;
+        }
+
+        for (const item of result.items) {
+            if (!itemLooksLikeSingleCard(item, setName)) {
+                continue;
+            }
+
+            if (!itemHasDateInsideWindow(item, startDate, endDate, ["itemCreationDate", "itemEndDate"])) {
+                continue;
+            }
+
+            matched.push(item);
+        }
+
+        if (result.items.length < perPage) {
+            break;
+        }
+    }
+
+    return {
+        items: matched,
+        total: matched.length,
+        href: `${getEbayBrowseSearchUrl()}?q=${encodeURIComponent(query)}`,
+        source: "ebay-browse-live"
+    };
+}
+
+async function fetchYyhSetSinglesPrice(setName, options = {}) {
+    const query = buildYyhSinglesSearchQuery(setName);
+    const searchResult = await runEbayBrowseSinglesSearch(setName, options);
+
+    const prices = [];
+    let currency = "USD";
+
+    for (const item of searchResult.items) {
+        const parsed = parseUsdAmount(item.currentPrice);
+        if (parsed === null) {
+            continue;
+        }
+
+        prices.push(parsed);
+        if (item.currentPriceCurrency) {
+            currency = item.currentPriceCurrency;
+        }
+    }
+
+    const minPrice = prices.length > 0 ? Math.min(...prices) : null;
+    const maxPrice = prices.length > 0 ? Math.max(...prices) : null;
+
+    return {
+        set: setName,
+        query,
+        sampleCount: prices.length,
+        medianPrice: median(prices),
+        averagePrice: average(prices),
+        minPrice,
+        maxPrice,
+        currency,
+        source: searchResult.source,
+        inspectedCount: searchResult.items.length,
+        startDate: options.startDate ? options.startDate.toISOString() : null,
+        endDate: options.endDate ? options.endDate.toISOString() : null
     };
 }
 
@@ -946,13 +1457,22 @@ app.get("/api/yyh/sets/sealed-prices", async (req, res) => {
 
     try {
         const rawSets = typeof req.query.sets === "string" ? req.query.sets : "";
+        const localCsvPath = typeof req.query.csv_path === "string" ? req.query.csv_path : "";
+        const startDate = parseDateBoundary(typeof req.query.start_date === "string" ? req.query.start_date : "", false);
+        const endDate = parseDateBoundary(typeof req.query.end_date === "string" ? req.query.end_date : "", true);
+        const maxPages = clampLimit(req.query.max_pages, 3, 8);
         const requestedSets = rawSets
             ? rawSets.split(",").map((value) => value.trim()).filter(Boolean)
             : getDefaultYyhSets();
 
         const items = await Promise.all(requestedSets.map(async (setName) => {
             try {
-                return await fetchYyhSetSealedPrice(setName);
+                return await fetchYyhSetSealedPrice(setName, {
+                    startDate,
+                    endDate,
+                    maxPages,
+                    localCsvPath
+                });
             } catch (error) {
                 return {
                     set: setName,
@@ -969,13 +1489,88 @@ app.get("/api/yyh/sets/sealed-prices", async (req, res) => {
         res.json({
             items,
             totalSets: items.length,
-            source: "ebay-completed",
+            source: items.some((entry) => entry.source === "local-sold-csv")
+                ? "local-sold-csv"
+                : items.some((entry) => entry.source === "ebay-sold-html")
+                    ? "ebay-sold-html"
+                    : items.some((entry) => entry.source === "ebay-browse-live")
+                        ? "ebay-browse-live"
+                    : "ebay-completed",
+            startDate: startDate ? startDate.toISOString() : null,
+            endDate: endDate ? endDate.toISOString() : null,
+            csvPath: localCsvPath || null,
+            maxPages,
             fetchedAt: new Date().toISOString()
         });
     } catch (error) {
         const message = error instanceof Error ? error.message : "Unknown API error";
         res.status(500).json({
             error: "Failed to load YYH sealed set prices",
+            details: message
+        });
+    }
+});
+
+app.get("/api/yyh/sets/singles-prices", async (req, res) => {
+    if (!isEbayConfigured()) {
+        return res.status(400).json({
+            error: "eBay credentials are missing in .env.local",
+            details: "Set EBAY_APP_ID, EBAY_DEV_ID, and EBAY_CLIENT_SECRET first"
+        });
+    }
+
+    try {
+        const rawSets = typeof req.query.sets === "string" ? req.query.sets : "";
+        const startDate = parseDateBoundary(typeof req.query.start_date === "string" ? req.query.start_date : "", false);
+        const endDate = parseDateBoundary(typeof req.query.end_date === "string" ? req.query.end_date : "", true);
+        const maxPages = clampLimit(req.query.max_pages, 3, 6);
+        const includeOneOfs = req.query.include_one_ofs === "1" || req.query.include_one_ofs === "true";
+        const minComps = includeOneOfs ? 1 : clampLimit(req.query.min_comps, 2, 50);
+        const requestedSets = rawSets
+            ? rawSets.split(",").map((value) => value.trim()).filter(Boolean)
+            : getDefaultYyhSets();
+
+        const items = await Promise.all(requestedSets.map(async (setName) => {
+            try {
+                return await fetchYyhSetSinglesPrice(setName, {
+                    startDate,
+                    endDate,
+                    maxPages
+                });
+            } catch (error) {
+                return {
+                    set: setName,
+                    query: buildYyhSinglesSearchQuery(setName),
+                    sampleCount: 0,
+                    medianPrice: null,
+                    averagePrice: null,
+                    minPrice: null,
+                    maxPrice: null,
+                    currency: "USD",
+                    source: "ebay-browse-live",
+                    error: error instanceof Error ? error.message : "Unknown eBay API error"
+                };
+            }
+        }));
+
+        const filteredItems = items.filter((entry) => Number(entry.sampleCount || 0) >= minComps);
+
+        res.json({
+            items: filteredItems,
+            totalSets: filteredItems.length,
+            source: "ebay-browse-live",
+            startDate: startDate ? startDate.toISOString() : null,
+            endDate: endDate ? endDate.toISOString() : null,
+            minComps,
+            includeOneOfs,
+            droppedSetCount: items.length - filteredItems.length,
+            maxPages,
+            fetchedAt: new Date().toISOString()
+        });
+    } catch (error) {
+        const message = error instanceof Error ? error.message : "Unknown API error";
+        res.status(500).json({
+            error: "Failed to load YYH singles set prices",
             details: message
         });
     }

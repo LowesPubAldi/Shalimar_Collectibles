@@ -128,7 +128,7 @@
 
         { "id": "L1", "name": "Code", "variant": "Standard", "priceUsd": 10.0, "compsCount": 0, "status": "Priced", "notes": "$8 - $12" },
         { "id": "L2", "name": "Remembrance", "variant": "Standard", "priceUsd": 9.0, "compsCount": 0, "status": "Priced", "notes": "$7 - $11" },
-        { "id": "L3", "name": "Villainous Energy", "variant": "Standard", "priceUsd": 15.5, "compsCount": 0, "status": "Priced", "notes": "$13 - $18" },
+        { "id": "L3", "name": "Villainous Energy", "variant": "Standard", "priceUsd": 14.99, "compsCount": 1, "status": "Priced", "notes": "Updated to sold median (Aug 9-14): $14.99. Prior range: $13 - $18. Recheck Sunday." },
         { "id": "L4", "name": "Hiei, Arrogant Demon", "variant": "Standard", "priceUsd": 15.0, "compsCount": 0, "status": "Priced", "notes": "$13 - $17" },
         { "id": "L5", "name": "Koenma, Loyal Friend", "variant": "Standard", "priceUsd": 14.0, "compsCount": 0, "status": "Priced", "notes": "$12 - $16" },
         { "id": "L6", "name": "Kurama, Gloomy Shadow", "variant": "Standard", "priceUsd": 14.0, "compsCount": 0, "status": "Priced", "notes": "$12 - $16" },
@@ -155,7 +155,7 @@
         { "id": "TR9", "name": "Chaos", "variant": "Standard", "priceUsd": 5.5, "compsCount": 0, "status": "Priced", "notes": "$4 - $7" },
         { "id": "TR10", "name": "Consumed", "variant": "Standard", "priceUsd": 4.5, "compsCount": 0, "status": "Priced", "notes": "$3 - $6" },
         { "id": "TR11", "name": "Remember Us?", "variant": "Standard", "priceUsd": 3.5, "compsCount": 0, "status": "Priced", "notes": "$2 - $5" },
-        { "id": "TR12", "name": "Kurama, Loving Friend", "variant": "Standard", "priceUsd": 15.5, "compsCount": 0, "status": "Priced", "notes": "$13 - $18" },
+        { "id": "TR12", "name": "Kurama, Loving Friend", "variant": "Standard", "priceUsd": 7.99, "compsCount": 1, "status": "Priced", "notes": "Updated to sold median (Aug 9-14): $7.99. Prior range: $13 - $18. Recheck Sunday." },
         { "id": "TC13", "name": "Resurgence of Power", "variant": "Standard", "priceUsd": 3.0, "compsCount": 0, "status": "Priced", "notes": "$2 - $4" },
         { "id": "TC14", "name": "Game Machine", "variant": "Standard", "priceUsd": 2.5, "compsCount": 0, "status": "Priced", "notes": "$2 - $3" },
         { "id": "TC15", "name": "Rose Petals", "variant": "Standard", "priceUsd": 3.0, "compsCount": 0, "status": "Priced", "notes": "$2 - $4" },

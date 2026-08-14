@@ -237,23 +237,46 @@ function scoreCandidate(titleNorm, idInTitle, candidate) {
     return score;
 }
 
-function pickBestMatch(title, pricingRecords) {
+function pickBestMatch(title, pricingRecords, options = {}) {
     const titleNorm = normalizeForSearch(title);
     const idInTitle = extractCardIdFromTitle(title);
+    const strictMatch = options.strictMatch !== false;
+    const minScore = Number.isFinite(options.minScore) ? options.minScore : 25;
 
     let best = null;
     let bestScore = 0;
+    let bestMeta = null;
 
     for (const candidate of pricingRecords) {
         const score = scoreCandidate(titleNorm, idInTitle, candidate);
         if (score > bestScore) {
             best = candidate;
             bestScore = score;
+
+            const setExact = Boolean(candidate.searchSet && titleNorm.includes(candidate.searchSet));
+            const idExact = Boolean(idInTitle && candidate.id && idInTitle === candidate.id);
+            const nameTokens = candidate.searchName.split(" ").filter((token) => token.length >= 4);
+            const nameTokenMatches = nameTokens.filter((token) => titleNorm.includes(token)).length;
+            bestMeta = {
+                setExact,
+                idExact,
+                nameTokenMatches
+            };
         }
     }
 
-    if (bestScore < 25) {
+    if (!best || bestScore < minScore) {
         return null;
+    }
+
+    if (strictMatch) {
+        // Strict mode rejects fuzzy cross-set/name collisions.
+        const hasStrongNameEvidence = bestMeta && bestMeta.nameTokenMatches >= 2;
+        const hasStrongIdEvidence = bestMeta && bestMeta.idExact;
+        const isSetAligned = bestMeta && bestMeta.setExact;
+        if (!isSetAligned || (!hasStrongIdEvidence && !hasStrongNameEvidence)) {
+            return null;
+        }
     }
 
     return { card: best, score: bestScore };
@@ -274,7 +297,9 @@ function parseArgs(argv) {
         csv: "",
         outJson: "",
         outCsv: "",
-        fallbackTolerancePercent: 20
+        fallbackTolerancePercent: 20,
+        minScore: 25,
+        strictMatch: true
     };
 
     for (let i = 2; i < argv.length; i += 1) {
@@ -298,6 +323,26 @@ function parseArgs(argv) {
             const parsed = Number(argv[i + 1]);
             if (Number.isFinite(parsed) && parsed >= 0) {
                 out.fallbackTolerancePercent = parsed;
+            }
+            i += 1;
+            continue;
+        }
+
+        if (token === "--min-score") {
+            const parsed = Number(argv[i + 1]);
+            if (Number.isFinite(parsed) && parsed >= 0) {
+                out.minScore = parsed;
+            }
+            i += 1;
+            continue;
+        }
+
+        if (token === "--strict-match") {
+            const value = String(argv[i + 1] || "").trim().toLowerCase();
+            if (value === "0" || value === "false" || value === "off") {
+                out.strictMatch = false;
+            } else if (value) {
+                out.strictMatch = true;
             }
             i += 1;
             continue;
@@ -398,7 +443,10 @@ function main() {
             continue;
         }
 
-        const bestMatch = pickBestMatch(title, pricingRecords);
+        const bestMatch = pickBestMatch(title, pricingRecords, {
+            strictMatch: args.strictMatch,
+            minScore: args.minScore
+        });
         if (!bestMatch) {
             unmatchedRows += 1;
             continue;

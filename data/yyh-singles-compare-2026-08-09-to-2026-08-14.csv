@@ -1,0 +1,11 @@
+set,id,name,variant,baselineMinUsd,baselineMaxUsd,baselineMidUsd,observedMedianUsd,observedMinUsd,observedMaxUsd,sampleSize,status,deltaPct
+Alliance,G2,No!,Standard,55,65,60,5.99,5.99,5.99,1,below-range,-89.11
+Gateway,C99,"Sensui, Kazuya's Personality",Standard,17,23,20,6.99,6.99,6.99,1,below-range,-58.88
+Gateway,C98,"Kuwabara, Righteous Warrior (Blue Jacket)",Standard,14,18,16,5.99,5.99,5.99,1,below-range,-57.21
+Dark Tournament,S14,"Genkai, the Mentor",Standard,4,7,5.5,9.99,9.99,9.99,1,above-range,42.71
+Exile,TR12,"Kurama, Loving Friend",Standard,13,18,15.5,7.99,7.99,7.99,1,below-range,-38.54
+Ghost Files,P1/3,Genkai,Standard,8,12,10,5.49,4.99,5.99,2,below-range,-31.37
+Gateway,U7,Gateway,Standard,5,10,7.5,3.49,2.99,3.99,2,below-range,-30.2
+Dark Tournament,TC19,Souls,Standard,4,7,5.5,3.99,3.99,3.99,1,below-range,-0.25
+Exile,L3,Villainous Energy,Standard,13,18,15.5,14.99,14.99,14.99,1,in-range,0
+Gateway,TC19,Splinter Resshuuken,Standard,5,8,6.5,5,5,5,1,in-range,0
