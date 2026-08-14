@@ -20,8 +20,11 @@ const seasonalThemes = {
 		glow: "rgba(147, 197, 253, 0.35)",
 		spotlight: [
 			{ game: "Pokemon", card: "Metagross", person: "Associated: Steven Stone", thumbColors: ["#64748b", "#1e293b"] },
+			{ game: "Pokemon", card: "Steel Beam", person: "Technique: Metal Surge", thumbColors: ["#9ca3af", "#374151"] },
 			{ game: "Yu Yu Hakusho", card: "Yusuke (Mazoku Form)", person: "Associated: Raizen", thumbColors: ["#a78bfa", "#4c1d95"] },
-			{ game: "Yu-Gi-Oh", card: "Blue-Eyes White Dragon", person: "Associated: Seto Kaiba", thumbColors: ["#dbeafe", "#2563eb"] }
+			{ game: "Yu Yu Hakusho", card: "Spirit Wave", person: "Technique: Power Release", thumbColors: ["#c4b5fd", "#7c3aed"] },
+			{ game: "Yu-Gi-Oh", card: "Blue-Eyes White Dragon", person: "Associated: Seto Kaiba", thumbColors: ["#dbeafe", "#2563eb"] },
+			{ game: "Yu-Gi-Oh", card: "Blue-Eyes Shining Dragon", person: "Technique: Evolution", thumbColors: ["#bfdbfe", "#1e40af"] }
 		]
 	},
 	1: {
@@ -30,8 +33,11 @@ const seasonalThemes = {
 		glow: "rgba(251, 113, 133, 0.35)",
 		spotlight: [
 			{ game: "Pokemon", card: "Espeon", person: "Associated: Morty", thumbColors: ["#c084fc", "#7e22ce"] },
+			{ game: "Pokemon", card: "Psychic", person: "Technique: Mind Power", thumbColors: ["#d8b4fe", "#a855f7"] },
 			{ game: "Yu Yu Hakusho", card: "Botan", person: "Associated: Kurama", thumbColors: ["#f472b6", "#a21caf"] },
-			{ game: "Yu-Gi-Oh", card: "Dark Magician Girl", person: "Associated: Yugi Muto", thumbColors: ["#f9a8d4", "#7c3aed"] }
+			{ game: "Yu Yu Hakusho", card: "Rose Whip", person: "Item: Demon Weapon", thumbColors: ["#fbcfe8", "#be185d"] },
+			{ game: "Yu-Gi-Oh", card: "Dark Magician Girl", person: "Associated: Yugi Muto", thumbColors: ["#f9a8d4", "#7c3aed"] },
+			{ game: "Yu-Gi-Oh", card: "Dark Burning Attack", person: "Technique: Spell Combo", thumbColors: ["#f472b6", "#9d174d"] }
 		]
 	},
 	2: {
@@ -40,8 +46,11 @@ const seasonalThemes = {
 		glow: "rgba(74, 222, 128, 0.35)",
 		spotlight: [
 			{ game: "Pokemon", card: "Sceptile", person: "Associated: Brendan", thumbColors: ["#4ade80", "#166534"] },
+			{ game: "Pokemon", card: "Leaf Blade", person: "Technique: Grass Strike", thumbColors: ["#86efac", "#22c55e"] },
 			{ game: "Yu Yu Hakusho", card: "Raizen", person: "Associated: Yoko Kurama", thumbColors: ["#22c55e", "#14532d"] },
-			{ game: "Yu-Gi-Oh", card: "Noble Knight Artorigus", person: "Associated: Noble Knight Legacy", thumbColors: ["#86efac", "#15803d"] }
+			{ game: "Yu Yu Hakusho", card: "Spirit Energy Surge", person: "Technique: Divine Power", thumbColors: ["#4ade80", "#166534"] },
+			{ game: "Yu-Gi-Oh", card: "Noble Knight Artorigus", person: "Associated: Noble Knight Legacy", thumbColors: ["#86efac", "#15803d"] },
+			{ game: "Yu-Gi-Oh", card: "Merlin", person: "Item: Noble Knight Support", thumbColors: ["#bbf7d0", "#047857"] }
 		]
 	},
 	3: {
@@ -50,8 +59,11 @@ const seasonalThemes = {
 		glow: "rgba(249, 168, 212, 0.35)",
 		spotlight: [
 			{ game: "Pokemon", card: "Decidueye", person: "Associated: Hau", thumbColors: ["#84cc16", "#166534"] },
+			{ game: "Pokemon", card: "Spirit Shackle", person: "Technique: Ghost Lock", thumbColors: ["#a78bfa", "#6b21a8"] },
 			{ game: "Yu Yu Hakusho", card: "Kurama", person: "Associated: Hiei", thumbColors: ["#fbcfe8", "#be185d"] },
-			{ game: "Yu-Gi-Oh", card: "Black Rose Dragon", person: "Associated: Akiza Izinski", thumbColors: ["#f472b6", "#9d174d"] }
+			{ game: "Yu Yu Hakusho", card: "Youko Transformation", person: "Technique: True Form", thumbColors: ["#f472b6", "#ec4899"] },
+			{ game: "Yu-Gi-Oh", card: "Black Rose Dragon", person: "Associated: Akiza Izinski", thumbColors: ["#f472b6", "#9d174d"] },
+			{ game: "Yu-Gi-Oh", card: "Black Rose Witch", person: "Technique: Rose Combination", thumbColors: ["#f9a8d4", "#be185d"] }
 		]
 	},
 	4: {
@@ -60,8 +72,11 @@ const seasonalThemes = {
 		glow: "rgba(34, 211, 238, 0.35)",
 		spotlight: [
 			{ game: "Pokemon", card: "Tinkaton", person: "Associated: Poppy", thumbColors: ["#f472b6", "#db2777"] },
+			{ game: "Pokemon", card: "Hammer Arm", person: "Technique: Steel Smash", thumbColors: ["#e879f9", "#d946ef"] },
 			{ game: "Yu Yu Hakusho", card: "Mukuro", person: "Associated: Yusuke", thumbColors: ["#a78bfa", "#4c1d95"] },
-			{ game: "Yu-Gi-Oh", card: "Stardust Dragon", person: "Associated: Yusei Fudo", thumbColors: ["#93c5fd", "#1e3a8a"] }
+			{ game: "Yu Yu Hakusho", card: "Demon Beast Aura", person: "Technique: Dark Power", thumbColors: ["#c4b5fd", "#6b21a8"] },
+			{ game: "Yu-Gi-Oh", card: "Stardust Dragon", person: "Associated: Yusei Fudo", thumbColors: ["#93c5fd", "#1e3a8a"] },
+			{ game: "Yu-Gi-Oh", card: "Synchro Boost", person: "Technique: Accel Synchro", thumbColors: ["#bfdbfe", "#1e40af"] }
 		]
 	},
 	5: {
@@ -70,8 +85,11 @@ const seasonalThemes = {
 		glow: "rgba(251, 191, 36, 0.35)",
 		spotlight: [
 			{ game: "Pokemon", card: "Infernape", person: "Associated: Flint", thumbColors: ["#f59e0b", "#b45309"] },
+			{ game: "Pokemon", card: "Close Combat", person: "Technique: Fire Fury", thumbColors: ["#fbbf24", "#d97706"] },
 			{ game: "Yu Yu Hakusho", card: "Kuwabara (Jigen To)", person: "Associated: Sensui Arc", thumbColors: ["#f59e0b", "#7c2d12"] },
-			{ game: "Yu-Gi-Oh", card: "Frost & Flame Dragon", person: "Associated: Bastion Misawa", thumbColors: ["#38bdf8", "#b91c1c"] }
+			{ game: "Yu Yu Hakusho", card: "Sword Mastery", person: "Technique: Blade Training", thumbColors: ["#fcd34d", "#b45309"] },
+			{ game: "Yu-Gi-Oh", card: "Frost & Flame Dragon", person: "Associated: Bastion Misawa", thumbColors: ["#38bdf8", "#b91c1c"] },
+			{ game: "Yu-Gi-Oh", card: "Elemental Fusion", person: "Technique: Dual Power", thumbColors: ["#7dd3fc", "#7c2d12"] }
 		]
 	},
 	6: {
@@ -80,8 +98,11 @@ const seasonalThemes = {
 		glow: "rgba(96, 165, 250, 0.35)",
 		spotlight: [
 			{ game: "Pokemon", card: "Braviary", person: "Associated: Skyla", thumbColors: ["#ef4444", "#1d4ed8"] },
+			{ game: "Pokemon", card: "Aerial Ace", person: "Technique: Speed Dive", thumbColors: ["#3b82f6", "#0c4a6e"] },
 			{ game: "Yu Yu Hakusho", card: "Yusuke", person: "Associated: Genkai", thumbColors: ["#e11d48", "#1e40af"] },
-			{ game: "Yu-Gi-Oh", card: "Elemental HERO Neos", person: "Associated: Jaden Yuki", thumbColors: ["#f8fafc", "#2563eb"] }
+			{ game: "Yu Yu Hakusho", card: "Spirit Gun Focus", person: "Technique: Signature Attack", thumbColors: ["#dc2626", "#7f1d1d"] },
+			{ game: "Yu-Gi-Oh", card: "Elemental HERO Neos", person: "Associated: Jaden Yuki", thumbColors: ["#f8fafc", "#2563eb"] },
+			{ game: "Yu-Gi-Oh", card: "Polymerization", person: "Technique: Fusion Summon", thumbColors: ["#8b5cf6", "#4c1d95"] }
 		]
 	},
 	7: {
@@ -90,8 +111,11 @@ const seasonalThemes = {
 		glow: "rgba(255, 159, 67, 0.35)",
 		spotlight: [
 			{ game: "Pokemon", card: "Charizard", person: "Associated: Red", thumbColors: ["#ff8a3d", "#9a3412"] },
+			{ game: "Pokemon", card: "Fire Spin", person: "Technique: Inferno Attack", thumbColors: ["#f59e0b", "#dc2626"] },
 			{ game: "Yu Yu Hakusho", card: "Chu Drunken Master", person: "Associated: Yusuke", thumbColors: ["#7c3aed", "#1e293b"] },
-			{ game: "Yu-Gi-Oh", card: "Number 39: Utopia", person: "Associated: Yuma Tsukumo", thumbColors: ["#67e8f9", "#155e75"] }
+			{ game: "Yu Yu Hakusho", card: "Ogre Killer", person: "Item: Combat Weapon", thumbColors: ["#a78bfa", "#7c3aed"] },
+			{ game: "Yu-Gi-Oh", card: "Number 39: Utopia", person: "Associated: Yuma Tsukumo", thumbColors: ["#67e8f9", "#155e75"] },
+			{ game: "Yu-Gi-Oh", card: "Utopia Rising", person: "Technique: Rank-Up Magic", thumbColors: ["#06b6d4", "#0369a1"] }
 		]
 	},
 	8: {
@@ -100,8 +124,11 @@ const seasonalThemes = {
 		glow: "rgba(77, 224, 255, 0.35)",
 		spotlight: [
 			{ game: "Pokemon", card: "Cinderace", person: "Associated: Leon", thumbColors: ["#38bdf8", "#1d4ed8"] },
+			{ game: "Pokemon", card: "Pyro Ball", person: "Technique: Flame Kick", thumbColors: ["#7dd3fc", "#b91c1c"] },
 			{ game: "Yu Yu Hakusho", card: "Kazuma Kuwabara", person: "Associated: Yusuke", thumbColors: ["#f59e0b", "#92400e"] },
-			{ game: "Yu-Gi-Oh", card: "U.A. Midfielder", person: "Associated: Tetsu Trudge", thumbColors: ["#22d3ee", "#164e63"] }
+			{ game: "Yu Yu Hakusho", card: "Dimensional Sword", person: "Item: Spirit Weapon", thumbColors: ["#fbbf24", "#b45309"] },
+			{ game: "Yu-Gi-Oh", card: "U.A. Midfielder", person: "Associated: Tetsu Trudge", thumbColors: ["#22d3ee", "#164e63"] },
+			{ game: "Yu-Gi-Oh", card: "U.A. Encore", person: "Technique: Sports Play", thumbColors: ["#06b6d4", "#0f766e"] }
 		]
 	},
 	9: {
@@ -110,8 +137,11 @@ const seasonalThemes = {
 		glow: "rgba(249, 115, 22, 0.35)",
 		spotlight: [
 			{ game: "Pokemon", card: "Trevenant", person: "Associated: Valerie", thumbColors: ["#22c55e", "#3f6212"] },
+			{ game: "Pokemon", card: "Wood Hammer", person: "Technique: Forest Fury", thumbColors: ["#86efac", "#14532d"] },
 			{ game: "Yu Yu Hakusho", card: "Hiei", person: "Associated: Kurama", thumbColors: ["#a855f7", "#3b0764"] },
-			{ game: "Yu-Gi-Oh", card: "Pumpking the King of Ghosts", person: "Associated: Bones", thumbColors: ["#fb923c", "#7c2d12"] }
+			{ game: "Yu Yu Hakusho", card: "Demon Flame", person: "Technique: Fire Mastery", thumbColors: ["#d8b4fe", "#6b21a8"] },
+			{ game: "Yu-Gi-Oh", card: "Pumpking the King of Ghosts", person: "Associated: Bones", thumbColors: ["#fb923c", "#7c2d12"] },
+			{ game: "Yu-Gi-Oh", card: "Ghostrick Mansion", person: "Item: Haunted Field", thumbColors: ["#fed7aa", "#92400e"] }
 		]
 	},
 	10: {
@@ -120,8 +150,11 @@ const seasonalThemes = {
 		glow: "rgba(245, 158, 11, 0.35)",
 		spotlight: [
 			{ game: "Pokemon", card: "Appletun", person: "Associated: Milo", thumbColors: ["#84cc16", "#b45309"] },
+			{ game: "Pokemon", card: "Sunny Day", person: "Technique: Harvest Season", thumbColors: ["#bfef45", "#854d0e"] },
 			{ game: "Yu Yu Hakusho", card: "Elder Toguro, The Indestructible", person: "Associated: Sensui Arc", thumbColors: ["#f97316", "#7c2d12"] },
-			{ game: "Yu-Gi-Oh", card: "Odd-Eyes Pendulum Dragon", person: "Associated: Yuya Sakaki", thumbColors: ["#f472b6", "#6d28d9"] }
+			{ game: "Yu Yu Hakusho", card: "Muscle Evolution", person: "Technique: Power Form", thumbColors: ["#f59e0b", "#b45309"] },
+			{ game: "Yu-Gi-Oh", card: "Odd-Eyes Pendulum Dragon", person: "Associated: Yuya Sakaki", thumbColors: ["#f472b6", "#6d28d9"] },
+			{ game: "Yu-Gi-Oh", card: "Pendulum Call", person: "Technique: Pendulum Setup", thumbColors: ["#f0abfc", "#7e22ce"] }
 		]
 	},
 	11: {
@@ -130,8 +163,11 @@ const seasonalThemes = {
 		glow: "rgba(165, 180, 252, 0.35)",
 		spotlight: [
 			{ game: "Pokemon", card: "Articuno", person: "Associated: Noland (Frontier Brain)", thumbColors: ["#bfdbfe", "#3730a3"] },
+			{ game: "Pokemon", card: "Ice Beam", person: "Technique: Frozen Strike", thumbColors: ["#dbeafe", "#1e40af"] },
 			{ game: "Yu Yu Hakusho", card: "Yukina", person: "Associated: Botan", thumbColors: ["#93c5fd", "#1d4ed8"] },
-			{ game: "Yu-Gi-Oh", card: "Santa Claws", person: "Associated: Winter Promo", thumbColors: ["#ef4444", "#166534"] }
+			{ game: "Yu Yu Hakusho", card: "Ice Crystal", person: "Item: Healing Source", thumbColors: ["#bfdbfe", "#0c4a6e"] },
+			{ game: "Yu-Gi-Oh", card: "Santa Claws", person: "Associated: Winter Promo", thumbColors: ["#ef4444", "#166534"] },
+			{ game: "Yu-Gi-Oh", card: "Yuletide Blessing", person: "Technique: Holiday Magic", thumbColors: ["#22c55e", "#7c2d12"] }
 		]
 	}
 };
@@ -471,14 +507,15 @@ function expandSpotlightWithRival(spotlightEntries) {
 		return [];
 	}
 
+	// For non-Yu-Gi-Oh games, return all entries as-is (includes companion cards)
 	if (normalizeForSearch(primaryEntry.game) !== "yu gi oh") {
-		return [primaryEntry];
+		return spotlightEntries;
 	}
 
 	const normalizedKey = makeSpotlightCardKey(primaryEntry).replace(/::/g, "::").replace(/\s+/g, " ");
 	const rivalConfig = YGO_SPOTLIGHT_RIVAL_MATCHUPS[normalizedKey] || null;
 	if (!rivalConfig) {
-		return [primaryEntry];
+		return spotlightEntries;
 	}
 
 	const rivalEntry = {
@@ -1483,9 +1520,37 @@ function initHomeSearch() {
 
 		try {
 			const signal = pendingRequestController.signal;
-			const ygoItems = await fetchYugiohSuggestions(query, signal);
-			if (ygoItems.length > 0) {
-				return mapSuggestionsFromItems(ygoItems, query);
+			const activeGame = getActiveSearchGameName();
+			const normalizedGame = normalizeForSearch(activeGame);
+
+			// Try API first for Yu Yu Hakusho
+			if (normalizedGame === "yu yu hakusho") {
+				const yyhItems = await fetchYyhSuggestions(query, signal);
+				if (yyhItems.length > 0) {
+					return mapSuggestionsFromItems(yyhItems, query);
+				}
+				// Fall back to local data
+				const fallbackData = await loadHomeSearchFallbackData();
+				const filtered = fallbackData.filter(
+					(item) => normalizeForSearch(item?.game) === "yu yu hakusho"
+				);
+				return mapSuggestionsFromItems(filtered, query);
+			}
+
+			// Yu-Gi-Oh from external API
+			if (normalizedGame === "yu gi oh") {
+				const ygoItems = await fetchYugiohSuggestions(query, signal);
+				if (ygoItems.length > 0) {
+					return mapSuggestionsFromItems(ygoItems, query);
+				}
+			}
+
+			// Pokemon from external API
+			if (normalizedGame === "pokemon") {
+				const pokemonItems = await fetchPokemonSuggestions(query, signal);
+				if (pokemonItems.length > 0) {
+					return mapSuggestionsFromItems(pokemonItems, query);
+				}
 			}
 		} catch (error) {
 			if (error && error.name === "AbortError") {

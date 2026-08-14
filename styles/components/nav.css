@@ -15,10 +15,11 @@
 .logo-link {
     display: flex;
     align-items: center;
+    flex-shrink: 0;
 }
 
 .logo {
-    width: clamp(260px, 34vw, 460px);
+    width: 500px;
     max-width: 100%;
     display: block;
     transition: transform 300ms ease, filter 300ms ease;

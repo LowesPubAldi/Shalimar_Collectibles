@@ -16,7 +16,7 @@ body {
 
 .header {
     width: 100%;
-    padding: 20px 28px;
+    padding: 14px 16px;
     background: 05090d;
 }
 
@@ -24,12 +24,12 @@ body {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 18px;
+    gap: 10px;
 }
 
 .nav__links {
     display: flex;
-    gap: 26px;
+    gap: 14px;
     list-style: none;
     align-self: center;
     margin-bottom: 0;
@@ -38,7 +38,7 @@ body {
 }
 
 .logo {
-    width: clamp(260px, 34vw, 460px);
+    width: 500px;
     max-width: 100%;
     display: block;
     transition: transform 300ms ease, filter 300ms ease;
@@ -47,6 +47,7 @@ body {
 .logo-link {
     display: flex;
     align-items: center;
+    flex-shrink: 0;
 }
 
 .game-mode-controls {
@@ -131,7 +132,7 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
 .nav__links a {
     color: #f8fafc;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 600;
     transition: color 300ms ease, text-shadow 300ms ease;
 }
