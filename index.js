@@ -48,7 +48,7 @@ const seasonalThemes = {
 			{ game: "Pokemon", card: "Sceptile", person: "Associated: Brendan", thumbColors: ["#4ade80", "#166534"] },
 			{ game: "Pokemon", card: "Leaf Blade", person: "Technique: Grass Strike", thumbColors: ["#86efac", "#22c55e"] },
 			{ game: "Yu Yu Hakusho", card: "Raizen", person: "Associated: Yoko Kurama", thumbColors: ["#22c55e", "#14532d"] },
-			{ game: "Yu Yu Hakusho", card: "Spirit Energy Surge", person: "Technique: Divine Power", thumbColors: ["#4ade80", "#166534"] },
+			{ game: "Yu Yu Hakusho", card: "Team Raizen's Support", person: "Team Bonus: Leader Ascension", thumbColors: ["#4ade80", "#166534"] },
 			{ game: "Yu-Gi-Oh", card: "Noble Knight Artorigus", person: "Associated: Noble Knight Legacy", thumbColors: ["#86efac", "#15803d"] },
 			{ game: "Yu-Gi-Oh", card: "Merlin", person: "Item: Noble Knight Support", thumbColors: ["#bbf7d0", "#047857"] }
 		]
@@ -60,8 +60,8 @@ const seasonalThemes = {
 		spotlight: [
 			{ game: "Pokemon", card: "Decidueye", person: "Associated: Hau", thumbColors: ["#84cc16", "#166534"] },
 			{ game: "Pokemon", card: "Spirit Shackle", person: "Technique: Ghost Lock", thumbColors: ["#a78bfa", "#6b21a8"] },
-			{ game: "Yu Yu Hakusho", card: "Kurama", person: "Associated: Hiei", thumbColors: ["#fbcfe8", "#be185d"] },
-			{ game: "Yu Yu Hakusho", card: "Youko Transformation", person: "Technique: True Form", thumbColors: ["#f472b6", "#ec4899"] },
+			{ game: "Yu Yu Hakusho", card: "Kurama", person: "Associated: Shuichi", thumbColors: ["#fbcfe8", "#be185d"] },
+			{ game: "Yu Yu Hakusho", card: "Rose Whip", person: "Item: Demon Weapon", thumbColors: ["#f472b6", "#ec4899"] },
 			{ game: "Yu-Gi-Oh", card: "Black Rose Dragon", person: "Associated: Akiza Izinski", thumbColors: ["#f472b6", "#9d174d"] },
 			{ game: "Yu-Gi-Oh", card: "Black Rose Witch", person: "Technique: Rose Combination", thumbColors: ["#f9a8d4", "#be185d"] }
 		]
@@ -151,8 +151,8 @@ const seasonalThemes = {
 		spotlight: [
 			{ game: "Pokemon", card: "Appletun", person: "Associated: Milo", thumbColors: ["#84cc16", "#b45309"] },
 			{ game: "Pokemon", card: "Sunny Day", person: "Technique: Harvest Season", thumbColors: ["#bfef45", "#854d0e"] },
-			{ game: "Yu Yu Hakusho", card: "Elder Toguro, The Indestructible", person: "Associated: Sensui Arc", thumbColors: ["#f97316", "#7c2d12"] },
-			{ game: "Yu Yu Hakusho", card: "Muscle Evolution", person: "Technique: Power Form", thumbColors: ["#f59e0b", "#b45309"] },
+			{ game: "Yu Yu Hakusho", card: "Elder Toguro, The Indestructible", person: "Associated: Tournament Champion", thumbColors: ["#f97316", "#7c2d12"] },
+			{ game: "Yu Yu Hakusho", card: "Team Toguro's Surprise", person: "Team Bonus: Power Surge", thumbColors: ["#f59e0b", "#b45309"] },
 			{ game: "Yu-Gi-Oh", card: "Odd-Eyes Pendulum Dragon", person: "Associated: Yuya Sakaki", thumbColors: ["#f472b6", "#6d28d9"] },
 			{ game: "Yu-Gi-Oh", card: "Pendulum Call", person: "Technique: Pendulum Setup", thumbColors: ["#f0abfc", "#7e22ce"] }
 		]
@@ -211,7 +211,9 @@ const YYH_SPOTLIGHT_THUMBNAILS = {
 	"spirit energy surge": "assets/seasonal/yyh-source/exile/152.jpg",
 	"youko transformation": "assets/seasonal/yyh-source/betrayal/056.jpg",
 	"demon beast aura": "assets/seasonal/yyh-source/exile/145.jpg",
-	"steel beam": "assets/seasonal/yyh-source/alliance/178.jpg"
+	"steel beam": "assets/seasonal/yyh-source/alliance/178.jpg",
+	"team raizens support": "assets/seasonal/yyh-source/exile/057.jpg",
+	"team toguros surprise": "assets/seasonal/yyh-source/exile/060.jpg"
 };
 
 const SPOTLIGHT_DISPLAY_NAME_OVERRIDES = {
