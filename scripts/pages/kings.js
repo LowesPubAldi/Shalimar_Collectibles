@@ -216,7 +216,13 @@ function renderYugiohWinConsPage() {
                 </a>
                 <a class="wincon-card wincon-card--lock" data-wincon-card="Destiny Board" href="inventory.html?game=Yu-Gi-Oh&q=Destiny Board">
                     <span class="wincon-card__number">03</span>
-                    <div class="wincon-card__image-wrap"><img class="wincon-card__image" alt="" loading="lazy" /></div>
+                    <div class="wincon-card__image-wrap wincon-card__image-wrap--destiny">
+                        <div class="destiny-board-core"><img class="wincon-card__image" alt="" loading="lazy" /></div>
+                        <div class="destiny-message destiny-message--i"><img class="wincon-card__image" data-card-image="Spirit Message I" alt="" loading="lazy" /></div>
+                        <div class="destiny-message destiny-message--n"><img class="wincon-card__image" data-card-image="Spirit Message N" alt="" loading="lazy" /></div>
+                        <div class="destiny-message destiny-message--a"><img class="wincon-card__image" data-card-image="Spirit Message A" alt="" loading="lazy" /></div>
+                        <div class="destiny-message destiny-message--l"><img class="wincon-card__image" data-card-image="Spirit Message L" alt="" loading="lazy" /></div>
+                    </div>
                     <h3>Destiny Board</h3>
                     <p>Build the complete message across five Spell and Trap zones, then let the final letter deliver the alternate win.</p>
                     <span class="wincon-card__pieces">Destiny Board + Spirit Message I, N, A, L</span>
@@ -242,9 +248,31 @@ function renderYugiohWinConsPage() {
         </section>`;
 
     observeWinConCards();
+    observeDestinyBoard();
     hydrateWinConImages();
     initCowboyInteraction();
     return true;
+}
+
+function observeDestinyBoard() {
+    const card = document.querySelector(".wincon-card--lock");
+    if (!(card instanceof HTMLElement)) {
+        return;
+    }
+
+    const revealWhenScrolledTo = () => {
+        const rect = card.getBoundingClientRect();
+        if (window.scrollY > 0 && rect.top < window.innerHeight * 0.82 && rect.bottom > 0) {
+            card.classList.add("is-visible");
+            clearInterval(positionWatcher);
+            window.removeEventListener("scroll", revealWhenScrolledTo);
+            window.removeEventListener("resize", revealWhenScrolledTo);
+        }
+    };
+
+    const positionWatcher = window.setInterval(revealWhenScrolledTo, 120);
+    window.addEventListener("scroll", revealWhenScrolledTo, { passive: true });
+    window.addEventListener("resize", revealWhenScrolledTo, { passive: true });
 }
 
 function initCowboyInteraction() {
@@ -372,6 +400,12 @@ function observeWinConCards() {
     const initialObservation = new WeakSet();
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
+            if (entry.target instanceof HTMLElement && entry.target.classList.contains("wincon-card--lock") && entry.isIntersecting) {
+                reveal(entry.target);
+                observer.unobserve(entry.target);
+                return;
+            }
+
             if (!initialObservation.has(entry.target)) {
                 initialObservation.add(entry.target);
                 if (window.scrollY === 0 && entry.isIntersecting) {
@@ -400,13 +434,23 @@ async function hydrateWinConImages() {
 
         try {
             const endpoint = new URL("https://db.ygoprodeck.com/api/v7/cardinfo.php");
-            endpoint.searchParams.set("name", cardName);
-            const response = await fetch(endpoint.toString(), { cache: "no-store" });
-            if (!response.ok) {
+            const spiritMatch = cardName.match(/^Spirit Message ([INAL])$/);
+            const candidateNames = spiritMatch
+                ? [`Spirit Message "${spiritMatch[1]}"`, cardName]
+                : [cardName];
+            let payload = null;
+            for (const candidateName of candidateNames) {
+                endpoint.searchParams.set("name", candidateName);
+                const response = await fetch(endpoint.toString(), { cache: "no-store" });
+                if (response.ok) {
+                    payload = await response.json();
+                    break;
+                }
+            }
+            if (!payload) {
                 return;
             }
 
-            const payload = await response.json();
             const firstImage = payload?.data?.[0]?.card_images?.[0];
             const imageUrl = firstImage?.image_url || firstImage?.image_url_cropped || "";
             if (!imageUrl) {

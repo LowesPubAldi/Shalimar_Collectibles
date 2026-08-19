@@ -872,6 +872,95 @@
 .wincon-card--burn.has-image .wincon-card__image-wrap--cowboy .wincon-card__image {
     transform: translateX(-50%) rotate(90deg);
 }
+
+.wincon-card--lock {
+    transition: transform 1400ms cubic-bezier(0.22, 1, 0.36, 1), border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.wincon-card--lock.is-visible {
+    transform: translateX(-34px);
+}
+
+.wincon-card__image-wrap--destiny {
+    position: relative;
+    height: 190px;
+    overflow: visible;
+}
+
+.destiny-board-core,
+.destiny-message {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    width: 82px;
+    height: 142px;
+    perspective: 700px;
+}
+
+.destiny-board-core {
+    z-index: 5;
+    transform: translateX(-50%);
+    transition: left 1400ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.destiny-board-core .wincon-card__image,
+.destiny-message .wincon-card__image {
+    width: 82px;
+    height: 142px;
+    max-width: none;
+    opacity: 1;
+    object-fit: contain;
+    transform: none;
+}
+
+.destiny-message {
+    z-index: 2;
+    left: 50%;
+    transform: translateX(-50%) rotateY(90deg) rotateZ(0deg);
+    transform-origin: center center;
+    opacity: 0;
+    transition: left 1200ms cubic-bezier(0.22, 1, 0.36, 1), transform 1200ms cubic-bezier(0.22, 1, 0.36, 1), opacity 800ms ease;
+}
+
+.wincon-card--lock.is-visible .destiny-board-core {
+    left: 14%;
+}
+
+.wincon-card--lock.is-visible .destiny-message {
+    opacity: 1;
+    transform: translateX(-50%) rotateY(0deg) rotateZ(0deg);
+}
+
+.wincon-card--lock.is-visible .destiny-message--i {
+    left: 32%;
+    transition-delay: 1100ms;
+}
+
+.wincon-card--lock.is-visible .destiny-message--n {
+    left: 50%;
+    transition-delay: 2100ms;
+}
+
+.wincon-card--lock.is-visible .destiny-message--a {
+    left: 68%;
+    transition-delay: 3100ms;
+}
+
+.wincon-card--lock.is-visible .destiny-message--l {
+    left: 86%;
+    transition-delay: 4100ms;
+}
+
+.wincon-card--lock .destiny-board-core .wincon-card__image,
+.wincon-card--lock .destiny-message .wincon-card__image {
+    opacity: 1;
+    transform: none;
+}
+
+.wincon-card--lock.is-visible .destiny-message .wincon-card__image {
+    opacity: 1;
+    transform: none;
+}
 .wincon-card h3 {
     margin-top: 16px;
     color: #f8fafc;
@@ -935,5 +1024,41 @@
     }
     .wincon-card:nth-child(5) {
         grid-column: 1 / -1;
+    }
+
+    .wincon-card--lock.is-visible {
+        transform: none;
+    }
+
+    .destiny-board-core,
+    .destiny-message {
+        width: 62px;
+        height: 108px;
+    }
+
+    .destiny-board-core .wincon-card__image,
+    .destiny-message .wincon-card__image {
+        width: 62px;
+        height: 108px;
+    }
+
+    .wincon-card--lock.is-visible .destiny-board-core {
+        left: 10%;
+    }
+
+    .wincon-card--lock.is-visible .destiny-message--i {
+        left: 30%;
+    }
+
+    .wincon-card--lock.is-visible .destiny-message--n {
+        left: 50%;
+    }
+
+    .wincon-card--lock.is-visible .destiny-message--a {
+        left: 70%;
+    }
+
+    .wincon-card--lock.is-visible .destiny-message--l {
+        left: 90%;
     }
 }
