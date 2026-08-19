@@ -134,6 +134,181 @@ function kingsObserveKingCards() {
     window.addEventListener("resize", kingsRevealVisibleCards, { passive: true });
 }
 
+function isYugiohWinConsPage() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("game") === "Yu-Gi-Oh" && params.get("mode") === "wincons";
+}
+
+function renderYugiohWinConsPage() {
+    const main = document.querySelector("main.kings-page");
+    if (!(main instanceof HTMLElement)) {
+        return false;
+    }
+
+    const exodiaPieces = [
+        "Exodia the Forbidden One",
+        "Right Arm of the Forbidden One",
+        "Left Arm of the Forbidden One",
+        "Right Leg of the Forbidden One",
+        "Left Leg of the Forbidden One"
+    ];
+
+    document.title = "Shalimar Collectibles | Yu-Gi-Oh Win Cons";
+    const footerMeta = document.querySelector(".site-footer__meta");
+    if (footerMeta instanceof HTMLElement) {
+        footerMeta.textContent = "Yu-Gi-Oh win condition research, card links, and strategy pathways are live for the current content pass.";
+    }
+    main.classList.add("wincons-page");
+    main.innerHTML = `
+        <section class="wincons-hero" aria-label="Yu-Gi-Oh win conditions overview">
+            <div class="wincons-hero__content">
+                <p class="wincons-hero__eyebrow">Yu-Gi-Oh Strategy Archive</p>
+                <h1>Win the duel before the duel gets away from you.</h1>
+                <p>Explore the cards, engines, and finish lines that turn a Yu-Gi-Oh deck from a collection of ideas into a complete victory plan.</p>
+                <div class="wincons-hero__actions">
+                    <a class="wincons-action wincons-action--primary" href="inventory.html?game=Yu-Gi-Oh">Explore Yu-Gi-Oh Inventory</a>
+                    <a class="wincons-action" href="sets.html?game=Yu-Gi-Oh">Browse Sets</a>
+                </div>
+            </div>
+            <aside class="wincons-hero__panel" aria-label="Win condition snapshot">
+                <p class="wincons-hero__panel-label">Strategy Snapshot</p>
+                <ul>
+                    <li><strong>5</strong><span>core finish lines</span></li>
+                    <li><strong>14,516</strong><span>unique cards in inventory</span></li>
+                    <li><strong>Live</strong><span>card details via API</span></li>
+                </ul>
+            </aside>
+        </section>
+
+        <section class="wincons-shell" aria-label="Yu-Gi-Oh win condition categories">
+            <div class="wincons-section-heading">
+                <div>
+                    <p class="wincons-hero__eyebrow">Choose your finish line</p>
+                    <h2>Every deck tells its story at the moment it wins.</h2>
+                </div>
+                <p>Start with a victory pattern, then follow it into the cards that make the plan possible.</p>
+            </div>
+            <div class="wincons-grid">
+                <a class="wincon-card wincon-card--alternate" data-wincon-card="Exodia the Forbidden One" href="inventory.html?game=Yu-Gi-Oh&q=Exodia">
+                    <span class="wincon-card__number">01</span>
+                    <div class="wincon-card__image-wrap wincon-card__image-wrap--pieces">
+                        ${exodiaPieces.map((piece) => `<div class="wincon-card__piece"><img class="wincon-card__image" data-card-image="${piece}" alt="" loading="lazy" /></div>`).join("")}
+                    </div>
+                    <p class="wincon-card__quote" aria-live="polite">Exodia, Incinerate!</p>
+                    <h3>Exodia the Forbidden One</h3>
+                    <p>The classic five-card alternate victory: assemble the complete Forbidden One before the opponent can break the hand or field.</p>
+                    <span class="wincon-card__pieces">Head + Left Arm + Right Arm + Left Leg + Right Leg</span>
+                    <span class="wincon-card__link">Search the Exodia pieces <span aria-hidden="true">-&gt;</span></span>
+                </a>
+                <a class="wincon-card wincon-card--burn" data-wincon-card="Gagaga Cowboy" href="inventory.html?game=Yu-Gi-Oh&q=Gagaga Cowboy">
+                    <span class="wincon-card__number">02</span>
+                    <div class="wincon-card__image-wrap"><img class="wincon-card__image" alt="" loading="lazy" /></div>
+                    <h3>Gagaga Cowboy</h3>
+                    <p>Close the duel from Defense Position with a clean 800-point burn finish when the opponent is already within range.</p>
+                    <span class="wincon-card__pieces">Detach 1 Xyz Material -&gt; inflict 800 damage</span>
+                    <span class="wincon-card__link">Search Gagaga Cowboy <span aria-hidden="true">-&gt;</span></span>
+                </a>
+                <a class="wincon-card wincon-card--lock" data-wincon-card="Destiny Board" href="inventory.html?game=Yu-Gi-Oh&q=Destiny Board">
+                    <span class="wincon-card__number">03</span>
+                    <div class="wincon-card__image-wrap"><img class="wincon-card__image" alt="" loading="lazy" /></div>
+                    <h3>Destiny Board</h3>
+                    <p>Build the complete message across five Spell and Trap zones, then let the final letter deliver the alternate win.</p>
+                    <span class="wincon-card__pieces">Destiny Board + Spirit Message I, N, A, L</span>
+                    <span class="wincon-card__link">Search Destiny Board pieces <span aria-hidden="true">-&gt;</span></span>
+                </a>
+                <a class="wincon-card wincon-card--combat" data-wincon-card="Vennominaga the Deity of Poisonous Snakes" href="inventory.html?game=Yu-Gi-Oh&q=Vennominaga">
+                    <span class="wincon-card__number">04</span>
+                    <div class="wincon-card__image-wrap"><img class="wincon-card__image" alt="" loading="lazy" /></div>
+                    <h3>Vennominaga the Deity of Poisonous Snakes</h3>
+                    <p>Protect the Deity, build its Hyper-Venom Counters, and turn a long setup into an untouchable alternate victory condition.</p>
+                    <span class="wincon-card__pieces">Summon condition + Hyper-Venom Counters</span>
+                    <span class="wincon-card__link">Search Vennominaga <span aria-hidden="true">-&gt;</span></span>
+                </a>
+                <a class="wincon-card wincon-card--deckout" data-wincon-card="Blue-Eyes Ultimate Dragon" href="inventory.html?game=Yu-Gi-Oh&q=Blue-Eyes Ultimate Dragon">
+                    <span class="wincon-card__number">05</span>
+                    <div class="wincon-card__image-wrap"><img class="wincon-card__image" alt="" loading="lazy" /></div>
+                    <h3>Blue-Eyes Ultimate Dragon</h3>
+                    <p>Bring three Blue-Eyes White Dragons together into a 4500 ATK closer that makes the battle phase the entire argument.</p>
+                    <span class="wincon-card__pieces">Blue-Eyes White Dragon x3 -&gt; Fusion Summon</span>
+                    <span class="wincon-card__link">Search Blue-Eyes Ultimate Dragon <span aria-hidden="true">-&gt;</span></span>
+                </a>
+            </div>
+        </section>`;
+
+    observeWinConCards();
+    hydrateWinConImages();
+    return true;
+}
+
+function observeWinConCards() {
+    const cards = Array.from(document.querySelectorAll(".wincon-card"));
+    if (cards.length === 0) {
+        return;
+    }
+
+    const reveal = (card) => card.classList.add("is-visible");
+    if (typeof IntersectionObserver === "undefined") {
+        cards.forEach((card) => {
+            if (window.scrollY > 0) {
+                reveal(card);
+            }
+        });
+        return;
+    }
+
+    const initialObservation = new WeakSet();
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (!initialObservation.has(entry.target)) {
+                initialObservation.add(entry.target);
+                if (window.scrollY === 0 && entry.isIntersecting) {
+                    return;
+                }
+            }
+
+            if (entry.isIntersecting) {
+                reveal(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+
+    cards.forEach((card) => observer.observe(card));
+}
+
+async function hydrateWinConImages() {
+    const images = Array.from(document.querySelectorAll(".wincon-card__image"));
+    await Promise.all(images.map(async (image) => {
+        const card = image.closest("[data-wincon-card]");
+        const cardName = image.getAttribute("data-card-image") || card?.getAttribute("data-wincon-card") || "";
+        if (!(image instanceof HTMLImageElement) || !cardName) {
+            return;
+        }
+
+        try {
+            const endpoint = new URL("https://db.ygoprodeck.com/api/v7/cardinfo.php");
+            endpoint.searchParams.set("name", cardName);
+            const response = await fetch(endpoint.toString(), { cache: "no-store" });
+            if (!response.ok) {
+                return;
+            }
+
+            const payload = await response.json();
+            const firstImage = payload?.data?.[0]?.card_images?.[0];
+            const imageUrl = firstImage?.image_url || firstImage?.image_url_cropped || "";
+            if (!imageUrl) {
+                return;
+            }
+
+            image.src = imageUrl;
+            image.alt = `${cardName} card image`;
+            card?.classList.add("has-image");
+        } catch {
+            // Keep the card polished if the external image service is unavailable.
+        }
+    }));
+}
+
 async function initKingsPricing() {
     const kingCards = Array.from(document.querySelectorAll("[data-king-card]"));
     const priceList = document.getElementById("kingsPriceList");
@@ -228,6 +403,11 @@ async function initKingsPricing() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    if (isYugiohWinConsPage()) {
+        renderYugiohWinConsPage();
+        return;
+    }
+
     requestAnimationFrame(() => {
         kingsRevealVisibleCards();
         kingsObserveKingCards();
