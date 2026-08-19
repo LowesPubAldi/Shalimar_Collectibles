@@ -222,6 +222,7 @@ function renderYugiohWinConsPage() {
                         <div class="destiny-message destiny-message--n"><img class="wincon-card__image" data-card-image="Spirit Message N" alt="" loading="lazy" /></div>
                         <div class="destiny-message destiny-message--a"><img class="wincon-card__image" data-card-image="Spirit Message A" alt="" loading="lazy" /></div>
                         <div class="destiny-message destiny-message--l"><img class="wincon-card__image" data-card-image="Spirit Message L" alt="" loading="lazy" /></div>
+                        <span class="destiny-callout" aria-live="polite">The End!</span>
                     </div>
                     <h3>Destiny Board</h3>
                     <p>Build the complete message across five Spell and Trap zones, then let the final letter deliver the alternate win.</p>
@@ -230,15 +231,27 @@ function renderYugiohWinConsPage() {
                 </a>
                 <a class="wincon-card wincon-card--combat" data-wincon-card="Vennominaga the Deity of Poisonous Snakes" href="inventory.html?game=Yu-Gi-Oh&q=Vennominaga">
                     <span class="wincon-card__number">04</span>
-                    <div class="wincon-card__image-wrap"><img class="wincon-card__image" alt="" loading="lazy" /></div>
+                    <div class="wincon-card__venom-counter" data-venom-counter aria-live="polite">0 <span>/ 3</span><button type="button" data-venom-reset aria-label="Reset Hyper-Venom Counters">Reset</button></div>
+                    <div class="wincon-card__image-wrap wincon-card__image-wrap--venom">
+                        <img class="wincon-card__image" alt="" loading="lazy" />
+                    </div>
                     <h3>Vennominaga the Deity of Poisonous Snakes</h3>
                     <p>Protect the Deity, build its Hyper-Venom Counters, and turn a long setup into an untouchable alternate victory condition.</p>
                     <span class="wincon-card__pieces">Summon condition + Hyper-Venom Counters</span>
+                    <span class="wincon-card__venom-quote" data-venom-quote aria-live="polite"></span>
                     <span class="wincon-card__link">Search Vennominaga <span aria-hidden="true">-&gt;</span></span>
                 </a>
                 <a class="wincon-card wincon-card--deckout" data-wincon-card="Blue-Eyes Ultimate Dragon" href="inventory.html?game=Yu-Gi-Oh&q=Blue-Eyes Ultimate Dragon">
                     <span class="wincon-card__number">05</span>
-                    <div class="wincon-card__image-wrap"><img class="wincon-card__image" alt="" loading="lazy" /></div>
+                    <button class="blueeyes-mode-block" type="button" data-blueeyes-toggle aria-live="polite" aria-label="Defuse Blue-Eyes Ultimate Dragon"><span class="blueeyes-mode blueeyes-mode--unfuse">UNFUSE</span><span class="blueeyes-mode blueeyes-mode--fuse">FUSE</span></button>
+                    <div class="wincon-card__image-wrap wincon-card__image-wrap--blueeyes">
+                        <span class="blueeyes-callout blueeyes-callout--fusion">Neutron Blast</span>
+                        <span class="blueeyes-callout blueeyes-callout--split">White Lightning</span>
+                        <div class="blueeyes-ultimate"><img class="wincon-card__image" alt="" loading="lazy" /></div>
+                        <div class="blueeyes-split blueeyes-split--left"><img class="wincon-card__image" data-card-image="Blue-Eyes White Dragon" data-blue-eyes-art="0" alt="" loading="lazy" /></div>
+                        <div class="blueeyes-split blueeyes-split--center"><img class="wincon-card__image" data-card-image="Blue-Eyes White Dragon" data-blue-eyes-art="1" alt="" loading="lazy" /></div>
+                        <div class="blueeyes-split blueeyes-split--right"><img class="wincon-card__image" data-card-image="Blue-Eyes White Dragon" data-blue-eyes-art="2" alt="" loading="lazy" /></div>
+                    </div>
                     <h3>Blue-Eyes Ultimate Dragon</h3>
                     <p>Bring three Blue-Eyes White Dragons together into a 4500 ATK closer that makes the battle phase the entire argument.</p>
                     <span class="wincon-card__pieces">Blue-Eyes White Dragon x3 -&gt; Fusion Summon</span>
@@ -249,9 +262,60 @@ function renderYugiohWinConsPage() {
 
     observeWinConCards();
     observeDestinyBoard();
+    observeBlueEyesDefusion();
     hydrateWinConImages();
     initCowboyInteraction();
+    initVennominagaInteraction();
     return true;
+}
+
+function initVennominagaInteraction() {
+    const card = document.querySelector(".wincon-card--combat");
+    if (!(card instanceof HTMLAnchorElement)) {
+        return;
+    }
+
+    const counter = card.querySelector("[data-venom-counter]");
+    const resetButton = card.querySelector("[data-venom-reset]");
+    const image = card.querySelector(".wincon-card__image");
+    const quote = card.querySelector("[data-venom-quote]");
+    if (!(counter instanceof HTMLElement) || !(resetButton instanceof HTMLButtonElement) || !(image instanceof HTMLImageElement) || !(quote instanceof HTMLElement)) {
+        return;
+    }
+
+    let hyperVenomCounters = 0;
+
+    const renderCounter = () => {
+        counter.firstChild.textContent = `${hyperVenomCounters} `;
+        card.dataset.venomLevel = String(hyperVenomCounters);
+        card.classList.toggle("is-venom-awakened", hyperVenomCounters === 3);
+        const filters = [
+            "none",
+            "hue-rotate(10deg) saturate(1.2) sepia(0.08)",
+            "hue-rotate(34deg) saturate(1.55) sepia(0.16) brightness(0.96)",
+            "hue-rotate(58deg) saturate(2.05) sepia(0.28) brightness(0.88)"
+        ];
+        image.style.filter = filters[hyperVenomCounters];
+        quote.textContent = hyperVenomCounters === 3 ? "Hyper-Venom Victory!" : "";
+        quote.style.opacity = hyperVenomCounters === 3 ? "1" : "0";
+        quote.style.transform = hyperVenomCounters === 3 ? "translateY(0) scale(1)" : "translateY(8px) scale(0.94)";
+    };
+
+    card.addEventListener("click", (event) => {
+        if (event.target instanceof HTMLElement && event.target.closest("[data-venom-reset]")) {
+            event.preventDefault();
+            event.stopPropagation();
+            hyperVenomCounters = 0;
+            renderCounter();
+            return;
+        }
+
+        event.preventDefault();
+        if (hyperVenomCounters < 3) {
+            hyperVenomCounters += 1;
+            renderCounter();
+        }
+    });
 }
 
 function observeDestinyBoard() {
@@ -264,6 +328,12 @@ function observeDestinyBoard() {
         const rect = card.getBoundingClientRect();
         if (window.scrollY > 0 && rect.top < window.innerHeight * 0.82 && rect.bottom > 0) {
             card.classList.add("is-visible");
+            window.setTimeout(() => {
+                const callout = card.querySelector(".destiny-callout");
+                if (callout instanceof HTMLElement) {
+                    callout.classList.add("is-complete");
+                }
+            }, 5600);
             clearInterval(positionWatcher);
             window.removeEventListener("scroll", revealWhenScrolledTo);
             window.removeEventListener("resize", revealWhenScrolledTo);
@@ -273,6 +343,89 @@ function observeDestinyBoard() {
     const positionWatcher = window.setInterval(revealWhenScrolledTo, 120);
     window.addEventListener("scroll", revealWhenScrolledTo, { passive: true });
     window.addEventListener("resize", revealWhenScrolledTo, { passive: true });
+}
+
+function setBlueEyesState(card, isDefused) {
+    const ultimate = card.querySelector(".blueeyes-ultimate");
+    const splitCards = Array.from(card.querySelectorAll(".blueeyes-split"));
+    const fuseMode = card.querySelector(".blueeyes-mode--fuse");
+    const unfuseMode = card.querySelector(".blueeyes-mode--unfuse");
+    const fusionCallout = card.querySelector(".blueeyes-callout--fusion");
+    const splitCallout = card.querySelector(".blueeyes-callout--split");
+    const toggle = card.querySelector("[data-blueeyes-toggle]");
+    const timers = card.blueEyesTimers || [];
+    timers.forEach((timer) => clearTimeout(timer));
+    card.blueEyesTimers = [];
+
+    card.classList.toggle("is-visible", isDefused);
+    if (ultimate instanceof HTMLElement) {
+        ultimate.style.opacity = isDefused ? "0" : "1";
+        ultimate.style.transform = isDefused
+            ? "translateX(-50%) scale(0.58) rotate(8deg)"
+            : "translateX(-50%) scale(1) rotate(0deg)";
+    }
+
+    [fuseMode, splitCallout].forEach((element) => {
+        if (element instanceof HTMLElement) element.style.opacity = isDefused ? "1" : "0";
+    });
+    [unfuseMode, fusionCallout].forEach((element) => {
+        if (element instanceof HTMLElement) element.style.opacity = isDefused ? "0" : "1";
+    });
+    if (toggle instanceof HTMLButtonElement) {
+        toggle.setAttribute("aria-label", isDefused ? "Fuse the three Blue-Eyes White Dragons" : "Defuse Blue-Eyes Ultimate Dragon");
+    }
+
+    const splitStates = [
+        { left: "20%", top: "32px", transform: "translateX(-50%) rotate(-8deg) rotateY(0deg) scale(0.92)", delay: 700 },
+        { left: "50%", top: "4px", transform: "translateX(-50%) rotateY(0deg) scale(1)", delay: 1500 },
+        { left: "80%", top: "32px", transform: "translateX(-50%) rotate(8deg) rotateY(0deg) scale(0.92)", delay: 2300 }
+    ];
+    splitCards.forEach((splitCard, index) => {
+        if (!(splitCard instanceof HTMLElement)) return;
+        const state = splitStates[index];
+        if (!isDefused || !state) {
+            splitCard.style.left = "50%";
+            splitCard.style.top = "8px";
+            splitCard.style.opacity = "0";
+            splitCard.style.transform = "translateX(-50%) rotateY(90deg) scale(0.82)";
+            return;
+        }
+        const timer = window.setTimeout(() => {
+            splitCard.style.left = state.left;
+            splitCard.style.top = state.top;
+            splitCard.style.opacity = "1";
+            splitCard.style.transform = state.transform;
+        }, state.delay);
+        card.blueEyesTimers.push(timer);
+    });
+}
+
+function observeBlueEyesDefusion() {
+    const card = document.querySelector(".wincon-card--deckout");
+    if (!(card instanceof HTMLElement)) {
+        return;
+    }
+
+    const revealWhenReached = () => {
+        const rect = card.getBoundingClientRect();
+        if (window.scrollY > 0 && rect.top < window.innerHeight * 0.82 && rect.bottom > 0) {
+            setBlueEyesState(card, true);
+            clearInterval(positionWatcher);
+            window.removeEventListener("scroll", revealWhenReached);
+            window.removeEventListener("resize", revealWhenReached);
+        }
+    };
+
+    const positionWatcher = window.setInterval(revealWhenReached, 120);
+    window.addEventListener("scroll", revealWhenReached, { passive: true });
+    window.addEventListener("resize", revealWhenReached, { passive: true });
+
+    card.addEventListener("click", (event) => {
+        event.preventDefault();
+        const toggle = event.target instanceof HTMLElement && event.target.closest("[data-blueeyes-toggle]");
+        setBlueEyesState(card, !card.classList.contains("is-visible"));
+        if (toggle) event.stopPropagation();
+    });
 }
 
 function initCowboyInteraction() {
@@ -451,7 +604,12 @@ async function hydrateWinConImages() {
                 return;
             }
 
-            const firstImage = payload?.data?.[0]?.card_images?.[0];
+            const imageIndex = Number(image.dataset.blueEyesArt);
+            const cardImages = Array.isArray(payload?.data?.[0]?.card_images) ? payload.data[0].card_images : [];
+            const selectedImage = Number.isInteger(imageIndex) && imageIndex >= 0
+                ? (cardImages[imageIndex] || cardImages[0])
+                : cardImages[0];
+            const firstImage = selectedImage;
             const imageUrl = firstImage?.image_url || firstImage?.image_url_cropped || "";
             if (!imageUrl) {
                 return;

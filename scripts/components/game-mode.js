@@ -44,6 +44,20 @@
         });
     }
 
+    function navigateFeaturePageIfNeeded(modeKey, mode) {
+        const currentFile = window.location.pathname.split("/").pop() || "index.html";
+        if (currentFile !== "sets.html" && currentFile !== "kings.html") {
+            return;
+        }
+
+        const destination = new URL(mode.featureHref, window.location.href);
+        const currentUrl = `${window.location.pathname}${window.location.search}`;
+        const destinationUrl = `${destination.pathname}${destination.search}`;
+        if (currentUrl !== destinationUrl) {
+            window.location.replace(destination.toString());
+        }
+    }
+
     function buildModal() {
         const modal = document.createElement("div");
         modal.className = "game-mode-modal game-mode-modal--global";
@@ -91,6 +105,11 @@
                 const destination = new URL(window.location.href);
                 destination.searchParams.set("game", mode.searchGame);
                 window.location.replace(destination.toString());
+                return;
+            }
+
+            if (currentFile === "kings.html") {
+                navigateFeaturePageIfNeeded(modeKey, mode);
             }
         };
 
