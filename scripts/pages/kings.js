@@ -85,6 +85,55 @@ function kingsResolvePiecePrice(pricingItems, piece) {
     return bestScore > 0 ? best : null;
 }
 
+function kingsRevealVisibleCards() {
+    const kingCards = Array.from(document.querySelectorAll("[data-king-card]"));
+    if (!kingCards.length) {
+        return;
+    }
+
+    const viewportTop = window.innerHeight * 0.82;
+    kingCards.forEach((card) => {
+        if (!(card instanceof HTMLElement)) {
+            return;
+        }
+
+        const rect = card.getBoundingClientRect();
+        if (rect.top < viewportTop && rect.bottom > 30) {
+            card.classList.add("is-visible");
+        } else {
+            card.classList.remove("is-visible");
+        }
+    });
+}
+
+function kingsObserveKingCards() {
+    kingsRevealVisibleCards();
+
+    if (typeof IntersectionObserver === "undefined") {
+        window.addEventListener("scroll", kingsRevealVisibleCards, { passive: true });
+        window.addEventListener("resize", kingsRevealVisibleCards, { passive: true });
+        return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+            } else {
+                entry.target.classList.remove("is-visible");
+            }
+        });
+    }, {
+        threshold: 0.24,
+        rootMargin: "0px 0px -8% 0px"
+    });
+
+    const kingCards = Array.from(document.querySelectorAll("[data-king-card]"));
+    kingCards.forEach((card) => observer.observe(card));
+    window.addEventListener("scroll", kingsRevealVisibleCards, { passive: true });
+    window.addEventListener("resize", kingsRevealVisibleCards, { passive: true });
+}
+
 async function initKingsPricing() {
     const kingCards = Array.from(document.querySelectorAll("[data-king-card]"));
     const priceList = document.getElementById("kingsPriceList");
@@ -179,5 +228,9 @@ async function initKingsPricing() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    requestAnimationFrame(() => {
+        kingsRevealVisibleCards();
+        kingsObserveKingCards();
+    });
     void initKingsPricing();
 });

@@ -406,26 +406,23 @@ function updateNavLinkSet(container, modeConfig) {
 }
 
 function syncGameModeSwitchVisibility() {
-	const switchButton = document.getElementById("homeGameModeSwitch");
-	const modeBadge = document.getElementById("homeGameModeBadge");
-	if (!(switchButton instanceof HTMLButtonElement)) {
+	const modeSelect = document.getElementById("homeGameModeSelect");
+	if (!(modeSelect instanceof HTMLSelectElement)) {
 		return;
 	}
 
 	const hasSelectedMode = Boolean(getHomeGameModeConfig(activeHomeGameMode || ""));
-	switchButton.hidden = !hasSelectedMode;
-	if (modeBadge instanceof HTMLElement) {
-		modeBadge.hidden = !hasSelectedMode;
-	}
+	modeSelect.hidden = !hasSelectedMode;
+	modeSelect.value = hasSelectedMode ? activeHomeGameMode : "yyh";
 }
 
 function updateHomeGameModeBadge(modeConfig) {
-	const modeBadge = document.getElementById("homeGameModeBadge");
-	if (!(modeBadge instanceof HTMLElement)) {
+	const modeSelect = document.getElementById("homeGameModeSelect");
+	if (!(modeSelect instanceof HTMLSelectElement)) {
 		return;
 	}
 
-	modeBadge.textContent = modeConfig ? `${modeConfig.name} Mode` : "";
+	modeSelect.value = modeConfig ? modeConfig.key : "yyh";
 }
 
 function animateActiveGameLane(modeKey) {
@@ -1218,58 +1215,25 @@ function initMobileNav() {
 }
 
 function initHomeGameModeSelector() {
-	const modal = document.getElementById("gameModeModal");
-	if (!(modal instanceof HTMLElement)) {
+	const modeSelect = document.getElementById("homeGameModeSelect");
+	if (!(modeSelect instanceof HTMLSelectElement)) {
 		return;
 	}
-	const switchButton = document.getElementById("homeGameModeSwitch");
-
-	const optionButtons = Array.from(modal.querySelectorAll("[data-game-mode]"));
-	if (optionButtons.length === 0) {
-		return;
-	}
-
-	const hideModal = () => {
-		modal.hidden = true;
-		modal.setAttribute("aria-hidden", "true");
-	};
-
-	const showModal = () => {
-		modal.hidden = false;
-		modal.setAttribute("aria-hidden", "false");
-	};
 
 	const savedModeKey = getSavedHomeGameMode();
 	if (savedModeKey) {
 		applyHomeGameModeUi(savedModeKey, { persist: false });
-		hideModal();
 	} else {
-		activeHomeGameMode = null;
-		updateHomeGameModeBadge(null);
-		syncGameModeSwitchVisibility();
-		showModal();
+		applyHomeGameModeUi("yyh");
 	}
 
-	if (switchButton instanceof HTMLButtonElement && switchButton.dataset.modeSwitchInitialized !== "true") {
-		switchButton.dataset.modeSwitchInitialized = "true";
-		switchButton.addEventListener("click", () => {
-			showModal();
-		});
-	}
-
-	for (const button of optionButtons) {
-		if (!(button instanceof HTMLButtonElement)) {
-			continue;
-		}
-
-		button.addEventListener("click", () => {
-			const modeKey = String(button.dataset.gameMode || "").trim();
-			if (!getHomeGameModeConfig(modeKey)) {
-				return;
+	if (modeSelect.dataset.modeSelectInitialized !== "true") {
+		modeSelect.dataset.modeSelectInitialized = "true";
+		modeSelect.addEventListener("change", () => {
+			const modeKey = String(modeSelect.value || "").trim();
+			if (getHomeGameModeConfig(modeKey)) {
+				applyHomeGameModeUi(modeKey);
 			}
-
-			applyHomeGameModeUi(modeKey);
-			hideModal();
 		});
 	}
 }

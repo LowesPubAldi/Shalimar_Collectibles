@@ -19,9 +19,20 @@
                 class="logo"
                 />
                 </a>
+            <form class="nav-search" id="navSearch" role="search">
+                <label class="sr-only" for="navSearchInput">Search inventory</label>
+                <input id="navSearchInput" type="search" placeholder="Search cards" autocomplete="off" />
+                <button type="submit" aria-label="Search inventory">Search</button>
+            </form>
             <div class="game-mode-controls">
-                <button class="game-mode-switch" id="homeGameModeSwitch" type="button" hidden>Switch Game</button>
-                <span class="game-mode-badge" id="homeGameModeBadge" hidden></span>
+                    <label class="game-mode-select-wrap" for="homeGameModeSelect">
+                        <span class="sr-only">Game</span>
+                        <select class="game-mode-select" id="homeGameModeSelect" aria-label="Select game">
+                            <option value="yyh">Yu Yu Hakusho</option>
+                            <option value="ygo">Yu-Gi-Oh</option>
+                            <option value="pokemon">Pokemon</option>
+                        </select>
+                    </label>
             </div>
             <button
                 class="mobile-nav-toggle"
@@ -48,7 +59,7 @@
     </header>
 <main>
     <section class="hero" id="hero">
-        <div class="game-mode-modal" id="gameModeModal" role="dialog" aria-modal="true" aria-labelledby="gameModeModalTitle" aria-describedby="gameModeModalDescription">
+        <div class="game-mode-modal" id="gameModeModal" hidden role="dialog" aria-modal="true" aria-labelledby="gameModeModalTitle" aria-describedby="gameModeModalDescription">
             <div class="game-mode-modal__panel">
                 <p class="game-mode-modal__eyebrow">Choose Your Game Mode</p>
                 <h2 class="game-mode-modal__title" id="gameModeModalTitle">Select Your TCG Focus</h2>

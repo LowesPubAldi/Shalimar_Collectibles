@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="styles/components/footer.css?v=2">
     <link rel="stylesheet" href="styles/pages/sets.css?v=9">
     <script src="scripts/components/mobile-nav.js?v=1" defer></script>
+    <script src="scripts/components/game-mode.js?v=1" defer></script>
     <script src="scripts/pages/sets.js?v=11" defer></script>
 </head>
 <body>
@@ -17,6 +18,21 @@
             <a href="index.html" class="logo-link" aria-label="Go to homepage">
                 <img src="./assets/logo-v4.svg?v=3" alt="Shalimar Collectibles logo" class="logo" />
             </a>
+            <form class="nav-search" id="navSearch" role="search">
+                <label class="sr-only" for="navSearchInput">Search inventory</label>
+                <input id="navSearchInput" type="search" placeholder="Search cards" autocomplete="off" />
+                <button type="submit" aria-label="Search inventory">Search</button>
+            </form>
+            <div class="game-mode-controls">
+                <label class="game-mode-select-wrap" for="gameModeSelect">
+                    <span class="sr-only">Game</span>
+                    <select class="game-mode-select" id="gameModeSelect" aria-label="Select game">
+                        <option value="yyh">Yu Yu Hakusho</option>
+                        <option value="ygo">Yu-Gi-Oh</option>
+                        <option value="pokemon">Pokemon</option>
+                    </select>
+                </label>
+            </div>
             <button
                 class="mobile-nav-toggle"
                 id="mobileNavToggle"
@@ -44,11 +60,12 @@
     <main class="main">
         <section class="sets-hero" aria-label="Sets overview">
             <div class="sets-hero__content">
-                <p class="sets-hero__eyebrow">Yu-Gi-Oh Sets</p>
-                <h1>Browse the Yu-Gi-Oh set archive.</h1>
+                    <p class="sets-hero__eyebrow" id="sets-hero-eyebrow">Yu-Gi-Oh Sets</p>
+                    <h1 id="sets-hero-title">Browse the Yu-Gi-Oh set archive.</h1>
                 <p>
-                    This page pulls the live set list from YGOPRODeck, then links each entry into a prefiltered
+                    <span id="sets-hero-description">This page pulls the live set list from YGOPRODeck, then links each entry into a prefiltered
                     Inventory view so you can inspect cards by set quickly.
+                    </span>
                 </p>
             </div>
             <div class="sets-hero__media" aria-hidden="true">
@@ -60,8 +77,8 @@
             <div class="sets-head">
                 <div class="sets-head__title">
                     <h2>Set Directory</h2>
-                    <p class="sets-note">Organized by anime era and series association.</p>
-                    <p class="sets-note">Live set counts and print totals stay connected to the YGOPRODeck feed.</p>
+                    <p class="sets-note" id="sets-note-primary">Organized by anime era and series association.</p>
+                    <p class="sets-note" id="sets-note-secondary">Live set counts and print totals stay connected to the YGOPRODeck feed.</p>
                 </div>
                 <div class="sets-head__controls">
                     <p class="sets-meta" id="sets-meta">Loading set summary...</p>
@@ -85,8 +102,8 @@
     <footer class="site-footer site-footer--yyh" aria-label="Site footer">
         <div class="site-footer__inner">
             <p class="site-footer__brand">Shalimar Collectibles</p>
-            <p class="site-footer__meta">Yu-Gi-Oh set discovery powered by the live YGOPRODeck set feed.</p>
-            <p class="site-footer__yyh-credit">Data credit: YGOPRODeck API.</p>
+            <p class="site-footer__meta" id="sets-footer-meta">Yu-Gi-Oh set discovery powered by the live YGOPRODeck set feed.</p>
+            <p class="site-footer__yyh-credit" id="sets-footer-credit">Data credit: YGOPRODeck API.</p>
             <p class="site-footer__copyright">&copy; 2026 Shalimar Collectibles. All rights reserved.</p>
             <nav class="site-footer__nav" aria-label="Footer navigation">
                 <a href="contributors.html">Contributors</a>

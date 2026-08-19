@@ -135,6 +135,7 @@
 .kings-king-card {
     --king-accent: #8be9ff;
     --king-glow-rgb: 139, 233, 255;
+    position: relative;
     border: 1px solid rgba(148, 163, 184, 0.34);
     border-radius: 14px;
     padding: 16px;
@@ -146,6 +147,41 @@
         linear-gradient(135deg, rgba(8, 17, 28, 0.9), rgba(13, 22, 38, 0.86)),
         radial-gradient(circle at top right, rgba(0, 217, 255, 0.15), transparent 48%);
     box-shadow: inset 0 0 0 1px rgba(var(--king-glow-rgb), 0.22);
+    opacity: 0.72;
+    transform: translateY(22px);
+    transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease, opacity 420ms ease;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.kings-king-card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.kings-king-card::before {
+    content: "";
+    position: absolute;
+    inset: -30% auto auto -10%;
+    width: 48%;
+    height: 180%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+    transform: translateX(-140%) rotate(18deg);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.kings-king-card:hover,
+.kings-king-card:focus-within {
+    transform: translateY(-6px);
+    border-color: rgba(var(--king-glow-rgb), 0.8);
+    box-shadow: inset 0 0 0 1px rgba(var(--king-glow-rgb), 0.38), 0 12px 28px rgba(var(--king-glow-rgb), 0.18);
+}
+
+.kings-king-card:hover::before,
+.kings-king-card:focus-within::before {
+    animation: kingsCardSweep 900ms ease forwards;
 }
 
 .kings-king-card,
@@ -210,6 +246,60 @@
 .kings-king-card__piece {
     margin: 0;
     position: relative;
+    transform-origin: center center;
+    opacity: 0;
+    filter: blur(6px);
+    transition:
+        opacity 420ms ease,
+        filter 420ms ease,
+        transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, opacity, filter;
+}
+
+.kings-king-card.is-visible .kings-king-card__piece {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate(0, 0) scale(1);
+}
+
+.kings-king-card__piece:nth-child(1) {
+    --piece-shift-x: -14px;
+    --piece-shift-y: -10px;
+    transform: translate(var(--piece-shift-x), var(--piece-shift-y)) scale(0.84);
+}
+
+.kings-king-card__piece:nth-child(2) {
+    --piece-shift-x: 14px;
+    --piece-shift-y: -12px;
+    transform: translate(var(--piece-shift-x), var(--piece-shift-y)) scale(0.84);
+}
+
+.kings-king-card__piece:nth-child(3) {
+    --piece-shift-x: -12px;
+    --piece-shift-y: 12px;
+    transform: translate(var(--piece-shift-x), var(--piece-shift-y)) scale(0.84);
+}
+
+.kings-king-card__piece:nth-child(4) {
+    --piece-shift-x: 12px;
+    --piece-shift-y: 12px;
+    transform: translate(var(--piece-shift-x), var(--piece-shift-y)) scale(0.84);
+}
+
+.kings-king-card.is-visible .kings-king-card__piece:nth-child(1) {
+    transition-delay: 0ms;
+}
+
+.kings-king-card.is-visible .kings-king-card__piece:nth-child(2) {
+    transition-delay: 110ms;
+}
+
+.kings-king-card.is-visible .kings-king-card__piece:nth-child(3) {
+    transition-delay: 220ms;
+}
+
+.kings-king-card.is-visible .kings-king-card__piece:nth-child(4) {
+    transition-delay: 330ms;
 }
 
 .kings-king-card__piece img {
@@ -218,13 +308,14 @@
     border-radius: 8px;
     border: 1px solid rgba(148, 163, 184, 0.45);
     object-fit: cover;
-    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, filter 180ms ease;
 }
 
 .kings-king-card__piece img:hover {
-    transform: scale(1.015);
+    transform: translateY(-4px) scale(1.02);
     border-color: var(--king-accent);
     box-shadow: 0 0 16px rgba(var(--king-glow-rgb), 0.26);
+    filter: saturate(1.08) brightness(1.03);
 }
 
 .kings-king-card__piece-price {
@@ -269,6 +360,29 @@
 .kings-king-card__meta {
     color: var(--text-soft);
     font-size: 12px;
+}
+
+@keyframes kingsCardSweep {
+    0% {
+        opacity: 0;
+        transform: translateX(-140%) rotate(18deg);
+    }
+    15% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(220%) rotate(18deg);
+    }
+}
+
+@keyframes kingsPieceFloat {
+    0% {
+        transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(-2px);
+    }
 }
 
 @media (max-width: 1024px) {

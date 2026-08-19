@@ -56,6 +56,37 @@ function initMobileNav() {
     }
 }
 
+function initNavSearch() {
+    const form = document.getElementById("navSearch");
+    const input = document.getElementById("navSearchInput");
+    if (!(form instanceof HTMLFormElement) || !(input instanceof HTMLInputElement)) {
+        return;
+    }
+
+    const gameSelect = document.getElementById("gameModeSelect") || document.getElementById("homeGameModeSelect");
+    const gameNames = {
+        yyh: "Yu Yu Hakusho",
+        ygo: "Yu-Gi-Oh",
+        pokemon: "Pokemon"
+    };
+    const params = new URLSearchParams(window.location.search);
+    input.value = params.get("q") || params.get("search") || "";
+
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const destination = new URL("inventory.html", window.location.href);
+        const query = input.value.trim();
+        const gameKey = gameSelect instanceof HTMLSelectElement ? gameSelect.value : "yyh";
+        if (query) {
+            destination.searchParams.set("q", query);
+        }
+        if (gameNames[gameKey]) {
+            destination.searchParams.set("game", gameNames[gameKey]);
+        }
+        window.location.href = destination.toString();
+    });
+}
+
 const FOOTER_LINKS = [
 	{ label: "Contributors", href: "contributors.html" },
     { label: "Inventory", href: "inventory.html" },
@@ -101,5 +132,6 @@ function initFooterNav() {
 
 document.addEventListener("DOMContentLoaded", () => {
     initMobileNav();
+    initNavSearch();
     initFooterNav();
 });

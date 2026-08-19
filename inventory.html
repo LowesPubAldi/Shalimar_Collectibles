@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="styles/components/footer.css?v=1">
     <link rel="stylesheet" href="styles/pages/inventory.css?v=29">
     <script src="scripts/components/mobile-nav.js?v=2" defer></script>
+    <script src="scripts/components/game-mode.js?v=1" defer></script>
     <script src="scripts/pages/inventory-filters.js?v=47" defer></script>
 </head>
 <body>
@@ -21,6 +22,21 @@
                     class="logo"
                 />
             </a>
+            <form class="nav-search" id="navSearch" role="search">
+                <label class="sr-only" for="navSearchInput">Search inventory</label>
+                <input id="navSearchInput" type="search" placeholder="Search cards" autocomplete="off" />
+                <button type="submit" aria-label="Search inventory">Search</button>
+            </form>
+            <div class="game-mode-controls">
+                <label class="game-mode-select-wrap" for="gameModeSelect">
+                    <span class="sr-only">Game</span>
+                    <select class="game-mode-select" id="gameModeSelect" aria-label="Select game">
+                        <option value="yyh">Yu Yu Hakusho</option>
+                        <option value="ygo">Yu-Gi-Oh</option>
+                        <option value="pokemon">Pokemon</option>
+                    </select>
+                </label>
+            </div>
             <button
                 class="mobile-nav-toggle"
                 id="mobileNavToggle"

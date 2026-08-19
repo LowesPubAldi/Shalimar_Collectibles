@@ -26,6 +26,7 @@ const SETS_GAME_NAV_CONFIG = {
 };
 
 const YGO_SETS_API_URL = "https://db.ygoprodeck.com/api/v7/cardsets.php";
+const YYH_CARDS_URL = "data/yyh-cards-full.json";
 const YGO_CARDINFO_COUNT_URL = "https://db.ygoprodeck.com/api/v7/cardinfo.php?num=1&offset=0";
 const YGO_CARDINFO_PAGE_SIZE = 100;
 const SHOW_CATEGORY_OPTIONS = [
@@ -219,8 +220,12 @@ function saveSortMode(mode) {
 }
 
 function makeInventorySetLink(setName) {
+    return makeInventorySetLinkForGame(setName, "Yu-Gi-Oh");
+}
+
+function makeInventorySetLinkForGame(setName, gameName) {
     const params = new URLSearchParams({
-        game: "Yu-Gi-Oh",
+        game: gameName,
         set: setName
     });
     return `inventory.html?${params.toString()}`;
@@ -229,7 +234,7 @@ function makeInventorySetLink(setName) {
 function makeSetCard(setEntry) {
     const setCodeText = setEntry.code ? `Set code: ${escapeHtml(setEntry.code)}` : "Set code: unavailable";
     const releaseText = setEntry.releaseDate ? `Released: ${escapeHtml(setEntry.releaseDate)}` : "Release date: unavailable";
-    const inventoryLink = makeInventorySetLink(setEntry.set);
+    const inventoryLink = makeInventorySetLinkForGame(setEntry.set, setEntry.game || "Yu-Gi-Oh");
 
     return `
         <article class="set-card" data-set-name="${escapeHtml(setEntry.set)}">
@@ -239,7 +244,7 @@ function makeSetCard(setEntry) {
                     <p class="set-card__meta">${setEntry.cardCount} cards listed in this set</p>
                     <p class="set-card__meta">${setCodeText}</p>
                     <p class="set-card__meta">${releaseText}</p>
-                    <p class="set-card__meta">Source: YGOPRODeck API</p>
+                    <p class="set-card__meta">Source: ${escapeHtml(setEntry.source || "YGOPRODeck API")}</p>
                 </div>
             </div>
             <a class="set-card__action" href="${inventoryLink}">Open in Inventory</a>
@@ -286,6 +291,81 @@ async function loadSetSummary() {
     return buildSetSummaryFromApi(payload);
 }
 
+async function loadYyhSetSummary() {
+    const response = await fetch(YYH_CARDS_URL, { cache: "no-store" });
+    if (!response.ok) {
+        throw new Error(`Request failed with status ${response.status}`);
+    }
+
+    const payload = await response.json();
+    if (!Array.isArray(payload)) {
+        throw new Error("Invalid Yu Yu Hakusho card response");
+    }
+
+    const counts = new Map();
+    payload.forEach((card) => {
+        const setName = String(card?.set || "").trim();
+        if (setName) {
+            counts.set(setName, (counts.get(setName) || 0) + 1);
+        }
+    });
+
+    const items = Array.from(counts, ([set, cardCount]) => ({
+        set,
+        game: "Yu Yu Hakusho",
+        code: "",
+        cardCount,
+        releaseDate: "",
+        source: "YYH card catalog"
+    })).sort((a, b) => a.set.localeCompare(b.set));
+
+    return { items, source: "catalog" };
+}
+
+function applySetsPageCopy(selectedGame) {
+    const isYyh = selectedGame === "Yu Yu Hakusho";
+    const eyebrow = document.getElementById("sets-hero-eyebrow");
+    const title = document.getElementById("sets-hero-title");
+    const description = document.getElementById("sets-hero-description");
+    const primaryNote = document.getElementById("sets-note-primary");
+    const secondaryNote = document.getElementById("sets-note-secondary");
+    const footerMeta = document.getElementById("sets-footer-meta");
+    const footerCredit = document.getElementById("sets-footer-credit");
+    const heroImage = document.querySelector(".sets-hero__media img");
+    const shell = document.querySelector(".sets-shell");
+
+    if (eyebrow) eyebrow.textContent = `${selectedGame} Sets`;
+    if (title) title.textContent = `Browse the ${selectedGame} set archive.`;
+    if (description) {
+        description.textContent = isYyh
+            ? "Browse the local Yu Yu Hakusho card catalog, then open any set in a prefiltered Inventory view."
+            : "This page pulls the live set list from YGOPRODeck, then links each entry into a prefiltered Inventory view so you can inspect cards by set quickly.";
+    }
+    if (primaryNote) {
+        primaryNote.textContent = isYyh ? "Organized by Yu Yu Hakusho card set." : "Organized by anime era and series association.";
+    }
+    if (secondaryNote) {
+        secondaryNote.textContent = isYyh
+            ? "Card counts are summarized from the local YYH card catalog."
+            : "Live set counts and print totals stay connected to the YGOPRODeck feed.";
+    }
+    if (footerMeta) {
+        footerMeta.textContent = isYyh
+            ? "Yu Yu Hakusho set discovery powered by the local card catalog."
+            : "Yu-Gi-Oh set discovery powered by the live YGOPRODeck set feed.";
+    }
+    if (footerCredit) {
+        footerCredit.textContent = isYyh ? "Data credit: Shalimar YYH card catalog." : "Data credit: YGOPRODeck API.";
+    }
+    if (heroImage instanceof HTMLImageElement && isYyh) {
+        heroImage.src = "assets/yyh-source/yu-yu-hakusho1.jpg";
+        heroImage.alt = "Yu Yu Hakusho banner";
+    }
+    if (shell) {
+        shell.setAttribute("aria-label", `${selectedGame} set directory`);
+    }
+}
+
 async function loadYgoExpandedPrintingsTotal() {
     let offset = 0;
     let totalPrintings = 0;
@@ -324,7 +404,10 @@ async function loadYgoExpandedPrintingsTotal() {
 }
 
 async function initSetsPage() {
-    syncSetsNav(getSelectedSetsGame());
+    const selectedGame = getSelectedSetsGame();
+    const isYyh = selectedGame === "Yu Yu Hakusho";
+    syncSetsNav(selectedGame);
+    applySetsPageCopy(selectedGame);
 
     const meta = document.getElementById("sets-meta");
     const grid = document.getElementById("sets-grid");
@@ -340,10 +423,10 @@ async function initSetsPage() {
 
     let summary;
     try {
-        summary = await loadSetSummary();
+        summary = await (isYyh ? loadYyhSetSummary() : loadSetSummary());
     } catch (error) {
         const reason = error instanceof Error ? error.message : "Unknown loading error";
-        meta.textContent = "Unable to load Yu-Gi-Oh set summary.";
+        meta.textContent = `Unable to load ${selectedGame} set summary.`;
         grid.innerHTML = `
             <article class="set-card">
                 <h3 class="set-card__name">Set data unavailable</h3>
@@ -353,10 +436,13 @@ async function initSetsPage() {
         return;
     }
 
-    let selectedCategory = SHOW_CATEGORY_OPTIONS[0];
+    const categoryOptions = isYyh
+        ? summary.items.map((item) => item.set)
+        : SHOW_CATEGORY_OPTIONS;
+    let selectedCategory = categoryOptions[0] || "";
 
     const renderCategoryButtons = () => {
-        filterWrapper.innerHTML = SHOW_CATEGORY_OPTIONS.map((category) => {
+        filterWrapper.innerHTML = categoryOptions.map((category) => {
             const isActive = category === selectedCategory;
             return `
                 <button
@@ -372,7 +458,7 @@ async function initSetsPage() {
 
         filterWrapper.querySelectorAll(".sets-category-filter").forEach((button) => {
             button.addEventListener("click", () => {
-                selectedCategory = button.getAttribute("data-category") || SHOW_CATEGORY_OPTIONS[0];
+                selectedCategory = button.getAttribute("data-category") || categoryOptions[0] || "";
                 renderCategoryButtons();
                 renderGrid();
             });
@@ -382,17 +468,18 @@ async function initSetsPage() {
     const renderGrid = () => {
         const rawMode = sortSelect.value || DEFAULT_SET_SORT;
         const mode = ALLOWED_SORT_MODES.has(rawMode) ? rawMode : DEFAULT_SET_SORT;
-        const visibleItems = summary.items.filter((item) => getSetCategoryLabel(item.set, item.releaseDate) === selectedCategory);
+        const visibleItems = summary.items.filter((item) => isYyh
+            ? item.set === selectedCategory
+            : getSetCategoryLabel(item.set, item.releaseDate) === selectedCategory);
         const sortedItems = sortSetEntries(visibleItems, mode);
 
         if (sortedItems.length === 0) {
             grid.innerHTML = `
                 <article class="set-card">
                     <h3 class="set-card__name">No sets found</h3>
-                    <p class="set-card__meta">No sets match the selected anime-era category.</p>
+                    <p class="set-card__meta">No sets match the selected category.</p>
                 </article>
             `;
-            applyTabletSetLayout();
             return;
         }
 
@@ -420,6 +507,9 @@ async function initSetsPage() {
     let expandedPrintingsTotal = 0;
 
     try {
+        if (isYyh) {
+            throw new Error("Use catalog totals for Yu Yu Hakusho.");
+        }
         expandedPrintingsTotal = await loadYgoExpandedPrintingsTotal();
     } catch {
         expandedPrintingsTotal = summary.items.reduce((sum, entry) => sum + entry.cardCount, 0);
@@ -431,7 +521,7 @@ async function initSetsPage() {
         <span class="sets-meta__secondary">${setEntryCount} set entries</span>
         <span class="sets-meta__primary">${printingsTotal}</span>
         <span class="sets-meta__secondary">total printings</span>
-        <span class="sets-meta__source">source: YGOPRODeck API</span>
+        <span class="sets-meta__source">source: ${isYyh ? "YYH card catalog" : "YGOPRODeck API"}</span>
     `;
 }
 
