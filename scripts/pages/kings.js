@@ -202,10 +202,16 @@ function renderYugiohWinConsPage() {
                 </a>
                 <a class="wincon-card wincon-card--burn" data-wincon-card="Gagaga Cowboy" href="inventory.html?game=Yu-Gi-Oh&q=Gagaga Cowboy">
                     <span class="wincon-card__number">02</span>
-                    <div class="wincon-card__image-wrap"><img class="wincon-card__image" alt="" loading="lazy" /></div>
+                    <div class="wincon-card__life-counter" data-cowboy-life-counter aria-live="polite">800 <span>LP</span><button type="button" data-cowboy-reset aria-label="Reset Gagaga Cowboy life points">Reset</button></div>
+                    <div class="wincon-card__image-wrap wincon-card__image-wrap--cowboy">
+                        <div class="wincon-card__filler-card wincon-card__filler-card--back" data-cowboy-material aria-hidden="true"></div>
+                        <div class="wincon-card__filler-card wincon-card__filler-card--front" data-cowboy-material aria-hidden="true"></div>
+                        <img class="wincon-card__image" alt="" loading="lazy" />
+                    </div>
                     <h3>Gagaga Cowboy</h3>
                     <p>Close the duel from Defense Position with a clean 800-point burn finish when the opponent is already within range.</p>
                     <span class="wincon-card__pieces">Detach 1 Xyz Material -&gt; inflict 800 damage</span>
+                    <span class="wincon-card__cowboy-quote" data-cowboy-quote aria-live="polite"></span>
                     <span class="wincon-card__link">Search Gagaga Cowboy <span aria-hidden="true">-&gt;</span></span>
                 </a>
                 <a class="wincon-card wincon-card--lock" data-wincon-card="Destiny Board" href="inventory.html?game=Yu-Gi-Oh&q=Destiny Board">
@@ -237,7 +243,114 @@ function renderYugiohWinConsPage() {
 
     observeWinConCards();
     hydrateWinConImages();
+    initCowboyInteraction();
     return true;
+}
+
+function initCowboyInteraction() {
+    const card = document.querySelector(".wincon-card--burn");
+    if (!(card instanceof HTMLAnchorElement)) {
+        return;
+    }
+
+    const materials = Array.from(card.querySelectorAll("[data-cowboy-material]"));
+    const lifeCounter = card.querySelector("[data-cowboy-life-counter]");
+    const resetButton = card.querySelector("[data-cowboy-reset]");
+    if (materials.length < 2 || !(lifeCounter instanceof HTMLElement) || !(resetButton instanceof HTMLButtonElement)) {
+        return;
+    }
+
+    let detachedMaterial = null;
+    let countdownFrame = null;
+    let quoteTimer = null;
+    const quote = card.querySelector("[data-cowboy-quote]");
+
+    const setLifePoints = (value) => {
+        lifeCounter.firstChild.textContent = `${Math.round(value)} `;
+    };
+
+    const animateLifePoints = (from, to) => {
+        if (countdownFrame) {
+            cancelAnimationFrame(countdownFrame);
+        }
+
+        const startedAt = performance.now();
+        const duration = 900;
+        const tick = (now) => {
+            const progress = Math.min((now - startedAt) / duration, 1);
+            const easedProgress = 1 - Math.pow(1 - progress, 3);
+            setLifePoints(from + ((to - from) * easedProgress));
+            if (progress < 1) {
+                countdownFrame = requestAnimationFrame(tick);
+            } else {
+                countdownFrame = null;
+            }
+        };
+
+        countdownFrame = requestAnimationFrame(tick);
+    };
+
+    const detachMaterial = () => {
+        if (detachedMaterial || materials.length < 2) {
+            return;
+        }
+
+        detachedMaterial = materials[0];
+        detachedMaterial.remove();
+        card.classList.add("is-cowboy-resolved");
+        animateLifePoints(800, 0);
+
+        if (quote instanceof HTMLElement) {
+            quote.textContent = "";
+            if (quoteTimer) {
+                clearInterval(quoteTimer);
+            }
+
+            const message = "Cowboy, for Game?";
+            let characterIndex = 0;
+            quoteTimer = setInterval(() => {
+                quote.textContent = message.slice(0, characterIndex + 1);
+                characterIndex += 1;
+                if (characterIndex >= message.length) {
+                    clearInterval(quoteTimer);
+                    quoteTimer = null;
+                }
+            }, 75);
+        }
+    };
+
+    const resetState = () => {
+        if (detachedMaterial) {
+            const image = card.querySelector(".wincon-card__image-wrap--cowboy .wincon-card__image");
+            const wrap = card.querySelector(".wincon-card__image-wrap--cowboy");
+            if (image instanceof HTMLImageElement && wrap instanceof HTMLElement) {
+                wrap.insertBefore(detachedMaterial, image);
+            }
+            detachedMaterial = null;
+        }
+
+        card.classList.remove("is-cowboy-resolved");
+        if (quoteTimer) {
+            clearInterval(quoteTimer);
+            quoteTimer = null;
+        }
+        if (quote instanceof HTMLElement) {
+            quote.textContent = "";
+        }
+        animateLifePoints(0, 800);
+    };
+
+    card.addEventListener("click", (event) => {
+        if (event.target instanceof HTMLElement && event.target.closest("[data-cowboy-reset]")) {
+            event.preventDefault();
+            event.stopPropagation();
+            resetState();
+            return;
+        }
+
+        event.preventDefault();
+        detachMaterial();
+    });
 }
 
 function observeWinConCards() {

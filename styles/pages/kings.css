@@ -654,6 +654,103 @@
     overflow: visible;
 }
 
+.wincon-card__image-wrap--cowboy {
+    position: relative;
+    height: 178px;
+    overflow: visible;
+}
+
+.wincon-card__life-counter {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    z-index: 8;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #fff0c9;
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 0.03em;
+}
+
+.wincon-card__life-counter span {
+    color: rgba(255, 240, 201, 0.65);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+}
+
+.wincon-card__life-counter button {
+    margin-left: 5px;
+    border: 1px solid rgba(247, 200, 115, 0.42);
+    border-radius: 999px;
+    padding: 3px 7px;
+    background: rgba(2, 6, 23, 0.7);
+    color: #f7c873;
+    font-size: 9px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.wincon-card__life-counter button:hover,
+.wincon-card__life-counter button:focus-visible {
+    border-color: #f7c873;
+    background: rgba(247, 200, 115, 0.12);
+}
+
+.wincon-card__image-wrap--cowboy .wincon-card__image,
+.wincon-card__filler-card {
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    width: 178px;
+    height: 112px;
+    border-radius: 8px;
+}
+
+.wincon-card__filler-card {
+    transform: translateX(calc(-50% + 12px)) translateY(8px) rotate(6deg);
+    border: 1px solid rgba(247, 200, 115, 0.45);
+    background:
+        linear-gradient(135deg, rgba(34, 24, 14, 0.96), rgba(12, 21, 34, 0.96)),
+        repeating-linear-gradient(45deg, rgba(247, 200, 115, 0.12) 0 2px, transparent 2px 8px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    transition: transform 500ms ease, opacity 400ms ease;
+}
+
+.wincon-card__filler-card--back {
+    transform: translateX(calc(-50% + 20px)) translateY(13px) rotate(9deg);
+    z-index: 1;
+}
+
+.wincon-card__filler-card--front {
+    transform: translateX(calc(-50% + 12px)) translateY(8px) rotate(6deg);
+    z-index: 2;
+}
+
+.wincon-card.is-cowboy-resolved .wincon-card__filler-card--back {
+    opacity: 0.28;
+    transform: translateX(calc(-50% + 28px)) translateY(30px) rotate(18deg);
+}
+
+.wincon-card.is-cowboy-resolved .wincon-card__filler-card--front {
+    transform: translateX(calc(-50% + 12px)) translateY(8px) rotate(6deg);
+}
+
+.wincon-card__image-wrap--cowboy .wincon-card__image {
+    top: -19px;
+    width: 112px;
+    height: 178px;
+    object-fit: contain;
+    transform: translateX(-50%) rotate(90deg);
+    z-index: 2;
+}
+
+.wincon-card.has-image .wincon-card__image-wrap--cowboy .wincon-card__image {
+    transform: translateX(-50%) rotate(90deg);
+}
+
 .wincon-card__piece {
     position: absolute;
     top: 22px;
@@ -763,6 +860,18 @@
     opacity: 1;
     transform: translateY(0) scale(1);
 }
+
+.wincon-card--burn .wincon-card__image-wrap--cowboy .wincon-card__image {
+    top: -19px;
+    width: 112px;
+    height: 178px;
+    max-width: none;
+    transform: translateX(-50%) rotate(90deg);
+}
+
+.wincon-card--burn.has-image .wincon-card__image-wrap--cowboy .wincon-card__image {
+    transform: translateX(-50%) rotate(90deg);
+}
 .wincon-card h3 {
     margin-top: 16px;
     color: #f8fafc;
@@ -780,6 +889,22 @@
     font-size: 11px;
     line-height: 1.45;
     letter-spacing: 0.03em;
+}
+
+.wincon-card__cowboy-quote {
+    display: block;
+    min-height: 18px;
+    margin-top: 8px;
+    color: var(--wincon-accent, var(--wincons-cyan));
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    opacity: 0;
+    transition: opacity 220ms ease;
+}
+
+.wincon-card.is-cowboy-resolved .wincon-card__cowboy-quote {
+    opacity: 1;
 }
 .wincon-card__link {
     margin-top: auto;
