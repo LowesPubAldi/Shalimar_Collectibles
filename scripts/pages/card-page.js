@@ -126,6 +126,9 @@ function normalizeYgoCardRecord(cardPayload, setEntry) {
         effect: resolveFirstNonEmpty(cardPayload?.desc),
         source: "YGOPRODeck API",
         imageUrl: resolveFirstNonEmpty(firstImage?.image_url, firstImage?.image_url_small, firstImage?.image_url_cropped),
+        artworkCandidates: Array.isArray(cardPayload?.card_images)
+            ? cardPayload.card_images.map((image) => resolveFirstNonEmpty(image?.image_url, image?.image_url_small, image?.image_url_cropped)).filter(Boolean)
+            : [],
         pricing: Number.isFinite(setPrice)
             ? { priceUsd: setPrice, status: "Priced", notes: "Set print pricing from YGOPRODeck." }
             : null
@@ -593,7 +596,8 @@ function parseQueryContext() {
         idQuery: resolveFirstNonEmpty(params.get("id"), params.get("number")),
         setQuery: resolveFirstNonEmpty(params.get("set")),
         gameQuery: resolveFirstNonEmpty(params.get("game"), "Yu Yu Hakusho"),
-        variantQuery: resolveFirstNonEmpty(params.get("variant"))
+        variantQuery: resolveFirstNonEmpty(params.get("variant")),
+        variantMode: resolveFirstNonEmpty(params.get("variantMode"))
     };
 
     return normalizeQueryAliases(context);
@@ -783,8 +787,37 @@ function resolvePricingEntry(pricingPayload, card) {
     return bestScore > 0 ? best : null;
 }
 
-function buildVariantOptions(records) {
+function buildVariantOptions(records, options = {}) {
     const byLabel = new Map();
+    const normalizedCardName = normalizeForSearch(records[0]?.name);
+    const isGroupedYgoCard = options.groupByRarity === true;
+
+    if (isGroupedYgoCard) {
+        const byRarity = new Map();
+        records.forEach((record) => {
+            const rarity = resolveFirstNonEmpty(record.rarity, "Unknown Rarity");
+            const label = `${resolveFirstNonEmpty(record.set, "Various Sets")} | ${rarity} | ${resolveFirstNonEmpty(record.number, "Unknown")}`;
+            if (!byRarity.has(rarity)) {
+                byRarity.set(rarity, []);
+            }
+            if (!byRarity.get(rarity).some((variant) => variant.name === label)) {
+                byRarity.get(rarity).push({
+                    name: label,
+                    imageCandidates: record.imageUrl ? [record.imageUrl] : buildCardImageCandidates(record),
+                    artworkCandidates: record.artworkCandidates || [],
+                    record
+                });
+            }
+        });
+
+        return Array.from(byRarity.entries()).map(([rarity, variants]) => ({
+            name: rarity,
+            variants,
+            imageCandidates: variants[0]?.imageCandidates || [],
+            artworkCandidates: variants[0]?.artworkCandidates || [],
+            record: variants[0]?.record || null
+        }));
+    }
 
     for (const record of records) {
         const label = resolveFirstNonEmpty(record.variant, "Standard");
@@ -973,14 +1006,96 @@ function renderCardPage(cardContext) {
 
     const variantOptions = cardContext.variantOptions;
     let selectedVariantName = cardContext.selectedVariantName;
+    const isBlueEyesVariantPicker = Array.isArray(variantOptions[0]?.variants);
+    const isBlueEyesWhitePicker = normalizeForSearch(card.title) === "blue eyes white dragon";
+    if (isBlueEyesVariantPicker) {
+        const printingCount = variantOptions.reduce((total, rarity) => total + (rarity.variants?.length || 0), 0);
+        const artworkCount = variantOptions[0]?.artworkCandidates?.length || 0;
+        cardVariantsIntro.textContent = `${variantOptions.length} rarities | ${printingCount} set printings | ${artworkCount} alternate artworks`;
+    }
+    let selectedRarityName = isBlueEyesVariantPicker
+        ? (variantOptions.find((variant) => variant.name === selectedVariantName)?.name || variantOptions[0]?.name || "")
+        : "";
+    let selectedBlueEyesVariant = isBlueEyesVariantPicker
+        ? (variantOptions[0]?.variants?.[0] || variantOptions[0])
+        : null;
 
-    const renderSelectedVariant = (variantName) => {
-        selectedVariantName = variantName;
-        const selectedVariant = variantOptions.find((variant) => variant.name === variantName) || variantOptions[0];
+    const renderBlueEyesPrintingControls = (rarityOption) => {
+        if (!isBlueEyesVariantPicker) {
+            return;
+        }
+
+        let printingControls = document.getElementById("blueEyesPrintingControls");
+        if (!printingControls) {
+            printingControls = document.createElement("div");
+            printingControls.id = "blueEyesPrintingControls";
+            printingControls.className = "card-variant-controls card-variant-controls--sub";
+            cardVariantControls.insertAdjacentElement("afterend", printingControls);
+        }
+
+        printingControls.innerHTML = "";
+        (rarityOption?.variants || []).forEach((variant) => {
+            const button = createVariantControl(variant, selectedBlueEyesVariant?.name || "");
+            button.addEventListener("click", (event) => {
+                event.stopPropagation();
+                renderSelectedVariant(variant.name, rarityOption.name);
+            });
+            printingControls.appendChild(button);
+        });
+    };
+
+    const renderBlueEyesArtworkControls = (selectedVariant) => {
+        if (!isBlueEyesWhitePicker) {
+            return;
+        }
+
+        let artworkControls = document.getElementById("blueEyesArtworkControls");
+        if (!artworkControls) {
+            artworkControls = document.createElement("div");
+            artworkControls.id = "blueEyesArtworkControls";
+            artworkControls.className = "card-variant-controls card-variant-controls--sub";
+            cardVariantControls.insertAdjacentElement("afterend", artworkControls);
+        }
+
+        artworkControls.innerHTML = "";
+        const artworkCandidates = selectedVariant?.artworkCandidates || [];
+        artworkCandidates.forEach((artworkUrl, index) => {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "card-variant-controls__button";
+            button.dataset.artworkIndex = String(index);
+            button.textContent = `Artwork ${index + 1}`;
+            button.setAttribute("aria-pressed", String(index === 0));
+            button.addEventListener("click", (event) => {
+                event.stopPropagation();
+                artworkControls.querySelectorAll("button").forEach((control) => control.setAttribute("aria-pressed", "false"));
+                button.setAttribute("aria-pressed", "true");
+                applyImageCandidates(cardVariantImage, [artworkUrl], `Blue-Eyes White Dragon artwork ${index + 1}`);
+            });
+            artworkControls.appendChild(button);
+        });
+    };
+
+    const renderSelectedVariant = (variantName, rarityName = "") => {
+        let selectedVariant;
+        if (isBlueEyesVariantPicker) {
+            const rarityOption = variantOptions.find((variant) => variant.name === (rarityName || variantName)) || variantOptions[0];
+            selectedRarityName = rarityOption.name;
+            selectedVariant = rarityOption.variants.find((variant) => variant.name === variantName) || rarityOption.variants[0];
+            selectedBlueEyesVariant = selectedVariant;
+            selectedVariantName = selectedVariant.name;
+            renderBlueEyesPrintingControls(rarityOption);
+            renderBlueEyesArtworkControls(selectedVariant);
+        } else {
+            selectedVariantName = variantName;
+            selectedVariant = variantOptions.find((variant) => variant.name === variantName) || variantOptions[0];
+        }
         const variantPremiumTier = getVariantPremiumTier(selectedVariant.record?.variant || selectedVariant.name);
 
         cardVariantControls.querySelectorAll("button").forEach((button) => {
-            const isActiveButton = button.dataset.variant === selectedVariantName;
+            const isActiveButton = isBlueEyesVariantPicker
+                ? button.dataset.variant === selectedRarityName
+                : button.dataset.variant === selectedVariantName;
             button.setAttribute("aria-pressed", String(isActiveButton));
             button.classList.toggle("card-variant-controls__button--foil-active", isActiveButton && variantPremiumTier !== "standard");
             button.classList.toggle("card-variant-controls__button--foil-strong-active", isActiveButton && variantPremiumTier === "foil-strong");
@@ -1057,16 +1172,17 @@ async function buildCardContext(context) {
         return null;
     }
 
+    const isGroupedYgoCard = context.variantMode === "rarity" && isYgoGame(selected.game);
     const relatedCards = await fetchCards({
         q: selected.name,
         id: selected.passcode,
         game: selected.game,
-        set: selected.set
+        ...(isGroupedYgoCard ? {} : { set: selected.set })
     });
 
     const exactRelated = relatedCards.filter((card) => normalizeForSearch(card.name) === normalizeForSearch(selected.name));
     const variantBase = exactRelated.length > 0 ? exactRelated : [selected];
-    const variantOptions = buildVariantOptions(variantBase);
+    const variantOptions = buildVariantOptions(variantBase, { groupByRarity: isGroupedYgoCard });
     const fallbackVariant = variantOptions[0]?.name || "Standard";
     const selectedVariantName = variantOptions.some((option) => normalizeForSearch(option.name) === normalizeForSearch(context.variantQuery))
         ? variantOptions.find((option) => normalizeForSearch(option.name) === normalizeForSearch(context.variantQuery)).name

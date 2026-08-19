@@ -189,7 +189,7 @@ function renderYugiohWinConsPage() {
                 <p>Start with a victory pattern, then follow it into the cards that make the plan possible.</p>
             </div>
             <div class="wincons-grid">
-                <a class="wincon-card wincon-card--alternate" data-wincon-card="Exodia the Forbidden One" href="inventory.html?game=Yu-Gi-Oh&q=Exodia">
+                <a class="wincon-card wincon-card--alternate" data-wincon-card="Exodia the Forbidden One" href="card-template.html?q=Exodia%20the%20Forbidden%20One&game=Yu-Gi-Oh&variantMode=rarity">
                     <span class="wincon-card__number">01</span>
                     <div class="wincon-card__image-wrap wincon-card__image-wrap--pieces">
                         ${exodiaPieces.map((piece) => `<div class="wincon-card__piece"><img class="wincon-card__image" data-card-image="${piece}" alt="" loading="lazy" /></div>`).join("")}
@@ -200,7 +200,7 @@ function renderYugiohWinConsPage() {
                     <span class="wincon-card__pieces">Head + Left Arm + Right Arm + Left Leg + Right Leg</span>
                     <span class="wincon-card__link">Search the Exodia pieces <span aria-hidden="true">-&gt;</span></span>
                 </a>
-                <a class="wincon-card wincon-card--burn" data-wincon-card="Gagaga Cowboy" href="inventory.html?game=Yu-Gi-Oh&q=Gagaga Cowboy">
+                <a class="wincon-card wincon-card--burn" data-wincon-card="Gagaga Cowboy" href="card-template.html?q=Gagaga%20Cowboy&game=Yu-Gi-Oh&variantMode=rarity">
                     <span class="wincon-card__number">02</span>
                     <div class="wincon-card__life-counter" data-cowboy-life-counter aria-live="polite">800 <span>LP</span><button type="button" data-cowboy-reset aria-label="Reset Gagaga Cowboy life points">Reset</button></div>
                     <div class="wincon-card__image-wrap wincon-card__image-wrap--cowboy">
@@ -214,7 +214,7 @@ function renderYugiohWinConsPage() {
                     <span class="wincon-card__cowboy-quote" data-cowboy-quote aria-live="polite"></span>
                     <span class="wincon-card__link">Search Gagaga Cowboy <span aria-hidden="true">-&gt;</span></span>
                 </a>
-                <a class="wincon-card wincon-card--lock" data-wincon-card="Destiny Board" href="inventory.html?game=Yu-Gi-Oh&q=Destiny Board">
+                <a class="wincon-card wincon-card--lock" data-wincon-card="Destiny Board" href="card-template.html?q=Destiny%20Board&game=Yu-Gi-Oh&variantMode=rarity">
                     <span class="wincon-card__number">03</span>
                     <div class="wincon-card__image-wrap wincon-card__image-wrap--destiny">
                         <div class="destiny-board-core"><img class="wincon-card__image" alt="" loading="lazy" /></div>
@@ -229,7 +229,7 @@ function renderYugiohWinConsPage() {
                     <span class="wincon-card__pieces">Destiny Board + Spirit Message I, N, A, L</span>
                     <span class="wincon-card__link">Search Destiny Board pieces <span aria-hidden="true">-&gt;</span></span>
                 </a>
-                <a class="wincon-card wincon-card--combat" data-wincon-card="Vennominaga the Deity of Poisonous Snakes" href="inventory.html?game=Yu-Gi-Oh&q=Vennominaga">
+                <a class="wincon-card wincon-card--combat" data-wincon-card="Vennominaga the Deity of Poisonous Snakes" href="card-template.html?q=Vennominaga%20the%20Deity%20of%20Poisonous%20Snakes&game=Yu-Gi-Oh&variantMode=rarity">
                     <span class="wincon-card__number">04</span>
                     <div class="wincon-card__venom-counter" data-venom-counter aria-live="polite">0 <span>/ 3</span><button type="button" data-venom-reset aria-label="Reset Hyper-Venom Counters">Reset</button></div>
                     <div class="wincon-card__image-wrap wincon-card__image-wrap--venom">
@@ -241,7 +241,7 @@ function renderYugiohWinConsPage() {
                     <span class="wincon-card__venom-quote" data-venom-quote aria-live="polite"></span>
                     <span class="wincon-card__link">Search Vennominaga <span aria-hidden="true">-&gt;</span></span>
                 </a>
-                <a class="wincon-card wincon-card--deckout" data-wincon-card="Blue-Eyes Ultimate Dragon" href="inventory.html?game=Yu-Gi-Oh&q=Blue-Eyes Ultimate Dragon">
+                <a class="wincon-card wincon-card--deckout" data-wincon-card="Blue-Eyes Ultimate Dragon" href="card-template.html?q=Blue-Eyes%20Ultimate%20Dragon&game=Yu-Gi-Oh&variantMode=rarity">
                     <span class="wincon-card__number">05</span>
                     <button class="blueeyes-mode-block" type="button" data-blueeyes-toggle aria-live="polite" aria-label="Defuse Blue-Eyes Ultimate Dragon"><span class="blueeyes-mode blueeyes-mode--unfuse">UNFUSE</span><span class="blueeyes-mode blueeyes-mode--fuse">FUSE</span></button>
                     <div class="wincon-card__image-wrap wincon-card__image-wrap--blueeyes">
@@ -307,6 +307,10 @@ function initVennominagaInteraction() {
             event.stopPropagation();
             hyperVenomCounters = 0;
             renderCounter();
+            return;
+        }
+
+        if (!(event.target instanceof HTMLElement) || !event.target.closest(".wincon-card__image-wrap--venom")) {
             return;
         }
 
@@ -421,10 +425,13 @@ function observeBlueEyesDefusion() {
     window.addEventListener("resize", revealWhenReached, { passive: true });
 
     card.addEventListener("click", (event) => {
-        event.preventDefault();
         const toggle = event.target instanceof HTMLElement && event.target.closest("[data-blueeyes-toggle]");
+        if (!toggle) {
+            return;
+        }
+        event.preventDefault();
         setBlueEyesState(card, !card.classList.contains("is-visible"));
-        if (toggle) event.stopPropagation();
+        event.stopPropagation();
     });
 }
 
@@ -526,6 +533,10 @@ function initCowboyInteraction() {
             event.preventDefault();
             event.stopPropagation();
             resetState();
+            return;
+        }
+
+        if (!(event.target instanceof HTMLElement) || !event.target.closest(".wincon-card__image-wrap--cowboy")) {
             return;
         }
 

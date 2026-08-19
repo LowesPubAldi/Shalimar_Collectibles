@@ -134,6 +134,12 @@
     gap: 10px;
 }
 
+.card-variant-controls--sub {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(148, 163, 184, 0.16);
+}
+
 .card-variant-controls__button {
     appearance: none;
     border: 1px solid rgba(148, 163, 184, 0.24);
