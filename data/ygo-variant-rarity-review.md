@@ -44,7 +44,13 @@ Source: YGOPRODeck `cardinfo.php?cardset=Legendary Arc-V Decks`, scanned 2026-08
 - THANK YOU PACK: 12 cards processed in the next phase (the set contains fewer than 50 cards).
 - Winner's Pack 2026-2027: 40 cards processed.
 - Chaos Origins: 100 cards processed.
-- Total processed: 258 Yu-Gi-Oh cards.
+- Ultimate Tournament Pack 1: 49 cards processed (the set contains fewer than 50 cards).
+- Battles of Legend: Glorious Gallery: 146 cards processed as a complete set.
+- Blazing Dominion: 101 cards processed as a complete set.
+- Legendary Modern Decks 2026: 108 cards processed as a complete set.
+- Rarity Collection 5: 150 cards processed as a complete set.
+- Maze of Muertos: 126 cards processed as a complete set.
+- Total processed: 938 Yu-Gi-Oh cards.
 
 ## Image Availability Review
 
@@ -52,4 +58,4 @@ Some newer or TCG-exclusive printings may have a generic card image in the API b
 
 | Card | Set code | Current API image state |
 | --- | --- | --- |
-| Imposter Shift | CORI-EN088 | Generic card image available; no Chaos Origins-specific scan |
+| Imposter Shift | CORI-EN088 | Generic card image available; no Chaos Origins-specific scan; [TCGplayer listing](https://www.tcgplayer.com/product/702454/yugioh-chaos-origins-imposter-shift?page=1&Language=English) |
