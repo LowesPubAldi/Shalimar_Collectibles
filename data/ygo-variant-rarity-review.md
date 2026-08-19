@@ -43,4 +43,13 @@ Source: YGOPRODeck `cardinfo.php?cardset=Legendary Arc-V Decks`, scanned 2026-08
 - Legendary Arc-V Decks: 106 cards processed.
 - THANK YOU PACK: 12 cards processed in the next phase (the set contains fewer than 50 cards).
 - Winner's Pack 2026-2027: 40 cards processed.
-- Total processed: 158 Yu-Gi-Oh cards.
+- Chaos Origins: 100 cards processed.
+- Total processed: 258 Yu-Gi-Oh cards.
+
+## Image Availability Review
+
+Some newer or TCG-exclusive printings may have a generic card image in the API but no scan specific to that set printing. Keep these on a fallback-image list for later review.
+
+| Card | Set code | Current API image state |
+| --- | --- | --- |
+| Imposter Shift | CORI-EN088 | Generic card image available; no Chaos Origins-specific scan |
