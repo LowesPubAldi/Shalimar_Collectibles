@@ -983,6 +983,15 @@ function getRarityAccentClass(cardRecord) {
     return "";
 }
 
+function isDarkOneCard(cardRecord) {
+    const name = String(cardRecord?.name || "").trim().toLowerCase();
+    return name === "the dark one" || name.startsWith("the dark one (");
+}
+
+function isSignedDarkOneCard(cardRecord) {
+    return isDarkOneCard(cardRecord) && String(cardRecord?.variant || "").trim().toLowerCase() === "signed";
+}
+
 function getRarityChipData(cardRecord) {
     const rarityText = String(cardRecord.rarity || "").trim();
     const normalizedRarity = rarityText.toLowerCase();
@@ -1134,6 +1143,13 @@ function makeInventoryCard(cardRecord, collisionCountMap, variantFamilyCountMap,
     }
     if (showPricing) {
         cardClasses.push(cardRecord.pricing && cardRecord.pricing.priceUsd !== null ? "inventory-card--priced" : "inventory-card--unpriced");
+    }
+    const isDarkOne = isDarkOneCard(cardRecord);
+    if (isDarkOne) {
+        cardClasses.push("inventory-card--dark-one");
+    }
+    if (isSignedDarkOneCard(cardRecord)) {
+        cardClasses.push("inventory-card--dark-one-signed");
     }
     const cardClassName = cardClasses.join(" ");
     const rarityChipData = getRarityChipData(cardRecord);
