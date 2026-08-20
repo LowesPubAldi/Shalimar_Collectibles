@@ -55,7 +55,12 @@ Source: YGOPRODeck `cardinfo.php?cardset=Legendary Arc-V Decks`, scanned 2026-08
 - Alliance Insight: 100 cards processed as a complete set.
 - Supreme Darkness: 101 cards processed as a complete set.
 - Rage of the Abyss: 101 cards processed as a complete set.
-- Total processed: 1368 Yu-Gi-Oh cards.
+- The Infinite Forbidden: 101 cards processed as a complete set.
+- Doom of Dimensions: 101 cards processed as a complete set.
+- Justice Hunters: 60 cards processed as a complete set.
+- Duelist's Advance: 48 cards processed as a complete set.
+- OTS Tournament Pack 28: 27 cards processed (the set contains fewer than 50 cards).
+- Total processed: 1705 Yu-Gi-Oh cards.
 
 ## Image Availability Review
 
