@@ -74,7 +74,13 @@ Source: YGOPRODeck `cardinfo.php?cardset=Legendary Arc-V Decks`, scanned 2026-08
 - The Lost Art Promotion 2025 C: 1 card processed.
 - 2025 Mega-Pack Tin: 450 cards processed as a complete set.
 - Limited Pack World Championship 2025: 21 cards processed.
-- Total processed: 2547 Yu-Gi-Oh cards.
+- WCS 2025 Limited Pack: 1 card processed.
+- Battles of Legend: Monster Mayhem: 177 cards processed as a complete set.
+- The Lost Art Promotion 2025 B: 1 card processed.
+- Yu-Gi-Oh! Championship Series 2025 prize cards: 13 cards processed.
+- The Lost Art Promotion 2025 A: 1 card processed.
+- Quarter Century Stampede: 296 cards processed as a complete set.
+- Total processed: 3036 Yu-Gi-Oh cards.
 
 ## Image Availability Review
 
