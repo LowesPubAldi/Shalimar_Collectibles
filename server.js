@@ -37,9 +37,9 @@ let ebayTokenCache = {
     scope: ""
 };
 let ebayUserTokenCache = {
-    accessToken: "",
+    accessToken: process.env.EBAY_USER_ACCESS_TOKEN || "",
     refreshToken: "",
-    expiresAt: 0,
+    expiresAt: Number(process.env.EBAY_USER_TOKEN_EXPIRES_AT || 0),
     tokenType: "",
     scope: ""
 };

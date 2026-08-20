@@ -50,7 +50,12 @@ Source: YGOPRODeck `cardinfo.php?cardset=Legendary Arc-V Decks`, scanned 2026-08
 - Legendary Modern Decks 2026: 108 cards processed as a complete set.
 - Rarity Collection 5: 150 cards processed as a complete set.
 - Maze of Muertos: 126 cards processed as a complete set.
-- Total processed: 938 Yu-Gi-Oh cards.
+- OTS Tournament Pack 30: 27 cards processed (the set contains fewer than 50 cards).
+- Burst Protocol: 101 cards processed as a complete set.
+- Alliance Insight: 100 cards processed as a complete set.
+- Supreme Darkness: 101 cards processed as a complete set.
+- Rage of the Abyss: 101 cards processed as a complete set.
+- Total processed: 1368 Yu-Gi-Oh cards.
 
 ## Image Availability Review
 
