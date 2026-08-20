@@ -64,7 +64,17 @@ Source: YGOPRODeck `cardinfo.php?cardset=Legendary Arc-V Decks`, scanned 2026-08
 - OTS Tournament Pack 30: 27 cards processed (the set contains fewer than 50 cards).
 - Magnificent Maestros: 24 cards processed.
 - Magnificent Monsters: 18 cards processed.
-- Total processed: 1801 Yu-Gi-Oh cards.
+- THE CHRONICLES DECK: Spirit Charmers (All-Foil Edition): 50 cards processed as a complete set.
+- The Lost Art Promotion 2025 F: 1 card processed.
+- Phantom Revenge: 60 cards processed as a complete set.
+- The Lost Art Promotion 2025 E: 1 card processed.
+- Legendary 5D&apos;s Decks: 111 cards processed as a complete set.
+- THE CHRONICLES DECK: The Fallen & The Virtuous (All-Foil Edition): 50 cards processed as a complete set.
+- The Lost Art Promotion 2025 D: 1 card processed.
+- The Lost Art Promotion 2025 C: 1 card processed.
+- 2025 Mega-Pack Tin: 450 cards processed as a complete set.
+- Limited Pack World Championship 2025: 21 cards processed.
+- Total processed: 2547 Yu-Gi-Oh cards.
 
 ## Image Availability Review
 
