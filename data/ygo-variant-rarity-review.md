@@ -50,7 +50,6 @@ Source: YGOPRODeck `cardinfo.php?cardset=Legendary Arc-V Decks`, scanned 2026-08
 - Legendary Modern Decks 2026: 108 cards processed as a complete set.
 - Rarity Collection 5: 150 cards processed as a complete set.
 - Maze of Muertos: 126 cards processed as a complete set.
-- OTS Tournament Pack 30: 27 cards processed (the set contains fewer than 50 cards).
 - Burst Protocol: 101 cards processed as a complete set.
 - Alliance Insight: 100 cards processed as a complete set.
 - Supreme Darkness: 101 cards processed as a complete set.
@@ -98,7 +97,50 @@ Source: YGOPRODeck `cardinfo.php?cardset=Legendary Arc-V Decks`, scanned 2026-08
 - 25th Anniversary Ultimate Kaiba Set: 62 cards processed as a complete set.
 - Battles of Legend: Chapter 1: 163 cards processed as a complete set.
 - Adidas collaboration card: 1 card processed.
-- Total processed: 4533 Yu-Gi-Oh cards.
+- The Lost Art Promotion (series): 62 cards processed.
+- OTS Tournament Pack 24: 27 cards processed (the set contains fewer than 50 cards).
+- The Lost Art Promotion 2023 G: 1 card processed.
+- Phantom Nightmare: 101 cards processed as a complete set.
+- 2-Player Starter Set: 88 cards processed as a complete set.
+- Maze of Millennia: 85 cards processed as a complete set.
+- The Lost Art Promotion 2024: 5 cards processed.
+- Structure Deck: Fire Kings: 48 cards processed.
+- Valiant Smashers: 60 cards processed as a complete set.
+- 25th Anniversary Rarity Collection: 79 cards processed as a complete set.
+- OTS Tournament Pack 23: 27 cards processed (the set contains fewer than 50 cards).
+- Age of Overlord: 101 cards processed as a complete set.
+- Yu-Gi-Oh! Championship Series 2023 prize card: 1 card processed.
+- Structure Deck: The Crimson King: 49 cards processed.
+- 25th Anniversary Tin: Dueling Heroes Mega Pack: 283 cards processed as a complete set.
+- 25th Anniversary Tin: Dueling Heroes: 16 cards processed.
+- Speed Duel Tournament Pack 6: 35 cards processed.
+- The Lost Art Promotion 2023: 5 cards processed.
+- The Lost Art Promotion 2023 I: 1 card processed.
+- The Pot Collection: 15 cards processed.
+- Speed Duel: Streets of Battle City: 193 cards processed as a complete set.
+- Legendary Duelists: Soulburning Volcano: 62 cards processed as a complete set.
+- The Lost Art Promotion 2023 H: 1 card processed.
+- Duelist Nexus: 99 cards processed as a complete set.
+- OTS Tournament Pack 22: 25 cards processed (the set contains fewer than 50 cards).
+- Battles of Legend: Monstrous Revenge: 104 cards processed as a complete set.
+- The Lost Art Promotion 2023 F: 1 card processed.
+- Wild Survivors: 60 cards processed as a complete set.
+- Cyberstorm Access: 101 cards processed as a complete set.
+- The Lost Art Promotion 2023 E: 1 card processed.
+- Legend of Blue Eyes White Dragon (25th Anniversary Edition): 14 cards processed.
+- Pharaoh's Servant (25th Anniversary Edition): 1 card processed.
+- Legendary Collection: 25th Anniversary Edition: 3 cards processed.
+- Dark Crisis (25th Anniversary Edition): 1 card processed.
+- Metal Raiders (25th Anniversary Edition): 14 cards processed.
+- Spell Ruler (25th Anniversary Edition): 14 cards processed.
+- The Lost Art Promotion 2023 D: 1 card processed.
+- Speed Duel GX: Duelists of Shadows: 221 cards processed as a complete set.
+- Speed Duel Tournament Pack 5: 35 cards processed.
+- Maze of Memories: 67 cards processed as a complete set.
+- Structure Deck: Beware of Traptrix: 46 cards processed.
+- Photon Hypernova: 101 cards processed as a complete set.
+- OTS Tournament Pack 21: 26 cards processed.
+- Total processed: 6813 Yu-Gi-Oh cards.
 
 ## Image Availability Review
 
