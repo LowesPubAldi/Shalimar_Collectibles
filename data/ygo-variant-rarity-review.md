@@ -60,7 +60,11 @@ Source: YGOPRODeck `cardinfo.php?cardset=Legendary Arc-V Decks`, scanned 2026-08
 - Justice Hunters: 60 cards processed as a complete set.
 - Duelist's Advance: 48 cards processed as a complete set.
 - OTS Tournament Pack 28: 27 cards processed (the set contains fewer than 50 cards).
-- Total processed: 1705 Yu-Gi-Oh cards.
+- OTS Tournament Pack 29: 27 cards processed (the set contains fewer than 50 cards).
+- OTS Tournament Pack 30: 27 cards processed (the set contains fewer than 50 cards).
+- Magnificent Maestros: 24 cards processed.
+- Magnificent Monsters: 18 cards processed.
+- Total processed: 1801 Yu-Gi-Oh cards.
 
 ## Image Availability Review
 
