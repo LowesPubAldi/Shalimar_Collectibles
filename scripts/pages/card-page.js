@@ -1172,7 +1172,9 @@ async function buildCardContext(context) {
         return null;
     }
 
-    const isGroupedYgoCard = context.variantMode === "rarity" && isYgoGame(selected.game);
+    const normalizedSelectedName = normalizeForSearch(selected.name);
+    const isBlueEyesCard = normalizedSelectedName === "blue eyes ultimate dragon" || normalizedSelectedName === "blue eyes white dragon";
+    const isGroupedYgoCard = isBlueEyesCard || (context.variantMode === "rarity" && isYgoGame(selected.game));
     const relatedCards = await fetchCards({
         q: selected.name,
         id: selected.passcode,
