@@ -86,7 +86,19 @@ Source: YGOPRODeck `cardinfo.php?cardset=Legendary Arc-V Decks`, scanned 2026-08
 - The Lost Art Promotion 2024 H: 1 card processed.
 - Crossover Breakers: 60 cards processed as a complete set.
 - Quarter Century Bonanza: 276 cards processed as a complete set.
-- Total processed: 3552 Yu-Gi-Oh cards.
+- OTS Tournament Pack 26: 29 cards processed (the set contains fewer than 50 cards).
+- 25th Anniversary Tin: Dueling Mirrors: 398 cards processed as a complete set.
+- The Lost Art Promotion 2024 C: 1 card processed.
+- Battles of Legend: Terminal Revenge: 118 cards processed as a complete set.
+- The Lost Art Promotion 2024 B: 1 card processed.
+- OTS Tournament Pack 25: 27 cards processed (the set contains fewer than 50 cards).
+- 25th Anniversary Rarity Collection II: 79 cards processed as a complete set.
+- The Lost Art Promotion 2024 A: 1 card processed.
+- Legacy of Destruction: 101 cards processed as a complete set.
+- 25th Anniversary Ultimate Kaiba Set: 62 cards processed as a complete set.
+- Battles of Legend: Chapter 1: 163 cards processed as a complete set.
+- Adidas collaboration card: 1 card processed.
+- Total processed: 4533 Yu-Gi-Oh cards.
 
 ## Image Availability Review
 
