@@ -391,6 +391,31 @@ const YGO_VARIANT_ROLLOUT_FORTIETH_IDS = new Set(
     Array.from({ length: 296 }, (_, index) => index + 1)
         .map((number) => `RA04-EN${String(number).padStart(3, "0")}`)
 );
+const YGO_VARIANT_ROLLOUT_FORTYFIRST_SET = "Maze of the Master";
+const YGO_VARIANT_ROLLOUT_FORTYFIRST_IDS = new Set([
+    "MZTM-EN000",
+    ...Array.from({ length: 110 }, (_, index) => `MZTM-EN${String(index + 1).padStart(3, "0")}`)
+]);
+const YGO_VARIANT_ROLLOUT_FORTYSECOND_SET = "OTS Tournament Pack 27";
+const YGO_VARIANT_ROLLOUT_FORTYSECOND_IDS = new Set(
+    Array.from({ length: 27 }, (_, index) => `OP27-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_FORTYTHIRD_SET = "Structure Deck: Blue-Eyes White Destiny";
+const YGO_VARIANT_ROLLOUT_FORTYTHIRD_IDS = new Set([
+    ...Array.from({ length: 43 }, (_, index) => `SDWD-EN${String(index + 1).padStart(3, "0")}`)
+]);
+const YGO_VARIANT_ROLLOUT_FORTYFOURTH_SET = "The Lost Art Promotion 2024 H";
+const YGO_VARIANT_ROLLOUT_FORTYFOURTH_IDS = new Set([
+    "LART-EN074"
+]);
+const YGO_VARIANT_ROLLOUT_FORTYFIFTH_SET = "Crossover Breakers";
+const YGO_VARIANT_ROLLOUT_FORTYFIFTH_IDS = new Set(
+    Array.from({ length: 60 }, (_, index) => `CRBR-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_FORTYSIXTH_SET = "Quarter Century Bonanza";
+const YGO_VARIANT_ROLLOUT_FORTYSIXTH_IDS = new Set(
+    Array.from({ length: 276 }, (_, index) => `RA03-EN${String(index + 1).padStart(3, "0")}`)
+);
 const YGO_VARIANT_ROLLOUT_IDS = new Set([
     "LAVD-ENO34", "LAVD-ENO32", "LAVD-ENL06", "LAVD-ENO07", "LAVD-ENO35", "LAVD-ENL36", "LAVD-ENL19", "LAVD-ENO25", "LAVD-ENS29", "LAVD-ENS24",
     "LAVD-ENL40", "LAVD-ENL21", "LAVD-ENS34", "LAVD-ENS32", "LAVD-ENO01", "LAVD-ENL01", "LAVD-ENO36", "LAVD-ENL16", "LAVD-ENL15", "LAVD-ENL18",
@@ -1512,6 +1537,12 @@ function buildCardPageUrl(cardRecord) {
         || (setName === YGO_VARIANT_ROLLOUT_THIRTYEIGHTH_SET && YGO_VARIANT_ROLLOUT_THIRTYEIGHTH_IDS.has(id))
         || (setName === YGO_VARIANT_ROLLOUT_THIRTYNINTH_SET && YGO_VARIANT_ROLLOUT_THIRTYNINTH_IDS.has(id))
         || (setName === YGO_VARIANT_ROLLOUT_FORTIETH_SET && YGO_VARIANT_ROLLOUT_FORTIETH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_FORTYFIRST_SET && YGO_VARIANT_ROLLOUT_FORTYFIRST_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_FORTYSECOND_SET && YGO_VARIANT_ROLLOUT_FORTYSECOND_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_FORTYTHIRD_SET && YGO_VARIANT_ROLLOUT_FORTYTHIRD_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_FORTYFOURTH_SET && YGO_VARIANT_ROLLOUT_FORTYFOURTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_FORTYFIFTH_SET && YGO_VARIANT_ROLLOUT_FORTYFIFTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_FORTYSIXTH_SET && YGO_VARIANT_ROLLOUT_FORTYSIXTH_IDS.has(id))
     );
     if (isRolloutCard) {
         destination.searchParams.set("variantMode", "rarity");

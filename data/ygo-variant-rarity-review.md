@@ -80,7 +80,13 @@ Source: YGOPRODeck `cardinfo.php?cardset=Legendary Arc-V Decks`, scanned 2026-08
 - Yu-Gi-Oh! Championship Series 2025 prize cards: 13 cards processed.
 - The Lost Art Promotion 2025 A: 1 card processed.
 - Quarter Century Stampede: 296 cards processed as a complete set.
-- Total processed: 3036 Yu-Gi-Oh cards.
+- Maze of the Master: 111 cards processed as a complete set.
+- OTS Tournament Pack 27: 27 cards processed (the set contains fewer than 50 cards).
+- Structure Deck: Blue-Eyes White Destiny: 43 cards processed.
+- The Lost Art Promotion 2024 H: 1 card processed.
+- Crossover Breakers: 60 cards processed as a complete set.
+- Quarter Century Bonanza: 276 cards processed as a complete set.
+- Total processed: 3552 Yu-Gi-Oh cards.
 
 ## Image Availability Review
 
