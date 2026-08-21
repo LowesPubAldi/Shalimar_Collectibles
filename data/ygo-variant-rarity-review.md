@@ -1,3 +1,95 @@
+- The Lost Art Promotion N: 1 card processed.
+- SJ Jump Pack Spring 2020 promotional card: 1 card processed.
+- Ignition Assault: 100 cards processed as a complete set.
+- Ignition Assault Sneak Peek Participation Card: 1 card processed.
+- Trials of the Pharaoh - Trials of the Kingdom promotional card: 1 card processed.
+- OTS Tournament Pack 12: 25 cards processed.
+- OTS Tournament Pack 12 (POR): 35 cards processed.
+- Chaos Impact Special Edition: 4 cards processed.
+- Speed Duel: Trials of the Kingdom: 51 cards processed.
+- Speed Duel: Trials of the Kingdom Sneak Peek participation cards: 10 cards processed.
+- Mystic Fighters: 60 cards processed as a complete set.
+- Chaos Impact: 100 cards processed as a complete set.
+- Chaos Impact Sneak Peek Participation Card: 1 card processed.
+- Speed Duel Tournament Pack 2: 18 cards processed.
+- Duel Devastator: 56 cards processed as a complete set.
+- Legendary Duelists: Immortal Destiny: 58 cards processed as a complete set.
+- Yu-Gi-Oh! Advent Calendar (2019): 23 cards processed.
+- Yu-Gi-Oh! Advent Calendar: 1 card processed.
+- Rising Rampage Special Edition: 4 cards processed.
+- Yu-Gi-Oh! ARC-V Volume 6 promotional card: 1 card processed.
+- 2019 Gold Sarcophagus Tin: 14 cards processed.
+- 2019 Gold Sarcophagus Tin Mega Pack: 270 cards processed as a complete set.
+- Yu-Gi-Oh! Championship Series 2019 prize card: 1 card processed.
+- Fists of the Gadgets: 60 cards processed as a complete set.
+- Yu-Gi-Oh! Legacy of the Duelist: Link Evolution promotional cards: 3 cards processed.
+- Speed Duel: Scars of Battle Launch Event participation card: 1 card processed.
+- OTS Tournament Pack 11 (POR): 30 cards processed.
+- OTS Tournament Pack 11: 25 cards processed.
+- Structure Deck: Rokket Revolt: 46 cards processed.
+- Speed Duel: Scars of Battle: 50 cards processed.
+- The Lost Art Promotion L: 1 card processed.
+- Speed Duel Starter Decks: Ultimate Predators: 63 cards processed.
+- Event Pack Speed Duel: 6 cards processed.
+- Rising Rampage: 100 cards processed as a complete set.
+- Rising Rampage Sneak Peek Participation Card: 1 card processed.
+- Battles of Legend: Hero's Revenge: 94 cards processed as a complete set.
+- The Lost Art Promotion K: 1 card processed.
+- Dark Neostorm Special Edition: 4 cards processed.
+- Speed Duel: Attack from the Deep: 50 cards processed.
+- Dark Neostorm: 100 cards processed as a complete set.
+- Dark Neostorm Sneak Peek Participation Card: 1 card processed.
+- Structure Deck: Order of the Spellcasters: 41 cards processed.
+- OTS Tournament Pack 10: 25 cards processed.
+- OTS Tournament Pack 10 (POR): 35 cards processed.
+- Speed Duel Tournament Pack 1: 18 cards processed.
+- Yu-Gi-Oh! Day April 2019 promotional card: 1 card processed.
+- Duel Power: 106 cards processed as a complete set.
+- Speed Duel: Arena of Lost Souls: 50 cards processed.
+- The Infinity Chasers: 60 cards processed as a complete set.
+- Savage Strike Special Edition: 4 cards processed.
+- Yu-Gi-Oh! ARC-V Volume 5 promotional card: 1 card processed.
+- The Lost Art Promotion I: 1 card processed.
+- Structure Deck: Soulburner: 45 cards processed.
+- The Lost Art Promotion M: 1 card processed.
+- The Lost Art Promotion H: 1 card processed.
+- The Lost Art Promotion G: 1 card processed.
+- WSJ Jump Pack Spring 2019 promotional card: 1 card processed.
+- OTS Tournament Pack 9: 26 cards processed.
+- OTS Tournament Pack 9 (POR): 36 cards processed.
+- Soul Fusion Special Edition: 4 cards processed.
+- Hidden Summoners: 60 cards processed as a complete set.
+- Yu-Gi-Oh! ARC-V Volume 4 promotional card: 1 card processed.
+- Structure Deck: Zombie Horde: 42 cards processed.
+- Weekly Shonen Jump December 2018 membership promotional cards: 4 cards processed.
+- Weekly Shonen Jump November 2018 membership promotional card: 1 card processed.
+- Yu-Gi-Oh! Advent Calendar (2018): 24 cards processed.
+- Soul Fusion: 100 cards processed as a complete set.
+- Soul Fusion Sneak Peek Participation Card: 1 card processed.
+- Legendary Hero Decks: 117 cards processed as a complete set.
+- Legendary Duelists: White Dragon Abyss: 56 cards processed as a complete set.
+- Yu-Gi-Oh! World Championship 2019 Japanese National Qualifiers prize cards: 2 cards processed.
+- Yu-Gi-Oh! Championship Series 2018 prize card: 1 card processed.
+- Cybernetic Horizon Special Edition: 4 cards processed.
+- Yu-Gi-Oh! The Dark Side of Dimensions Movie Pack Special Edition: 4 cards processed.
+- WSJ Jump Pack Fall 2018 promotional card: 1 card processed.
+- 2018 Mega-Tin Mega Pack: 233 cards processed as a complete set.
+- 2018 Mega-Tins: 10 cards processed.
+- OTS Tournament Pack 8: 26 cards processed.
+- OTS Tournament Pack 8 (POR): 36 cards processed.
+- Shadows in Valhalla: 60 cards processed as a complete set.
+- Weekly Shonen Jump July 2018 membership promotional card: 1 card processed.
+- Structure Deck: Powercode Link: 42 cards processed.
+- Yu-Gi-Oh! World Championship 2018 prize cards: 2 cards processed.
+- Cybernetic Horizon: 100 cards processed as a complete set.
+- Cybernetic Horizon Sneak Peek Participation Card: 1 card processed.
+- Starter Deck: Codebreaker: 45 cards processed.
+- Savage Strike: 100 cards processed as a complete set.
+- Savage Strike Sneak Peek Participation Card: 1 card processed.
+- Speed Duel Starter Decks: Destiny Masters: 64 cards processed.
+- Speed Duel Starter Decks: Duelists of Tomorrow: 69 cards processed.
+- Legendary Duelists: Sisters of the Rose: 56 cards processed as a complete set.
+- Total processed: 16040 Yu-Gi-Oh cards.
 # Yu-Gi-Oh Rarity Review
 
 ## Legendary Arc-V Decks
@@ -83,10 +175,57 @@ Source: YGOPRODeck `cardinfo.php?cardset=Legendary Arc-V Decks`, scanned 2026-08
 - Trials of the Pharaoh - Speed Duel: Battle City Box promotional card: 1 card processed.
 - Speed Duel: Battle City Box: 223 cards processed as a complete set.
 - Maximum Gold: 162 cards processed as a complete set.
-- Phantom Rage: 101 cards processed as a complete set.
+- The Lost Art Promotion 2020 E: 1 card processed.
+- The Lost Art Promotion 2020 F: 1 card processed.
+- Speed Duel Starter Decks: Match of the Millennium: 67 cards processed as a complete set.
+- Speed Duel Starter Decks: Twisted Nightmares: 66 cards processed as a complete set.
+- Eternity Code: 101 cards processed as a complete set.
+- Eternity Code Premiere! promotional card: 1 card processed.
+- Structure Deck: Mechanized Madness: 41 cards processed.
+- Secret Slayers: 60 cards processed as a complete set.
+- Duel Overload: 100 cards processed as a complete set.
+- Ignition Assault Special Edition: 4 cards processed.
+- The Lost Art Promotion O: 1 card processed.
+- Structure Deck: Shaddoll Showdown: 49 cards processed.
+- Yu-Gi-Oh! The Dark Side of Dimensions Movie Pack Secret Edition: 63 cards processed.
+- Legendary Duelists: Magical Hero: 56 cards processed as a complete set.
+- The Lost Art Promotion 2020 K: 1 card processed.
+- Speed Duel Demo Deck 2020: 21 cards processed.
+- Event Pack Speed Duel: 6 cards processed.
+- Rising Rampage: 100 cards processed as a complete set.
+- Speed Duel Demo Deck: 11 cards processed.
+- The Lost Art Promotion J: 1 card processed.
+- Total processed: 14034 Yu-Gi-Oh cards.
 - The Lost Art Promotion 2020 L: 1 card processed.
-- Total processed: 11420 Yu-Gi-Oh cards.
-- Battles of Legend: Monster Mayhem: 177 cards processed as a complete set.
+- OTS Tournament Pack 14 (POR): 35 cards processed.
+- The Lost Art Promotion 2020 R: 1 card processed.
+- Remote Duel at Home Sweepstakes: 1 card processed.
+- The Lost Art Promotion 2020 J: 1 card processed.
+- The Lost Art Promotion 2020 Q: 1 card processed.
+- Legendary Duelists: Rage of Ra: 57 cards processed as a complete set.
+- The Lost Art Promotion 2020 G: 1 card processed.
+- Dragons of Legend: The Complete Series: 149 cards processed as a complete set.
+- The Lost Art Promotion 2020 P: 1 card processed.
+- KC Grand Tournament prize card: 1 card processed.
+- 2020 Tin of Lost Memories: 6 cards processed.
+- 2020 Tin of Lost Memories Mega Pack: 246 cards processed as a complete set (EN246 absent; EN249 present).
+- The Lost Art Promotion 2020 H: 1 card processed.
+- Rise of the Duelist: 101 cards processed as a complete set.
+- The Lost Art Promotion 2020 N: 1 card processed.
+- Trials of the Pharaoh - Match of the Millennium & Twisted Nightmares promotional card: 1 card processed.
+- Rise of the Duelist Premiere! promotional card: 1 card processed.
+- Battles of Legend: Armageddon: 94 cards processed as a complete set.
+- The Lost Art Promotion 2020 I: 1 card processed.
+- Structure Deck: Sacred Beasts: 48 cards processed.
+- Legendary Duelists: Season 1: 121 cards processed as a complete set.
+- Toon Chaos: 60 cards processed as a complete set.
+- OTS Tournament Pack 13: 25 cards processed.
+- OTS Tournament Pack 13 (POR): 34 cards processed.
+- Yu-Gi-Oh! ARC-V Volume 7 promotional card: 1 card processed.
+- The Lost Art Promotion 2020 D: 1 card processed.
+- OTS Tournament Pack 11 (POR): 30 cards processed.
+- OTS Tournament Pack 11: 25 cards processed.
+- Total processed: 13279 Yu-Gi-Oh cards.
 - The Lost Art Promotion 2025 B: 1 card processed.
 - Yu-Gi-Oh! Championship Series 2025 prize cards: 13 cards processed.
 - The Lost Art Promotion 2025 A: 1 card processed.
@@ -220,7 +359,7 @@ Source: YGOPRODeck `cardinfo.php?cardset=Legendary Arc-V Decks`, scanned 2026-08
 - Structure Deck: Freezing Chains: 46 cards processed.
 - OTS Tournament Pack 15 (POR): 36 cards processed.
 - OTS Tournament Pack 15: 26 cards processed.
-- Total processed: 10641 Yu-Gi-Oh cards.
+- Total processed: 11458 Yu-Gi-Oh cards.
 
 ## Image Availability Review
 
