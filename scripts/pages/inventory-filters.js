@@ -566,6 +566,46 @@ const YGO_VARIANT_ROLLOUT_EIGHTYFIRST_SET = "The Lost Art Promotion 2023 H";
 const YGO_VARIANT_ROLLOUT_EIGHTYFIRST_IDS = new Set([
     "LART-EN061"
 ]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYSECOND_SET = "OTS Tournament Pack 17";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYSECOND_IDS = new Set(
+    Array.from({ length: 25 }, (_, index) => `OP17-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYTHIRD_SET = "The Lost Art Promotion 2021 J";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYTHIRD_IDS = new Set([
+    "LART-EN040"
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYFOURTH_SET = "2021 Tin of Ancient Battles";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYFOURTH_IDS = new Set(
+    Array.from({ length: 258 }, (_, index) => `MP21-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYFIFTH_SET = "The Lost Art Promotion 2021 I";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYFIFTH_IDS = new Set([
+    "LART-EN039"
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYSIXTH_SET = "KC Grand Tournament 2021 prize card";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYSIXTH_IDS = new Set([
+    "2021-EN001"
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYSEVENTH_SET = "Dawn of Majesty";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYSEVENTH_IDS = new Set(
+    ["DAMA-EN000", ...Array.from({ length: 100 }, (_, index) => `DAMA-EN${String(index + 1).padStart(3, "0")}`)]
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYEIGHTH_SET = "Dawn of Majesty Premiere! promotional card";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYEIGHTH_IDS = new Set([
+    "DAMA-ENSP1"
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYNINTH_SET = "The Lost Art Promotion 2021 H";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYNINTH_IDS = new Set([
+    "LART-EN038"
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTIETH_SET = "Structure Deck: Cyber Strike";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTIETH_IDS = new Set(
+    Array.from({ length: 48 }, (_, index) => `SDCS-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYFIRST_SET = "OTS Tournament Pack 17 (POR)";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYFIRST_IDS = new Set(
+    [...Array.from({ length: 25 }, (_, index) => `OP17-PT${String(index + 1).padStart(3, "0")}`), ...Array.from({ length: 10 }, (_, index) => `OP17-PT${String(index + 27).padStart(3, "0")}`)]
+);
 const YGO_VARIANT_ROLLOUT_EIGHTYSECOND_SET = "Duelist Nexus";
 const YGO_VARIANT_ROLLOUT_EIGHTYSECOND_IDS = new Set(
     ["DUNE-EN000", ...Array.from({ length: 99 }, (_, index) => index + 1)
@@ -660,6 +700,311 @@ const YGO_VARIANT_ROLLOUT_ONEHUNDREDTH_IDS = new Set(
 const YGO_VARIANT_ROLLOUT_ONEHUNDREDANDFIRST_SET = "OTS Tournament Pack 21";
 const YGO_VARIANT_ROLLOUT_ONEHUNDREDANDFIRST_IDS = new Set(
     Array.from({ length: 26 }, (_, index) => `OP21-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSECOND_SET = "Amazing Defenders";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSECOND_IDS = new Set(
+    Array.from({ length: 60 }, (_, index) => `AMDE-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRD_SET = "Structure Deck: Dark World";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRD_IDS = new Set(
+    Array.from({ length: 45 }, (_, index) => `SR13-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFOURTH_SET = "Battles of Legend: Crystal Revenge";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFOURTH_IDS = new Set(
+    Array.from({ length: 105 }, (_, index) => `BLCR-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTH_SET = "Magnificent Mavens";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTH_IDS = new Set(
+    Array.from({ length: 115 }, (_, index) => index + 1)
+        .filter((number) => number !== 103)
+        .map((number) => `MAMA-EN${String(number).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTH_SET = "OTS Tournament Pack 20";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTH_IDS = new Set(
+    Array.from({ length: 27 }, (_, index) => `OP20-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTH_SET = "Darkwing Blast";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTH_IDS = new Set(
+    ["DABL-EN000", ...Array.from({ length: 100 }, (_, index) => `DABL-EN${String(index + 1).padStart(3, "0")}`)]
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDEIGHTH_SET = "Yu-Gi-Oh! Championship Series 2022 prize card";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDEIGHTH_IDS = new Set([
+    "YCSW-EN013"
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDNINTH_SET = "Speed Duel GX: Midterm Paradox";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDNINTH_IDS = new Set([
+    ...Array.from({ length: 25 }, (_, index) => `SGX2-ENA${String(index + 1).padStart(2, "0")}`),
+    ...Array.from({ length: 24 }, (_, index) => `SGX2-ENB${String(index + 1).padStart(2, "0")}`),
+    ...Array.from({ length: 18 }, (_, index) => `SGX2-ENC${String(index + 1).padStart(2, "0")}`),
+    ...Array.from({ length: 20 }, (_, index) => `SGX2-END${String(index + 1).padStart(2, "0")}`),
+    ...Array.from({ length: 11 }, (_, index) => `SGX2-ENE${String(index + 1).padStart(2, "0")}`),
+    ...Array.from({ length: 12 }, (_, index) => `SGX2-ENS${String(index + 1).padStart(2, "0")}`)
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTENTH_SET = "The Lost Art Promotion 2022 K";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTENTH_IDS = new Set([
+    "LART-EN053"
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDELEVENTH_SET = "Speed Duel Tournament Pack 4";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDELEVENTH_IDS = new Set([
+    ...Array.from({ length: 29 }, (_, index) => `STP4-EN${String(index + 1).padStart(3, "0")}`),
+    ...Array.from({ length: 6 }, (_, index) => `STP4-ENS${String(index + 1).padStart(2, "0")}`)
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTWELFTH_SET = "Structure Deck: Legend of the Crystal Beasts";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTWELFTH_IDS = new Set(
+    Array.from({ length: 46 }, (_, index) => `SDCB-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTEENTH_SET = "2022 Tin of the Pharaoh's Gods";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTEENTH_IDS = new Set(
+    Array.from({ length: 275 }, (_, index) => `MP22-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFOURTEENTH_SET = "Tactical Masters";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFOURTEENTH_IDS = new Set(
+    Array.from({ length: 60 }, (_, index) => `TAMA-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTEENTH_SET = "Power of the Elements";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTEENTH_IDS = new Set(
+    ["POTE-EN000", ...Array.from({ length: 100 }, (_, index) => `POTE-EN${String(index + 1).padStart(3, "0")}`)]
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTEENTH_SET = "Legendary Duelists: Season 3";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTEENTH_IDS = new Set(
+    Array.from({ length: 138 }, (_, index) => `LDS3-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTEENTH_SET = "The Lost Art Promotion 2022 G";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTEENTH_IDS = new Set([
+    "LART-EN049"
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDEIGHTEENTH_SET = "Legendary Duelists: Duels From the Deep";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDEIGHTEENTH_IDS = new Set(
+    ["LED9-EN000", ...Array.from({ length: 56 }, (_, index) => `LED9-EN${String(index + 1).padStart(3, "0")}`)]
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDNINETEENTH_SET = "OTS Tournament Pack 19";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDNINETEENTH_IDS = new Set(
+    Array.from({ length: 29 }, (_, index) => `OP19-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTIETH_SET = "OTS Tournament Pack 19 (POR)";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTIETH_IDS = new Set([
+    ...Array.from({ length: 12 }, (_, index) => `OP19-PT${String(index + 1).padStart(3, "0")}`),
+    ...Array.from({ length: 14 }, (_, index) => `OP19-PT${String(index + 14).padStart(3, "0")}`),
+    ...Array.from({ length: 13 }, (_, index) => `OP19-PT${String(index + 29).padStart(3, "0")}`)
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYFIRST_SET = "Dimension Force";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYFIRST_IDS = new Set(
+    ["DIFO-EN000", ...Array.from({ length: 100 }, (_, index) => `DIFO-EN${String(index + 1).padStart(3, "0")}`)]
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYSECOND_SET = "Ghosts From the Past: The 2nd Haunting";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYSECOND_IDS = new Set([
+    ...Array.from({ length: 183 }, (_, index) => `GFP2-EN${String(index + 1).padStart(3, "0")}`),
+    "GTP2-EN176", "GTP2-EN177", "GTP2-EN178", "GTP2-EN182"
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYTHIRD_SET = "Structure Deck: Albaz Strike";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYTHIRD_IDS = new Set(
+    Array.from({ length: 46 }, (_, index) => `SDAZ-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYFOURTH_SET = "Speed Duel Tournament Pack 3";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYFOURTH_IDS = new Set([
+    ...Array.from({ length: 31 }, (_, index) => `STP3-EN${String(index + 1).padStart(3, "0")}`),
+    ...Array.from({ length: 3 }, (_, index) => `STP3-ENS${String(index + 1).padStart(2, "0")}`)
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYFIFTH_SET = "Speed Duel GX: Duel Academy Box";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYFIFTH_IDS = new Set([
+    ...Array.from({ length: 26 }, (_, index) => `SGX1-ENA${String(index + 1).padStart(2, "0")}`),
+    ...Array.from({ length: 21 }, (_, index) => `SGX1-ENB${String(index + 1).padStart(2, "0")}`),
+    ...Array.from({ length: 23 }, (_, index) => `SGX1-ENC${String(index + 1).padStart(2, "0")}`),
+    ...Array.from({ length: 21 }, (_, index) => `SGX1-END${String(index + 1).padStart(2, "0")}`),
+    ...Array.from({ length: 21 }, (_, index) => `SGX1-ENE${String(index + 1).padStart(2, "0")}`),
+    ...Array.from({ length: 21 }, (_, index) => `SGX1-ENF${String(index + 1).padStart(2, "0")}`),
+    ...Array.from({ length: 23 }, (_, index) => `SGX1-ENG${String(index + 1).padStart(2, "0")}`),
+    ...Array.from({ length: 19 }, (_, index) => `SGX1-ENH${String(index + 1).padStart(2, "0")}`),
+    ...Array.from({ length: 23 }, (_, index) => `SGX1-ENI${String(index + 1).padStart(2, "0")}`),
+    ...Array.from({ length: 20 }, (_, index) => `SGX1-ENS${String(index + 1).padStart(2, "0")}`)
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYSIXTH_SET = "Hidden Arsenal: Chapter 1";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYSIXTH_IDS = new Set([
+    ...Array.from({ length: 21 }, (_, index) => `HAC1-EN${String(index + 1).padStart(3, "0")}`),
+    ...Array.from({ length: 156 }, (_, index) => `HAC1-EN${String(index + 23).padStart(3, "0")}`)
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYSEVENTH_SET = "OTS Tournament Pack 18";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYSEVENTH_IDS = new Set(
+    Array.from({ length: 25 }, (_, index) => `OP18-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYEIGHTH_SET = "OTS Tournament Pack 18 (POR)";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYEIGHTH_IDS = new Set([
+    ...Array.from({ length: 25 }, (_, index) => `OP18-PT${String(index + 1).padStart(3, "0")}`),
+    ...Array.from({ length: 10 }, (_, index) => `OP18-PT${String(index + 27).padStart(3, "0")}`)
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYNINTH_SET = "Battle of Chaos";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYNINTH_IDS = new Set([
+    "25TH-EN001",
+    ...Array.from({ length: 101 }, (_, index) => `BACH-EN${String(index).padStart(3, "0")}`)
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTIETH_SET = "The Grand Creators";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTIETH_IDS = new Set(
+    Array.from({ length: 60 }, (_, index) => `GRCR-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYFIRST_SET = "The Lost Art Promotion 2022";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYFIRST_IDS = new Set([
+    "LART-EN044", "LART-EN045", "LART-EN046", "LART-EN047", "LART-EN048", "LART-EN050", "LART-EN051", "LART-EN052"
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYSECOND_SET = "The Lost Art Promotion 2022 A";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYSECOND_IDS = new Set([
+    "LART-EN043"
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYTHIRD_SET = "Brothers of Legend";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYTHIRD_IDS = new Set(
+    ["BROL-EN000", ...Array.from({ length: 94 }, (_, index) => `BROL-EN${String(index + 1).padStart(3, "0")}`)]
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYFOURTH_SET = "Blue-Eyes Alternative White Dragon Sweepstakes";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYFOURTH_IDS = new Set([
+    "SBPR-EN003"
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYFIFTH_SET = "The Lost Art Promotion 2021 L";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYFIFTH_IDS = new Set([
+    "LART-EN042"
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYSIXTH_SET = "Maximum Gold: El Dorado";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYSIXTH_IDS = new Set(
+    Array.from({ length: 152 }, (_, index) => `MGED-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYSEVENTH_SET = "Burst of Destiny";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYSEVENTH_IDS = new Set(
+    ["BODE-EN000", ...Array.from({ length: 100 }, (_, index) => `BODE-EN${String(index + 1).padStart(3, "0")}`)]
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYEIGHTH_SET = "The Lost Art Promotion 2021 K";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYEIGHTH_IDS = new Set([
+    "LART-EN041"
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTIETH_SET = "King's Court";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTIETH_IDS = new Set(
+    Array.from({ length: 65 }, (_, index) => `KICO-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYFIRST_SET = "The Lost Art Promotion 2021 G";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYFIRST_IDS = new Set([
+    "LART-EN037"
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYSECOND_SET = "The Lost Art Promotion 2021 F";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYSECOND_IDS = new Set([
+    "LART-EN036"
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYTHIRD_SET = "Egyptian God Deck: Obelisk the Tormentor";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYTHIRD_IDS = new Set(
+    Array.from({ length: 35 }, (_, index) => `EGO1-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYFOURTH_SET = "Egyptian God Deck: Slifer the Sky Dragon";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYFOURTH_IDS = new Set(
+    Array.from({ length: 38 }, (_, index) => `EGS1-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYFIFTH_SET = "OTS Tournament Pack 16";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYFIFTH_IDS = new Set(
+    Array.from({ length: 26 }, (_, index) => `OP16-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYSIXTH_SET = "OTS Tournament Pack 16 (POR)";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYSIXTH_IDS = new Set(
+    Array.from({ length: 36 }, (_, index) => `OP16-PT${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYSEVENTH_SET = "Lightning Overdrive";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYSEVENTH_IDS = new Set(
+    ["LIOV-EN000", ...Array.from({ length: 100 }, (_, index) => `LIOV-EN${String(index + 1).padStart(3, "0")}`)]
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYEIGHTH_SET = "Palladium Oracle Mahad Sweepstakes";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYEIGHTH_IDS = new Set([
+    "SBPR-EN004"
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYNINTH_SET = "Lightning Overdrive Premiere! promotional card";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYNINTH_IDS = new Set([
+    "LIOV-ENSP1"
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTIETH_SET = "Yu-Gi-Oh! TCG Remote Duel Extravaganza participation card";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTIETH_IDS = new Set([
+    "21CC-EN001"
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYFIRST_SET = "The Lost Art Promotion 2021 E";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYFIRST_IDS = new Set([
+    "LART-EN035"
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYSECOND_SET = "Ancient Guardians";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYSECOND_IDS = new Set(
+    Array.from({ length: 60 }, (_, index) => `ANGU-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYTHIRD_SET = "Ghosts From the Past";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYTHIRD_IDS = new Set(
+    Array.from({ length: 132 }, (_, index) => `GFTP-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYFOURTH_SET = "The Lost Art Promotion 2021 D";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYFOURTH_IDS = new Set([
+    "LART-EN034"
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYFIFTH_SET = "The Lost Art Promotion 2021 C";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYFIFTH_IDS = new Set([
+    "LART-EN033"
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYSIXTH_SET = "The Lost Art Promotion 2021 B";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYSIXTH_IDS = new Set([
+    "LART-EN032"
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYSEVENTH_SET = "Structure Deck: Freezing Chains";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYSEVENTH_IDS = new Set(
+    Array.from({ length: 46 }, (_, index) => `SDFC-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYEIGHTH_SET = "OTS Tournament Pack 15 (POR)";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYEIGHTH_IDS = new Set(
+    Array.from({ length: 36 }, (_, index) => `OP15-PT${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYNINTH_SET = "OTS Tournament Pack 15";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYNINTH_IDS = new Set(
+    Array.from({ length: 26 }, (_, index) => `OP15-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTIETH_SET = "Blazing Vortex";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTIETH_IDS = new Set(
+    ["BLVO-EN000", ...Array.from({ length: 100 }, (_, index) => `BLVO-EN${String(index + 1).padStart(3, "0")}`)]
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYFIRST_SET = "Blazing Vortex Premiere! promotional card";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYFIRST_IDS = new Set([
+    "BLVO-ENSP1"
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYSECOND_SET = "Legendary Duelists: Season 2";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYSECOND_IDS = new Set(
+    Array.from({ length: 131 }, (_, index) => `LDS2-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYTHIRD_SET = "The Lost Art Promotion 2021 A";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYTHIRD_IDS = new Set([
+    "LART-EN031"
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYFOURTH_SET = "Yu-Gi-Oh! at Home Sweepstakes";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYFOURTH_IDS = new Set([
+    "SBPR-EN002"
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYFIFTH_SET = "Genesis Impact";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYFIFTH_IDS = new Set(
+    Array.from({ length: 60 }, (_, index) => `GEIM-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYSIXTH_SET = "The Lost Art Promotion 2020 O";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYSIXTH_IDS = new Set([
+    "LART-EN027"
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYSEVENTH_SET = "Trials of the Pharaoh - Speed Duel: Battle City Box promotional card";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYSEVENTH_IDS = new Set([
+    "OPTP-EN003"
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYEIGHTH_SET = "Speed Duel: Battle City Box";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYEIGHTH_IDS = new Set([
+    ...Array.from({ length: 203 }, (_, index) => `SBCB-EN${String(index + 1).padStart(3, "0")}`),
+    ...Array.from({ length: 20 }, (_, index) => `SBCB-ENS${String(index + 1).padStart(2, "0")}`)
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYNINTH_SET = "Maximum Gold";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYNINTH_IDS = new Set(
+    Array.from({ length: 162 }, (_, index) => `MAGO-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDEIGHTIETH_SET = "Phantom Rage";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDEIGHTIETH_IDS = new Set(
+    ["PHRA-EN000", ...Array.from({ length: 100 }, (_, index) => `PHRA-EN${String(index + 1).padStart(3, "0")}`)]
+);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDEIGHTYFIRST_SET = "The Lost Art Promotion 2020 L";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDEIGHTYFIRST_IDS = new Set([
+    "LART-EN024"
+]);
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYNINTH_SET = "Legendary Duelists: Synchro Storm";
+const YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYNINTH_IDS = new Set(
+    Array.from({ length: 56 }, (_, index) => `LED8-EN${String(index + 1).padStart(3, "0")}`)
 );
 const YGO_VARIANT_ROLLOUT_IDS = new Set([
     "LAVD-ENO34", "LAVD-ENO32", "LAVD-ENL06", "LAVD-ENO07", "LAVD-ENO35", "LAVD-ENL36", "LAVD-ENL19", "LAVD-ENO25", "LAVD-ENS29", "LAVD-ENS24",
@@ -1842,6 +2187,86 @@ function buildCardPageUrl(cardRecord) {
         || (setName === YGO_VARIANT_ROLLOUT_NINETYNINTH_SET && YGO_VARIANT_ROLLOUT_NINETYNINTH_IDS.has(id))
         || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDTH_IDS.has(id))
         || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDANDFIRST_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDANDFIRST_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDSECOND_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDSECOND_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRD_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRD_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDFOURTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDFOURTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDEIGHTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDEIGHTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDNINTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDNINTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDTENTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDTENTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDELEVENTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDELEVENTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDTWELFTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDTWELFTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTEENTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTEENTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDFOURTEENTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDFOURTEENTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTEENTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTEENTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTEENTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTEENTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTEENTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTEENTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDEIGHTEENTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDEIGHTEENTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDNINETEENTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDNINETEENTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTIETH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTIETH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYFIRST_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYFIRST_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYSECOND_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYSECOND_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYTHIRD_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYTHIRD_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYFOURTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYFOURTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYFIFTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYFIFTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYSIXTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYSIXTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYSEVENTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYSEVENTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYEIGHTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYEIGHTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYNINTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDTWENTYNINTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTIETH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTIETH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYFIRST_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYFIRST_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYSECOND_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYSECOND_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYTHIRD_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYTHIRD_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYFOURTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYFOURTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYFIFTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYFIFTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYSIXTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYSIXTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYSEVENTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYSEVENTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYEIGHTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYEIGHTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYNINTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDTHIRTYNINTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTIETH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTIETH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYFIRST_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYFIRST_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYSECOND_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYSECOND_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYTHIRD_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYTHIRD_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYFOURTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYFOURTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYFIFTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYFIFTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYSIXTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYSIXTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYSEVENTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYSEVENTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYEIGHTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYEIGHTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYNINTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDFORTYNINTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTIETH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTIETH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYFIRST_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYFIRST_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYSECOND_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYSECOND_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYTHIRD_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYTHIRD_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYFOURTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYFOURTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYFIFTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYFIFTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYSIXTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYSIXTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYSEVENTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYSEVENTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYEIGHTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYEIGHTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYNINTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDFIFTYNINTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTIETH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTIETH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYFIRST_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYFIRST_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYSECOND_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYSECOND_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYTHIRD_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYTHIRD_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYFOURTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYFOURTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYFIFTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYFIFTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYSIXTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYSIXTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYSEVENTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYSEVENTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYEIGHTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYEIGHTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYNINTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYNINTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTIETH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTIETH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYFIRST_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYFIRST_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYSECOND_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYSECOND_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYTHIRD_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYTHIRD_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYFOURTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYFOURTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYFIFTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYFIFTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYSIXTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYSIXTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYSEVENTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYSEVENTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYEIGHTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYEIGHTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYNINTH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYNINTH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDEIGHTIETH_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDEIGHTIETH_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ONEHUNDREDEIGHTYFIRST_SET && YGO_VARIANT_ROLLOUT_ONEHUNDREDEIGHTYFIRST_IDS.has(id))
     );
     if (isRolloutCard) {
         destination.searchParams.set("variantMode", "rarity");
@@ -1997,6 +2422,7 @@ function normalizeCardRecord(card) {
             card.image_url,
             card.image_url_cropped
         ),
+        artworkCandidates: Array.isArray(card.artworkCandidates) ? card.artworkCandidates.filter(Boolean) : [],
         setReleaseDate: resolveFirstNonEmpty(card.setReleaseDate)
     };
 }
@@ -3338,12 +3764,33 @@ function getSelectedYgoSetEntries(cardPayload, selectedSetName, includeVariants 
     return selectedRows;
 }
 
+function getYgoArtworkCandidates(cardPayload) {
+    return Array.isArray(cardPayload?.card_images)
+        ? cardPayload.card_images
+            .map((image) => resolveFirstNonEmpty(image?.image_url, image?.image_url_small, image?.image_url_cropped))
+            .filter(Boolean)
+        : [];
+}
+
+function selectYgoInventoryArtwork(artworkCandidates, setCode) {
+    if (artworkCandidates.length === 0) {
+        return "";
+    }
+
+    let hash = 0;
+    for (const character of String(setCode || "")) {
+        hash = (hash * 31 + character.charCodeAt(0)) >>> 0;
+    }
+
+    return artworkCandidates[hash % artworkCandidates.length];
+}
+
 function mapYgoCardToInventoryRecord(cardPayload, setEntry, includeVariants = false) {
-    const firstImage = Array.isArray(cardPayload?.card_images) ? cardPayload.card_images[0] : null;
     const setCode = String(setEntry?.set_code || cardPayload?.id || "").trim() || String(cardPayload?.id || "UNKNOWN");
     const variantLabel = includeVariants
         ? resolveFirstNonEmpty(setEntry?.set_code, setEntry?.set_rarity, "Standard")
         : "Standard";
+    const artworkCandidates = getYgoArtworkCandidates(cardPayload);
 
     return normalizeCardRecord({
         id: setCode,
@@ -3358,11 +3805,8 @@ function mapYgoCardToInventoryRecord(cardPayload, setEntry, includeVariants = fa
         edition: resolveFirstNonEmpty(setEntry?.set_edition),
         effect: String(cardPayload?.desc || "").trim(),
         setReleaseDate: resolveFirstNonEmpty(ygoSetReleaseDateCache.get(String(setEntry?.set_name || "").trim())),
-        imageUrl: resolveFirstNonEmpty(
-            firstImage?.image_url_small,
-            firstImage?.image_url,
-            firstImage?.image_url_cropped
-        )
+        imageUrl: selectYgoInventoryArtwork(artworkCandidates, setCode),
+        artworkCandidates
     });
 }
 

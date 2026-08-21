@@ -73,7 +73,19 @@ Source: YGOPRODeck `cardinfo.php?cardset=Legendary Arc-V Decks`, scanned 2026-08
 - The Lost Art Promotion 2025 C: 1 card processed.
 - 2025 Mega-Pack Tin: 450 cards processed as a complete set.
 - Limited Pack World Championship 2025: 21 cards processed.
-- WCS 2025 Limited Pack: 1 card processed.
+- Blazing Vortex: 101 cards processed as a complete set.
+- Blazing Vortex Premiere! promotional card: 1 card processed.
+- Legendary Duelists: Season 2: 131 cards processed as a complete set.
+- The Lost Art Promotion 2021 A: 1 card processed.
+- Yu-Gi-Oh! at Home Sweepstakes: 1 card processed.
+- Genesis Impact: 60 cards processed as a complete set.
+- The Lost Art Promotion 2020 O: 1 card processed.
+- Trials of the Pharaoh - Speed Duel: Battle City Box promotional card: 1 card processed.
+- Speed Duel: Battle City Box: 223 cards processed as a complete set.
+- Maximum Gold: 162 cards processed as a complete set.
+- Phantom Rage: 101 cards processed as a complete set.
+- The Lost Art Promotion 2020 L: 1 card processed.
+- Total processed: 11420 Yu-Gi-Oh cards.
 - Battles of Legend: Monster Mayhem: 177 cards processed as a complete set.
 - The Lost Art Promotion 2025 B: 1 card processed.
 - Yu-Gi-Oh! Championship Series 2025 prize cards: 13 cards processed.
@@ -140,7 +152,75 @@ Source: YGOPRODeck `cardinfo.php?cardset=Legendary Arc-V Decks`, scanned 2026-08
 - Structure Deck: Beware of Traptrix: 46 cards processed.
 - Photon Hypernova: 101 cards processed as a complete set.
 - OTS Tournament Pack 21: 26 cards processed.
-- Total processed: 6813 Yu-Gi-Oh cards.
+- Amazing Defenders: 60 cards processed as a complete set.
+- Structure Deck: Dark World: 45 cards processed.
+- Battles of Legend: Crystal Revenge: 105 cards processed as a complete set.
+- Magnificent Mavens: 114 cards processed as a complete set.
+- OTS Tournament Pack 20: 27 cards processed.
+- Darkwing Blast: 101 cards processed as a complete set.
+- Yu-Gi-Oh! Championship Series 2022 prize card: 1 card processed.
+- Speed Duel GX: Midterm Paradox: 110 cards processed as a complete set.
+- The Lost Art Promotion 2022 K: 1 card processed.
+- Speed Duel Tournament Pack 4: 35 cards processed.
+- Structure Deck: Legend of the Crystal Beasts: 46 cards processed.
+- 2022 Tin of the Pharaoh's Gods: 275 cards processed as a complete set.
+- Tactical Masters: 60 cards processed as a complete set.
+- Power of the Elements: 101 cards processed as a complete set.
+- Legendary Duelists: Season 3: 138 cards processed as a complete set.
+- The Lost Art Promotion 2022 G: 1 card processed.
+- Legendary Duelists: Duels From the Deep: 57 cards processed as a complete set.
+- OTS Tournament Pack 19: 29 cards processed.
+- OTS Tournament Pack 19 (POR): 39 cards processed.
+- Dimension Force: 101 cards processed as a complete set.
+- Ghosts From the Past: The 2nd Haunting: 187 cards processed as a complete set.
+- Structure Deck: Albaz Strike: 46 cards processed.
+- Speed Duel Tournament Pack 3: 34 cards processed.
+- Speed Duel GX: Duel Academy Box: 218 cards processed as a complete set.
+- Hidden Arsenal: Chapter 1: 177 cards processed as a complete set.
+- OTS Tournament Pack 18: 25 cards processed.
+- OTS Tournament Pack 18 (POR): 35 cards processed.
+- Battle of Chaos: 102 cards processed as a complete set.
+- The Grand Creators: 60 cards processed as a complete set.
+- The Lost Art Promotion 2022: 8 cards processed.
+- The Lost Art Promotion 2022 A: 1 card processed.
+- Brothers of Legend: 95 cards processed as a complete set.
+- Blue-Eyes Alternative White Dragon Sweepstakes: 1 card processed.
+- The Lost Art Promotion 2021 L: 1 card processed.
+- Maximum Gold: El Dorado: 152 cards processed as a complete set.
+- Burst of Destiny: 101 cards processed as a complete set.
+- The Lost Art Promotion 2021 K: 1 card processed.
+- Legendary Duelists: Synchro Storm: 56 cards processed as a complete set.
+- Structure Deck: Cyber Strike: 48 cards processed.
+- OTS Tournament Pack 17 (POR): 35 cards processed.
+- OTS Tournament Pack 17: 25 cards processed.
+- The Lost Art Promotion 2021 J: 1 card processed.
+- 2021 Tin of Ancient Battles: 258 cards processed as a complete set.
+- The Lost Art Promotion 2021 I: 1 card processed.
+- KC Grand Tournament 2021 prize card: 1 card processed.
+- Dawn of Majesty: 101 cards processed as a complete set.
+- Dawn of Majesty Premiere! promotional card: 1 card processed.
+- The Lost Art Promotion 2021 H: 1 card processed.
+- King's Court: 65 cards processed as a complete set.
+- The Lost Art Promotion 2021 G: 1 card processed.
+- The Lost Art Promotion 2021 F: 1 card processed.
+- Egyptian God Deck: Obelisk the Tormentor: 35 cards processed.
+- Egyptian God Deck: Slifer the Sky Dragon: 38 cards processed.
+- OTS Tournament Pack 16: 26 cards processed.
+- OTS Tournament Pack 16 (POR): 36 cards processed.
+- Lightning Overdrive: 101 cards processed as a complete set.
+- Palladium Oracle Mahad Sweepstakes: 1 card processed.
+- Lightning Overdrive Premiere! promotional card: 1 card processed.
+- Yu-Gi-Oh! TCG Remote Duel Extravaganza participation card: 1 card processed.
+- The Lost Art Promotion 2021 E: 1 card processed.
+- Ancient Guardians: 60 cards processed as a complete set.
+- Ghosts From the Past: 132 cards processed as a complete set.
+- The Lost Art Promotion 2021 D: 1 card processed.
+- The Lost Art Promotion 2021 C: 1 card processed.
+- The Lost Art Promotion 2021 B: 1 card processed.
+- Structure Deck: Freezing Chains: 46 cards processed.
+- OTS Tournament Pack 15 (POR): 36 cards processed.
+- OTS Tournament Pack 15: 26 cards processed.
+- Total processed: 10641 Yu-Gi-Oh cards.
 
 ## Image Availability Review
 
