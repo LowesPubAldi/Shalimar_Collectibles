@@ -1,3 +1,19 @@
+﻿const YGO_VARIANT_ROLLOUT_MAGNIFICENT_MAESTROS_SET = "Magnificent Maestros";
+const YGO_VARIANT_ROLLOUT_MAGNIFICENT_MAESTROS_IDS = new Set([
+    "MAMS-EN001", "MAMS-EN002", "MAMS-EN003", "MAMS-EN004", "MAMS-EN005", "MAMS-EN006", "MAMS-EN007", "MAMS-EN008", "MAMS-EN009", "MAMS-EN010", "MAMS-EN011", "MAMS-EN012", "MAMS-EN013", "MAMS-EN014", "MAMS-EN015", "MAMS-EN016", "MAMS-EN017", "MAMS-EN018", "MAMS-EN120", "MAMS-EN121", "MAMS-EN122", "MAMS-EN123", "MAMS-EN124", "MAMS-EN125"
+]);
+const YGO_VARIANT_ROLLOUT_MAGNIFICENT_MONSTERS_SET = "Magnificent Monsters";
+const YGO_VARIANT_ROLLOUT_MAGNIFICENT_MONSTERS_IDS = new Set([
+    "MAMO-EN001", "MAMO-EN002", "MAMO-EN003", "MAMO-EN004", "MAMO-EN005", "MAMO-EN006", "MAMO-EN007", "MAMO-EN008", "MAMO-EN009", "MAMO-EN010", "MAMO-EN011", "MAMO-EN012", "MAMO-EN013", "MAMO-EN014", "MAMO-EN015", "MAMO-EN016", "MAMO-EN017", "MAMO-EN018", "MAMO-EN019", "MAMO-EN020", "MAMO-EN021", "MAMO-EN022", "MAMO-EN023", "MAMO-EN024", "MAMO-EN025", "MAMO-EN026", "MAMO-EN027", "MAMO-EN028", "MAMO-EN029", "MAMO-EN030", "MAMO-EN031", "MAMO-EN032", "MAMO-EN033", "MAMO-EN034", "MAMO-EN035", "MAMO-EN036", "MAMO-EN037", "MAMO-EN038", "MAMO-EN039", "MAMO-EN040", "MAMO-EN042", "MAMO-EN043", "MAMO-EN044", "MAMO-EN045", "MAMO-EN046", "MAMO-EN047", "MAMO-EN048", "MAMO-EN049", "MAMO-EN050", "MAMO-EN051", "MAMO-EN052", "MAMO-EN053", "MAMO-EN054", "MAMO-EN055", "MAMO-EN056", "MAMO-EN057", "MAMO-EN058", "MAMO-EN059", "MAMO-EN060", "MAMO-EN061", "MAMO-EN062", "MAMO-EN063", "MAMO-EN064", "MAMO-EN065", "MAMO-EN066", "MAMO-EN067", "MAMO-EN068", "MAMO-EN069", "MAMO-EN070", "MAMO-EN071", "MAMO-EN072", "MAMO-EN073", "MAMO-EN074", "MAMO-EN075", "MAMO-EN076", "MAMO-EN077", "MAMO-EN078", "MAMO-EN079", "MAMO-EN080", "MAMO-EN081", "MAMO-EN082", "MAMO-EN083", "MAMO-EN084", "MAMO-EN085", "MAMO-EN086", "MAMO-EN088", "MAMO-EN089", "MAMO-EN090", "MAMO-EN091", "MAMO-EN092", "MAMO-EN093", "MAMO-EN094", "MAMO-EN095", "MAMO-EN096", "MAMO-EN097", "MAMO-EN098", "MAMO-EN099", "MAMO-EN100", "MAMO-EN101", "MAMO-EN102", "MAMO-EN103", "MAMO-EN104", "MAMO-EN105", "MAMO-EN106", "MAMO-EN107", "MAMO-EN109", "MAMO-EN110", "MAMO-EN111", "MAMO-EN112", "MAMO-EN113", "MAMO-EN114", "MAMO-EN115", "MAMO-EN116", "MAMO-EN118", "MAMO-EN119", "MAMO-EN120", "MAMO-EN121", "MAMO-EN122", "MAMO-EN123", "MAMO-EN124", "MAMO-EN125", "MAMO-EN126"
+]);
+const YGO_VARIANT_ROLLOUT_LEGENDARY_ARCV_DECKS_SET = "Legendary Arc-V Decks";
+const YGO_VARIANT_ROLLOUT_LEGENDARY_ARCV_DECKS_IDS = new Set([
+    "LAVD-ENL01", "LAVD-ENL02", "LAVD-ENL03", "LAVD-ENL04", "LAVD-ENL05", "LAVD-ENL06", "LAVD-ENL07", "LAVD-ENL08", "LAVD-ENL09", "LAVD-ENL10", "LAVD-ENL11", "LAVD-ENL12", "LAVD-ENL13", "LAVD-ENL14", "LAVD-ENL15", "LAVD-ENL16", "LAVD-ENL17", "LAVD-ENL18", "LAVD-ENL19", "LAVD-ENL20", "LAVD-ENL21", "LAVD-ENL22", "LAVD-ENL23", "LAVD-ENL24", "LAVD-ENL25", "LAVD-ENL26", "LAVD-ENL27", "LAVD-ENL28", "LAVD-ENL29", "LAVD-ENL30", "LAVD-ENL31", "LAVD-ENL32", "LAVD-ENL33", "LAVD-ENL34", "LAVD-ENL35", "LAVD-ENL36", "LAVD-ENL37", "LAVD-ENL38", "LAVD-ENL39", "LAVD-ENL40", "LAVD-ENL41", "LAVD-ENO01", "LAVD-ENO02", "LAVD-ENO03", "LAVD-ENO04", "LAVD-ENO05", "LAVD-ENO06", "LAVD-ENO07", "LAVD-ENO08", "LAVD-ENO09", "LAVD-ENO10", "LAVD-ENO11", "LAVD-ENO12", "LAVD-ENO13", "LAVD-ENO14", "LAVD-ENO15", "LAVD-ENO16", "LAVD-ENO17", "LAVD-ENO18", "LAVD-ENO19", "LAVD-ENO20", "LAVD-ENO21", "LAVD-ENO22", "LAVD-ENO23", "LAVD-ENO24", "LAVD-ENO25", "LAVD-ENO26", "LAVD-ENO27", "LAVD-ENO28", "LAVD-ENO29", "LAVD-ENO30", "LAVD-ENO31", "LAVD-ENO32", "LAVD-ENO33", "LAVD-ENO34", "LAVD-ENO35", "LAVD-ENO36", "LAVD-ENO37", "LAVD-ENO38", "LAVD-ENS01", "LAVD-ENS02", "LAVD-ENS03", "LAVD-ENS04", "LAVD-ENS05", "LAVD-ENS06", "LAVD-ENS07", "LAVD-ENS08", "LAVD-ENS09", "LAVD-ENS10", "LAVD-ENS11", "LAVD-ENS12", "LAVD-ENS13", "LAVD-ENS14", "LAVD-ENS15", "LAVD-ENS16", "LAVD-ENS17", "LAVD-ENS18", "LAVD-ENS19", "LAVD-ENS20", "LAVD-ENS21", "LAVD-ENS22", "LAVD-ENS23", "LAVD-ENS24", "LAVD-ENS25", "LAVD-ENS26", "LAVD-ENS27", "LAVD-ENS28", "LAVD-ENS29", "LAVD-ENS30", "LAVD-ENS31", "LAVD-ENS32", "LAVD-ENS33", "LAVD-ENS34", "LAVD-ENS35", "LAVD-ENS36"
+]);
+const YGO_VARIANT_ROLLOUT_THANK_YOU_PACK_SET = "THANK YOU PACK";
+const YGO_VARIANT_ROLLOUT_THANK_YOU_PACK_IDS = new Set([
+    "TYP1-EN004", "TYP1-EN008", "TYP1-EN013", "TYP1-EN015", "TYP1-EN018", "TYP1-EN019", "TYP1-EN021", "TYP1-EN024", "TYP1-EN027", "TYP1-EN028", "TYP1-EN029", "TYP1-EN030"
+]);
 const INVENTORY_API_URL = "/api/yyh/cards";
 const INVENTORY_SETS_API_URL = "/api/yyh/sets";
 const YGO_CARDINFO_API_URL = "https://db.ygoprodeck.com/api/v7/cardinfo.php";
@@ -1421,6 +1437,23 @@ const YGO_VARIANT_ROLLOUT_YCS_2018_SET = "Yu-Gi-Oh! Championship Series 2018 pri
 const YGO_VARIANT_ROLLOUT_YCS_2018_IDS = new Set([
     "YCSW-EN011"
 ]);
+const YGO_VARIANT_ROLLOUT_WSJ_ALPHA_JULY_2012_SET = "Weekly Shonen Jump Alpha July 2012 membership promotional card";
+const YGO_VARIANT_ROLLOUT_WSJ_ALPHA_JULY_2012_IDS = new Set([
+    "JUMP-EN061"
+]);
+const YGO_VARIANT_ROLLOUT_RETURN_OF_DUELIST_SET = "Return of the Duelist";
+const YGO_VARIANT_ROLLOUT_RETURN_OF_DUELIST_IDS = new Set(
+    ["REDU-EN000", ...Array.from({ length: 99 }, (_, index) => `REDU-EN${String(index + 1).padStart(3, "0")}`)]
+);
+const YGO_VARIANT_ROLLOUT_RETURN_OF_DUELIST_SNEAK_SET = "Return of the Duelist Sneak Peek Participation Card";
+const YGO_VARIANT_ROLLOUT_RETURN_OF_DUELIST_SNEAK_IDS = new Set([
+    "REDU-ENSP1"
+]);
+const YGO_VARIANT_ROLLOUT_COLLECTIBLE_TINS_2012_WAVE_1_SET = "Collectible Tins 2012 Wave 1";
+const YGO_VARIANT_ROLLOUT_COLLECTIBLE_TINS_2012_WAVE_1_IDS = new Set([
+    "CT09-EN001", "CT09-EN002", "CT09-EN005", "CT09-EN006", "CT09-EN007",
+    "CT09-EN008", "CT09-EN009", "CT09-EN010", "CT09-EN011"
+]);
 const YGO_VARIANT_ROLLOUT_CYBERNETIC_HORIZON_SPECIAL_EDITION_SET = "Cybernetic Horizon Special Edition";
 const YGO_VARIANT_ROLLOUT_CYBERNETIC_HORIZON_SPECIAL_EDITION_IDS = new Set([
     "CYHO-ENSE1", "CYHO-ENSE2", "CYHO-ENSE3", "CYHO-ENSE4"
@@ -1714,6 +1747,14 @@ const YGO_VARIANT_ROLLOUT_CROSSED_SOULS_SNEAK_SET = "Crossed Souls Sneak Peek Pa
 const YGO_VARIANT_ROLLOUT_CROSSED_SOULS_SNEAK_IDS = new Set([
     "CROS-ENSP1"
 ]);
+const YGO_VARIANT_ROLLOUT_STARTER_DECK_KAIBA_RELOADED_SET = "Starter Deck: Kaiba Reloaded";
+const YGO_VARIANT_ROLLOUT_STARTER_DECK_KAIBA_RELOADED_IDS = new Set(
+    Array.from({ length: 48 }, (_, index) => `YSKR-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_STARTER_DECK_YUGI_RELOADED_SET = "Starter Deck: Yugi Reloaded";
+const YGO_VARIANT_ROLLOUT_STARTER_DECK_YUGI_RELOADED_IDS = new Set(
+    Array.from({ length: 46 }, (_, index) => `YSYR-EN${String(index + 1).padStart(3, "0")}`)
+);
 const YGO_VARIANT_ROLLOUT_WSJ_APRIL_2015_SET = "Weekly Shonen Jump April 2015 membership promotional card";
 const YGO_VARIANT_ROLLOUT_WSJ_APRIL_2015_IDS = new Set([
     "JUMP-EN072"
@@ -1833,6 +1874,689 @@ const YGO_VARIANT_ROLLOUT_BATTLE_PACK_3_MONSTER_LEAGUE_IDS = new Set(
 const YGO_VARIANT_ROLLOUT_ASTRAL_PACK_FIVE_SET = "Astral Pack Five";
 const YGO_VARIANT_ROLLOUT_ASTRAL_PACK_FIVE_IDS = new Set(
     Array.from({ length: 26 }, (_, index) => `AP05-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ASTRAL_PACK_THREE_SET = "Astral Pack Three";
+const YGO_VARIANT_ROLLOUT_ASTRAL_PACK_THREE_IDS = new Set(
+    Array.from({ length: 26 }, (_, index) => `AP03-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ZEXAL_VOLUME_3_SET = "Yu-Gi-Oh! ZEXAL Volume 3 promotional card";
+const YGO_VARIANT_ROLLOUT_ZEXAL_VOLUME_3_IDS = new Set([
+    "YZ03-EN001"
+]);
+const YGO_VARIANT_ROLLOUT_LORD_OF_TACHYON_GALAXY_SET = "Lord of the Tachyon Galaxy";
+const YGO_VARIANT_ROLLOUT_LORD_OF_TACHYON_GALAXY_IDS = new Set(
+    ["LTGY-EN000", ...Array.from({ length: 99 }, (_, index) => `LTGY-EN${String(index + 1).padStart(3, "0")}`)]
+);
+const YGO_VARIANT_ROLLOUT_LORD_OF_TACHYON_GALAXY_SNEAK_SET = "Lord of the Tachyon Galaxy Sneak Peek Participation Card";
+const YGO_VARIANT_ROLLOUT_LORD_OF_TACHYON_GALAXY_SNEAK_IDS = new Set([
+    "LTGY-ENSP1"
+]);
+const YGO_VARIANT_ROLLOUT_HIDDEN_ARSENAL_7_SET = "Hidden Arsenal 7: Knight of Stars";
+const YGO_VARIANT_ROLLOUT_HIDDEN_ARSENAL_7_IDS = new Set(
+    Array.from({ length: 70 }, (_, index) => `HA07-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ASTRAL_PACK_TWO_SET = "Astral Pack Two";
+const YGO_VARIANT_ROLLOUT_ASTRAL_PACK_TWO_IDS = new Set(
+    Array.from({ length: 25 }, (_, index) => `AP02-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ABYSS_RISING_SET = "Abyss Rising";
+const YGO_VARIANT_ROLLOUT_ABYSS_RISING_IDS = new Set(
+    ["ABYR-EN000", ...Array.from({ length: 99 }, (_, index) => `ABYR-EN${String(index + 1).padStart(3, "0")}`)]
+);
+const YGO_VARIANT_ROLLOUT_ABYSS_RISING_SNEAK_SET = "Abyss Rising Sneak Peek Participation Card";
+const YGO_VARIANT_ROLLOUT_ABYSS_RISING_SNEAK_IDS = new Set([
+    "ABYR-ENSP1"
+]);
+const YGO_VARIANT_ROLLOUT_COLLECTIBLE_TINS_2012_WAVE_2_SET = "Collectible Tins 2012 Wave 2";
+const YGO_VARIANT_ROLLOUT_COLLECTIBLE_TINS_2012_WAVE_2_IDS = new Set([
+    "CT09-EN003", "CT09-EN004", "CT09-EN012", "CT09-EN013", "CT09-EN014",
+    "CT09-EN015", "CT09-EN016", "CT09-EN017", "CT09-EN018"
+]);
+const YGO_VARIANT_ROLLOUT_HIDDEN_ARSENAL_6_SET = "Hidden Arsenal 6: Omega Xyz";
+const YGO_VARIANT_ROLLOUT_HIDDEN_ARSENAL_6_IDS = new Set(
+    Array.from({ length: 60 }, (_, index) => `HA06-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_SAMURAI_WARLORDS_SET = "Samurai Warlords Structure Deck";
+const YGO_VARIANT_ROLLOUT_SAMURAI_WARLORDS_IDS = new Set(
+    Array.from({ length: 41 }, (_, index) => `SDWA-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_RA_YELLOW_MEGA_PACK_SPECIAL_EDITION_SET = "Ra Yellow Mega Pack: Special Edition";
+const YGO_VARIANT_ROLLOUT_RA_YELLOW_MEGA_PACK_SPECIAL_EDITION_IDS = new Set([
+    "RYMP-ENSE1"
+]);
+const YGO_VARIANT_ROLLOUT_GOLD_SERIES_HAUNTED_MINE_SET = "Gold Series: Haunted Mine";
+const YGO_VARIANT_ROLLOUT_GOLD_SERIES_HAUNTED_MINE_IDS = new Set(
+    Array.from({ length: 55 }, (_, index) => `GLD5-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ZEXAL_VOLUME_1_SET = "Yu-Gi-Oh! ZEXAL Volume 1 promotional card";
+const YGO_VARIANT_ROLLOUT_ZEXAL_VOLUME_1_IDS = new Set([
+    "YZ01-EN001"
+]);
+const YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_14_SET = "Duelist League 14 participation cards";
+const YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_14_IDS = new Set(
+    Array.from({ length: 20 }, (_, index) => `DL14-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_WSJ_ALPHA_SEPTEMBER_2012_SET = "Weekly Shonen Jump Alpha September 2012 membership promotional card";
+const YGO_VARIANT_ROLLOUT_WSJ_ALPHA_SEPTEMBER_2012_IDS = new Set([
+    "JUMP-EN062"
+]);
+const YGO_VARIANT_ROLLOUT_5DS_VOLUME_4_SET = "Yu-Gi-Oh! 5D's Volume 4 promotional card";
+const YGO_VARIANT_ROLLOUT_5DS_VOLUME_4_IDS = new Set([
+    "YF04-EN001"
+]);
+const YGO_VARIANT_ROLLOUT_REALM_OF_SEA_EMPEROR_SET = "Realm of the Sea Emperor Structure Deck";
+const YGO_VARIANT_ROLLOUT_REALM_OF_SEA_EMPEROR_IDS = new Set(
+    Array.from({ length: 39 }, (_, index) => `SDRE-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_5DS_VOLUME_3_SET = "Yu-Gi-Oh! 5D's Volume 3 promotional card";
+const YGO_VARIANT_ROLLOUT_5DS_VOLUME_3_IDS = new Set([
+    "YF03-EN001"
+]);
+const YGO_VARIANT_ROLLOUT_LEGENDARY_COLLECTION_3_YUGIS_WORLD_MEGA_PACK_SET = "Legendary Collection 3: Yugi's World Mega Pack";
+const YGO_VARIANT_ROLLOUT_LEGENDARY_COLLECTION_3_YUGIS_WORLD_MEGA_PACK_IDS = new Set(
+    Array.from({ length: 306 }, (_, index) => `LCYW-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_7_SET = "Duel Terminal 7";
+const YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_7_IDS = new Set([
+    "DT07-EN060"
+]);
+const YGO_VARIANT_ROLLOUT_COSMO_BLAZER_SPECIAL_EDITION_SET = "Cosmo Blazer: Special Edition";
+const YGO_VARIANT_ROLLOUT_COSMO_BLAZER_SPECIAL_EDITION_IDS = new Set([
+    "CBLZ-ENSE1", "CBLZ-ENSE2"
+]);
+const YGO_VARIANT_ROLLOUT_WSJ_MARCH_2013_SET = "Weekly Shonen Jump March 2013 membership promotional card";
+const YGO_VARIANT_ROLLOUT_WSJ_MARCH_2013_IDS = new Set([
+    "JUMP-EN064"
+]);
+const YGO_VARIANT_ROLLOUT_SAGA_BLUE_EYES_STRUCTURE_SET = "Saga of Blue-Eyes White Dragon Structure Deck";
+const YGO_VARIANT_ROLLOUT_SAGA_BLUE_EYES_STRUCTURE_IDS = new Set(
+    Array.from({ length: 40 }, (_, index) => `SDBE-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_YCS_2013_SET = "Yu-Gi-Oh! Championship Series 2013 Prize Card";
+const YGO_VARIANT_ROLLOUT_YCS_2013_IDS = new Set([
+    "YCSW-EN006"
+]);
+const YGO_VARIANT_ROLLOUT_2013_COLLECTIBLE_TINS_WAVE_1_SET = "2013 Collectible Tins Wave 1";
+const YGO_VARIANT_ROLLOUT_2013_COLLECTIBLE_TINS_WAVE_1_IDS = new Set([
+    "CT10-EN001", "CT10-EN002", "CT10-EN005", "CT10-EN006", "CT10-EN007",
+    "CT10-EN008", "CT10-EN009", "CT10-EN010", "CT10-EN011"
+]);
+const YGO_VARIANT_ROLLOUT_JUDGMENT_OF_THE_LIGHT_SET = "Judgment of the Light";
+const YGO_VARIANT_ROLLOUT_JUDGMENT_OF_THE_LIGHT_IDS = new Set(
+    ["JOTL-EN000", ...Array.from({ length: 99 }, (_, index) => `JOTL-EN${String(index + 1).padStart(3, "0")}`)]
+);
+const YGO_VARIANT_ROLLOUT_JUDGMENT_OF_THE_LIGHT_SNEAK_SET = "Judgment of the Light Sneak Peek Participation Card";
+const YGO_VARIANT_ROLLOUT_JUDGMENT_OF_THE_LIGHT_SNEAK_IDS = new Set([
+    "JOTL-ENSP1"
+]);
+const YGO_VARIANT_ROLLOUT_NUMBER_HUNTERS_SET = "Number Hunters";
+const YGO_VARIANT_ROLLOUT_NUMBER_HUNTERS_IDS = new Set(
+    Array.from({ length: 60 }, (_, index) => `NUMH-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_WSJ_JULY_2013_SET = "Weekly Shonen Jump July 2013 membership promotional card";
+const YGO_VARIANT_ROLLOUT_WSJ_JULY_2013_IDS = new Set([
+    "JUMP-EN065"
+]);
+const YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_16_SET = "Duelist League 16 participation cards";
+const YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_16_IDS = new Set(
+    Array.from({ length: 20 }, (_, index) => `DL16-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_BATTLE_PACK_2_SET = "Battle Pack 2: War of the Giants";
+const YGO_VARIANT_ROLLOUT_BATTLE_PACK_2_IDS = new Set(
+    Array.from({ length: 215 }, (_, index) => `BP02-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_SUPER_STARTER_V_FOR_VICTORY_SET = "Super Starter: V for Victory";
+const YGO_VARIANT_ROLLOUT_SUPER_STARTER_V_FOR_VICTORY_IDS = new Set(
+    Array.from({ length: 42 }, (_, index) => `YS13-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_SUPER_STARTER_POWER_UP_PACK_SET = "Super Starter Power-Up Pack";
+const YGO_VARIANT_ROLLOUT_SUPER_STARTER_POWER_UP_PACK_IDS = new Set(
+    Array.from({ length: 15 }, (_, index) => `YS13-ENV${String(index + 1).padStart(2, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_SPACE_TIME_SHOWDOWN_POWER_UP_PACK_SET = "Space-Time Showdown Power-Up Pack";
+const YGO_VARIANT_ROLLOUT_SPACE_TIME_SHOWDOWN_POWER_UP_PACK_IDS = new Set(
+    Array.from({ length: 15 }, (_, index) => `YS14-ENA${String(index + 1).padStart(2, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_SUPER_STARTER_SPACE_TIME_SHOWDOWN_SET = "Super Starter: Space-Time Showdown";
+const YGO_VARIANT_ROLLOUT_SUPER_STARTER_SPACE_TIME_SHOWDOWN_IDS = new Set(
+    Array.from({ length: 40 }, (_, index) => `YS14-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ZEXAL_VOLUME_5_SET = "Yu-Gi-Oh! ZEXAL Volume 5 promotional card";
+const YGO_VARIANT_ROLLOUT_ZEXAL_VOLUME_5_IDS = new Set([
+    "YZ05-EN001"
+]);
+const YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_18_SET = "Duelist League 18 participation cards";
+const YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_18_IDS = new Set(
+    Array.from({ length: 20 }, (_, index) => `DL18-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_REALM_OF_LIGHT_SET = "Realm of Light Structure Deck";
+const YGO_VARIANT_ROLLOUT_REALM_OF_LIGHT_IDS = new Set(
+    Array.from({ length: 36 }, (_, index) => `SDLI-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ZEXAL_WORLD_DUEL_CARNIVAL_SET = "Yu-Gi-Oh! ZEXAL World Duel Carnival promotional cards";
+const YGO_VARIANT_ROLLOUT_ZEXAL_WORLD_DUEL_CARNIVAL_IDS = new Set(
+    Array.from({ length: 3 }, (_, index) => `ZDC1-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_PRIMAL_ORIGIN_DELUXE_EDITION_SET = "Primal Origin: Deluxe Edition";
+const YGO_VARIANT_ROLLOUT_PRIMAL_ORIGIN_DELUXE_EDITION_IDS = new Set(
+    Array.from({ length: 4 }, (_, index) => `PRIO-ENDE${index + 1}`)
+);
+const YGO_VARIANT_ROLLOUT_PRIMAL_ORIGIN_SET = "Primal Origin";
+const YGO_VARIANT_ROLLOUT_PRIMAL_ORIGIN_IDS = new Set(
+    ["PRIO-EN000", ...Array.from({ length: 99 }, (_, index) => `PRIO-EN${String(index + 1).padStart(3, "0")}`)]
+);
+const YGO_VARIANT_ROLLOUT_PRIMAL_ORIGIN_SNEAK_SET = "Primal Origin Sneak Peek Participation Card";
+const YGO_VARIANT_ROLLOUT_PRIMAL_ORIGIN_SNEAK_IDS = new Set([
+    "PRIO-ENSP1"
+]);
+const YGO_VARIANT_ROLLOUT_DRAGONS_OF_LEGEND_SET = "Dragons of Legend";
+const YGO_VARIANT_ROLLOUT_DRAGONS_OF_LEGEND_IDS = new Set(
+    Array.from({ length: 51 }, (_, index) => `DRLG-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_FIRE_FISTS_SPECIAL_EDITION_SET = "Fire Fists: Special Edition";
+const YGO_VARIANT_ROLLOUT_FIRE_FISTS_SPECIAL_EDITION_IDS = new Set([
+    "FFSE-EN001"
+]);
+const YGO_VARIANT_ROLLOUT_PREMIUM_GOLD_SET = "Premium Gold";
+const YGO_VARIANT_ROLLOUT_PREMIUM_GOLD_IDS = new Set(
+    Array.from({ length: 90 }, (_, index) => `PGLD-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_WSJ_MARCH_2014_SET = "Weekly Shonen Jump March 2014 membership promotional card";
+const YGO_VARIANT_ROLLOUT_WSJ_MARCH_2014_IDS = new Set([
+    "JUMP-EN068"
+]);
+const YGO_VARIANT_ROLLOUT_ZEXAL_COLLECTION_TIN_SET = "Zexal Collection Tin";
+const YGO_VARIANT_ROLLOUT_ZEXAL_COLLECTION_TIN_IDS = new Set([
+    ...Array.from({ length: 21 }, (_, index) => `ZTIN-EN${String(index + 1).padStart(3, "0")}`),
+    "ZTIN-ENV01", "ZTIN-ENV02", "ZTIN-ENV03"
+]);
+const YGO_VARIANT_ROLLOUT_STAR_PACK_2013_SET = "Star Pack 2013";
+const YGO_VARIANT_ROLLOUT_STAR_PACK_2013_IDS = new Set(
+    Array.from({ length: 50 }, (_, index) => `SP13-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_7A_SET = "Duel Terminal 7a";
+const YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_7A_IDS = new Set([
+    ...Array.from({ length: 50 }, (_, index) => `DT07-EN${String(index + 1).padStart(3, "0")}`), "DT07-EN069"
+]);
+const YGO_VARIANT_ROLLOUT_TURBO_PACK_BOOSTER_EIGHT_SET = "Turbo Pack: Booster Eight";
+const YGO_VARIANT_ROLLOUT_TURBO_PACK_BOOSTER_EIGHT_IDS = new Set(
+    ["TU08-EN000", ...Array.from({ length: 20 }, (_, index) => `TU08-EN${String(index + 1).padStart(3, "0")}`)]
+);
+const YGO_VARIANT_ROLLOUT_WSJ_ALPHA_APRIL_2012_SET = "Weekly Shonen Jump Alpha April 2012 membership promotional card";
+const YGO_VARIANT_ROLLOUT_WSJ_ALPHA_APRIL_2012_IDS = new Set([
+    "JUMP-EN060"
+]);
+const YGO_VARIANT_ROLLOUT_BATTLE_PACK_TOURNAMENT_PRIZE_SET = "Battle Pack Tournament Prize Cards";
+const YGO_VARIANT_ROLLOUT_BATTLE_PACK_TOURNAMENT_PRIZE_IDS = new Set(
+    Array.from({ length: 20 }, (_, index) => `BATT-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_BATTLE_PACK_EPIC_DAWN_SET = "Battle Pack: Epic Dawn";
+const YGO_VARIANT_ROLLOUT_BATTLE_PACK_EPIC_DAWN_IDS = new Set(
+    Array.from({ length: 220 }, (_, index) => `BP01-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_GALACTIC_OVERLORD_SET = "Galactic Overlord";
+const YGO_VARIANT_ROLLOUT_GALACTIC_OVERLORD_IDS = new Set(
+    ["GAOV-EN000", ...Array.from({ length: 99 }, (_, index) => `GAOV-EN${String(index + 1).padStart(3, "0")}`)]
+);
+const YGO_VARIANT_ROLLOUT_GALACTIC_OVERLORD_SNEAK_SET = "Galactic Overlord Sneak Peek Participation Card";
+const YGO_VARIANT_ROLLOUT_GALACTIC_OVERLORD_SNEAK_IDS = new Set([
+    "GAOV-ENSP1"
+]);
+const YGO_VARIANT_ROLLOUT_STARTER_DECK_XYZ_SYMPHONY_SET = "Starter Deck: Xyz Symphony";
+const YGO_VARIANT_ROLLOUT_STARTER_DECK_XYZ_SYMPHONY_IDS = new Set(
+    Array.from({ length: 43 }, (_, index) => `YS12-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_10_ISSUE_4_SET = "Shonen Jump Vol. 10, Issue 4 promotional card";
+const YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_10_ISSUE_4_IDS = new Set([
+    "JUMP-EN059"
+]);
+const YGO_VARIANT_ROLLOUT_HIDDEN_ARSENAL_5_SPECIAL_EDITION_SET = "Hidden Arsenal 5: Steelswarm Invasion: Special Edition";
+const YGO_VARIANT_ROLLOUT_HIDDEN_ARSENAL_5_SPECIAL_EDITION_IDS = new Set([
+    "H5SE-EN001", "H5SE-EN002"
+]);
+const YGO_VARIANT_ROLLOUT_PREMIUM_COLLECTION_TIN_SET = "Premium Collection Tin";
+const YGO_VARIANT_ROLLOUT_PREMIUM_COLLECTION_TIN_IDS = new Set([
+    ...Array.from({ length: 23 }, (_, index) => `PRC1-EN${String(index + 1).padStart(3, "0")}`),
+    "PRC1-ENV01", "PRC1-ENV02"
+]);
+const YGO_VARIANT_ROLLOUT_ORDER_OF_CHAOS_SPECIAL_EDITION_SET = "Order of Chaos: Special Edition";
+const YGO_VARIANT_ROLLOUT_ORDER_OF_CHAOS_SPECIAL_EDITION_IDS = new Set([
+    "ORCS-ENSE1", "ORCS-ENSE2"
+]);
+const YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_10_ISSUE_3_SET = "Shonen Jump Vol. 10, Issue 3 promotional card";
+const YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_10_ISSUE_3_IDS = new Set([
+    "JUMP-EN058"
+]);
+const YGO_VARIANT_ROLLOUT_RA_YELLOW_MEGA_PACK_SET = "Ra Yellow Mega Pack";
+const YGO_VARIANT_ROLLOUT_RA_YELLOW_MEGA_PACK_IDS = new Set(
+    Array.from({ length: 113 }, (_, index) => `RYMP-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_5DS_VOLUME_2_SET = "Yu-Gi-Oh! 5D's Volume 2 promotional card";
+const YGO_VARIANT_ROLLOUT_5DS_VOLUME_2_IDS = new Set([
+    "YF02-EN001"
+]);
+const YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_6A_SET = "Duel Terminal 6a";
+const YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_6A_IDS = new Set(
+    Array.from({ length: 50 }, (_, index) => `DT06-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_6_SET = "Duel Terminal 6";
+const YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_6_IDS = new Set([
+    "DT06-EN052", "DT06-EN081"
+]);
+const YGO_VARIANT_ROLLOUT_DRAGONS_COLLIDE_SET = "Dragons Collide Structure Deck";
+const YGO_VARIANT_ROLLOUT_DRAGONS_COLLIDE_IDS = new Set(
+    Array.from({ length: 40 }, (_, index) => `SDDC-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ORDER_OF_CHAOS_SET = "Order of Chaos";
+const YGO_VARIANT_ROLLOUT_ORDER_OF_CHAOS_IDS = new Set(
+    ["ORCS-EN000", ...Array.from({ length: 99 }, (_, index) => `ORCS-EN${String(index + 1).padStart(3, "0")}`)]
+);
+const YGO_VARIANT_ROLLOUT_ORDER_OF_CHAOS_SNEAK_SET = "Order of Chaos Sneak Peek Participation Card";
+const YGO_VARIANT_ROLLOUT_ORDER_OF_CHAOS_SNEAK_IDS = new Set([
+    "ORCS-ENSP1"
+]);
+const YGO_VARIANT_ROLLOUT_GX_VOLUME_8_SET = "Yu-Gi-Oh! GX Volume 8 promotional card";
+const YGO_VARIANT_ROLLOUT_GX_VOLUME_8_IDS = new Set([
+    "YG08-EN001"
+]);
+const YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_10_ISSUE_1_SET = "Shonen Jump Vol. 10, Issue 1 promotional card";
+const YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_10_ISSUE_1_IDS = new Set([
+    "JUMP-EN057"
+]);
+const YGO_VARIANT_ROLLOUT_TURBO_PACK_BOOSTER_SEVEN_SET = "Turbo Pack: Booster Seven";
+const YGO_VARIANT_ROLLOUT_TURBO_PACK_BOOSTER_SEVEN_IDS = new Set(
+    ["TU07-EN000", ...Array.from({ length: 20 }, (_, index) => `TU07-EN${String(index + 1).padStart(3, "0")}`)]
+);
+const YGO_VARIANT_ROLLOUT_SAMURAI_ASSAULT_SET = "Samurai Assault";
+const YGO_VARIANT_ROLLOUT_SAMURAI_ASSAULT_IDS = new Set([
+    "SAAS-EN001"
+]);
+const YGO_VARIANT_ROLLOUT_HIDDEN_ARSENAL_5_SET = "Hidden Arsenal 5: Steelswarm Invasion";
+const YGO_VARIANT_ROLLOUT_HIDDEN_ARSENAL_5_IDS = new Set(
+    Array.from({ length: 60 }, (_, index) => `HA05-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_PHOTON_SHOCKWAVE_SET = "Photon Shockwave";
+const YGO_VARIANT_ROLLOUT_PHOTON_SHOCKWAVE_IDS = new Set(
+    ["PHSW-EN000", ...Array.from({ length: 99 }, (_, index) => `PHSW-EN${String(index + 1).padStart(3, "0")}`)]
+);
+const YGO_VARIANT_ROLLOUT_PHOTON_SHOCKWAVE_SNEAK_SET = "Photon Shockwave Sneak Peek Participation Card";
+const YGO_VARIANT_ROLLOUT_PHOTON_SHOCKWAVE_SNEAK_IDS = new Set([
+    "PHSW-ENSP1"
+]);
+const YGO_VARIANT_ROLLOUT_COLLECTIBLE_TINS_2011_WAVE_2_SET = "Collectible Tins 2011 Wave 2";
+const YGO_VARIANT_ROLLOUT_COLLECTIBLE_TINS_2011_WAVE_2_IDS = new Set([
+    "CT08-EN003", "CT08-EN004", "CT08-EN012", "CT08-EN013", "CT08-EN014",
+    "CT08-EN015", "CT08-EN016", "CT08-EN017", "CT08-EN018"
+]);
+const YGO_VARIANT_ROLLOUT_GATES_OF_UNDERWORLD_SET = "Gates of the Underworld Structure Deck";
+const YGO_VARIANT_ROLLOUT_GATES_OF_UNDERWORLD_IDS = new Set(
+    Array.from({ length: 39 }, (_, index) => `SDGU-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_LEGENDARY_COLLECTION_2_SET = "Legendary Collection 2: The Duel Academy Years";
+const YGO_VARIANT_ROLLOUT_LEGENDARY_COLLECTION_2_IDS = new Set(
+    Array.from({ length: 13 }, (_, index) => `LC02-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_LEGENDARY_COLLECTION_2_MEGA_PACK_SET = "Legendary Collection 2: The Duel Academy Years Mega Pack";
+const YGO_VARIANT_ROLLOUT_LEGENDARY_COLLECTION_2_MEGA_PACK_IDS = new Set(
+    Array.from({ length: 266 }, (_, index) => `LCGX-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_5B_SET = "Duel Terminal 5b";
+const YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_5B_IDS = new Set(
+    Array.from({ length: 50 }, (_, index) => `DT05-EN${String(index + 51).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_GENERATION_FORCE_SPECIAL_EDITION_SET = "Generation Force: Special Edition";
+const YGO_VARIANT_ROLLOUT_GENERATION_FORCE_SPECIAL_EDITION_IDS = new Set([
+    "GENF-ENSE1", "GENF-ENSE2"
+]);
+const YGO_VARIANT_ROLLOUT_GX_VOLUME_7_SET = "Yu-Gi-Oh! GX Volume 7 promotional card";
+const YGO_VARIANT_ROLLOUT_GX_VOLUME_7_IDS = new Set([
+    "YG07-EN001"
+]);
+const YGO_VARIANT_ROLLOUT_GENERATION_FORCE_SET = "Generation Force";
+const YGO_VARIANT_ROLLOUT_GENERATION_FORCE_IDS = new Set(
+    ["GENF-EN000", ...Array.from({ length: 99 }, (_, index) => `GENF-EN${String(index + 1).padStart(3, "0")}`)]
+);
+const YGO_VARIANT_ROLLOUT_GX_VOLUME_9_SET = "Yu-Gi-Oh! GX Volume 9 promotional card";
+const YGO_VARIANT_ROLLOUT_GX_VOLUME_9_IDS = new Set([
+    "YG09-EN001"
+]);
+const YGO_VARIANT_ROLLOUT_YCS_2011_SET = "Yu-Gi-Oh! Championship Series 2011 Prize Card";
+const YGO_VARIANT_ROLLOUT_YCS_2011_IDS = new Set([
+    "YCSW-EN004"
+]);
+const YGO_VARIANT_ROLLOUT_GENERATION_FORCE_SNEAK_SET = "Generation Force Sneak Peek Participation Card";
+const YGO_VARIANT_ROLLOUT_GENERATION_FORCE_SNEAK_IDS = new Set([
+    "GENF-ENSP1"
+]);
+const YGO_VARIANT_ROLLOUT_TURBO_PACK_BOOSTER_SIX_SET = "Turbo Pack: Booster Six";
+const YGO_VARIANT_ROLLOUT_TURBO_PACK_BOOSTER_SIX_IDS = new Set(
+    ["TU06-EN000", ...Array.from({ length: 20 }, (_, index) => `TU06-EN${String(index + 1).padStart(3, "0")}`)]
+);
+const YGO_VARIANT_ROLLOUT_WORLD_CHAMPIONSHIP_2011_CARD_PACK_SET = "World Championship 2011 Card Pack";
+const YGO_VARIANT_ROLLOUT_WORLD_CHAMPIONSHIP_2011_CARD_PACK_IDS = new Set(
+    Array.from({ length: 20 }, (_, index) => `WP11-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_3D_BONDS_BEYOND_TIME_SET = "Yu-Gi-Oh! 3D Bonds Beyond Time DVD promotional card";
+const YGO_VARIANT_ROLLOUT_3D_BONDS_BEYOND_TIME_IDS = new Set([
+    "MOV2-EN001"
+]);
+const YGO_VARIANT_ROLLOUT_HIDDEN_ARSENAL_SPECIAL_EDITION_SET = "Hidden Arsenal: Special Edition";
+const YGO_VARIANT_ROLLOUT_HIDDEN_ARSENAL_SPECIAL_EDITION_IDS = new Set([
+    "HASE-EN001", "HASE-EN002"
+]);
+const YGO_VARIANT_ROLLOUT_STARTER_DECK_DAWN_XYZ_SET = "Starter Deck: Dawn of the Xyz";
+const YGO_VARIANT_ROLLOUT_STARTER_DECK_DAWN_XYZ_IDS = new Set(
+    Array.from({ length: 43 }, (_, index) => `YS11-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_5DS_VOLUME_1_SET = "Yu-Gi-Oh! 5D's Volume 1 promotional card";
+const YGO_VARIANT_ROLLOUT_5DS_VOLUME_1_IDS = new Set([
+    "YF01-EN001"
+]);
+const YGO_VARIANT_ROLLOUT_GOLD_SERIES_4_SET = "Gold Series 4: Pyramids Edition";
+const YGO_VARIANT_ROLLOUT_GOLD_SERIES_4_IDS = new Set(
+    Array.from({ length: 50 }, (_, index) => `GLD4-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_LOST_SANCTUARY_SET = "Lost Sanctuary Structure Deck";
+const YGO_VARIANT_ROLLOUT_LOST_SANCTUARY_IDS = new Set(
+    Array.from({ length: 38 }, (_, index) => `SDLS-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_3_SET = "Duelist League 3 participation cards";
+const YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_3_IDS = new Set([
+    ...Array.from({ length: 3 }, (_, index) => `DL12-EN${String(index + 1).padStart(3, "0")}`),
+    ...Array.from({ length: 16 }, (_, index) => `DL12-EN${String(index + 5).padStart(3, "0")}`)
+]);
+const YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_9_ISSUE_8_SET = "Shonen Jump Vol. 9, Issue 8 promotional card";
+const YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_9_ISSUE_8_IDS = new Set([
+    "JUMP-EN053"
+]);
+const YGO_VARIANT_ROLLOUT_COLLECTIBLE_TINS_2011_WAVE_1_SET = "Collectible Tins 2011 Wave 1";
+const YGO_VARIANT_ROLLOUT_COLLECTIBLE_TINS_2011_WAVE_1_IDS = new Set([
+    "CT08-EN001", "CT08-EN002", "CT08-EN005", "CT08-EN006", "CT08-EN007",
+    "CT08-EN008", "CT08-EN009", "CT08-EN010", "CT08-EN011"
+]);
+const YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_9_ISSUE_10_SET = "Shonen Jump Vol. 9, Issue 10 promotional card";
+const YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_9_ISSUE_10_IDS = new Set([
+    "JUMP-EN056"
+]);
+const YGO_VARIANT_ROLLOUT_SHONEN_JUMP_DECEMBER_2011_SET = "Shonen Jump December 2011 subscription bonus";
+const YGO_VARIANT_ROLLOUT_SHONEN_JUMP_DECEMBER_2011_IDS = new Set([
+    "JUMP-EN054", "JUMP-EN055"
+]);
+const YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_13_SET = "Duelist League 13 participation cards";
+const YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_13_IDS = new Set(
+    Array.from({ length: 20 }, (_, index) => `DL13-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_9_ISSUE_6_SET = "Shonen Jump Vol. 9, Issue 6 promotional card";
+const YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_9_ISSUE_6_IDS = new Set([
+    "JUMP-EN052"
+]);
+const YGO_VARIANT_ROLLOUT_SHONEN_JUMP_JUNE_JULY_2011_SET = "Shonen Jump June/July 2011 subscription bonus";
+const YGO_VARIANT_ROLLOUT_SHONEN_JUMP_JUNE_JULY_2011_IDS = new Set([
+    "JUMP-EN050", "JUMP-EN051"
+]);
+const YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_5_SET = "Duel Terminal 5";
+const YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_5_IDS = new Set([
+    "DT05-EN024", "DT05-EN032"
+]);
+const YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_5A_SET = "Duel Terminal 5a";
+const YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_5A_IDS = new Set(
+    Array.from({ length: 50 }, (_, index) => `DT05-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_DUELIST_PACK_CROW_SET = "Duelist Pack: Crow";
+const YGO_VARIANT_ROLLOUT_DUELIST_PACK_CROW_IDS = new Set(
+    Array.from({ length: 30 }, (_, index) => `DP11-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_WC11_PROMO_SET = "Yu-Gi-Oh! 5D's World Championship 2011: Over the Nexus promotional cards";
+const YGO_VARIANT_ROLLOUT_WC11_PROMO_IDS = new Set([
+    "WC11-EN001", "WC11-EN002", "WC11-EN003"
+]);
+const YGO_VARIANT_ROLLOUT_EXTREME_VICTORY_SET = "Extreme Victory";
+const YGO_VARIANT_ROLLOUT_EXTREME_VICTORY_IDS = new Set(
+    Array.from({ length: 100 }, (_, index) => `EXVC-EN${String(index).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_WQ11_NATIONALS_SET = "Yu-Gi-Oh! World Championship Qualifier National Championships 2011 prize cards";
+const YGO_VARIANT_ROLLOUT_WQ11_NATIONALS_IDS = new Set([
+    "WQ11-EN001", "WQ11-EN002", "WQ11-EN003"
+]);
+const YGO_VARIANT_ROLLOUT_EXVC_SNEAK_PEEK_SET = "Extreme Victory Sneak Peek Participation Card";
+const YGO_VARIANT_ROLLOUT_EXVC_SNEAK_PEEK_IDS = new Set([
+    "EXVC-ENSP1"
+]);
+const YGO_VARIANT_ROLLOUT_HIDDEN_ARSENAL_4_SET = "Hidden Arsenal 4: Trishula's Triumph";
+const YGO_VARIANT_ROLLOUT_HIDDEN_ARSENAL_4_IDS = new Set(
+    Array.from({ length: 60 }, (_, index) => `HA04-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_TURBO_PACK_BOOSTER_FIVE_SET = "Turbo Pack: Booster Five";
+const YGO_VARIANT_ROLLOUT_TURBO_PACK_BOOSTER_FIVE_IDS = new Set(
+    Array.from({ length: 21 }, (_, index) => `TU05-EN${String(index).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_9_ISSUE_4_SET = "Shonen Jump Vol. 9, Issue 4 promotional card";
+const YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_9_ISSUE_4_IDS = new Set([
+    "JUMP-EN049"
+]);
+const YGO_VARIANT_ROLLOUT_DUELIST_PACK_COLLECTION_TIN_2011_SET = "Duelist Pack Collection Tin 2011";
+const YGO_VARIANT_ROLLOUT_DUELIST_PACK_COLLECTION_TIN_2011_IDS = new Set([
+    "DPC5-EN001", "DPC5-EN002", "DPC5-EN003", "DPCT-EN005"
+]);
+const YGO_VARIANT_ROLLOUT_STORM_OF_RAGNAROK_SPECIAL_EDITION_SET = "Storm of Ragnarok: Special Edition";
+const YGO_VARIANT_ROLLOUT_STORM_OF_RAGNAROK_SPECIAL_EDITION_IDS = new Set([
+    "STOR-ENSE1", "STOR-ENSE2"
+]);
+const YGO_VARIANT_ROLLOUT_DRAGUNITY_LEGION_STRUCTURE_DECK_SET = "Dragunity Legion Structure Deck";
+const YGO_VARIANT_ROLLOUT_DRAGUNITY_LEGION_STRUCTURE_DECK_IDS = new Set(
+    Array.from({ length: 39 }, (_, index) => `SDDL-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_9_ISSUE_3_SET = "Shonen Jump Vol. 9, Issue 3 promotional card";
+const YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_9_ISSUE_3_IDS = new Set([
+    "JUMP-EN048"
+]);
+const YGO_VARIANT_ROLLOUT_GX_VOL_6_SET = "Yu-Gi-Oh! GX Volume 6 promotional card";
+const YGO_VARIANT_ROLLOUT_GX_VOL_6_IDS = new Set([
+    "YG06-EN001"
+]);
+const YGO_VARIANT_ROLLOUT_3D_BONDS_THEATER_DIST_SET = "Yu-Gi-Oh! 3D Bonds Beyond Time Theater distribution card";
+const YGO_VARIANT_ROLLOUT_3D_BONDS_THEATER_DIST_IDS = new Set([
+    "MOV2-EN001"
+]);
+const YGO_VARIANT_ROLLOUT_3D_BONDS_MOVIE_PACK_SET = "Yu-Gi-Oh! 3D Bonds Beyond Time Movie Pack";
+const YGO_VARIANT_ROLLOUT_3D_BONDS_MOVIE_PACK_IDS = new Set(
+    Array.from({ length: 9 }, (_, index) => `YMP1-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_DEMO_PACK_SET = "Demo Pack";
+const YGO_VARIANT_ROLLOUT_DEMO_PACK_IDS = new Set(
+    Array.from({ length: 20 }, (_, index) => `DEM1-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_STORM_OF_RAGNAROK_SET = "Storm of Ragnarok";
+const YGO_VARIANT_ROLLOUT_STORM_OF_RAGNAROK_IDS = new Set(
+    Array.from({ length: 100 }, (_, index) => `STOR-EN${String(index).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_STOR_SNEAK_PEEK_SET = "Storm of Ragnarok Sneak Peek Participation Card";
+const YGO_VARIANT_ROLLOUT_STOR_SNEAK_PEEK_IDS = new Set([
+    "STOR-ENSP1"
+]);
+const YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_4_SET = "Duel Terminal 4";
+const YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_4_IDS = new Set(
+    Array.from({ length: 100 }, (_, index) => `DT04-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_DUELIST_PACK_YUSEI_3_SET = "Duelist Pack: Yusei 3";
+const YGO_VARIANT_ROLLOUT_DUELIST_PACK_YUSEI_3_IDS = new Set(
+    Array.from({ length: 30 }, (_, index) => `DP10-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_9_ISSUE_1_SET = "Shonen Jump Vol. 9, Issue 1 promotional card";
+const YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_9_ISSUE_1_IDS = new Set([
+    "JUMP-EN045"
+]);
+const YGO_VARIANT_ROLLOUT_SHONEN_JUMP_SCHOLASTIC_EDITION_SET = "Shonen Jump Scholastic Edition Vol. 9, Issue 1 promotional card";
+const YGO_VARIANT_ROLLOUT_SHONEN_JUMP_SCHOLASTIC_EDITION_IDS = new Set([
+    "JMPS-EN001"
+]);
+const YGO_VARIANT_ROLLOUT_YDT1_PROMO_SET = "Yu-Gi-Oh! 5D's Duel Transer promotional cards";
+const YGO_VARIANT_ROLLOUT_YDT1_PROMO_IDS = new Set([
+    "YDT1-EN001", "YDT1-EN002", "YDT1-EN003"
+]);
+const YGO_VARIANT_ROLLOUT_HIDDEN_ARSENAL_3_SET = "Hidden Arsenal 3";
+const YGO_VARIANT_ROLLOUT_HIDDEN_ARSENAL_3_IDS = new Set(
+    Array.from({ length: 60 }, (_, index) => `HA03-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_SHONEN_JUMP_DECEMBER_2010_SET = "Shonen Jump December 2010 subscription bonus";
+const YGO_VARIANT_ROLLOUT_SHONEN_JUMP_DECEMBER_2010_IDS = new Set([
+    "JUMP-EN046", "JUMP-EN047"
+]);
+const YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_2_SET = "Duelist League 2 participation cards";
+const YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_2_IDS = new Set([
+    "DL11-EN001", "DL11-EN002", "DL11-EN003", "DL11-EN004", "DL11-EN005", "DL11-EN006", "DL11-EN007", "DL11-EN008", "DL11-EN009", "DL11-EN010", "DL11-EN011", "DL11-EN012", "DL11-EN013", "DL11-EN014", "DL11-EN015", "DL11-EN016", "DL11-EN017", "DL11-EN018", "DL11-EN019", "DL11-EN020", "DL12-EN004"
+]);
+const YGO_VARIANT_ROLLOUT_X_SABER_POWER_UP_SET = "X-Saber Power-Up";
+const YGO_VARIANT_ROLLOUT_X_SABER_POWER_UP_IDS = new Set([
+    "XSPU-EN001"
+]);
+const YGO_VARIANT_ROLLOUT_TURBO_PACK_BOOSTER_FOUR_SET = "Turbo Pack: Booster Four";
+const YGO_VARIANT_ROLLOUT_TURBO_PACK_BOOSTER_FOUR_IDS = new Set(
+    Array.from({ length: 21 }, (_, index) => `TU04-EN${String(index).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_6B_SET = "Duel Terminal 6b";
+const YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_6B_IDS = new Set(
+    Array.from({ length: 50 }, (_, index) => `DT06-EN${String(index + 51).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_LEGENDARY_COLLECTION_3_YUGIS_WORLD_SET = "Legendary Collection 3: Yugi's World";
+const YGO_VARIANT_ROLLOUT_LEGENDARY_COLLECTION_3_YUGIS_WORLD_IDS = new Set(
+    Array.from({ length: 4 }, (_, index) => `LC03-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_RETURN_OF_DUELIST_SPECIAL_EDITION_SET = "Return of the Duelist: Special Edition";
+const YGO_VARIANT_ROLLOUT_RETURN_OF_DUELIST_SPECIAL_EDITION_IDS = new Set([
+    "REDU-ENSE1", "REDU-ENSE2"
+]);
+const YGO_VARIANT_ROLLOUT_YCS_2012_SET = "Yu-Gi-Oh! Championship Series 2012 Prize Card";
+const YGO_VARIANT_ROLLOUT_YCS_2012_IDS = new Set([
+    "YCSW-EN005"
+]);
+const YGO_VARIANT_ROLLOUT_LEGACY_OF_VALIANT_DELUXE_EDITION_SET = "Legacy of the Valiant: Deluxe Edition";
+const YGO_VARIANT_ROLLOUT_LEGACY_OF_VALIANT_DELUXE_EDITION_IDS = new Set([
+    "LVAL-ENDE1", "LVAL-ENDE2", "LVAL-ENDE3", "LVAL-ENDE4"
+]);
+const YGO_VARIANT_ROLLOUT_STAR_PACK_2014_SET = "Star Pack 2014";
+const YGO_VARIANT_ROLLOUT_STAR_PACK_2014_IDS = new Set(
+    Array.from({ length: 50 }, (_, index) => `SP14-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ONSLAUGHT_FIRE_KINGS_SET = "Onslaught of the Fire Kings Structure Deck";
+const YGO_VARIANT_ROLLOUT_ONSLAUGHT_FIRE_KINGS_IDS = new Set(
+    Array.from({ length: 39 }, (_, index) => `SDOK-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_7B_SET = "Duel Terminal 7b";
+const YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_7B_IDS = new Set(
+    [
+        ...Array.from({ length: 18 }, (_, index) => `DT07-EN${String(index + 51).padStart(3, "0")}`),
+        ...Array.from({ length: 31 }, (_, index) => `DT07-EN${String(index + 70).padStart(3, "0")}`)
+    ]
+);
+const YGO_VARIANT_ROLLOUT_ASTRAL_PACK_FOUR_SET = "Astral Pack Four";
+const YGO_VARIANT_ROLLOUT_ASTRAL_PACK_FOUR_IDS = new Set(
+    Array.from({ length: 26 }, (_, index) => `AP04-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_COSMO_BLAZER_SET = "Cosmo Blazer";
+const YGO_VARIANT_ROLLOUT_COSMO_BLAZER_IDS = new Set(
+    ["CBLZ-EN000", ...Array.from({ length: 99 }, (_, index) => `CBLZ-EN${String(index + 1).padStart(3, "0")}`)]
+);
+const YGO_VARIANT_ROLLOUT_COSMO_BLAZER_SNEAK_SET = "Cosmo Blazer Sneak Peek Participation Card";
+const YGO_VARIANT_ROLLOUT_COSMO_BLAZER_SNEAK_IDS = new Set([
+    "CBLZ-ENSP1"
+]);
+const YGO_VARIANT_ROLLOUT_COLLECTIBLE_TINS_2012_WAVE_2_5_SET = "Collectible Tins 2012 Wave 2.5";
+const YGO_VARIANT_ROLLOUT_COLLECTIBLE_TINS_2012_WAVE_2_5_IDS = new Set(
+    Array.from({ length: 5 }, (_, index) => `CT09-EN${String(index + 19).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_WSJ_ALPHA_DECEMBER_2012_SET = "Weekly Shonen Jump Alpha December 2012 membership promotional card";
+const YGO_VARIANT_ROLLOUT_WSJ_ALPHA_DECEMBER_2012_IDS = new Set([
+    "JUMP-EN063"
+]);
+const YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_15_SET = "Duelist League 15 participation cards";
+const YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_15_IDS = new Set(
+    Array.from({ length: 20 }, (_, index) => `DL15-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ABYSS_RISING_SPECIAL_EDITION_SET = "Abyss Rising: Special Edition";
+const YGO_VARIANT_ROLLOUT_ABYSS_RISING_SPECIAL_EDITION_IDS = new Set([
+    "ABYR-ENSE1", "ABYR-ENSE2"
+]);
+const YGO_VARIANT_ROLLOUT_ZEXAL_VOLUME_2_SET = "Yu-Gi-Oh! ZEXAL Volume 2 promotional card";
+const YGO_VARIANT_ROLLOUT_ZEXAL_VOLUME_2_IDS = new Set([
+    "YZ02-EN001"
+]);
+const YGO_VARIANT_ROLLOUT_ASTRAL_PACK_ONE_SET = "Astral Pack One";
+const YGO_VARIANT_ROLLOUT_ASTRAL_PACK_ONE_IDS = new Set(
+    Array.from({ length: 25 }, (_, index) => `AP01-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_CYBER_DRAGON_REVOLUTION_SET = "Cyber Dragon Revolution Structure Deck";
+const YGO_VARIANT_ROLLOUT_CYBER_DRAGON_REVOLUTION_IDS = new Set(
+    Array.from({ length: 38 }, (_, index) => `SDCR-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_LEGACY_OF_THE_VALIANT_SET = "Legacy of the Valiant";
+const YGO_VARIANT_ROLLOUT_LEGACY_OF_THE_VALIANT_IDS = new Set(
+    ["LVAL-EN000", ...Array.from({ length: 99 }, (_, index) => `LVAL-EN${String(index + 1).padStart(3, "0")}`)]
+);
+const YGO_VARIANT_ROLLOUT_LEGACY_OF_THE_VALIANT_SNEAK_SET = "Legacy of the Valiant Sneak Peek Participation Card";
+const YGO_VARIANT_ROLLOUT_LEGACY_OF_THE_VALIANT_SNEAK_IDS = new Set([
+    "LVAL-ENSP1"
+]);
+const YGO_VARIANT_ROLLOUT_WAR_OF_GIANTS_REINFORCEMENTS_SET = "War of the Giants Reinforcements";
+const YGO_VARIANT_ROLLOUT_WAR_OF_GIANTS_REINFORCEMENTS_IDS = new Set(
+    Array.from({ length: 104 }, (_, index) => `WGRT-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_WAR_OF_GIANTS_ROUND_2_SET = "War of the Giants: Round 2";
+const YGO_VARIANT_ROLLOUT_WAR_OF_GIANTS_ROUND_2_IDS = new Set(
+    Array.from({ length: 103 }, (_, index) => `BPW2-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_ZEXAL_VOLUME_4_SET = "Yu-Gi-Oh! ZEXAL Volume 4 promotional card";
+const YGO_VARIANT_ROLLOUT_ZEXAL_VOLUME_4_IDS = new Set([
+    "YZ04-EN001"
+]);
+const YGO_VARIANT_ROLLOUT_PRIMAL_ORIGIN_PLUS_SET = "Primal Origin Plus";
+const YGO_VARIANT_ROLLOUT_PRIMAL_ORIGIN_PLUS_IDS = new Set([
+    "PRIO-ENPL1"
+]);
+const YGO_VARIANT_ROLLOUT_WSJ_DECEMBER_2013_SET = "Weekly Shonen Jump December 2013 membership promotional card";
+const YGO_VARIANT_ROLLOUT_WSJ_DECEMBER_2013_IDS = new Set([
+    "JUMP-EN067"
+]);
+const YGO_VARIANT_ROLLOUT_SHADOW_SPECTERS_SPECIAL_EDITION_SET = "Shadow Specters: Special Edition";
+const YGO_VARIANT_ROLLOUT_SHADOW_SPECTERS_SPECIAL_EDITION_IDS = new Set([
+    "SHSP-ENSE1", "SHSP-ENSE2"
+]);
+const YGO_VARIANT_ROLLOUT_2013_COLLECTIBLE_TINS_WAVE_2_SET = "2013 Collectible Tins Wave 2";
+const YGO_VARIANT_ROLLOUT_2013_COLLECTIBLE_TINS_WAVE_2_IDS = new Set([
+    "CT10-EN003", "CT10-EN004", "CT10-EN012", "CT10-EN013", "CT10-EN014",
+    "CT10-EN015", "CT10-EN016", "CT10-EN017", "CT10-EN018"
+]);
+const YGO_VARIANT_ROLLOUT_5DS_VOLUME_5_SET = "Yu-Gi-Oh! 5D's Volume 5 promotional card";
+const YGO_VARIANT_ROLLOUT_5DS_VOLUME_5_IDS = new Set([
+    "YF05-EN001"
+]);
+const YGO_VARIANT_ROLLOUT_WSJ_SEPTEMBER_2013_SET = "Weekly Shonen Jump September 2013 membership promotional card";
+const YGO_VARIANT_ROLLOUT_WSJ_SEPTEMBER_2013_IDS = new Set([
+    "JUMP-EN066"
+]);
+const YGO_VARIANT_ROLLOUT_LEGENDARY_COLLECTION_4_JOEYS_WORLD_SET = "Legendary Collection 4: Joey's World";
+const YGO_VARIANT_ROLLOUT_LEGENDARY_COLLECTION_4_JOEYS_WORLD_IDS = new Set([
+    "LC04-EN001", "LC04-EN002", "LC04-EN004", "LC04-EN005", "LC04-EN006", "LC04-EN007"
+]);
+const YGO_VARIANT_ROLLOUT_LEGENDARY_COLLECTION_4_JOEYS_WORLD_MEGA_PACK_SET = "Legendary Collection 4: Joey's World Mega Pack";
+const YGO_VARIANT_ROLLOUT_LEGENDARY_COLLECTION_4_JOEYS_WORLD_MEGA_PACK_IDS = new Set(
+    Array.from({ length: 298 }, (_, index) => `LCJW-EN${String(index + 1).padStart(3, "0")}`)
+);
+const YGO_VARIANT_ROLLOUT_JUDGMENT_OF_LIGHT_DELUXE_EDITION_SET = "Judgment of the Light: Deluxe Edition";
+const YGO_VARIANT_ROLLOUT_JUDGMENT_OF_LIGHT_DELUXE_EDITION_IDS = new Set([
+    "JOTL-ENDE1", "JOTL-ENDE2", "JOTL-ENDE3", "JOTL-ENDE4"
+]);
+const YGO_VARIANT_ROLLOUT_SHADOW_SPECTERS_SET = "Shadow Specters";
+const YGO_VARIANT_ROLLOUT_SHADOW_SPECTERS_IDS = new Set(
+    ["SHSP-EN000", ...Array.from({ length: 99 }, (_, index) => `SHSP-EN${String(index + 1).padStart(3, "0")}`)]
+);
+const YGO_VARIANT_ROLLOUT_SHADOW_SPECTERS_SNEAK_SET = "Shadow Specters Sneak Peek Participation Card";
+const YGO_VARIANT_ROLLOUT_SHADOW_SPECTERS_SNEAK_IDS = new Set([
+    "SHSP-ENSP1"
+]);
+const YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_17_SET = "Duelist League 17 participation cards";
+const YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_17_IDS = new Set(
+    Array.from({ length: 20 }, (_, index) => `DL17-EN${String(index + 1).padStart(3, "0")}`)
 );
 const YGO_VARIANT_ROLLOUT_NEW_CHALLENGERS_SET = "The New Challengers";
 const YGO_VARIANT_ROLLOUT_NEW_CHALLENGERS_IDS = new Set(
@@ -3490,6 +4214,18 @@ function buildCardPageUrl(cardRecord) {
         || (setName === YGO_VARIANT_ROLLOUT_YCS_2015_SET && YGO_VARIANT_ROLLOUT_YCS_2015_IDS.has(id))
         || (setName === YGO_VARIANT_ROLLOUT_SYNCHRON_EXTREME_SET && YGO_VARIANT_ROLLOUT_SYNCHRON_EXTREME_IDS.has(id))
         || (setName === YGO_VARIANT_ROLLOUT_CLASH_OF_REBELLIONS_SET && YGO_VARIANT_ROLLOUT_CLASH_OF_REBELLIONS_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_2013_COLLECTIBLE_TINS_WAVE_2_SET && YGO_VARIANT_ROLLOUT_2013_COLLECTIBLE_TINS_WAVE_2_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_5DS_VOLUME_5_SET && YGO_VARIANT_ROLLOUT_5DS_VOLUME_5_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_SHADOW_SPECTERS_SET && YGO_VARIANT_ROLLOUT_SHADOW_SPECTERS_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_SHADOW_SPECTERS_SNEAK_SET && YGO_VARIANT_ROLLOUT_SHADOW_SPECTERS_SNEAK_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_WSJ_SEPTEMBER_2013_SET && YGO_VARIANT_ROLLOUT_WSJ_SEPTEMBER_2013_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_LEGENDARY_COLLECTION_4_JOEYS_WORLD_SET && YGO_VARIANT_ROLLOUT_LEGENDARY_COLLECTION_4_JOEYS_WORLD_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_LEGENDARY_COLLECTION_4_JOEYS_WORLD_MEGA_PACK_SET && YGO_VARIANT_ROLLOUT_LEGENDARY_COLLECTION_4_JOEYS_WORLD_MEGA_PACK_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_JUDGMENT_OF_LIGHT_DELUXE_EDITION_SET && YGO_VARIANT_ROLLOUT_JUDGMENT_OF_LIGHT_DELUXE_EDITION_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_15_SET && YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_15_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ABYSS_RISING_SPECIAL_EDITION_SET && YGO_VARIANT_ROLLOUT_ABYSS_RISING_SPECIAL_EDITION_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ZEXAL_VOLUME_2_SET && YGO_VARIANT_ROLLOUT_ZEXAL_VOLUME_2_IDS.has(id))
+        || (setName === YGO_VARIANT_ROLLOUT_ASTRAL_PACK_ONE_SET && YGO_VARIANT_ROLLOUT_ASTRAL_PACK_ONE_IDS.has(id))
             || (setName === YGO_VARIANT_ROLLOUT_CLASH_OF_REBELLIONS_SNEAK_SET && YGO_VARIANT_ROLLOUT_CLASH_OF_REBELLIONS_SNEAK_IDS.has(id))
             || (setName === YGO_VARIANT_ROLLOUT_DRAGONS_OF_LEGEND_2_SET && YGO_VARIANT_ROLLOUT_DRAGONS_OF_LEGEND_2_IDS.has(id))
             || (setName === YGO_VARIANT_ROLLOUT_CROSSED_SOULS_ADVANCE_EDITION_SET && YGO_VARIANT_ROLLOUT_CROSSED_SOULS_ADVANCE_EDITION_IDS.has(id))
@@ -3502,6 +4238,8 @@ function buildCardPageUrl(cardRecord) {
             || (setName === YGO_VARIANT_ROLLOUT_TWO_PLAYER_YUYA_DECLAN_SET && YGO_VARIANT_ROLLOUT_TWO_PLAYER_YUYA_DECLAN_IDS.has(id))
             || (setName === YGO_VARIANT_ROLLOUT_CROSSED_SOULS_SET && YGO_VARIANT_ROLLOUT_CROSSED_SOULS_IDS.has(id))
             || (setName === YGO_VARIANT_ROLLOUT_CROSSED_SOULS_SNEAK_SET && YGO_VARIANT_ROLLOUT_CROSSED_SOULS_SNEAK_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_STARTER_DECK_KAIBA_RELOADED_SET && YGO_VARIANT_ROLLOUT_STARTER_DECK_KAIBA_RELOADED_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_STARTER_DECK_YUGI_RELOADED_SET && YGO_VARIANT_ROLLOUT_STARTER_DECK_YUGI_RELOADED_IDS.has(id))
             || (setName === YGO_VARIANT_ROLLOUT_WSJ_APRIL_2015_SET && YGO_VARIANT_ROLLOUT_WSJ_APRIL_2015_IDS.has(id))
             || (setName === YGO_VARIANT_ROLLOUT_WORLD_SUPERSTARS_SET && YGO_VARIANT_ROLLOUT_WORLD_SUPERSTARS_IDS.has(id))
             || (setName === YGO_VARIANT_ROLLOUT_DEMO_DECK_2015_SET && YGO_VARIANT_ROLLOUT_DEMO_DECK_2015_IDS.has(id))
@@ -3534,6 +4272,162 @@ function buildCardPageUrl(cardRecord) {
             || (setName === YGO_VARIANT_ROLLOUT_DUELIST_ALLIANCE_SNEAK_SET && YGO_VARIANT_ROLLOUT_DUELIST_ALLIANCE_SNEAK_IDS.has(id))
             || (setName === YGO_VARIANT_ROLLOUT_BATTLE_PACK_3_MONSTER_LEAGUE_SET && YGO_VARIANT_ROLLOUT_BATTLE_PACK_3_MONSTER_LEAGUE_IDS.has(id))
             || (setName === YGO_VARIANT_ROLLOUT_ASTRAL_PACK_FIVE_SET && YGO_VARIANT_ROLLOUT_ASTRAL_PACK_FIVE_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_ASTRAL_PACK_THREE_SET && YGO_VARIANT_ROLLOUT_ASTRAL_PACK_THREE_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_ZEXAL_VOLUME_3_SET && YGO_VARIANT_ROLLOUT_ZEXAL_VOLUME_3_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_LORD_OF_TACHYON_GALAXY_SET && YGO_VARIANT_ROLLOUT_LORD_OF_TACHYON_GALAXY_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_LORD_OF_TACHYON_GALAXY_SNEAK_SET && YGO_VARIANT_ROLLOUT_LORD_OF_TACHYON_GALAXY_SNEAK_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_HIDDEN_ARSENAL_7_SET && YGO_VARIANT_ROLLOUT_HIDDEN_ARSENAL_7_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_ASTRAL_PACK_TWO_SET && YGO_VARIANT_ROLLOUT_ASTRAL_PACK_TWO_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_5DS_VOLUME_4_SET && YGO_VARIANT_ROLLOUT_5DS_VOLUME_4_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_REALM_OF_SEA_EMPEROR_SET && YGO_VARIANT_ROLLOUT_REALM_OF_SEA_EMPEROR_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_5DS_VOLUME_3_SET && YGO_VARIANT_ROLLOUT_5DS_VOLUME_3_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_LEGENDARY_COLLECTION_3_YUGIS_WORLD_MEGA_PACK_SET && YGO_VARIANT_ROLLOUT_LEGENDARY_COLLECTION_3_YUGIS_WORLD_MEGA_PACK_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_7_SET && YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_7_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_COSMO_BLAZER_SPECIAL_EDITION_SET && YGO_VARIANT_ROLLOUT_COSMO_BLAZER_SPECIAL_EDITION_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_WSJ_MARCH_2013_SET && YGO_VARIANT_ROLLOUT_WSJ_MARCH_2013_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_ZEXAL_COLLECTION_TIN_SET && YGO_VARIANT_ROLLOUT_ZEXAL_COLLECTION_TIN_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_STAR_PACK_2013_SET && YGO_VARIANT_ROLLOUT_STAR_PACK_2013_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_ONSLAUGHT_FIRE_KINGS_SET && YGO_VARIANT_ROLLOUT_ONSLAUGHT_FIRE_KINGS_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_7B_SET && YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_7B_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_TURBO_PACK_BOOSTER_EIGHT_SET && YGO_VARIANT_ROLLOUT_TURBO_PACK_BOOSTER_EIGHT_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_WSJ_ALPHA_APRIL_2012_SET && YGO_VARIANT_ROLLOUT_WSJ_ALPHA_APRIL_2012_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_BATTLE_PACK_TOURNAMENT_PRIZE_SET && YGO_VARIANT_ROLLOUT_BATTLE_PACK_TOURNAMENT_PRIZE_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_6B_SET && YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_6B_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_BATTLE_PACK_EPIC_DAWN_SET && YGO_VARIANT_ROLLOUT_BATTLE_PACK_EPIC_DAWN_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_GALACTIC_OVERLORD_SET && YGO_VARIANT_ROLLOUT_GALACTIC_OVERLORD_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_GALACTIC_OVERLORD_SNEAK_SET && YGO_VARIANT_ROLLOUT_GALACTIC_OVERLORD_SNEAK_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_STARTER_DECK_XYZ_SYMPHONY_SET && YGO_VARIANT_ROLLOUT_STARTER_DECK_XYZ_SYMPHONY_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_10_ISSUE_4_SET && YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_10_ISSUE_4_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_HIDDEN_ARSENAL_5_SPECIAL_EDITION_SET && YGO_VARIANT_ROLLOUT_HIDDEN_ARSENAL_5_SPECIAL_EDITION_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_PREMIUM_COLLECTION_TIN_SET && YGO_VARIANT_ROLLOUT_PREMIUM_COLLECTION_TIN_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_ORDER_OF_CHAOS_SPECIAL_EDITION_SET && YGO_VARIANT_ROLLOUT_ORDER_OF_CHAOS_SPECIAL_EDITION_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_10_ISSUE_3_SET && YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_10_ISSUE_3_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_RA_YELLOW_MEGA_PACK_SET && YGO_VARIANT_ROLLOUT_RA_YELLOW_MEGA_PACK_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_5DS_VOLUME_2_SET && YGO_VARIANT_ROLLOUT_5DS_VOLUME_2_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_6A_SET && YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_6A_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_6_SET && YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_6_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_DRAGONS_COLLIDE_SET && YGO_VARIANT_ROLLOUT_DRAGONS_COLLIDE_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_ORDER_OF_CHAOS_SET && YGO_VARIANT_ROLLOUT_ORDER_OF_CHAOS_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_ORDER_OF_CHAOS_SNEAK_SET && YGO_VARIANT_ROLLOUT_ORDER_OF_CHAOS_SNEAK_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_GX_VOLUME_8_SET && YGO_VARIANT_ROLLOUT_GX_VOLUME_8_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_10_ISSUE_1_SET && YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_10_ISSUE_1_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_TURBO_PACK_BOOSTER_SEVEN_SET && YGO_VARIANT_ROLLOUT_TURBO_PACK_BOOSTER_SEVEN_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_SAMURAI_ASSAULT_SET && YGO_VARIANT_ROLLOUT_SAMURAI_ASSAULT_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_HIDDEN_ARSENAL_5_SET && YGO_VARIANT_ROLLOUT_HIDDEN_ARSENAL_5_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_PHOTON_SHOCKWAVE_SET && YGO_VARIANT_ROLLOUT_PHOTON_SHOCKWAVE_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_PHOTON_SHOCKWAVE_SNEAK_SET && YGO_VARIANT_ROLLOUT_PHOTON_SHOCKWAVE_SNEAK_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_COLLECTIBLE_TINS_2011_WAVE_2_SET && YGO_VARIANT_ROLLOUT_COLLECTIBLE_TINS_2011_WAVE_2_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_GATES_OF_UNDERWORLD_SET && YGO_VARIANT_ROLLOUT_GATES_OF_UNDERWORLD_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_LEGENDARY_COLLECTION_2_SET && YGO_VARIANT_ROLLOUT_LEGENDARY_COLLECTION_2_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_LEGENDARY_COLLECTION_2_MEGA_PACK_SET && YGO_VARIANT_ROLLOUT_LEGENDARY_COLLECTION_2_MEGA_PACK_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_5B_SET && YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_5B_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_GENERATION_FORCE_SPECIAL_EDITION_SET && YGO_VARIANT_ROLLOUT_GENERATION_FORCE_SPECIAL_EDITION_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_GX_VOLUME_7_SET && YGO_VARIANT_ROLLOUT_GX_VOLUME_7_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_GENERATION_FORCE_SET && YGO_VARIANT_ROLLOUT_GENERATION_FORCE_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_GX_VOLUME_9_SET && YGO_VARIANT_ROLLOUT_GX_VOLUME_9_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_YCS_2011_SET && YGO_VARIANT_ROLLOUT_YCS_2011_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_GENERATION_FORCE_SNEAK_SET && YGO_VARIANT_ROLLOUT_GENERATION_FORCE_SNEAK_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_TURBO_PACK_BOOSTER_SIX_SET && YGO_VARIANT_ROLLOUT_TURBO_PACK_BOOSTER_SIX_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_WORLD_CHAMPIONSHIP_2011_CARD_PACK_SET && YGO_VARIANT_ROLLOUT_WORLD_CHAMPIONSHIP_2011_CARD_PACK_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_3D_BONDS_BEYOND_TIME_SET && YGO_VARIANT_ROLLOUT_3D_BONDS_BEYOND_TIME_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_HIDDEN_ARSENAL_SPECIAL_EDITION_SET && YGO_VARIANT_ROLLOUT_HIDDEN_ARSENAL_SPECIAL_EDITION_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_STARTER_DECK_DAWN_XYZ_SET && YGO_VARIANT_ROLLOUT_STARTER_DECK_DAWN_XYZ_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_5DS_VOLUME_1_SET && YGO_VARIANT_ROLLOUT_5DS_VOLUME_1_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_GOLD_SERIES_4_SET && YGO_VARIANT_ROLLOUT_GOLD_SERIES_4_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_LOST_SANCTUARY_SET && YGO_VARIANT_ROLLOUT_LOST_SANCTUARY_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_3_SET && YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_3_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_9_ISSUE_8_SET && YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_9_ISSUE_8_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_COLLECTIBLE_TINS_2011_WAVE_1_SET && YGO_VARIANT_ROLLOUT_COLLECTIBLE_TINS_2011_WAVE_1_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_9_ISSUE_10_SET && YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_9_ISSUE_10_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_SHONEN_JUMP_DECEMBER_2011_SET && YGO_VARIANT_ROLLOUT_SHONEN_JUMP_DECEMBER_2011_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_13_SET && YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_13_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_9_ISSUE_6_SET && YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_9_ISSUE_6_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_SHONEN_JUMP_JUNE_JULY_2011_SET && YGO_VARIANT_ROLLOUT_SHONEN_JUMP_JUNE_JULY_2011_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_5_SET && YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_5_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_5A_SET && YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_5A_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_DUELIST_PACK_CROW_SET && YGO_VARIANT_ROLLOUT_DUELIST_PACK_CROW_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_WC11_PROMO_SET && YGO_VARIANT_ROLLOUT_WC11_PROMO_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_EXTREME_VICTORY_SET && YGO_VARIANT_ROLLOUT_EXTREME_VICTORY_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_WQ11_NATIONALS_SET && YGO_VARIANT_ROLLOUT_WQ11_NATIONALS_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_EXVC_SNEAK_PEEK_SET && YGO_VARIANT_ROLLOUT_EXVC_SNEAK_PEEK_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_HIDDEN_ARSENAL_4_SET && YGO_VARIANT_ROLLOUT_HIDDEN_ARSENAL_4_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_TURBO_PACK_BOOSTER_FIVE_SET && YGO_VARIANT_ROLLOUT_TURBO_PACK_BOOSTER_FIVE_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_9_ISSUE_4_SET && YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_9_ISSUE_4_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_DUELIST_PACK_COLLECTION_TIN_2011_SET && YGO_VARIANT_ROLLOUT_DUELIST_PACK_COLLECTION_TIN_2011_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_STORM_OF_RAGNAROK_SPECIAL_EDITION_SET && YGO_VARIANT_ROLLOUT_STORM_OF_RAGNAROK_SPECIAL_EDITION_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_DRAGUNITY_LEGION_STRUCTURE_DECK_SET && YGO_VARIANT_ROLLOUT_DRAGUNITY_LEGION_STRUCTURE_DECK_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_9_ISSUE_3_SET && YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_9_ISSUE_3_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_GX_VOL_6_SET && YGO_VARIANT_ROLLOUT_GX_VOL_6_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_3D_BONDS_THEATER_DIST_SET && YGO_VARIANT_ROLLOUT_3D_BONDS_THEATER_DIST_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_3D_BONDS_MOVIE_PACK_SET && YGO_VARIANT_ROLLOUT_3D_BONDS_MOVIE_PACK_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_DEMO_PACK_SET && YGO_VARIANT_ROLLOUT_DEMO_PACK_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_STORM_OF_RAGNAROK_SET && YGO_VARIANT_ROLLOUT_STORM_OF_RAGNAROK_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_STOR_SNEAK_PEEK_SET && YGO_VARIANT_ROLLOUT_STOR_SNEAK_PEEK_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_4_SET && YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_4_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_DUELIST_PACK_YUSEI_3_SET && YGO_VARIANT_ROLLOUT_DUELIST_PACK_YUSEI_3_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_9_ISSUE_1_SET && YGO_VARIANT_ROLLOUT_SHONEN_JUMP_VOL_9_ISSUE_1_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_SHONEN_JUMP_SCHOLASTIC_EDITION_SET && YGO_VARIANT_ROLLOUT_SHONEN_JUMP_SCHOLASTIC_EDITION_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_YDT1_PROMO_SET && YGO_VARIANT_ROLLOUT_YDT1_PROMO_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_HIDDEN_ARSENAL_3_SET && YGO_VARIANT_ROLLOUT_HIDDEN_ARSENAL_3_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_SHONEN_JUMP_DECEMBER_2010_SET && YGO_VARIANT_ROLLOUT_SHONEN_JUMP_DECEMBER_2010_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_2_SET && YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_2_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_X_SABER_POWER_UP_SET && YGO_VARIANT_ROLLOUT_X_SABER_POWER_UP_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_TURBO_PACK_BOOSTER_FOUR_SET && YGO_VARIANT_ROLLOUT_TURBO_PACK_BOOSTER_FOUR_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_3D_BONDS_MOVIE_PACK_SET && YGO_VARIANT_ROLLOUT_3D_BONDS_MOVIE_PACK_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_DEMO_PACK_SET && YGO_VARIANT_ROLLOUT_DEMO_PACK_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_STORM_OF_RAGNAROK_SET && YGO_VARIANT_ROLLOUT_STORM_OF_RAGNAROK_IDS.has(id))
+                        || (setName === YGO_VARIANT_ROLLOUT_STOR_SNEAK_PEEK_SET && YGO_VARIANT_ROLLOUT_STOR_SNEAK_PEEK_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_7A_SET && YGO_VARIANT_ROLLOUT_DUEL_TERMINAL_7A_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_LEGENDARY_COLLECTION_3_YUGIS_WORLD_SET && YGO_VARIANT_ROLLOUT_LEGENDARY_COLLECTION_3_YUGIS_WORLD_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_RETURN_OF_DUELIST_SPECIAL_EDITION_SET && YGO_VARIANT_ROLLOUT_RETURN_OF_DUELIST_SPECIAL_EDITION_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_YCS_2012_SET && YGO_VARIANT_ROLLOUT_YCS_2012_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_WSJ_ALPHA_JULY_2012_SET && YGO_VARIANT_ROLLOUT_WSJ_ALPHA_JULY_2012_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_RETURN_OF_DUELIST_SET && YGO_VARIANT_ROLLOUT_RETURN_OF_DUELIST_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_RETURN_OF_DUELIST_SNEAK_SET && YGO_VARIANT_ROLLOUT_RETURN_OF_DUELIST_SNEAK_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_COLLECTIBLE_TINS_2012_WAVE_1_SET && YGO_VARIANT_ROLLOUT_COLLECTIBLE_TINS_2012_WAVE_1_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_HIDDEN_ARSENAL_6_SET && YGO_VARIANT_ROLLOUT_HIDDEN_ARSENAL_6_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_SAMURAI_WARLORDS_SET && YGO_VARIANT_ROLLOUT_SAMURAI_WARLORDS_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_RA_YELLOW_MEGA_PACK_SPECIAL_EDITION_SET && YGO_VARIANT_ROLLOUT_RA_YELLOW_MEGA_PACK_SPECIAL_EDITION_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_GOLD_SERIES_HAUNTED_MINE_SET && YGO_VARIANT_ROLLOUT_GOLD_SERIES_HAUNTED_MINE_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_ZEXAL_VOLUME_1_SET && YGO_VARIANT_ROLLOUT_ZEXAL_VOLUME_1_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_14_SET && YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_14_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_SAGA_BLUE_EYES_STRUCTURE_SET && YGO_VARIANT_ROLLOUT_SAGA_BLUE_EYES_STRUCTURE_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_YCS_2013_SET && YGO_VARIANT_ROLLOUT_YCS_2013_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_2013_COLLECTIBLE_TINS_WAVE_1_SET && YGO_VARIANT_ROLLOUT_2013_COLLECTIBLE_TINS_WAVE_1_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_JUDGMENT_OF_THE_LIGHT_SET && YGO_VARIANT_ROLLOUT_JUDGMENT_OF_THE_LIGHT_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_JUDGMENT_OF_THE_LIGHT_SNEAK_SET && YGO_VARIANT_ROLLOUT_JUDGMENT_OF_THE_LIGHT_SNEAK_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_NUMBER_HUNTERS_SET && YGO_VARIANT_ROLLOUT_NUMBER_HUNTERS_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_WSJ_JULY_2013_SET && YGO_VARIANT_ROLLOUT_WSJ_JULY_2013_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_16_SET && YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_16_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_BATTLE_PACK_2_SET && YGO_VARIANT_ROLLOUT_BATTLE_PACK_2_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_SUPER_STARTER_V_FOR_VICTORY_SET && YGO_VARIANT_ROLLOUT_SUPER_STARTER_V_FOR_VICTORY_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_SUPER_STARTER_POWER_UP_PACK_SET && YGO_VARIANT_ROLLOUT_SUPER_STARTER_POWER_UP_PACK_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_SPACE_TIME_SHOWDOWN_POWER_UP_PACK_SET && YGO_VARIANT_ROLLOUT_SPACE_TIME_SHOWDOWN_POWER_UP_PACK_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_SUPER_STARTER_SPACE_TIME_SHOWDOWN_SET && YGO_VARIANT_ROLLOUT_SUPER_STARTER_SPACE_TIME_SHOWDOWN_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_ZEXAL_VOLUME_5_SET && YGO_VARIANT_ROLLOUT_ZEXAL_VOLUME_5_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_18_SET && YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_18_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_REALM_OF_LIGHT_SET && YGO_VARIANT_ROLLOUT_REALM_OF_LIGHT_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_ZEXAL_WORLD_DUEL_CARNIVAL_SET && YGO_VARIANT_ROLLOUT_ZEXAL_WORLD_DUEL_CARNIVAL_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_PRIMAL_ORIGIN_DELUXE_EDITION_SET && YGO_VARIANT_ROLLOUT_PRIMAL_ORIGIN_DELUXE_EDITION_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_PRIMAL_ORIGIN_SET && YGO_VARIANT_ROLLOUT_PRIMAL_ORIGIN_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_PRIMAL_ORIGIN_SNEAK_SET && YGO_VARIANT_ROLLOUT_PRIMAL_ORIGIN_SNEAK_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_DRAGONS_OF_LEGEND_SET && YGO_VARIANT_ROLLOUT_DRAGONS_OF_LEGEND_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_FIRE_FISTS_SPECIAL_EDITION_SET && YGO_VARIANT_ROLLOUT_FIRE_FISTS_SPECIAL_EDITION_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_PREMIUM_GOLD_SET && YGO_VARIANT_ROLLOUT_PREMIUM_GOLD_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_WSJ_MARCH_2014_SET && YGO_VARIANT_ROLLOUT_WSJ_MARCH_2014_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_LEGACY_OF_VALIANT_DELUXE_EDITION_SET && YGO_VARIANT_ROLLOUT_LEGACY_OF_VALIANT_DELUXE_EDITION_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_STAR_PACK_2014_SET && YGO_VARIANT_ROLLOUT_STAR_PACK_2014_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_ASTRAL_PACK_FOUR_SET && YGO_VARIANT_ROLLOUT_ASTRAL_PACK_FOUR_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_CYBER_DRAGON_REVOLUTION_SET && YGO_VARIANT_ROLLOUT_CYBER_DRAGON_REVOLUTION_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_LEGACY_OF_THE_VALIANT_SET && YGO_VARIANT_ROLLOUT_LEGACY_OF_THE_VALIANT_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_LEGACY_OF_THE_VALIANT_SNEAK_SET && YGO_VARIANT_ROLLOUT_LEGACY_OF_THE_VALIANT_SNEAK_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_WAR_OF_GIANTS_REINFORCEMENTS_SET && YGO_VARIANT_ROLLOUT_WAR_OF_GIANTS_REINFORCEMENTS_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_WAR_OF_GIANTS_ROUND_2_SET && YGO_VARIANT_ROLLOUT_WAR_OF_GIANTS_ROUND_2_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_ZEXAL_VOLUME_4_SET && YGO_VARIANT_ROLLOUT_ZEXAL_VOLUME_4_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_PRIMAL_ORIGIN_PLUS_SET && YGO_VARIANT_ROLLOUT_PRIMAL_ORIGIN_PLUS_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_WSJ_DECEMBER_2013_SET && YGO_VARIANT_ROLLOUT_WSJ_DECEMBER_2013_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_SHADOW_SPECTERS_SPECIAL_EDITION_SET && YGO_VARIANT_ROLLOUT_SHADOW_SPECTERS_SPECIAL_EDITION_IDS.has(id))
+            || (setName === YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_17_SET && YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_17_IDS.has(id))
         || (setName === YGO_VARIANT_ROLLOUT_ZEXAL_VOLUME_9_SET && YGO_VARIANT_ROLLOUT_ZEXAL_VOLUME_9_IDS.has(id))
         || (setName === YGO_VARIANT_ROLLOUT_MEGA_TINS_2016_SET && YGO_VARIANT_ROLLOUT_MEGA_TINS_2016_IDS.has(id))
         || (setName === YGO_VARIANT_ROLLOUT_MEGA_TIN_MEGA_PACK_2016_SET && YGO_VARIANT_ROLLOUT_MEGA_TIN_MEGA_PACK_2016_IDS.has(id))
@@ -3962,10 +4856,10 @@ function makeInventoryCard(cardRecord, collisionCountMap, variantFamilyCountMap,
                     />
                 </div>
                 <h3 class="inventory-card__title">${escapeHtml(displayTitle)}</h3>
-                <p class="inventory-card__meta">${escapeHtml(metaPieces.join(" • "))}</p>
+                <p class="inventory-card__meta">${escapeHtml(metaPieces.join(" â€¢ "))}</p>
                 ${showPricing ? `<p class="inventory-card__price">${escapeHtml(formatPriceLabel(cardRecord))}</p>` : ""}
                 <div class="inventory-card__actions">
-                    <span class="inventory-card__tag">${escapeHtml(cardRecord.set)} • ${escapeHtml(cardRecord.variant)}</span>
+                    <span class="inventory-card__tag">${escapeHtml(cardRecord.set)} â€¢ ${escapeHtml(cardRecord.variant)}</span>
                 </div>
             </a>
         </article>
@@ -4823,14 +5717,14 @@ function formatPriceLabel(cardRecord) {
 
     if (typeof pricing.minPriceUsd === "number" && typeof pricing.maxPriceUsd === "number") {
         const rangeLabel = `$${pricing.minPriceUsd.toFixed(2)}-$${pricing.maxPriceUsd.toFixed(2)}`;
-        return needsReview ? `${rangeLabel} • Needs Review` : rangeLabel;
+        return needsReview ? `${rangeLabel} â€¢ Needs Review` : rangeLabel;
     }
 
     const amount = `$${Number(pricing.priceUsd).toFixed(2)}`;
     const compsCount = Number(pricing.compsCount || 0);
-    const suffix = needsReview ? " • Needs Review" : "";
+    const suffix = needsReview ? " â€¢ Needs Review" : "";
     if (compsCount > 0) {
-        return `${amount} • ${compsCount} comps${suffix}`;
+        return `${amount} â€¢ ${compsCount} comps${suffix}`;
     }
 
     return `${amount}${suffix}`;
@@ -4846,7 +5740,7 @@ function renderInventoryError(resultsGrid, resultsMeta, message) {
             <span class="inventory-card__tag">YYH starter slice</span>
         </article>
     `;
-    resultsMeta.textContent = "0 cards matched • data unavailable";
+    resultsMeta.textContent = "0 cards matched â€¢ data unavailable";
 }
 
 function renderGameSelectionPrompt(resultsGrid, resultsMeta) {
@@ -5907,7 +6801,7 @@ async function initInventoryFilters() {
                 updateLoadMoreButtonState();
                 setLoadMoreProgress(0, 0, filterState.includeVariants);
                 updateVariantsSummary(filterState, 0);
-                resultsMeta.textContent = "0 cards matched • searchable inventory";
+                resultsMeta.textContent = "0 cards matched â€¢ searchable inventory";
                 return;
             }
 
@@ -5925,8 +6819,8 @@ async function initInventoryFilters() {
             updateVariantsSummary(filterState, ygoTotal);
             hydrateInventoryCardImages(resultsGrid);
             resultsMeta.textContent = filterState.includeVariants
-                ? `${cardsShown} of ${ygoTotal} total printings shown • searchable inventory`
-                : `${cardsShown} of ${ygoTotal} cards shown • searchable inventory`;
+                ? `${cardsShown} of ${ygoTotal} total printings shown â€¢ searchable inventory`
+                : `${cardsShown} of ${ygoTotal} cards shown â€¢ searchable inventory`;
             return;
         }
 
@@ -5976,7 +6870,7 @@ async function initInventoryFilters() {
             updateLoadMoreButtonState();
             setLoadMoreProgress(0, 0, filterState.includeVariants);
             updateVariantsSummary(filterState, 0);
-            resultsMeta.textContent = "0 cards matched • searchable inventory";
+            resultsMeta.textContent = "0 cards matched â€¢ searchable inventory";
             return;
         }
 
@@ -6000,11 +6894,11 @@ async function initInventoryFilters() {
         updateVariantsSummary(filterState, totalForDisplay);
         hydrateInventoryCardImages(resultsGrid);
         if (filterState.includeVariants) {
-            resultsMeta.textContent = `${cardsShown} of ${totalForDisplay} total entries • searchable inventory`;
+            resultsMeta.textContent = `${cardsShown} of ${totalForDisplay} total entries â€¢ searchable inventory`;
         } else if (totalForDisplay > cardsShown) {
-            resultsMeta.textContent = `${cardsShown} unique cards shown • ${totalForDisplay} unique total • searchable inventory`;
+            resultsMeta.textContent = `${cardsShown} unique cards shown â€¢ ${totalForDisplay} unique total â€¢ searchable inventory`;
         } else {
-            resultsMeta.textContent = `${cardsShown} unique cards shown • searchable inventory`;
+            resultsMeta.textContent = `${cardsShown} unique cards shown â€¢ searchable inventory`;
         }
     };
 
@@ -6292,3 +7186,4 @@ async function initInventoryFilters() {
 }
 
 document.addEventListener("DOMContentLoaded", initInventoryFilters);
+
