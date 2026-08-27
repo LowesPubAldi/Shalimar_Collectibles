@@ -288,6 +288,12 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
     display: none;
 }
 
+@media (max-width: 1100px) and (min-width: 769px) {
+    .mobile-nav-toggle {
+        display: inline-flex;
+    }
+}
+
 .nav__links a {
     color: #f8fafc;
     text-decoration: none;
@@ -1298,7 +1304,7 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
     }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
     .header {
         padding: 16px 18px;
     }
@@ -1348,11 +1354,7 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
     }
 
     .hero__season-back {
-        position: static;
-        width: 100%;
-        transform: none;
-        margin-bottom: 8px;
-        opacity: 1;
+        display: none;
     }
 
     .hero__season-main {

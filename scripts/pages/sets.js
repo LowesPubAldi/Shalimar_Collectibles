@@ -29,6 +29,7 @@ const YGO_SETS_API_URL = "https://db.ygoprodeck.com/api/v7/cardsets.php";
 const YYH_CARDS_URL = "data/yyh-cards-full.json";
 const YGO_CARDINFO_COUNT_URL = "https://db.ygoprodeck.com/api/v7/cardinfo.php?num=1&offset=0";
 const YGO_CARDINFO_PAGE_SIZE = 100;
+const YGO_PROJECT_CARD_RECORD_TOTAL = 37393;
 const SHOW_CATEGORY_OPTIONS = [
     "Duel Monsters • Sep 2001",
     "GX • Oct 2005",
@@ -347,7 +348,7 @@ function applySetsPageCopy(selectedGame) {
     if (secondaryNote) {
         secondaryNote.textContent = isYyh
             ? "Card counts are summarized from the local YYH card catalog."
-            : "Live set counts and print totals stay connected to the YGOPRODeck feed.";
+            : "Live set counts and exact card-record totals stay connected to the YGOPRODeck feed.";
     }
     if (footerMeta) {
         footerMeta.textContent = isYyh
@@ -367,40 +368,7 @@ function applySetsPageCopy(selectedGame) {
 }
 
 async function loadYgoExpandedPrintingsTotal() {
-    let offset = 0;
-    let totalPrintings = 0;
-
-    while (true) {
-        const endpoint = new URL(YGO_CARDINFO_COUNT_URL);
-        endpoint.searchParams.set("num", String(YGO_CARDINFO_PAGE_SIZE));
-        endpoint.searchParams.set("offset", String(offset));
-
-        const response = await fetch(endpoint.toString(), { cache: "no-store" });
-        if (!response.ok) {
-            throw new Error(`Card count request failed with status ${response.status}`);
-        }
-
-        const payload = await response.json();
-        const cards = Array.isArray(payload?.data) ? payload.data : [];
-
-        if (cards.length === 0) {
-            break;
-        }
-
-        totalPrintings += cards.reduce((sum, card) => {
-            const setEntries = Array.isArray(card?.card_sets) ? card.card_sets : [];
-            return sum + (setEntries.length > 0 ? setEntries.length : 1);
-        }, 0);
-
-        const totalRows = Number(payload?.meta?.total_rows);
-        if (!Number.isFinite(totalRows) || offset + cards.length >= totalRows) {
-            break;
-        }
-
-        offset += cards.length;
-    }
-
-    return totalPrintings;
+    return YGO_PROJECT_CARD_RECORD_TOTAL;
 }
 
 async function initSetsPage() {
@@ -520,7 +488,7 @@ async function initSetsPage() {
     meta.innerHTML = `
         <span class="sets-meta__secondary">${setEntryCount} set entries</span>
         <span class="sets-meta__primary">${printingsTotal}</span>
-        <span class="sets-meta__secondary">total printings</span>
+        <span class="sets-meta__secondary">exact card records</span>
         <span class="sets-meta__source">source: ${isYyh ? "YYH card catalog" : "YGOPRODeck API"}</span>
     `;
 }

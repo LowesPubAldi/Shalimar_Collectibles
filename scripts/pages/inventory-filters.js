@@ -31,6 +31,7 @@ const INVENTORY_PAGE_LIMIT_MOBILE = 48;
 const INVENTORY_PAGE_LIMIT_MOBILE_NARROW = 24;
 const INVENTORY_PAGE_LIMIT_MOBILE_COMPACT = 16;
 const YGO_VARIANT_FETCH_LIMIT = 2000;
+const YGO_PROJECT_CARD_RECORD_TOTAL = 37393;
 const MIN_SEARCH_CHARACTERS = 3;
 const DEFAULT_SORT_OPTION = "Card Number (Low-High)";
 const YGO_DEFAULT_SORT_OPTION = "Set Release (Latest First)";
@@ -5966,10 +5967,10 @@ function makeInventoryCard(cardRecord, collisionCountMap, variantFamilyCountMap,
                     />
                 </div>
                 <h3 class="inventory-card__title">${escapeHtml(displayTitle)}</h3>
-                <p class="inventory-card__meta">${escapeHtml(metaPieces.join(" â€¢ "))}</p>
+                <p class="inventory-card__meta">${escapeHtml(metaPieces.join(" • "))}</p>
                 ${showPricing ? `<p class="inventory-card__price">${escapeHtml(formatPriceLabel(cardRecord))}</p>` : ""}
                 <div class="inventory-card__actions">
-                    <span class="inventory-card__tag">${escapeHtml(cardRecord.set)} â€¢ ${escapeHtml(cardRecord.variant)}</span>
+                    <span class="inventory-card__tag">${escapeHtml(cardRecord.set)} • ${escapeHtml(cardRecord.variant)}</span>
                 </div>
             </a>
         </article>
@@ -6827,14 +6828,14 @@ function formatPriceLabel(cardRecord) {
 
     if (typeof pricing.minPriceUsd === "number" && typeof pricing.maxPriceUsd === "number") {
         const rangeLabel = `$${pricing.minPriceUsd.toFixed(2)}-$${pricing.maxPriceUsd.toFixed(2)}`;
-        return needsReview ? `${rangeLabel} â€¢ Needs Review` : rangeLabel;
+        return needsReview ? `${rangeLabel} • Needs Review` : rangeLabel;
     }
 
     const amount = `$${Number(pricing.priceUsd).toFixed(2)}`;
     const compsCount = Number(pricing.compsCount || 0);
-    const suffix = needsReview ? " â€¢ Needs Review" : "";
+    const suffix = needsReview ? " • Needs Review" : "";
     if (compsCount > 0) {
-        return `${amount} â€¢ ${compsCount} comps${suffix}`;
+        return `${amount} • ${compsCount} comps${suffix}`;
     }
 
     return `${amount}${suffix}`;
@@ -6850,7 +6851,7 @@ function renderInventoryError(resultsGrid, resultsMeta, message) {
             <span class="inventory-card__tag">YYH starter slice</span>
         </article>
     `;
-    resultsMeta.textContent = "0 cards matched â€¢ data unavailable";
+    resultsMeta.textContent = "0 cards matched • data unavailable";
 }
 
 function renderGameSelectionPrompt(resultsGrid, resultsMeta) {
@@ -7911,7 +7912,7 @@ async function initInventoryFilters() {
                 updateLoadMoreButtonState();
                 setLoadMoreProgress(0, 0, filterState.includeVariants);
                 updateVariantsSummary(filterState, 0);
-                resultsMeta.textContent = "0 cards matched â€¢ searchable inventory";
+                resultsMeta.textContent = "0 cards matched • searchable inventory";
                 return;
             }
 
@@ -7928,9 +7929,12 @@ async function initInventoryFilters() {
             setLoadMoreProgress(cardsShown, ygoTotal, filterState.includeVariants);
             updateVariantsSummary(filterState, ygoTotal);
             hydrateInventoryCardImages(resultsGrid);
-            resultsMeta.textContent = filterState.includeVariants
-                ? `${cardsShown} of ${ygoTotal} total printings shown â€¢ searchable inventory`
-                : `${cardsShown} of ${ygoTotal} cards shown â€¢ searchable inventory`;
+            const projectTotalApplies = !normalizedQuery && filterState.set === "All Sets";
+            resultsMeta.textContent = projectTotalApplies
+                ? `${cardsShown} cards shown • ${YGO_PROJECT_CARD_RECORD_TOTAL.toLocaleString()} exact Yu-Gi-Oh records in project catalog • searchable inventory`
+                : filterState.includeVariants
+                    ? `${cardsShown} of ${ygoTotal} total printings shown • searchable inventory`
+                    : `${cardsShown} of ${ygoTotal} cards shown • searchable inventory`;
             return;
         }
 
@@ -7980,7 +7984,7 @@ async function initInventoryFilters() {
             updateLoadMoreButtonState();
             setLoadMoreProgress(0, 0, filterState.includeVariants);
             updateVariantsSummary(filterState, 0);
-            resultsMeta.textContent = "0 cards matched â€¢ searchable inventory";
+            resultsMeta.textContent = "0 cards matched • searchable inventory";
             return;
         }
 
@@ -8004,11 +8008,11 @@ async function initInventoryFilters() {
         updateVariantsSummary(filterState, totalForDisplay);
         hydrateInventoryCardImages(resultsGrid);
         if (filterState.includeVariants) {
-            resultsMeta.textContent = `${cardsShown} of ${totalForDisplay} total entries â€¢ searchable inventory`;
+            resultsMeta.textContent = `${cardsShown} of ${totalForDisplay} total entries • searchable inventory`;
         } else if (totalForDisplay > cardsShown) {
-            resultsMeta.textContent = `${cardsShown} unique cards shown â€¢ ${totalForDisplay} unique total â€¢ searchable inventory`;
+            resultsMeta.textContent = `${cardsShown} unique cards shown • ${totalForDisplay} unique total • searchable inventory`;
         } else {
-            resultsMeta.textContent = `${cardsShown} unique cards shown â€¢ searchable inventory`;
+            resultsMeta.textContent = `${cardsShown} unique cards shown • searchable inventory`;
         }
     };
 
