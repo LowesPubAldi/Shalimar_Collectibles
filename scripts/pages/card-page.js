@@ -18,6 +18,20 @@ const YYH_IMAGE_SET_FOLDERS = {
     "Pre-Release Cards": "pre-release-cards",
     "Products": "products"
 };
+const HIGH_REPRINT_CARD_NAMES = new Set([
+    "blue eyes white dragon",
+    "mystical space typhoon",
+    "call of the haunted",
+    "dark magician",
+    "polymerization",
+    "monster reborn",
+    "cyber dragon",
+    "reinforcement of the army",
+    "book of moon",
+    "dark magician girl",
+    "dark hole",
+    "swords of revealing light"
+]);
 
 const CARD_PAGE_GAME_NAV_CONFIG = {
     "Yu Yu Hakusho": {
@@ -1019,6 +1033,7 @@ function renderCardPage(cardContext) {
     let selectedBlueEyesVariant = isBlueEyesVariantPicker
         ? (variantOptions[0]?.variants?.[0] || variantOptions[0])
         : null;
+    const isDropdownVariantPicker = HIGH_REPRINT_CARD_NAMES.has(normalizeForSearch(card.title));
 
     const renderBlueEyesPrintingControls = (rarityOption) => {
         if (!isBlueEyesVariantPicker) {
@@ -1076,6 +1091,64 @@ function renderCardPage(cardContext) {
         });
     };
 
+    const renderSwordsControls = (rarityOption) => {
+        if (!isDropdownVariantPicker) {
+            return;
+        }
+
+        let swordsControls = document.getElementById("swordsVariantControls");
+        if (!swordsControls) {
+            swordsControls = document.createElement("div");
+            swordsControls.id = "swordsVariantControls";
+            swordsControls.className = "card-variant-selects";
+            cardVariantControls.appendChild(swordsControls);
+        }
+
+        const printingOptions = rarityOption?.variants || [];
+        swordsControls.innerHTML = `
+            <label class="card-variant-select">
+                <span>Rarity</span>
+                <select id="swordsRaritySelect" aria-label="Filter ${escapeHtml(card.title)} by rarity">
+                    ${variantOptions.map((option) => `<option value="${escapeHtml(option.name)}"${option.name === rarityOption?.name ? " selected" : ""}>${escapeHtml(option.name)}</option>`).join("")}
+                </select>
+            </label>
+            <label class="card-variant-select">
+                <span>Set / printing</span>
+                <select id="swordsSetSelect" aria-label="Filter ${escapeHtml(card.title)} by set">
+                    ${printingOptions.map((variant) => `<option value="${escapeHtml(variant.name)}"${variant.name === selectedBlueEyesVariant?.name ? " selected" : ""}>${escapeHtml(variant.record?.set || variant.name)}</option>`).join("")}
+                </select>
+            </label>
+            ${(selectedBlueEyesVariant?.artworkCandidates || []).length > 1 ? `
+                <label class="card-variant-select">
+                    <span>Artwork</span>
+                    <select id="blueEyesArtworkSelect" aria-label="Filter ${escapeHtml(card.title)} by artwork">
+                        ${(selectedBlueEyesVariant?.artworkCandidates || []).map((artworkUrl, index) => `<option value="${index}">Artwork ${index + 1}</option>`).join("")}
+                    </select>
+                </label>
+            ` : ""}
+        `;
+
+        const raritySelect = swordsControls.querySelector("#swordsRaritySelect");
+        const setSelect = swordsControls.querySelector("#swordsSetSelect");
+        raritySelect?.addEventListener("change", () => {
+            const nextRarity = variantOptions.find((option) => option.name === raritySelect.value) || variantOptions[0];
+            const nextVariant = nextRarity?.variants?.[0];
+            if (nextVariant) {
+                renderSelectedVariant(nextVariant.name, nextRarity.name);
+            }
+        });
+        setSelect?.addEventListener("change", () => {
+            renderSelectedVariant(setSelect.value, rarityOption?.name || "");
+        });
+        const artworkSelect = swordsControls.querySelector("#blueEyesArtworkSelect");
+        artworkSelect?.addEventListener("change", () => {
+            const artworkUrl = selectedBlueEyesVariant?.artworkCandidates?.[Number(artworkSelect.value)];
+            if (artworkUrl) {
+                applyImageCandidates(cardVariantImage, [artworkUrl], `${card.title} artwork ${Number(artworkSelect.value) + 1}`);
+            }
+        });
+    };
+
     const renderSelectedVariant = (variantName, rarityName = "") => {
         let selectedVariant;
         if (isBlueEyesVariantPicker) {
@@ -1084,8 +1157,12 @@ function renderCardPage(cardContext) {
             selectedVariant = rarityOption.variants.find((variant) => variant.name === variantName) || rarityOption.variants[0];
             selectedBlueEyesVariant = selectedVariant;
             selectedVariantName = selectedVariant.name;
-            renderBlueEyesPrintingControls(rarityOption);
-            renderBlueEyesArtworkControls(selectedVariant);
+            if (isDropdownVariantPicker) {
+                renderSwordsControls(rarityOption);
+            } else {
+                renderBlueEyesPrintingControls(rarityOption);
+                renderBlueEyesArtworkControls(selectedVariant);
+            }
         } else {
             selectedVariantName = variantName;
             selectedVariant = variantOptions.find((variant) => variant.name === variantName) || variantOptions[0];
@@ -1120,18 +1197,22 @@ function renderCardPage(cardContext) {
 
         applyImageCandidates(cardVariantImage, selectedVariant.imageCandidates, `${selectedVariant.name} scan`);
         cardVariantName.textContent = selectedVariant.name;
-        cardVariantMeta.textContent = `${card.set} | ${card.cardNumber}`;
+        cardVariantMeta.textContent = `${selectedVariant.record?.set || card.set} | ${selectedVariant.record?.number || card.cardNumber}`;
         if (cardDetailsVariantValue) {
             cardDetailsVariantValue.textContent = selectedVariant.name;
         }
     };
 
     cardVariantControls.innerHTML = "";
-    variantOptions.forEach((variant) => {
-        const button = createVariantControl(variant, selectedVariantName);
-        button.addEventListener("click", () => renderSelectedVariant(variant.name));
-        cardVariantControls.appendChild(button);
-    });
+    if (isDropdownVariantPicker) {
+        renderSwordsControls(variantOptions.find((variant) => variant.name === selectedRarityName) || variantOptions[0]);
+    } else {
+        variantOptions.forEach((variant) => {
+            const button = createVariantControl(variant, selectedVariantName);
+            button.addEventListener("click", () => renderSelectedVariant(variant.name));
+            cardVariantControls.appendChild(button);
+        });
+    }
 
     renderSelectedVariant(selectedVariantName);
 
@@ -1174,7 +1255,8 @@ async function buildCardContext(context) {
 
     const normalizedSelectedName = normalizeForSearch(selected.name);
     const isBlueEyesCard = normalizedSelectedName === "blue eyes ultimate dragon" || normalizedSelectedName === "blue eyes white dragon";
-    const isGroupedYgoCard = isBlueEyesCard || (context.variantMode === "rarity" && isYgoGame(selected.game));
+    const isHighReprintCard = HIGH_REPRINT_CARD_NAMES.has(normalizedSelectedName);
+    const isGroupedYgoCard = isBlueEyesCard || isHighReprintCard || (context.variantMode === "rarity" && isYgoGame(selected.game));
     const relatedCards = await fetchCards({
         q: selected.name,
         id: selected.passcode,

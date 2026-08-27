@@ -74,11 +74,14 @@ function initNavSearch() {
 
     form.addEventListener("submit", (event) => {
         event.preventDefault();
-        const destination = new URL("inventory.html", window.location.href);
+        const currentFile = window.location.pathname.split("/").pop() || "index.html";
+        const destination = new URL(currentFile === "card-template.html" ? "card-template.html" : "inventory.html", window.location.href);
         const query = input.value.trim();
         const gameKey = gameSelect instanceof HTMLSelectElement ? gameSelect.value : "yyh";
         if (query) {
             destination.searchParams.set("q", query);
+        } else {
+            destination.searchParams.delete("q");
         }
         if (gameNames[gameKey]) {
             destination.searchParams.set("game", gameNames[gameKey]);
