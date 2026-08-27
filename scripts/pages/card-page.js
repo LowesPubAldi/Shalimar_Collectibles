@@ -30,7 +30,19 @@ const HIGH_REPRINT_CARD_NAMES = new Set([
     "book of moon",
     "dark magician girl",
     "dark hole",
-    "swords of revealing light"
+    "swords of revealing light",
+    "red eyes black dragon",
+    "terraforming",
+    "enemy controller",
+    "mirror force",
+    "foolish burial",
+    "dust tornado",
+    "trap hole",
+    "ash blossom joyous spring",
+    "compulsory evacuation device",
+    "solemn judgment",
+    "torrential tribute",
+    "magic cylinder"
 ]);
 
 const CARD_PAGE_GAME_NAV_CONFIG = {
@@ -1104,7 +1116,15 @@ function renderCardPage(cardContext) {
             cardVariantControls.appendChild(swordsControls);
         }
 
-        const printingOptions = rarityOption?.variants || [];
+        const printingOptions = [];
+        const seenPrintingKeys = new Set();
+        (rarityOption?.variants || []).forEach((variant) => {
+            const printingKey = variant.record?.number || variant.name;
+            if (!seenPrintingKeys.has(printingKey)) {
+                seenPrintingKeys.add(printingKey);
+                printingOptions.push(variant);
+            }
+        });
         swordsControls.innerHTML = `
             <label class="card-variant-select">
                 <span>Rarity</span>
@@ -1115,7 +1135,7 @@ function renderCardPage(cardContext) {
             <label class="card-variant-select">
                 <span>Set / printing</span>
                 <select id="swordsSetSelect" aria-label="Filter ${escapeHtml(card.title)} by set">
-                    ${printingOptions.map((variant) => `<option value="${escapeHtml(variant.name)}"${variant.name === selectedBlueEyesVariant?.name ? " selected" : ""}>${escapeHtml(variant.record?.set || variant.name)}</option>`).join("")}
+                    ${printingOptions.map((variant) => `<option value="${escapeHtml(variant.name)}"${variant.name === selectedBlueEyesVariant?.name ? " selected" : ""}>${escapeHtml(`${variant.record?.set || variant.name} | ${variant.record?.number || "Code unavailable"}`)}</option>`).join("")}
                 </select>
             </label>
             ${(selectedBlueEyesVariant?.artworkCandidates || []).length > 1 ? `
@@ -1256,7 +1276,7 @@ async function buildCardContext(context) {
     const normalizedSelectedName = normalizeForSearch(selected.name);
     const isBlueEyesCard = normalizedSelectedName === "blue eyes ultimate dragon" || normalizedSelectedName === "blue eyes white dragon";
     const isHighReprintCard = HIGH_REPRINT_CARD_NAMES.has(normalizedSelectedName);
-    const isGroupedYgoCard = isBlueEyesCard || isHighReprintCard || (context.variantMode === "rarity" && isYgoGame(selected.game));
+    const isGroupedYgoCard = isYgoGame(selected.game);
     const relatedCards = await fetchCards({
         q: selected.name,
         id: selected.passcode,
