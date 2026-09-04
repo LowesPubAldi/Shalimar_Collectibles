@@ -146,15 +146,15 @@ function isPokemonStartersPage() {
 
 function pokemonStarterSets() {
     return [
-        { generation: "Generation 1", era: "Kanto", name: "Charizard", cardPosition: 5, companion: "Parasect" },
-        { generation: "Generation 2", era: "Johto", name: "Feraligatr", cardPosition: 9, companion: "Espeon" },
-        { generation: "Generation 3", era: "Hoenn", name: "Sceptile", cardPosition: 4, companion: "Relicanth" },
-        { generation: "Generation 4", era: "Sinnoh", name: "Empoleon", cardPosition: -1, companion: "Bidoof" },
-        { generation: "Generation 5", era: "Unova", name: "Serperior", cardPosition: 8, companion: "Scrafty" },
-        { generation: "Generation 6", era: "Kalos", name: "Greninja", cardPosition: 7, companion: "Goodra" },
-        { generation: "Generation 7", era: "Alola", name: "Incineroar", cardPosition: 3, companion: "Toxapex" },
-        { generation: "Generation 8", era: "Galar", name: "Cinderace", cardPosition: 5, companion: "Corviknight" },
-        { generation: "Generation 9", era: "Paldea", name: "Meowscarada", cardPosition: 2, companion: "Garganacl", centered: true }
+        { generation: "Generation 1", era: "Kanto", name: "Charizard", image: "https://assets.tcgdex.net/en/base/base1/4/low.webp", companion: "Parasect", companionImage: "https://assets.tcgdex.net/en/xy/xy8/2/low.webp" },
+        { generation: "Generation 2", era: "Johto", name: "Feraligatr", image: "https://assets.tcgdex.net/en/sv/sv05/041/low.webp", companion: "Espeon", companionImage: "https://assets.tcgdex.net/en/neo/neo2/1/low.webp" },
+        { generation: "Generation 3", era: "Hoenn", name: "Sceptile", image: "https://assets.tcgdex.net/en/dp/dp4/8/low.webp", companion: "Relicanth", companionImage: "https://assets.tcgdex.net/en/me/me05/017/low.webp" },
+        { generation: "Generation 4", era: "Sinnoh", name: "Empoleon", image: "https://assets.tcgdex.net/en/dp/dpp/DP11/low.webp", companion: "Bidoof", companionImage: "https://assets.tcgdex.net/en/pop/pop6/11/low.webp" },
+        { generation: "Generation 5", era: "Unova", name: "Serperior", image: "https://assets.tcgdex.net/en/tcgp/A1a/070/low.webp", companion: "Scrafty", companionImage: "https://assets.tcgdex.net/en/swsh/swsh3.5/42/low.webp" },
+        { generation: "Generation 6", era: "Kalos", name: "Greninja", image: "https://assets.tcgdex.net/en/tcgp/A3a/093/low.webp", companion: "Goodra", companionImage: "https://assets.tcgdex.net/en/xy/xy7/60/low.webp" },
+        { generation: "Generation 7", era: "Alola", name: "Incineroar", image: "https://assets.tcgdex.net/en/sm/sm10/29/low.webp", companion: "Toxapex", companionImage: "https://assets.tcgdex.net/en/swsh/swsh3/52/low.webp" },
+        { generation: "Generation 8", era: "Galar", name: "Cinderace", image: "https://assets.tcgdex.net/en/swsh/swsh1/35/low.webp", companion: "Corviknight", companionImage: "https://assets.tcgdex.net/en/swsh/swsh1/135/low.webp" },
+        { generation: "Generation 9", era: "Paldea", name: "Meowscarada", image: "https://assets.tcgdex.net/en/sv/sv01/015/low.webp", companion: "Garganacl", companionImage: "https://assets.tcgdex.net/en/me/me01/084/low.webp", centered: true }
     ];
 }
 
@@ -188,9 +188,11 @@ async function fetchPokemonStarterCards(name) {
 function pokemonStarterCardMarkup(name, card, isCompanion = false) {
     const image = card?.image || "assets/Shalimar-card-icon.svg";
     const isFireSpinTrigger = name === "Charizard" && !isCompanion;
+    const isBiteTrigger = name === "Feraligatr" && !isCompanion;
+    const isLeafBladeTarget = name === "Relicanth" && isCompanion;
     return `
-        <div class="pokemon-starter-card__starter pokemon-starter-card__starter--${isCompanion ? "companion" : "primary"}${isFireSpinTrigger ? " pokemon-starter-card__starter--fire-spin" : ""}"${isFireSpinTrigger ? " data-pokemon-fire-spin-trigger role=\"button\" tabindex=\"0\" aria-label=\"Use Fire Spin on Parasect\"" : ""}>
-            <img src="${pokemonEscapeHtml(image)}" alt="${pokemonEscapeHtml(name)} card" loading="lazy" />
+        <div class="pokemon-starter-card__starter pokemon-starter-card__starter--${isCompanion ? "companion" : "primary"}${isFireSpinTrigger ? " pokemon-starter-card__starter--fire-spin" : ""}${isBiteTrigger ? " pokemon-starter-card__starter--bite" : ""}${isLeafBladeTarget ? " pokemon-starter-card__starter--leaf-blade-target" : ""}"${isFireSpinTrigger ? " data-pokemon-fire-spin-trigger role=\"button\" tabindex=\"0\" aria-label=\"Use Fire Spin on Parasect\"" : ""}${isBiteTrigger ? " data-pokemon-bite-trigger role=\"button\" tabindex=\"0\" aria-label=\"Use Bite on Espeon\"" : ""}${isLeafBladeTarget ? " data-pokemon-leaf-blade-target tabindex=\"0\" aria-label=\"Swipe across Relicanth to use Leaf Blade\"" : ""}>
+            <img src="${pokemonEscapeHtml(image)}" alt="${pokemonEscapeHtml(name)} card" />
         </div>`;
 }
 
@@ -223,6 +225,107 @@ function playPokemonFireSpin(main) {
     window.setTimeout(() => parasect.classList.add("is-fire-spun"), 560);
     window.setTimeout(() => parasect.classList.remove("is-fire-spun"), 1600);
     window.setTimeout(() => spin.remove(), 1700);
+}
+
+function playPokemonBite(main) {
+    const feraligatr = main.querySelector(".pokemon-starter-card__starter--bite");
+    const espeon = main.querySelector("[data-pokemon-starter=\"Feraligatr\"] .pokemon-starter-card__starter--companion");
+    if (!(feraligatr instanceof HTMLElement) || !(espeon instanceof HTMLElement) || feraligatr.classList.contains("is-biting")) {
+        return;
+    }
+
+    feraligatr.classList.add("is-biting");
+    espeon.classList.remove("is-bitten", "is-stunned");
+    espeon.querySelectorAll(".pokemon-bite-sound").forEach((bubble) => bubble.remove());
+
+    window.setTimeout(() => {
+        espeon.classList.add("is-bitten");
+        const bubble = document.createElement("span");
+        bubble.className = "pokemon-bite-sound";
+        bubble.setAttribute("aria-hidden", "true");
+        bubble.innerHTML = "<i></i><i></i><i></i>";
+        espeon.appendChild(bubble);
+    }, 530);
+    window.setTimeout(() => espeon.classList.add("is-stunned"), 1050);
+    window.setTimeout(() => feraligatr.classList.remove("is-biting"), 1300);
+    window.setTimeout(() => espeon.classList.remove("is-bitten"), 1380);
+    window.setTimeout(() => espeon.querySelectorAll(".pokemon-bite-sound").forEach((bubble) => bubble.remove()), 1520);
+    window.setTimeout(() => espeon.classList.remove("is-stunned"), 2200);
+}
+
+function playPokemonLeafBlade(main, target, direction) {
+    if (!(target instanceof HTMLElement) || target.classList.contains("is-leaf-slicing")) {
+        return;
+    }
+
+    const image = target.querySelector("img");
+    const sceptile = main.querySelector("[data-pokemon-starter=\"Sceptile\"] .pokemon-starter-card__starter--primary");
+    if (!(image instanceof HTMLImageElement)) {
+        return;
+    }
+
+    const rotation = (Number(target.dataset.leafRotation || "0") + 60) % 360;
+    const cut = document.createElement("span");
+    cut.className = `pokemon-leaf-blade-cut pokemon-leaf-blade-cut--${direction}`;
+    cut.style.setProperty("--leaf-image", `url("${image.currentSrc || image.src}")`);
+    cut.innerHTML = "<i></i><i></i><b></b>";
+
+    if (sceptile instanceof HTMLElement) {
+        sceptile.classList.add("is-leaf-dashing");
+    }
+    target.classList.add("is-leaf-slicing");
+    target.dataset.leafRotation = String(rotation);
+    target.style.setProperty("--leaf-rotation", `${rotation}deg`);
+    target.appendChild(cut);
+    const impact = document.createElement("span");
+    impact.className = "pokemon-leaf-blade-impact";
+    impact.setAttribute("aria-hidden", "true");
+    target.appendChild(impact);
+
+    window.setTimeout(() => sceptile?.classList.remove("is-leaf-dashing"), 700);
+    window.setTimeout(() => target.classList.remove("is-leaf-slicing"), 700);
+    window.setTimeout(() => cut.remove(), 760);
+    window.setTimeout(() => impact.remove(), 760);
+}
+
+function initPokemonLeafBlade(main) {
+    const target = main.querySelector("[data-pokemon-leaf-blade-target]");
+    if (!(target instanceof HTMLElement)) {
+        return;
+    }
+
+    let startPoint = null;
+    target.addEventListener("pointerdown", (event) => {
+        startPoint = { x: event.clientX, y: event.clientY, pointerId: event.pointerId };
+        try {
+            target.setPointerCapture(event.pointerId);
+        } catch {
+            // Pointer capture is unavailable for synthetic and some assistive inputs.
+        }
+    });
+    target.addEventListener("pointerup", (event) => {
+        if (!startPoint || startPoint.pointerId !== event.pointerId) {
+            return;
+        }
+
+        const deltaX = event.clientX - startPoint.x;
+        const deltaY = event.clientY - startPoint.y;
+        startPoint = null;
+        if (Math.hypot(deltaX, deltaY) < 24) {
+            return;
+        }
+
+        playPokemonLeafBlade(main, target, Math.abs(deltaX) >= Math.abs(deltaY) ? "horizontal" : "vertical");
+    });
+    target.addEventListener("pointercancel", () => {
+        startPoint = null;
+    });
+    target.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowLeft" || event.key === "ArrowRight" || event.key === "ArrowUp" || event.key === "ArrowDown") {
+            event.preventDefault();
+            playPokemonLeafBlade(main, target, event.key === "ArrowLeft" || event.key === "ArrowRight" ? "horizontal" : "vertical");
+        }
+    });
 }
 
 async function renderPokemonStartersPage() {
@@ -268,11 +371,13 @@ async function renderPokemonStartersPage() {
                             <div class="pokemon-starter-card__heading">
                                 <span>${pokemonEscapeHtml(entry.generation)}</span>
                                 ${entry.name === "Charizard" ? '<button class="pokemon-fire-spin-control" type="button" data-pokemon-fire-spin-trigger aria-label="Use Fire Spin on Parasect" title="Use Fire Spin"></button>' : ""}
+                                ${entry.name === "Feraligatr" ? '<button class="pokemon-bite-control" type="button" data-pokemon-bite-trigger aria-label="Use Bite on Espeon" title="Use Bite"></button>' : ""}
+                                ${entry.name === "Sceptile" ? '<button class="pokemon-leaf-blade-control" type="button" data-pokemon-leaf-blade-control aria-label="Slice Relicanth" title="Slice Relicanth">Slice</button>' : ""}
                                 <strong>${pokemonEscapeHtml(entry.era)}</strong>
                             </div>
                             <div class="pokemon-starter-card__family">
-                                ${pokemonStarterCardMarkup(entry.name)}
-                                ${entry.companion ? pokemonStarterCardMarkup(entry.companion, null, true) : ""}
+                                ${pokemonStarterCardMarkup(entry.name, { image: entry.image })}
+                                ${entry.companion ? pokemonStarterCardMarkup(entry.companion, { image: entry.companionImage }, true) : ""}
                             </div>
                         </article>
                     `).join("")}
@@ -285,58 +390,33 @@ async function renderPokemonStartersPage() {
             event.preventDefault();
             playPokemonFireSpin(main);
         }
+        if (event.target instanceof Element && event.target.closest("[data-pokemon-bite-trigger]")) {
+            event.preventDefault();
+            playPokemonBite(main);
+        }
+        if (event.target instanceof Element && event.target.closest("[data-pokemon-leaf-blade-control]")) {
+            const target = main.querySelector("[data-pokemon-leaf-blade-target]");
+            const rotation = Number(target?.dataset.leafRotation || "0");
+            playPokemonLeafBlade(main, target, rotation % 180 === 0 ? "horizontal" : "vertical");
+        }
     });
     main.addEventListener("keydown", (event) => {
         if ((event.key === "Enter" || event.key === " ") && event.target instanceof Element && event.target.closest("[data-pokemon-fire-spin-trigger]")) {
             event.preventDefault();
             playPokemonFireSpin(main);
         }
-    });
-
-    generations.forEach((entry) => {
-        void fetchPokemonStarterCards(entry.name).then((cards) => {
-            if (!cards.length) {
-                return;
-            }
-
-            const starter = Array.from(document.querySelectorAll("[data-pokemon-starter]")).find((element) => element.dataset.pokemonStarter === entry.name);
-            if (!(starter instanceof HTMLElement)) {
-                return;
-            }
-
-            const family = starter.querySelector(".pokemon-starter-card__family");
-            if (family instanceof HTMLElement) {
-                const cardIndex = entry.cardPosition < 0 ? cards.length - 1 : entry.cardPosition - 1;
-                const selectedCard = cards[cardIndex] || cards[0];
-                const primaryCard = family.querySelector(".pokemon-starter-card__starter--primary");
-                if (primaryCard instanceof HTMLElement) {
-                    primaryCard.outerHTML = pokemonStarterCardMarkup(entry.name, selectedCard);
-                }
-            }
-        });
-
-        if (!entry.companion) {
-            return;
+        if ((event.key === "Enter" || event.key === " ") && event.target instanceof Element && event.target.closest("[data-pokemon-bite-trigger]")) {
+            event.preventDefault();
+            playPokemonBite(main);
         }
-
-        void fetchPokemonStarterCards(entry.companion).then((cards) => {
-            const companion = cards[0];
-            if (!companion) {
-                return;
-            }
-
-            const starter = Array.from(document.querySelectorAll("[data-pokemon-starter]")).find((element) => element.dataset.pokemonStarter === entry.name);
-            const family = starter?.querySelector(".pokemon-starter-card__family");
-            if (!(family instanceof HTMLElement)) {
-                return;
-            }
-
-            const existingCompanion = family.querySelector(".pokemon-starter-card__starter--companion");
-            if (existingCompanion instanceof HTMLElement) {
-                existingCompanion.outerHTML = pokemonStarterCardMarkup(entry.companion, companion, true);
-            }
-        });
+        if ((event.key === "Enter" || event.key === " ") && event.target instanceof Element && event.target.closest("[data-pokemon-leaf-blade-control]")) {
+            event.preventDefault();
+            const target = main.querySelector("[data-pokemon-leaf-blade-target]");
+            const rotation = Number(target?.dataset.leafRotation || "0");
+            playPokemonLeafBlade(main, target, rotation % 180 === 0 ? "horizontal" : "vertical");
+        }
     });
+    initPokemonLeafBlade(main);
 
     return true;
 }

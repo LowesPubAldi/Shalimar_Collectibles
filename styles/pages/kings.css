@@ -1423,6 +1423,70 @@
     outline-offset: 3px;
 }
 
+.pokemon-bite-control {
+    position: relative;
+    width: 24px;
+    aspect-ratio: 1;
+    border: 1px solid rgba(202, 247, 255, 0.86);
+    border-radius: 50%;
+    padding: 0;
+    cursor: pointer;
+    background: rgba(39, 191, 226, 0.2);
+    box-shadow: 0 0 9px rgba(34, 211, 238, 0.6);
+}
+
+.pokemon-bite-control::before,
+.pokemon-bite-control::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: 9px;
+    height: 5px;
+    border: 2px solid #e9fdff;
+    border-radius: 50%;
+    transform: translateX(-50%);
+}
+
+.pokemon-bite-control::before { top: 4px; border-bottom: 0; }
+.pokemon-bite-control::after { bottom: 4px; border-top: 0; }
+
+.pokemon-bite-control:hover,
+.pokemon-bite-control:focus-visible {
+    background: rgba(85, 225, 250, 0.35);
+    box-shadow: 0 0 14px rgba(134, 239, 255, 0.95);
+    transform: scale(1.14);
+}
+
+.pokemon-bite-control:focus-visible {
+    outline: 2px solid #e9fdff;
+    outline-offset: 3px;
+}
+
+.pokemon-leaf-blade-control {
+    border: 1px solid rgba(141, 245, 157, 0.72);
+    border-radius: 5px;
+    padding: 4px 8px;
+    cursor: pointer;
+    background: rgba(23, 103, 53, 0.46);
+    color: #d5ffe0;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.pokemon-leaf-blade-control:hover,
+.pokemon-leaf-blade-control:focus-visible {
+    border-color: #d5ffe0;
+    background: rgba(42, 170, 78, 0.62);
+    box-shadow: 0 0 12px rgba(114, 243, 157, 0.6);
+}
+
+.pokemon-leaf-blade-control:focus-visible {
+    outline: 2px solid #d5ffe0;
+    outline-offset: 3px;
+}
+
 .pokemon-starter-card__family {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(90px, 0.64fr);
@@ -1455,8 +1519,31 @@
     cursor: pointer;
 }
 
+.pokemon-starter-card__starter--bite {
+    cursor: pointer;
+    transform-origin: 78% 52%;
+}
+
+.pokemon-starter-card__starter--leaf-blade-target {
+    position: relative;
+    cursor: crosshair;
+    transform: rotate(var(--leaf-rotation, 0deg));
+    transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+    touch-action: none;
+}
+
 .pokemon-starter-card__starter--fire-spin:focus-visible img {
     outline: 2px solid #ffb23e;
+    outline-offset: 4px;
+}
+
+.pokemon-starter-card__starter--bite:focus-visible img {
+    outline: 2px solid #a5f3fc;
+    outline-offset: 4px;
+}
+
+.pokemon-starter-card__starter--leaf-blade-target:focus-visible img {
+    outline: 2px solid #a3ffb4;
     outline-offset: 4px;
 }
 
@@ -1479,6 +1566,100 @@
     animation: pokemon-fire-spin-burn 1.05s ease-out both;
 }
 
+.pokemon-starter-card__starter--bite.is-biting {
+    animation: pokemon-feraligatr-bite 1.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.pokemon-starter-card__starter--companion.is-bitten {
+    animation: pokemon-espeon-recoil 0.48s ease-out both;
+}
+
+.pokemon-starter-card__starter--companion.is-stunned {
+    animation: pokemon-espeon-stunned 1.15s ease-in-out both;
+}
+
+.pokemon-starter-card__starter--leaf-blade-target.is-leaf-slicing > img {
+    opacity: 0;
+}
+
+.pokemon-starter-card__starter--primary.is-leaf-dashing {
+    animation: pokemon-sceptile-leaf-dash 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.pokemon-leaf-blade-impact {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 4;
+    width: 34px;
+    aspect-ratio: 1;
+    border: 3px solid #1b6b3a;
+    border-radius: 50%;
+    pointer-events: none;
+    box-shadow: 0 0 0 5px rgba(29, 117, 61, 0.34), 0 0 18px rgba(49, 155, 76, 0.8);
+    transform: translate(-50%, -50%);
+    animation: pokemon-leaf-blade-impact 620ms ease-out forwards;
+}
+
+.pokemon-leaf-blade-cut {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.pokemon-leaf-blade-cut i {
+    position: absolute;
+    inset: 0;
+    display: block;
+    background-image: var(--leaf-image);
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.pokemon-leaf-blade-cut b {
+    position: absolute;
+    z-index: 3;
+    display: block;
+    background: linear-gradient(90deg, transparent, #f2ffbd 35%, #72f39d 50%, #f2ffbd 65%, transparent);
+    box-shadow: 0 0 10px #72f39d;
+}
+
+.pokemon-leaf-blade-cut--horizontal i:first-child { clip-path: inset(0 0 50% 0); animation: pokemon-leaf-top 650ms ease-out forwards; }
+.pokemon-leaf-blade-cut--horizontal i:nth-child(2) { clip-path: inset(50% 0 0 0); animation: pokemon-leaf-bottom 650ms ease-out forwards; }
+.pokemon-leaf-blade-cut--horizontal b { top: 50%; left: -5%; width: 110%; height: 3px; animation: pokemon-leaf-line-horizontal 420ms ease-out forwards; }
+.pokemon-leaf-blade-cut--vertical i:first-child { clip-path: inset(0 50% 0 0); animation: pokemon-leaf-left 650ms ease-out forwards; }
+.pokemon-leaf-blade-cut--vertical i:nth-child(2) { clip-path: inset(0 0 0 50%); animation: pokemon-leaf-right 650ms ease-out forwards; }
+.pokemon-leaf-blade-cut--vertical b { top: -5%; left: 50%; width: 3px; height: 110%; animation: pokemon-leaf-line-vertical 420ms ease-out forwards; }
+
+.pokemon-bite-sound {
+    position: absolute;
+    top: 14%;
+    right: -12px;
+    z-index: 3;
+    display: flex;
+    align-items: end;
+    gap: 2px;
+    width: 29px;
+    height: 24px;
+    border: 1px solid rgba(233, 253, 255, 0.84);
+    border-radius: 50%;
+    background: rgba(7, 42, 59, 0.9);
+    box-shadow: 0 0 12px rgba(125, 235, 255, 0.75);
+    animation: pokemon-bite-sound 0.8s ease-out both;
+}
+
+.pokemon-bite-sound i {
+    width: 2px;
+    border-radius: 2px;
+    background: #e9fdff;
+}
+
+.pokemon-bite-sound i:nth-child(1) { height: 6px; }
+.pokemon-bite-sound i:nth-child(2) { height: 12px; }
+.pokemon-bite-sound i:nth-child(3) { height: 8px; }
+
 @keyframes pokemon-fire-spin-travel {
     0% { transform: translate(-50%, -50%) scale(0.35) rotate(0deg); opacity: 0.25; }
     50% { opacity: 1; }
@@ -1490,6 +1671,36 @@
     0%, 25% { filter: brightness(1); transform: scale(1); }
     55% { filter: brightness(1.35) sepia(0.95) saturate(2.8) drop-shadow(0 0 12px #ff6018); transform: scale(0.94); }
     100% { filter: brightness(0.5) sepia(1) saturate(0.45); transform: scale(0.88); }
+}
+
+@keyframes pokemon-feraligatr-bite {
+    0% { transform: rotate(0deg) translateX(0); }
+    18% { transform: rotate(7deg) translateX(3px); }
+    47% { transform: rotate(5deg) translateX(82px) scale(1.04); }
+    58% { transform: rotate(9deg) translateX(87px) scale(1.05); }
+    68% { transform: rotate(4deg) translateX(76px) scale(1.02); }
+    100% { transform: rotate(0deg) translateX(0); }
+}
+
+@keyframes pokemon-espeon-recoil {
+    0% { transform: translateX(0) rotate(0deg); }
+    45% { transform: translateX(16px) rotate(5deg) scale(0.94); }
+    100% { transform: translateX(0) rotate(0deg); }
+}
+
+@keyframes pokemon-espeon-stunned {
+    0%, 18% { filter: brightness(1); transform: rotate(0deg); }
+    34% { filter: brightness(1.28) saturate(0.7); transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+    66% { transform: rotate(-2deg); }
+    82% { transform: rotate(2deg); }
+    100% { filter: brightness(1); transform: rotate(0deg); }
+}
+
+@keyframes pokemon-bite-sound {
+    0% { opacity: 0; transform: scale(0.4) translateY(8px); }
+    35% { opacity: 1; transform: scale(1) translateY(0); }
+    100% { opacity: 0; transform: scale(1.2) translateY(-12px); }
 }
 
 .pokemon-starter-card__starter--companion {
@@ -1518,4 +1729,22 @@
 
 @keyframes pokemon-fire-spin-control {
     50% { box-shadow: 0 0 14px rgba(255, 155, 40, 0.95); }
+}
+
+@keyframes pokemon-leaf-top { to { opacity: 0; transform: translateY(-19px) rotate(-5deg); } }
+@keyframes pokemon-leaf-bottom { to { opacity: 0; transform: translateY(19px) rotate(5deg); } }
+@keyframes pokemon-leaf-left { to { opacity: 0; transform: translateX(-16px) rotate(-4deg); } }
+@keyframes pokemon-leaf-right { to { opacity: 0; transform: translateX(16px) rotate(4deg); } }
+@keyframes pokemon-leaf-line-horizontal { from { opacity: 0; transform: scaleX(0); } 40% { opacity: 1; } to { opacity: 0; transform: scaleX(1); } }
+@keyframes pokemon-leaf-line-vertical { from { opacity: 0; transform: scaleY(0); } 40% { opacity: 1; } to { opacity: 0; transform: scaleY(1); } }
+@keyframes pokemon-sceptile-leaf-dash {
+    0% { transform: translateX(0) rotate(0deg); filter: brightness(1); }
+    35% { transform: translateX(5px) rotate(-3deg); filter: brightness(1.2) saturate(1.3); }
+    58% { transform: translateX(76px) rotate(5deg) scale(1.04); filter: brightness(1.35) saturate(1.5) drop-shadow(0 0 9px #1b6b3a); }
+    100% { transform: translateX(0) rotate(0deg); filter: brightness(1); }
+}
+@keyframes pokemon-leaf-blade-impact {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.2); }
+    36% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(2.6); }
 }

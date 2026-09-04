@@ -301,6 +301,33 @@ const YGO_ACTIVE_PANEL_THIRD_SPOTLIGHTS = {
 let spotlightViewerElements = null;
 const ygoSpotlightThumbCache = new Map();
 const pokemonSpotlightThumbCache = new Map();
+const pokemonSpotlightThumbRequests = new Map();
+const POKEMON_SPOTLIGHT_STATIC_THUMBS = {
+	"charizard": "https://assets.tcgdex.net/en/base/base1/4/low.webp",
+	"volcanion": "https://assets.tcgdex.net/en/xy/xy11/25/low.webp",
+	"metagross": "https://assets.tcgdex.net/en/pop/pop1/2/low.webp",
+	"steven": "https://assets.tcgdex.net/en/xy/xy6/90/low.webp",
+	"espeon": "https://assets.tcgdex.net/en/neo/neo2/1/low.webp",
+	"morty s conviction": "https://assets.tcgdex.net/en/sv/sv05/155/low.webp",
+	"sceptile": "https://assets.tcgdex.net/en/pop/pop1/4/low.webp",
+	"grass energy": "https://assets.tcgdex.net/en/xy/g1/75/low.webp",
+	"decidueye": "https://assets.tcgdex.net/en/sv/sv06.5/005/low.webp",
+	"hau": "https://assets.tcgdex.net/en/tcgp/A3b/068/low.webp",
+	"tinkaton": "https://assets.tcgdex.net/en/sv/svp/020/low.webp",
+	"double turbo energy": "https://assets.tcgdex.net/en/swsh/swsh9/151/low.webp",
+	"infernape": "https://assets.tcgdex.net/en/dp/dp7/3/low.webp",
+	"fire energy": "https://assets.tcgdex.net/en/xy/g1/76/low.webp",
+	"braviary": "https://assets.tcgdex.net/en/sv/sv10.5b/078/low.webp",
+	"skyla": "https://assets.tcgdex.net/en/swsh/swsh4.5/72/low.webp",
+	"cinderace": "https://assets.tcgdex.net/en/swsh/swsh1/35/low.webp",
+	"leon": "https://assets.tcgdex.net/en/swsh/swsh12.5/134/low.webp",
+	"trevenant": "https://assets.tcgdex.net/en/xy/xy1/55/low.webp",
+	"gothitelle": "https://assets.tcgdex.net/en/xy/xy3/41/low.webp",
+	"appletun": "https://assets.tcgdex.net/en/tcgp/A3b/007/low.webp",
+	"milo": "https://assets.tcgdex.net/en/swsh/swsh3.5/57/low.webp",
+	"articuno": "https://assets.tcgdex.net/en/dp/dp5/1/low.webp",
+	"battle frontier": "https://assets.tcgdex.net/en/ex/ex16/71/low.webp"
+};
 const POKEMON_SECONDARY_SPOTLIGHTS = {
 	"metagross": { card: "Steven", person: "Trainer: Steven Stone" },
 	"espeon": { card: "Morty's Conviction", person: "Trainer: Morty" },
@@ -817,23 +844,7 @@ async function hydratePokemonSpotlightThumb(listElement, entries) {
 	}
 
 	const cacheKey = normalizeForSearch(entry.card);
-	let imageUrl = pokemonSpotlightThumbCache.get(cacheKey);
-	if (typeof imageUrl === "undefined") {
-		try {
-			const endpoint = new URL("https://api.tcgdex.net/v2/en/cards");
-			endpoint.searchParams.set("name", entry.card);
-			const response = await fetch(endpoint.toString(), { cache: "no-store" });
-			const payload = response.ok ? await response.json() : [];
-			const exactMatch = Array.isArray(payload)
-				? payload.find((card) => normalizeForSearch(card?.name) === cacheKey && card?.image)
-				: null;
-			const imageBase = resolveFirstNonEmpty(exactMatch?.image, payload?.find((card) => card?.image)?.image);
-			imageUrl = imageBase ? `${imageBase}/low.webp` : "";
-		} catch {
-			imageUrl = "";
-		}
-		pokemonSpotlightThumbCache.set(cacheKey, imageUrl);
-	}
+	const imageUrl = await fetchPokemonSpotlightThumb(entry.card);
 
 	if (!imageUrl) {
 		return;
@@ -853,24 +864,7 @@ async function hydratePokemonSpotlightCards(listElement, entries) {
 
 	const pokemonEntries = entries.slice(0, 2).filter((entry) => normalizeForSearch(entry?.game) === "pokemon" && entry.card);
 	await Promise.all(pokemonEntries.map(async (entry, index) => {
-		const cacheKey = normalizeForSearch(entry.card);
-		let imageUrl = pokemonSpotlightThumbCache.get(cacheKey);
-		if (typeof imageUrl === "undefined") {
-			try {
-				const endpoint = new URL("https://api.tcgdex.net/v2/en/cards");
-				endpoint.searchParams.set("name", entry.card);
-				const response = await fetch(endpoint.toString(), { cache: "no-store" });
-				const payload = response.ok ? await response.json() : [];
-				const exactMatch = Array.isArray(payload)
-					? payload.find((card) => normalizeForSearch(card?.name) === cacheKey && card?.image)
-					: null;
-				const imageBase = resolveFirstNonEmpty(exactMatch?.image, payload?.find((card) => card?.image)?.image);
-				imageUrl = imageBase ? `${imageBase}/low.webp` : "";
-			} catch {
-				imageUrl = "";
-			}
-			pokemonSpotlightThumbCache.set(cacheKey, imageUrl);
-		}
+		const imageUrl = await fetchPokemonSpotlightThumb(entry.card);
 
 		if (!imageUrl) {
 			return;
@@ -882,6 +876,49 @@ async function hydratePokemonSpotlightCards(listElement, entries) {
 			img.alt = `${entry.card} card thumbnail`;
 		}
 	}));
+}
+
+async function fetchPokemonSpotlightThumb(cardName) {
+	const cacheKey = normalizeForSearch(cardName);
+	const staticImage = POKEMON_SPOTLIGHT_STATIC_THUMBS[cacheKey];
+	if (staticImage) {
+		return staticImage;
+	}
+
+	const cachedImage = pokemonSpotlightThumbCache.get(cacheKey);
+	if (typeof cachedImage !== "undefined") {
+		return cachedImage;
+	}
+
+	const pendingRequest = pokemonSpotlightThumbRequests.get(cacheKey);
+	if (pendingRequest) {
+		return pendingRequest;
+	}
+
+	const request = (async () => {
+		try {
+			const endpoint = new URL("https://api.tcgdex.net/v2/en/cards");
+			endpoint.searchParams.set("name", cardName);
+			const response = await fetch(endpoint.toString(), { cache: "no-store" });
+			const payload = response.ok ? await response.json() : [];
+			const exactMatch = Array.isArray(payload)
+				? payload.find((card) => normalizeForSearch(card?.name) === cacheKey && card?.image)
+				: null;
+			const imageBase = resolveFirstNonEmpty(exactMatch?.image, payload?.find((card) => card?.image)?.image);
+			const imageUrl = imageBase ? `${imageBase}/low.webp` : "";
+			if (imageUrl) {
+				pokemonSpotlightThumbCache.set(cacheKey, imageUrl);
+			}
+			return imageUrl;
+		} catch {
+			return "";
+		} finally {
+			pokemonSpotlightThumbRequests.delete(cacheKey);
+		}
+	})();
+
+	pokemonSpotlightThumbRequests.set(cacheKey, request);
+	return request;
 }
 
 function buildSpotlightCardUrl(entry) {
