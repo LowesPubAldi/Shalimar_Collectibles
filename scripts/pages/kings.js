@@ -139,6 +139,208 @@ function isYugiohWinConsPage() {
     return params.get("game") === "Yu-Gi-Oh" && params.get("mode") === "wincons";
 }
 
+function isPokemonStartersPage() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("game") === "Pokemon" && params.get("mode") === "starters";
+}
+
+function pokemonStarterSets() {
+    return [
+        { generation: "Generation 1", era: "Kanto", name: "Charizard", cardPosition: 5, companion: "Parasect" },
+        { generation: "Generation 2", era: "Johto", name: "Feraligatr", cardPosition: 9, companion: "Espeon" },
+        { generation: "Generation 3", era: "Hoenn", name: "Sceptile", cardPosition: 4, companion: "Relicanth" },
+        { generation: "Generation 4", era: "Sinnoh", name: "Empoleon", cardPosition: -1, companion: "Bidoof" },
+        { generation: "Generation 5", era: "Unova", name: "Serperior", cardPosition: 8, companion: "Scrafty" },
+        { generation: "Generation 6", era: "Kalos", name: "Greninja", cardPosition: 7, companion: "Goodra" },
+        { generation: "Generation 7", era: "Alola", name: "Incineroar", cardPosition: 3, companion: "Toxapex" },
+        { generation: "Generation 8", era: "Galar", name: "Cinderace", cardPosition: 5, companion: "Corviknight" },
+        { generation: "Generation 9", era: "Paldea", name: "Meowscarada", cardPosition: 2, companion: "Garganacl", centered: true }
+    ];
+}
+
+function pokemonEscapeHtml(value) {
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+}
+
+async function fetchPokemonStarterCards(name) {
+    try {
+        const response = await fetch(`https://api.tcgdex.net/v2/en/cards?name=${encodeURIComponent(name)}`, { cache: "no-store" });
+        if (!response.ok) {
+            return [];
+        }
+
+        const payload = await response.json();
+        return Array.isArray(payload)
+            ? payload
+                .filter((card) => card?.name === name && card?.image)
+                .map((card) => ({ ...card, image: `${card.image}/low.webp` }))
+            : [];
+    } catch {
+        return [];
+    }
+}
+
+function pokemonStarterCardMarkup(name, card, isCompanion = false) {
+    const image = card?.image || "assets/Shalimar-card-icon.svg";
+    const isFireSpinTrigger = name === "Charizard" && !isCompanion;
+    return `
+        <div class="pokemon-starter-card__starter pokemon-starter-card__starter--${isCompanion ? "companion" : "primary"}${isFireSpinTrigger ? " pokemon-starter-card__starter--fire-spin" : ""}"${isFireSpinTrigger ? " data-pokemon-fire-spin-trigger role=\"button\" tabindex=\"0\" aria-label=\"Use Fire Spin on Parasect\"" : ""}>
+            <img src="${pokemonEscapeHtml(image)}" alt="${pokemonEscapeHtml(name)} card" loading="lazy" />
+        </div>`;
+}
+
+function playPokemonFireSpin(main) {
+    const charizard = main.querySelector(".pokemon-starter-card__starter--fire-spin");
+    const parasect = main.querySelector("[data-pokemon-starter=\"Charizard\"] .pokemon-starter-card__starter--companion");
+    if (!(charizard instanceof HTMLElement) || !(parasect instanceof HTMLElement)) {
+        return;
+    }
+
+    const mainBounds = main.getBoundingClientRect();
+    const charizardImage = charizard.querySelector("img");
+    const parasectImage = parasect.querySelector("img");
+    const charizardBounds = (charizardImage instanceof HTMLImageElement ? charizardImage : charizard).getBoundingClientRect();
+    const parasectBounds = (parasectImage instanceof HTMLImageElement ? parasectImage : parasect).getBoundingClientRect();
+    const spin = document.createElement("span");
+    const startX = charizardBounds.left - mainBounds.left + (charizardBounds.width * 0.73);
+    const startY = charizardBounds.top - mainBounds.top + (charizardBounds.height * 0.24);
+    const endX = parasectBounds.left - mainBounds.left + (parasectBounds.width / 2);
+    const endY = parasectBounds.top - mainBounds.top + (parasectBounds.height / 2);
+
+    spin.className = "pokemon-fire-spin";
+    spin.style.setProperty("--fire-spin-x", `${endX - startX}px`);
+    spin.style.setProperty("--fire-spin-y", `${endY - startY}px`);
+    spin.style.left = `${startX}px`;
+    spin.style.top = `${startY}px`;
+    main.appendChild(spin);
+    parasect.classList.remove("is-fire-spun");
+
+    window.setTimeout(() => parasect.classList.add("is-fire-spun"), 560);
+    window.setTimeout(() => parasect.classList.remove("is-fire-spun"), 1600);
+    window.setTimeout(() => spin.remove(), 1700);
+}
+
+async function renderPokemonStartersPage() {
+    const main = document.querySelector("main.kings-page");
+    if (!(main instanceof HTMLElement)) {
+        return false;
+    }
+
+    const generations = pokemonStarterSets();
+
+    document.title = "Shalimar Collectibles | Pokemon Starters";
+    const footerMeta = document.querySelector(".site-footer__meta");
+    if (footerMeta instanceof HTMLElement) {
+        footerMeta.textContent = "One featured Pokemon from each of the nine current generations.";
+    }
+
+    main.classList.add("pokemon-starters-page");
+    main.innerHTML = `
+        <section class="kings-hero pokemon-starters-hero" aria-label="Pokemon starter overview">
+            <div class="kings-hero__content">
+                <p class="kings-hero__eyebrow">Pokemon Starters</p>
+                <h1>Choose your first partner across nine generations.</h1>
+                <p>Explore one featured evolved starter from each mainline Pokemon generation.</p>
+            </div>
+            <aside class="kings-hero__panel" aria-label="Pokemon starter snapshot">
+                <p class="kings-hero__panel-label">Starter Snapshot</p>
+                <ul class="kings-hero__list">
+                    <li>Generations: 9</li>
+                    <li>Featured Pokemon: 9</li>
+                    <li>Source: TCGdex API</li>
+                </ul>
+            </aside>
+        </section>
+        <section class="kings-shell pokemon-starters-shell" aria-label="Pokemon starter generations">
+            <article class="kings-panel kings-panel--cards">
+                <div class="kings-panel__head">
+                    <h2>Featured Starters</h2>
+                    <p>One featured Pokemon per current generation, grouped by region and presented without animation for now.</p>
+                </div>
+                <div class="pokemon-starter-grid">
+                    ${generations.map((entry) => `
+                        <article class="pokemon-starter-card${entry.centered ? " pokemon-starter-card--centered" : ""}" data-pokemon-starter="${pokemonEscapeHtml(entry.name)}">
+                            <div class="pokemon-starter-card__heading">
+                                <span>${pokemonEscapeHtml(entry.generation)}</span>
+                                ${entry.name === "Charizard" ? '<button class="pokemon-fire-spin-control" type="button" data-pokemon-fire-spin-trigger aria-label="Use Fire Spin on Parasect" title="Use Fire Spin"></button>' : ""}
+                                <strong>${pokemonEscapeHtml(entry.era)}</strong>
+                            </div>
+                            <div class="pokemon-starter-card__family">
+                                ${pokemonStarterCardMarkup(entry.name)}
+                                ${entry.companion ? pokemonStarterCardMarkup(entry.companion, null, true) : ""}
+                            </div>
+                        </article>
+                    `).join("")}
+                </div>
+            </article>
+        </section>`;
+
+    main.addEventListener("click", (event) => {
+        if (event.target instanceof Element && event.target.closest("[data-pokemon-fire-spin-trigger]")) {
+            event.preventDefault();
+            playPokemonFireSpin(main);
+        }
+    });
+    main.addEventListener("keydown", (event) => {
+        if ((event.key === "Enter" || event.key === " ") && event.target instanceof Element && event.target.closest("[data-pokemon-fire-spin-trigger]")) {
+            event.preventDefault();
+            playPokemonFireSpin(main);
+        }
+    });
+
+    generations.forEach((entry) => {
+        void fetchPokemonStarterCards(entry.name).then((cards) => {
+            if (!cards.length) {
+                return;
+            }
+
+            const starter = Array.from(document.querySelectorAll("[data-pokemon-starter]")).find((element) => element.dataset.pokemonStarter === entry.name);
+            if (!(starter instanceof HTMLElement)) {
+                return;
+            }
+
+            const family = starter.querySelector(".pokemon-starter-card__family");
+            if (family instanceof HTMLElement) {
+                const cardIndex = entry.cardPosition < 0 ? cards.length - 1 : entry.cardPosition - 1;
+                const selectedCard = cards[cardIndex] || cards[0];
+                const primaryCard = family.querySelector(".pokemon-starter-card__starter--primary");
+                if (primaryCard instanceof HTMLElement) {
+                    primaryCard.outerHTML = pokemonStarterCardMarkup(entry.name, selectedCard);
+                }
+            }
+        });
+
+        if (!entry.companion) {
+            return;
+        }
+
+        void fetchPokemonStarterCards(entry.companion).then((cards) => {
+            const companion = cards[0];
+            if (!companion) {
+                return;
+            }
+
+            const starter = Array.from(document.querySelectorAll("[data-pokemon-starter]")).find((element) => element.dataset.pokemonStarter === entry.name);
+            const family = starter?.querySelector(".pokemon-starter-card__family");
+            if (!(family instanceof HTMLElement)) {
+                return;
+            }
+
+            const existingCompanion = family.querySelector(".pokemon-starter-card__starter--companion");
+            if (existingCompanion instanceof HTMLElement) {
+                existingCompanion.outerHTML = pokemonStarterCardMarkup(entry.companion, companion, true);
+            }
+        });
+    });
+
+    return true;
+}
+
 function renderYugiohWinConsPage() {
     const main = document.querySelector("main.kings-page");
     if (!(main instanceof HTMLElement)) {
@@ -729,6 +931,11 @@ async function initKingsPricing() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    if (isPokemonStartersPage()) {
+        void renderPokemonStartersPage();
+        return;
+    }
+
     if (isYugiohWinConsPage()) {
         renderYugiohWinConsPage();
         return;
