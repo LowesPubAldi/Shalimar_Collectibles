@@ -417,8 +417,13 @@
 }
 
 .set-card__action {
-    justify-self: flex-start;
-    margin-top: 8px;
+    width: 100%;
+    min-height: 34px;
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     text-decoration: none;
     border: 1px solid rgba(0, 217, 255, 0.45);
     border-radius: 999px;

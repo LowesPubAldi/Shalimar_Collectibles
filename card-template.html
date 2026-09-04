@@ -62,6 +62,14 @@
     </header>
 
     <main class="main card-page">
+        <div class="card-api-loader" id="cardApiLoader" role="status" aria-live="polite">
+            <div class="card-api-loader__mark" aria-hidden="true">
+                <span class="card-api-loader__ring"></span>
+                <img class="card-api-loader__icon" src="assets/Shalimar-card-icon.svg" alt="" />
+                <img class="card-api-loader__shadow" src="assets/Shalimar-card-icon.svg" alt="" />
+            </div>
+            <span class="card-api-loader__label">Loading card data</span>
+        </div>
         <section class="card-hero" aria-label="Card overview">
             <div class="card-hero__content">
                 <p class="card-hero__eyebrow" id="cardEyebrow">Single Card</p>

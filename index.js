@@ -20,7 +20,7 @@ const seasonalThemes = {
 		glow: "rgba(147, 197, 253, 0.35)",
 		spotlight: [
 			{ game: "Pokemon", card: "Metagross", person: "Associated: Steven Stone", thumbColors: ["#64748b", "#1e293b"] },
-			{ game: "Pokemon", card: "Steel Beam", person: "Technique: Metal Surge", thumbColors: ["#9ca3af", "#374151"] },
+			{ game: "Pokemon", card: "Steven", person: "Trainer: Steven Stone", thumbColors: ["#9ca3af", "#374151"] },
 			{ game: "Yu Yu Hakusho", card: "Yusuke (Mazoku Form)", person: "Associated: Raizen", thumbColors: ["#a78bfa", "#4c1d95"] },
 			{ game: "Yu Yu Hakusho", card: "Spirit Wave", person: "Technique: Power Release", thumbColors: ["#c4b5fd", "#7c3aed"] },
 			{ game: "Yu-Gi-Oh", card: "Blue-Eyes White Dragon", person: "Associated: Seto Kaiba", thumbColors: ["#dbeafe", "#2563eb"] },
@@ -33,7 +33,7 @@ const seasonalThemes = {
 		glow: "rgba(251, 113, 133, 0.35)",
 		spotlight: [
 			{ game: "Pokemon", card: "Espeon", person: "Associated: Morty", thumbColors: ["#c084fc", "#7e22ce"] },
-			{ game: "Pokemon", card: "Psychic", person: "Technique: Mind Power", thumbColors: ["#d8b4fe", "#a855f7"] },
+			{ game: "Pokemon", card: "Morty's Conviction", person: "Trainer: Morty", thumbColors: ["#d8b4fe", "#a855f7"] },
 			{ game: "Yu Yu Hakusho", card: "Botan", person: "Associated: Kurama", thumbColors: ["#f472b6", "#a21caf"] },
 			{ game: "Yu Yu Hakusho", card: "Rose Whip", person: "Item: Demon Weapon", thumbColors: ["#fbcfe8", "#be185d"] },
 			{ game: "Yu-Gi-Oh", card: "Dark Magician Girl", person: "Associated: Yugi Muto", thumbColors: ["#f9a8d4", "#7c3aed"] },
@@ -46,7 +46,7 @@ const seasonalThemes = {
 		glow: "rgba(74, 222, 128, 0.35)",
 		spotlight: [
 			{ game: "Pokemon", card: "Sceptile", person: "Associated: Brendan", thumbColors: ["#4ade80", "#166534"] },
-			{ game: "Pokemon", card: "Leaf Blade", person: "Technique: Grass Strike", thumbColors: ["#86efac", "#22c55e"] },
+			{ game: "Pokemon", card: "Grass Energy", person: "Basic Energy", thumbColors: ["#86efac", "#22c55e"] },
 			{ game: "Yu Yu Hakusho", card: "Raizen", person: "Associated: Yoko Kurama", thumbColors: ["#22c55e", "#14532d"] },
 			{ game: "Yu Yu Hakusho", card: "Team Raizen's Support", person: "Team Bonus: Leader Ascension", thumbColors: ["#4ade80", "#166534"] },
 			{ game: "Yu-Gi-Oh", card: "Noble Knight Artorigus", person: "Associated: Noble Knight Legacy", thumbColors: ["#86efac", "#15803d"] },
@@ -59,7 +59,7 @@ const seasonalThemes = {
 		glow: "rgba(249, 168, 212, 0.35)",
 		spotlight: [
 			{ game: "Pokemon", card: "Decidueye", person: "Associated: Hau", thumbColors: ["#84cc16", "#166534"] },
-			{ game: "Pokemon", card: "Spirit Shackle", person: "Technique: Ghost Lock", thumbColors: ["#a78bfa", "#6b21a8"] },
+			{ game: "Pokemon", card: "Hau", person: "Trainer: Hau", thumbColors: ["#a78bfa", "#6b21a8"] },
 			{ game: "Yu Yu Hakusho", card: "Kurama", person: "Associated: Shuichi", thumbColors: ["#fbcfe8", "#be185d"] },
 			{ game: "Yu Yu Hakusho", card: "Rose Whip", person: "Item: Demon Weapon", thumbColors: ["#f472b6", "#ec4899"] },
 			{ game: "Yu-Gi-Oh", card: "Black Rose Dragon", person: "Associated: Akiza Izinski", thumbColors: ["#f472b6", "#9d174d"] },
@@ -72,7 +72,7 @@ const seasonalThemes = {
 		glow: "rgba(34, 211, 238, 0.35)",
 		spotlight: [
 			{ game: "Pokemon", card: "Tinkaton", person: "Associated: Poppy", thumbColors: ["#f472b6", "#db2777"] },
-			{ game: "Pokemon", card: "Hammer Arm", person: "Technique: Steel Smash", thumbColors: ["#e879f9", "#d946ef"] },
+			{ game: "Pokemon", card: "Double Turbo Energy", person: "Special Energy", thumbColors: ["#e879f9", "#d946ef"] },
 			{ game: "Yu Yu Hakusho", card: "Mukuro", person: "Associated: Yusuke", thumbColors: ["#a78bfa", "#4c1d95"] },
 			{ game: "Yu Yu Hakusho", card: "Demon Beast Aura", person: "Technique: Dark Power", thumbColors: ["#c4b5fd", "#6b21a8"] },
 			{ game: "Yu-Gi-Oh", card: "Stardust Dragon", person: "Associated: Yusei Fudo", thumbColors: ["#93c5fd", "#1e3a8a"] },
@@ -85,7 +85,7 @@ const seasonalThemes = {
 		glow: "rgba(251, 191, 36, 0.35)",
 		spotlight: [
 			{ game: "Pokemon", card: "Infernape", person: "Associated: Flint", thumbColors: ["#f59e0b", "#b45309"] },
-			{ game: "Pokemon", card: "Close Combat", person: "Technique: Fire Fury", thumbColors: ["#fbbf24", "#d97706"] },
+			{ game: "Pokemon", card: "Fire Energy", person: "Basic Energy", thumbColors: ["#fbbf24", "#d97706"] },
 			{ game: "Yu Yu Hakusho", card: "Kuwabara (Jigen To)", person: "Associated: Sensui Arc", thumbColors: ["#f59e0b", "#7c2d12"] },
 			{ game: "Yu Yu Hakusho", card: "Sword Mastery", person: "Technique: Blade Training", thumbColors: ["#fcd34d", "#b45309"] },
 			{ game: "Yu-Gi-Oh", card: "Frost & Flame Dragon", person: "Associated: Bastion Misawa", thumbColors: ["#38bdf8", "#b91c1c"] },
@@ -98,7 +98,7 @@ const seasonalThemes = {
 		glow: "rgba(96, 165, 250, 0.35)",
 		spotlight: [
 			{ game: "Pokemon", card: "Braviary", person: "Associated: Skyla", thumbColors: ["#ef4444", "#1d4ed8"] },
-			{ game: "Pokemon", card: "Aerial Ace", person: "Technique: Speed Dive", thumbColors: ["#3b82f6", "#0c4a6e"] },
+			{ game: "Pokemon", card: "Skyla", person: "Trainer: Skyla", thumbColors: ["#3b82f6", "#0c4a6e"] },
 			{ game: "Yu Yu Hakusho", card: "Yusuke", person: "Associated: Genkai", thumbColors: ["#e11d48", "#1e40af"] },
 			{ game: "Yu Yu Hakusho", card: "Spirit Gun Focus", person: "Technique: Signature Attack", thumbColors: ["#dc2626", "#7f1d1d"] },
 			{ game: "Yu-Gi-Oh", card: "Elemental HERO Neos", person: "Associated: Jaden Yuki", thumbColors: ["#f8fafc", "#2563eb"] },
@@ -111,7 +111,7 @@ const seasonalThemes = {
 		glow: "rgba(255, 159, 67, 0.35)",
 		spotlight: [
 			{ game: "Pokemon", card: "Charizard", person: "Associated: Red", thumbColors: ["#ff8a3d", "#9a3412"] },
-			{ game: "Pokemon", card: "Fire Spin", person: "Technique: Inferno Attack", thumbColors: ["#f59e0b", "#dc2626"] },
+			{ game: "Pokemon", card: "Volcanion", person: "Fire Pokemon", thumbColors: ["#f59e0b", "#dc2626"] },
 			{ game: "Yu Yu Hakusho", card: "Chu Drunken Master", person: "Associated: Yusuke", thumbColors: ["#7c3aed", "#1e293b"] },
 			{ game: "Yu Yu Hakusho", card: "Ogre Killer", person: "Item: Combat Weapon", thumbColors: ["#a78bfa", "#7c3aed"] },
 			{ game: "Yu-Gi-Oh", card: "Number 39: Utopia", person: "Associated: Yuma Tsukumo", thumbColors: ["#67e8f9", "#155e75"] },
@@ -124,7 +124,7 @@ const seasonalThemes = {
 		glow: "rgba(77, 224, 255, 0.35)",
 		spotlight: [
 			{ game: "Pokemon", card: "Cinderace", person: "Associated: Leon", thumbColors: ["#38bdf8", "#1d4ed8"] },
-			{ game: "Pokemon", card: "Pyro Ball", person: "Technique: Flame Kick", thumbColors: ["#7dd3fc", "#b91c1c"] },
+			{ game: "Pokemon", card: "Leon", person: "Trainer: Leon", thumbColors: ["#7dd3fc", "#b91c1c"] },
 			{ game: "Yu Yu Hakusho", card: "Kazuma Kuwabara", person: "Associated: Yusuke", thumbColors: ["#f59e0b", "#92400e"] },
 			{ game: "Yu Yu Hakusho", card: "Dimensional Sword", person: "Item: Spirit Weapon", thumbColors: ["#fbbf24", "#b45309"] },
 			{ game: "Yu-Gi-Oh", card: "U.A. Midfielder", person: "Associated: Tetsu Trudge", thumbColors: ["#22d3ee", "#164e63"] },
@@ -137,7 +137,7 @@ const seasonalThemes = {
 		glow: "rgba(249, 115, 22, 0.35)",
 		spotlight: [
 			{ game: "Pokemon", card: "Trevenant", person: "Associated: Valerie", thumbColors: ["#22c55e", "#3f6212"] },
-			{ game: "Pokemon", card: "Wood Hammer", person: "Technique: Forest Fury", thumbColors: ["#86efac", "#14532d"] },
+			{ game: "Pokemon", card: "Gothitelle", person: "Ability: Trainer Lock", thumbColors: ["#86efac", "#14532d"] },
 			{ game: "Yu Yu Hakusho", card: "Hiei", person: "Associated: Kurama", thumbColors: ["#a855f7", "#3b0764"] },
 			{ game: "Yu Yu Hakusho", card: "Demon Flame", person: "Technique: Fire Mastery", thumbColors: ["#d8b4fe", "#6b21a8"] },
 			{ game: "Yu-Gi-Oh", card: "Pumpking the King of Ghosts", person: "Associated: Bones", thumbColors: ["#fb923c", "#7c2d12"] },
@@ -150,7 +150,7 @@ const seasonalThemes = {
 		glow: "rgba(245, 158, 11, 0.35)",
 		spotlight: [
 			{ game: "Pokemon", card: "Appletun", person: "Associated: Milo", thumbColors: ["#84cc16", "#b45309"] },
-			{ game: "Pokemon", card: "Sunny Day", person: "Technique: Harvest Season", thumbColors: ["#bfef45", "#854d0e"] },
+			{ game: "Pokemon", card: "Milo", person: "Trainer: Milo", thumbColors: ["#bfef45", "#854d0e"] },
 			{ game: "Yu Yu Hakusho", card: "Elder Toguro, The Indestructible", person: "Associated: Tournament Champion", thumbColors: ["#f97316", "#7c2d12"] },
 			{ game: "Yu Yu Hakusho", card: "Team Toguro's Surprise", person: "Team Bonus: Power Surge", thumbColors: ["#f59e0b", "#b45309"] },
 			{ game: "Yu-Gi-Oh", card: "Odd-Eyes Pendulum Dragon", person: "Associated: Yuya Sakaki", thumbColors: ["#f472b6", "#6d28d9"] },
@@ -163,7 +163,7 @@ const seasonalThemes = {
 		glow: "rgba(165, 180, 252, 0.35)",
 		spotlight: [
 			{ game: "Pokemon", card: "Articuno", person: "Associated: Noland (Frontier Brain)", thumbColors: ["#bfdbfe", "#3730a3"] },
-			{ game: "Pokemon", card: "Ice Beam", person: "Technique: Frozen Strike", thumbColors: ["#dbeafe", "#1e40af"] },
+			{ game: "Pokemon", card: "Battle Frontier", person: "Stadium: Noland's Frontier", thumbColors: ["#dbeafe", "#1e40af"] },
 			{ game: "Yu Yu Hakusho", card: "Yukina", person: "Associated: Botan", thumbColors: ["#93c5fd", "#1d4ed8"] },
 			{ game: "Yu Yu Hakusho", card: "Ice Crystal", person: "Item: Healing Source", thumbColors: ["#bfdbfe", "#0c4a6e"] },
 			{ game: "Yu-Gi-Oh", card: "Santa Claws", person: "Associated: Winter Promo", thumbColors: ["#ef4444", "#166534"] },
@@ -300,6 +300,21 @@ const YGO_ACTIVE_PANEL_THIRD_SPOTLIGHTS = {
 
 let spotlightViewerElements = null;
 const ygoSpotlightThumbCache = new Map();
+const pokemonSpotlightThumbCache = new Map();
+const POKEMON_SECONDARY_SPOTLIGHTS = {
+	"metagross": { card: "Steven", person: "Trainer: Steven Stone" },
+	"espeon": { card: "Morty's Conviction", person: "Trainer: Morty" },
+	"sceptile": { card: "Grass Energy", person: "Basic Energy" },
+	"decidueye": { card: "Hau", person: "Trainer: Hau" },
+	"tinkaton": { card: "Double Turbo Energy", person: "Special Energy" },
+	"infernape": { card: "Fire Energy", person: "Basic Energy" },
+	"braviary": { card: "Skyla", person: "Trainer: Skyla" },
+	"charizard": { card: "Volcanion", person: "Fire Pokemon" },
+	"cinderace": { card: "Leon", person: "Trainer: Leon" },
+	"trevenant": { card: "Gothitelle", person: "Ability: Trainer Lock" },
+	"appletun": { card: "Milo", person: "Trainer: Milo" },
+	"articuno": { card: "Battle Frontier", person: "Stadium: Noland's Frontier" }
+};
 const HOME_SEARCH_FALLBACK_DATA_URLS = [
 	"data/yyh-cards-full.json",
 	"data/yyh-cards.json",
@@ -791,6 +806,84 @@ async function hydrateSpotlightThumbs(listElement, entries) {
 	}));
 }
 
+async function hydratePokemonSpotlightThumb(listElement, entries) {
+	if (!(listElement instanceof HTMLElement) || !Array.isArray(entries) || entries.length === 0) {
+		return;
+	}
+
+	const entry = entries[0];
+	if (normalizeForSearch(entry?.game) !== "pokemon" || !entry.card) {
+		return;
+	}
+
+	const cacheKey = normalizeForSearch(entry.card);
+	let imageUrl = pokemonSpotlightThumbCache.get(cacheKey);
+	if (typeof imageUrl === "undefined") {
+		try {
+			const endpoint = new URL("https://api.tcgdex.net/v2/en/cards");
+			endpoint.searchParams.set("name", entry.card);
+			const response = await fetch(endpoint.toString(), { cache: "no-store" });
+			const payload = response.ok ? await response.json() : [];
+			const exactMatch = Array.isArray(payload)
+				? payload.find((card) => normalizeForSearch(card?.name) === cacheKey && card?.image)
+				: null;
+			const imageBase = resolveFirstNonEmpty(exactMatch?.image, payload?.find((card) => card?.image)?.image);
+			imageUrl = imageBase ? `${imageBase}/low.webp` : "";
+		} catch {
+			imageUrl = "";
+		}
+		pokemonSpotlightThumbCache.set(cacheKey, imageUrl);
+	}
+
+	if (!imageUrl) {
+		return;
+	}
+
+	const img = listElement.querySelector(".hero__season-item--primary .hero__season-thumb");
+	if (img instanceof HTMLImageElement) {
+		img.src = imageUrl;
+		img.alt = `${entry.card} card thumbnail`;
+	}
+}
+
+async function hydratePokemonSpotlightCards(listElement, entries) {
+	if (!(listElement instanceof HTMLElement) || !Array.isArray(entries) || entries.length < 2) {
+		return;
+	}
+
+	const pokemonEntries = entries.slice(0, 2).filter((entry) => normalizeForSearch(entry?.game) === "pokemon" && entry.card);
+	await Promise.all(pokemonEntries.map(async (entry, index) => {
+		const cacheKey = normalizeForSearch(entry.card);
+		let imageUrl = pokemonSpotlightThumbCache.get(cacheKey);
+		if (typeof imageUrl === "undefined") {
+			try {
+				const endpoint = new URL("https://api.tcgdex.net/v2/en/cards");
+				endpoint.searchParams.set("name", entry.card);
+				const response = await fetch(endpoint.toString(), { cache: "no-store" });
+				const payload = response.ok ? await response.json() : [];
+				const exactMatch = Array.isArray(payload)
+					? payload.find((card) => normalizeForSearch(card?.name) === cacheKey && card?.image)
+					: null;
+				const imageBase = resolveFirstNonEmpty(exactMatch?.image, payload?.find((card) => card?.image)?.image);
+				imageUrl = imageBase ? `${imageBase}/low.webp` : "";
+			} catch {
+				imageUrl = "";
+			}
+			pokemonSpotlightThumbCache.set(cacheKey, imageUrl);
+		}
+
+		if (!imageUrl) {
+			return;
+		}
+
+		const img = listElement.querySelectorAll(".hero__season-thumb")[index];
+		if (img instanceof HTMLImageElement) {
+			img.src = imageUrl;
+			img.alt = `${entry.card} card thumbnail`;
+		}
+	}));
+}
+
 function buildSpotlightCardUrl(entry) {
 	const destination = new URL("card-template.html", window.location.href);
 	const cardQuery = String(entry?.card || "").trim();
@@ -989,7 +1082,10 @@ function renderSpotlightItems(listElement, spotlight, options = {}) {
 		thumb.classList.toggle("hero__season-thumb--primary", index === 0);
 		thumb.classList.toggle("hero__season-thumb--chaser", index === 1);
 		thumb.classList.toggle("hero__season-thumb--third", index === 2);
-		thumb.dataset.game = normalizeForSearch(entry.game) === "yu gi oh" ? "ygo" : "other";
+		const normalizedEntryGame = normalizeForSearch(entry.game);
+		thumb.dataset.game = normalizedEntryGame.includes("yu gi oh")
+			? "ygo"
+			: normalizedEntryGame.includes("pokemon") ? "pokemon" : "other";
 		thumb.dataset.card = normalizeForSearch(entry.card);
 		thumb.src = resolveSpotlightThumb(entry);
 		thumb.alt = `${entry.card} thumbnail`;
@@ -1080,6 +1176,12 @@ function applySeasonTheme() {
 		hydrateSpotlightThumbs(spotlightList, activePanelSpotlight);
 		hydrateSpotlightThumbs(prevList, previousSpotlight);
 		hydrateSpotlightThumbs(nextList, nextSpotlight);
+		hydratePokemonSpotlightThumb(spotlightList, activePanelSpotlight);
+		hydratePokemonSpotlightThumb(prevList, previousSpotlight);
+		hydratePokemonSpotlightThumb(nextList, nextSpotlight);
+		hydratePokemonSpotlightCards(spotlightList, activePanelSpotlight);
+		hydratePokemonSpotlightCards(prevList, previousSpotlight);
+		hydratePokemonSpotlightCards(nextList, nextSpotlight);
 		prevPeek.dataset.targetMonth = String(previousMonthIndex);
 		nextPeek.dataset.targetMonth = String(nextMonthIndex);
 		prevBtn.dataset.targetMonth = String(previousMonthIndex);
@@ -1645,7 +1747,9 @@ function initHomeSearch() {
 
 function initHomeSetSelects() {
 	const YGO_CARD_SETS_API_URL = "https://db.ygoprodeck.com/api/v7/cardsets.php";
+	const POKEMON_SETS_API_URL = "https://api.tcgdex.net/v2/en/sets";
 	const YGO_HOME_SET_LIMIT = 9;
+	const POKEMON_HOME_SET_LIMIT = 12;
 	const HOME_SET_SELECT_PLACEHOLDER_TEXT = "Select a Set";
 	const HOME_SET_SEARCH_FALLBACK_TEXT = "Use search bar to find specific cards";
 
@@ -1764,6 +1868,55 @@ function initHomeSetSelects() {
 		}
 	};
 
+	const populatePokemonSetSelect = async (select) => {
+		if (!(select instanceof HTMLSelectElement)) {
+			return;
+		}
+
+		if (select.dataset.pokemonSetOptionsInitialized === "true") {
+			return;
+		}
+
+		try {
+			const response = await fetch(POKEMON_SETS_API_URL, { cache: "no-store" });
+			if (!response.ok) {
+				throw new Error(`Pokemon set request failed with status ${response.status}`);
+			}
+
+			const payload = await response.json();
+			if (!Array.isArray(payload)) {
+				throw new Error("Pokemon set payload was not an array");
+			}
+
+			const setRows = payload
+				.map((item) => ({
+					setId: String(item?.id || "").trim(),
+					setName: String(item?.name || "").trim(),
+					cardCount: Number(item?.cardCount?.total || 0),
+					logo: String(item?.logo || "").trim()
+				}))
+				.filter((item) => item.setId && item.setName);
+
+			if (setRows.length === 0) {
+				throw new Error("No Pokemon sets found in payload");
+			}
+
+			const newestSlice = setRows.slice(-POKEMON_HOME_SET_LIMIT).reverse();
+			replaceSelectOptions(select, [
+				{ value: "", label: HOME_SET_SELECT_PLACEHOLDER_TEXT, disabled: true, selected: true },
+				...newestSlice.map((row) => ({
+					value: row.setId,
+					label: `${row.setName}${row.cardCount ? ` (${row.cardCount} cards)` : ""}`
+				})),
+				{ value: "", label: HOME_SET_SEARCH_FALLBACK_TEXT }
+			]);
+
+			select.dataset.pokemonSetOptionsInitialized = "true";
+		} catch (error) {
+			console.error("Failed to populate Pokemon set options", error);
+		}
+	};
+
 	for (const { elementId, game } of setSelectConfigs) {
 		const select = document.getElementById(elementId);
 		if (!(select instanceof HTMLSelectElement)) {
@@ -1772,6 +1925,10 @@ function initHomeSetSelects() {
 
 		if (game === "Yu-Gi-Oh") {
 			populateYugiohSetSelect(select);
+		}
+
+		if (game === "Pokemon") {
+			populatePokemonSetSelect(select);
 		}
 
 		if (select.dataset.homeSetNavInitialized === "true") {

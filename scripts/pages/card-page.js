@@ -155,7 +155,7 @@ function normalizeYgoCardRecord(cardPayload, setEntry) {
         artworkCandidates: Array.isArray(cardPayload?.card_images)
             ? cardPayload.card_images.map((image) => resolveFirstNonEmpty(image?.image_url, image?.image_url_small, image?.image_url_cropped)).filter(Boolean)
             : [],
-        pricing: Number.isFinite(setPrice)
+        pricing: Number.isFinite(setPrice) && setPrice > 0
             ? { priceUsd: setPrice, status: "Priced", notes: "Set print pricing from YGOPRODeck." }
             : null
     };
@@ -372,6 +372,14 @@ function resolveSpecialImageAliases(cardRecord) {
     const normalizedName = normalizeForSearch(cardRecord.name).replace(/\s+/g, "");
     const normalizedVariant = normalizeForSearch(cardRecord.variant).replace(/\s+/g, "");
     const aliases = [];
+
+    if (setName === "Ghost Files") {
+        const ghostFilesTournamentMatch = cardId.match(/^TG\d+\/(\d+)/i);
+        if (ghostFilesTournamentMatch) {
+            const tournamentNumber = cardId.match(/^TG(\d+)/i)?.[1] || ghostFilesTournamentMatch[1];
+            aliases.push(`T${tournamentNumber}`);
+        }
+    }
 
     const gatewayTeamBonusAliasByName = {
         teamgenkai: "TB01",
@@ -926,6 +934,7 @@ function createVariantControl(variant, selectedName) {
 }
 
 function renderNotFoundState(context) {
+    document.getElementById("cardApiLoader")?.classList.add("is-complete");
     const cardTitle = document.getElementById("cardTitle");
     const cardIntro = document.getElementById("cardIntro");
     const cardFacts = document.getElementById("cardFacts");
@@ -953,6 +962,7 @@ function renderNotFoundState(context) {
 }
 
 function renderCardPage(cardContext) {
+    document.getElementById("cardApiLoader")?.classList.add("is-complete");
     const card = cardContext.card;
     const cardTitle = document.getElementById("cardTitle");
     const cardEyebrow = document.getElementById("cardEyebrow");
@@ -1003,7 +1013,8 @@ function renderCardPage(cardContext) {
     ];
 
     cardBadges.innerHTML = "";
-    [card.set, card.rarity, `${priceText} • ${priceStatus}`].forEach((label) => {
+    const priceBadge = priceText === "Unpriced" ? priceText : `${priceText} • ${priceStatus}`;
+    [card.set, card.rarity, priceBadge].forEach((label) => {
         cardBadges.appendChild(createBadge(label));
     });
 
@@ -1020,7 +1031,7 @@ function renderCardPage(cardContext) {
     if (card.effect) {
         noteLines.push(`<p>Effect text: ${escapeHtml(card.effect)}</p>`);
     }
-    noteLines.push(`<p>Price: ${escapeHtml(priceText)} (${escapeHtml(priceStatus)})</p>`);
+    noteLines.push(`<p>Price: ${escapeHtml(priceText === "Unpriced" ? priceText : `${priceText} (${priceStatus})`)}</p>`);
     if (pricing?.notes) {
         noteLines.push(`<p>Pricing note: ${escapeHtml(pricing.notes)}</p>`);
     }
@@ -1268,7 +1279,20 @@ async function buildCardContext(context) {
         candidateCards = await fetchCards({ q: searchText, id: context.idQuery, game: context.gameQuery });
     }
 
-    const selected = pickBestCardMatch(candidateCards, context);
+    const normalizedIdQuery = normalizeForSearch(context.idQuery);
+    const normalizedSetQuery = normalizeForSearch(context.setQuery);
+    const exactIdMatch = normalizedIdQuery
+        ? candidateCards.find((candidate) => normalizeForSearch(candidate.id || candidate.number) === normalizedIdQuery)
+        : null;
+    const exactIdSetMatch = exactIdMatch && normalizedSetQuery
+        && normalizeForSearch(exactIdMatch.set) === normalizedSetQuery
+        ? exactIdMatch
+        : null;
+    const exactNameSetMatch = normalizedSetQuery
+        ? candidateCards.find((candidate) => normalizeForSearch(candidate.name) === normalizeForSearch(context.cardQuery)
+            && normalizeForSearch(candidate.set) === normalizedSetQuery)
+        : null;
+    const selected = exactIdSetMatch || exactIdMatch || exactNameSetMatch || pickBestCardMatch(candidateCards, context);
     if (!selected) {
         return null;
     }

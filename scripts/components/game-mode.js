@@ -33,6 +33,11 @@
         const game = encodeURIComponent(mode.searchGame);
         document.querySelectorAll("#primaryNavLinks a, .site-footer__nav a").forEach((link) => {
             const label = String(link.textContent || "").trim();
+            const linkWrapper = link.closest("li") || link;
+            if (label === "Contributors") {
+                linkWrapper.hidden = modeKeyIsYuGiOh(mode);
+                return;
+            }
             if (label === "Inventory") {
                 link.href = `inventory.html?game=${game}`;
             } else if (label === "Sets") {
@@ -42,6 +47,10 @@
                 link.href = mode.featureHref;
             }
         });
+    }
+
+    function modeKeyIsYuGiOh(mode) {
+        return mode.searchGame === "Yu-Gi-Oh";
     }
 
     function navigateFeaturePageIfNeeded(modeKey, mode) {

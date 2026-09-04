@@ -7755,9 +7755,11 @@ async function initInventoryFilters() {
         }
 
         if (filterState.game === "Yu-Gi-Oh") {
+            const projectTotalApplies = !filterState.query && filterState.set === "All Sets";
+            const displayTotal = projectTotalApplies ? YGO_PROJECT_CARD_RECORD_TOTAL : Number(totalCount || 0);
             variantsSummary.textContent = filterState.includeVariants
-                ? `Expanded view shows ${Number(totalCount || 0).toLocaleString()} total printings.`
-                : `Collapsed view groups printings into ${Number(totalCount || 0).toLocaleString()} unique cards.`;
+                ? `Expanded view uses ${displayTotal.toLocaleString()} exact project records.`
+                : `Collapsed view uses ${displayTotal.toLocaleString()} exact project records.`;
             return;
         }
 
@@ -7926,10 +7928,11 @@ async function initInventoryFilters() {
             cardsShown = append ? cardsShown + sourceRecords.length : sourceRecords.length;
             canLoadMore = ygoHasMore;
             updateLoadMoreButtonState();
-            setLoadMoreProgress(cardsShown, ygoTotal, filterState.includeVariants);
+            const projectTotalApplies = !normalizedQuery && filterState.set === "All Sets";
+            const displayTotal = projectTotalApplies ? YGO_PROJECT_CARD_RECORD_TOTAL : ygoTotal;
+            setLoadMoreProgress(cardsShown, displayTotal, filterState.includeVariants);
             updateVariantsSummary(filterState, ygoTotal);
             hydrateInventoryCardImages(resultsGrid);
-            const projectTotalApplies = !normalizedQuery && filterState.set === "All Sets";
             resultsMeta.textContent = projectTotalApplies
                 ? `${cardsShown} cards shown • ${YGO_PROJECT_CARD_RECORD_TOTAL.toLocaleString()} exact Yu-Gi-Oh records in project catalog • searchable inventory`
                 : filterState.includeVariants

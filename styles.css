@@ -50,15 +50,39 @@ body {
 }
 
 .nav-search {
+    position: relative;
     display: flex;
     align-items: center;
     flex: 0 1 220px;
     min-width: 150px;
     border: 1px solid rgba(148, 163, 184, 0.38);
     border-radius: 999px;
-    overflow: hidden;
+    overflow: visible;
     background: rgba(15, 23, 42, 0.78);
 }
+
+.nav-search__suggestions {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    z-index: 1300;
+    width: min(360px, 70vw);
+    margin: 0;
+    padding: 6px;
+    list-style: none;
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    border-radius: 12px;
+    background: rgba(5, 11, 21, 0.98);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.45);
+}
+
+.nav-search__suggestion + .nav-search__suggestion { margin-top: 4px; }
+.nav-search__suggestion-link { display: grid; grid-template-columns: 34px minmax(0, 1fr); align-items: center; gap: 9px; padding: 7px; border-radius: 8px; color: #e2e8f0; text-decoration: none; }
+.nav-search__suggestion-link:hover, .nav-search__suggestion-link:focus-visible { background: rgba(0, 217, 255, 0.12); outline: none; }
+.nav-search__suggestion-link img { width: 34px; height: 44px; border-radius: 4px; object-fit: cover; background: rgba(15, 23, 42, 0.9); }
+.nav-search__suggestion-link strong, .nav-search__suggestion-link small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nav-search__suggestion-link strong { font-size: 12px; }
+.nav-search__suggestion-link small { margin-top: 3px; color: #94a3b8; font-size: 10px; }
 
 .nav-search input {
     min-width: 0;
@@ -885,6 +909,21 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
     box-shadow: 0 10px 22px rgba(0, 0, 0, 0.42), 0 0 16px rgba(0, 217, 255, 0.22);
 }
 
+.hero__season-thumb[data-game="pokemon"] {
+    object-fit: contain;
+    background: rgba(5, 9, 13, 0.92);
+}
+
+.hero__season-thumb--primary[data-game="pokemon"] {
+    width: 88px;
+    height: 124px;
+}
+
+.hero__season-thumb--chaser[data-game="pokemon"] {
+    width: 58px;
+    height: 84px;
+}
+
 .hero__season-thumb--chaser {
     width: 44px;
     height: 44px;
@@ -1133,7 +1172,8 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
 }
 
 .game-lane--yyh .game-lane__placeholder,
-.game-lane--ygo .game-lane__placeholder {
+.game-lane--ygo .game-lane__placeholder,
+.game-lane--pokemon .game-lane__placeholder {
     width: min(100%, 280px);
     height: auto;
     aspect-ratio: 16 / 9;
@@ -1149,6 +1189,10 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
     border-color: rgba(255, 196, 78, 0.28);
 }
 
+.game-lane--pokemon .game-lane__placeholder {
+    border-color: rgba(0, 217, 255, 0.28);
+}
+
 .game-lane--yyh .game-lane__placeholder-image {
     object-position: center 35%;
     transition: transform 280ms ease;
@@ -1156,6 +1200,12 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
 
 .game-lane--ygo .game-lane__placeholder-image {
     object-position: center;
+    transition: transform 280ms ease;
+}
+
+.game-lane--pokemon .game-lane__placeholder-image {
+    object-position: center;
+    transform: scale(1.18);
     transition: transform 280ms ease;
 }
 
@@ -1173,6 +1223,13 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
     box-shadow: 0 10px 24px rgba(255, 196, 78, 0.22);
 }
 
+.game-lane--pokemon:hover .game-lane__placeholder,
+.game-lane--pokemon:focus-within .game-lane__placeholder {
+    transform: translateY(-4px);
+    border-color: rgba(0, 217, 255, 0.7);
+    box-shadow: 0 10px 24px rgba(0, 217, 255, 0.22);
+}
+
 .game-lane--yyh:hover .game-lane__placeholder-image,
 .game-lane--yyh:focus-within .game-lane__placeholder-image {
     transform: scale(1.03);
@@ -1181,6 +1238,11 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
 .game-lane--ygo:hover .game-lane__placeholder-image,
 .game-lane--ygo:focus-within .game-lane__placeholder-image {
     transform: scale(1.03);
+}
+
+.game-lane--pokemon:hover .game-lane__placeholder-image,
+.game-lane--pokemon:focus-within .game-lane__placeholder-image {
+    transform: scale(1.3);
 }
 
 .game-lane__chip {
@@ -1877,6 +1939,16 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
     }
 }
 
+.hero__season-main .hero__season-thumb--primary[data-game="pokemon"] {
+    width: 88px;
+    height: 124px;
+}
+
+.hero__season-main .hero__season-thumb--chaser[data-game="pokemon"] {
+    width: 58px;
+    height: 84px;
+}
+
 .hero__season:hover .hero__season-back,
 .hero__season-stage:hover .hero__season-back,
 .hero__season-stage:focus-within .hero__season-back {
@@ -1897,4 +1969,20 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
 .hero__season-stage:hover .hero__season-back--next,
 .hero__season-stage:focus-within .hero__season-back--next {
     transform: translateY(-8px) rotate(7deg) scale(0.95);
+}
+
+@media (min-width: 1101px) {
+    .hero__season-main .hero__season-thumb--primary[data-game="pokemon"] {
+        width: 132px;
+        height: 182px;
+    }
+
+    .hero__season-main .hero__season-thumb--chaser[data-game="pokemon"] {
+        width: 104px;
+        height: 144px;
+    }
+}
+
+.nav-search {
+    overflow: visible;
 }

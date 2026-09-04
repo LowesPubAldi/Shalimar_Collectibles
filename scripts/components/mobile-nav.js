@@ -72,8 +72,129 @@ function initNavSearch() {
     const params = new URLSearchParams(window.location.search);
     input.value = params.get("q") || params.get("search") || "";
 
+    const suggestionList = document.createElement("ul");
+    suggestionList.className = "nav-search__suggestions";
+    suggestionList.hidden = true;
+    suggestionList.setAttribute("role", "listbox");
+    form.appendChild(suggestionList);
+
+    let suggestionRequestId = 0;
+    let suggestionTimer = null;
+
+    const hideSuggestions = () => {
+        suggestionList.hidden = true;
+        suggestionList.innerHTML = "";
+    };
+
+    const makeCardUrl = (card) => {
+        const destination = new URL("card-template.html", window.location.href);
+        destination.searchParams.set("q", card.name);
+        destination.searchParams.set("game", card.game);
+        if (card.set) {
+            destination.searchParams.set("set", card.set);
+        }
+        if (card.id) {
+            destination.searchParams.set("id", card.id);
+        }
+        return destination.toString();
+    };
+
+    const renderSuggestions = (cards) => {
+        suggestionList.innerHTML = cards.map((card) => `
+            <li class="nav-search__suggestion" role="option">
+                <a class="nav-search__suggestion-link" href="${card.url}">
+                    <img src="${card.image}" alt="" loading="lazy" />
+                    <span>
+                        <strong>${card.name}</strong>
+                        <small>${card.game}${card.set ? ` • ${card.set}` : ""}</small>
+                    </span>
+                </a>
+            </li>
+        `).join("");
+        suggestionList.hidden = cards.length === 0;
+    };
+
+    const fetchSuggestions = async (query, requestId) => {
+        const game = gameNames[gameSelect instanceof HTMLSelectElement ? gameSelect.value : "yyh"] || "Yu Yu Hakusho";
+        let cards = [];
+
+        if (game === "Yu Yu Hakusho") {
+            const response = await fetch(`/api/yyh/cards?game=${encodeURIComponent(game)}&q=${encodeURIComponent(query)}&limit=5`, { cache: "no-store" });
+            const payload = await response.json();
+            cards = (Array.isArray(payload.items) ? payload.items : []).slice(0, 5).map((card) => ({
+                name: card.name,
+                game,
+                set: card.set,
+                id: card.id || card.number,
+                image: card.imageUrl || "assets/Shalimar-card-icon.svg"
+            }));
+        } else if (game === "Yu-Gi-Oh") {
+            const endpoint = new URL("https://db.ygoprodeck.com/api/v7/cardinfo.php");
+            endpoint.searchParams.set("fname", query);
+            endpoint.searchParams.set("num", "5");
+            endpoint.searchParams.set("offset", "0");
+            const response = await fetch(endpoint.toString(), { cache: "no-store" });
+            const payload = await response.json();
+            cards = (Array.isArray(payload.data) ? payload.data : []).slice(0, 5).map((card) => {
+                const set = Array.isArray(card.card_sets) ? card.card_sets[0] : null;
+                return {
+                    name: card.name,
+                    game,
+                    set: set?.set_name || "",
+                    id: set?.set_code || card.id,
+                    image: card.card_images?.[0]?.image_url_small || card.card_images?.[0]?.image_url || "assets/Shalimar-card-icon.svg"
+                };
+            });
+        } else if (game === "Pokemon") {
+            const endpoint = new URL("https://api.tcgdex.net/v2/en/cards");
+            endpoint.searchParams.set("name", query);
+            const response = await fetch(endpoint.toString(), { cache: "no-store" });
+            const payload = await response.json();
+            cards = (Array.isArray(payload) ? payload : []).slice(0, 5).map((card) => ({
+                name: card.name,
+                game,
+                set: typeof card.set === "object" ? card.set?.name || card.set?.id || "" : card.set || "",
+                id: card.id,
+                image: card.image ? `${card.image}/low.webp` : "assets/Shalimar-card-icon.svg"
+            }));
+        }
+
+        if (requestId !== suggestionRequestId) {
+            return;
+        }
+
+        renderSuggestions(cards.map((card) => ({ ...card, url: makeCardUrl(card) })));
+    };
+
+    input.addEventListener("input", () => {
+        const query = input.value.trim();
+        suggestionRequestId += 1;
+        const requestId = suggestionRequestId;
+        if (suggestionTimer) {
+            window.clearTimeout(suggestionTimer);
+        }
+        if (query.length < 3) {
+            hideSuggestions();
+            return;
+        }
+        suggestionTimer = window.setTimeout(() => {
+            fetchSuggestions(query, requestId).catch(() => {
+                if (requestId === suggestionRequestId) {
+                    hideSuggestions();
+                }
+            });
+        }, 160);
+    });
+
+    document.addEventListener("click", (event) => {
+        if (!(event.target instanceof Node) || !form.contains(event.target)) {
+            hideSuggestions();
+        }
+    });
+
     form.addEventListener("submit", (event) => {
         event.preventDefault();
+        hideSuggestions();
         const currentFile = window.location.pathname.split("/").pop() || "index.html";
         const destination = new URL(currentFile === "card-template.html" ? "card-template.html" : "inventory.html", window.location.href);
         const query = input.value.trim();

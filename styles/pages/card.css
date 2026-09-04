@@ -891,3 +891,85 @@
         padding-right: 12px;
     }
 }
+
+.card-api-loader {
+    display: grid;
+    justify-items: center;
+    gap: 12px;
+    min-height: 150px;
+    padding: 28px 20px 10px;
+    color: #94a3b8;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.card-api-loader.is-complete {
+    display: none;
+}
+
+.card-api-loader__mark {
+    position: relative;
+    width: 76px;
+    height: 76px;
+    display: grid;
+    place-items: center;
+}
+
+.card-api-loader__ring {
+    position: absolute;
+    inset: 0;
+    border: 3px solid rgba(0, 217, 255, 0.2);
+    border-top-color: #00d9ff;
+    border-right-color: rgba(0, 217, 255, 0.72);
+    border-radius: 50%;
+    animation: card-loader-ring 900ms linear infinite;
+}
+
+.card-api-loader__icon,
+.card-api-loader__shadow {
+    position: absolute;
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+}
+
+.card-api-loader__icon {
+    opacity: 0;
+    filter: drop-shadow(0 0 8px rgba(0, 217, 255, 0.5));
+    animation: card-loader-icon-in 500ms ease-out 140ms forwards;
+}
+
+.card-api-loader__shadow {
+    opacity: 0;
+    transform: translateX(3px);
+    clip-path: inset(24% 24% 24% 24% round 50%);
+    filter: brightness(0) saturate(100%) invert(35%) sepia(91%) saturate(2593%) hue-rotate(303deg) brightness(101%) contrast(101%) drop-shadow(3px 3px 0 rgba(255, 79, 216, 0.32));
+    animation: card-loader-shadow-in 650ms ease-out 300ms forwards;
+}
+
+@keyframes card-loader-ring {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes card-loader-icon-in {
+    from { opacity: 0; transform: scale(0.84); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes card-loader-shadow-in {
+    from { opacity: 0; transform: translateX(3px) scale(0.92); }
+    to { opacity: 0.78; transform: translateX(3px) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card-api-loader__ring,
+    .card-api-loader__icon,
+    .card-api-loader__shadow {
+        animation: none;
+    }
+
+    .card-api-loader__icon { opacity: 1; }
+    .card-api-loader__shadow { opacity: 0.78; }
+}
