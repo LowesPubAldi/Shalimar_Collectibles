@@ -1494,6 +1494,10 @@
     gap: 10px;
 }
 
+.pokemon-starter-card--trio .pokemon-starter-card__family {
+    grid-template-columns: minmax(0, 1fr) minmax(72px, 0.64fr) minmax(72px, 0.64fr);
+}
+
 .pokemon-starter-card__starter {
     display: grid;
     justify-items: center;
@@ -1513,6 +1517,10 @@
     border-radius: 8px;
     object-fit: contain;
     background: rgba(5, 9, 13, 0.86);
+}
+
+.pokemon-starter-card__starter--middle img {
+    max-width: 96px;
 }
 
 .pokemon-starter-card__starter--fire-spin {
@@ -2030,6 +2038,375 @@
     0% { opacity: 0; transform: translateY(8px) scale(0.4); }
     25%, 68% { opacity: 1; transform: translateY(0) scale(1); }
     100% { opacity: 0; transform: translateY(-8px) scale(0.9); }
+}
+
+.pokemon-parting-shot-control {
+    border: 1px solid rgba(251, 146, 60, 0.78);
+    border-radius: 5px;
+    padding: 4px 7px;
+    cursor: pointer;
+    background: rgba(112, 38, 24, 0.72);
+    color: #ffe5ce;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.pokemon-parting-shot-control:hover,
+.pokemon-parting-shot-control:focus-visible {
+    border-color: #ffe5ce;
+    background: rgba(163, 56, 29, 0.84);
+    box-shadow: 0 0 12px rgba(249, 115, 22, 0.68);
+}
+
+.pokemon-parting-shot-control:focus-visible {
+    outline: 2px solid #ffe5ce;
+    outline-offset: 3px;
+}
+
+[data-pokemon-starter="Incineroar"] .pokemon-starter-card__starter {
+    position: relative;
+    transform-origin: bottom center;
+    transition: transform 620ms cubic-bezier(0.22, 1, 0.36, 1), filter 420ms ease;
+}
+
+[data-pokemon-starter="Incineroar"].is-toxapex-active .pokemon-starter-card__starter--primary {
+    transform: translateX(-5px) scale(0.7);
+    filter: brightness(0.72) saturate(0.72);
+}
+
+[data-pokemon-starter="Incineroar"].is-toxapex-active .pokemon-starter-card__starter--companion {
+    z-index: 2;
+    transform: translateY(-5px) scale(1.42);
+    filter: brightness(1.15) drop-shadow(0 0 8px rgba(45, 212, 191, 0.58));
+}
+
+[data-pokemon-starter="Incineroar"].is-zeraora-debuff-one .pokemon-starter-card__starter--middle {
+    transform: translateY(5px) scale(0.82);
+    filter: brightness(0.78) saturate(0.75) drop-shadow(0 0 6px rgba(147, 51, 234, 0.62));
+}
+
+[data-pokemon-starter="Incineroar"].is-incineroar-active .pokemon-starter-card__starter--primary {
+    z-index: 2;
+    transform: translateY(-3px) scale(1);
+    filter: brightness(1.08) drop-shadow(0 0 8px rgba(249, 115, 22, 0.52));
+}
+
+[data-pokemon-starter="Incineroar"].is-incineroar-active .pokemon-starter-card__starter--companion {
+    transform: scale(1);
+    filter: brightness(0.92);
+}
+
+[data-pokemon-starter="Incineroar"].is-zeraora-debuff-two .pokemon-starter-card__starter--middle {
+    transform: translateY(8px) scale(0.66);
+    filter: brightness(0.62) saturate(0.58) drop-shadow(0 0 8px rgba(88, 28, 135, 0.76));
+}
+
+[data-pokemon-starter="Incineroar"].is-switching .pokemon-starter-card__starter--middle::after {
+    content: "";
+    position: absolute;
+    inset: 18% 12%;
+    border: 2px solid rgba(168, 85, 247, 0.84);
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(88, 28, 135, 0.9);
+    animation: pokemon-zeraora-debuff 720ms ease-out both;
+}
+
+@keyframes pokemon-zeraora-debuff {
+    0% { opacity: 0; transform: scale(1.35); }
+    35% { opacity: 1; transform: scale(0.92); }
+    100% { opacity: 0; transform: scale(0.58); }
+}
+
+.pokemon-pyro-ball-control {
+    border: 1px solid rgba(251, 146, 60, 0.78);
+    border-radius: 5px;
+    padding: 4px 7px;
+    cursor: pointer;
+    background: rgba(118, 45, 21, 0.7);
+    color: #ffe8c7;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.pokemon-pyro-ball-control:hover,
+.pokemon-pyro-ball-control:focus-visible {
+    border-color: #ffe8c7;
+    background: rgba(179, 67, 23, 0.84);
+    box-shadow: 0 0 12px rgba(249, 115, 22, 0.72);
+}
+
+.pokemon-pyro-ball-control:focus-visible {
+    outline: 2px solid #ffe8c7;
+    outline-offset: 3px;
+}
+
+[data-pokemon-starter="Cinderace"] .pokemon-starter-card__starter {
+    position: relative;
+    transform-origin: bottom center;
+}
+
+[data-pokemon-starter="Cinderace"] .pokemon-starter-card__starter--primary.is-kicking-pyro-ball {
+    animation: pokemon-cinderace-kick 1.05s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+[data-pokemon-starter="Cinderace"] .pokemon-starter-card__starter--companion.is-blocking-pyro-ball {
+    animation: pokemon-corviknight-brace 680ms ease-out both;
+}
+
+[data-pokemon-starter="Cinderace"] .pokemon-starter-card__starter--companion.is-hit-by-pyro-ball {
+    animation: pokemon-corviknight-hit 820ms ease-out both;
+}
+
+[data-pokemon-starter="Cinderace"] .pokemon-starter-card__starter--companion.is-hit-by-pyro-ball::after {
+    content: "";
+    position: absolute;
+    top: 52%;
+    left: 48%;
+    width: 30px;
+    aspect-ratio: 1;
+    border: 3px solid #ff9a34;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #ff6b1a, 0 0 22px rgba(255, 187, 80, 0.68);
+    transform: translate(-50%, -50%);
+    animation: pokemon-pyro-impact 650ms ease-out both;
+}
+
+.pokemon-pyro-ball {
+    position: absolute;
+    z-index: 9;
+    width: 31px;
+    aspect-ratio: 1;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    animation: pokemon-pyro-ball-flight 820ms cubic-bezier(0.2, 0.74, 0.3, 1) forwards;
+}
+
+.pokemon-pyro-ball i {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: block;
+    border: 3px solid #141414;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 50% 34%, #202020 0 13%, transparent 14%),
+        radial-gradient(circle at 31% 62%, #202020 0 12%, transparent 13%),
+        radial-gradient(circle at 70% 65%, #202020 0 12%, transparent 13%),
+        #f5f3ea;
+    box-shadow: 0 0 0 4px rgba(255, 126, 34, 0.48), 0 0 13px #ff681d;
+    animation: pokemon-pyro-ball-spin 820ms linear forwards;
+}
+
+.pokemon-pyro-ball::before {
+    content: "";
+    position: absolute;
+    inset: -11px;
+    z-index: 0;
+    clip-path: polygon(50% 0, 61% 18%, 76% 7%, 78% 28%, 98% 27%, 85% 45%, 100% 57%, 79% 63%, 85% 85%, 64% 76%, 53% 100%, 43% 78%, 20% 91%, 24% 68%, 0 61%, 17% 45%, 5% 27%, 27% 29%, 31% 8%, 43% 20%);
+    background: radial-gradient(circle, #fff2a6 0 34%, #ffd05a 42%, #ff6a13 64%, rgba(211, 38, 8, 0.45) 78%, transparent 79%);
+    filter: blur(1px) drop-shadow(0 0 8px rgba(255, 81, 13, 0.82));
+    animation: pokemon-pyro-flame 260ms ease-in-out infinite alternate;
+}
+
+.pokemon-pyro-ball::after {
+    content: "";
+    position: absolute;
+    inset: -9px;
+    z-index: 1;
+    border: 4px solid rgba(255, 139, 38, 0.82);
+    border-radius: 50%;
+    filter: blur(3px);
+    box-shadow: 0 0 15px rgba(255, 85, 18, 0.72);
+}
+
+@keyframes pokemon-cinderace-kick {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    18% { transform: translateX(-5px) rotate(-3deg); }
+    36% { transform: translateX(7px) rotate(4deg) scale(1.03); }
+    54% { transform: translateX(3px) rotate(1deg); }
+}
+
+@keyframes pokemon-pyro-ball-flight {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.6); }
+    14% { opacity: 1; }
+    62% { transform: translate(calc(-50% + (var(--pyro-ball-x) * 0.62)), calc(-50% + (var(--pyro-ball-y) * 0.62) - 17px)) scale(1.08); }
+    100% { opacity: 1; transform: translate(calc(-50% + var(--pyro-ball-x)), calc(-50% + var(--pyro-ball-y))) scale(1); }
+}
+
+@keyframes pokemon-pyro-ball-spin { to { transform: rotate(680deg); } }
+
+@keyframes pokemon-pyro-flame {
+    from { transform: scale(0.96) rotate(-3deg); }
+    to { transform: scale(1.08) rotate(4deg); }
+}
+
+@keyframes pokemon-corviknight-brace {
+    0% { transform: translateX(0) scale(1); }
+    45%, 100% { transform: translateX(-5px) scale(1.05, 0.96); filter: brightness(1.12); }
+}
+
+@keyframes pokemon-corviknight-hit {
+    0% { transform: translateX(-5px) scale(1.05, 0.96); filter: brightness(1.12); }
+    24% { transform: translateX(15px) rotate(6deg) scale(0.92); filter: brightness(1.5) sepia(0.45) saturate(1.8); }
+    52% { transform: translateX(-3px) rotate(-2deg) scale(1.02); }
+    100% { transform: translateX(0) rotate(0deg) scale(1); filter: brightness(1); }
+}
+
+@keyframes pokemon-pyro-impact {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.2); }
+    30% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(2.4); }
+}
+
+.pokemon-flower-trick-control {
+    border: 1px solid rgba(244, 114, 182, 0.76);
+    border-radius: 5px;
+    padding: 4px 7px;
+    cursor: pointer;
+    background: rgba(93, 35, 79, 0.72);
+    color: #ffe0f3;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.pokemon-flower-trick-control:hover,
+.pokemon-flower-trick-control:focus-visible {
+    border-color: #ffe0f3;
+    background: rgba(151, 49, 113, 0.84);
+    box-shadow: 0 0 12px rgba(244, 114, 182, 0.68);
+}
+
+.pokemon-flower-trick-control:focus-visible {
+    outline: 2px solid #ffe0f3;
+    outline-offset: 3px;
+}
+
+[data-pokemon-starter="Meowscarada"] .pokemon-starter-card__starter {
+    position: relative;
+}
+
+[data-pokemon-starter="Meowscarada"] .pokemon-starter-card__starter--primary.is-casting-flower-trick {
+    animation: pokemon-meowscarada-cast 820ms ease-out both;
+}
+
+[data-pokemon-starter="Meowscarada"] .pokemon-starter-card__starter--companion.is-flower-trick-hit {
+    animation: pokemon-garganacl-critical 1.05s ease-out both;
+}
+
+[data-pokemon-starter="Meowscarada"] .pokemon-starter-card__starter--companion.is-flower-trick-hit::after {
+    content: "CRIT";
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    z-index: 7;
+    border: 1px solid #a7f3b4;
+    border-radius: 4px;
+    padding: 3px 5px;
+    background: rgba(13, 71, 35, 0.92);
+    color: #d8ffe0;
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    box-shadow: 0 0 12px rgba(74, 222, 128, 0.82);
+    transform: translateX(-50%);
+    animation: pokemon-flower-crit 850ms ease-out both;
+}
+
+.pokemon-flower-trick {
+    position: absolute;
+    z-index: 10;
+    width: 30px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    cursor: default;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 50% 50%, #ffe475 0 16%, transparent 17%),
+        radial-gradient(ellipse at 50% 17%, #ff78b8 0 19%, transparent 20%),
+        radial-gradient(ellipse at 82% 40%, #f056a1 0 19%, transparent 20%),
+        radial-gradient(ellipse at 70% 79%, #ff8dc5 0 19%, transparent 20%),
+        radial-gradient(ellipse at 30% 79%, #ea4f98 0 19%, transparent 20%),
+        radial-gradient(ellipse at 18% 40%, #ff8dc5 0 19%, transparent 20%);
+    filter: drop-shadow(0 0 7px rgba(244, 114, 182, 0.82));
+    transform: translate(-50%, -50%);
+    animation: pokemon-flower-flight 820ms cubic-bezier(0.2, 0.72, 0.3, 1) forwards;
+}
+
+.pokemon-flower-trick.is-landed {
+    cursor: pointer;
+    pointer-events: auto;
+    transform: translate(calc(-50% + var(--flower-x)), calc(-50% + var(--flower-y)));
+    animation: pokemon-flower-waiting 1.15s ease-in-out infinite;
+}
+
+.pokemon-flower-trick.is-landed:focus-visible {
+    outline: 2px solid #ffe0f3;
+    outline-offset: 4px;
+}
+
+.pokemon-flower-trick.is-bursting {
+    pointer-events: none;
+    animation: pokemon-flower-burst 260ms ease-out forwards;
+}
+
+.pokemon-flower-trick-petal {
+    position: absolute;
+    z-index: 11;
+    width: 9px;
+    height: 15px;
+    border-radius: 70% 15% 70% 15%;
+    pointer-events: none;
+    background: linear-gradient(145deg, #ffd1e7, #f052a1 58%, #ad236f);
+    box-shadow: 0 0 5px rgba(244, 114, 182, 0.72);
+    transform: translate(-50%, -50%);
+    animation: pokemon-flower-petal 900ms cubic-bezier(0.17, 0.67, 0.34, 1) var(--petal-delay) forwards;
+}
+
+@keyframes pokemon-meowscarada-cast {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    28% { transform: translateX(-4px) rotate(-2deg); }
+    52% { transform: translateX(7px) rotate(3deg) scale(1.02); }
+}
+
+@keyframes pokemon-flower-flight {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.45) rotate(0deg); }
+    16% { opacity: 1; }
+    56% { transform: translate(calc(-50% + (var(--flower-x) * 0.56)), calc(-50% + (var(--flower-y) * 0.56) - 19px)) scale(1.08) rotate(210deg); }
+    100% { opacity: 1; transform: translate(calc(-50% + var(--flower-x)), calc(-50% + var(--flower-y))) scale(1) rotate(360deg); }
+}
+
+@keyframes pokemon-flower-waiting {
+    0%, 100% { filter: drop-shadow(0 0 6px rgba(244, 114, 182, 0.72)); }
+    50% { filter: drop-shadow(0 0 11px rgba(255, 185, 222, 0.95)); }
+}
+
+@keyframes pokemon-flower-burst {
+    to { opacity: 0; transform: translate(calc(-50% + var(--flower-x)), calc(-50% + var(--flower-y))) scale(1.8) rotate(420deg); }
+}
+
+@keyframes pokemon-flower-petal {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.35) rotate(0deg); }
+    15% { opacity: 1; }
+    100% { opacity: 0; transform: translate(calc(-50% + var(--petal-x)), calc(-50% + var(--petal-y))) scale(1) rotate(var(--petal-turn)); }
+}
+
+@keyframes pokemon-garganacl-critical {
+    0% { transform: translateX(0) rotate(0deg) scale(1); filter: brightness(1); }
+    20% { transform: translateX(12px) rotate(5deg) scale(0.91); filter: brightness(1.5) saturate(0.7) drop-shadow(0 0 11px #42d66d); }
+    44% { transform: translateX(-4px) rotate(-2deg) scale(1.03); }
+    100% { transform: translateX(0) rotate(0deg) scale(1); filter: brightness(1); }
+}
+
+@keyframes pokemon-flower-crit {
+    0% { opacity: 0; transform: translate(-50%, 8px) scale(0.5); }
+    24%, 70% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -9px) scale(0.9); }
 }
 
 .pokemon-starter-card__starter--companion {

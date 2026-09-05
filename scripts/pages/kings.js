@@ -152,7 +152,7 @@ function pokemonStarterSets() {
         { generation: "Generation 4", era: "Sinnoh", name: "Empoleon", image: "https://assets.tcgdex.net/en/dp/dpp/DP11/low.webp", companion: "Bidoof", companionImage: "https://assets.tcgdex.net/en/pop/pop6/11/low.webp" },
         { generation: "Generation 5", era: "Unova", name: "Serperior", image: "https://assets.tcgdex.net/en/tcgp/A1a/070/low.webp", companion: "Scrafty", companionImage: "https://assets.tcgdex.net/en/swsh/swsh3.5/42/low.webp" },
         { generation: "Generation 6", era: "Kalos", name: "Greninja", image: "https://assets.tcgdex.net/en/tcgp/A3a/093/low.webp", companion: "Goodra", companionImage: "https://assets.tcgdex.net/en/xy/xy7/60/low.webp" },
-        { generation: "Generation 7", era: "Alola", name: "Incineroar", image: "https://assets.tcgdex.net/en/sm/sm10/29/low.webp", companion: "Toxapex", companionImage: "https://assets.tcgdex.net/en/swsh/swsh3/52/low.webp" },
+        { generation: "Generation 7", era: "Alola", name: "Incineroar", image: "https://assets.tcgdex.net/en/sm/sm10/29/low.webp", middle: "Zeraora", middleImage: "assets/pokemon/zeraora-sm9-52.webp", companion: "Toxapex", companionImage: "https://assets.tcgdex.net/en/swsh/swsh3/52/low.webp" },
         { generation: "Generation 8", era: "Galar", name: "Cinderace", image: "https://assets.tcgdex.net/en/swsh/swsh1/35/low.webp", companion: "Corviknight", companionImage: "https://assets.tcgdex.net/en/swsh/swsh1/135/low.webp" },
         { generation: "Generation 9", era: "Paldea", name: "Meowscarada", image: "https://assets.tcgdex.net/en/sv/sv01/015/low.webp", companion: "Garganacl", companionImage: "https://assets.tcgdex.net/en/me/me01/084/low.webp", centered: true }
     ];
@@ -185,14 +185,14 @@ async function fetchPokemonStarterCards(name) {
     }
 }
 
-function pokemonStarterCardMarkup(name, card, isCompanion = false) {
+function pokemonStarterCardMarkup(name, card, isCompanion = false, cardRole = isCompanion ? "companion" : "primary") {
     const image = card?.image || "assets/Shalimar-card-icon.svg";
     const isFireSpinTrigger = name === "Charizard" && !isCompanion;
     const isBiteTrigger = name === "Feraligatr" && !isCompanion;
     const isLeafBladeTarget = name === "Relicanth" && isCompanion;
     const isIntimidateTarget = name === "Scrafty" && isCompanion;
     return `
-        <div class="pokemon-starter-card__starter pokemon-starter-card__starter--${isCompanion ? "companion" : "primary"}${isFireSpinTrigger ? " pokemon-starter-card__starter--fire-spin" : ""}${isBiteTrigger ? " pokemon-starter-card__starter--bite" : ""}${isLeafBladeTarget ? " pokemon-starter-card__starter--leaf-blade-target" : ""}${isIntimidateTarget ? " pokemon-starter-card__starter--intimidate" : ""}"${isFireSpinTrigger ? " data-pokemon-fire-spin-trigger role=\"button\" tabindex=\"0\" aria-label=\"Use Fire Spin on Parasect\"" : ""}${isBiteTrigger ? " data-pokemon-bite-trigger role=\"button\" tabindex=\"0\" aria-label=\"Use Bite on Espeon\"" : ""}${isLeafBladeTarget ? " data-pokemon-leaf-blade-target tabindex=\"0\" aria-label=\"Swipe across Relicanth to use Leaf Blade\"" : ""}${isIntimidateTarget ? " data-pokemon-intimidate-target" : ""}>
+        <div class="pokemon-starter-card__starter pokemon-starter-card__starter--${cardRole}${isFireSpinTrigger ? " pokemon-starter-card__starter--fire-spin" : ""}${isBiteTrigger ? " pokemon-starter-card__starter--bite" : ""}${isLeafBladeTarget ? " pokemon-starter-card__starter--leaf-blade-target" : ""}${isIntimidateTarget ? " pokemon-starter-card__starter--intimidate" : ""}"${isFireSpinTrigger ? " data-pokemon-fire-spin-trigger role=\"button\" tabindex=\"0\" aria-label=\"Use Fire Spin on Parasect\"" : ""}${isBiteTrigger ? " data-pokemon-bite-trigger role=\"button\" tabindex=\"0\" aria-label=\"Use Bite on Espeon\"" : ""}${isLeafBladeTarget ? " data-pokemon-leaf-blade-target tabindex=\"0\" aria-label=\"Swipe across Relicanth to use Leaf Blade\"" : ""}${isIntimidateTarget ? " data-pokemon-intimidate-target" : ""}>
             <img src="${pokemonEscapeHtml(image)}" alt="${pokemonEscapeHtml(name)} card" />
         </div>`;
 }
@@ -333,6 +333,147 @@ function playPokemonChallenge(main) {
         bidoof.classList.remove("is-refusing-challenge");
         reply.remove();
     }, 2150);
+}
+
+function playPokemonPartingShot(main, control) {
+    const panel = main.querySelector("[data-pokemon-starter=\"Incineroar\"]");
+    if (!(panel instanceof HTMLElement) || !(control instanceof HTMLButtonElement) || panel.classList.contains("is-switching")) {
+        return;
+    }
+
+    const toxapexActive = panel.dataset.alolaActive === "toxapex";
+    panel.classList.add("is-switching");
+    if (toxapexActive) {
+        panel.dataset.alolaActive = "incineroar";
+        panel.classList.remove("is-toxapex-active", "is-zeraora-debuff-one");
+        panel.classList.add("is-incineroar-active", "is-zeraora-debuff-two");
+        control.textContent = "Parting Shot";
+        control.setAttribute("aria-label", "Use Parting Shot on Zeraora");
+    } else {
+        panel.dataset.alolaActive = "toxapex";
+        panel.classList.remove("is-incineroar-active", "is-zeraora-debuff-two");
+        panel.classList.add("is-toxapex-active", "is-zeraora-debuff-one");
+        control.textContent = "Switch";
+        control.setAttribute("aria-label", "Switch Incineroar back in");
+    }
+
+    window.setTimeout(() => panel.classList.remove("is-switching"), 760);
+}
+
+function playPokemonPyroBall(main) {
+    const cinderace = main.querySelector("[data-pokemon-starter=\"Cinderace\"] .pokemon-starter-card__starter--primary");
+    const corviknight = main.querySelector("[data-pokemon-starter=\"Cinderace\"] .pokemon-starter-card__starter--companion");
+    if (!(cinderace instanceof HTMLElement) || !(corviknight instanceof HTMLElement) || cinderace.classList.contains("is-kicking-pyro-ball")) {
+        return;
+    }
+
+    const cinderaceImage = cinderace.querySelector("img");
+    const corviknightImage = corviknight.querySelector("img");
+    if (!(cinderaceImage instanceof HTMLImageElement) || !(corviknightImage instanceof HTMLImageElement)) {
+        return;
+    }
+
+    const mainBounds = main.getBoundingClientRect();
+    const sourceBounds = cinderaceImage.getBoundingClientRect();
+    const targetBounds = corviknightImage.getBoundingClientRect();
+    const startX = sourceBounds.left - mainBounds.left + (sourceBounds.width * 0.74);
+    const startY = sourceBounds.top - mainBounds.top + (sourceBounds.height * 0.82);
+    const endX = targetBounds.left - mainBounds.left + (targetBounds.width * 0.48);
+    const endY = targetBounds.top - mainBounds.top + (targetBounds.height * 0.54);
+    const ball = document.createElement("span");
+
+    ball.className = "pokemon-pyro-ball";
+    ball.innerHTML = "<i></i>";
+    ball.style.left = `${startX}px`;
+    ball.style.top = `${startY}px`;
+    ball.style.setProperty("--pyro-ball-x", `${endX - startX}px`);
+    ball.style.setProperty("--pyro-ball-y", `${endY - startY}px`);
+    main.appendChild(ball);
+
+    cinderace.classList.add("is-kicking-pyro-ball");
+    corviknight.classList.remove("is-blocking-pyro-ball", "is-hit-by-pyro-ball");
+    corviknight.classList.add("is-blocking-pyro-ball");
+    window.setTimeout(() => {
+        corviknight.classList.remove("is-blocking-pyro-ball");
+        corviknight.classList.add("is-hit-by-pyro-ball");
+    }, 680);
+    window.setTimeout(() => ball.remove(), 900);
+    window.setTimeout(() => cinderace.classList.remove("is-kicking-pyro-ball"), 1100);
+    window.setTimeout(() => corviknight.classList.remove("is-hit-by-pyro-ball"), 1500);
+}
+
+function burstPokemonFlowerTrick(main, flower) {
+    const garganacl = main.querySelector("[data-pokemon-starter=\"Meowscarada\"] .pokemon-starter-card__starter--companion");
+    if (!(flower instanceof HTMLElement) || !(garganacl instanceof HTMLElement) || flower.classList.contains("is-bursting")) {
+        return;
+    }
+
+    const mainBounds = main.getBoundingClientRect();
+    const flowerBounds = flower.getBoundingClientRect();
+    const originX = flowerBounds.left - mainBounds.left + (flowerBounds.width / 2);
+    const originY = flowerBounds.top - mainBounds.top + (flowerBounds.height / 2);
+    flower.classList.add("is-bursting");
+    garganacl.classList.add("is-flower-trick-hit");
+
+    for (let index = 0; index < 16; index += 1) {
+        const angle = (Math.PI * 2 * index / 16) + ((Math.random() - 0.5) * 0.55);
+        const distance = 34 + (Math.random() * 58);
+        const petal = document.createElement("span");
+        petal.className = "pokemon-flower-trick-petal";
+        petal.style.left = `${originX}px`;
+        petal.style.top = `${originY}px`;
+        petal.style.setProperty("--petal-x", `${Math.cos(angle) * distance}px`);
+        petal.style.setProperty("--petal-y", `${Math.sin(angle) * distance}px`);
+        petal.style.setProperty("--petal-turn", `${180 + Math.round(Math.random() * 420)}deg`);
+        petal.style.setProperty("--petal-delay", `${Math.round(Math.random() * 90)}ms`);
+        main.appendChild(petal);
+        window.setTimeout(() => petal.remove(), 1050);
+    }
+
+    window.setTimeout(() => flower.remove(), 260);
+    window.setTimeout(() => garganacl.classList.remove("is-flower-trick-hit"), 1050);
+}
+
+function playPokemonFlowerTrick(main) {
+    const meowscarada = main.querySelector("[data-pokemon-starter=\"Meowscarada\"] .pokemon-starter-card__starter--primary");
+    const garganacl = main.querySelector("[data-pokemon-starter=\"Meowscarada\"] .pokemon-starter-card__starter--companion");
+    if (!(meowscarada instanceof HTMLElement) || !(garganacl instanceof HTMLElement)) {
+        return;
+    }
+
+    main.querySelectorAll(".pokemon-flower-trick").forEach((flower) => flower.remove());
+    const meowscaradaImage = meowscarada.querySelector("img");
+    const garganaclImage = garganacl.querySelector("img");
+    if (!(meowscaradaImage instanceof HTMLImageElement) || !(garganaclImage instanceof HTMLImageElement)) {
+        return;
+    }
+
+    const mainBounds = main.getBoundingClientRect();
+    const sourceBounds = meowscaradaImage.getBoundingClientRect();
+    const targetBounds = garganaclImage.getBoundingClientRect();
+    const startX = sourceBounds.left - mainBounds.left + (sourceBounds.width * 0.72);
+    const startY = sourceBounds.top - mainBounds.top + (sourceBounds.height * 0.34);
+    const endX = targetBounds.left - mainBounds.left + (targetBounds.width * 0.48);
+    const endY = targetBounds.top - mainBounds.top + (targetBounds.height * 0.42);
+    const flower = document.createElement("span");
+
+    flower.className = "pokemon-flower-trick";
+    flower.setAttribute("aria-hidden", "true");
+    flower.style.left = `${startX}px`;
+    flower.style.top = `${startY}px`;
+    flower.style.setProperty("--flower-x", `${endX - startX}px`);
+    flower.style.setProperty("--flower-y", `${endY - startY}px`);
+    main.appendChild(flower);
+    meowscarada.classList.add("is-casting-flower-trick");
+
+    window.setTimeout(() => {
+        flower.classList.add("is-landed");
+        flower.setAttribute("role", "button");
+        flower.setAttribute("tabindex", "0");
+        flower.setAttribute("aria-label", "Burst Flower Trick petals");
+        flower.removeAttribute("aria-hidden");
+        meowscarada.classList.remove("is-casting-flower-trick");
+    }, 820);
 }
 
 function playPokemonShurikenVolley(main) {
@@ -510,7 +651,7 @@ async function renderPokemonStartersPage() {
                 </div>
                 <div class="pokemon-starter-grid">
                     ${generations.map((entry) => `
-                        <article class="pokemon-starter-card${entry.centered ? " pokemon-starter-card--centered" : ""}" data-pokemon-starter="${pokemonEscapeHtml(entry.name)}">
+                        <article class="pokemon-starter-card${entry.centered ? " pokemon-starter-card--centered" : ""}${entry.middle ? " pokemon-starter-card--trio is-incineroar-active" : ""}" data-pokemon-starter="${pokemonEscapeHtml(entry.name)}"${entry.middle ? ' data-alola-active="incineroar"' : ""}>
                             <div class="pokemon-starter-card__heading">
                                 <span>${pokemonEscapeHtml(entry.generation)}</span>
                                 ${entry.name === "Charizard" ? '<button class="pokemon-fire-spin-control" type="button" data-pokemon-fire-spin-trigger aria-label="Use Fire Spin on Parasect" title="Use Fire Spin"></button>' : ""}
@@ -518,10 +659,14 @@ async function renderPokemonStartersPage() {
                                 ${entry.name === "Sceptile" ? '<button class="pokemon-leaf-blade-control" type="button" data-pokemon-leaf-blade-control aria-label="Slice Relicanth" title="Slice Relicanth">Slice</button>' : ""}
                                 ${entry.name === "Empoleon" ? '<button class="pokemon-challenge-control" type="button" data-pokemon-challenge-control aria-label="Challenge Bidoof" title="Challenge Bidoof">Challenge</button>' : ""}
                                 ${entry.name === "Serperior" ? '<button class="pokemon-intimidate-control" type="button" data-pokemon-intimidate-control aria-label="Use Intimidate on Serperior" title="Use Intimidate">Intimidate</button>' : ""}
+                                ${entry.name === "Incineroar" ? '<button class="pokemon-parting-shot-control" type="button" data-pokemon-parting-shot-control aria-label="Use Parting Shot on Zeraora">Parting Shot</button>' : ""}
+                                ${entry.name === "Cinderace" ? '<button class="pokemon-pyro-ball-control" type="button" data-pokemon-pyro-ball-control aria-label="Kick Pyro Ball at Corviknight">Pyro Ball</button>' : ""}
+                                ${entry.name === "Meowscarada" ? '<button class="pokemon-flower-trick-control" type="button" data-pokemon-flower-trick-control aria-label="Use Flower Trick on Garganacl">Flower Trick</button>' : ""}
                                 <strong>${pokemonEscapeHtml(entry.era)}</strong>
                             </div>
                             <div class="pokemon-starter-card__family">
                                 ${pokemonStarterCardMarkup(entry.name, { image: entry.image })}
+                                ${entry.middle ? pokemonStarterCardMarkup(entry.middle, { image: entry.middleImage }, true, "middle") : ""}
                                 ${entry.companion ? pokemonStarterCardMarkup(entry.companion, { image: entry.companionImage }, true) : ""}
                             </div>
                         </article>
@@ -550,6 +695,24 @@ async function renderPokemonStartersPage() {
         if (event.target instanceof Element && event.target.closest("[data-pokemon-challenge-control]")) {
             playPokemonChallenge(main);
         }
+        if (event.target instanceof Element) {
+            const partingShotControl = event.target.closest("[data-pokemon-parting-shot-control]");
+            if (partingShotControl instanceof HTMLButtonElement) {
+                playPokemonPartingShot(main, partingShotControl);
+            }
+        }
+        if (event.target instanceof Element && event.target.closest("[data-pokemon-pyro-ball-control]")) {
+            playPokemonPyroBall(main);
+        }
+        if (event.target instanceof Element && event.target.closest("[data-pokemon-flower-trick-control]")) {
+            playPokemonFlowerTrick(main);
+        }
+        if (event.target instanceof Element) {
+            const flower = event.target.closest(".pokemon-flower-trick.is-landed");
+            if (flower instanceof HTMLElement) {
+                burstPokemonFlowerTrick(main, flower);
+            }
+        }
     });
     main.addEventListener("keydown", (event) => {
         if ((event.key === "Enter" || event.key === " ") && event.target instanceof Element && event.target.closest("[data-pokemon-fire-spin-trigger]")) {
@@ -573,6 +736,13 @@ async function renderPokemonStartersPage() {
         if ((event.key === "Enter" || event.key === " ") && event.target instanceof Element && event.target.closest("[data-pokemon-challenge-control]")) {
             event.preventDefault();
             playPokemonChallenge(main);
+        }
+        if ((event.key === "Enter" || event.key === " ") && event.target instanceof Element) {
+            const flower = event.target.closest(".pokemon-flower-trick.is-landed");
+            if (flower instanceof HTMLElement) {
+                event.preventDefault();
+                burstPokemonFlowerTrick(main, flower);
+            }
         }
     });
     initPokemonLeafBlade(main);
