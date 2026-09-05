@@ -190,8 +190,9 @@ function pokemonStarterCardMarkup(name, card, isCompanion = false) {
     const isFireSpinTrigger = name === "Charizard" && !isCompanion;
     const isBiteTrigger = name === "Feraligatr" && !isCompanion;
     const isLeafBladeTarget = name === "Relicanth" && isCompanion;
+    const isIntimidateTarget = name === "Scrafty" && isCompanion;
     return `
-        <div class="pokemon-starter-card__starter pokemon-starter-card__starter--${isCompanion ? "companion" : "primary"}${isFireSpinTrigger ? " pokemon-starter-card__starter--fire-spin" : ""}${isBiteTrigger ? " pokemon-starter-card__starter--bite" : ""}${isLeafBladeTarget ? " pokemon-starter-card__starter--leaf-blade-target" : ""}"${isFireSpinTrigger ? " data-pokemon-fire-spin-trigger role=\"button\" tabindex=\"0\" aria-label=\"Use Fire Spin on Parasect\"" : ""}${isBiteTrigger ? " data-pokemon-bite-trigger role=\"button\" tabindex=\"0\" aria-label=\"Use Bite on Espeon\"" : ""}${isLeafBladeTarget ? " data-pokemon-leaf-blade-target tabindex=\"0\" aria-label=\"Swipe across Relicanth to use Leaf Blade\"" : ""}>
+        <div class="pokemon-starter-card__starter pokemon-starter-card__starter--${isCompanion ? "companion" : "primary"}${isFireSpinTrigger ? " pokemon-starter-card__starter--fire-spin" : ""}${isBiteTrigger ? " pokemon-starter-card__starter--bite" : ""}${isLeafBladeTarget ? " pokemon-starter-card__starter--leaf-blade-target" : ""}${isIntimidateTarget ? " pokemon-starter-card__starter--intimidate" : ""}"${isFireSpinTrigger ? " data-pokemon-fire-spin-trigger role=\"button\" tabindex=\"0\" aria-label=\"Use Fire Spin on Parasect\"" : ""}${isBiteTrigger ? " data-pokemon-bite-trigger role=\"button\" tabindex=\"0\" aria-label=\"Use Bite on Espeon\"" : ""}${isLeafBladeTarget ? " data-pokemon-leaf-blade-target tabindex=\"0\" aria-label=\"Swipe across Relicanth to use Leaf Blade\"" : ""}${isIntimidateTarget ? " data-pokemon-intimidate-target" : ""}>
             <img src="${pokemonEscapeHtml(image)}" alt="${pokemonEscapeHtml(name)} card" />
         </div>`;
 }
@@ -288,6 +289,148 @@ function playPokemonLeafBlade(main, target, direction) {
     window.setTimeout(() => impact.remove(), 760);
 }
 
+function playPokemonIntimidate(main) {
+    const serperior = main.querySelector("[data-pokemon-starter=\"Serperior\"] .pokemon-starter-card__starter--primary");
+    const scrafty = main.querySelector("[data-pokemon-intimidate-target]");
+    if (!(serperior instanceof HTMLElement) || !(scrafty instanceof HTMLElement) || scrafty.classList.contains("is-intimidating")) {
+        return;
+    }
+
+    scrafty.classList.add("is-intimidating");
+    serperior.classList.remove("is-contrary-surprised", "is-contrary-boosted");
+    window.setTimeout(() => serperior.classList.add("is-contrary-surprised"), 320);
+    window.setTimeout(() => {
+        serperior.classList.remove("is-contrary-surprised");
+        serperior.classList.add("is-contrary-boosted");
+    }, 600);
+    window.setTimeout(() => scrafty.classList.remove("is-intimidating"), 900);
+    window.setTimeout(() => serperior.classList.remove("is-contrary-boosted"), 1950);
+}
+
+function playPokemonChallenge(main) {
+    const empoleon = main.querySelector("[data-pokemon-starter=\"Empoleon\"] .pokemon-starter-card__starter--primary");
+    const bidoof = main.querySelector("[data-pokemon-starter=\"Empoleon\"] .pokemon-starter-card__starter--companion");
+    if (!(empoleon instanceof HTMLElement) || !(bidoof instanceof HTMLElement) || empoleon.classList.contains("is-challenging")) {
+        return;
+    }
+
+    const taunt = document.createElement("span");
+    taunt.className = "pokemon-challenge-bubble pokemon-challenge-bubble--empoleon";
+    taunt.textContent = "That was your best?";
+    const reply = document.createElement("span");
+    reply.className = "pokemon-challenge-bubble pokemon-challenge-bubble--bidoof";
+    reply.textContent = "...";
+
+    empoleon.classList.add("is-challenging");
+    empoleon.appendChild(taunt);
+    window.setTimeout(() => {
+        bidoof.classList.add("is-refusing-challenge");
+        bidoof.appendChild(reply);
+    }, 720);
+    window.setTimeout(() => empoleon.classList.remove("is-challenging"), 1700);
+    window.setTimeout(() => taunt.remove(), 1800);
+    window.setTimeout(() => {
+        bidoof.classList.remove("is-refusing-challenge");
+        reply.remove();
+    }, 2150);
+}
+
+function playPokemonShurikenVolley(main) {
+    const greninja = main.querySelector("[data-pokemon-starter=\"Greninja\"] .pokemon-starter-card__starter--primary");
+    const goodra = main.querySelector("[data-pokemon-starter=\"Greninja\"] .pokemon-starter-card__starter--companion");
+    if (!(greninja instanceof HTMLElement) || !(goodra instanceof HTMLElement) || greninja.classList.contains("is-throwing-shuriken")) {
+        return;
+    }
+
+    const mainBounds = main.getBoundingClientRect();
+    const greninjaImage = greninja.querySelector("img");
+    const goodraImage = goodra.querySelector("img");
+    if (!(greninjaImage instanceof HTMLImageElement) || !(goodraImage instanceof HTMLImageElement)) {
+        return;
+    }
+
+    const sourceBounds = greninjaImage.getBoundingClientRect();
+    const targetBounds = goodraImage.getBoundingClientRect();
+    const startX = sourceBounds.left - mainBounds.left + (sourceBounds.width * 0.72);
+    const startY = sourceBounds.top - mainBounds.top + (sourceBounds.height * 0.4);
+    const endX = targetBounds.left - mainBounds.left + (targetBounds.width * 0.48);
+    const endY = targetBounds.top - mainBounds.top + (targetBounds.height * 0.46);
+
+    greninja.classList.add("is-throwing-shuriken");
+    goodra.classList.remove("is-dodging-shuriken", "is-hit-by-shuriken");
+
+    [0, 420, 840].forEach((delay, index) => {
+        window.setTimeout(() => {
+            const shuriken = document.createElement("span");
+            shuriken.className = `pokemon-shuriken${index === 2 ? " pokemon-shuriken--final" : ""}`;
+            shuriken.style.left = `${startX}px`;
+            shuriken.style.top = `${startY}px`;
+            shuriken.style.setProperty("--shuriken-x", `${endX - startX}px`);
+            shuriken.style.setProperty("--shuriken-y", `${endY - startY + (index === 0 ? -12 : index === 1 ? 11 : 0)}px`);
+            main.appendChild(shuriken);
+
+            if (index < 2) {
+                goodra.classList.remove("is-dodging-shuriken");
+                void goodra.offsetWidth;
+                goodra.style.setProperty("--goodra-dodge", index === 0 ? "-14px" : "14px");
+                goodra.classList.add("is-dodging-shuriken");
+            } else {
+                window.setTimeout(() => {
+                    goodra.classList.remove("is-dodging-shuriken");
+                    goodra.classList.add("is-hit-by-shuriken");
+                    const surprise = document.createElement("span");
+                    surprise.className = "pokemon-goodra-surprise";
+                    surprise.textContent = "!";
+                    surprise.setAttribute("aria-hidden", "true");
+                    goodra.appendChild(surprise);
+                    window.setTimeout(() => surprise.remove(), 850);
+                }, 430);
+            }
+
+            window.setTimeout(() => shuriken.remove(), 720);
+        }, delay);
+    });
+
+    window.setTimeout(() => greninja.classList.remove("is-throwing-shuriken"), 1800);
+    window.setTimeout(() => goodra.classList.remove("is-dodging-shuriken", "is-hit-by-shuriken"), 2200);
+}
+
+function initPokemonGreninjaAuto(main) {
+    const panel = main.querySelector("[data-pokemon-starter=\"Greninja\"]");
+    if (!(panel instanceof HTMLElement) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        return;
+    }
+
+    let volleyTimer = null;
+    const stopVolleys = () => {
+        if (volleyTimer !== null) {
+            window.clearInterval(volleyTimer);
+            volleyTimer = null;
+        }
+    };
+    const startVolleys = () => {
+        if (volleyTimer !== null) {
+            return;
+        }
+        playPokemonShurikenVolley(main);
+        volleyTimer = window.setInterval(() => playPokemonShurikenVolley(main), 6000);
+    };
+
+    if (typeof IntersectionObserver === "undefined") {
+        startVolleys();
+        return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+            startVolleys();
+        } else {
+            stopVolleys();
+        }
+    }, { threshold: 0.45 });
+    observer.observe(panel);
+}
+
 function initPokemonLeafBlade(main) {
     const target = main.querySelector("[data-pokemon-leaf-blade-target]");
     if (!(target instanceof HTMLElement)) {
@@ -373,6 +516,8 @@ async function renderPokemonStartersPage() {
                                 ${entry.name === "Charizard" ? '<button class="pokemon-fire-spin-control" type="button" data-pokemon-fire-spin-trigger aria-label="Use Fire Spin on Parasect" title="Use Fire Spin"></button>' : ""}
                                 ${entry.name === "Feraligatr" ? '<button class="pokemon-bite-control" type="button" data-pokemon-bite-trigger aria-label="Use Bite on Espeon" title="Use Bite"></button>' : ""}
                                 ${entry.name === "Sceptile" ? '<button class="pokemon-leaf-blade-control" type="button" data-pokemon-leaf-blade-control aria-label="Slice Relicanth" title="Slice Relicanth">Slice</button>' : ""}
+                                ${entry.name === "Empoleon" ? '<button class="pokemon-challenge-control" type="button" data-pokemon-challenge-control aria-label="Challenge Bidoof" title="Challenge Bidoof">Challenge</button>' : ""}
+                                ${entry.name === "Serperior" ? '<button class="pokemon-intimidate-control" type="button" data-pokemon-intimidate-control aria-label="Use Intimidate on Serperior" title="Use Intimidate">Intimidate</button>' : ""}
                                 <strong>${pokemonEscapeHtml(entry.era)}</strong>
                             </div>
                             <div class="pokemon-starter-card__family">
@@ -399,6 +544,12 @@ async function renderPokemonStartersPage() {
             const rotation = Number(target?.dataset.leafRotation || "0");
             playPokemonLeafBlade(main, target, rotation % 180 === 0 ? "horizontal" : "vertical");
         }
+        if (event.target instanceof Element && event.target.closest("[data-pokemon-intimidate-control]")) {
+            playPokemonIntimidate(main);
+        }
+        if (event.target instanceof Element && event.target.closest("[data-pokemon-challenge-control]")) {
+            playPokemonChallenge(main);
+        }
     });
     main.addEventListener("keydown", (event) => {
         if ((event.key === "Enter" || event.key === " ") && event.target instanceof Element && event.target.closest("[data-pokemon-fire-spin-trigger]")) {
@@ -415,8 +566,17 @@ async function renderPokemonStartersPage() {
             const rotation = Number(target?.dataset.leafRotation || "0");
             playPokemonLeafBlade(main, target, rotation % 180 === 0 ? "horizontal" : "vertical");
         }
+        if ((event.key === "Enter" || event.key === " ") && event.target instanceof Element && event.target.closest("[data-pokemon-intimidate-control]")) {
+            event.preventDefault();
+            playPokemonIntimidate(main);
+        }
+        if ((event.key === "Enter" || event.key === " ") && event.target instanceof Element && event.target.closest("[data-pokemon-challenge-control]")) {
+            event.preventDefault();
+            playPokemonChallenge(main);
+        }
     });
     initPokemonLeafBlade(main);
+    initPokemonGreninjaAuto(main);
 
     return true;
 }
