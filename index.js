@@ -356,6 +356,8 @@ const HOME_GAME_MODES = {
 		searchGame: "Yu Yu Hakusho",
 		featureLabel: "Kings",
 		featureHref: "kings.html",
+		communityLabel: "Contributors",
+		communityHref: "contributors.html",
 		heroDescription: "Search Yu Yu Hakusho cards from one growing card platform.",
 		spotlightGame: "Yu Yu Hakusho"
 	},
@@ -365,6 +367,8 @@ const HOME_GAME_MODES = {
 		searchGame: "Yu-Gi-Oh",
 		featureLabel: "Win Cons",
 		featureHref: "kings.html?game=Yu-Gi-Oh&mode=wincons",
+		communityLabel: "",
+		communityHref: "",
 		heroDescription: "Search Yu-Gi-Oh cards from one growing card platform.",
 		spotlightGame: "Yu-Gi-Oh"
 	},
@@ -374,6 +378,8 @@ const HOME_GAME_MODES = {
 		searchGame: "Pokemon",
 		featureLabel: "Starters",
 		featureHref: "kings.html?game=Pokemon&mode=starters",
+		communityLabel: "Evolution",
+		communityHref: "evolution.html?game=Pokemon",
 		heroDescription: "Search Pokemon cards from one growing card platform.",
 		spotlightGame: "Pokemon"
 	}
@@ -429,9 +435,19 @@ function updateNavLinkSet(container, modeConfig) {
 		return;
 	}
 
+	const communityLink = links[0] || null;
 	const inventoryLink = links[1] || null;
 	const setsLink = links[2] || null;
 	const featureLink = links[3] || null;
+
+	if (communityLink) {
+		const wrapper = communityLink.closest("li") || communityLink;
+		wrapper.hidden = !modeConfig.communityLabel;
+		if (modeConfig.communityLabel) {
+			communityLink.textContent = modeConfig.communityLabel;
+			communityLink.href = modeConfig.communityHref;
+		}
+	}
 
 	if (inventoryLink) {
 		inventoryLink.href = buildGameScopedUrl("inventory.html", modeConfig.searchGame);

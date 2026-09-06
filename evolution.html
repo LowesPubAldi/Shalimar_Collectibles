@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shalimar Collectibles | Pokemon Evolution</title>
+    <link rel="stylesheet" href="styles/base.css?v=2">
+    <link rel="stylesheet" href="styles/components/nav.css?v=2">
+    <link rel="stylesheet" href="styles/components/footer.css?v=2">
+    <link rel="stylesheet" href="styles/pages/evolution.css?v=1">
+    <script src="scripts/components/mobile-nav.js?v=2" defer></script>
+    <script src="scripts/components/game-mode.js?v=2" defer></script>
+    <script src="scripts/pages/evolution.js?v=1" defer></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html?game=Pokemon" class="logo-link" aria-label="Go to Pokemon homepage">
+                <img src="./assets/logo-v4.svg?v=3" alt="Shalimar Collectibles logo" class="logo" />
+            </a>
+            <form class="nav-search" id="navSearch" role="search">
+                <label class="sr-only" for="navSearchInput">Search inventory</label>
+                <input id="navSearchInput" type="search" placeholder="Search cards" autocomplete="off" />
+                <button type="submit" aria-label="Search inventory">Search</button>
+            </form>
+            <div class="game-mode-controls">
+                <label class="game-mode-select-wrap" for="gameModeSelect">
+                    <span class="sr-only">Game</span>
+                    <select class="game-mode-select" id="gameModeSelect" aria-label="Select game">
+                        <option value="yyh">Yu Yu Hakusho</option>
+                        <option value="ygo">Yu-Gi-Oh</option>
+                        <option value="pokemon" selected>Pokemon</option>
+                    </select>
+                </label>
+            </div>
+            <button class="mobile-nav-toggle" id="mobileNavToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primaryNavLinks">
+                <span class="mobile-nav-toggle__bar" aria-hidden="true"></span>
+                <span class="mobile-nav-toggle__bar" aria-hidden="true"></span>
+                <span class="mobile-nav-toggle__bar" aria-hidden="true"></span>
+            </button>
+            <ul class="nav__links" id="primaryNavLinks">
+                <li><a href="evolution.html?game=Pokemon" aria-current="page">Evolution</a></li>
+                <li><a href="inventory.html?game=Pokemon">Inventory</a></li>
+                <li><a href="sets.html?game=Pokemon">Sets</a></li>
+                <li><a href="kings.html?game=Pokemon&amp;mode=starters">Starters</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="mobile-nav-overlay" id="mobileNavOverlay" type="button" aria-label="Close navigation menu"></button>
+    </header>
+
+    <main class="main evolution-page">
+        <section class="evolution-hero" aria-label="Pokemon evolution overview">
+            <div class="evolution-hero__content">
+                <p class="evolution-eyebrow">Pokemon Evolution</p>
+                <h1>One species, many ways forward.</h1>
+                <p>Follow familiar evolution lines first, then move into branching paths, Eevee's eight outcomes, and the regional forms that rewrite what an evolution family can become.</p>
+            </div>
+            <aside class="evolution-hero__index" aria-label="Evolution page sections">
+                <a href="#basic-only">01 <span>Basic only</span></a>
+                <a href="#one-stage">02 <span>One-stage lines</span></a>
+                <a href="#three-stage">03 <span>Three-stage lines</span></a>
+                <a href="#fossils">04 <span>Fossil restoration</span></a>
+                <a href="#baby-pokemon">05 <span>Baby Pokemon</span></a>
+                <a href="#type-shifts">06 <span>Type shifts</span></a>
+                <a href="#branches">07 <span>Branching paths</span></a>
+                <a href="#eevee">08 <span>Eevee laboratory</span></a>
+                <a href="#regional">09 <span>Regional forms</span></a>
+            </aside>
+        </section>
+
+        <section class="evolution-section evolution-section--basic-only" id="basic-only" aria-labelledby="basic-only-title">
+            <div class="evolution-section__heading">
+                <div><p class="evolution-eyebrow">Basic Only</p><h2 id="basic-only-title">Some Pokemon enter play complete.</h2></div>
+                <p>These Pokemon are represented as Basic cards without a Stage 1 destination. Legendary and Mythical Pokemon appear here by card stage; their larger story can live on its own page later.</p>
+            </div>
+            <div class="evolution-basic-generations" data-basic-generation-controls role="tablist" aria-label="Choose Basic-only Pokemon generation"></div>
+            <div class="evolution-basic-carousel" data-basic-carousel aria-label="Basic-only Pokemon carousel">
+                <div class="evolution-basic-carousel__track" data-basic-track></div>
+            </div>
+        </section>
+
+        <section class="evolution-section" id="one-stage" aria-labelledby="one-stage-title">
+            <div class="evolution-section__heading">
+                <div><p class="evolution-eyebrow">Basic to Stage 1</p><h2 id="one-stage-title">The shortest complete line.</h2></div>
+                <p>A Basic Pokemon becomes one Stage 1 Pokemon. Change the specimen to compare another line.</p>
+            </div>
+            <div class="evolution-one-stage" data-one-stage-gallery>
+                <div class="evolution-basic-generations" data-one-stage-generation-controls role="tablist" aria-label="Choose one-stage Pokemon generation"></div>
+                <div class="evolution-segments evolution-segments--compact" role="tablist" aria-label="Choose one-stage evolution stage">
+                    <button type="button" role="tab" aria-selected="true" data-one-stage-stage="0">Basic</button>
+                    <button type="button" role="tab" aria-selected="false" data-one-stage-stage="1">Stage 1</button>
+                </div>
+                <div class="evolution-one-stage__grid" data-one-stage-grid aria-live="polite"></div>
+            </div>
+        </section>
+
+        <section class="evolution-section evolution-section--band" id="three-stage" aria-labelledby="three-stage-title">
+            <div class="evolution-section__heading">
+                <div><p class="evolution-eyebrow">Basic to Stage 2</p><h2 id="three-stage-title">A full three-card family.</h2></div>
+                <p>Move through each TCG stage independently, or change the family and start again from its Basic Pokemon.</p>
+            </div>
+            <div class="evolution-stage-tool" data-stage-tool>
+                <div class="evolution-basic-generations" data-stage-generation-controls role="tablist" aria-label="Choose three-stage Pokemon generation"></div>
+                <div class="evolution-segments" role="tablist" aria-label="Choose evolution stage">
+                    <button type="button" role="tab" aria-selected="true" data-stage="0">Basic</button>
+                    <button type="button" role="tab" aria-selected="false" data-stage="1">Stage 1</button>
+                    <button type="button" role="tab" aria-selected="false" data-stage="2">Stage 2</button>
+                </div>
+                <div class="evolution-stage-carousel" data-stage-carousel aria-live="polite"></div>
+            </div>
+        </section>
+
+        <section class="evolution-section evolution-section--fossils" id="fossils" aria-labelledby="fossils-title">
+            <div class="evolution-section__heading">
+                <div><p class="evolution-eyebrow">Fossil Restoration</p><h2 id="fossils-title">The Item card fills the missing Basic slot.</h2></div>
+                <p>Fossil Pokemon are a TCG exception: the restored Pokemon is commonly a Stage 1 evolving from a Fossil Item, and some families continue to Stage 2.</p>
+            </div>
+            <div class="fossil-tool" data-fossil-tool>
+                <div class="fossil-generations" data-fossil-controls role="tablist" aria-label="Choose fossil generation"></div>
+                <div class="fossil-lines" data-fossil-lines aria-live="polite"></div>
+            </div>
+        </section>
+
+        <section class="evolution-section evolution-section--babies" id="baby-pokemon" aria-labelledby="baby-pokemon-title">
+            <div class="evolution-section__heading">
+                <div><p class="evolution-eyebrow">Baby Pokemon</p><h2 id="baby-pokemon-title">Before the TCG Basic stage.</h2></div>
+                <p>Baby Pokemon are their own card stage. Their families continue through a Basic Pokemon and, when applicable, a Stage 1 or branching outcome.</p>
+            </div>
+            <div class="baby-tool" data-baby-tool>
+                <div class="baby-generations" data-baby-controls role="tablist" aria-label="Choose Baby Pokemon generation"></div>
+                <div class="baby-family-grid" data-baby-families aria-live="polite"></div>
+            </div>
+        </section>
+
+        <section class="evolution-section evolution-section--type-shifts" id="type-shifts" aria-labelledby="type-shifts-title">
+            <div class="evolution-section__heading">
+                <div><p class="evolution-eyebrow">The Oddballs</p><h2 id="type-shifts-title">Evolution can rewrite a Pokemon's type.</h2></div>
+                <p>A new type may be added, an existing type may be replaced, or two branches may leave the same Basic Pokemon with completely different matchups.</p>
+            </div>
+            <div class="type-shift-grid">
+                <article class="type-shift-card">
+                    <div class="type-shift-card__head"><span>Type added</span><h3>Charmander to Charizard</h3></div>
+                    <div class="type-shift-line">
+                        <div class="evolution-node" data-pokemon-id="4"><img alt="Charmander" /><strong>Charmander</strong><div class="type-chips"><small class="type-chip type-chip--fire">Fire</small></div></div>
+                        <div class="type-shift-arrow" aria-hidden="true">+ Flying</div>
+                        <div class="evolution-node" data-pokemon-id="6"><img alt="Charizard" /><strong>Charizard</strong><div class="type-chips"><small class="type-chip type-chip--fire">Fire</small><small class="type-chip type-chip--flying">Flying</small></div></div>
+                    </div>
+                </article>
+                <article class="type-shift-card">
+                    <div class="type-shift-card__head"><span>Type replaced</span><h3>Onix to Steelix</h3></div>
+                    <div class="type-shift-line">
+                        <div class="evolution-node" data-pokemon-id="95"><img alt="Onix" /><strong>Onix</strong><div class="type-chips"><small class="type-chip type-chip--rock">Rock</small><small class="type-chip type-chip--ground">Ground</small></div></div>
+                        <div class="type-shift-arrow" aria-hidden="true">Rock &#8594; Steel</div>
+                        <div class="evolution-node" data-pokemon-id="208"><img alt="Steelix" /><strong>Steelix</strong><div class="type-chips"><small class="type-chip type-chip--steel">Steel</small><small class="type-chip type-chip--ground">Ground</small></div></div>
+                    </div>
+                </article>
+                <article class="type-shift-card">
+                    <div class="type-shift-card__head"><span>Late-stage change</span><h3>Dartrix to Decidueye</h3></div>
+                    <div class="type-shift-line">
+                        <div class="evolution-node" data-pokemon-id="723"><img alt="Dartrix" /><strong>Dartrix</strong><div class="type-chips"><small class="type-chip type-chip--grass">Grass</small><small class="type-chip type-chip--flying">Flying</small></div></div>
+                        <div class="type-shift-arrow" aria-hidden="true">Flying &#8594; Ghost</div>
+                        <div class="evolution-node" data-pokemon-id="724"><img alt="Decidueye" /><strong>Decidueye</strong><div class="type-chips"><small class="type-chip type-chip--grass">Grass</small><small class="type-chip type-chip--ghost">Ghost</small></div></div>
+                    </div>
+                </article>
+                <article class="type-shift-card type-shift-card--branch">
+                    <div class="type-shift-card__head"><span>Branch shift</span><h3>Nincada's two outcomes</h3></div>
+                    <div class="type-shift-branch">
+                        <div class="evolution-node" data-pokemon-id="290"><img alt="Nincada" /><strong>Nincada</strong><div class="type-chips"><small class="type-chip type-chip--bug">Bug</small><small class="type-chip type-chip--ground">Ground</small></div></div>
+                        <div class="evolution-tree__fork" aria-hidden="true"></div>
+                        <div class="evolution-tree__outcomes">
+                            <div class="evolution-node" data-pokemon-id="291"><img alt="Ninjask" /><strong>Ninjask</strong><div class="type-chips"><small class="type-chip type-chip--bug">Bug</small><small class="type-chip type-chip--flying">Flying</small></div></div>
+                            <div class="evolution-node" data-pokemon-id="292"><img alt="Shedinja" /><strong>Shedinja</strong><div class="type-chips"><small class="type-chip type-chip--bug">Bug</small><small class="type-chip type-chip--ghost">Ghost</small></div></div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="evolution-section" id="branches" aria-labelledby="branches-title">
+            <div class="evolution-section__heading">
+                <div><p class="evolution-eyebrow">Branch Evolution</p><h2 id="branches-title">One decision, several outcomes.</h2></div>
+                <p>Some paths split immediately. Others wait until Stage 1 before the family separates.</p>
+            </div>
+            <div class="evolution-branch-grid">
+                <article class="evolution-branch">
+                    <div class="evolution-branch__copy"><span>Simple branch</span><h3>Wurmple</h3><p>The Basic Pokemon can enter either cocoon line.</p></div>
+                    <div class="evolution-tree evolution-tree--simple">
+                        <div class="evolution-node" data-pokemon-id="265"><img alt="Wurmple" /><strong>Wurmple</strong><small>Basic</small></div>
+                        <div class="evolution-tree__fork" aria-hidden="true"></div>
+                        <div class="evolution-tree__outcomes">
+                            <div class="evolution-node" data-pokemon-id="266"><img alt="Silcoon" /><strong>Silcoon</strong><small>Stage 1</small></div>
+                            <div class="evolution-node" data-pokemon-id="268"><img alt="Cascoon" /><strong>Cascoon</strong><small>Stage 1</small></div>
+                        </div>
+                    </div>
+                </article>
+                <article class="evolution-branch">
+                    <div class="evolution-branch__copy"><span>Late branch</span><h3>Ralts</h3><p>Ralts reaches Kirlia before its final path divides.</p></div>
+                    <div class="evolution-tree evolution-tree--advanced">
+                        <div class="evolution-tree__trunk">
+                            <div class="evolution-node" data-pokemon-id="280"><img alt="Ralts" /><strong>Ralts</strong><small>Basic</small></div>
+                            <div class="evolution-node" data-pokemon-id="281"><img alt="Kirlia" /><strong>Kirlia</strong><small>Stage 1</small></div>
+                        </div>
+                        <div class="evolution-tree__fork" aria-hidden="true"></div>
+                        <div class="evolution-tree__outcomes">
+                            <div class="evolution-node" data-pokemon-id="282"><img alt="Gardevoir" /><strong>Gardevoir</strong><small>Stage 2</small></div>
+                            <div class="evolution-node" data-pokemon-id="475"><img alt="Gallade" /><strong>Gallade</strong><small>Alternate</small></div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="evolution-section evolution-section--eevee" id="eevee" aria-labelledby="eevee-title">
+            <div class="evolution-section__heading">
+                <div><p class="evolution-eyebrow">Eevee Laboratory</p><h2 id="eevee-title">Eight answers to one Pokemon.</h2></div>
+                <p>Eevee's evolution family spans stones, friendship, time, location, and type-specific conditions. Partner Eevee is the exception that stays exactly as it is.</p>
+            </div>
+            <div class="eevee-lab">
+                <div class="eevee-lab__center evolution-node evolution-node--eevee" data-pokemon-id="133"><img alt="Eevee" /><strong>Eevee</strong><small>Basic</small></div>
+                <div class="eevee-lab__branches" aria-label="Eevee evolution outcomes">
+                    <button type="button" data-eeveelution="Vaporeon" data-pokemon-id="134"><img alt="Vaporeon" /><span>Vaporeon</span><small>Water Stone</small></button>
+                    <button type="button" data-eeveelution="Jolteon" data-pokemon-id="135"><img alt="Jolteon" /><span>Jolteon</span><small>Thunder Stone</small></button>
+                    <button type="button" data-eeveelution="Flareon" data-pokemon-id="136"><img alt="Flareon" /><span>Flareon</span><small>Fire Stone</small></button>
+                    <button type="button" data-eeveelution="Espeon" data-pokemon-id="196"><img alt="Espeon" /><span>Espeon</span><small>Day friendship</small></button>
+                    <button type="button" data-eeveelution="Umbreon" data-pokemon-id="197"><img alt="Umbreon" /><span>Umbreon</span><small>Night friendship</small></button>
+                    <button type="button" data-eeveelution="Leafeon" data-pokemon-id="470"><img alt="Leafeon" /><span>Leafeon</span><small>Leaf Stone</small></button>
+                    <button type="button" data-eeveelution="Glaceon" data-pokemon-id="471"><img alt="Glaceon" /><span>Glaceon</span><small>Ice Stone</small></button>
+                    <button type="button" data-eeveelution="Sylveon" data-pokemon-id="700"><img alt="Sylveon" /><span>Sylveon</span><small>Fairy move</small></button>
+                </div>
+                <aside class="eevee-lab__exception"><span>Exception</span><strong>Partner Eevee</strong><p>The starter in <i>Let's Go, Eevee!</i> cannot evolve.</p></aside>
+            </div>
+        </section>
+
+        <section class="evolution-section" id="regional" aria-labelledby="regional-title">
+            <div class="evolution-section__heading">
+                <div><p class="evolution-eyebrow">Regional Evolution</p><h2 id="regional-title">A familiar species, rewritten by place.</h2></div>
+                <p>Regional forms can change typing and appearance; some unlock an evolution the original form never had.</p>
+            </div>
+            <div class="regional-grid">
+                <article class="regional-family"><span>Form change</span><h3>Vulpix</h3><div><div class="evolution-node" data-pokemon-id="37"><img alt="Kantonian Vulpix" /><strong>Kanto</strong><small>Fire</small></div><div class="regional-arrow" aria-hidden="true">&#8596;</div><div class="evolution-node" data-pokemon-id="10103"><img alt="Alolan Vulpix" /><strong>Alola</strong><small>Ice</small></div></div></article>
+                <article class="regional-family"><span>Regional evolution</span><h3>Wooper</h3><div><div class="evolution-node" data-pokemon-id="194"><img alt="Johtonian Wooper" /><strong>Johto</strong><small>Water / Ground</small></div><div class="regional-arrow" aria-hidden="true">&#8596;</div><div class="evolution-node" data-pokemon-id="10253"><img alt="Paldean Wooper" /><strong>Paldea</strong><small>Poison / Ground</small></div><div class="regional-arrow" aria-hidden="true">&#8594;</div><div class="evolution-node" data-pokemon-id="980"><img alt="Clodsire" /><strong>Clodsire</strong><small>Regional evolution</small></div></div></article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer" aria-label="Site footer">
+        <div class="site-footer__inner">
+            <p class="site-footer__brand">Shalimar Collectibles</p>
+            <p class="site-footer__meta">Pokemon evolution families, branching paths, and regional forms.</p>
+            <p class="site-footer__copyright">&copy; 2026 Shalimar Collectibles. All rights reserved.</p>
+            <nav class="site-footer__nav" aria-label="Footer navigation">
+                <a href="evolution.html?game=Pokemon" aria-current="page">Evolution</a>
+                <a href="inventory.html?game=Pokemon">Inventory</a>
+                <a href="sets.html?game=Pokemon">Sets</a>
+                <a href="kings.html?game=Pokemon&amp;mode=starters">Starters</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </footer>
+</body>
+</html>

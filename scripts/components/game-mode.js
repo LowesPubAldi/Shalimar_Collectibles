@@ -1,9 +1,9 @@
 (function () {
     const STORAGE_KEY = "home_game_mode";
     const MODES = {
-        yyh: { name: "Yu Yu Hakusho", searchGame: "Yu Yu Hakusho", featureLabel: "Kings", featureHref: "kings.html" },
-        ygo: { name: "Yu-Gi-Oh", searchGame: "Yu-Gi-Oh", featureLabel: "Win Cons", featureHref: "kings.html?game=Yu-Gi-Oh&mode=wincons" },
-        pokemon: { name: "Pokemon", searchGame: "Pokemon", featureLabel: "Starters", featureHref: "kings.html?game=Pokemon&mode=starters" }
+        yyh: { name: "Yu Yu Hakusho", searchGame: "Yu Yu Hakusho", featureLabel: "Kings", featureHref: "kings.html", communityLabel: "Contributors", communityHref: "contributors.html" },
+        ygo: { name: "Yu-Gi-Oh", searchGame: "Yu-Gi-Oh", featureLabel: "Win Cons", featureHref: "kings.html?game=Yu-Gi-Oh&mode=wincons", communityLabel: "", communityHref: "" },
+        pokemon: { name: "Pokemon", searchGame: "Pokemon", featureLabel: "Starters", featureHref: "kings.html?game=Pokemon&mode=starters", communityLabel: "Evolution", communityHref: "evolution.html?game=Pokemon" }
     };
 
     function getSavedMode() {
@@ -34,8 +34,12 @@
         document.querySelectorAll("#primaryNavLinks a, .site-footer__nav a").forEach((link) => {
             const label = String(link.textContent || "").trim();
             const linkWrapper = link.closest("li") || link;
-            if (label === "Contributors") {
-                linkWrapper.hidden = modeKeyIsYuGiOh(mode);
+            if (label === "Contributors" || label === "Evolution") {
+                linkWrapper.hidden = !mode.communityLabel;
+                if (mode.communityLabel) {
+                    link.textContent = mode.communityLabel;
+                    link.href = mode.communityHref;
+                }
                 return;
             }
             if (label === "Inventory") {
@@ -119,6 +123,16 @@
 
             if (currentFile === "kings.html") {
                 navigateFeaturePageIfNeeded(modeKey, mode);
+            }
+
+            if (currentFile === "contributors.html" && modeKey === "pokemon") {
+                window.location.replace(new URL(MODES.pokemon.communityHref, window.location.href).toString());
+                return;
+            }
+
+            if (currentFile === "evolution.html" && modeKey !== "pokemon") {
+                const destination = modeKey === "yyh" ? MODES.yyh.communityHref : "index.html?game=Yu-Gi-Oh";
+                window.location.replace(new URL(destination, window.location.href).toString());
             }
         };
 
