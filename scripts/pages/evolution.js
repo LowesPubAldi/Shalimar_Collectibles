@@ -8,6 +8,37 @@ const GEN1_ONE_STAGE_MAP_EXTRAS = [
     { generation: 0, label: "Evolution family (B)", pokemon: [{ id: 79, name: "Slowpoke", stage: "Basic" }, { id: 80, name: "Slowbro", stage: "Stage 1" }], regional: null },
     { generation: 0, label: "Evolution family (B)", pokemon: [{ id: 123, name: "Scyther", stage: "Basic" }, { id: 212, name: "Scizor", stage: "Stage 1" }], regional: null }
 ];
+const GEN2_BASIC_MAP_IDS = new Set([185, 190, 193, 198, 200, 201, 202, 203, 206, 207, 211, 213, 214, 215, 222, 225, 226, 227, 234, 235, 241, 243, 244, 245, 249, 250, 251]);
+const GEN2_ONE_STAGE_MAP_IDS = new Set([161, 163, 165, 167, 170, 177, 183, 191, 194, 204, 209, 216, 218, 220, 223, 228, 231]);
+const GEN2_THREE_STAGE_MAP_IDS = new Set([152, 155, 158, 175, 179, 187, 246]);
+const GEN3_BASIC_MAP_IDS = new Set([299, 302, 303, 311, 312, 313, 314, 324, 327, 335, 336, 337, 338, 352, 357, 358, 359, 369, 370, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386]);
+const GEN3_ONE_STAGE_MAP_IDS = new Set([261, 263, 276, 283, 285, 296, 300, 307, 309, 316, 318, 320, 322, 339, 341, 343, 345, 347, 353, 355, 361, 366]);
+const GEN3_THREE_STAGE_MAP_IDS = new Set([252, 255, 258, 265, 270, 273, 280, 287, 293, 298, 363, 371, 374]);
+const GEN2_ONE_STAGE_MAP_EXTRAS = [
+    { generation: 1, label: "Evolution family (H)", pokemon: [{ id: 183, name: "Marill", stage: "Basic" }, { id: 184, name: "Azumarill", stage: "Stage 1" }] },
+    { generation: 1, label: "Evolution family (R)", pokemon: [{ id: 194, name: "Wooper", stage: "Basic" }, { id: 195, name: "Quagsire", stage: "Stage 1" }] },
+    { generation: 1, label: "Evolution family", pokemon: [{ id: 216, name: "Teddiursa", stage: "Basic" }, { id: 217, name: "Ursaring", stage: "Stage 1" }] },
+    { generation: 1, label: "Evolution family", pokemon: [{ id: 220, name: "Swinub", stage: "Basic" }, { id: 221, name: "Piloswine", stage: "Stage 1" }] }
+];
+const GEN2_THREE_STAGE_LINES = [
+    { name: "Chikorita family", generation: 1, pokemon: [{ id: 152, name: "Chikorita", stage: "Basic" }, { id: 153, name: "Bayleef", stage: "Stage 1" }, { id: 154, name: "Meganium", stage: "Stage 2" }] },
+    { name: "Cyndaquil family", generation: 1, pokemon: [{ id: 155, name: "Cyndaquil", stage: "Basic" }, { id: 156, name: "Quilava", stage: "Stage 1" }, { id: 157, name: "Typhlosion", stage: "Stage 2" }] },
+    { name: "Totodile family", generation: 1, pokemon: [{ id: 158, name: "Totodile", stage: "Basic" }, { id: 159, name: "Croconaw", stage: "Stage 1" }, { id: 160, name: "Feraligatr", stage: "Stage 2" }] },
+    { name: "Togepi family", generation: 1, pokemon: [{ id: 175, name: "Togepi", stage: "Basic" }, { id: 176, name: "Togetic", stage: "Stage 1" }, { id: 468, name: "Togekiss", stage: "Stage 2" }] },
+    { name: "Mareep family", generation: 1, pokemon: [{ id: 179, name: "Mareep", stage: "Basic" }, { id: 180, name: "Flaaffy", stage: "Stage 1" }, { id: 181, name: "Ampharos", stage: "Stage 2" }] },
+    { name: "Hoppip family", generation: 1, pokemon: [{ id: 187, name: "Hoppip", stage: "Basic" }, { id: 188, name: "Skiploom", stage: "Stage 1" }, { id: 189, name: "Jumpluff", stage: "Stage 2" }] },
+    { name: "Larvitar family", generation: 1, pokemon: [{ id: 246, name: "Larvitar", stage: "Basic" }, { id: 247, name: "Pupitar", stage: "Stage 1" }, { id: 248, name: "Tyranitar", stage: "Stage 2" }] }
+];
+const GEN3_THREE_STAGE_LINES = [
+    { name: "Wurmple family", generation: 2, pokemon: [{ id: 265, name: "Wurmple", stage: "Basic" }, { id: 266, name: "Silcoon", stage: "Stage 1" }, { id: 267, name: "Beautifly", stage: "Stage 2" }] },
+    { name: "Ralts family", generation: 2, pokemon: [{ id: 280, name: "Ralts", stage: "Basic" }, { id: 281, name: "Kirlia", stage: "Stage 1" }, { id: 282, name: "Gardevoir", stage: "Stage 2" }] },
+    { name: "Lotad family", generation: 2, pokemon: [{ id: 270, name: "Lotad", stage: "Basic" }, { id: 271, name: "Lombre", stage: "Stage 1" }, { id: 272, name: "Ludicolo", stage: "Stage 2" }] },
+    { name: "Seedot family", generation: 2, pokemon: [{ id: 273, name: "Seedot", stage: "Basic" }, { id: 274, name: "Nuzleaf", stage: "Stage 1" }, { id: 275, name: "Shiftry", stage: "Stage 2" }] },
+    { name: "Slakoth family", generation: 2, pokemon: [{ id: 287, name: "Slakoth", stage: "Basic" }, { id: 288, name: "Vigoroth", stage: "Stage 1" }, { id: 289, name: "Slaking", stage: "Stage 2" }] },
+    { name: "Whismur family", generation: 2, pokemon: [{ id: 293, name: "Whismur", stage: "Basic" }, { id: 294, name: "Loudred", stage: "Stage 1" }, { id: 295, name: "Exploud", stage: "Stage 2" }] },
+    { name: "Spheal family", generation: 2, pokemon: [{ id: 363, name: "Spheal", stage: "Basic" }, { id: 364, name: "Sealeo", stage: "Stage 1" }, { id: 365, name: "Walrein", stage: "Stage 2" }] },
+    { name: "Beldum family", generation: 2, pokemon: [{ id: 374, name: "Beldum", stage: "Basic" }, { id: 375, name: "Metang", stage: "Stage 1" }, { id: 376, name: "Metagross", stage: "Stage 2" }] }
+];
 
 const BASIC_ONLY_POKEMON = [
     { id: 83, name: "Farfetch'd", group: "Standalone" }, { id: 115, name: "Kangaskhan", group: "Standalone" },
@@ -23,12 +54,12 @@ const BASIC_ONLY_POKEMON = [
     { id: 243, name: "Raikou", group: "Legendary" }, { id: 244, name: "Entei", group: "Legendary" },
     { id: 245, name: "Suicune", group: "Legendary" }, { id: 249, name: "Lugia", group: "Legendary" },
     { id: 250, name: "Ho-Oh", group: "Legendary" }, { id: 251, name: "Celebi", group: "Mythical" },
-    { id: 302, name: "Sableye", group: "Standalone" }, { id: 303, name: "Mawile", group: "Standalone" },
-    { id: 311, name: "Plusle", group: "Standalone" }, { id: 312, name: "Minun", group: "Standalone" },
-    { id: 324, name: "Torkoal", group: "Standalone" }, { id: 335, name: "Zangoose", group: "Standalone" },
+    { id: 299, name: "Nosepass", group: "Standalone • H" }, { id: 302, name: "Sableye", group: "Standalone" }, { id: 303, name: "Mawile", group: "Standalone" },
+    { id: 311, name: "Plusle", group: "Standalone" }, { id: 312, name: "Minun", group: "Standalone" }, { id: 313, name: "Volbeat", group: "Standalone" }, { id: 314, name: "Illumise", group: "Standalone" },
+    { id: 324, name: "Torkoal", group: "Standalone" }, { id: 327, name: "Spinda", group: "Standalone" }, { id: 335, name: "Zangoose", group: "Standalone" },
     { id: 336, name: "Seviper", group: "Standalone" }, { id: 351, name: "Castform", group: "Standalone" },
-    { id: 357, name: "Tropius", group: "Standalone" }, { id: 359, name: "Absol", group: "Standalone" },
-    { id: 369, name: "Relicanth", group: "Standalone" }, { id: 377, name: "Regirock", group: "Legendary" },
+    { id: 337, name: "Lunatone", group: "Standalone" }, { id: 338, name: "Solrock", group: "Standalone" }, { id: 357, name: "Tropius", group: "Standalone" }, { id: 358, name: "Chimecho", group: "Standalone" }, { id: 359, name: "Absol", group: "Standalone" },
+    { id: 369, name: "Relicanth", group: "Standalone" }, { id: 370, name: "Luvdisc", group: "Standalone" }, { id: 377, name: "Regirock", group: "Legendary" },
     { id: 378, name: "Regice", group: "Legendary" }, { id: 379, name: "Registeel", group: "Legendary" },
     { id: 380, name: "Latias", group: "Legendary" }, { id: 381, name: "Latios", group: "Legendary" },
     { id: 382, name: "Kyogre", group: "Legendary" }, { id: 383, name: "Groudon", group: "Legendary" },
@@ -337,10 +368,10 @@ function initBasicCarousel() {
     };
     const render = () => {
         const generation = POKEMON_GENERATION_MARKERS[selectedGenerationIndex];
-        const pokemon = BASIC_ONLY_POKEMON.filter((entry) => getGenerationIndex(entry) === selectedGenerationIndex);
+        const pokemon = BASIC_ONLY_POKEMON.filter((entry) => getGenerationIndex(entry) === selectedGenerationIndex && (selectedGenerationIndex !== 1 || GEN2_BASIC_MAP_IDS.has(entry.dexId || entry.id)) && (selectedGenerationIndex !== 2 || GEN3_BASIC_MAP_IDS.has(entry.dexId || entry.id)));
         const cards = pokemon.map((entry) => `<article class="evolution-basic-carousel__item" tabindex="0" data-basic-family="${entry.id}">${cardContent(entry)}</article>`).join("");
         track.innerHTML = `${cards}${cards}`;
-        controls.innerHTML = POKEMON_GENERATION_MARKERS.map((entry, index) => `<button type="button" role="tab" aria-selected="${index === selectedGenerationIndex}" data-basic-generation="${index}"><span>${index + 1}</span>${entry.region}<small>${BASIC_ONLY_POKEMON.filter((pokemonEntry) => getGenerationIndex(pokemonEntry) === index).length}</small></button>`).join("");
+        controls.innerHTML = POKEMON_GENERATION_MARKERS.map((entry, index) => `<button type="button" role="tab" aria-selected="${index === selectedGenerationIndex}" data-basic-generation="${index}"><span>${index + 1}</span>${entry.region}<small>${BASIC_ONLY_POKEMON.filter((pokemonEntry) => getGenerationIndex(pokemonEntry) === index && (index !== 1 || GEN2_BASIC_MAP_IDS.has(pokemonEntry.dexId || pokemonEntry.id)) && (index !== 2 || GEN3_BASIC_MAP_IDS.has(pokemonEntry.dexId || pokemonEntry.id))).length}</small></button>`).join("");
         track.style.animationDuration = `${Math.max(32, pokemon.length * 4)}s`;
     };
 
@@ -371,7 +402,7 @@ async function initOneStageGallery() {
     const grid = gallery?.querySelector("[data-one-stage-grid]");
     const generationControls = gallery?.querySelector("[data-one-stage-generation-controls]");
     if (!(gallery instanceof HTMLElement) || !(grid instanceof HTMLElement) || !(generationControls instanceof HTMLElement)) return;
-    const lines = await loadCompleteOneStageLines();
+    const lines = (await loadCompleteOneStageLines()).concat(GEN2_ONE_STAGE_MAP_EXTRAS);
     let stageIndex = 0;
     let generationIndex = 0;
     const regionalSelections = new Set();
@@ -383,10 +414,10 @@ async function initOneStageGallery() {
         return `<p>${line.label}</p>${toggle}${pokemonNodeMarkup(pokemon)}`;
     };
     const render = () => {
-        const generationLines = lines.filter((line) => line.generation === generationIndex);
+        const generationLines = lines.filter((line) => line.generation === generationIndex && (generationIndex !== 1 || GEN2_ONE_STAGE_MAP_IDS.has(line.pokemon[0].id)) && (generationIndex !== 2 || GEN3_ONE_STAGE_MAP_IDS.has(line.pokemon[0].id)));
         const itemMarkup = generationLines.map((line) => `<div class="evolution-one-stage__item" tabindex="0" data-one-stage-family="${line.pokemon[0].id}">${familyContent(line)}</div>`).join("");
         grid.innerHTML = `<div class="evolution-one-stage__track">${itemMarkup}${itemMarkup}</div>`;
-        generationControls.innerHTML = POKEMON_GENERATION_MARKERS.map((entry, index) => `<button type="button" role="tab" aria-selected="${index === generationIndex}" data-one-stage-generation="${index}"><span>${index + 1}</span>${entry.region}<small>${lines.filter((line) => line.generation === index).length}</small></button>`).join("");
+        generationControls.innerHTML = POKEMON_GENERATION_MARKERS.map((entry, index) => `<button type="button" role="tab" aria-selected="${index === generationIndex}" data-one-stage-generation="${index}"><span>${index + 1}</span>${entry.region}<small>${lines.filter((line) => line.generation === index && (index !== 1 || GEN2_ONE_STAGE_MAP_IDS.has(line.pokemon[0].id)) && (index !== 2 || GEN3_ONE_STAGE_MAP_IDS.has(line.pokemon[0].id))).length}</small></button>`).join("");
         gallery.querySelectorAll("[data-one-stage-stage]").forEach((button) => button.setAttribute("aria-selected", Number(button.getAttribute("data-one-stage-stage")) === stageIndex ? "true" : "false"));
         const duration = Math.max(32, generationLines.length * 4);
         const track = grid.querySelector(".evolution-one-stage__track");
@@ -421,11 +452,11 @@ function initStageTool() {
     if (!(tool instanceof HTMLElement) || !(carousel instanceof HTMLElement) || !(generationControls instanceof HTMLElement)) return;
     let generationIndex = 0;
     let stageIndex = 0;
-    const lines = [...GEN1_THREE_STAGE_LINES, ...THREE_STAGE_LINES.map((line) => ({ ...line, generation: 7 }))];
+    const lines = [...GEN1_THREE_STAGE_LINES, ...GEN2_THREE_STAGE_LINES, ...GEN3_THREE_STAGE_LINES, ...THREE_STAGE_LINES.map((line) => ({ ...line, generation: 7 }))];
     const render = () => {
-        const generationLines = lines.filter((line) => line.generation === generationIndex);
+        const generationLines = lines.filter((line) => line.generation === generationIndex && (generationIndex !== 1 || GEN2_THREE_STAGE_MAP_IDS.has(line.pokemon[0].id)) && (generationIndex !== 2 || GEN3_THREE_STAGE_MAP_IDS.has(line.pokemon[0].id)));
         carousel.innerHTML = `<div class="evolution-stage-carousel__track">${generationLines.concat(generationLines).map((family) => `<article class="evolution-stage-carousel__family"><p>${family.name}</p>${pokemonNodeMarkup(family.pokemon[stageIndex], "evolution-specimen--large")}</article>`).join("")}</div>`;
-        generationControls.innerHTML = POKEMON_GENERATION_MARKERS.map((entry, index) => `<button type="button" role="tab" aria-selected="${index === generationIndex}" data-stage-generation="${index}"><span>${index + 1}</span>${entry.region}<small>${lines.filter((line) => line.generation === index).length}</small></button>`).join("");
+        generationControls.innerHTML = POKEMON_GENERATION_MARKERS.map((entry, index) => `<button type="button" role="tab" aria-selected="${index === generationIndex}" data-stage-generation="${index}"><span>${index + 1}</span>${entry.region}<small>${lines.filter((line) => line.generation === index && (index !== 1 || GEN2_THREE_STAGE_MAP_IDS.has(line.pokemon[0].id)) && (index !== 2 || GEN3_THREE_STAGE_MAP_IDS.has(line.pokemon[0].id))).length}</small></button>`).join("");
         tool.querySelectorAll("[data-stage]").forEach((button) => button.setAttribute("aria-selected", Number(button.getAttribute("data-stage")) === stageIndex ? "true" : "false"));
         const track = carousel.querySelector(".evolution-stage-carousel__track");
         if (track instanceof HTMLElement) track.style.animationDuration = `${Math.max(40, generationLines.length * 4)}s`;
