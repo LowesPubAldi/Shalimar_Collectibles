@@ -156,6 +156,15 @@ Version 2 is the next big step. The goal is to make the site more useful and mor
 - Phase 2: backfill older pre-window sets in small batches, one to two sets at a time.
 - This keeps gameplay relevance high first, then expands archival depth in controlled steps.
 
+#### Pokemon V2 Gameplay Features
+
+- Unown word game: a Scrabble-inspired two-player mini-game against the computer.
+- The Unown game uses a simple 5x5 grid, seven random letter tiles, alphabet-based point values, and a first-to-21 win condition.
+- Vivillon geography experience: explain how geographic location determines Vivillon's regional wing pattern, tying each applicable location to its geographic variant.
+- Evolution Lab Milcery V1 begins with seven Sweet positions on the main Evolution page.
+- In V2, move the full Milcery experience off the main Evolution page and give it a dedicated page covering all 49 Cream and Confectionery variations.
+- The dedicated Milcery page should explain the Sweet, cream, spin, time, and direction combinations behind the 49 outcomes.
+
 #### V2 Footholds Already Established
 
 - Reusable card-variant logic now supports tiered finish presentation, making future variant UX extension lower risk.
