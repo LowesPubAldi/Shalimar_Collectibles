@@ -73,32 +73,44 @@
 .evolution-stage-carousel__family .evolution-specimen img { height:180px; }
 @keyframes evolution-stage-scroll { to { transform:translateX(calc(-50% - 6px)); } }
 .evolution-section--fossils { max-width:none; padding-left:max(48px,calc((100vw - 1124px)/2)); padding-right:max(48px,calc((100vw - 1124px)/2)); background:linear-gradient(135deg,rgba(38,31,24,.82),rgba(10,23,29,.82)); border-block:1px solid rgba(243,202,102,.18); }
-.fossil-exhibit { display:grid; grid-template-columns:260px 1fr; gap:28px; align-items:start; }
-.fossil-trainers { display:grid; gap:12px; align-content:start; }
-.fossil-trainer { display:grid; grid-template-columns:36px 1fr; align-items:center; gap:10px; border:1px solid var(--border-soft); border-radius:8px; padding:12px; background:rgba(10,18,27,.76); transition:opacity .3s ease,border-color .3s ease,background .3s ease; cursor:pointer; position:relative; }
+.fossil-exhibit { display:grid; grid-template-columns:260px minmax(420px,1fr) 260px; gap:24px; align-items:start; }
+.fossil-trainers { display:grid; gap:12px; align-content:start; min-width:0; }
+.fossil-trainers--right { grid-column:3; }
+.fossil-trainer { display:grid; grid-template-columns:76px minmax(0,1fr); min-width:0; align-items:center; gap:10px; border:1px solid var(--border-soft); border-radius:8px; padding:12px; background:rgba(10,18,27,.76); transition:opacity .3s ease,border-color .3s ease,background .3s ease; cursor:pointer; position:relative; }
 .fossil-trainer:hover,.fossil-trainer:focus-visible { border-color:var(--evo-yellow); outline:none; }
-.fossil-trainer__badge { width:36px; height:36px; border-radius:50%; display:grid; place-items:center; font-size:17px; background:rgba(243,202,102,.18); border:1px solid rgba(243,202,102,.4); overflow:visible; transition:transform .25s ease,box-shadow .25s ease; z-index:1; }
-.fossil-trainer__badge img { width:100%; height:100%; object-fit:cover; object-position:top center; border-radius:50%; }
-.fossil-trainer:hover .fossil-trainer__badge,.fossil-trainer:focus-visible .fossil-trainer__badge { transform:scale(2.4); transform-origin:left center; z-index:5; box-shadow:0 10px 26px rgba(0,0,0,.5); }
+.fossil-trainer__badge { width:56px; height:56px; border-radius:50%; display:grid; place-items:center; font-size:17px; background:rgba(243,202,102,.18); border:1px solid rgba(243,202,102,.4); overflow:hidden; transition:border-color .25s ease,box-shadow .25s ease; z-index:1; }
+.fossil-trainer__badge img { display:block; width:100%; height:100%; object-fit:cover; object-position:top center; border-radius:50%; }
+.fossil-trainer__info { min-width:0; display:grid; gap:3px; }
+.fossil-trainer:hover .fossil-trainer__badge,.fossil-trainer:focus-visible .fossil-trainer__badge { border-color:var(--evo-yellow); box-shadow:0 0 0 3px rgba(243,202,102,.2),0 10px 26px rgba(0,0,0,.35); }
 .fossil-trainer--brock .fossil-trainer__badge { background:radial-gradient(circle at 35% 30%,#c69a5e,#7a5227); border-color:#c69a5e; }
 .fossil-trainer--roark .fossil-trainer__badge { background:radial-gradient(circle at 35% 30%,#e58a4b,#8a441a); border-color:#e58a4b; }
 .fossil-trainer--byron .fossil-trainer__badge { background:radial-gradient(circle at 35% 30%,#b7c2cc,#5b6670); border-color:#b7c2cc; }
 .fossil-trainer--nando .fossil-trainer__badge { border-color:#7fce8c; }
+.fossil-trainer--zager .fossil-trainer__badge { border-color:#d7a2e8; }
 .fossil-trainer--ash .fossil-trainer__badge { background:radial-gradient(circle at 35% 30%,#5a9fe0,#274a72); border-color:#5a9fe0; }
-.fossil-trainer strong { display:block; font-size:13px; }
-.fossil-trainer small { color:var(--text-muted); font-size:10px; }
+.fossil-wild { border-style:dashed; border-color:#8eb3c5; opacity:.72; cursor:pointer; }
+.fossil-wild:hover,.fossil-wild:focus-visible { border-color:#b9e7f2; opacity:1; }
+.fossil-wild .fossil-trainer__badge { border-color:#8eb3c5; }
+.fossil-trainer strong { display:block; font-size:13px; overflow-wrap:anywhere; }
+.fossil-trainer small { color:var(--text-muted); font-size:10px; overflow-wrap:anywhere; }
 .fossil-trainer.is-active { border-color:var(--evo-yellow); background:rgba(70,52,20,.66); opacity:1; }
 .fossil-trainer.is-dimmed { opacity:.35; }
 .fossil-vertical { display:grid; grid-template-rows:auto 1fr auto; justify-items:center; gap:14px; }
 .fossil-vertical__nav { width:40px; height:40px; border-radius:50%; border:1px solid var(--border-soft); background:rgba(10,18,27,.76); color:var(--evo-yellow); font-size:18px; cursor:pointer; }
 .fossil-vertical__nav:hover { border-color:var(--evo-yellow); }
+.fossil-vertical__footer { display:flex; align-items:center; justify-content:center; gap:12px; }
+.fossil-vertical__counter { min-width:42px; color:var(--text-muted); font-size:11px; font-variant-numeric:tabular-nums; letter-spacing:.08em; }
 .fossil-vertical__display { display:grid; justify-items:center; gap:6px; padding:24px; border:1px solid var(--border-soft); border-radius:10px; background:rgba(8,15,21,.76); min-height:320px; width:100%; }
 .fossil-vertical__items { display:flex; align-items:center; gap:10px; }
 .fossil-vertical__plus { color:var(--evo-yellow); font-size:18px; font-weight:800; }
 .fossil-vertical__arrow { color:var(--evo-yellow); font-size:21px; }
+.fossil-vertical__level { width:100%; padding:5px 0; color:var(--evo-yellow); font-size:11px; font-weight:800; letter-spacing:.08em; text-align:center; white-space:nowrap; overflow:hidden; }
+.fossil-vertical__level>span { display:inline-block; animation:fossil-level-slide .8s ease-out both; text-shadow:0 0 8px rgba(8,15,21,.95); }
+.fossil-vertical__time { margin-left:3px; color:#f3ca66; font-size:15px; font-style:normal; vertical-align:-1px; }
+@keyframes fossil-level-slide { from { opacity:0; transform:translateX(120px); } to { opacity:1; transform:translateX(0); } }
 .fossil-vertical__note { margin-top:8px; color:var(--text-muted); font-size:12px; text-align:center; max-width:320px; }
 .fossil-item { min-width:105px; display:grid; justify-items:center; gap:3px; text-align:center; }
-.fossil-item>span { width:64px; aspect-ratio:1; border:2px solid #d1b06b; border-radius:48% 52% 45% 55%; background:radial-gradient(circle at 38% 38%,#f3dfaa 0 12%,transparent 13%),repeating-radial-gradient(circle at 52% 48%,#9d7b42 0 4px,#d6ba7a 5px 9px); box-shadow:0 8px 16px rgba(0,0,0,.3); }
+.fossil-item>img { width:64px; height:48px; object-fit:contain; filter:drop-shadow(0 8px 8px rgba(0,0,0,.3)); }
 .fossil-item small { color:var(--text-soft); font-size:8px; letter-spacing:.06em; text-transform:uppercase; }
 .fossil-item strong { font-size:12px; }
 .fossil-item em { color:var(--evo-yellow); font-size:9px; font-style:normal; }
@@ -152,5 +164,6 @@
 .eevee-lab__exception p { color: var(--text-muted); line-height: 1.5; }
 .regional-family>div { margin-top: 16px; }
 .regional-family .evolution-node { flex: 1; }
-@media (max-width: 800px) { .evolution-hero { min-height: 0; grid-template-columns:1fr; padding-top:40px; padding-bottom:40px; } .evolution-section__heading { align-items:start; flex-direction:column; } .type-shift-grid,.evolution-branch-grid,.regional-grid { grid-template-columns:1fr; } .eevee-lab { grid-template-columns:1fr; } .eevee-lab__branches { grid-template-columns:repeat(4,minmax(0,1fr)); } }
+@media (max-width: 1100px) { .fossil-exhibit { grid-template-columns:220px minmax(0,1fr) 220px; gap:16px; } .fossil-trainer { grid-template-columns:56px 1fr; } }
+@media (max-width: 800px) { .evolution-hero { min-height: 0; grid-template-columns:1fr; padding-top:40px; padding-bottom:40px; } .evolution-section__heading { align-items:start; flex-direction:column; } .type-shift-grid,.evolution-branch-grid,.regional-grid { grid-template-columns:1fr; } .eevee-lab { grid-template-columns:1fr; } .eevee-lab__branches { grid-template-columns:repeat(4,minmax(0,1fr)); } .fossil-exhibit { grid-template-columns:1fr; } .fossil-trainers--right { grid-column:auto; } }
 @media (max-width: 560px) { .evolution-hero,.evolution-section { padding-left:16px; padding-right:16px; } .evolution-section--band,.evolution-section--eevee { padding-left:16px; padding-right:16px; } .evolution-hero h1 { font-size:42px; } .evolution-carousel { grid-template-columns:32px minmax(0,1fr) 32px; gap:6px; } .evolution-carousel__nav { width:32px; } .evolution-line { grid-template-columns:1fr; } .evolution-line__arrow { transform:rotate(90deg); } .evolution-specimen,.evolution-specimen--large { grid-template-columns:1fr; text-align:center; } .evolution-specimen img,.evolution-specimen--large img { height:150px; } .type-shift-line { grid-template-columns:1fr; }.type-shift-arrow { min-height:24px; display:grid; place-items:center; }.evolution-tree__outcomes,.regional-family>div { align-items:stretch; } .eevee-lab__branches { grid-template-columns:repeat(2,minmax(0,1fr)); } .evolution-node { min-width:0; } }

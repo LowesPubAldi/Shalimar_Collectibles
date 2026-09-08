@@ -350,29 +350,57 @@ const BABY_POKEMON_FAMILIES = [
 ];
 
 const FOSSIL_TRAINERS = [
-    { name: "Brock", note: "Kanto Gym Leader \u2014 Omanyte and Kabuto", theme: "brock", icon: "\ud83e\udea8" },
-    { name: "Roark", note: "Sinnoh Gym Leader \u2014 Cranidos", theme: "roark", icon: "\ud83e\uddb4" },
-    { name: "Byron", note: "Sinnoh Gym Leader \u2014 Bastiodon and Cradily", theme: "byron", icon: "\u2699\ufe0f" },
+    { name: "Brock", note: "Kanto Gym Leader \u2014 TCG: Mysterious Fossil", theme: "brock", portrait: "assets/pokemon/Brock -- Kabutops Or Omastar.jpg" },
+    { name: "Roark", note: "Sinnoh Gym Leader \u2014 Cranidos and Rampardos", theme: "roark", portrait: "assets/pokemon/Roark -- Cranidos And Rampardos.gif" },
+    { name: "Byron", note: "Sinnoh Gym Leader \u2014 Bastiodon and Cradily", theme: "byron", portrait: "assets/pokemon/Byron -- Bastiodon Or Cradily.png" },
     { name: "Nando", note: "Sinnoh League \u2014 Armaldo", theme: "nando", portrait: "assets/pokemon/Nando -- Armaldo.png" },
-    { name: "Ash", note: "Galar journey \u2014 Dracovish", theme: "ash", icon: "\ud83e\udde2" }
+    { name: "Fennel", note: "Unova story \u2014 Archen and Archeops", theme: "fennel", portrait: "assets/pokemon/Fennel -- Archen Or Archeops.png" },
+    { name: "Grant", note: "Kalos Gym Leader \u2014 Tyrunt", theme: "grant", portrait: "assets/pokemon/Grant -- Tyrunt.png" },
+    { name: "Bonnie", note: "Kalos story \u2014 Tyrantrum", theme: "bonnie", portrait: "assets/pokemon/Bonnie -- Tyrantrum.png" },
+    { name: "Thaddeus", note: "Kalos story \u2014 Amaura and Aurorus", theme: "thaddeus", portrait: "assets/pokemon/Thaddeus -- Amaura Or Aurorus.png" },
+    { name: "Bray Zenn", note: "Galar story \u2014 Dracozolt", theme: "bray-zenn", portrait: "assets/pokemon/Bray Zenn -- Dracozolt.png" },
+    { name: "Goh", note: "Galar journey \u2014 Arctozolt", theme: "goh", portrait: "assets/pokemon/Goh -- Arctozolt.webp" },
+    { name: "Cara Liss", note: "Galar story \u2014 Arctovish", theme: "cara-liss", portrait: "assets/pokemon/Cara Liss -- Arctovish.webp" },
+    { name: "Dr. Zager", note: "Unova story \u2014 Tirtouga and Carracosta", theme: "zager", portrait: "assets/pokemon/Dr. Zager -- Tirtouga Or Carracosta.png" },
+    { name: "Ash", note: "Galar journey \u2014 Dracovish", theme: "ash", portrait: "assets/pokemon/Ash -- Dracovish.webp" }
+];
+const FOSSIL_WILD_APPEARANCES = [
+    { name: "Aerodactyl", note: "Wild appearance \u2014 carrying Ash", portrait: "assets/pokemon/Aerodactyl Wild -- carrying Ash.avif", theme: "aerodactyl" }
 ];
 const FOSSIL_FAMILIES = [
-    { fossilItems: ["Mysterious Fossil"], pokemon: [{ id: 138, name: "Omanyte", stage: "Stage 1" }, { id: 139, name: "Omastar", stage: "Stage 2" }], trainers: ["Brock"] },
-    { fossilItems: ["Mysterious Fossil"], pokemon: [{ id: 140, name: "Kabuto", stage: "Stage 1" }, { id: 141, name: "Kabutops", stage: "Stage 2" }], trainers: ["Brock"] },
+    { fossilItems: ["Helix Fossil"], pokemon: [{ id: 138, name: "Omanyte", stage: "Stage 1" }, { id: 139, name: "Omastar", stage: "Stage 2" }], evolutionLevel: 40, trainers: ["Brock"] },
+    { fossilItems: ["Dome Fossil"], pokemon: [{ id: 140, name: "Kabuto", stage: "Stage 1" }, { id: 141, name: "Kabutops", stage: "Stage 2" }], evolutionLevel: 40, trainers: ["Brock"] },
     { fossilItems: ["Old Amber"], pokemon: [{ id: 142, name: "Aerodactyl", stage: "Stage 1" }], trainers: [], note: "First seen wild and airborne with Ash in the anime \u2014 left unpaired on purpose." },
-    { fossilItems: ["Root Fossil"], pokemon: [{ id: 345, name: "Lileep", stage: "Stage 1" }, { id: 346, name: "Cradily", stage: "Stage 2" }], trainers: ["Byron"] },
-    { fossilItems: ["Claw Fossil"], pokemon: [{ id: 347, name: "Anorith", stage: "Stage 1" }, { id: 348, name: "Armaldo", stage: "Stage 2" }], trainers: ["Nando"] },
-    { fossilItems: ["Skull Fossil"], pokemon: [{ id: 408, name: "Cranidos", stage: "Stage 1" }, { id: 409, name: "Rampardos", stage: "Stage 2" }], trainers: ["Roark"] },
-    { fossilItems: ["Armor Fossil"], pokemon: [{ id: 410, name: "Shieldon", stage: "Stage 1" }, { id: 411, name: "Bastiodon", stage: "Stage 2" }], trainers: ["Byron"] },
-    { fossilItems: ["Cover Fossil"], pokemon: [{ id: 564, name: "Tirtouga", stage: "Stage 1" }, { id: 565, name: "Carracosta", stage: "Stage 2" }], trainers: [] },
-    { fossilItems: ["Plume Fossil"], pokemon: [{ id: 566, name: "Archen", stage: "Stage 1" }, { id: 567, name: "Archeops", stage: "Stage 2" }], trainers: [] },
-    { fossilItems: ["Jaw Fossil"], pokemon: [{ id: 696, name: "Tyrunt", stage: "Stage 1" }, { id: 697, name: "Tyrantrum", stage: "Stage 2" }], trainers: [] },
-    { fossilItems: ["Sail Fossil"], pokemon: [{ id: 698, name: "Amaura", stage: "Stage 1" }, { id: 699, name: "Aurorus", stage: "Stage 2" }], trainers: [] },
-    { fossilItems: ["Fossilized Bird", "Fossilized Drake"], pokemon: [{ id: 880, name: "Dracozolt", stage: "Stage 1" }], trainers: [] },
-    { fossilItems: ["Fossilized Bird", "Fossilized Dino"], pokemon: [{ id: 881, name: "Arctozolt", stage: "Stage 1" }], trainers: [] },
+    { fossilItems: ["Root Fossil"], pokemon: [{ id: 345, name: "Lileep", stage: "Stage 1" }, { id: 346, name: "Cradily", stage: "Stage 2" }], evolutionLevel: 40, trainers: ["Byron"] },
+    { fossilItems: ["Claw Fossil"], pokemon: [{ id: 347, name: "Anorith", stage: "Stage 1" }, { id: 348, name: "Armaldo", stage: "Stage 2" }], evolutionLevel: 40, trainers: ["Nando"] },
+    { fossilItems: ["Skull Fossil"], pokemon: [{ id: 408, name: "Cranidos", stage: "Stage 1" }, { id: 409, name: "Rampardos", stage: "Stage 2" }], evolutionLevel: 30, trainers: ["Roark"] },
+    { fossilItems: ["Armor Fossil"], pokemon: [{ id: 410, name: "Shieldon", stage: "Stage 1" }, { id: 411, name: "Bastiodon", stage: "Stage 2" }], evolutionLevel: 30, trainers: ["Byron"] },
+    { fossilItems: ["Cover Fossil"], pokemon: [{ id: 564, name: "Tirtouga", stage: "Stage 1" }, { id: 565, name: "Carracosta", stage: "Stage 2" }], evolutionLevel: 37, trainers: ["Dr. Zager"] },
+    { fossilItems: ["Plume Fossil"], pokemon: [{ id: 566, name: "Archen", stage: "Stage 1" }, { id: 567, name: "Archeops", stage: "Stage 2" }], evolutionLevel: 37, trainers: ["Fennel"] },
+    { fossilItems: ["Jaw Fossil"], pokemon: [{ id: 696, name: "Tyrunt", stage: "Stage 1" }, { id: 697, name: "Tyrantrum", stage: "Stage 2" }], evolutionLevel: 39, evolutionTime: "day", trainers: ["Grant", "Bonnie"] },
+    { fossilItems: ["Sail Fossil"], pokemon: [{ id: 698, name: "Amaura", stage: "Stage 1" }, { id: 699, name: "Aurorus", stage: "Stage 2" }], evolutionLevel: 39, evolutionTime: "night", trainers: ["Thaddeus"] },
+    { fossilItems: ["Fossilized Bird", "Fossilized Drake"], pokemon: [{ id: 880, name: "Dracozolt", stage: "Stage 1" }], trainers: ["Bray Zenn"] },
+    { fossilItems: ["Fossilized Bird", "Fossilized Dino"], pokemon: [{ id: 881, name: "Arctozolt", stage: "Stage 1" }], trainers: ["Goh"] },
     { fossilItems: ["Fossilized Fish", "Fossilized Drake"], pokemon: [{ id: 882, name: "Dracovish", stage: "Stage 1" }], trainers: ["Ash"] },
-    { fossilItems: ["Fossilized Fish", "Fossilized Dino"], pokemon: [{ id: 883, name: "Arctovish", stage: "Stage 1" }], trainers: [] }
+    { fossilItems: ["Fossilized Fish", "Fossilized Dino"], pokemon: [{ id: 883, name: "Arctovish", stage: "Stage 1" }], trainers: ["Cara Liss"] }
 ];
+const FOSSIL_ITEM_ART = {
+    "Helix Fossil": "assets/pokemon/fossils/helix-fossil.png",
+    "Dome Fossil": "assets/pokemon/fossils/dome-fossil.png",
+    "Old Amber": "assets/pokemon/fossils/old-amber.png",
+    "Root Fossil": "assets/pokemon/fossils/root-fossil.png",
+    "Claw Fossil": "assets/pokemon/fossils/claw-fossil.png",
+    "Skull Fossil": "assets/pokemon/fossils/skull-fossil.png",
+    "Armor Fossil": "assets/pokemon/fossils/armor-fossil.png",
+    "Cover Fossil": "assets/pokemon/fossils/cover-fossil.png",
+    "Plume Fossil": "assets/pokemon/fossils/plume-fossil.png",
+    "Jaw Fossil": "assets/pokemon/fossils/jaw-fossil.png",
+    "Sail Fossil": "assets/pokemon/fossils/sail-fossil.png",
+    "Fossilized Bird": "assets/pokemon/fossils/fossilized-bird.png",
+    "Fossilized Drake": "assets/pokemon/fossils/fossilized-drake.png",
+    "Fossilized Fish": "assets/pokemon/fossils/fossilized-fish.png",
+    "Fossilized Dino": "assets/pokemon/fossils/fossilized-dino.png"
+};
 
 const POKEMON_GENERATION_MARKERS = [
     { maxId: 151, label: "Generation I", region: "Kanto" },
@@ -587,20 +615,30 @@ function initStageTool() {
 function initFossilTool() {
     const tool = document.querySelector("[data-fossil-tool]");
     const trainersPanel = tool?.querySelector("[data-fossil-trainers]");
+    const trainersPanelRight = tool?.querySelector("[data-fossil-trainers-right]");
     const display = tool?.querySelector("[data-fossil-display]");
-    if (!(tool instanceof HTMLElement) || !(trainersPanel instanceof HTMLElement) || !(display instanceof HTMLElement)) return;
+    const counter = tool?.querySelector("[data-fossil-counter]");
+    const vertical = tool?.querySelector(".fossil-vertical");
+    if (!(tool instanceof HTMLElement) || !(trainersPanel instanceof HTMLElement) || !(trainersPanelRight instanceof HTMLElement) || !(display instanceof HTMLElement) || !(counter instanceof HTMLElement) || !(vertical instanceof HTMLElement)) return;
     let selectedIndex = 0;
+    let isPaused = false;
     const familyIndicesByTrainer = (name) => FOSSIL_FAMILIES.reduce((acc, family, index) => {
         if (family.trainers.includes(name)) acc.push(index);
         return acc;
     }, []);
     const render = () => {
         const family = FOSSIL_FAMILIES[selectedIndex];
-        const itemsMarkup = family.fossilItems.map((item) => `<div class="fossil-item"><span aria-hidden="true"></span><small>Item / Basic slot</small><strong>${item}</strong></div>`).join(`<span class="fossil-vertical__plus" aria-hidden="true">+</span>`);
-        const chainMarkup = family.pokemon.map((pokemon) => `<span class="fossil-vertical__arrow" aria-hidden="true">&#8595;</span>${pokemonNodeMarkup(pokemon, "evolution-specimen--fossil")}`).join("");
+        counter.textContent = `${String(selectedIndex + 1).padStart(2, "0")} / ${String(FOSSIL_FAMILIES.length).padStart(2, "0")}`;
+        const itemsMarkup = family.fossilItems.map((item) => `<div class="fossil-item"><img src="${FOSSIL_ITEM_ART[item]}" alt="${item}" /><small>Item / Basic slot</small><strong>${item}</strong></div>`).join(`<span class="fossil-vertical__plus" aria-hidden="true">+</span>`);
+        const timeIcon = family.evolutionTime === "day" ? "&#9728;" : family.evolutionTime === "night" ? "&#9790;" : "";
+        const timeLabel = family.evolutionTime === "day" ? "day" : family.evolutionTime === "night" ? "night" : "";
+        const chainMarkup = family.pokemon.map((pokemon, index) => `${index === 1 && family.evolutionLevel ? `<span class="fossil-vertical__level" aria-label="Evolves at level ${family.evolutionLevel}${timeLabel ? ` during the ${timeLabel}` : ""}"><span>Lv. ${family.evolutionLevel}${timeIcon ? ` <i class="fossil-vertical__time" aria-hidden="true">${timeIcon}</i>` : ""}</span></span>` : ""}<span class="fossil-vertical__arrow" aria-hidden="true">&#8595;</span>${pokemonNodeMarkup(pokemon, "evolution-specimen--fossil")}`).join("");
         const noteMarkup = family.trainers.length ? "" : `<p class="fossil-vertical__note">${family.note || "No confirmed trainer yet \u2014 more are being researched."}</p>`;
         display.innerHTML = `<div class="fossil-vertical__items">${itemsMarkup}</div>${chainMarkup}${noteMarkup}`;
-        trainersPanel.innerHTML = FOSSIL_TRAINERS.map((trainer) => `<article class="fossil-trainer fossil-trainer--${trainer.theme} ${family.trainers.includes(trainer.name) ? "is-active" : "is-dimmed"}" data-fossil-trainer="${trainer.name}" role="button" tabindex="0" aria-label="Show ${trainer.name}'s fossil Pokemon"><span class="fossil-trainer__badge" aria-hidden="true">${trainer.portrait ? `<img src="${encodeURI(trainer.portrait)}" alt="" />` : trainer.icon}</span><strong>${trainer.name}</strong><small>${trainer.note}</small></article>`).join("");
+        const trainerMarkup = (trainer) => `<article class="fossil-trainer fossil-trainer--${trainer.theme} ${family.trainers.includes(trainer.name) ? "is-active" : "is-dimmed"}" data-fossil-trainer="${trainer.name}" role="button" tabindex="0" aria-label="Show ${trainer.name}'s fossil Pokemon"><span class="fossil-trainer__badge" aria-hidden="true">${trainer.portrait ? `<img src="${encodeURI(trainer.portrait)}" alt="" />` : trainer.icon}</span><div class="fossil-trainer__info"><strong>${trainer.name}</strong><small>${trainer.note}</small></div></article>`;
+        const splitIndex = Math.max(1, FOSSIL_TRAINERS.length - 6);
+        trainersPanel.innerHTML = FOSSIL_TRAINERS.slice(0, splitIndex).map(trainerMarkup).join("");
+        trainersPanelRight.innerHTML = `<article class="fossil-trainer fossil-wild fossil-wild--aerodactyl" data-fossil-family="2" role="button" tabindex="0" aria-label="Show Aerodactyl's fossil exhibit"><span class="fossil-trainer__badge"><img src="${encodeURI(FOSSIL_WILD_APPEARANCES[0].portrait)}" alt="${FOSSIL_WILD_APPEARANCES[0].name}" /></span><div class="fossil-trainer__info"><strong>${FOSSIL_WILD_APPEARANCES[0].name}</strong><small>${FOSSIL_WILD_APPEARANCES[0].note}</small></div></article>${FOSSIL_TRAINERS.slice(splitIndex).map(trainerMarkup).join("")}`;
     };
     const goToTrainer = (name) => {
         const matches = familyIndicesByTrainer(name);
@@ -609,8 +647,22 @@ function initFossilTool() {
         selectedIndex = matches[(currentPosition + 1) % matches.length];
         render();
     };
+    const advance = () => {
+        if (isPaused) return;
+        selectedIndex = (selectedIndex + 1) % FOSSIL_FAMILIES.length;
+        render();
+    };
+    vertical.addEventListener("mouseenter", () => { isPaused = true; });
+    vertical.addEventListener("mouseleave", () => { isPaused = false; });
+    vertical.addEventListener("focusin", () => { isPaused = true; });
+    vertical.addEventListener("focusout", (event) => {
+        if (!(event.relatedTarget instanceof Node) || !vertical.contains(event.relatedTarget)) isPaused = false;
+    });
+    window.setInterval(advance, 5200);
     tool.addEventListener("click", (event) => {
         if (!(event.target instanceof Element)) return;
+        const familyCard = event.target.closest("[data-fossil-family]");
+        if (familyCard) { selectedIndex = Number(familyCard.getAttribute("data-fossil-family")); render(); return; }
         const trainerCard = event.target.closest("[data-fossil-trainer]");
         if (trainerCard) { goToTrainer(trainerCard.getAttribute("data-fossil-trainer")); return; }
         if (event.target.closest("[data-fossil-prev]")) selectedIndex = (selectedIndex - 1 + FOSSIL_FAMILIES.length) % FOSSIL_FAMILIES.length;
@@ -621,6 +673,8 @@ function initFossilTool() {
     tool.addEventListener("keydown", (event) => {
         if (event.key !== "Enter" && event.key !== " ") return;
         const trainerCard = event.target instanceof Element ? event.target.closest("[data-fossil-trainer]") : null;
+        const familyCard = event.target instanceof Element ? event.target.closest("[data-fossil-family]") : null;
+        if (familyCard) { event.preventDefault(); selectedIndex = Number(familyCard.getAttribute("data-fossil-family")); render(); return; }
         if (!trainerCard) return;
         event.preventDefault();
         goToTrainer(trainerCard.getAttribute("data-fossil-trainer"));
