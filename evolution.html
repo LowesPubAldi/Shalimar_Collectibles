@@ -61,7 +61,7 @@
                 <a href="#basic-only">01 <span>Basic only</span></a>
                 <a href="#one-stage">02 <span>One-stage lines</span></a>
                 <a href="#three-stage">03 <span>Three-stage lines</span></a>
-                <a href="#fossils">04 <span>Fossil restoration</span></a>
+                <a href="#fossils">04 <span>Fossil Restore and Strange Combinations</span></a>
                 <a href="#baby-pokemon">05 <span>Baby Pokemon</span></a>
                 <a href="#type-shifts">06 <span>Type shifts</span></a>
                 <a href="#branches">07 <span>Branching paths</span></a>
@@ -114,12 +114,16 @@
 
         <section class="evolution-section evolution-section--fossils" id="fossils" aria-labelledby="fossils-title">
             <div class="evolution-section__heading">
-                <div><p class="evolution-eyebrow">Fossil Restoration</p><h2 id="fossils-title">The Item card fills the missing Basic slot.</h2></div>
-                <p>Fossil Pokemon are a TCG exception: the restored Pokemon is commonly a Stage 1 evolving from a Fossil Item, and some families continue to Stage 2.</p>
+                <div><p class="evolution-eyebrow">Fossil Restore and Strange Combinations</p><h2 id="fossils-title">One specimen at a time, curated like a museum exhibit.</h2></div>
+                <p>Fossil Pokemon are a TCG exception: the restored Pokemon is commonly a Stage 1 evolving from a Fossil Item. Galar's Rare Fossil goes further, pairing two unrelated halves into one strange combination.</p>
             </div>
-            <div class="fossil-tool" data-fossil-tool>
-                <div class="fossil-generations" data-fossil-controls role="tablist" aria-label="Choose fossil generation"></div>
-                <div class="fossil-lines" data-fossil-lines aria-live="polite"></div>
+            <div class="fossil-exhibit" data-fossil-tool>
+                <aside class="fossil-trainers" data-fossil-trainers aria-label="Trainers known for fossil Pokemon"></aside>
+                <div class="fossil-vertical">
+                    <button type="button" class="fossil-vertical__nav" data-fossil-prev aria-label="Previous fossil">&#8593;</button>
+                    <div class="fossil-vertical__display" data-fossil-display aria-live="polite"></div>
+                    <button type="button" class="fossil-vertical__nav" data-fossil-next aria-label="Next fossil">&#8595;</button>
+                </div>
             </div>
         </section>
 
