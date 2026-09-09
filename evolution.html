@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="styles/base.css?v=2">
     <link rel="stylesheet" href="styles/components/nav.css?v=2">
     <link rel="stylesheet" href="styles/components/footer.css?v=2">
-    <link rel="stylesheet" href="styles/pages/evolution.css?v=1">
+    <link rel="stylesheet" href="styles/pages/evolution.css?v=14">
     <script src="scripts/components/mobile-nav.js?v=2" defer></script>
     <script src="scripts/components/game-mode.js?v=2" defer></script>
-    <script src="scripts/pages/evolution.js?v=1" defer></script>
+    <script src="scripts/pages/evolution.js?v=16" defer></script>
 </head>
 <body>
     <header class="header">
@@ -63,10 +63,9 @@
                 <a href="#three-stage">03 <span>Three-stage lines</span></a>
                 <a href="#fossils">04 <span>Fossil Restore and Strange Combinations</span></a>
                 <a href="#baby-pokemon">05 <span>Baby Pokemon</span></a>
-                <a href="#type-shifts">06 <span>Type shifts</span></a>
-                <a href="#branches">07 <span>Branching paths</span></a>
-                <a href="#eevee">08 <span>Evolution Lab</span></a>
-                <a href="#regional">09 <span>Regional forms</span></a>
+                <a href="#type-shifts">06 <span>Type shifts and unusual paths</span></a>
+                <a href="#eevee">07 <span>Evolution Lab</span></a>
+                <a href="#regional">08 <span>Regional forms</span></a>
             </aside>
         </section>
 
@@ -131,7 +130,7 @@
         <section class="evolution-section evolution-section--babies" id="baby-pokemon" aria-labelledby="baby-pokemon-title">
             <div class="evolution-section__heading">
                 <div><p class="evolution-eyebrow">Baby Pokemon</p><h2 id="baby-pokemon-title">Before the TCG Basic stage.</h2></div>
-                <p>Baby Pokemon are their own card stage. Their families continue through a Basic Pokemon and, when applicable, a Stage 1 or branching outcome.</p>
+                <p>Baby Pokemon are their own card stage. Their families continue through a Basic Pokemon and, when applicable, a Stage 1 or branching outcome. Breeding interactions will be covered in a future version.</p>
             </div>
             <div class="baby-tool" data-baby-tool>
                 <div class="baby-generations" data-baby-controls role="tablist" aria-label="Choose Baby Pokemon generation"></div>
@@ -139,80 +138,46 @@
             </div>
         </section>
 
-        <section class="evolution-section evolution-section--type-shifts" id="type-shifts" aria-labelledby="type-shifts-title">
+        <section class="evolution-section evolution-section--type-shifts evolution-section--unusual" id="type-shifts" aria-labelledby="type-shifts-title">
             <div class="evolution-section__heading">
-                <div><p class="evolution-eyebrow">The Oddballs</p><h2 id="type-shifts-title">Evolution can rewrite a Pokemon's type.</h2></div>
-                <p>A new type may be added, an existing type may be replaced, or two branches may leave the same Basic Pokemon with completely different matchups.</p>
+                <div><p class="evolution-eyebrow">Unusual Evolution Paths</p><h2 id="type-shifts-title">Type shifts, branches, and special outcomes.</h2></div>
+                <p>Gen I first: evolution can rewrite a Pokemon's type, split one family into several outcomes, or add a new method entirely.</p>
             </div>
-            <div class="type-shift-grid">
-                <article class="type-shift-card">
-                    <div class="type-shift-card__head"><span>Type added</span><h3>Charmander to Charizard</h3></div>
-                    <div class="type-shift-line">
-                        <div class="evolution-node" data-pokemon-id="4"><img alt="Charmander" /><strong>Charmander</strong><div class="type-chips"><small class="type-chip type-chip--fire">Fire</small></div></div>
-                        <div class="type-shift-arrow" aria-hidden="true">+ Flying</div>
-                        <div class="evolution-node" data-pokemon-id="6"><img alt="Charizard" /><strong>Charizard</strong><div class="type-chips"><small class="type-chip type-chip--fire">Fire</small><small class="type-chip type-chip--flying">Flying</small></div></div>
-                    </div>
-                </article>
-                <article class="type-shift-card">
-                    <div class="type-shift-card__head"><span>Type replaced</span><h3>Onix to Steelix</h3></div>
-                    <div class="type-shift-line">
-                        <div class="evolution-node" data-pokemon-id="95"><img alt="Onix" /><strong>Onix</strong><div class="type-chips"><small class="type-chip type-chip--rock">Rock</small><small class="type-chip type-chip--ground">Ground</small></div></div>
-                        <div class="type-shift-arrow" aria-hidden="true">Rock &#8594; Steel</div>
-                        <div class="evolution-node" data-pokemon-id="208"><img alt="Steelix" /><strong>Steelix</strong><div class="type-chips"><small class="type-chip type-chip--steel">Steel</small><small class="type-chip type-chip--ground">Ground</small></div></div>
-                    </div>
-                </article>
-                <article class="type-shift-card">
-                    <div class="type-shift-card__head"><span>Late-stage change</span><h3>Dartrix to Decidueye</h3></div>
-                    <div class="type-shift-line">
-                        <div class="evolution-node" data-pokemon-id="723"><img alt="Dartrix" /><strong>Dartrix</strong><div class="type-chips"><small class="type-chip type-chip--grass">Grass</small><small class="type-chip type-chip--flying">Flying</small></div></div>
-                        <div class="type-shift-arrow" aria-hidden="true">Flying &#8594; Ghost</div>
-                        <div class="evolution-node" data-pokemon-id="724"><img alt="Decidueye" /><strong>Decidueye</strong><div class="type-chips"><small class="type-chip type-chip--grass">Grass</small><small class="type-chip type-chip--ghost">Ghost</small></div></div>
-                    </div>
-                </article>
-                <article class="type-shift-card type-shift-card--branch">
-                    <div class="type-shift-card__head"><span>Branch shift</span><h3>Nincada's two outcomes</h3></div>
-                    <div class="type-shift-branch">
-                        <div class="evolution-node" data-pokemon-id="290"><img alt="Nincada" /><strong>Nincada</strong><div class="type-chips"><small class="type-chip type-chip--bug">Bug</small><small class="type-chip type-chip--ground">Ground</small></div></div>
-                        <div class="evolution-tree__fork" aria-hidden="true"></div>
-                        <div class="evolution-tree__outcomes">
-                            <div class="evolution-node" data-pokemon-id="291"><img alt="Ninjask" /><strong>Ninjask</strong><div class="type-chips"><small class="type-chip type-chip--bug">Bug</small><small class="type-chip type-chip--flying">Flying</small></div></div>
-                            <div class="evolution-node" data-pokemon-id="292"><img alt="Shedinja" /><strong>Shedinja</strong><div class="type-chips"><small class="type-chip type-chip--bug">Bug</small><small class="type-chip type-chip--ghost">Ghost</small></div></div>
-                        </div>
-                    </div>
-                </article>
+            <div class="evolution-basic-generations unusual-generations" role="tablist" aria-label="Choose unusual evolution generation">
+                <button type="button" role="tab" aria-selected="true"><span>1</span>Kanto<small>4</small></button>
+                <button type="button" role="tab" aria-selected="false" disabled><span>2</span>Johto<small>Later</small></button>
+                <button type="button" role="tab" aria-selected="false" disabled><span>3</span>Hoenn<small>Later</small></button>
+                <button type="button" role="tab" aria-selected="false" disabled><span>4</span>Sinnoh<small>Later</small></button>
+                <button type="button" role="tab" aria-selected="false" disabled><span>5</span>Unova<small>Later</small></button>
+                <button type="button" role="tab" aria-selected="false" disabled><span>6</span>Kalos<small>Later</small></button>
+                <button type="button" role="tab" aria-selected="false" disabled><span>7</span>Alola<small>Later</small></button>
+                <button type="button" role="tab" aria-selected="false" disabled><span>8</span>Galar<small>Later</small></button>
+                <button type="button" role="tab" aria-selected="false" disabled><span>9</span>Paldea<small>Later</small></button>
             </div>
-        </section>
-
-        <section class="evolution-section" id="branches" aria-labelledby="branches-title">
-            <div class="evolution-section__heading">
-                <div><p class="evolution-eyebrow">Branch Evolution</p><h2 id="branches-title">One decision, several outcomes.</h2></div>
-                <p>Some paths split immediately. Others wait until Stage 1 before the family separates.</p>
-            </div>
-            <div class="evolution-branch-grid">
-                <article class="evolution-branch">
-                    <div class="evolution-branch__copy"><span>Simple branch</span><h3>Wurmple</h3><p>The Basic Pokemon can enter either cocoon line.</p></div>
-                    <div class="evolution-tree evolution-tree--simple">
-                        <div class="evolution-node" data-pokemon-id="265"><img alt="Wurmple" /><strong>Wurmple</strong><small>Basic</small></div>
-                        <div class="evolution-tree__fork" aria-hidden="true"></div>
-                        <div class="evolution-tree__outcomes">
-                            <div class="evolution-node" data-pokemon-id="266"><img alt="Silcoon" /><strong>Silcoon</strong><small>Stage 1</small></div>
-                            <div class="evolution-node" data-pokemon-id="268"><img alt="Cascoon" /><strong>Cascoon</strong><small>Stage 1</small></div>
+            <div class="type-shift-grid unusual-grid">
+                <article class="type-shift-card">
+                    <div class="type-shift-card__head"><span>Type added</span><h3>Charmeleon to Charizard</h3></div>
+                    <div class="type-shift-line type-shift-line--animated">
+                        <div class="evolution-node evolution-node--animated-evolution" data-pokemon-id="5">
+                            <div class="evolution-transition" aria-label="Charmeleon reaches level 36 and evolves into Charizard">
+                                <div class="evolution-transition__art evolution-transition__art--before"><img alt="Charmeleon" /><strong>Charmeleon</strong><div class="type-chips"><small class="type-chip type-chip--fire">Fire</small></div></div>
+                                <div class="evolution-transition__progress"><span>XP</span><i><b></b></i><small>Lv. 36</small></div>
+                                <div class="evolution-transition__art evolution-transition__art--after"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png" alt="Charizard" /><strong>Charizard</strong><div class="type-chips"><small class="type-chip type-chip--fire">Fire</small><small class="type-chip type-chip--flying">Flying</small></div></div>
+                            </div>
                         </div>
                     </div>
                 </article>
-                <article class="evolution-branch">
-                    <div class="evolution-branch__copy"><span>Late branch</span><h3>Ralts</h3><p>Ralts reaches Kirlia before its final path divides.</p></div>
-                    <div class="evolution-tree evolution-tree--advanced">
-                        <div class="evolution-tree__trunk">
-                            <div class="evolution-node" data-pokemon-id="280"><img alt="Ralts" /><strong>Ralts</strong><small>Basic</small></div>
-                            <div class="evolution-node" data-pokemon-id="281"><img alt="Kirlia" /><strong>Kirlia</strong><small>Stage 1</small></div>
-                        </div>
-                        <div class="evolution-tree__fork" aria-hidden="true"></div>
-                        <div class="evolution-tree__outcomes">
-                            <div class="evolution-node" data-pokemon-id="282"><img alt="Gardevoir" /><strong>Gardevoir</strong><small>Stage 2</small></div>
-                            <div class="evolution-node" data-pokemon-id="475"><img alt="Gallade" /><strong>Gallade</strong><small>Alternate</small></div>
-                        </div>
-                    </div>
+                <article class="type-shift-card">
+                    <div class="type-shift-card__head"><span>Type added</span><h3>Metapod to Butterfree</h3></div>
+                    <div class="type-shift-line type-shift-line--animated"><div class="evolution-node evolution-node--animated-evolution" data-pokemon-id="11"><div class="evolution-transition" aria-label="Metapod reaches level 10 and evolves into Butterfree"><div class="evolution-transition__art evolution-transition__art--before"><img alt="Metapod" /><strong>Metapod</strong><div class="type-chips"><small class="type-chip type-chip--bug">Bug</small></div></div><div class="evolution-transition__progress"><span>XP</span><i><b></b></i><small>Lv. 10</small></div><div class="evolution-transition__art evolution-transition__art--after"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/12.png" alt="Butterfree" /><strong>Butterfree</strong><div class="type-chips"><small class="type-chip type-chip--bug">Bug</small><small class="type-chip type-chip--flying">Flying</small></div></div></div></div></div>
+                </article>
+                <article class="type-shift-card">
+                    <div class="type-shift-card__head"><span>Type added</span><h3>Seel to Dewgong</h3></div>
+                    <div class="type-shift-line type-shift-line--animated"><div class="evolution-node evolution-node--animated-evolution" data-pokemon-id="86"><div class="evolution-transition" aria-label="Seel reaches level 34 and evolves into Dewgong"><div class="evolution-transition__art evolution-transition__art--before"><img alt="Seel" /><strong>Seel</strong><div class="type-chips"><small class="type-chip type-chip--water">Water</small></div></div><div class="evolution-transition__progress"><span>XP</span><i><b></b></i><small>Lv. 34</small></div><div class="evolution-transition__art evolution-transition__art--after"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/87.png" alt="Dewgong" /><strong>Dewgong</strong><div class="type-chips"><small class="type-chip type-chip--water">Water</small><small class="type-chip type-chip--ice">Ice</small></div></div></div></div></div>
+                </article>
+                <article class="type-shift-card">
+                    <div class="type-shift-card__head"><span>Type added</span><h3>Shellder to Cloyster</h3></div>
+                    <div class="type-shift-line type-shift-line--animated"><div class="evolution-node evolution-node--animated-evolution" data-pokemon-id="90"><div class="evolution-transition" aria-label="Shellder evolves into Cloyster with a Water Stone"><div class="evolution-transition__art evolution-transition__art--before"><img alt="Shellder" /><strong>Shellder</strong><div class="type-chips"><small class="type-chip type-chip--water">Water</small></div></div><div class="evolution-transition__progress"><span>METHOD</span><i><b></b></i><small>Water Stone</small></div><img class="evolution-transition__method-icon" src="assets/pokemon/waterstone%20icon.png" alt="Water Stone" /><div class="evolution-transition__art evolution-transition__art--after"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/91.png" alt="Cloyster" /><strong>Cloyster</strong><div class="type-chips"><small class="type-chip type-chip--water">Water</small><small class="type-chip type-chip--ice">Ice</small></div></div></div></div></div>
                 </article>
             </div>
         </section>

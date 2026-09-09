@@ -688,11 +688,194 @@ function initBabyTool() {
     const families = tool?.querySelector("[data-baby-families]");
     if (!(tool instanceof HTMLElement) || !(controls instanceof HTMLElement) || !(families instanceof HTMLElement)) return;
     const generations = [...new Set(BABY_POKEMON_FAMILIES.map((family) => family.generation))];
+    const specialThreeStageIds = new Set([172, 173, 174, 175, 239, 240, 298, 406, 440]);
     let selectedGeneration = generations[0];
-    const renderPath = (path) => path.map((pokemon) => `<span class="baby-path__arrow" aria-hidden="true">&#8594;</span>${pokemonNodeMarkup(pokemon, "evolution-specimen--baby")}`).join("");
+    const renderPath = (path) => path.map((pokemon) => pokemonNodeMarkup(pokemon, "evolution-specimen--baby")).join("");
     const render = () => {
         controls.innerHTML = generations.map((generation) => { const marker = POKEMON_GENERATION_MARKERS[generation]; return `<button type="button" role="tab" aria-selected="${generation === selectedGeneration}" data-baby-generation="${generation}"><span>${generation + 1}</span>${marker.region}<small>${BABY_POKEMON_FAMILIES.filter((family) => family.generation === generation).length}</small></button>`; }).join("");
-        families.innerHTML = BABY_POKEMON_FAMILIES.filter((family) => family.generation === selectedGeneration).map((family) => `<article class="baby-family"><div class="baby-family__origin">${pokemonNodeMarkup(family.baby, "evolution-specimen--baby")}</div><div class="baby-family__paths">${family.paths.map((path) => `<div class="baby-path">${renderPath(path)}</div>`).join("")}</div></article>`).join("");
+        families.innerHTML = BABY_POKEMON_FAMILIES.filter((family) => family.generation === selectedGeneration).map((family) => {
+            const isThreeStage = specialThreeStageIds.has(family.baby.id);
+            const isTyrogue = family.baby.id === 236;
+            const isSmoochum = family.baby.id === 238;
+            const isWynaut = family.baby.id === 360;
+            const isMimeJr = family.baby.id === 439;
+            const isToxel = family.baby.id === 848;
+            const isSimpleBabyAdult = new Set([433, 438, 446, 447, 458]).has(family.baby.id);
+            const isBabyAdultOnly = isTyrogue || isSmoochum || isWynaut || isMimeJr || isToxel || isSimpleBabyAdult;
+            const teenStage = family.paths[0]?.[0] || family.baby;
+            const adultStage = family.paths[0]?.[1] || family.baby;
+            const defaultMode = isBabyAdultOnly ? "baby" : "teen";
+            const tyrogueOutcomes = family.paths.map((path) => path[0]).filter(Boolean);
+            const smoochumAdultStage = isSmoochum ? family.paths[0]?.[0] || family.baby : adultStage;
+            const wynautAdultStage = isWynaut ? family.paths[0]?.[0] || family.baby : adultStage;
+            const simpleAdultStage = isSimpleBabyAdult ? family.paths[0]?.[0] || family.baby : adultStage;
+            const mimeAdultStage = isMimeJr ? family.paths[0]?.[0] || family.baby : adultStage;
+            const toxelOutcomes = isToxel ? family.paths.map((path) => path[0]).filter(Boolean) : [];
+            const tyrogueConditions = { 106: "Attack > Defense", 107: "Defense > Attack", 237: "Attack = Defense" };
+            const adultHasRegionalVariant = adultStage.id === 26;
+            const evolutionMethods = family.baby.id === 172 ? {
+                className: "baby-family--pikachu",
+                firstIcon: "happiness%20icon.png",
+                firstLabel: "Pichu evolves into Pikachu through happiness",
+                firstTooltip: "Happiness",
+                secondIcon: "thunderstone%20icon.png",
+                secondLabel: "Pikachu evolves into Raichu through a Thunder Stone",
+                secondTooltip: "Thunder Stone"
+            } : family.baby.id === 173 || family.baby.id === 174 ? {
+                className: "baby-family--happiness-moonstone",
+                firstIcon: "happiness%20icon.png",
+                firstLabel: family.baby.id === 173 ? "Cleffa evolves into Clefairy through happiness" : "Igglybuff evolves into Jigglypuff through happiness",
+                firstTooltip: "Happiness",
+                secondIcon: "moonstone%20icon.png",
+                secondLabel: family.baby.id === 173 ? "Clefairy evolves into Clefable through a Moon Stone" : "Jigglypuff evolves into Wigglytuff through a Moon Stone",
+                secondTooltip: "Moon Stone"
+            } : family.baby.id === 175 ? {
+                className: "baby-family--happiness-shinystone",
+                firstIcon: "happiness%20icon.png",
+                firstLabel: "Togepi evolves into Togetic through happiness",
+                firstTooltip: "Happiness",
+                secondIcon: "shinystone%20icon.png",
+                secondLabel: "Togetic evolves into Togekiss through a Shiny Stone",
+                secondTooltip: "Shiny Stone"
+            } : family.baby.id === 239 ? {
+                className: "baby-family--elekid",
+                firstIcon: null,
+                firstLabel: "Elekid evolves into Electabuzz at level 30",
+                firstTooltip: "Level 30",
+                secondIcon: "electrizer%20with%20trade%20icon.png",
+                secondLabel: "Electabuzz evolves into Electivire by trading with an Electrizer",
+                secondTooltip: "Electrizer + trade"
+            } : family.baby.id === 240 ? {
+                className: "baby-family--magby",
+                firstIcon: null,
+                firstLabel: "Magby evolves into Magmar at level 30",
+                firstTooltip: "Level 30",
+                secondIcon: "magmarizer%20with%20trade%20icon.png",
+                secondLabel: "Magmar evolves into Magmortar by trading with a Magmarizer",
+                secondTooltip: "Magmarizer + trade"
+            } : family.baby.id === 298 ? {
+                className: "baby-family--azurill",
+                firstIcon: "happiness%20icon.png",
+                firstLabel: "Azurill evolves into Marill through happiness",
+                firstTooltip: "Happiness",
+                secondIcon: null,
+                secondLabel: "Marill evolves into Azumarill at level 18",
+                secondTooltip: "Level 18"
+            } : family.baby.id === 406 ? {
+                className: "baby-family--budew",
+                firstIcon: "happiness%20with%20day%20icon.png",
+                firstLabel: "Budew evolves into Roselia through happiness during the day",
+                firstTooltip: "Happiness + day",
+                secondIcon: "shinystone%20icon.png",
+                secondLabel: "Roselia evolves into Roserade through a Shiny Stone",
+                secondTooltip: "Shiny Stone"
+            } : family.baby.id === 433 ? {
+                className: "baby-family--chingling",
+                firstIcon: "happiness%20with%20night%20icon.png",
+                firstLabel: "Chingling evolves into Chimecho through happiness at night",
+                firstTooltip: "Happiness + night"
+            } : family.baby.id === 438 ? {
+                className: "baby-family--bonsly",
+                firstIcon: "lv%20%2B%20with%20mimic%20icon.png",
+                firstLabel: "Bonsly evolves into Sudowoodo by leveling up while knowing Mimic",
+                firstTooltip: "Level up + Mimic"
+            } : family.baby.id === 439 ? {
+                className: "baby-family--mime-jr",
+                firstIcon: "lv%20%2B%20with%20mimic%20icon.png",
+                firstLabel: "Mime Jr. evolves into Mr. Mime by leveling up while knowing Mimic",
+                firstTooltip: "Level up + Mimic"
+            } : family.baby.id === 440 ? {
+                className: "baby-family--happiny",
+                firstIcon: "ovalstone%20with%20day%20icon.png",
+                firstLabel: "Happiny evolves into Chansey with an Oval Stone during the day",
+                firstTooltip: "Oval Stone + day",
+                secondIcon: "happiness%20icon.png",
+                secondLabel: "Chansey evolves into Blissey through happiness",
+                secondTooltip: "Happiness"
+            } : family.baby.id === 446 ? {
+                className: "baby-family--munchlax",
+                firstIcon: "happiness%20icon.png",
+                firstLabel: "Munchlax evolves into Snorlax through happiness",
+                firstTooltip: "Happiness"
+            } : family.baby.id === 447 ? {
+                className: "baby-family--riolu",
+                firstIcon: "happiness%20icon.png",
+                firstLabel: "Riolu evolves into Lucario through happiness",
+                firstTooltip: "Happiness"
+            } : family.baby.id === 458 ? {
+                className: "baby-family--mantyke",
+                firstIcon: null,
+                firstArtId: 223,
+                firstLevelText: "Lv. +",
+                firstLabel: "Mantyke evolves into Mantine by leveling up with Remoraid in the party",
+                firstTooltip: "Level up + Remoraid"
+            } : null;
+            const firstMethodMarkup = evolutionMethods ? `<span class="baby-family__method baby-family__method--first" tabindex="0" role="img" aria-label="${evolutionMethods.firstLabel}">${evolutionMethods.firstArtId ? `<span class="baby-family__method-dual">${evolutionMethods.firstLevelText ? `<span class="baby-family__method-level">${evolutionMethods.firstLevelText}</span>` : ""}<img src="${pokemonArtUrl(evolutionMethods.firstArtId)}" alt="Remoraid" /></span>` : evolutionMethods.firstIcon ? `<img src="assets/pokemon/${evolutionMethods.firstIcon}" alt="" />` : `<span class="baby-family__method-level">Lv. 30</span>`}<span class="baby-family__method-tooltip" role="tooltip">${evolutionMethods.firstTooltip}</span></span>` : "";
+            const secondMethodMarkup = evolutionMethods ? `<span class="baby-family__method baby-family__method--second" tabindex="0" role="img" aria-label="${evolutionMethods.secondLabel}">${evolutionMethods.secondIcon ? `<img src="assets/pokemon/${evolutionMethods.secondIcon}" alt="" />` : `<span class="baby-family__method-level">${evolutionMethods.secondTooltip === "Level 18" ? "Lv. 18" : evolutionMethods.secondTooltip}</span>`}<span class="baby-family__method-tooltip" role="tooltip">${evolutionMethods.secondTooltip}</span></span>` : "";
+            const mimeRegionalMarkup = isMimeJr ? `<button type="button" class="baby-family__regional-mark" aria-label="Show Mr. Rime regional evolution"><span aria-hidden="true">R</span><span class="baby-family__regional-preview baby-family__regional-preview--mime" role="tooltip"><img src="${pokemonArtUrl(866)}" alt="" /><strong>Mr. Rime</strong><small>Level 42</small></span></button>` : "";
+            const mimeAdultMarkup = isMimeJr ? `<div class="baby-family__mime-outcomes"><div class="baby-family__mime-outcome">${pokemonNodeMarkup(mimeAdultStage, "evolution-specimen--baby")}<small class="baby-family__mime-form">Kanto</small></div><div class="baby-family__mime-outcome baby-family__mime-outcome--regional">${pokemonNodeMarkup({ id: 10168, name: "Galarian Mr. Mime", stage: "Basic" }, "evolution-specimen--baby")}${mimeRegionalMarkup}<small class="baby-family__mime-form">Galar</small></div></div>` : "";
+            const displayMarkup = isTyrogue ? `
+                        <div class="baby-family__stage baby-family__stage--baby">${pokemonNodeMarkup(family.baby, "evolution-specimen--baby")}</div>
+                        <div class="baby-family__stage baby-family__stage--adult"><div class="baby-family__tyrogue-outcomes">${tyrogueOutcomes.map((pokemon) => `<div class="baby-family__tyrogue-outcome">${pokemonNodeMarkup(pokemon, "evolution-specimen--baby")}<small class="baby-family__tyrogue-condition">Level 20<br />${tyrogueConditions[pokemon.id]}</small></div>`).join("")}</div></div>
+                    ` : isSmoochum ? `
+                        <div class="baby-family__stage baby-family__stage--baby">${pokemonNodeMarkup(family.baby, "evolution-specimen--baby")}</div>
+                        <div class="baby-family__stage baby-family__stage--adult">${pokemonNodeMarkup(smoochumAdultStage, "evolution-specimen--baby")}<span class="baby-family__method-level" aria-label="Level 30">Lv. 30</span></div>
+                    ` : isWynaut ? `
+                        <div class="baby-family__stage baby-family__stage--baby">${pokemonNodeMarkup(family.baby, "evolution-specimen--baby")}</div>
+                        <div class="baby-family__stage baby-family__stage--adult">${pokemonNodeMarkup(wynautAdultStage, "evolution-specimen--baby")}<span class="baby-family__method-level" aria-label="Level 15">Lv. 15</span></div>
+                    ` : isMimeJr ? `
+                        <div class="baby-family__stage baby-family__stage--baby">${pokemonNodeMarkup(family.baby, "evolution-specimen--baby")}</div>
+                        ${firstMethodMarkup}
+                        <div class="baby-family__stage baby-family__stage--adult">${mimeAdultMarkup}</div>
+                    ` : isToxel ? `
+                        <div class="baby-family__stage baby-family__stage--baby">${pokemonNodeMarkup(family.baby, "evolution-specimen--baby")}</div>
+                        <div class="baby-family__stage baby-family__stage--adult"><div class="baby-family__toxel-outcomes">${toxelOutcomes.map((pokemon) => `<div class="baby-family__toxel-outcome">${pokemonNodeMarkup(pokemon, "evolution-specimen--baby")}</div>`).join("")}</div><small class="baby-family__toxel-note">Form determined by Nature at birth.</small></div>
+                    ` : isSimpleBabyAdult ? `
+                        <div class="baby-family__stage baby-family__stage--baby">${pokemonNodeMarkup(family.baby, "evolution-specimen--baby")}</div>
+                        ${firstMethodMarkup}
+                        <div class="baby-family__stage baby-family__stage--adult">${pokemonNodeMarkup(simpleAdultStage, "evolution-specimen--baby")}</div>
+                    ` : `
+                        <div class="baby-family__stage baby-family__stage--baby">${pokemonNodeMarkup(family.baby, "evolution-specimen--baby")}</div>
+                        ${firstMethodMarkup}
+                        <div class="baby-family__stage baby-family__stage--teen">${pokemonNodeMarkup(teenStage, "evolution-specimen--baby")}</div>
+                        ${secondMethodMarkup}
+                        <div class="baby-family__stage baby-family__stage--adult">${pokemonNodeMarkup(adultStage, "evolution-specimen--baby")}${adultHasRegionalVariant ? `<button type="button" class="baby-family__regional-mark" aria-label="Show Alolan Raichu regional variant"><span aria-hidden="true">R</span><span class="baby-family__regional-preview" role="tooltip"><img src="${pokemonArtUrl(10100)}" alt="" /><strong>Alolan Raichu</strong><small>Regional variant</small></span></button>` : ""}</div>
+                    `;
+            return `
+                <article class="baby-family${isTyrogue ? " baby-family--tyrogue" : isSmoochum ? " baby-family--smoochum" : isWynaut ? " baby-family--wynaut" : isMimeJr ? " baby-family--simple-baby-adult baby-family--simple-method baby-family--mime-jr" : isToxel ? " baby-family--toxel" : isSimpleBabyAdult ? ` baby-family--simple-baby-adult${evolutionMethods ? ` baby-family--simple-method ${evolutionMethods.className}` : ""}` : evolutionMethods ? ` baby-family--methods ${evolutionMethods.className}` : ""}" data-baby-mode="${defaultMode}" data-layout="${isThreeStage ? "three-stage" : "single-stage"}">
+                    <div class="baby-family__toggle" aria-label="Toggle between baby and adult forms">
+                        <button type="button" class="baby-family__toggle-option${defaultMode === "baby" ? " is-active" : ""}" data-baby-view="baby" aria-pressed="${defaultMode === "baby"}">Baby</button>
+                        ${isBabyAdultOnly ? "" : `<button type="button" class="baby-family__toggle-option${defaultMode === "teen" ? " is-active" : ""}" data-baby-view="teen" aria-pressed="${defaultMode === "teen"}">Teen</button>`}
+                        <button type="button" class="baby-family__toggle-option${defaultMode === "adult" ? " is-active" : ""}" data-baby-view="adult" aria-pressed="${defaultMode === "adult"}">Adult</button>
+                    </div>
+                    <div class="baby-family__display">
+                        ${displayMarkup}
+                    </div>
+                </article>
+            `;
+        }).join("");
+        families.querySelectorAll(".baby-family").forEach((familyCard) => {
+            const setMode = (view) => {
+                familyCard.dataset.babyMode = view || "teen";
+                familyCard.querySelectorAll(".baby-family__toggle-option").forEach((button) => {
+                    const active = button.getAttribute("data-baby-view") === view;
+                    button.classList.toggle("is-active", active);
+                    button.setAttribute("aria-pressed", String(active));
+                });
+            };
+            familyCard.querySelectorAll(".baby-family__toggle-option").forEach((toggle) => {
+                toggle.addEventListener("click", () => {
+                    setMode(toggle.getAttribute("data-baby-view"));
+                });
+            });
+            familyCard.querySelectorAll(".baby-family__stage").forEach((stage) => {
+                stage.addEventListener("click", (event) => {
+                    if (event.target instanceof Element && event.target.closest(".baby-family__regional-mark")) return;
+                    const view = stage.classList.contains("baby-family__stage--baby") ? "baby" : stage.classList.contains("baby-family__stage--adult") ? "adult" : "teen";
+                    setMode(view);
+                });
+            });
+        });
     };
     controls.addEventListener("click", (event) => { if (!(event.target instanceof Element)) return; const button = event.target.closest("[data-baby-generation]"); if (!button) return; selectedGeneration = Number(button.getAttribute("data-baby-generation")); render(); });
     render();
