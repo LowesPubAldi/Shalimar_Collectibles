@@ -893,6 +893,9 @@ function initEeveeLab() {
     const name = lab?.querySelector("[data-eevee-result-name]");
     const method = lab?.querySelector("[data-eevee-result-method]");
     const center = lab?.querySelector(".eevee-lab__center");
+    const centerArt = center?.querySelector("img");
+    const defaultEeveeArt = pokemonArtUrl(133);
+    let sylveonTimer;
     lab?.addEventListener("click", (event) => {
         if (!(event.target instanceof Element)) return;
         const button = event.target.closest("[data-eeveelution]");
@@ -900,15 +903,48 @@ function initEeveeLab() {
         lab.querySelectorAll("[data-eeveelution]").forEach((entry) => entry.classList.toggle("is-selected", entry === button));
         lab.setAttribute("data-selected-eeveelution", button.dataset.eeveelution || "");
         if (!(art instanceof HTMLImageElement) || !(name instanceof HTMLElement) || !(method instanceof HTMLElement)) return;
+        window.clearTimeout(sylveonTimer);
+        if (centerArt instanceof HTMLImageElement) {
+            centerArt.src = defaultEeveeArt;
+            centerArt.alt = "Eevee";
+        }
+        const revealResult = () => {
+            center?.classList.add("is-hidden");
+            art.closest(".eevee-wheel__result")?.classList.remove("is-hidden");
+            art.src = button.dataset.eeveeResultSrc || pokemonArtUrl(Number(button.dataset.pokemonId));
+            art.alt = button.dataset.eeveelution || "Eeveelution";
+            art.title = button.dataset.eeveeTooltip || "";
+            name.textContent = button.dataset.eeveelution || "Eeveelution";
+            method.textContent = button.dataset.eeveeMethod || "Evolution method";
+            art.classList.add("is-changing");
+        };
+        center?.classList.remove("eevee-lab__center--charm");
         art.classList.remove("is-changing");
         void art.offsetWidth;
-        center?.classList.add("is-hidden");
-        art.closest(".eevee-wheel__result")?.classList.remove("is-hidden");
-        art.src = pokemonArtUrl(Number(button.dataset.pokemonId));
-        art.alt = button.dataset.eeveelution || "Eeveelution";
-        name.textContent = button.dataset.eeveelution || "Eeveelution";
-        method.textContent = button.dataset.eeveeMethod || "Evolution method";
-        art.classList.add("is-changing");
+        if (button.dataset.eeveelution === "Sylveon" && center instanceof HTMLElement) {
+            art.closest(".eevee-wheel__result")?.classList.add("is-hidden");
+            center.classList.remove("is-hidden");
+            if (centerArt instanceof HTMLImageElement) {
+                centerArt.src = "assets/pokemon/Wink%20Eevee.png";
+                centerArt.alt = "Eevee using Charm";
+            }
+            center.classList.add("eevee-lab__center--charm");
+            sylveonTimer = window.setTimeout(revealResult, 2200);
+            return;
+        }
+        revealResult();
+    });
+}
+
+function initPartnerEeveeMoves() {
+    const panel = document.querySelector("[data-partner-eevee-moves]");
+    const extra = panel?.querySelector("[data-partner-eevee-extra]");
+    const toggle = panel?.querySelector("[data-partner-eevee-toggle]");
+    if (!(panel instanceof HTMLElement) || !(extra instanceof HTMLElement) || !(toggle instanceof HTMLButtonElement)) return;
+    toggle.addEventListener("click", () => {
+        toggle.setAttribute("aria-expanded", "true");
+        extra.classList.remove("is-hidden");
+        toggle.hidden = true;
     });
 }
 
@@ -1124,22 +1160,118 @@ function initMilceryLab() {
     const lab = document.querySelector("[data-milcery-lab]");
     if (!(lab instanceof HTMLElement)) return;
     const forms = {
-        vanilla: { src: "869.png", name: "Vanilla Cream" }, ruby: { src: "869-ruby-cream-strawberry-sweet.png", name: "Ruby Cream" }, matcha: { src: "869-matcha-cream-strawberry-sweet.png", name: "Matcha Cream" }, mint: { src: "869-mint-cream-strawberry-sweet.png", name: "Mint Cream" }, lemon: { src: "869-lemon-cream-strawberry-sweet.png", name: "Lemon Cream" }, salted: { src: "869-salted-cream-strawberry-sweet.png", name: "Salted Cream" }, "ruby-swirl": { src: "869-ruby-swirl-strawberry-sweet.png", name: "Ruby Swirl" }, "caramel-swirl": { src: "869-caramel-swirl-strawberry-sweet.png", name: "Caramel Swirl" }, "rainbow-swirl": { src: "869-rainbow-swirl-strawberry-sweet.png", name: "Rainbow Swirl" }
+        vanilla: { slug: "vanilla-cream", name: "Vanilla Cream", recipe: "Clockwise, quick, day", direction: "clockwise", length: "quick" }, ruby: { slug: "ruby-cream", name: "Ruby Cream", recipe: "Anticlockwise, quick, day", direction: "anticlockwise", length: "quick" }, matcha: { slug: "matcha-cream", name: "Matcha Cream", recipe: "Clockwise, quick, night", direction: "clockwise", length: "quick" }, mint: { slug: "mint-cream", name: "Mint Cream", recipe: "Anticlockwise, quick, night", direction: "anticlockwise", length: "quick" }, lemon: { slug: "lemon-cream", name: "Lemon Cream", recipe: "Clockwise, long, day", direction: "clockwise", length: "long" }, salted: { slug: "salted-cream", name: "Salted Cream", recipe: "Anticlockwise, long, day", direction: "anticlockwise", length: "long" }, "ruby-swirl": { slug: "ruby-swirl", name: "Ruby Swirl", recipe: "Clockwise, long, night", direction: "clockwise", length: "long" }, "caramel-swirl": { slug: "caramel-swirl", name: "Caramel Swirl", recipe: "Anticlockwise, long, night", direction: "anticlockwise", length: "long" }, "rainbow-swirl": { slug: "rainbow-swirl", name: "Rainbow Swirl", recipe: "Anticlockwise, long, dusk", direction: "anticlockwise", length: "long" }
     };
+    const sweets = { strawberry: "Strawberry", flower: "Flower", star: "Star", clover: "Clover", berry: "Berry", ribbon: "Ribbon", love: "Love" };
     const art = lab.querySelector("[data-milcery-art]");
     const name = lab.querySelector("[data-milcery-name]");
-    lab.addEventListener("click", (event) => {
-        if (!(event.target instanceof Element)) return;
-        const button = event.target.closest("[data-milcery-form]");
-        const form = button instanceof HTMLButtonElement ? forms[button.dataset.milceryForm] : null;
-        if (!form || !(art instanceof HTMLImageElement) || !(name instanceof HTMLElement)) return;
-        lab.querySelectorAll("[data-milcery-form]").forEach((entry) => entry.setAttribute("aria-pressed", String(entry === button)));
+    const sweetName = lab.querySelector("[data-milcery-sweet]");
+    const recipeName = lab.querySelector("[data-milcery-recipe]");
+    const spinCondition = lab.querySelector("[data-milcery-spin-condition]");
+    const spinCount = lab.querySelector("[data-milcery-spin-count]");
+    const origin = lab.querySelector("[data-milcery-origin]");
+    const result = lab.querySelector("[data-milcery-result]");
+    let selectedForm = "vanilla";
+    let selectedSweet = "strawberry";
+    let selectedTime = "all";
+    let spinTimer;
+    let revealTimer;
+    const render = (playTransition = true) => {
+        const form = forms[selectedForm];
+        const sweet = sweets[selectedSweet];
+        if (!form || !sweet || !(art instanceof HTMLImageElement) || !(name instanceof HTMLElement) || !(sweetName instanceof HTMLElement) || !(recipeName instanceof HTMLElement) || !(spinCondition instanceof HTMLElement)) return;
+        const sprite = selectedForm === "vanilla" && selectedSweet === "strawberry" ? "869.png" : `869-${form.slug}-${selectedSweet}-sweet.png`;
+        const spins = form.length === "long" ? 5 : 1;
+        const duration = form.length === "long" ? 1600 : 800;
+        window.clearInterval(spinTimer);
+        window.clearTimeout(revealTimer);
         art.classList.remove("is-changing");
         void art.offsetWidth;
-        art.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${form.src}`;
-        art.alt = `${form.name} Alcremie`;
+        art.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${sprite}`;
+        art.alt = `${form.name} Alcremie with ${sweet} Sweet`;
         name.textContent = form.name;
-        art.classList.add("is-changing");
+        sweetName.textContent = `${sweet} Sweet`;
+        recipeName.textContent = form.recipe;
+        spinCondition.textContent = form.recipe;
+        if (!playTransition || !(origin instanceof HTMLElement) || !(result instanceof HTMLElement) || !(spinCount instanceof HTMLElement)) return;
+        origin.classList.remove("is-spinning", "is-clockwise", "is-anticlockwise");
+        result.classList.remove("is-revealing");
+        result.classList.add("is-evolving");
+        origin.style.setProperty("--milcery-spin-angle", `${form.direction === "anticlockwise" ? "-" : ""}${spins * 360}deg`);
+        origin.style.setProperty("--milcery-spin-duration", `${duration}ms`);
+        void origin.offsetWidth;
+        origin.classList.add("is-spinning", `is-${form.direction}`);
+        spinCount.classList.add("is-active");
+        spinCount.textContent = `0 / ${spins} ${spins === 1 ? "spin" : "spins"}`;
+        const startedAt = performance.now();
+        spinTimer = window.setInterval(() => {
+            const completed = Math.min(spins, Math.floor(((performance.now() - startedAt) / duration) * spins));
+            spinCount.textContent = `${completed} / ${spins} ${spins === 1 ? "spin" : "spins"}`;
+        }, 80);
+        revealTimer = window.setTimeout(() => {
+            window.clearInterval(spinTimer);
+            spinCount.textContent = `${spins} / ${spins} ${spins === 1 ? "spin" : "spins"}`;
+            origin.classList.remove("is-spinning", "is-clockwise", "is-anticlockwise");
+            result.classList.remove("is-evolving");
+            result.classList.add("is-revealing");
+            result.classList.remove("is-celebrating");
+            void result.offsetWidth;
+            result.classList.add("is-celebrating");
+            art.classList.add("is-changing");
+            window.setTimeout(() => spinCount.classList.remove("is-active"), 500);
+        }, duration);
+    };
+    lab.querySelectorAll("[data-milcery-form]").forEach((button) => {
+        if (!(button instanceof HTMLButtonElement)) return;
+        const form = forms[button.dataset.milceryForm];
+        if (!form) return;
+        button.innerHTML = `<span>${form.name}</span><small>${form.recipe}</small>`;
+        button.setAttribute("aria-label", `${form.name}: ${form.recipe}`);
+    });
+    const recipeSelector = lab.querySelector(".milcery-lab__controls");
+    const filterRecipes = () => {
+        lab.querySelectorAll("[data-milcery-form]").forEach((button) => {
+            if (!(button instanceof HTMLButtonElement)) return;
+            const form = forms[button.dataset.milceryForm];
+            button.hidden = Boolean(form && selectedTime !== "all" && !form.recipe.endsWith(selectedTime));
+        });
+    };
+    if (recipeSelector instanceof HTMLElement) {
+        const filters = document.createElement("div");
+        filters.className = "milcery-lab__time-filters";
+        filters.setAttribute("aria-label", "Alcremie recipe time filter");
+        ["all", "day", "night", "dusk"].forEach((time) => {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.dataset.milceryTimeFilter = time;
+            button.setAttribute("aria-pressed", String(time === "all"));
+            button.textContent = time[0].toUpperCase() + time.slice(1);
+            filters.append(button);
+        });
+        recipeSelector.before(filters);
+    }
+    render(false);
+    lab.addEventListener("click", (event) => {
+        if (!(event.target instanceof Element)) return;
+        const formButton = event.target.closest("[data-milcery-form]");
+        const sweetButton = event.target.closest("[data-milcery-sweet]");
+        const timeButton = event.target.closest("[data-milcery-time-filter]");
+        if (timeButton instanceof HTMLButtonElement) {
+            selectedTime = timeButton.dataset.milceryTimeFilter || "all";
+            lab.querySelectorAll("[data-milcery-time-filter]").forEach((entry) => entry.setAttribute("aria-pressed", String(entry === timeButton)));
+            filterRecipes();
+            return;
+        }
+        if (formButton instanceof HTMLButtonElement && forms[formButton.dataset.milceryForm]) {
+            selectedForm = formButton.dataset.milceryForm;
+            lab.querySelectorAll("[data-milcery-form]").forEach((entry) => entry.setAttribute("aria-pressed", String(entry === formButton)));
+            render();
+        }
+        if (sweetButton instanceof HTMLButtonElement && sweets[sweetButton.dataset.milcerySweet]) {
+            selectedSweet = sweetButton.dataset.milcerySweet;
+            lab.querySelectorAll("[data-milcery-sweet]").forEach((entry) => entry.setAttribute("aria-pressed", String(entry === sweetButton)));
+            render();
+        }
     });
 }
 
@@ -1265,6 +1397,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initFossilTool();
     initBabyTool();
     initEeveeLab();
+    initPartnerEeveeMoves();
     initUnusualGenerationControls();
     initCastformWeather();
     initVivillonLab();
