@@ -1,0 +1,979 @@
+[
+  {
+    "region": "alola",
+    "formName": "rattata-alola",
+    "baseName": "rattata",
+    "baseId": 19,
+    "evolutionRootId": 19,
+    "evolutionStage": 0,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10091.png",
+    "types": [
+      "dark",
+      "normal"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/19.png",
+    "originalTypes": [
+      "normal"
+    ]
+  },
+  {
+    "region": "alola",
+    "formName": "raticate-alola",
+    "baseName": "raticate",
+    "baseId": 20,
+    "evolutionRootId": 19,
+    "evolutionStage": 1,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10092.png",
+    "types": [
+      "dark",
+      "normal"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/20.png",
+    "originalTypes": [
+      "normal"
+    ]
+  },
+  {
+    "region": "alola",
+    "formName": "sandshrew-alola",
+    "baseName": "sandshrew",
+    "baseId": 27,
+    "evolutionRootId": 27,
+    "evolutionStage": 0,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10101.png",
+    "types": [
+      "ice",
+      "steel"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/27.png",
+    "originalTypes": [
+      "ground"
+    ]
+  },
+  {
+    "region": "alola",
+    "formName": "sandslash-alola",
+    "baseName": "sandslash",
+    "baseId": 28,
+    "evolutionRootId": 27,
+    "evolutionStage": 1,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10102.png",
+    "types": [
+      "ice",
+      "steel"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/28.png",
+    "originalTypes": [
+      "ground"
+    ]
+  },
+  {
+    "region": "alola",
+    "formName": "vulpix-alola",
+    "baseName": "vulpix",
+    "baseId": 37,
+    "evolutionRootId": 37,
+    "evolutionStage": 0,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10103.png",
+    "types": [
+      "ice"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/37.png",
+    "originalTypes": [
+      "fire"
+    ]
+  },
+  {
+    "region": "alola",
+    "formName": "ninetales-alola",
+    "baseName": "ninetales",
+    "baseId": 38,
+    "evolutionRootId": 37,
+    "evolutionStage": 1,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10104.png",
+    "types": [
+      "ice",
+      "fairy"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/38.png",
+    "originalTypes": [
+      "fire"
+    ]
+  },
+  {
+    "region": "alola",
+    "formName": "diglett-alola",
+    "baseName": "diglett",
+    "baseId": 50,
+    "evolutionRootId": 50,
+    "evolutionStage": 0,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10105.png",
+    "types": [
+      "ground",
+      "steel"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/50.png",
+    "originalTypes": [
+      "ground"
+    ]
+  },
+  {
+    "region": "alola",
+    "formName": "dugtrio-alola",
+    "baseName": "dugtrio",
+    "baseId": 51,
+    "evolutionRootId": 50,
+    "evolutionStage": 1,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10106.png",
+    "types": [
+      "ground",
+      "steel"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/51.png",
+    "originalTypes": [
+      "ground"
+    ]
+  },
+  {
+    "region": "alola",
+    "formName": "meowth-alola",
+    "baseName": "meowth",
+    "baseId": 52,
+    "evolutionRootId": 52,
+    "evolutionStage": 0,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10107.png",
+    "types": [
+      "dark"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/52.png",
+    "originalTypes": [
+      "normal"
+    ]
+  },
+  {
+    "region": "alola",
+    "formName": "persian-alola",
+    "baseName": "persian",
+    "baseId": 53,
+    "evolutionRootId": 52,
+    "evolutionStage": 1,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10108.png",
+    "types": [
+      "dark"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/53.png",
+    "originalTypes": [
+      "normal"
+    ]
+  },
+  {
+    "region": "alola",
+    "formName": "geodude-alola",
+    "baseName": "geodude",
+    "baseId": 74,
+    "evolutionRootId": 74,
+    "evolutionStage": 0,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10109.png",
+    "types": [
+      "rock",
+      "electric"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/74.png",
+    "originalTypes": [
+      "rock",
+      "ground"
+    ]
+  },
+  {
+    "region": "alola",
+    "formName": "graveler-alola",
+    "baseName": "graveler",
+    "baseId": 75,
+    "evolutionRootId": 74,
+    "evolutionStage": 1,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10110.png",
+    "types": [
+      "rock",
+      "electric"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/75.png",
+    "originalTypes": [
+      "rock",
+      "ground"
+    ]
+  },
+  {
+    "region": "alola",
+    "formName": "golem-alola",
+    "baseName": "golem",
+    "baseId": 76,
+    "evolutionRootId": 74,
+    "evolutionStage": 2,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10111.png",
+    "types": [
+      "rock",
+      "electric"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/76.png",
+    "originalTypes": [
+      "rock",
+      "ground"
+    ]
+  },
+  {
+    "region": "alola",
+    "formName": "grimer-alola",
+    "baseName": "grimer",
+    "baseId": 88,
+    "evolutionRootId": 88,
+    "evolutionStage": 0,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10112.png",
+    "types": [
+      "poison",
+      "dark"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/88.png",
+    "originalTypes": [
+      "poison"
+    ]
+  },
+  {
+    "region": "alola",
+    "formName": "muk-alola",
+    "baseName": "muk",
+    "baseId": 89,
+    "evolutionRootId": 88,
+    "evolutionStage": 1,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10113.png",
+    "types": [
+      "poison",
+      "dark"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/89.png",
+    "originalTypes": [
+      "poison"
+    ]
+  },
+  {
+    "region": "alola",
+    "formName": "exeggutor-alola",
+    "baseName": "exeggutor",
+    "baseId": 103,
+    "evolutionRootId": 102,
+    "evolutionStage": 1,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10114.png",
+    "types": [
+      "grass",
+      "dragon"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/103.png",
+    "originalTypes": [
+      "grass",
+      "psychic"
+    ]
+  },
+  {
+    "region": "alola",
+    "formName": "marowak-alola",
+    "baseName": "marowak",
+    "baseId": 105,
+    "evolutionRootId": 104,
+    "evolutionStage": 1,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10115.png",
+    "types": [
+      "fire",
+      "ghost"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/105.png",
+    "originalTypes": [
+      "ground"
+    ]
+  },
+  {
+    "region": "alola",
+    "formName": "raichu-alola",
+    "baseName": "raichu",
+    "baseId": 26,
+    "evolutionRootId": 172,
+    "evolutionStage": 2,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10100.png",
+    "types": [
+      "electric",
+      "psychic"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/26.png",
+    "originalTypes": [
+      "electric"
+    ]
+  },
+  {
+    "region": "galar",
+    "formName": "meowth-galar",
+    "baseName": "meowth",
+    "baseId": 52,
+    "evolutionRootId": 52,
+    "evolutionStage": 0,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10161.png",
+    "types": [
+      "steel"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/52.png",
+    "originalTypes": [
+      "normal"
+    ]
+  },
+  {
+    "region": "galar",
+    "formName": "ponyta-galar",
+    "baseName": "ponyta",
+    "baseId": 77,
+    "evolutionRootId": 77,
+    "evolutionStage": 0,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10162.png",
+    "types": [
+      "psychic"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/77.png",
+    "originalTypes": [
+      "fire"
+    ]
+  },
+  {
+    "region": "galar",
+    "formName": "rapidash-galar",
+    "baseName": "rapidash",
+    "baseId": 78,
+    "evolutionRootId": 77,
+    "evolutionStage": 1,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10163.png",
+    "types": [
+      "psychic",
+      "fairy"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/78.png",
+    "originalTypes": [
+      "fire"
+    ]
+  },
+  {
+    "region": "galar",
+    "formName": "slowpoke-galar",
+    "baseName": "slowpoke",
+    "baseId": 79,
+    "evolutionRootId": 79,
+    "evolutionStage": 0,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10164.png",
+    "types": [
+      "psychic"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/79.png",
+    "originalTypes": [
+      "water",
+      "psychic"
+    ]
+  },
+  {
+    "region": "galar",
+    "formName": "slowbro-galar",
+    "baseName": "slowbro",
+    "baseId": 80,
+    "evolutionRootId": 79,
+    "evolutionStage": 1,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10165.png",
+    "types": [
+      "poison",
+      "psychic"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/80.png",
+    "originalTypes": [
+      "water",
+      "psychic"
+    ]
+  },
+  {
+    "region": "galar",
+    "formName": "slowking-galar",
+    "baseName": "slowking",
+    "baseId": 199,
+    "evolutionRootId": 79,
+    "evolutionStage": 1,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10172.png",
+    "types": [
+      "poison",
+      "psychic"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/199.png",
+    "originalTypes": [
+      "water",
+      "psychic"
+    ]
+  },
+  {
+    "region": "galar",
+    "formName": "farfetchd-galar",
+    "baseName": "farfetchd",
+    "baseId": 83,
+    "evolutionRootId": 83,
+    "evolutionStage": 0,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10166.png",
+    "types": [
+      "fighting"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/83.png",
+    "originalTypes": [
+      "normal",
+      "flying"
+    ]
+  },
+  {
+    "region": "galar",
+    "formName": "weezing-galar",
+    "baseName": "weezing",
+    "baseId": 110,
+    "evolutionRootId": 109,
+    "evolutionStage": 1,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10167.png",
+    "types": [
+      "poison",
+      "fairy"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/110.png",
+    "originalTypes": [
+      "poison"
+    ]
+  },
+  {
+    "region": "galar",
+    "formName": "articuno-galar",
+    "baseName": "articuno",
+    "baseId": 144,
+    "evolutionRootId": 144,
+    "evolutionStage": 0,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10169.png",
+    "types": [
+      "psychic",
+      "flying"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/144.png",
+    "originalTypes": [
+      "ice",
+      "flying"
+    ]
+  },
+  {
+    "region": "galar",
+    "formName": "zapdos-galar",
+    "baseName": "zapdos",
+    "baseId": 145,
+    "evolutionRootId": 145,
+    "evolutionStage": 0,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10170.png",
+    "types": [
+      "fighting",
+      "flying"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/145.png",
+    "originalTypes": [
+      "electric",
+      "flying"
+    ]
+  },
+  {
+    "region": "galar",
+    "formName": "moltres-galar",
+    "baseName": "moltres",
+    "baseId": 146,
+    "evolutionRootId": 146,
+    "evolutionStage": 0,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10171.png",
+    "types": [
+      "dark",
+      "flying"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/146.png",
+    "originalTypes": [
+      "fire",
+      "flying"
+    ]
+  },
+  {
+    "region": "galar",
+    "formName": "corsola-galar",
+    "baseName": "corsola",
+    "baseId": 222,
+    "evolutionRootId": 222,
+    "evolutionStage": 0,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10173.png",
+    "types": [
+      "ghost"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/222.png",
+    "originalTypes": [
+      "water",
+      "rock"
+    ]
+  },
+  {
+    "region": "galar",
+    "formName": "zigzagoon-galar",
+    "baseName": "zigzagoon",
+    "baseId": 263,
+    "evolutionRootId": 263,
+    "evolutionStage": 0,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10174.png",
+    "types": [
+      "dark",
+      "normal"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/263.png",
+    "originalTypes": [
+      "normal"
+    ]
+  },
+  {
+    "region": "galar",
+    "formName": "linoone-galar",
+    "baseName": "linoone",
+    "baseId": 264,
+    "evolutionRootId": 263,
+    "evolutionStage": 1,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10175.png",
+    "types": [
+      "dark",
+      "normal"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/264.png",
+    "originalTypes": [
+      "normal"
+    ]
+  },
+  {
+    "region": "galar",
+    "formName": "mr-mime-galar",
+    "baseName": "mr-mime",
+    "baseId": 122,
+    "evolutionRootId": 439,
+    "evolutionStage": 1,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10168.png",
+    "types": [
+      "ice",
+      "psychic"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/122.png",
+    "originalTypes": [
+      "psychic",
+      "fairy"
+    ]
+  },
+  {
+    "region": "galar",
+    "formName": "darumaka-galar",
+    "baseName": "darumaka",
+    "baseId": 554,
+    "evolutionRootId": 554,
+    "evolutionStage": 0,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10176.png",
+    "types": [
+      "ice"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/554.png",
+    "originalTypes": [
+      "fire"
+    ]
+  },
+  {
+    "region": "galar",
+    "formName": "darmanitan-galar-standard",
+    "baseName": "darmanitan",
+    "baseId": 555,
+    "evolutionRootId": 554,
+    "evolutionStage": 1,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10177.png",
+    "types": [
+      "ice"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/555.png",
+    "originalTypes": [
+      "fire"
+    ]
+  },
+  {
+    "region": "galar",
+    "formName": "yamask-galar",
+    "baseName": "yamask",
+    "baseId": 562,
+    "evolutionRootId": 562,
+    "evolutionStage": 0,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10179.png",
+    "types": [
+      "ground",
+      "ghost"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/562.png",
+    "originalTypes": [
+      "ghost"
+    ]
+  },
+  {
+    "region": "galar",
+    "formName": "stunfisk-galar",
+    "baseName": "stunfisk",
+    "baseId": 618,
+    "evolutionRootId": 618,
+    "evolutionStage": 0,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10180.png",
+    "types": [
+      "ground",
+      "steel"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/618.png",
+    "originalTypes": [
+      "ground",
+      "electric"
+    ]
+  },
+  {
+    "region": "hisui",
+    "formName": "growlithe-hisui",
+    "baseName": "growlithe",
+    "baseId": 58,
+    "evolutionRootId": 58,
+    "evolutionStage": 0,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10229.png",
+    "types": [
+      "fire",
+      "rock"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/58.png",
+    "originalTypes": [
+      "fire"
+    ]
+  },
+  {
+    "region": "hisui",
+    "formName": "arcanine-hisui",
+    "baseName": "arcanine",
+    "baseId": 59,
+    "evolutionRootId": 58,
+    "evolutionStage": 1,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10230.png",
+    "types": [
+      "fire",
+      "rock"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/59.png",
+    "originalTypes": [
+      "fire"
+    ]
+  },
+  {
+    "region": "hisui",
+    "formName": "voltorb-hisui",
+    "baseName": "voltorb",
+    "baseId": 100,
+    "evolutionRootId": 100,
+    "evolutionStage": 0,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10231.png",
+    "types": [
+      "electric",
+      "grass"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/100.png",
+    "originalTypes": [
+      "electric"
+    ]
+  },
+  {
+    "region": "hisui",
+    "formName": "electrode-hisui",
+    "baseName": "electrode",
+    "baseId": 101,
+    "evolutionRootId": 100,
+    "evolutionStage": 1,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10232.png",
+    "types": [
+      "electric",
+      "grass"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/101.png",
+    "originalTypes": [
+      "electric"
+    ]
+  },
+  {
+    "region": "hisui",
+    "formName": "typhlosion-hisui",
+    "baseName": "typhlosion",
+    "baseId": 157,
+    "evolutionRootId": 155,
+    "evolutionStage": 2,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10233.png",
+    "types": [
+      "fire",
+      "ghost"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/157.png",
+    "originalTypes": [
+      "fire"
+    ]
+  },
+  {
+    "region": "hisui",
+    "formName": "qwilfish-hisui",
+    "baseName": "qwilfish",
+    "baseId": 211,
+    "evolutionRootId": 211,
+    "evolutionStage": 0,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10234.png",
+    "types": [
+      "dark",
+      "poison"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/211.png",
+    "originalTypes": [
+      "water",
+      "poison"
+    ]
+  },
+  {
+    "region": "hisui",
+    "formName": "sneasel-hisui",
+    "baseName": "sneasel",
+    "baseId": 215,
+    "evolutionRootId": 215,
+    "evolutionStage": 0,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10235.png",
+    "types": [
+      "fighting",
+      "poison"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/215.png",
+    "originalTypes": [
+      "dark",
+      "ice"
+    ]
+  },
+  {
+    "region": "hisui",
+    "formName": "samurott-hisui",
+    "baseName": "samurott",
+    "baseId": 503,
+    "evolutionRootId": 501,
+    "evolutionStage": 2,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10236.png",
+    "types": [
+      "water",
+      "dark"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/503.png",
+    "originalTypes": [
+      "water"
+    ]
+  },
+  {
+    "region": "hisui",
+    "formName": "lilligant-hisui",
+    "baseName": "lilligant",
+    "baseId": 549,
+    "evolutionRootId": 548,
+    "evolutionStage": 1,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10237.png",
+    "types": [
+      "grass",
+      "fighting"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/549.png",
+    "originalTypes": [
+      "grass"
+    ]
+  },
+  {
+    "region": "hisui",
+    "formName": "zorua-hisui",
+    "baseName": "zorua",
+    "baseId": 570,
+    "evolutionRootId": 570,
+    "evolutionStage": 0,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10238.png",
+    "types": [
+      "normal",
+      "ghost"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/570.png",
+    "originalTypes": [
+      "dark"
+    ]
+  },
+  {
+    "region": "hisui",
+    "formName": "zoroark-hisui",
+    "baseName": "zoroark",
+    "baseId": 571,
+    "evolutionRootId": 570,
+    "evolutionStage": 1,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10239.png",
+    "types": [
+      "normal",
+      "ghost"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/571.png",
+    "originalTypes": [
+      "dark"
+    ]
+  },
+  {
+    "region": "hisui",
+    "formName": "braviary-hisui",
+    "baseName": "braviary",
+    "baseId": 628,
+    "evolutionRootId": 627,
+    "evolutionStage": 1,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10240.png",
+    "types": [
+      "psychic",
+      "flying"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/628.png",
+    "originalTypes": [
+      "normal",
+      "flying"
+    ]
+  },
+  {
+    "region": "hisui",
+    "formName": "sliggoo-hisui",
+    "baseName": "sliggoo",
+    "baseId": 705,
+    "evolutionRootId": 704,
+    "evolutionStage": 1,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10241.png",
+    "types": [
+      "steel",
+      "dragon"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/705.png",
+    "originalTypes": [
+      "dragon"
+    ]
+  },
+  {
+    "region": "hisui",
+    "formName": "goodra-hisui",
+    "baseName": "goodra",
+    "baseId": 706,
+    "evolutionRootId": 704,
+    "evolutionStage": 2,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10242.png",
+    "types": [
+      "steel",
+      "dragon"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/706.png",
+    "originalTypes": [
+      "dragon"
+    ]
+  },
+  {
+    "region": "hisui",
+    "formName": "avalugg-hisui",
+    "baseName": "avalugg",
+    "baseId": 713,
+    "evolutionRootId": 712,
+    "evolutionStage": 1,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10243.png",
+    "types": [
+      "ice",
+      "rock"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/713.png",
+    "originalTypes": [
+      "ice"
+    ]
+  },
+  {
+    "region": "hisui",
+    "formName": "decidueye-hisui",
+    "baseName": "decidueye",
+    "baseId": 724,
+    "evolutionRootId": 722,
+    "evolutionStage": 2,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10244.png",
+    "types": [
+      "grass",
+      "fighting"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/724.png",
+    "originalTypes": [
+      "grass",
+      "ghost"
+    ]
+  },
+  {
+    "region": "paldea",
+    "formName": "tauros-paldea-aqua-breed",
+    "baseName": "tauros",
+    "baseId": 128,
+    "evolutionRootId": 128,
+    "evolutionStage": 0,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10252.png",
+    "types": [
+      "fighting",
+      "water"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/128.png",
+    "originalTypes": [
+      "normal"
+    ]
+  },
+  {
+    "region": "paldea",
+    "formName": "tauros-paldea-blaze-breed",
+    "baseName": "tauros",
+    "baseId": 128,
+    "evolutionRootId": 128,
+    "evolutionStage": 0,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10251.png",
+    "types": [
+      "fighting",
+      "fire"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/128.png",
+    "originalTypes": [
+      "normal"
+    ]
+  },
+  {
+    "region": "paldea",
+    "formName": "tauros-paldea-combat-breed",
+    "baseName": "tauros",
+    "baseId": 128,
+    "evolutionRootId": 128,
+    "evolutionStage": 0,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10250.png",
+    "types": [
+      "fighting"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/128.png",
+    "originalTypes": [
+      "normal"
+    ]
+  },
+  {
+    "region": "paldea",
+    "formName": "wooper-paldea",
+    "baseName": "wooper",
+    "baseId": 194,
+    "evolutionRootId": 194,
+    "evolutionStage": 0,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10253.png",
+    "types": [
+      "poison",
+      "ground"
+    ],
+    "originalSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/194.png",
+    "originalTypes": [
+      "water",
+      "ground"
+    ]
+  }
+]

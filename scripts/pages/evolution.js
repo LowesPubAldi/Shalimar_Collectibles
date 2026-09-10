@@ -970,6 +970,172 @@ function initUnusualGenerationControls() {
     });
 }
 
+function initRegionalGroupControls() {
+    const controls = document.querySelector(".regional-generations");
+    if (!(controls instanceof HTMLElement)) return;
+    const panels = [...document.querySelectorAll("[data-regional-panel]")];
+    const savedGroup = window.localStorage.getItem("evolution-regional-group") || "alola";
+    const selectGroup = (group) => {
+        controls.querySelectorAll("[data-regional-group]").forEach((entry) => entry.setAttribute("aria-selected", String(entry.dataset.regionalGroup === group)));
+        panels.forEach((panel) => panel.classList.toggle("is-hidden", panel.dataset.regionalPanel !== group));
+    };
+    selectGroup(savedGroup);
+    controls.addEventListener("click", (event) => {
+        if (!(event.target instanceof Element)) return;
+        const button = event.target.closest("[data-regional-group]");
+        if (!(button instanceof HTMLButtonElement)) return;
+        const group = button.dataset.regionalGroup || "alola";
+        window.localStorage.setItem("evolution-regional-group", group);
+        selectGroup(group);
+    });
+}
+
+function formatRegionalName(record) {
+    const prefixes = { alola: "Alolan", galar: "Galarian", hisui: "Hisuian", paldea: "Paldean" };
+    const baseName = formatPokemonName(record.baseName);
+    const suffix = record.formName
+        .replace(`${record.baseName}-${record.region}`, "")
+        .replace(/^-/, "")
+        .replace(/^standard$/, "")
+        .split("-")
+        .filter(Boolean)
+        .map((word) => word[0].toUpperCase() + word.slice(1))
+        .join(" ");
+    return `${prefixes[record.region]} ${baseName}${suffix ? ` (${suffix})` : ""}`;
+}
+
+function regionalTypeMarkup(types) {
+    return `<div class="type-chips">${types.map((type) => `<small class="type-chip type-chip--${type}">${formatPokemonName(type)}</small>`).join("")}</div>`;
+}
+
+function regionalExtraStage(baseName, id, types) {
+    return { baseName, sprite: pokemonArtUrl(id), types, isExtra: true };
+}
+
+const REGIONAL_FAMILY_EXTENSIONS = {
+    "paldea:194": { after: [regionalExtraStage("clodsire", 980, ["poison", "ground"])], methods: ["Lv. 20"], originalAfter: [regionalExtraStage("quagsire", 195, ["water", "ground"])] },
+    "alola:172": { before: [regionalExtraStage("pikachu", 25, ["electric"])], methods: ["Thunder Stone"] },
+    "alola:102": { before: [regionalExtraStage("exeggcute", 102, ["grass", "psychic"])], methods: ["Leaf Stone"] },
+    "alola:104": { before: [regionalExtraStage("cubone", 104, ["ground"])], methods: ["Lv. 28 + night"] },
+    "galar:109": { before: [regionalExtraStage("koffing", 109, ["poison"])], methods: ["Lv. 35"] },
+    "galar:439": { after: [regionalExtraStage("mr-rime", 866, ["ice", "psychic"])], methods: ["Lv. 42"] },
+    "galar:83": { after: [regionalExtraStage("sirfetchd", 865, ["fighting"])], methods: ["3 critical hits"] },
+    "galar:222": { after: [regionalExtraStage("cursola", 864, ["ghost"])], methods: ["Lv. 38"] },
+    "galar:263": { after: [regionalExtraStage("obstagoon", 862, ["dark", "normal"])], methods: ["Lv. 20", "Lv. 35 + night"] },
+    "galar:562": { after: [regionalExtraStage("runerigus", 867, ["ground", "ghost"])], methods: ["49 HP lost + stone arch"] },
+    "hisui:155": { before: [regionalExtraStage("cyndaquil", 155, ["fire"]), regionalExtraStage("quilava", 156, ["fire"])], methods: ["Lv. 14", "Lv. 36"] },
+    "hisui:501": { before: [regionalExtraStage("oshawott", 501, ["water"]), regionalExtraStage("dewott", 502, ["water"])], methods: ["Lv. 17", "Lv. 36"] },
+    "hisui:548": { before: [regionalExtraStage("petilil", 548, ["grass"])], methods: ["Sun Stone"] },
+    "hisui:627": { before: [regionalExtraStage("rufflet", 627, ["normal", "flying"])], methods: ["Lv. 54"] },
+    "hisui:712": { before: [regionalExtraStage("bergmite", 712, ["ice"])], methods: ["Lv. 37"] },
+    "hisui:722": { before: [regionalExtraStage("rowlet", 722, ["grass", "flying"]), regionalExtraStage("dartrix", 723, ["grass", "flying"])], methods: ["Lv. 17", "Lv. 34"] },
+    "hisui:211": { after: [regionalExtraStage("overqwil", 904, ["dark", "poison"])], methods: ["Strong Barb Barrage x20"] },
+    "hisui:215": { after: [regionalExtraStage("sneasler", 903, ["fighting", "poison"])], methods: ["Razor Claw + day"] }
+};
+
+function regionalEvolutionMethod(region, stages) {
+    const family = stages.map((stage) => stage.baseName).join("-");
+    const methods = {
+        "alola:rattata-raticate": "Lv. 20 + night",
+        "alola:diglett-dugtrio": "Lv. 26",
+        "alola:sandshrew-sandslash": "Ice Stone",
+        "alola:vulpix-ninetales": "Ice Stone",
+        "alola:geodude-graveler-golem": "Lv. 25 / trade",
+        "alola:grimer-muk": "Lv. 38",
+        "galar:ponyta-rapidash": "Lv. 40",
+        "galar:slowpoke-slowbro-slowking": "Galarica item",
+        "galar:darumaka-darmanitan": "Ice Stone",
+        "galar:zigzagoon-linoone": "Lv. 20 / 35 night",
+        "hisui:growlithe-arcanine": "Fire Stone",
+        "hisui:voltorb-electrode": "Leaf Stone",
+        "hisui:zorua-zoroark": "Lv. 30",
+        "hisui:sliggoo-goodra": "Lv. 50 + rain"
+    };
+    return methods[`${region}:${family}`] || "Regional evolution";
+}
+
+function regionalStageName(record) {
+    return record.isExtra ? formatPokemonName(record.baseName) : formatRegionalName(record);
+}
+
+function regionalStageMarkup(record, method) {
+    const name = regionalStageName(record);
+    return `<div class="regional-family__stage"><div class="evolution-node regional-family__regional"><img src="${record.sprite}" alt="${name}" /><strong>${name}</strong>${regionalTypeMarkup(record.types)}</div>${method ? `<div class="regional-family__method"><span>${method}</span><i></i></div>` : ""}</div>`;
+}
+
+function slowpokeBranchMarkup(stages) {
+    const slowpoke = stages.find((stage) => stage.baseName === "slowpoke");
+    const slowbro = stages.find((stage) => stage.baseName === "slowbro");
+    const slowking = stages.find((stage) => stage.baseName === "slowking");
+    const node = (record) => `<div class="evolution-node regional-family__regional"><img src="${record.sprite}" alt="${formatRegionalName(record)}" /><strong>${formatRegionalName(record)}</strong>${regionalTypeMarkup(record.types)}</div>`;
+    return `<div class="regional-slowpoke-branch">${node(slowpoke)}<div class="regional-slowpoke-branch__outcomes"><div><span>Galarica Cuff</span>${node(slowbro)}</div><div><span>Galarica Wreath</span>${node(slowking)}</div></div></div>`;
+}
+
+function taurosFormsMarkup(stages) {
+    return `<div class="regional-tauros-forms">${stages.map((record) => { const name = formatRegionalName(record); const breed = record.formName.replace("tauros-paldea-", "").replace(/-/g, " "); return `<div class="evolution-node regional-family__regional"><img src="${record.sprite}" alt="${name}" /><strong>${name}</strong><small>${breed}</small>${regionalTypeMarkup(record.types)}</div>`; }).join("")}</div>`;
+}
+
+function regionalMeowthCardMarkup(group) {
+    const isAlola = group === "alola";
+    const regionalName = isAlola ? "Alolan Meowth" : "Galarian Meowth";
+    const regionalSprite = isAlola ? "10107" : "10161";
+    const regionalType = isAlola ? "dark" : "steel";
+    const outcomeName = isAlola ? "Alolan Persian" : "Perrserker";
+    const outcomeSprite = isAlola ? "10108" : "863";
+    const outcomeType = isAlola ? "dark" : "steel";
+    const method = isAlola ? "High friendship" : "Lv. 28";
+    const counterpart = isAlola
+        ? `<div class="evolution-node"><img src="${pokemonArtUrl(52)}" alt="Kanto Meowth" /><strong>Kanto Meowth</strong>${regionalTypeMarkup(["normal"])}</div><div class="evolution-node"><img src="${pokemonArtUrl(53)}" alt="Persian" /><strong>Persian</strong>${regionalTypeMarkup(["normal"])}</div><div class="evolution-node"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10161.png" alt="Galarian Meowth" /><strong>Galarian Meowth</strong>${regionalTypeMarkup(["steel"])}</div><div class="evolution-node"><img src="${pokemonArtUrl(863)}" alt="Perrserker" /><strong>Perrserker</strong>${regionalTypeMarkup(["steel"])}</div>`
+        : `<div class="evolution-node"><img src="${pokemonArtUrl(52)}" alt="Kanto Meowth" /><strong>Kanto Meowth</strong>${regionalTypeMarkup(["normal"])}</div><div class="evolution-node"><img src="${pokemonArtUrl(53)}" alt="Persian" /><strong>Persian</strong>${regionalTypeMarkup(["normal"])}</div><div class="evolution-node"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10107.png" alt="Alolan Meowth" /><strong>Alolan Meowth</strong>${regionalTypeMarkup(["dark"])}</div><div class="evolution-node"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10108.png" alt="Alolan Persian" /><strong>Alolan Persian</strong>${regionalTypeMarkup(["dark"])}</div>`;
+    return `<article class="regional-family regional-family--data regional-family--chain regional-family--meowth"><span>${group} form family</span><h3>${regionalName} to ${outcomeName}</h3><div class="regional-family__display"><div class="regional-family__stage"><div class="evolution-node regional-family__regional"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${regionalSprite}.png" alt="${regionalName}" /><strong>${regionalName}</strong>${regionalTypeMarkup([regionalType])}</div><div class="regional-family__method"><span>${method}</span><i></i></div></div><div class="regional-family__stage"><div class="evolution-node regional-family__regional"><img src="${pokemonArtUrl(outcomeSprite)}" alt="${outcomeName}" /><strong>${outcomeName}</strong>${regionalTypeMarkup([outcomeType])}</div></div></div><div class="regional-family__counterpart" role="tooltip"><span>Other Meowth paths</span><div class="regional-family__counterpart-list regional-family__counterpart-list--meowth">${counterpart}</div></div></article>`;
+}
+
+async function initRegionalForms() {
+    const panels = [...document.querySelectorAll("[data-regional-panel]")];
+    if (!panels.length) return;
+    try {
+        const response = await fetch("data/regional-forms.json");
+        if (!response.ok) throw new Error(`Regional form data failed: ${response.status}`);
+        const records = await response.json();
+        panels.forEach((panel) => {
+            const group = panel.dataset.regionalPanel;
+            const forms = records.filter((record) => record.region === group && !(group === "alola" && ["meowth", "persian"].includes(record.baseName)) && !(group === "galar" && record.baseName === "meowth"));
+            const families = new Map();
+            forms.forEach((record) => {
+                const key = `${record.evolutionRootId}`;
+                if (!families.has(key)) families.set(key, []);
+                families.get(key).push(record);
+            });
+            const markup = [...families.values()].map((family) => {
+                const originalStages = family.sort((left, right) => left.evolutionStage - right.evolutionStage || left.baseId - right.baseId || left.formName.localeCompare(right.formName));
+                const extension = REGIONAL_FAMILY_EXTENSIONS[`${group}:${originalStages[0].evolutionRootId}`] || {};
+                const stages = [...(extension.before || []), ...originalStages, ...(extension.after || [])];
+                const familyName = stages.map(regionalStageName).join(" to ");
+                const isSlowpokeBranch = group === "galar" && originalStages[0].evolutionRootId === 79;
+                const isTaurosForms = group === "paldea" && originalStages[0].baseName === "tauros";
+                const stageMarkup = isTaurosForms ? taurosFormsMarkup(originalStages) : isSlowpokeBranch ? slowpokeBranchMarkup(originalStages) : stages.map((record, index) => regionalStageMarkup(record, extension.methods?.[index] || (index < stages.length - 1 ? regionalEvolutionMethod(group, originalStages) : ""))).join("");
+                const counterpartRecords = isTaurosForms ? [{ baseName: originalStages[0].baseName, sprite: originalStages[0].originalSprite, types: originalStages[0].originalTypes }] : [...originalStages.map((record) => ({ baseName: record.baseName, sprite: record.originalSprite, types: record.originalTypes })), ...(extension.originalAfter || [])];
+                const counterpartMarkup = counterpartRecords.map((record) => { const originalName = formatPokemonName(record.baseName); return `<div class="evolution-node"><img src="${record.sprite}" alt="${originalName}" /><strong>${originalName}</strong>${regionalTypeMarkup(record.types)}</div>`; }).join("");
+                return `<article class="regional-family regional-family--data ${stages.length > 1 && !isTaurosForms ? "regional-family--chain" : ""} ${isSlowpokeBranch ? "regional-family--branch" : ""} ${isTaurosForms ? "regional-family--tauros" : ""}"><span>${group} form${stages.length > 1 ? " family" : ""}</span><h3>${isTaurosForms ? "Paldean Tauros breeds" : familyName}</h3><div class="regional-family__display">${stageMarkup}</div><div class="regional-family__counterpart" role="tooltip"><span>Original counterpart${originalStages.length > 1 ? " family" : ""}</span><div class="regional-family__counterpart-list">${counterpartMarkup}</div></div></article>`;
+            }).join("");
+            const meowthMarkup = group === "alola" ? `<article class="regional-family regional-family--data regional-family--branch regional-family--meowth"><span>Two regional paths</span><h3>Meowth to Persian</h3><div class="regional-meowth-branch"><div><div class="evolution-node"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/52.png" alt="Kanto Meowth" /><strong>Kanto Meowth</strong>${regionalTypeMarkup(["normal"])}</div><div class="regional-family__method"><span>Lv. 28</span><i></i></div><div class="evolution-node"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/53.png" alt="Persian" /><strong>Persian</strong>${regionalTypeMarkup(["normal"])}</div></div><div><div class="evolution-node"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10107.png" alt="Alolan Meowth" /><strong>Alolan Meowth</strong>${regionalTypeMarkup(["dark"])}</div><div class="regional-family__method"><span>High friendship</span><i></i></div><div class="evolution-node"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10108.png" alt="Alolan Persian" /><strong>Alolan Persian</strong>${regionalTypeMarkup(["dark"])}</div></div></div></article>` : group === "galar" ? `<article class="regional-family regional-family--data regional-family--branch regional-family--meowth"><span>Two regional paths</span><h3>Meowth to Persian or Perrserker</h3><div class="regional-meowth-branch"><div><div class="evolution-node"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/52.png" alt="Kanto Meowth" /><strong>Kanto Meowth</strong>${regionalTypeMarkup(["normal"])}</div><div class="regional-family__method"><span>Lv. 28</span><i></i></div><div class="evolution-node"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/53.png" alt="Persian" /><strong>Persian</strong>${regionalTypeMarkup(["normal"])}</div></div><div><div class="evolution-node"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10161.png" alt="Galarian Meowth" /><strong>Galarian Meowth</strong>${regionalTypeMarkup(["steel"])}</div><div class="regional-family__method"><span>Lv. 28</span><i></i></div><div class="evolution-node"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/863.png" alt="Perrserker" /><strong>Perrserker</strong>${regionalTypeMarkup(["steel"])}</div></div></div></article>` : "";
+            panel.innerHTML = `${markup}${meowthMarkup}`;
+            const meowthCard = panel.querySelector(".regional-family--meowth");
+            if (meowthCard instanceof HTMLElement) meowthCard.outerHTML = regionalMeowthCardMarkup(group);
+            panel.addEventListener("pointerover", (event) => {
+                if (event.target instanceof Element) event.target.closest(".regional-family--data")?.classList.add("is-previewing");
+            });
+            panel.addEventListener("pointerout", (event) => {
+                if (!(event.target instanceof Element)) return;
+                const card = event.target.closest(".regional-family--data");
+                if (card instanceof HTMLElement && !card.contains(event.relatedTarget)) card.classList.remove("is-previewing");
+            });
+        });
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 function initCastformWeather() {
     const lab = document.querySelector("[data-castform-weather]");
     if (!(lab instanceof HTMLElement)) return;
@@ -1399,6 +1565,8 @@ document.addEventListener("DOMContentLoaded", () => {
     initEeveeLab();
     initPartnerEeveeMoves();
     initUnusualGenerationControls();
+    initRegionalGroupControls();
+    initRegionalForms();
     initCastformWeather();
     initVivillonLab();
     initLycanrocLab();

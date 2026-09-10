@@ -324,8 +324,18 @@
                 <div><p class="evolution-eyebrow">Regional Evolution</p><h2 id="regional-title">A familiar species, rewritten by place.</h2></div>
                 <p>Regional forms can change typing and appearance; some unlock an evolution the original form never had.</p>
             </div>
-            <div class="regional-grid">
+            <div class="evolution-basic-generations regional-generations" role="tablist" aria-label="Choose regional form group">
+                <button type="button" role="tab" aria-selected="true" data-regional-group="alola"><span>A</span>Alola<small>18</small></button>
+                <button type="button" role="tab" aria-selected="false" data-regional-group="galar"><span>G</span>Galar<small>19</small></button>
+                <button type="button" role="tab" aria-selected="false" data-regional-group="hisui"><span>H</span>Hisui<small>16</small></button>
+                <button type="button" role="tab" aria-selected="false" data-regional-group="paldea"><span>P</span>Paldea<small>4</small></button>
+            </div>
+            <div class="regional-grid" data-regional-panel="alola">
                 <article class="regional-family"><span>Form change</span><h3>Vulpix</h3><div><div class="evolution-node" data-pokemon-id="37"><img alt="Kantonian Vulpix" /><strong>Kanto</strong><small>Fire</small></div><div class="regional-arrow" aria-hidden="true">&#8596;</div><div class="evolution-node" data-pokemon-id="10103"><img alt="Alolan Vulpix" /><strong>Alola</strong><small>Ice</small></div></div></article>
+            </div>
+            <div class="regional-grid is-hidden" data-regional-panel="galar"></div>
+            <div class="regional-grid is-hidden" data-regional-panel="hisui"></div>
+            <div class="regional-grid is-hidden" data-regional-panel="paldea">
                 <article class="regional-family"><span>Regional evolution</span><h3>Wooper</h3><div><div class="evolution-node" data-pokemon-id="194"><img alt="Johtonian Wooper" /><strong>Johto</strong><small>Water / Ground</small></div><div class="regional-arrow" aria-hidden="true">&#8596;</div><div class="evolution-node" data-pokemon-id="10253"><img alt="Paldean Wooper" /><strong>Paldea</strong><small>Poison / Ground</small></div><div class="regional-arrow" aria-hidden="true">&#8594;</div><div class="evolution-node" data-pokemon-id="980"><img alt="Clodsire" /><strong>Clodsire</strong><small>Regional evolution</small></div></div></article>
             </div>
         </section>
