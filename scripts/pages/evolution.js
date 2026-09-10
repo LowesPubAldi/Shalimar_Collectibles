@@ -1143,6 +1143,33 @@ function initMilceryLab() {
     });
 }
 
+function initSilvallyLab() {
+    const lab = document.querySelector("[data-silvally-lab]");
+    if (!(lab instanceof HTMLElement)) return;
+    const typeNames = { normal: "Normal", bug: "Bug", dark: "Dark", dragon: "Dragon", electric: "Electric", fairy: "Fairy", fighting: "Fighting", fire: "Fire", flying: "Flying", ghost: "Ghost", grass: "Grass", ground: "Ground", ice: "Ice", poison: "Poison", psychic: "Psychic", rock: "Rock", steel: "Steel", water: "Water" };
+    const art = lab.querySelector("[data-silvally-art]");
+    const name = lab.querySelector("[data-silvally-name]");
+    const memory = lab.querySelector("[data-silvally-memory]");
+    const types = lab.querySelector("[data-silvally-types]");
+    lab.addEventListener("click", (event) => {
+        if (!(event.target instanceof Element)) return;
+        const button = event.target.closest("[data-silvally-type]");
+        if (!(button instanceof HTMLButtonElement) || !(art instanceof HTMLImageElement) || !(name instanceof HTMLElement) || !(memory instanceof HTMLElement) || !(types instanceof HTMLElement)) return;
+        const type = button.dataset.silvallyType;
+        const typeName = typeNames[type];
+        if (!typeName) return;
+        lab.querySelectorAll("[data-silvally-type]").forEach((entry) => entry.setAttribute("aria-pressed", String(entry === button)));
+        art.classList.remove("is-changing");
+        void art.offsetWidth;
+        art.src = `assets/pokemon/silvally-forms/${type}.png`;
+        art.alt = `${typeName} Silvally`;
+        name.textContent = "Silvally";
+        memory.textContent = type === "normal" ? "No Memory" : `${typeName} Memory`;
+        types.innerHTML = `<small class="type-chip type-chip--${type}">${typeName}</small>`;
+        art.classList.add("is-changing");
+    });
+}
+
 function initGenesectLab() {
     const lab = document.querySelector("[data-genesect-lab]");
     if (!(lab instanceof HTMLElement)) return;
@@ -1247,6 +1274,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initMausholdLab();
     initTerapagosLab();
     initMilceryLab();
+    initSilvallyLab();
     initGenesectLab();
     initForcesLab();
     initMeloettaKeldeoLab();
