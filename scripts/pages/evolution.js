@@ -1,5 +1,6 @@
 const POKEMON_ART_ROOT = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork";
 const POKEMON_FORM_ART_ROOT = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork";
+const POKEMON_FORM_SPRITE_ROOT = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon";
 const POKEMON_SPECIES_CSV_URL = "https://raw.githubusercontent.com/PokeAPI/pokeapi/master/data/v2/csv/pokemon_species.csv";
 const GEN1_BASIC_V1_IDS = new Set([83, 128, 132, 143, 144, 145, 146, 151]);
 const GEN1_ONE_STAGE_V1_IDS = new Set([19, 21, 23, 27, 37, 46, 48, 50, 54, 58, 72, 77, 84, 86, 88, 90, 95, 96, 100, 102, 104, 108, 109, 114, 118, 129]);
@@ -418,6 +419,10 @@ function pokemonArtUrl(id) {
     return `${id > 10000 ? POKEMON_FORM_ART_ROOT : POKEMON_ART_ROOT}/${id}.png`;
 }
 
+function pokemonFormSpriteUrl(formName) {
+    return `${POKEMON_FORM_SPRITE_ROOT}/666${formName === "meadow" ? "" : `-${formName}`}.png`;
+}
+
 function pokemonNodeMarkup(pokemon, modifier = "") {
     return `<article class="evolution-specimen ${modifier}"><img src="${pokemonArtUrl(pokemon.id)}" alt="${pokemon.name}" /><div><small>${pokemon.stage}</small><h3>${pokemon.name}</h3></div></article>`;
 }
@@ -477,6 +482,7 @@ async function loadCompleteOneStageLines() {
 
 function initArtwork() {
     document.querySelectorAll("[data-pokemon-id]").forEach((element) => {
+        if (element.matches(".eevee-lab__branches [data-eeveelution]")) return;
         const image = element.querySelector("img");
         const id = element.getAttribute("data-pokemon-id");
         if (image instanceof HTMLImageElement && id) {
@@ -883,12 +889,344 @@ function initBabyTool() {
 
 function initEeveeLab() {
     const lab = document.querySelector(".eevee-lab");
+    const art = lab?.querySelector("[data-eevee-result-art]");
+    const name = lab?.querySelector("[data-eevee-result-name]");
+    const method = lab?.querySelector("[data-eevee-result-method]");
+    const center = lab?.querySelector(".eevee-lab__center");
     lab?.addEventListener("click", (event) => {
         if (!(event.target instanceof Element)) return;
         const button = event.target.closest("[data-eeveelution]");
         if (!(button instanceof HTMLButtonElement)) return;
         lab.querySelectorAll("[data-eeveelution]").forEach((entry) => entry.classList.toggle("is-selected", entry === button));
         lab.setAttribute("data-selected-eeveelution", button.dataset.eeveelution || "");
+        if (!(art instanceof HTMLImageElement) || !(name instanceof HTMLElement) || !(method instanceof HTMLElement)) return;
+        art.classList.remove("is-changing");
+        void art.offsetWidth;
+        center?.classList.add("is-hidden");
+        art.closest(".eevee-wheel__result")?.classList.remove("is-hidden");
+        art.src = pokemonArtUrl(Number(button.dataset.pokemonId));
+        art.alt = button.dataset.eeveelution || "Eeveelution";
+        name.textContent = button.dataset.eeveelution || "Eeveelution";
+        method.textContent = button.dataset.eeveeMethod || "Evolution method";
+        art.classList.add("is-changing");
+    });
+}
+
+function initUnusualGenerationControls() {
+    const controls = document.querySelector(".unusual-generations");
+    if (!(controls instanceof HTMLElement)) return;
+    const panels = [...document.querySelectorAll("[data-unusual-panel]")];
+    const savedGeneration = window.localStorage.getItem("evolution-unusual-generation") || "1";
+    const initialButton = controls.querySelector(`[data-unusual-generation="${savedGeneration}"]`) || controls.querySelector("[data-unusual-generation]");
+    if (initialButton instanceof HTMLButtonElement) {
+        const initialGeneration = initialButton.dataset.unusualGeneration;
+        controls.querySelectorAll("[data-unusual-generation]").forEach((entry) => entry.setAttribute("aria-selected", String(entry === initialButton)));
+        panels.forEach((panel) => panel.classList.toggle("is-hidden", panel.dataset.unusualPanel !== initialGeneration));
+    }
+    controls.addEventListener("click", (event) => {
+        if (!(event.target instanceof Element)) return;
+        const button = event.target.closest("[data-unusual-generation]");
+        if (!(button instanceof HTMLButtonElement) || button.disabled) return;
+        const generation = button.dataset.unusualGeneration;
+        window.localStorage.setItem("evolution-unusual-generation", generation || "1");
+        controls.querySelectorAll("[data-unusual-generation]").forEach((entry) => entry.setAttribute("aria-selected", String(entry === button)));
+        panels.forEach((panel) => panel.classList.toggle("is-hidden", panel.dataset.unusualPanel !== generation));
+    });
+}
+
+function initCastformWeather() {
+    const lab = document.querySelector("[data-castform-weather]");
+    if (!(lab instanceof HTMLElement)) return;
+    const forms = {
+        normal: { id: 351, name: "Castform", condition: "Normal weather", type: "Normal", typeClass: "normal" },
+        sun: { id: 10013, name: "Sunny Castform", condition: "Harsh sunlight", type: "Fire", typeClass: "fire" },
+        rain: { id: 10014, name: "Rainy Castform", condition: "Rain", type: "Water", typeClass: "water" },
+        snow: { id: 10015, name: "Snowy Castform", condition: "Snow", type: "Ice", typeClass: "ice" }
+    };
+    const art = lab.querySelector("[data-castform-art]");
+    const name = lab.querySelector("[data-castform-name]");
+    const condition = lab.querySelector("[data-castform-condition]");
+    const type = lab.querySelector("[data-castform-type]");
+    lab.addEventListener("click", (event) => {
+        if (!(event.target instanceof Element)) return;
+        const button = event.target.closest("[data-castform-form]");
+        if (!(button instanceof HTMLButtonElement)) return;
+        const form = forms[button.dataset.castformForm];
+        if (!form || !(art instanceof HTMLImageElement) || !(name instanceof HTMLElement) || !(condition instanceof HTMLElement) || !(type instanceof HTMLElement)) return;
+        lab.querySelectorAll("[data-castform-form]").forEach((entry) => entry.setAttribute("aria-selected", String(entry === button)));
+        art.classList.remove("is-changing");
+        void art.offsetWidth;
+        art.src = pokemonArtUrl(form.id);
+        art.alt = form.name;
+        name.textContent = form.name;
+        condition.textContent = form.condition;
+        type.textContent = form.type;
+        type.className = `type-chip type-chip--${form.typeClass}`;
+        art.classList.add("is-changing");
+    });
+}
+
+function initVivillonLab() {
+    const lab = document.querySelector("[data-vivillon-lab]");
+    if (!(lab instanceof HTMLElement)) return;
+    const forms = {
+        meadow: { name: "Meadow", kind: "Geographic pattern" },
+        "icy-snow": { name: "Icy Snow", kind: "Geographic pattern" }, polar: { name: "Polar", kind: "Geographic pattern" }, tundra: { name: "Tundra", kind: "Geographic pattern" }, continental: { name: "Continental", kind: "Geographic pattern" }, garden: { name: "Garden", kind: "Geographic pattern" }, elegant: { name: "Elegant", kind: "Geographic pattern" }, modern: { name: "Modern", kind: "Geographic pattern" }, marine: { name: "Marine", kind: "Geographic pattern" }, archipelago: { name: "Archipelago", kind: "Geographic pattern" }, "high-plains": { name: "High Plains", kind: "Geographic pattern" }, sandstorm: { name: "Sandstorm", kind: "Geographic pattern" }, river: { name: "River", kind: "Geographic pattern" }, monsoon: { name: "Monsoon", kind: "Geographic pattern" }, savanna: { name: "Savanna", kind: "Geographic pattern" }, sun: { name: "Sun", kind: "Geographic pattern" }, ocean: { name: "Ocean", kind: "Geographic pattern" }, jungle: { name: "Jungle", kind: "Geographic pattern" }, fancy: { name: "Fancy", kind: "Event pattern" }, "poke-ball": { name: "Poké Ball", kind: "Event pattern" }
+    };
+    const art = lab.querySelector("[data-vivillon-art]");
+    const name = lab.querySelector("[data-vivillon-name]");
+    const kind = lab.querySelector("[data-vivillon-kind]");
+    lab.addEventListener("click", (event) => {
+        if (!(event.target instanceof Element)) return;
+        const button = event.target.closest("[data-vivillon-form]");
+        if (!(button instanceof HTMLButtonElement)) return;
+        const form = forms[button.dataset.vivillonForm];
+        if (!form || !(art instanceof HTMLImageElement) || !(name instanceof HTMLElement) || !(kind instanceof HTMLElement)) return;
+        lab.querySelectorAll("[data-vivillon-form]").forEach((entry) => entry.setAttribute("aria-pressed", String(entry === button)));
+        art.classList.remove("is-changing");
+        void art.offsetWidth;
+        art.src = pokemonFormSpriteUrl(button.dataset.vivillonForm);
+        art.alt = `Vivillon ${form.name} Pattern`;
+        name.textContent = form.name;
+        kind.textContent = form.kind;
+        art.classList.add("is-changing");
+    });
+}
+
+function initLycanrocLab() {
+    const lab = document.querySelector("[data-lycanroc-lab]");
+    if (!(lab instanceof HTMLElement)) return;
+    const forms = {
+        midday: { src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/745.png", name: "Midday Lycanroc", method: "Daytime evolution" },
+        midnight: { src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10126.png", name: "Midnight Lycanroc", method: "Nighttime evolution" },
+        dusk: { src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10152.png", name: "Dusk Lycanroc", method: "Own Tempo + evening" }
+    };
+    const art = lab.querySelector("[data-lycanroc-art]");
+    const name = lab.querySelector("[data-lycanroc-name]");
+    const method = lab.querySelector("[data-lycanroc-method]");
+    lab.addEventListener("click", (event) => {
+        if (!(event.target instanceof Element)) return;
+        const button = event.target.closest("[data-lycanroc-form]");
+        if (!(button instanceof HTMLButtonElement)) return;
+        const form = forms[button.dataset.lycanrocForm];
+        if (!form || !(art instanceof HTMLImageElement) || !(name instanceof HTMLElement) || !(method instanceof HTMLElement)) return;
+        lab.querySelectorAll("[data-lycanroc-form]").forEach((entry) => entry.setAttribute("aria-pressed", String(entry === button)));
+        art.classList.remove("is-changing");
+        void art.offsetWidth;
+        art.src = form.src;
+        art.alt = form.name;
+        name.textContent = form.name;
+        method.textContent = form.method;
+        art.classList.add("is-changing");
+    });
+}
+
+function initNecrozmaLab() {
+    const lab = document.querySelector("[data-necrozma-lab]");
+    if (!(lab instanceof HTMLElement)) return;
+    const forms = {
+        original: { src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/800.png", name: "Necrozma", method: "Original form", types: [{ name: "Psychic", className: "psychic" }] },
+        "dusk-mane": { src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10155.png", name: "Dusk Mane Necrozma", method: "N-Solarizer + Solgaleo", types: [{ name: "Psychic", className: "psychic" }, { name: "Steel", className: "steel" }] },
+        "dawn-wings": { src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10156.png", name: "Dawn Wings Necrozma", method: "N-Lunarizer + Lunala", types: [{ name: "Psychic", className: "psychic" }, { name: "Ghost", className: "ghost" }] },
+        ultra: { src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10157.png", name: "Ultra Necrozma", method: "Ultranecrozium Z", types: [{ name: "Psychic", className: "psychic" }, { name: "Dragon", className: "dragon" }] }
+    };
+    const art = lab.querySelector("[data-necrozma-art]");
+    const name = lab.querySelector("[data-necrozma-name]");
+    const method = lab.querySelector("[data-necrozma-method]");
+    const types = lab.querySelector("[data-necrozma-types]");
+    lab.addEventListener("click", (event) => {
+        if (!(event.target instanceof Element)) return;
+        const button = event.target.closest("[data-necrozma-form]");
+        const form = button instanceof HTMLButtonElement ? forms[button.dataset.necrozmaForm] : null;
+        if (!form || !(art instanceof HTMLImageElement) || !(name instanceof HTMLElement) || !(method instanceof HTMLElement) || !(types instanceof HTMLElement)) return;
+        lab.querySelectorAll("[data-necrozma-form]").forEach((entry) => entry.setAttribute("aria-pressed", String(entry === button)));
+        art.classList.remove("is-changing");
+        void art.offsetWidth;
+        art.src = form.src;
+        art.alt = form.name;
+        name.textContent = form.name;
+        method.textContent = form.method;
+        types.innerHTML = form.types.map((type) => `<small class="type-chip type-chip--${type.className}">${type.name}</small>`).join("");
+        art.classList.add("is-changing");
+    });
+}
+
+function initFarfetchdLab() {
+    const lab = document.querySelector("[data-farfetchd-lab]");
+    if (!(lab instanceof HTMLElement)) return;
+    const count = lab.querySelector("[data-farfetchd-count]");
+    const bar = lab.querySelector("[data-farfetchd-bar]");
+    lab.addEventListener("click", (event) => {
+        if (!(event.target instanceof Element)) return;
+        const button = event.target.closest("[data-farfetchd-hit]");
+        if (!(button instanceof HTMLButtonElement) || !(count instanceof HTMLElement) || !(bar instanceof HTMLElement)) return;
+        const hits = Math.max(0, Math.min(3, Number(button.dataset.farfetchdHit)));
+        count.textContent = `${hits} / 3 critical hits`;
+        bar.style.width = `${hits * 33.333}%`;
+        lab.querySelectorAll("[data-farfetchd-hit]").forEach((entry) => entry.setAttribute("aria-pressed", String(entry === button)));
+    });
+}
+
+function initMausholdLab() {
+    const lab = document.querySelector("[data-maushold-lab]");
+    if (!(lab instanceof HTMLElement)) return;
+    const forms = {
+        four: { src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/925.png", name: "Family of Four" },
+        three: { src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10257.png", name: "Family of Three" }
+    };
+    const art = lab.querySelector("[data-maushold-art]");
+    const name = lab.querySelector("[data-maushold-name]");
+    lab.addEventListener("click", (event) => {
+        if (!(event.target instanceof Element)) return;
+        const button = event.target.closest("[data-maushold-form]");
+        const form = button instanceof HTMLButtonElement ? forms[button.dataset.mausholdForm] : null;
+        if (!form || !(art instanceof HTMLImageElement) || !(name instanceof HTMLElement)) return;
+        lab.querySelectorAll("[data-maushold-form]").forEach((entry) => entry.setAttribute("aria-pressed", String(entry === button)));
+        art.classList.remove("is-changing");
+        void art.offsetWidth;
+        art.src = form.src;
+        art.alt = `Maushold ${form.name}`;
+        name.textContent = form.name;
+        art.classList.add("is-changing");
+    });
+}
+
+function initTerapagosLab() {
+    const lab = document.querySelector("[data-terapagos-lab]");
+    if (!(lab instanceof HTMLElement)) return;
+    const forms = {
+        normal: { src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1024.png", name: "Normal Form", method: "Normal form: Normal", types: [{ name: "Normal", className: "normal" }] },
+        terastal: { src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10276.png", name: "Terastal Form", method: "Terastal form: Normal", types: [{ name: "Normal", className: "normal" }] },
+        stellar: { src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10277.png", name: "Stellar Form", method: "Stellar form: Stellar", types: [{ name: "Stellar", className: "stellar" }] }
+    };
+    const art = lab.querySelector("[data-terapagos-art]");
+    const name = lab.querySelector("[data-terapagos-name]");
+    const method = lab.querySelector("[data-terapagos-method]");
+    const types = lab.querySelector("[data-terapagos-types]");
+    lab.addEventListener("click", (event) => {
+        if (!(event.target instanceof Element)) return;
+        const button = event.target.closest("[data-terapagos-form]");
+        const form = button instanceof HTMLButtonElement ? forms[button.dataset.terapagosForm] : null;
+        if (!form || !(art instanceof HTMLImageElement) || !(name instanceof HTMLElement) || !(method instanceof HTMLElement) || !(types instanceof HTMLElement)) return;
+        lab.querySelectorAll("[data-terapagos-form]").forEach((entry) => entry.setAttribute("aria-pressed", String(entry === button)));
+        art.classList.remove("is-changing");
+        void art.offsetWidth;
+        art.src = form.src;
+        art.alt = `Terapagos ${form.name}`;
+        name.textContent = form.name;
+        method.textContent = form.method;
+        types.innerHTML = form.types.map((type) => `<small class="type-chip type-chip--${type.className}">${type.name}</small>`).join("");
+        art.classList.add("is-changing");
+    });
+}
+
+function initMilceryLab() {
+    const lab = document.querySelector("[data-milcery-lab]");
+    if (!(lab instanceof HTMLElement)) return;
+    const forms = {
+        vanilla: { src: "869.png", name: "Vanilla Cream" }, ruby: { src: "869-ruby-cream-strawberry-sweet.png", name: "Ruby Cream" }, matcha: { src: "869-matcha-cream-strawberry-sweet.png", name: "Matcha Cream" }, mint: { src: "869-mint-cream-strawberry-sweet.png", name: "Mint Cream" }, lemon: { src: "869-lemon-cream-strawberry-sweet.png", name: "Lemon Cream" }, salted: { src: "869-salted-cream-strawberry-sweet.png", name: "Salted Cream" }, "ruby-swirl": { src: "869-ruby-swirl-strawberry-sweet.png", name: "Ruby Swirl" }, "caramel-swirl": { src: "869-caramel-swirl-strawberry-sweet.png", name: "Caramel Swirl" }, "rainbow-swirl": { src: "869-rainbow-swirl-strawberry-sweet.png", name: "Rainbow Swirl" }
+    };
+    const art = lab.querySelector("[data-milcery-art]");
+    const name = lab.querySelector("[data-milcery-name]");
+    lab.addEventListener("click", (event) => {
+        if (!(event.target instanceof Element)) return;
+        const button = event.target.closest("[data-milcery-form]");
+        const form = button instanceof HTMLButtonElement ? forms[button.dataset.milceryForm] : null;
+        if (!form || !(art instanceof HTMLImageElement) || !(name instanceof HTMLElement)) return;
+        lab.querySelectorAll("[data-milcery-form]").forEach((entry) => entry.setAttribute("aria-pressed", String(entry === button)));
+        art.classList.remove("is-changing");
+        void art.offsetWidth;
+        art.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${form.src}`;
+        art.alt = `${form.name} Alcremie`;
+        name.textContent = form.name;
+        art.classList.add("is-changing");
+    });
+}
+
+function initGenesectLab() {
+    const lab = document.querySelector("[data-genesect-lab]");
+    if (!(lab instanceof HTMLElement)) return;
+    const forms = {
+        none: { drive: "No Drive", type: "Normal", typeClass: "normal", icon: "" },
+        burn: { drive: "Burn Drive", type: "Fire", typeClass: "fire", icon: "assets/pokemon/burndrive.png" },
+        chill: { drive: "Chill Drive", type: "Ice", typeClass: "ice", icon: "assets/pokemon/chilldrive.png" },
+        douse: { drive: "Douse Drive", type: "Water", typeClass: "water", icon: "assets/pokemon/dousedrive.png" },
+        shock: { drive: "Shock Drive", type: "Electric", typeClass: "electric", icon: "assets/pokemon/shockdrive.png" }
+    };
+    const art = lab.querySelector("[data-genesect-art]");
+    const driveArt = lab.querySelector("[data-genesect-drive-art]");
+    const driveName = lab.querySelector("[data-genesect-drive-name]");
+    const type = lab.querySelector("[data-genesect-type]");
+    lab.addEventListener("click", (event) => {
+        if (!(event.target instanceof Element)) return;
+        const button = event.target.closest("[data-genesect-drive]");
+        if (!(button instanceof HTMLButtonElement)) return;
+        const form = forms[button.dataset.genesectDrive];
+        if (!form || !(art instanceof HTMLImageElement) || !(driveArt instanceof HTMLImageElement) || !(driveName instanceof HTMLElement) || !(type instanceof HTMLElement)) return;
+        lab.querySelectorAll("[data-genesect-drive]").forEach((entry) => entry.setAttribute("aria-selected", String(entry === button)));
+        art.classList.remove("is-changing");
+        void art.offsetWidth;
+        art.src = pokemonArtUrl(649);
+        driveArt.src = form.icon;
+        driveArt.alt = form.drive === "No Drive" ? "" : form.drive;
+        driveName.textContent = form.drive;
+        type.textContent = form.type;
+        type.className = `type-chip type-chip--${form.typeClass}`;
+        art.classList.add("is-changing");
+    });
+}
+
+function initForcesLab() {
+    const lab = document.querySelector("[data-forces-lab]");
+    if (!(lab instanceof HTMLElement)) return;
+    const forms = {
+        tornadus: { name: "Tornadus", incarnate: 641, therian: 10019 },
+        thundurus: { name: "Thundurus", incarnate: 642, therian: 10020 },
+        landorus: { name: "Landorus", incarnate: 645, therian: 10021 }
+    };
+    const left = lab.querySelector("[data-forces-incarnate]");
+    const right = lab.querySelector("[data-forces-therian]");
+    const name = lab.querySelector("[data-forces-name]");
+    const therianName = lab.querySelector("[data-forces-therian-name]");
+    lab.addEventListener("click", (event) => {
+        if (!(event.target instanceof Element)) return;
+        const button = event.target.closest("[data-forces-form]");
+        const form = button instanceof HTMLButtonElement ? forms[button.dataset.forcesForm] : null;
+        if (!form || !(left instanceof HTMLImageElement) || !(right instanceof HTMLImageElement) || !(name instanceof HTMLElement) || !(therianName instanceof HTMLElement)) return;
+        lab.querySelectorAll("[data-forces-form]").forEach((entry) => entry.setAttribute("aria-selected", String(entry === button)));
+        [left, right].forEach((image) => { image.classList.remove("is-changing"); void image.offsetWidth; });
+        left.src = pokemonArtUrl(form.incarnate);
+        right.src = pokemonArtUrl(form.therian);
+        left.alt = `${form.name} Incarnate`;
+        right.alt = `${form.name} Therian`;
+        name.textContent = form.name;
+        therianName.textContent = form.name;
+        left.classList.add("is-changing");
+        right.classList.add("is-changing");
+    });
+}
+
+function initMeloettaKeldeoLab() {
+    const lab = document.querySelector("[data-meloetta-keldeo-lab]");
+    if (!(lab instanceof HTMLElement)) return;
+    const meloettaArt = lab.querySelector("[data-meloetta-art]");
+    const keldeoArt = lab.querySelector("[data-keldeo-art]");
+    const meloettaName = lab.querySelector("[data-meloetta-name]");
+    const keldeoName = lab.querySelector("[data-keldeo-name]");
+    lab.addEventListener("click", (event) => {
+        if (!(event.target instanceof Element)) return;
+        const button = event.target.closest("[data-meloetta-action]");
+        if (!(button instanceof HTMLButtonElement)) return;
+        const action = button.dataset.meloettaAction;
+        lab.querySelectorAll("[data-meloetta-action]").forEach((entry) => entry.setAttribute("aria-pressed", String(entry === button)));
+        if (action === "relic" && meloettaArt instanceof HTMLImageElement && meloettaName instanceof HTMLElement) {
+            meloettaArt.classList.remove("is-changing"); void meloettaArt.offsetWidth;
+            meloettaArt.src = pokemonArtUrl(10018); meloettaArt.alt = "Meloetta Pirouette Forme"; meloettaName.textContent = "Pirouette Forme"; meloettaArt.classList.add("is-changing");
+        }
+        if (action === "sword" && keldeoArt instanceof HTMLImageElement && keldeoName instanceof HTMLElement) {
+            keldeoArt.classList.remove("is-changing"); void keldeoArt.offsetWidth;
+            keldeoArt.src = pokemonArtUrl(10024); keldeoArt.alt = "Keldeo Resolute Form"; keldeoName.textContent = "Resolute Form"; keldeoArt.classList.add("is-changing");
+        }
     });
 }
 
@@ -900,4 +1238,16 @@ document.addEventListener("DOMContentLoaded", () => {
     initFossilTool();
     initBabyTool();
     initEeveeLab();
+    initUnusualGenerationControls();
+    initCastformWeather();
+    initVivillonLab();
+    initLycanrocLab();
+    initNecrozmaLab();
+    initFarfetchdLab();
+    initMausholdLab();
+    initTerapagosLab();
+    initMilceryLab();
+    initGenesectLab();
+    initForcesLab();
+    initMeloettaKeldeoLab();
 });
