@@ -47,6 +47,11 @@
     align-content: start;
 }
 
+.inventory-control-wrap[hidden],
+.inventory-filter-note[hidden] {
+    display: none;
+}
+
 .inventory-badge {
     display: inline-flex;
     align-items: center;

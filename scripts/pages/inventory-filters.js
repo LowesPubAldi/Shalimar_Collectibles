@@ -6969,6 +6969,21 @@ function setDependentFilterState(setFilter, typeFilter, enabled) {
     typeFilter.disabled = !enabled;
 }
 
+function setInventoryControlVisible(control, visible) {
+    const wrapper = control instanceof HTMLElement ? control.closest(".inventory-control-wrap") : null;
+    if (wrapper instanceof HTMLElement) {
+        wrapper.hidden = !visible;
+    }
+}
+
+function setInventoryFilterNotesVisible(noteElements, visibleIndexes) {
+    noteElements.forEach((noteElement, index) => {
+        if (noteElement instanceof HTMLElement) {
+            noteElement.hidden = !visibleIndexes.has(index);
+        }
+    });
+}
+
 function getCardDisplayKey(cardRecord) {
     return [cardRecord.game, cardRecord.set, cardRecord.id, cardRecord.name]
         .map((value) => String(value || "").trim().toLowerCase())
@@ -7906,6 +7921,7 @@ async function initInventoryFilters() {
     const loadMoreProgress = document.getElementById("inventory-load-more-progress");
     const setContextElement = document.getElementById("inventory-set-context");
     const variantsSummary = document.getElementById("inventory-variants-summary");
+    const filterNoteElements = Array.from(document.querySelectorAll(".inventory-filter-note"));
     const initialFilters = readInitialFiltersFromUrl();
 
     if (!searchFilter || !gameFilter || !setFilter || !typeFilter || !archetypeFilter || !rarityFilter || !editionFilter || !variantFocusFilter || !priceStatusFilter || !gameplayStatusFilter || !sortFilter || !variantsToggle || !resultsMeta || !resultsGrid || !loadMoreButton || !loadMoreProgress || !setContextElement || !variantsSummary) {
@@ -8290,6 +8306,15 @@ async function initInventoryFilters() {
 
         replaceSelectOptions(setFilter, selectedGameSetOptions);
         replaceSelectOptions(typeFilter, gameOptions.types);
+        setInventoryControlVisible(archetypeFilter, !isPokemonSelected);
+        setInventoryControlVisible(editionFilter, !isPokemonSelected);
+        setInventoryControlVisible(variantFocusFilter, !isPokemonSelected);
+        setInventoryControlVisible(priceStatusFilter, !isPokemonSelected);
+        setInventoryControlVisible(gameplayStatusFilter, !isPokemonSelected);
+        setInventoryControlVisible(variantsToggle, !isPokemonSelected);
+        setInventoryFilterNotesVisible(filterNoteElements, isPokemonSelected
+            ? new Set([0, 1, 2, 3, 4, 5, 10, 11])
+            : new Set(filterNoteElements.map((_, index) => index)));
         if (isYgoSelected) {
             replaceSelectOptions(archetypeFilter, Array.isArray(ygoArchetypeOptionsCache) && ygoArchetypeOptionsCache.length > 0
                 ? ygoArchetypeOptionsCache
@@ -8361,7 +8386,9 @@ async function initInventoryFilters() {
         }
         const scopedRarityOptions = selectedGame === "Yu-Gi-Oh"
             ? YGO_ATTRIBUTE_OPTIONS
-            : getScopedRarityOptions(
+            : isPokemonSelected
+                ? gameOptions.rarities
+                : getScopedRarityOptions(
                 inventoryRecords,
                 {
                     query: searchFilter.value,
