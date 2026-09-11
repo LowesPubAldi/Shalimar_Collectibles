@@ -16,6 +16,9 @@ const YGO_VARIANT_ROLLOUT_THANK_YOU_PACK_IDS = new Set([
 ]);
 const INVENTORY_API_URL = "/api/yyh/cards";
 const INVENTORY_SETS_API_URL = "/api/yyh/sets";
+const POKEMON_INVENTORY_API_URL = "/api/pokemon/cards";
+const POKEMON_SETS_API_URL = "/api/pokemon/sets";
+const POKEMON_DEFAULT_SET = "Base";
 const YGO_CARDINFO_API_URL = "https://db.ygoprodeck.com/api/v7/cardinfo.php";
 const YGO_CARDSETS_API_URL = "https://db.ygoprodeck.com/api/v7/cardsets.php";
 const YGO_ARCHETYPES_API_URL = "https://db.ygoprodeck.com/api/v7/archetypes.php";
@@ -25,7 +28,7 @@ const INVENTORY_FALLBACK_DATA_URLS = [
     "data/yyh-cards-slice.json"
 ];
 const INVENTORY_DEFAULT_OFFSET = 0;
-const INVENTORY_PAGE_LIMIT_DESKTOP = 120;
+const INVENTORY_PAGE_LIMIT_DESKTOP = 100;
 const INVENTORY_PAGE_LIMIT_TABLET = 72;
 const INVENTORY_PAGE_LIMIT_MOBILE = 48;
 const INVENTORY_PAGE_LIMIT_MOBILE_NARROW = 24;
@@ -35,6 +38,21 @@ const YGO_PROJECT_CARD_RECORD_TOTAL = 37393;
 const MIN_SEARCH_CHARACTERS = 3;
 const DEFAULT_SORT_OPTION = "Card Number (Low-High)";
 const YGO_DEFAULT_SORT_OPTION = "Set Release (Latest First)";
+const POKEMON_DEFAULT_SORT_OPTION = "Pokemon Type Route";
+const POKEMON_TYPE_SORT_ORDER = new Map([
+    ["grass", 0],
+    ["fire", 1],
+    ["water", 2],
+    ["normal", 3],
+    ["colorless", 3],
+    ["electric", 4],
+    ["lightning", 4],
+    ["fighting", 5],
+    ["psychic", 6]
+]);
+const POKEMON_TRAINER_SORT_RANK = 7;
+const POKEMON_ENERGY_SORT_RANK = 8;
+const POKEMON_OTHER_SORT_RANK = 9;
 const DEFAULT_EDITION_OPTION = "All Editions";
 const DEFAULT_VARIANT_FOCUS_OPTION = "All Finishes";
 const DEFAULT_PRICE_STATUS_OPTION = "All Price Statuses";
@@ -4111,6 +4129,7 @@ let pricingDataCache = new Map();
 let allYyhSetPricingCache = null;
 let kingSetNotesCache = null;
 let ygoSetOptionsCache = null;
+let pokemonSetOptionsCache = null;
 let ygoSetReleaseDateCache = new Map();
 let ygoArchetypeOptionsCache = null;
 let ygoVariantInventoryCache = new Map();
@@ -4248,16 +4267,8 @@ const FILTER_OPTIONS_BY_GAME = {
         ]
     },
     "Pokemon": {
-        sets: [
-            "All Sets",
-            "Pokemon Set Placeholder 01",
-            "Pokemon Set Placeholder 02",
-            "Pokemon Set Placeholder 03",
-            "Pokemon Set Placeholder 04",
-            "Pokemon Set Placeholder 05",
-            "Pokemon Set Placeholder 06"
-        ],
-        types: ["All Types", "Pokemon", "Trainer", "Item", "Supporter", "Stadium", "Energy"],
+        sets: ["All Sets"],
+        types: ["All Types", "Pokémon", "Trainer", "Energy"],
         rarities: [
             "All Rarities",
             "Common",
@@ -4830,6 +4841,10 @@ function getVariantEmphasisClass(cardRecord, familyVariantCount) {
 }
 
 function getRarityAccentClass(cardRecord) {
+    if (cardRecord.game === "Pokemon") {
+        return getPokemonRarityAccentClass(cardRecord);
+    }
+
     const rarity = String(cardRecord.rarity || "").toLowerCase();
 
     if (rarity.includes("gold rare")) {
@@ -4867,6 +4882,28 @@ function getRarityAccentClass(cardRecord) {
     return "";
 }
 
+function getPokemonRarityAccentClass(cardRecord) {
+    const rarity = String(cardRecord.rarity || "").toLowerCase();
+
+    if (rarity.includes("special illustration") || rarity.includes("hyper") || rarity.includes("secret") || rarity.includes("crown")) {
+        return "inventory-card--rarity-secret";
+    }
+    if (rarity.includes("illustration") || rarity.includes("ultra") || rarity.includes("rare holo") || rarity.includes("4 diamond")) {
+        return "inventory-card--rarity-super";
+    }
+    if (rarity.includes("rare") || rarity.includes("3 diamond")) {
+        return "inventory-card--rarity-pokemon-rare";
+    }
+    if (rarity.includes("uncommon") || rarity.includes("2 diamond")) {
+        return "inventory-card--rarity-pokemon-uncommon";
+    }
+    if (isCommonRarityLabel(rarity) || rarity.includes("1 diamond")) {
+        return "inventory-card--rarity-common";
+    }
+
+    return "";
+}
+
 function isDarkOneCard(cardRecord) {
     const name = String(cardRecord?.name || "").trim().toLowerCase();
     return name === "the dark one" || name.startsWith("the dark one (");
@@ -4879,6 +4916,10 @@ function isSignedDarkOneCard(cardRecord) {
 function getRarityChipData(cardRecord) {
     const rarityText = String(cardRecord.rarity || "").trim();
     const normalizedRarity = rarityText.toLowerCase();
+
+    if (cardRecord.game === "Pokemon") {
+        return getPokemonRarityChipData(rarityText, normalizedRarity);
+    }
 
     if (normalizedRarity.includes("ultimate rare")) {
         return {
@@ -4942,6 +4983,67 @@ function getRarityChipData(cardRecord) {
             chipClass: "inventory-card__rarity-chip--uber",
             ariaLabel: `${rarityText} rarity`
         };
+    }
+
+    return null;
+}
+
+function getPokemonRarityChipData(rarityText, normalizedRarity) {
+    if (!normalizedRarity) {
+        return null;
+    }
+
+    const chip = (label, chipClass) => ({
+        label,
+        chipClass,
+        ariaLabel: `${rarityText} rarity`
+    });
+
+    if (normalizedRarity.includes("special illustration")) {
+        return chip("SIR", "inventory-card__rarity-chip--pokemon-secret");
+    }
+    if (normalizedRarity.includes("illustration")) {
+        return chip("IR", "inventory-card__rarity-chip--pokemon-illustration");
+    }
+    if (normalizedRarity.includes("hyper")) {
+        return chip("HR", "inventory-card__rarity-chip--pokemon-secret");
+    }
+    if (normalizedRarity.includes("crown")) {
+        return chip("CR", "inventory-card__rarity-chip--pokemon-secret");
+    }
+    if (normalizedRarity.includes("ultra")) {
+        return chip("UR", "inventory-card__rarity-chip--pokemon-ultra");
+    }
+    if (normalizedRarity.includes("triple rare")) {
+        return chip("TR", "inventory-card__rarity-chip--pokemon-ultra");
+    }
+    if (normalizedRarity.includes("double rare")) {
+        return chip("DR", "inventory-card__rarity-chip--pokemon-double");
+    }
+    if (normalizedRarity.includes("rare holo")) {
+        return chip("RH", "inventory-card__rarity-chip--pokemon-holo");
+    }
+    if (normalizedRarity.includes("rare")) {
+        return chip("R", "inventory-card__rarity-chip--pokemon-rare");
+    }
+    if (normalizedRarity.includes("uncommon")) {
+        return chip("U", "inventory-card__rarity-chip--pokemon-uncommon");
+    }
+    if (isCommonRarityLabel(normalizedRarity)) {
+        return chip("C", "inventory-card__rarity-chip--common");
+    }
+
+    const diamondMatch = normalizedRarity.match(/(\d+)\s+diamond/);
+    if (diamondMatch) {
+        const diamondCount = diamondMatch[1];
+        const diamondClass = diamondCount === "1"
+            ? "inventory-card__rarity-chip--common"
+            : diamondCount === "2"
+                ? "inventory-card__rarity-chip--pokemon-uncommon"
+                : diamondCount === "3"
+                    ? "inventory-card__rarity-chip--pokemon-rare"
+                    : "inventory-card__rarity-chip--pokemon-ultra";
+        return chip(`${diamondCount}D`, diamondClass);
     }
 
     return null;
@@ -6034,6 +6136,8 @@ function normalizeCardRecord(card) {
         variant,
         edition: resolveFirstNonEmpty(card.edition, card.printing),
         effect: resolveFirstNonEmpty(card.effect, card.text, card.notes),
+        pokemonTypes: Array.isArray(card.pokemonTypes) ? card.pokemonTypes.filter(Boolean) : [],
+        pokemonDexNumbers: Array.isArray(card.pokemonDexNumbers) ? card.pokemonDexNumbers.filter((value) => Number.isFinite(Number(value))).map(Number) : [],
         imageUrl: resolveFirstNonEmpty(
             card.imageUrl,
             card.image_url_small,
@@ -7079,7 +7183,66 @@ function sortInventoryRecords(records, sortOption) {
         return typeof value === "number" && Number.isFinite(value) ? value : null;
     };
 
+    const getPokemonTypeRank = (record) => {
+        const supertype = String(record.type || "").trim().toLowerCase();
+        const types = Array.isArray(record.pokemonTypes) ? record.pokemonTypes : [];
+        for (const type of types) {
+            const rank = POKEMON_TYPE_SORT_ORDER.get(String(type || "").trim().toLowerCase());
+            if (Number.isFinite(rank)) {
+                return rank;
+            }
+        }
+
+        if (supertype === "trainer") {
+            return POKEMON_TRAINER_SORT_RANK;
+        }
+        if (supertype === "energy") {
+            return POKEMON_ENERGY_SORT_RANK;
+        }
+
+        return POKEMON_OTHER_SORT_RANK;
+    };
+
+    const getPokemonDexRank = (record) => {
+        const dexNumbers = Array.isArray(record.pokemonDexNumbers) ? record.pokemonDexNumbers : [];
+        const dexNumber = dexNumbers.find((value) => Number.isFinite(Number(value)));
+        return Number.isFinite(Number(dexNumber)) ? Number(dexNumber) : Number.POSITIVE_INFINITY;
+    };
+
+    const getPokemonEnergyRank = (record) => {
+        const name = String(record.name || "").trim().toLowerCase();
+        for (const [typeName, rank] of POKEMON_TYPE_SORT_ORDER.entries()) {
+            if (name.includes(typeName)) {
+                return rank;
+            }
+        }
+
+        return Number.POSITIVE_INFINITY;
+    };
+
     switch (sortOption) {
+    case POKEMON_DEFAULT_SORT_OPTION:
+        sorted.sort((a, b) => {
+            const typeRankDiff = getPokemonTypeRank(a) - getPokemonTypeRank(b);
+            if (typeRankDiff !== 0) {
+                return typeRankDiff;
+            }
+
+            if (String(a.type || "").trim().toLowerCase() === "energy" && String(b.type || "").trim().toLowerCase() === "energy") {
+                const energyRankDiff = getPokemonEnergyRank(a) - getPokemonEnergyRank(b);
+                if (Number.isFinite(energyRankDiff) && energyRankDiff !== 0) {
+                    return energyRankDiff;
+                }
+            }
+
+            const dexRankDiff = getPokemonDexRank(a) - getPokemonDexRank(b);
+            if (Number.isFinite(dexRankDiff) && dexRankDiff !== 0) {
+                return dexRankDiff;
+            }
+
+            return compareCardNumberOrder(a, b, 1);
+        });
+        break;
     case "Set Release (Latest First)":
         sorted.sort((a, b) => {
             const aDate = parseComparableReleaseDate(a.setReleaseDate);
@@ -7593,6 +7756,46 @@ async function loadYgoInventoryPage(filterState, offset = INVENTORY_DEFAULT_OFFS
     };
 }
 
+async function loadPokemonSetOptions() {
+    if (Array.isArray(pokemonSetOptionsCache) && pokemonSetOptionsCache.length > 0) {
+        return pokemonSetOptionsCache;
+    }
+
+    try {
+        const response = await fetch(POKEMON_SETS_API_URL, { cache: "no-store" });
+        if (!response.ok) {
+            throw new Error(`Request failed with status ${response.status}`);
+        }
+
+        pokemonSetOptionsCache = ["All Sets", ...parseSetsPayload(await response.json())];
+        FILTER_OPTIONS_BY_GAME["Pokemon"].sets = pokemonSetOptionsCache;
+    } catch {
+        pokemonSetOptionsCache = FILTER_OPTIONS_BY_GAME["Pokemon"].sets;
+    }
+
+    return pokemonSetOptionsCache;
+}
+
+async function loadPokemonInventoryPage(filterState, offset = INVENTORY_DEFAULT_OFFSET) {
+    const endpoint = new URL(POKEMON_INVENTORY_API_URL, window.location.origin);
+    endpoint.search = buildApiQueryString({ ...filterState, game: "All Games" }, offset);
+
+    const response = await fetch(endpoint, { cache: "no-store" });
+    if (!response.ok) {
+        const payload = await response.json().catch(() => null);
+        throw new Error(payload?.details || `Request failed with status ${response.status}`);
+    }
+
+    const payload = await response.json();
+    const parsed = parseCardsPayload(payload);
+    return {
+        ...parsed,
+        hasMore: typeof payload?.hasMore === "boolean"
+            ? payload.hasMore
+            : offset + parsed.items.length < parsed.total
+    };
+}
+
 async function loadSetsForAllGames(records) {
     try {
         const response = await fetch(INVENTORY_SETS_API_URL, { cache: "no-store" });
@@ -7724,6 +7927,7 @@ async function initInventoryFilters() {
     updateSetOptionsForAllGames(setFilter, inventoryRecords);
     await loadYgoSetOptions();
     await loadYgoArchetypeOptions();
+    await loadPokemonSetOptions();
 
     let renderRequestId = 0;
     let cardsShown = 0;
@@ -7941,6 +8145,41 @@ async function initInventoryFilters() {
             return;
         }
 
+        if (filterState.game === "Pokemon") {
+            let pokemonResult;
+            try {
+                pokemonResult = await loadPokemonInventoryPage(filterState, offset);
+            } catch (error) {
+                const reason = error instanceof Error ? error.message : "Unknown loading error";
+                renderInventoryError(resultsGrid, resultsMeta, `Unable to load Pokemon data (${reason}).`);
+                return;
+            }
+            if (requestId !== renderRequestId) {
+                return;
+            }
+
+            const sourceRecords = sortInventoryRecords(pokemonResult.items, filterState.sort);
+            const collisionCountMap = buildCollisionCountMap(sourceRecords);
+            const variantFamilyCountMap = buildVariantFamilyCountMap(sourceRecords);
+            if (!append && sourceRecords.length === 0) {
+                resultsGrid.innerHTML = `<article class="inventory-card"><div class="inventory-card__image" aria-hidden="true"></div><h3 class="inventory-card__title">No matching cards found</h3><p class="inventory-card__meta">Try adjusting set, type, rarity, or search text.</p><span class="inventory-card__tag">Searchable inventory</span></article>`;
+            } else if (append) {
+                resultsGrid.insertAdjacentHTML("beforeend", sourceRecords.map((record) => makeInventoryCard(record, collisionCountMap, variantFamilyCountMap, false, false)).join(""));
+                resultsGrid.classList.add("inventory-grid--thumbnail-mode");
+            } else {
+                resultsGrid.innerHTML = sourceRecords.map((record) => makeInventoryCard(record, collisionCountMap, variantFamilyCountMap, false, false)).join("");
+            }
+
+            cardsShown = append ? cardsShown + sourceRecords.length : sourceRecords.length;
+            canLoadMore = Boolean(pokemonResult.hasMore);
+            updateLoadMoreButtonState();
+            setLoadMoreProgress(cardsShown, pokemonResult.total, filterState.includeVariants);
+            updateVariantsSummary(filterState, pokemonResult.total);
+            hydrateInventoryCardImages(resultsGrid);
+            resultsMeta.textContent = `${cardsShown} of ${pokemonResult.total} cards shown • searchable inventory`;
+            return;
+        }
+
         const setPricingData = filterState.game === "Yu Yu Hakusho"
             ? (filterState.set === "All Sets"
                 ? await loadAllYyhSetPricingMap(inventoryRecords)
@@ -8034,6 +8273,7 @@ async function initInventoryFilters() {
         const hasSelectedGame = selectedGame !== "All Games";
         const isYyhSelected = selectedGame === "Yu Yu Hakusho";
         const isYgoSelected = selectedGame === "Yu-Gi-Oh";
+        const isPokemonSelected = selectedGame === "Pokemon";
 
         syncInventoryNav(selectedGame);
         syncInventoryNotes({ game: selectedGame });
@@ -8042,6 +8282,10 @@ async function initInventoryFilters() {
             ? (Array.isArray(ygoSetOptionsCache) && ygoSetOptionsCache.length > 0
                 ? ygoSetOptionsCache
                 : gameOptions.sets)
+            : selectedGame === "Pokemon"
+                ? (Array.isArray(pokemonSetOptionsCache) && pokemonSetOptionsCache.length > 0
+                    ? pokemonSetOptionsCache
+                    : gameOptions.sets)
             : gameOptions.sets;
 
         replaceSelectOptions(setFilter, selectedGameSetOptions);
@@ -8073,6 +8317,14 @@ async function initInventoryFilters() {
         replaceSelectOptions(sortFilter, isYgoSelected ? [
             YGO_DEFAULT_SORT_OPTION,
             "Set Release (Earliest First)",
+            "Card Number (Low-High)",
+            "Card Number (High-Low)",
+            "Name (A-Z)",
+            "Name (Z-A)",
+            "Rarity (A-Z)",
+            "Set (A-Z)"
+        ] : isPokemonSelected ? [
+            POKEMON_DEFAULT_SORT_OPTION,
             "Card Number (Low-High)",
             "Card Number (High-Low)",
             "Name (A-Z)",
@@ -8184,7 +8436,7 @@ async function initInventoryFilters() {
         if (Array.from(sortFilter.options).some((option) => option.value === previousSort)) {
             sortFilter.value = previousSort;
         } else {
-            sortFilter.value = isYgoSelected ? YGO_DEFAULT_SORT_OPTION : DEFAULT_SORT_OPTION;
+            sortFilter.value = isYgoSelected ? YGO_DEFAULT_SORT_OPTION : isPokemonSelected ? POKEMON_DEFAULT_SORT_OPTION : DEFAULT_SORT_OPTION;
         }
 
         if (variantsToggle instanceof HTMLInputElement) {
@@ -8271,6 +8523,8 @@ async function initInventoryFilters() {
 
     if (initialFilters.set && Array.from(setFilter.options).some((option) => option.value === initialFilters.set)) {
         setFilter.value = initialFilters.set;
+    } else if (gameFilter.value === "Pokemon" && Array.from(setFilter.options).some((option) => option.value === POKEMON_DEFAULT_SET)) {
+        setFilter.value = POKEMON_DEFAULT_SET;
     }
     if (initialFilters.type && Array.from(typeFilter.options).some((option) => option.value === initialFilters.type)) {
         typeFilter.value = initialFilters.type;
@@ -8296,7 +8550,7 @@ async function initInventoryFilters() {
     if (initialFilters.sort && Array.from(sortFilter.options).some((option) => option.value === initialFilters.sort)) {
         sortFilter.value = initialFilters.sort;
     } else {
-        sortFilter.value = gameFilter.value === "Yu-Gi-Oh" ? YGO_DEFAULT_SORT_OPTION : DEFAULT_SORT_OPTION;
+        sortFilter.value = gameFilter.value === "Yu-Gi-Oh" ? YGO_DEFAULT_SORT_OPTION : gameFilter.value === "Pokemon" ? POKEMON_DEFAULT_SORT_OPTION : DEFAULT_SORT_OPTION;
     }
 
     void renderResults(false);

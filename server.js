@@ -15,6 +15,12 @@ const EBAY_CONFIG = {
     environment: (process.env.EBAY_ENV || "sandbox").trim().toLowerCase() === "production" ? "production" : "sandbox",
     marketplaceId: process.env.EBAY_MARKETPLACE_ID || "EBAY-US"
 };
+const SCRYDEX_API_BASE_URL = "https://api.scrydex.com/pokemon/v1/en";
+const SCRYDEX_API_KEY = process.env.SCRYDEX_API_KEY || "";
+const SCRYDEX_TEAM_ID = process.env.SCRYDEX_TEAM_ID || "";
+const SCRYDEX_POKEMON_SET_ID_BY_NAME = new Map([
+    ["Base", "base1"]
+]);
 const EBAY_SCOPES = ["https://api.ebay.com/oauth/api_scope"]; 
 const EBAY_API_BASE_URLS = {
     sandbox: "https://api.sandbox.ebay.com",
@@ -1393,6 +1399,156 @@ app.get("/api/yyh/cards", async (req, res) => {
         res.status(500).json({
             error: "Failed to load YYH cards",
             details: message
+        });
+    }
+});
+
+function scrydexHeaders() {
+    return {
+        "X-Api-Key": SCRYDEX_API_KEY,
+        "X-Team-ID": SCRYDEX_TEAM_ID
+    };
+}
+
+function scrydexPokemonQuery(query) {
+    const clauses = [];
+    const search = typeof query.q === "string" ? query.q.trim().replace(/"/g, "") : "";
+    const set = typeof query.set === "string" ? query.set.trim().replace(/"/g, "") : "";
+    const type = typeof query.type === "string" ? query.type.trim().replace(/"/g, "") : "";
+    const rarity = typeof query.rarity === "string" ? query.rarity.trim().replace(/"/g, "") : "";
+
+    if (search) {
+        clauses.push(/^[-\w]+$/.test(search) ? `id:${search}` : `name:\"${search}\"`);
+    }
+    if (set) {
+        const setId = SCRYDEX_POKEMON_SET_ID_BY_NAME.get(set);
+        clauses.push(setId ? `expansion.id:${setId}` : `expansion.name:\"${set}\"`);
+    }
+    if (type) {
+        clauses.push(`supertype:\"${type}\"`);
+    }
+    if (rarity) {
+        clauses.push(`rarity:\"${rarity}\"`);
+    }
+
+    return clauses.join(" ");
+}
+
+function normalizeScrydexPokemonCard(card) {
+    const frontImage = Array.isArray(card.images)
+        ? card.images.find((image) => image?.type === "front") || card.images[0]
+        : null;
+
+    return {
+        id: String(card.id || "UNKNOWN"),
+        number: String(card.number || card.id || "UNKNOWN"),
+        game: "Pokemon",
+        set: String(card.expansion?.name || "Unknown Set"),
+        name: String(card.name || "Unnamed Card"),
+        type: String(card.supertype || "Unknown Type"),
+        rarity: String(card.rarity || "Unknown Rarity"),
+        pokemonTypes: Array.isArray(card.types) ? card.types.map((type) => String(type || "").trim()).filter(Boolean) : [],
+        pokemonDexNumbers: Array.isArray(card.national_pokedex_numbers) ? card.national_pokedex_numbers.filter((value) => Number.isFinite(Number(value))).map(Number) : [],
+        variant: "Standard",
+        effect: String(card.rules?.join(" ") || card.flavor_text || ""),
+        imageUrl: String(frontImage?.small || frontImage?.medium || frontImage?.large || ""),
+        setReleaseDate: String(card.expansion?.release_date || "")
+    };
+}
+
+app.get("/api/pokemon/cards", async (req, res) => {
+    if (!SCRYDEX_API_KEY || !SCRYDEX_TEAM_ID) {
+        res.status(503).json({
+            error: "Scrydex credentials are not configured",
+            details: "Set SCRYDEX_API_KEY and SCRYDEX_TEAM_ID in .env.local."
+        });
+        return;
+    }
+
+    try {
+        const limit = clampLimit(req.query.limit, 24, 100);
+        const offset = parseNonNegativeInt(req.query.offset, 0);
+        const endpoint = new URL(`${SCRYDEX_API_BASE_URL}/cards`);
+        const query = scrydexPokemonQuery(req.query);
+        if (query) {
+            endpoint.searchParams.set("q", query);
+        }
+        endpoint.searchParams.set("page", String(Math.floor(offset / limit) + 1));
+        endpoint.searchParams.set("pageSize", String(limit));
+        endpoint.searchParams.set("select", "id,name,number,supertype,types,rarity,rules,flavor_text,national_pokedex_numbers,images,expansion");
+
+        const response = await fetch(endpoint, { headers: scrydexHeaders() });
+        if (!response.ok) {
+            throw new Error(`Scrydex API request failed with status ${response.status}`);
+        }
+
+        const payload = await response.json();
+        const items = Array.isArray(payload?.data) ? payload.data.map(normalizeScrydexPokemonCard) : [];
+        const total = Number(payload?.totalCount ?? payload?.total_count);
+        const hasExplicitTotal = Number.isFinite(total);
+        const resolvedTotal = hasExplicitTotal
+            ? total
+            : offset + items.length + (items.length === limit ? limit : 0);
+        const hasMore = hasExplicitTotal
+            ? offset + items.length < resolvedTotal
+            : items.length === limit;
+        res.json({ items, total: resolvedTotal, limit, offset, hasMore });
+    } catch (error) {
+        res.status(502).json({
+            error: "Failed to load Pokemon cards",
+            details: error instanceof Error ? error.message : "Unknown Scrydex API error"
+        });
+    }
+});
+
+app.get("/api/pokemon/sets", async (req, res) => {
+    if (!SCRYDEX_API_KEY || !SCRYDEX_TEAM_ID) {
+        res.status(503).json({
+            error: "Scrydex credentials are not configured",
+            details: "Set SCRYDEX_API_KEY and SCRYDEX_TEAM_ID in .env.local."
+        });
+        return;
+    }
+
+    try {
+        const itemsByName = new Map();
+        let page = 1;
+        let total = Number.POSITIVE_INFINITY;
+
+        while (itemsByName.size < total) {
+            const endpoint = new URL(`${SCRYDEX_API_BASE_URL}/expansions`);
+            endpoint.searchParams.set("page", String(page));
+            endpoint.searchParams.set("pageSize", "100");
+            endpoint.searchParams.set("orderBy", "-releaseDate");
+            endpoint.searchParams.set("select", "name");
+            const response = await fetch(endpoint, { headers: scrydexHeaders() });
+            if (!response.ok) {
+                throw new Error(`Scrydex API request failed with status ${response.status}`);
+            }
+
+            const payload = await response.json();
+            const pageItems = Array.isArray(payload?.data) ? payload.data : [];
+            const nextTotal = Number(payload?.totalCount ?? payload?.total_count);
+            total = Number.isFinite(nextTotal) ? nextTotal : itemsByName.size + pageItems.length;
+            for (const set of pageItems) {
+                const name = String(set?.name || "").trim();
+                if (name) {
+                    itemsByName.set(name, name);
+                }
+            }
+
+            if (pageItems.length === 0 || pageItems.length < 100) {
+                break;
+            }
+            page += 1;
+        }
+
+        const items = Array.from(itemsByName.values());
+        res.json({ items, total: items.length });
+    } catch (error) {
+        res.status(502).json({
+            error: "Failed to load Pokemon sets",
+            details: error instanceof Error ? error.message : "Unknown Scrydex API error"
         });
     }
 });

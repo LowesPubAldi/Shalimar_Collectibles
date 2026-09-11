@@ -220,6 +220,22 @@ If it does not clearly fit the current version, it goes into the next version ba
 
 The site now has a simple backend starter so the frontend can ask for card data from an API route.
 
+### Pokemon Inventory via Scrydex
+
+Pokemon Inventory uses Scrydex's English Pokemon API through this backend. Create a Scrydex account, team, and API key, then add both values directly to `.env.local`:
+
+```text
+SCRYDEX_API_KEY=your_key_here
+SCRYDEX_TEAM_ID=your_team_id_here
+```
+
+Pokemon endpoints:
+
+- `http://127.0.0.1:3000/api/pokemon/cards?limit=24`
+- `http://127.0.0.1:3000/api/pokemon/sets`
+
+The cards endpoint supports `q`, `set`, `type`, `rarity`, `limit`, and `offset`.
+
 ### What This Means
 
 - The inventory page asks the backend for cards.

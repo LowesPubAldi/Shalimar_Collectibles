@@ -481,6 +481,52 @@
     box-shadow: 0 2px 8px rgba(2, 6, 23, 0.5), 0 0 10px rgba(241, 190, 92, 0.3);
 }
 
+.inventory-card__rarity-chip--pokemon-uncommon {
+    color: #e8fff3;
+    background: linear-gradient(180deg, rgba(74, 178, 111, 0.94), rgba(38, 119, 74, 0.92));
+    border-color: rgba(166, 243, 195, 0.84);
+}
+
+.inventory-card__rarity-chip--pokemon-rare {
+    color: #eaf6ff;
+    background: linear-gradient(180deg, rgba(79, 156, 225, 0.94), rgba(42, 96, 170, 0.92));
+    border-color: rgba(179, 220, 255, 0.86);
+}
+
+.inventory-card__rarity-chip--pokemon-holo {
+    color: #fff7fb;
+    background: linear-gradient(135deg, rgba(88, 182, 235, 0.96), rgba(225, 112, 183, 0.94), rgba(247, 210, 94, 0.92));
+    border-color: rgba(255, 238, 196, 0.9);
+    box-shadow: 0 2px 8px rgba(2, 6, 23, 0.5), 0 0 10px rgba(120, 211, 255, 0.24);
+}
+
+.inventory-card__rarity-chip--pokemon-double {
+    color: #fff6dd;
+    background: linear-gradient(180deg, rgba(235, 157, 65, 0.96), rgba(166, 89, 32, 0.94));
+    border-color: rgba(255, 215, 144, 0.9);
+}
+
+.inventory-card__rarity-chip--pokemon-ultra {
+    color: #ffeafa;
+    background: linear-gradient(180deg, rgba(225, 96, 177, 0.96), rgba(126, 54, 159, 0.94));
+    border-color: rgba(255, 190, 235, 0.9);
+    box-shadow: 0 2px 8px rgba(2, 6, 23, 0.5), 0 0 10px rgba(225, 96, 177, 0.26);
+}
+
+.inventory-card__rarity-chip--pokemon-illustration {
+    color: #fff9dd;
+    background: linear-gradient(135deg, rgba(241, 193, 78, 0.98), rgba(55, 154, 139, 0.94));
+    border-color: rgba(255, 236, 160, 0.92);
+    box-shadow: 0 2px 8px rgba(2, 6, 23, 0.5), 0 0 10px rgba(80, 206, 188, 0.24);
+}
+
+.inventory-card__rarity-chip--pokemon-secret {
+    color: #fffbe6;
+    background: linear-gradient(135deg, rgba(255, 222, 88, 0.98), rgba(91, 188, 220, 0.94), rgba(232, 109, 183, 0.94));
+    border-color: rgba(255, 244, 181, 0.94);
+    box-shadow: 0 2px 8px rgba(2, 6, 23, 0.5), 0 0 12px rgba(255, 222, 88, 0.32);
+}
+
 .inventory-card__image {
     position: relative;
     overflow: hidden;
@@ -637,6 +683,16 @@
 .inventory-card--rarity-common .inventory-card__tag {
     border-color: rgba(150, 168, 200, 0.5);
     color: #d6e2f6;
+}
+
+.inventory-card--rarity-pokemon-uncommon {
+    border-color: rgba(126, 211, 158, 0.54);
+    box-shadow: 0 0 0 1px rgba(94, 184, 126, 0.22);
+}
+
+.inventory-card--rarity-pokemon-rare {
+    border-color: rgba(117, 184, 245, 0.58);
+    box-shadow: 0 0 0 1px rgba(86, 150, 225, 0.24), 0 0 14px rgba(79, 156, 225, 0.12);
 }
 
 .inventory-card--rarity-ghost {
