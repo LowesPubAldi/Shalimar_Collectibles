@@ -165,6 +165,21 @@ Version 2 is the next big step. The goal is to make the site more useful and mor
 - In V2, move the full Milcery experience off the main Evolution page and give it a dedicated page covering all 49 Cream and Confectionery variations.
 - The dedicated Milcery page should explain the Sweet, cream, spin, time, and direction combinations behind the 49 outcomes.
 
+#### PokeTuber Picks With Upgrades
+
+- Build a curated section around Pokemon strongly associated with individual PokeTubers without requiring every selection to be their definitive favorite.
+- Josh normally nominates two Pokemon from watching each creator; confirm the associations and canonical mechanics before adding them to the roster.
+- Allow one Pokemon to carry a creator's section when it is an unmistakable channel icon with enough interaction depth for a full feature.
+- Keep source links, timestamps, and evidence notes out of the public concept brief. Record only each creator's Pokemon and their interactions.
+- Follow the spirit of Karen's advice: emphasize the Pokemon people genuinely connect with instead of defaulting to Legendaries, special forms, or the strongest battlers.
+- Give each pick a bespoke upgrade such as a shiny reveal, transformation, evolution, Mega or Gigantamax state, ability demonstration, habitat change, flexible battle role, or creator-specific visual interaction.
+- Treat "upgrade" as a richer presentation of the Pokemon's identity, not necessarily a stronger form.
+- Link each featured creator's official YouTube channel as a free editorial spotlight, with clear language that the section is unofficial and not endorsed or sponsored.
+- Track creator channels, Pokemon selections, and interaction concepts in [POKEMON_CREATOR_FAVORITES.md](POKEMON_CREATOR_FAVORITES.md).
+- Machamp Form Showcase: build a focused interactive experience around Machamp as a known PM7 favorite.
+- Give Machamp Regular, Shiny, and Gigantamax states. Use a Shiny toggle with a small fist transition between Regular and Shiny, then a larger, heavier fist transition when entering or leaving Gigantamax from either state.
+- Preserve the selected Regular or Shiny state beneath Gigantamax so leaving G-Max returns the visitor to the form they chose. Include a reduced-motion transition for accessibility.
+
 #### V2 Footholds Already Established
 
 - Reusable card-variant logic now supports tiered finish presentation, making future variant UX extension lower risk.
