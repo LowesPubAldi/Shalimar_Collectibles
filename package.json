@@ -6,6 +6,17 @@
   "scripts": {
     "start": "node server.js",
     "api": "node server.js",
+    "pokemon:sync-wave-1": "node scripts/tools/sync_scrydex_pokemon_wave.js",
+    "pokemon:sync-wave-1-batch-2": "node scripts/tools/sync_scrydex_pokemon_wave.js --batch 2",
+    "pokemon:sync-wave-1-batch-3": "node scripts/tools/sync_scrydex_pokemon_wave.js --batch 3",
+    "pokemon:sync-wave-2-batch-1": "node scripts/tools/sync_scrydex_pokemon_wave.js --wave 2 --batch 1",
+    "pokemon:sync-wave-2-batch-2": "node scripts/tools/sync_scrydex_pokemon_wave.js --wave 2 --batch 2",
+    "pokemon:sync-wave-2-batch-3": "node scripts/tools/sync_scrydex_pokemon_wave.js --wave 2 --batch 3",
+    "pokemon:sync-wave-3-batch-1": "node scripts/tools/sync_scrydex_pokemon_wave.js --wave 3 --batch 1",
+    "pokemon:sync-wave-3-batch-2": "node scripts/tools/sync_scrydex_pokemon_wave.js --wave 3 --batch 2",
+    "pokemon:sync-wave-4-batch-1": "node scripts/tools/sync_scrydex_pokemon_wave.js --wave 4 --batch 1",
+    "pokemon:sync-wave-4-batch-2": "node scripts/tools/sync_scrydex_pokemon_wave.js --wave 4 --batch 2",
+    "pokemon:sync-wave-4-batch-3": "node scripts/tools/sync_scrydex_pokemon_wave.js --wave 4 --batch 3",
     "yyh:update-medians": "node scripts/tools/update_yyh_median_pricing.js",
     "yyh:apply-suspicious": "node scripts/tools/apply_yyh_suspicious_approvals.js",
     "test": "echo \"Error: no test specified\" && exit 1"

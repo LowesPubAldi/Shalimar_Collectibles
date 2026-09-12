@@ -1,0 +1,654 @@
+[
+  {
+    "wave": 1,
+    "label": "Wizards Era - Batch 1",
+    "startedAt": "2026-09-11T20:59:14.620Z",
+    "finishedAt": "2026-09-11T20:59:16.918Z",
+    "status": "success",
+    "scrydexRequests": 7,
+    "setsRequested": 3,
+    "setsImported": 3,
+    "cardsImported": 277,
+    "sets": [
+      {
+        "id": "base3",
+        "name": "Fossil",
+        "expectedTotal": 62,
+        "cardsImported": 62,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "base5",
+        "name": "Team Rocket",
+        "expectedTotal": 83,
+        "cardsImported": 83,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "gym1",
+        "name": "Gym Heroes",
+        "expectedTotal": 132,
+        "cardsImported": 132,
+        "pagesFetched": 2,
+        "status": "success"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "wave": 1,
+    "batch": 2,
+    "label": "Wizards Era - Batch 2",
+    "startedAt": "2026-09-11T21:11:44.342Z",
+    "finishedAt": "2026-09-11T21:11:48.079Z",
+    "status": "success",
+    "scrydexRequests": 8,
+    "setsRequested": 5,
+    "setsImported": 5,
+    "cardsImported": 497,
+    "sets": [
+      {
+        "id": "gym2",
+        "name": "Gym Challenge",
+        "expectedTotal": 132,
+        "cardsImported": 132,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "neo1",
+        "name": "Neo Genesis",
+        "expectedTotal": 111,
+        "cardsImported": 111,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "neo2",
+        "name": "Neo Discovery",
+        "expectedTotal": 75,
+        "cardsImported": 75,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "neo3",
+        "name": "Neo Revelation",
+        "expectedTotal": 66,
+        "cardsImported": 66,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "neo4",
+        "name": "Neo Destiny",
+        "expectedTotal": 113,
+        "cardsImported": 113,
+        "pagesFetched": 2,
+        "status": "success"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "wave": 1,
+    "batch": 3,
+    "label": "Wizards Era - Batch 3",
+    "startedAt": "2026-09-11T22:12:55.271Z",
+    "finishedAt": "2026-09-11T22:12:59.740Z",
+    "status": "success",
+    "scrydexRequests": 9,
+    "setsRequested": 5,
+    "setsImported": 5,
+    "cardsImported": 692,
+    "sets": [
+      {
+        "id": "base6",
+        "name": "Legendary Collection",
+        "expectedTotal": 110,
+        "cardsImported": 110,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "ecard1",
+        "name": "Expedition Base Set",
+        "expectedTotal": 165,
+        "cardsImported": 165,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "ecard2",
+        "name": "Aquapolis",
+        "expectedTotal": 182,
+        "cardsImported": 182,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "ecard3",
+        "name": "Skyridge",
+        "expectedTotal": 182,
+        "cardsImported": 182,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "basep",
+        "name": "Wizards Black Star Promos",
+        "expectedTotal": 53,
+        "cardsImported": 53,
+        "pagesFetched": 1,
+        "status": "success"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "wave": 2,
+    "batch": 1,
+    "label": "EX Era - Batch 1",
+    "startedAt": "2026-09-11T22:55:26.013Z",
+    "finishedAt": "2026-09-11T22:55:30.674Z",
+    "status": "success",
+    "scrydexRequests": 9,
+    "setsRequested": 6,
+    "setsImported": 6,
+    "cardsImported": 624,
+    "sets": [
+      {
+        "id": "ex1",
+        "name": "Ruby & Sapphire",
+        "expectedTotal": 109,
+        "cardsImported": 109,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "ex2",
+        "name": "Sandstorm",
+        "expectedTotal": 100,
+        "cardsImported": 100,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "ex3",
+        "name": "Dragon",
+        "expectedTotal": 100,
+        "cardsImported": 100,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "ex4",
+        "name": "Team Magma vs Team Aqua",
+        "expectedTotal": 97,
+        "cardsImported": 97,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "ex5",
+        "name": "Hidden Legends",
+        "expectedTotal": 102,
+        "cardsImported": 102,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "ex6",
+        "name": "FireRed & LeafGreen",
+        "expectedTotal": 116,
+        "cardsImported": 116,
+        "pagesFetched": 2,
+        "status": "success"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "wave": 2,
+    "batch": 2,
+    "label": "EX Era - Batch 2",
+    "startedAt": "2026-09-11T23:00:45.939Z",
+    "finishedAt": "2026-09-11T23:00:50.884Z",
+    "status": "success",
+    "scrydexRequests": 10,
+    "setsRequested": 5,
+    "setsImported": 5,
+    "cardsImported": 585,
+    "sets": [
+      {
+        "id": "ex7",
+        "name": "Team Rocket Returns",
+        "expectedTotal": 111,
+        "cardsImported": 111,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "ex8",
+        "name": "Deoxys",
+        "expectedTotal": 108,
+        "cardsImported": 108,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "ex9",
+        "name": "Emerald",
+        "expectedTotal": 107,
+        "cardsImported": 107,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "ex10",
+        "name": "Unseen Forces",
+        "expectedTotal": 145,
+        "cardsImported": 145,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "ex11",
+        "name": "Delta Species",
+        "expectedTotal": 114,
+        "cardsImported": 114,
+        "pagesFetched": 2,
+        "status": "success"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "wave": 2,
+    "batch": 3,
+    "label": "EX Era - Batch 3",
+    "startedAt": "2026-09-11T23:10:10.256Z",
+    "finishedAt": "2026-09-11T23:10:14.288Z",
+    "status": "success",
+    "scrydexRequests": 8,
+    "setsRequested": 5,
+    "setsImported": 5,
+    "cardsImported": 513,
+    "sets": [
+      {
+        "id": "ex12",
+        "name": "Legend Maker",
+        "expectedTotal": 93,
+        "cardsImported": 93,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "ex13",
+        "name": "Holon Phantoms",
+        "expectedTotal": 111,
+        "cardsImported": 111,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "ex14",
+        "name": "Crystal Guardians",
+        "expectedTotal": 100,
+        "cardsImported": 100,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "ex15",
+        "name": "Dragon Frontiers",
+        "expectedTotal": 101,
+        "cardsImported": 101,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "ex16",
+        "name": "Power Keepers",
+        "expectedTotal": 108,
+        "cardsImported": 108,
+        "pagesFetched": 2,
+        "status": "success"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "wave": 3,
+    "batch": 1,
+    "label": "Diamond & Pearl / Platinum - Batch 1",
+    "startedAt": "2026-09-11T23:33:32.021Z",
+    "finishedAt": "2026-09-11T23:33:37.685Z",
+    "status": "success",
+    "scrydexRequests": 11,
+    "setsRequested": 6,
+    "setsImported": 6,
+    "cardsImported": 738,
+    "sets": [
+      {
+        "id": "dp1",
+        "name": "Diamond & Pearl",
+        "expectedTotal": 130,
+        "cardsImported": 130,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "dp2",
+        "name": "Mysterious Treasures",
+        "expectedTotal": 124,
+        "cardsImported": 124,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "dp3",
+        "name": "Secret Wonders",
+        "expectedTotal": 132,
+        "cardsImported": 132,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "dp4",
+        "name": "Great Encounters",
+        "expectedTotal": 106,
+        "cardsImported": 106,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "dp5",
+        "name": "Majestic Dawn",
+        "expectedTotal": 100,
+        "cardsImported": 100,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "dp6",
+        "name": "Legends Awakened",
+        "expectedTotal": 146,
+        "cardsImported": 146,
+        "pagesFetched": 2,
+        "status": "success"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "wave": 3,
+    "batch": 2,
+    "label": "Diamond & Pearl / Platinum - Batch 2",
+    "startedAt": "2026-09-11T23:36:33.509Z",
+    "finishedAt": "2026-09-11T23:36:38.014Z",
+    "status": "success",
+    "scrydexRequests": 10,
+    "setsRequested": 5,
+    "setsImported": 5,
+    "cardsImported": 623,
+    "sets": [
+      {
+        "id": "dp7",
+        "name": "Stormfront",
+        "expectedTotal": 106,
+        "cardsImported": 106,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "pl1",
+        "name": "Platinum",
+        "expectedTotal": 133,
+        "cardsImported": 133,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "pl2",
+        "name": "Rising Rivals",
+        "expectedTotal": 120,
+        "cardsImported": 120,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "pl3",
+        "name": "Supreme Victors",
+        "expectedTotal": 153,
+        "cardsImported": 153,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "pl4",
+        "name": "Arceus",
+        "expectedTotal": 111,
+        "cardsImported": 111,
+        "pagesFetched": 2,
+        "status": "success"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "wave": 4,
+    "batch": 1,
+    "label": "HeartGold & SoulSilver / Early Black & White - Batch 1",
+    "startedAt": "2026-09-11T23:47:59.191Z",
+    "finishedAt": "2026-09-11T23:48:15.172Z",
+    "status": "success",
+    "scrydexRequests": 9,
+    "setsRequested": 7,
+    "setsImported": 7,
+    "cardsImported": 499,
+    "sets": [
+      {
+        "id": "hgss1",
+        "name": "HeartGold & SoulSilver",
+        "expectedTotal": 124,
+        "cardsImported": 124,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "hsp",
+        "name": "HGSS Black Star Promos",
+        "expectedTotal": 25,
+        "cardsImported": 25,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "tk4a",
+        "name": "HGSS Trainer Kit Raichu",
+        "expectedTotal": 30,
+        "cardsImported": 30,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "tk4b",
+        "name": "HGSS Trainer Kit Gyarados",
+        "expectedTotal": 30,
+        "cardsImported": 30,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "hgss2",
+        "name": "HS—Unleashed",
+        "expectedTotal": 96,
+        "cardsImported": 96,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "hgss3",
+        "name": "HS—Undaunted",
+        "expectedTotal": 91,
+        "cardsImported": 91,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "hgss4",
+        "name": "HS—Triumphant",
+        "expectedTotal": 103,
+        "cardsImported": 103,
+        "pagesFetched": 2,
+        "status": "success"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "wave": 4,
+    "batch": 2,
+    "label": "HeartGold & SoulSilver / Early Black & White - Batch 2",
+    "startedAt": "2026-09-11T23:50:39.298Z",
+    "finishedAt": "2026-09-11T23:50:45.137Z",
+    "status": "success",
+    "scrydexRequests": 10,
+    "setsRequested": 7,
+    "setsImported": 7,
+    "cardsImported": 492,
+    "sets": [
+      {
+        "id": "col1",
+        "name": "Call of Legends",
+        "expectedTotal": 106,
+        "cardsImported": 106,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "bwp",
+        "name": "BW Black Star Promos",
+        "expectedTotal": 101,
+        "cardsImported": 101,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "bw1",
+        "name": "Black & White",
+        "expectedTotal": 115,
+        "cardsImported": 115,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "mcd11",
+        "name": "McDonald's Collection 2011",
+        "expectedTotal": 12,
+        "cardsImported": 12,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "bw2",
+        "name": "Emerging Powers",
+        "expectedTotal": 98,
+        "cardsImported": 98,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "tk5a",
+        "name": "BW Trainer Kit Zoroark",
+        "expectedTotal": 30,
+        "cardsImported": 30,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "tk5b",
+        "name": "BW Trainer Kit Excadrill",
+        "expectedTotal": 30,
+        "cardsImported": 30,
+        "pagesFetched": 1,
+        "status": "success"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "wave": 4,
+    "batch": 3,
+    "label": "HeartGold & SoulSilver / Early Black & White - Batch 3",
+    "startedAt": "2026-09-11T23:52:31.559Z",
+    "finishedAt": "2026-09-11T23:52:36.311Z",
+    "status": "success",
+    "scrydexRequests": 12,
+    "setsRequested": 7,
+    "setsImported": 7,
+    "cardsImported": 630,
+    "sets": [
+      {
+        "id": "bw3",
+        "name": "Noble Victories",
+        "expectedTotal": 102,
+        "cardsImported": 102,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "bw4",
+        "name": "Next Destinies",
+        "expectedTotal": 103,
+        "cardsImported": 103,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "bw5",
+        "name": "Dark Explorers",
+        "expectedTotal": 111,
+        "cardsImported": 111,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "mcd12",
+        "name": "McDonald's Collection 2012",
+        "expectedTotal": 12,
+        "cardsImported": 12,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "bw6",
+        "name": "Dragons Exalted",
+        "expectedTotal": 128,
+        "cardsImported": 128,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "dv1",
+        "name": "Dragon Vault",
+        "expectedTotal": 21,
+        "cardsImported": 21,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "bw7",
+        "name": "Boundaries Crossed",
+        "expectedTotal": 153,
+        "cardsImported": 153,
+        "pagesFetched": 2,
+        "status": "success"
+      }
+    ],
+    "errors": []
+  }
+]

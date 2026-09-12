@@ -4130,6 +4130,7 @@ let allYyhSetPricingCache = null;
 let kingSetNotesCache = null;
 let ygoSetOptionsCache = null;
 let pokemonSetOptionsCache = null;
+let pokemonSetMetadataCache = [];
 let ygoSetReleaseDateCache = new Map();
 let ygoArchetypeOptionsCache = null;
 let ygoVariantInventoryCache = new Map();
@@ -4319,6 +4320,52 @@ function replaceSelectOptions(selectElement, options) {
         option.value = optionLabel;
         option.textContent = optionLabel;
         selectElement.appendChild(option);
+    }
+}
+
+const POKEMON_SET_WAVES = [
+    { label: "Wave 1: Wizards Era", through: "2003/05/31" },
+    { label: "Wave 2: EX Era", through: "2007/04/30" },
+    { label: "Wave 3: Diamond & Pearl / Platinum", through: "2010/02/09" },
+    { label: "Wave 4: HeartGold & SoulSilver / Early Black & White", through: "2013/01/31" },
+    { label: "Wave 5: Late Black & White / XY", through: "2016/08/03" },
+    { label: "Wave 6: Late XY / Early Sun & Moon", through: "2018/08/31" },
+    { label: "Wave 7: Late Sun & Moon", through: "2020/02/06" },
+    { label: "Wave 8: Sword & Shield", through: "2023/03/30" },
+    { label: "Wave 9: Scarlet & Violet and Later", through: "9999/12/31" }
+];
+
+function replacePokemonSetOptions(selectElement, options) {
+    if (pokemonSetMetadataCache.length === 0) {
+        replaceSelectOptions(selectElement, options);
+        return;
+    }
+
+    selectElement.innerHTML = "";
+    const allSetsOption = document.createElement("option");
+    allSetsOption.value = "All Sets";
+    allSetsOption.textContent = "All Sets";
+    selectElement.appendChild(allSetsOption);
+
+    const sortedSets = [...pokemonSetMetadataCache].sort((left, right) => {
+        const dateComparison = left.releaseDate.localeCompare(right.releaseDate);
+        return dateComparison || left.name.localeCompare(right.name);
+    });
+    let previousBoundary = "";
+    for (const wave of POKEMON_SET_WAVES) {
+        const group = document.createElement("optgroup");
+        group.label = wave.label;
+        for (const set of sortedSets) {
+            if (set.releaseDate <= previousBoundary || set.releaseDate > wave.through) {
+                continue;
+            }
+            const option = document.createElement("option");
+            option.value = set.name;
+            option.textContent = set.name;
+            group.appendChild(option);
+        }
+        selectElement.appendChild(group);
+        previousBoundary = wave.through;
     }
 }
 
@@ -7376,6 +7423,7 @@ function sortInventoryRecords(records, sortOption) {
 
 function makeFilterState(searchFilter, gameFilter, setFilter, typeFilter, rarityFilter, editionFilter, variantFocusFilter, priceStatusFilter, gameplayStatusFilter, sortFilter, variantsToggle) {
     const archetypeFilter = document.getElementById("inventory-archetype-filter");
+    const pokemonCachedToggle = document.getElementById("inventory-pokemon-cached-toggle");
     return {
         query: searchFilter.value,
         game: gameFilter.value,
@@ -7388,7 +7436,8 @@ function makeFilterState(searchFilter, gameFilter, setFilter, typeFilter, rarity
         priceStatus: priceStatusFilter.value,
         gameplayStatus: gameplayStatusFilter.value,
         sort: sortFilter.value,
-        includeVariants: Boolean(variantsToggle.checked)
+        includeVariants: Boolean(variantsToggle.checked),
+        showAllPokemonCached: pokemonCachedToggle instanceof HTMLInputElement && pokemonCachedToggle.checked
     };
 }
 
@@ -7782,7 +7831,15 @@ async function loadPokemonSetOptions() {
             throw new Error(`Request failed with status ${response.status}`);
         }
 
-        pokemonSetOptionsCache = ["All Sets", ...parseSetsPayload(await response.json())];
+        const payload = await response.json();
+        pokemonSetOptionsCache = ["All Sets", ...parseSetsPayload(payload)];
+        pokemonSetMetadataCache = Array.isArray(payload?.setMetadata)
+            ? payload.setMetadata.map((set) => ({
+                id: String(set?.id || ""),
+                name: String(set?.name || "").trim(),
+                releaseDate: String(set?.releaseDate || "")
+            })).filter((set) => set.name && set.releaseDate)
+            : [];
         FILTER_OPTIONS_BY_GAME["Pokemon"].sets = pokemonSetOptionsCache;
     } catch {
         pokemonSetOptionsCache = FILTER_OPTIONS_BY_GAME["Pokemon"].sets;
@@ -7794,6 +7851,9 @@ async function loadPokemonSetOptions() {
 async function loadPokemonInventoryPage(filterState, offset = INVENTORY_DEFAULT_OFFSET) {
     const endpoint = new URL(POKEMON_INVENTORY_API_URL, window.location.origin);
     endpoint.search = buildApiQueryString({ ...filterState, game: "All Games" }, offset);
+    if (filterState.showAllPokemonCached) {
+        endpoint.searchParams.set("cached", "all");
+    }
 
     const response = await fetch(endpoint, { cache: "no-store" });
     if (!response.ok) {
@@ -7915,6 +7975,7 @@ async function initInventoryFilters() {
     const gameplayStatusFilter = document.getElementById("inventory-gameplay-status-filter");
     const sortFilter = document.getElementById("inventory-sort-filter");
     const variantsToggle = document.getElementById("inventory-variants-toggle");
+    const pokemonCachedToggle = document.getElementById("inventory-pokemon-cached-toggle");
     const resultsMeta = document.getElementById("inventory-results-meta");
     const resultsGrid = document.getElementById("inventory-results-grid");
     const loadMoreButton = document.getElementById("inventory-load-more");
@@ -7924,7 +7985,7 @@ async function initInventoryFilters() {
     const filterNoteElements = Array.from(document.querySelectorAll(".inventory-filter-note"));
     const initialFilters = readInitialFiltersFromUrl();
 
-    if (!searchFilter || !gameFilter || !setFilter || !typeFilter || !archetypeFilter || !rarityFilter || !editionFilter || !variantFocusFilter || !priceStatusFilter || !gameplayStatusFilter || !sortFilter || !variantsToggle || !resultsMeta || !resultsGrid || !loadMoreButton || !loadMoreProgress || !setContextElement || !variantsSummary) {
+    if (!searchFilter || !gameFilter || !setFilter || !typeFilter || !archetypeFilter || !rarityFilter || !editionFilter || !variantFocusFilter || !priceStatusFilter || !gameplayStatusFilter || !sortFilter || !variantsToggle || !pokemonCachedToggle || !resultsMeta || !resultsGrid || !loadMoreButton || !loadMoreProgress || !setContextElement || !variantsSummary) {
         return;
     }
 
@@ -7948,6 +8009,7 @@ async function initInventoryFilters() {
     let renderRequestId = 0;
     let cardsShown = 0;
     let canLoadMore = false;
+    let pokemonSetBeforeShowAll = POKEMON_DEFAULT_SET;
 
     const setLoadMoreProgress = (shown, total, includeVariants) => {
         loadMoreProgress.hidden = false;
@@ -8304,7 +8366,11 @@ async function initInventoryFilters() {
                     : gameOptions.sets)
             : gameOptions.sets;
 
-        replaceSelectOptions(setFilter, selectedGameSetOptions);
+        if (isPokemonSelected) {
+            replacePokemonSetOptions(setFilter, selectedGameSetOptions);
+        } else {
+            replaceSelectOptions(setFilter, selectedGameSetOptions);
+        }
         replaceSelectOptions(typeFilter, gameOptions.types);
         setInventoryControlVisible(archetypeFilter, !isPokemonSelected);
         setInventoryControlVisible(editionFilter, !isPokemonSelected);
@@ -8312,6 +8378,7 @@ async function initInventoryFilters() {
         setInventoryControlVisible(priceStatusFilter, !isPokemonSelected);
         setInventoryControlVisible(gameplayStatusFilter, !isPokemonSelected);
         setInventoryControlVisible(variantsToggle, !isPokemonSelected);
+        setInventoryControlVisible(pokemonCachedToggle, isPokemonSelected);
         setInventoryFilterNotesVisible(filterNoteElements, isPokemonSelected
             ? new Set([0, 1, 2, 3, 4, 5, 10, 11])
             : new Set(filterNoteElements.map((_, index) => index)));
@@ -8368,6 +8435,10 @@ async function initInventoryFilters() {
             "Variant Premium (High-Low)"
         ]);
         setDependentFilterState(setFilter, typeFilter, hasSelectedGame);
+        if (isPokemonSelected && pokemonCachedToggle.checked) {
+            setFilter.value = "All Sets";
+            setFilter.disabled = true;
+        }
 
         if (hasSelectedGame && gameOptions.sets.includes(previousSet)) {
             setFilter.value = previousSet;
@@ -8518,6 +8589,21 @@ async function initInventoryFilters() {
         syncConditionalFilters();
     });
     variantsToggle.addEventListener("change", () => {
+        void renderResults(false);
+    });
+    pokemonCachedToggle.addEventListener("change", () => {
+        if (pokemonCachedToggle.checked) {
+            if (setFilter.value !== "All Sets") {
+                pokemonSetBeforeShowAll = setFilter.value;
+            }
+            setFilter.value = "All Sets";
+            setFilter.disabled = true;
+        } else {
+            setFilter.disabled = false;
+            if (Array.from(setFilter.options).some((option) => option.value === pokemonSetBeforeShowAll)) {
+                setFilter.value = pokemonSetBeforeShowAll;
+            }
+        }
         void renderResults(false);
     });
     loadMoreButton.addEventListener("click", () => {

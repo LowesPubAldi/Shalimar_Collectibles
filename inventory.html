@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="styles/pages/inventory.css?v=30">
     <script src="scripts/components/mobile-nav.js?v=2" defer></script>
     <script src="scripts/components/game-mode.js?v=1" defer></script>
-    <script src="scripts/pages/inventory-filters.js?v=48" defer></script>
+    <script src="scripts/pages/inventory-filters.js?v=49" defer></script>
 </head>
 <body>
     <header class="header">
@@ -178,6 +178,16 @@
                             <span>Show all variants</span>
                         </label>
                         <p class="inventory-variants-summary" id="inventory-variants-summary">Collapsed view groups printings into one card entry.</p>
+                    </div>
+                </div>
+                <div class="inventory-control-wrap inventory-control-wrap--toggle" hidden>
+                    <span class="inventory-badge" aria-hidden="true">12</span>
+                    <div class="inventory-variants-toggle-wrap">
+                        <label class="inventory-variants-toggle" for="inventory-pokemon-cached-toggle">
+                            <input id="inventory-pokemon-cached-toggle" type="checkbox" />
+                            <span>Show all cached sets</span>
+                        </label>
+                        <p class="inventory-variants-summary">Uses local wave caches only.</p>
                     </div>
                 </div>
             </form>

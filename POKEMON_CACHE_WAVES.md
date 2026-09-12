@@ -114,18 +114,143 @@ Wizards Black Star Promos
 Known Scrydex ids confirmed so far:
 
 ```text
-Base   -> base1
-Jungle -> base2
-Fossil -> base3
+Base       -> base1
+Jungle     -> base2
+Fossil     -> base3
+Team Rocket -> base5
+Gym Heroes  -> gym1
+Gym Challenge -> gym2
+Neo Genesis   -> neo1
+Neo Discovery -> neo2
+Neo Revelation -> neo3
+Neo Destiny    -> neo4
+Legendary Collection -> base6
+Expedition Base Set -> ecard1
+Aquapolis -> ecard2
+Skyridge -> ecard3
+Wizards Black Star Promos -> basep
 ```
 
 Known English totals confirmed so far:
 
 ```text
-Base   -> 102 cards, 2 card pages
-Jungle -> 64 cards, 1 card page
-Fossil -> expected under 100 cards, verify from expansion metadata during sync
+Base        -> 102 cards, 2 card pages
+Jungle      -> 64 cards, 1 card page
+Fossil      -> 62 cards, 1 card page
+Team Rocket -> 83 cards, 1 card page
+Gym Heroes  -> 132 cards, 2 card pages
+Gym Challenge -> 132 cards, 2 card pages
+Neo Genesis   -> 111 cards, 2 card pages
+Neo Discovery -> 75 cards, 1 card page
+Neo Revelation -> 66 cards, 1 card page
+Neo Destiny    -> 113 cards, 2 card pages
+Legendary Collection -> 110 cards, 2 card pages
+Expedition Base Set -> 165 cards, 2 card pages
+Aquapolis -> 182 cards, 2 card pages
+Skyridge -> 182 cards, 2 card pages
+Wizards Black Star Promos -> 53 cards, 1 card page
 ```
+
+Completed batch on 2026-09-11:
+
+```text
+Fossil + Team Rocket + Gym Heroes
+277 cards imported in 7 Scrydex requests
+
+Gym Challenge + Neo Genesis + Neo Discovery + Neo Revelation + Neo Destiny
+497 cards imported in 8 Scrydex requests
+
+Legendary Collection + Expedition Base Set + Aquapolis + Skyridge + Wizards Black Star Promos
+692 cards imported in 9 Scrydex requests
+```
+
+## Wave 2: EX Era
+
+Wave 2 contains 16 main EX sets, split into batches of 6, 5, and 5.
+
+Completed batch 1 on 2026-09-11:
+
+```text
+Ruby & Sapphire (ex1) -> 109 cards, 2 requests
+Sandstorm (ex2) -> 100 cards, 1 request
+Dragon (ex3) -> 100 cards, 1 request
+Team Magma vs Team Aqua (ex4) -> 97 cards, 1 request
+Hidden Legends (ex5) -> 102 cards, 2 requests
+FireRed & LeafGreen (ex6) -> 116 cards, 2 requests
+
+624 cards imported in 9 Scrydex requests
+```
+
+Completed batch 2 on 2026-09-11:
+
+```text
+Team Rocket Returns (ex7) -> 111 cards, 2 requests
+Deoxys (ex8) -> 108 cards, 2 requests
+Emerald (ex9) -> 107 cards, 2 requests
+Unseen Forces (ex10) -> 145 cards, 2 requests
+Delta Species (ex11) -> 114 cards, 2 requests
+
+585 cards imported in 10 Scrydex requests
+```
+
+Completed batch 3 on 2026-09-11:
+
+```text
+Legend Maker (ex12) -> 93 cards, 1 request
+Holon Phantoms (ex13) -> 111 cards, 2 requests
+Crystal Guardians (ex14) -> 100 cards, 1 request
+Dragon Frontiers (ex15) -> 101 cards, 2 requests
+Power Keepers (ex16) -> 108 cards, 2 requests
+
+513 cards imported in 8 Scrydex requests
+```
+
+Wave 2 complete: 16 sets and 1,722 cards imported in 27 Scrydex requests.
+
+## Wave 3: Diamond & Pearl / Platinum
+
+Wave 3 contains 11 main sets, split into batches of 6 and 5.
+
+Completed batch 1 on 2026-09-11:
+
+```text
+Diamond & Pearl (dp1) -> 130 cards, 2 requests
+Mysterious Treasures (dp2) -> 124 cards, 2 requests
+Secret Wonders (dp3) -> 132 cards, 2 requests
+Great Encounters (dp4) -> 106 cards, 2 requests
+Majestic Dawn (dp5) -> 100 cards, 1 request
+Legends Awakened (dp6) -> 146 cards, 2 requests
+
+738 cards imported in 11 Scrydex requests
+```
+
+Completed batch 2 on 2026-09-11:
+
+```text
+Stormfront (dp7) -> 106 cards, 2 requests
+Platinum (pl1) -> 133 cards, 2 requests
+Rising Rivals (pl2) -> 120 cards, 2 requests
+Supreme Victors (pl3) -> 153 cards, 2 requests
+Arceus (pl4) -> 111 cards, 2 requests
+
+623 cards imported in 10 Scrydex requests
+```
+
+Wave 3 complete: 11 sets and 1,361 cards imported in 21 Scrydex requests.
+
+## Wave 4: HeartGold & SoulSilver / Early Black & White
+
+Wave 4 includes 12 main sets plus 9 promos and side products, split into three batches of 7.
+
+```text
+Batch 1: 499 cards imported in 9 Scrydex requests
+Batch 2: 492 cards imported in 10 Scrydex requests
+Batch 3: 630 cards imported in 12 Scrydex requests
+```
+
+Wave 4 complete: 21 sets and 1,621 cards imported in 31 Scrydex requests.
+
+Running cache total: 6,170 cards, about 24.7% of the projected 25,010-card catalog.
 
 ## Later Waves
 
@@ -146,6 +271,6 @@ Exact wave membership should come from the cached English expansion metadata so 
 
 ## Backend Goal
 
-Once Wave 1 exists locally, `/api/pokemon/cards` should prefer local cache results for cached sets.
+Once a wave exists locally, `/api/pokemon/cards` should prefer local cache results for cached sets.
 
 Live Scrydex should become a deliberate fallback or sync-only path, not the default path for casual browsing.

@@ -18,6 +18,8 @@ const EBAY_CONFIG = {
 const SCRYDEX_API_BASE_URL = "https://api.scrydex.com/pokemon/v1/en";
 const SCRYDEX_API_KEY = process.env.SCRYDEX_API_KEY || "";
 const SCRYDEX_TEAM_ID = process.env.SCRYDEX_TEAM_ID || "";
+const SCRYDEX_POKEMON_SETS_CACHE_PATH = path.join(__dirname, "data", "pokemon-sets-scrydex.json");
+const SCRYDEX_POKEMON_CACHE_DIR = path.join(__dirname, "data");
 const SCRYDEX_POKEMON_SET_ID_BY_NAME = new Map([
     ["Base", "base1"]
 ]);
@@ -1456,18 +1458,86 @@ function normalizeScrydexPokemonCard(card) {
     };
 }
 
-app.get("/api/pokemon/cards", async (req, res) => {
-    if (!SCRYDEX_API_KEY || !SCRYDEX_TEAM_ID) {
-        res.status(503).json({
-            error: "Scrydex credentials are not configured",
-            details: "Set SCRYDEX_API_KEY and SCRYDEX_TEAM_ID in .env.local."
-        });
-        return;
+async function readJsonIfPresent(filePath) {
+    try {
+        return JSON.parse(await fs.readFile(filePath, "utf8"));
+    } catch (error) {
+        if (error?.code === "ENOENT") {
+            return null;
+        }
+        throw error;
+    }
+}
+
+async function readCachedPokemonCards(query) {
+    const setName = typeof query.set === "string" ? query.set.trim() : "";
+    const showAllCachedSets = query.cached === "all";
+    if (!setName && !showAllCachedSets) {
+        return null;
     }
 
+    const cacheFileNames = (await fs.readdir(SCRYDEX_POKEMON_CACHE_DIR))
+        .filter((fileName) => /^pokemon-cards-scrydex-wave-\d+\.json$/.test(fileName))
+        .sort();
+    let cachedCards = showAllCachedSets ? [] : null;
+    for (const fileName of cacheFileNames) {
+        const cache = await readJsonIfPresent(path.join(SCRYDEX_POKEMON_CACHE_DIR, fileName));
+        if (showAllCachedSets) {
+            for (const cards of Object.values(cache?.cardsByExpansionId || {})) {
+                if (Array.isArray(cards)) {
+                    cachedCards.push(...cards);
+                }
+            }
+            continue;
+        }
+        const cachedSet = cache?.sets?.find((set) => String(set.name || "").toLowerCase() === setName.toLowerCase());
+        if (cachedSet && Array.isArray(cache?.cardsByExpansionId?.[cachedSet.id])) {
+            cachedCards = cache.cardsByExpansionId[cachedSet.id];
+            break;
+        }
+    }
+    if (!cachedCards) {
+        return null;
+    }
+
+    const search = typeof query.q === "string" ? query.q.trim().toLowerCase() : "";
+    const type = typeof query.type === "string" ? query.type.trim().toLowerCase() : "";
+    const rarity = typeof query.rarity === "string" ? query.rarity.trim().toLowerCase() : "";
+    return cachedCards.filter((card) => {
+        const matchesSearch = !search
+            || String(card.id || "").toLowerCase() === search
+            || String(card.name || "").toLowerCase().includes(search);
+        const matchesType = !type || String(card.type || "").toLowerCase() === type;
+        const matchesRarity = !rarity || String(card.rarity || "").toLowerCase() === rarity;
+        return matchesSearch && matchesType && matchesRarity;
+    });
+}
+
+app.get("/api/pokemon/cards", async (req, res) => {
     try {
         const limit = clampLimit(req.query.limit, 24, 100);
         const offset = parseNonNegativeInt(req.query.offset, 0);
+        const cachedCards = await readCachedPokemonCards(req.query);
+        if (cachedCards) {
+            const items = cachedCards.slice(offset, offset + limit);
+            res.json({
+                items,
+                total: cachedCards.length,
+                limit,
+                offset,
+                hasMore: offset + items.length < cachedCards.length,
+                source: "cache"
+            });
+            return;
+        }
+        if (!SCRYDEX_API_KEY || !SCRYDEX_TEAM_ID) {
+            res.status(503).json({
+                error: "Scrydex credentials are not configured",
+                details: "Set SCRYDEX_API_KEY and SCRYDEX_TEAM_ID in .env.local."
+            });
+            return;
+        }
+
         const endpoint = new URL(`${SCRYDEX_API_BASE_URL}/cards`);
         const query = scrydexPokemonQuery(req.query);
         if (query) {
@@ -1502,15 +1572,26 @@ app.get("/api/pokemon/cards", async (req, res) => {
 });
 
 app.get("/api/pokemon/sets", async (req, res) => {
-    if (!SCRYDEX_API_KEY || !SCRYDEX_TEAM_ID) {
-        res.status(503).json({
-            error: "Scrydex credentials are not configured",
-            details: "Set SCRYDEX_API_KEY and SCRYDEX_TEAM_ID in .env.local."
-        });
-        return;
-    }
-
     try {
+        const cachedSets = await readJsonIfPresent(SCRYDEX_POKEMON_SETS_CACHE_PATH);
+        if (Array.isArray(cachedSets?.items) && cachedSets.items.length > 0) {
+            const setMetadata = Array.from(new Map(cachedSets.items.map((set) => [String(set.id || ""), {
+                id: String(set.id || ""),
+                name: String(set.name || "").trim(),
+                releaseDate: String(set.releaseDate || "")
+            }])).values()).filter((set) => set.id && set.name);
+            const items = Array.from(new Set(setMetadata.map((set) => set.name)));
+            res.json({ items, setMetadata, total: items.length, source: "cache" });
+            return;
+        }
+        if (!SCRYDEX_API_KEY || !SCRYDEX_TEAM_ID) {
+            res.status(503).json({
+                error: "Scrydex credentials are not configured",
+                details: "Set SCRYDEX_API_KEY and SCRYDEX_TEAM_ID in .env.local."
+            });
+            return;
+        }
+
         const itemsByName = new Map();
         let page = 1;
         let total = Number.POSITIVE_INFINITY;
@@ -1520,7 +1601,7 @@ app.get("/api/pokemon/sets", async (req, res) => {
             endpoint.searchParams.set("page", String(page));
             endpoint.searchParams.set("pageSize", "100");
             endpoint.searchParams.set("orderBy", "-releaseDate");
-            endpoint.searchParams.set("select", "name");
+            endpoint.searchParams.set("select", "id,name,release_date");
             const response = await fetch(endpoint, { headers: scrydexHeaders() });
             if (!response.ok) {
                 throw new Error(`Scrydex API request failed with status ${response.status}`);
@@ -1533,7 +1614,11 @@ app.get("/api/pokemon/sets", async (req, res) => {
             for (const set of pageItems) {
                 const name = String(set?.name || "").trim();
                 if (name) {
-                    itemsByName.set(name, name);
+                    itemsByName.set(name, {
+                        id: String(set?.id || ""),
+                        name,
+                        releaseDate: String(set?.release_date || "")
+                    });
                 }
             }
 
@@ -1543,8 +1628,9 @@ app.get("/api/pokemon/sets", async (req, res) => {
             page += 1;
         }
 
-        const items = Array.from(itemsByName.values());
-        res.json({ items, total: items.length });
+        const items = Array.from(itemsByName.keys());
+        const setMetadata = Array.from(itemsByName.values());
+        res.json({ items, setMetadata, total: items.length });
     } catch (error) {
         res.status(502).json({
             error: "Failed to load Pokemon sets",
