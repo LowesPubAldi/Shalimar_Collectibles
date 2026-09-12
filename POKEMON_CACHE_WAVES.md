@@ -162,7 +162,12 @@ Gym Challenge + Neo Genesis + Neo Discovery + Neo Revelation + Neo Destiny
 
 Legendary Collection + Expedition Base Set + Aquapolis + Skyridge + Wizards Black Star Promos
 692 cards imported in 9 Scrydex requests
+
+Base + Jungle production-cache repair
+166 cards imported in 3 Scrydex requests
 ```
+
+Wave 1 complete: 15 sets and 1,632 locally cached cards.
 
 ## Wave 2: EX Era
 
@@ -250,7 +255,7 @@ Batch 3: 630 cards imported in 12 Scrydex requests
 
 Wave 4 complete: 21 sets and 1,621 cards imported in 31 Scrydex requests.
 
-Running cache total: 6,170 cards, about 24.7% of the projected 25,010-card catalog.
+Running cache total: 6,336 cards, about 25.3% of the projected 25,010-card catalog.
 
 ## Later Waves
 

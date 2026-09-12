@@ -9,6 +9,7 @@
     "pokemon:sync-wave-1": "node scripts/tools/sync_scrydex_pokemon_wave.js",
     "pokemon:sync-wave-1-batch-2": "node scripts/tools/sync_scrydex_pokemon_wave.js --batch 2",
     "pokemon:sync-wave-1-batch-3": "node scripts/tools/sync_scrydex_pokemon_wave.js --batch 3",
+    "pokemon:sync-wave-1-batch-4": "node scripts/tools/sync_scrydex_pokemon_wave.js --batch 4",
     "pokemon:sync-wave-2-batch-1": "node scripts/tools/sync_scrydex_pokemon_wave.js --wave 2 --batch 1",
     "pokemon:sync-wave-2-batch-2": "node scripts/tools/sync_scrydex_pokemon_wave.js --wave 2 --batch 2",
     "pokemon:sync-wave-2-batch-3": "node scripts/tools/sync_scrydex_pokemon_wave.js --wave 2 --batch 3",

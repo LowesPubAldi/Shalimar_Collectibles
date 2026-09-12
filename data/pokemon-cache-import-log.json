@@ -650,5 +650,36 @@
       }
     ],
     "errors": []
+  },
+  {
+    "wave": 1,
+    "batch": 4,
+    "label": "Wizards Era - Batch 4",
+    "startedAt": "2026-09-12T15:15:46.434Z",
+    "finishedAt": "2026-09-12T15:15:48.258Z",
+    "status": "success",
+    "scrydexRequests": 3,
+    "setsRequested": 2,
+    "setsImported": 2,
+    "cardsImported": 166,
+    "sets": [
+      {
+        "id": "base1",
+        "name": "Base",
+        "expectedTotal": 102,
+        "cardsImported": 102,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "base2",
+        "name": "Jungle",
+        "expectedTotal": 64,
+        "cardsImported": 64,
+        "pagesFetched": 1,
+        "status": "success"
+      }
+    ],
+    "errors": []
   }
 ]

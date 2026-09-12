@@ -1,7 +1,7 @@
 {
   "wave": 1,
   "label": "Wizards Era",
-  "syncedAt": "2026-09-11T22:12:59.731Z",
+  "syncedAt": "2026-09-12T15:15:48.250Z",
   "language": "en",
   "sets": [
     {
@@ -105,6 +105,22 @@
       "name": "Wizards Black Star Promos",
       "expectedTotal": 53,
       "cardsImported": 53,
+      "pagesFetched": 1,
+      "status": "success"
+    },
+    {
+      "id": "base1",
+      "name": "Base",
+      "expectedTotal": 102,
+      "cardsImported": 102,
+      "pagesFetched": 2,
+      "status": "success"
+    },
+    {
+      "id": "base2",
+      "name": "Jungle",
+      "expectedTotal": 64,
+      "cardsImported": 64,
       "pagesFetched": 1,
       "status": "success"
     }
@@ -26978,6 +26994,3028 @@
         "effect": "",
         "imageUrl": "https://images.scrydex.com/pokemon/basep-53/small",
         "setReleaseDate": "1999/07/01"
+      }
+    ],
+    "base1": [
+      {
+        "id": "base1-1",
+        "number": "1",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Alakazam",
+        "type": "Pokémon",
+        "rarity": "Rare Holo",
+        "pokemonTypes": [
+          "Psychic"
+        ],
+        "pokemonDexNumbers": [
+          65
+        ],
+        "variant": "Standard",
+        "effect": "Its brain can outperform a supercomputer. Its intelligence quotient is said to be 5000.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-1/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-2",
+        "number": "2",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Blastoise",
+        "type": "Pokémon",
+        "rarity": "Rare Holo",
+        "pokemonTypes": [
+          "Water"
+        ],
+        "pokemonDexNumbers": [
+          9
+        ],
+        "variant": "Standard",
+        "effect": "A brutal Pokémon with pressurized water jets on its shell. They are used for high-speed tackles.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-2/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-3",
+        "number": "3",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Chansey",
+        "type": "Pokémon",
+        "rarity": "Rare Holo",
+        "pokemonTypes": [
+          "Colorless"
+        ],
+        "pokemonDexNumbers": [
+          113
+        ],
+        "variant": "Standard",
+        "effect": "A rare and elusive Pokémon that is said to bring happiness to those who manage to catch it.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-3/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-4",
+        "number": "4",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Charizard",
+        "type": "Pokémon",
+        "rarity": "Rare Holo",
+        "pokemonTypes": [
+          "Fire"
+        ],
+        "pokemonDexNumbers": [
+          6
+        ],
+        "variant": "Standard",
+        "effect": "Spits fire that is hot enough to melt boulders. Known to unintentionally cause forest fires.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-4/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-5",
+        "number": "5",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Clefairy",
+        "type": "Pokémon",
+        "rarity": "Rare Holo",
+        "pokemonTypes": [
+          "Colorless"
+        ],
+        "pokemonDexNumbers": [
+          35
+        ],
+        "variant": "Standard",
+        "effect": "Its magical and cute appeal has many admirers. It is rare and found only in certain areas.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-5/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-6",
+        "number": "6",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Gyarados",
+        "type": "Pokémon",
+        "rarity": "Rare Holo",
+        "pokemonTypes": [
+          "Water"
+        ],
+        "pokemonDexNumbers": [
+          130
+        ],
+        "variant": "Standard",
+        "effect": "Rarely seen in the wild. Huge and vicious, it is capable of destroying entire cities in a rage.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-6/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-7",
+        "number": "7",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Hitmonchan",
+        "type": "Pokémon",
+        "rarity": "Rare Holo",
+        "pokemonTypes": [
+          "Fighting"
+        ],
+        "pokemonDexNumbers": [
+          107
+        ],
+        "variant": "Standard",
+        "effect": "While seeming to do nothing, it fires punches in lightning-fast volleys that are impossible to see.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-7/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-8",
+        "number": "8",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Machamp",
+        "type": "Pokémon",
+        "rarity": "Rare Holo",
+        "pokemonTypes": [
+          "Fighting"
+        ],
+        "pokemonDexNumbers": [
+          68
+        ],
+        "variant": "Standard",
+        "effect": "Using its amazing muscles, it throws powerful punches that can knock its victim clear over the horizon.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-8/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-9",
+        "number": "9",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Magneton",
+        "type": "Pokémon",
+        "rarity": "Rare Holo",
+        "pokemonTypes": [
+          "Lightning"
+        ],
+        "pokemonDexNumbers": [
+          82
+        ],
+        "variant": "Standard",
+        "effect": "Formed by several Magnemites linked together. It frequently appears when sunspots flare up.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-9/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-10",
+        "number": "10",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Mewtwo",
+        "type": "Pokémon",
+        "rarity": "Rare Holo",
+        "pokemonTypes": [
+          "Psychic"
+        ],
+        "pokemonDexNumbers": [
+          150
+        ],
+        "variant": "Standard",
+        "effect": "A scientist created this Pokémon after years of horrific gene-splicing and DNA engineering experiments.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-10/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-11",
+        "number": "11",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Nidoking",
+        "type": "Pokémon",
+        "rarity": "Rare Holo",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          34
+        ],
+        "variant": "Standard",
+        "effect": "Uses its powerful tail in battle to smash, constrict, then break its prey's bones.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-11/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-12",
+        "number": "12",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Ninetales",
+        "type": "Pokémon",
+        "rarity": "Rare Holo",
+        "pokemonTypes": [
+          "Fire"
+        ],
+        "pokemonDexNumbers": [
+          38
+        ],
+        "variant": "Standard",
+        "effect": "Very smart and very vengeful. Grabbing one of its many tails could result in a 1,000-year curse.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-12/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-13",
+        "number": "13",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Poliwrath",
+        "type": "Pokémon",
+        "rarity": "Rare Holo",
+        "pokemonTypes": [
+          "Water"
+        ],
+        "pokemonDexNumbers": [
+          62
+        ],
+        "variant": "Standard",
+        "effect": "An adept swimmer at both the front crawl and breaststroke. Easily overtakes the best human swimmers.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-13/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-14",
+        "number": "14",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Raichu",
+        "type": "Pokémon",
+        "rarity": "Rare Holo",
+        "pokemonTypes": [
+          "Lightning"
+        ],
+        "pokemonDexNumbers": [
+          26
+        ],
+        "variant": "Standard",
+        "effect": "Its long tail serves as a ground to protect itself from its own high-voltage power.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-14/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-15",
+        "number": "15",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Venusaur",
+        "type": "Pokémon",
+        "rarity": "Rare Holo",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          3
+        ],
+        "variant": "Standard",
+        "effect": "This plant blooms when it is absorbing solar energy. It stays on the move to seek sunlight.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-15/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-16",
+        "number": "16",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Zapdos",
+        "type": "Pokémon",
+        "rarity": "Rare Holo",
+        "pokemonTypes": [
+          "Lightning"
+        ],
+        "pokemonDexNumbers": [
+          145
+        ],
+        "variant": "Standard",
+        "effect": "A legendary bird Pokémon said to appear from clouds while wielding enormous lightning bolts.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-16/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-17",
+        "number": "17",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Beedrill",
+        "type": "Pokémon",
+        "rarity": "Rare",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          15
+        ],
+        "variant": "Standard",
+        "effect": "Flies at high speed and attacks using the large, venomous stingers on its forelegs and tail.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-17/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-18",
+        "number": "18",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Dragonair",
+        "type": "Pokémon",
+        "rarity": "Rare",
+        "pokemonTypes": [
+          "Colorless"
+        ],
+        "pokemonDexNumbers": [
+          148
+        ],
+        "variant": "Standard",
+        "effect": "A mystical Pokémon that exudes a gentle aura. Has the ability to change climate conditions.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-18/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-19",
+        "number": "19",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Dugtrio",
+        "type": "Pokémon",
+        "rarity": "Rare",
+        "pokemonTypes": [
+          "Fighting"
+        ],
+        "pokemonDexNumbers": [
+          51
+        ],
+        "variant": "Standard",
+        "effect": "A team of Diglett triplets. It triggers huge earthquakes by burrowing 60 miles underground.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-19/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-20",
+        "number": "20",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Electabuzz",
+        "type": "Pokémon",
+        "rarity": "Rare",
+        "pokemonTypes": [
+          "Lightning"
+        ],
+        "pokemonDexNumbers": [
+          125
+        ],
+        "variant": "Standard",
+        "effect": "Normally found near power plants, it can wander away and cause major blackouts in cities.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-20/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-21",
+        "number": "21",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Electrode",
+        "type": "Pokémon",
+        "rarity": "Rare",
+        "pokemonTypes": [
+          "Lightning"
+        ],
+        "pokemonDexNumbers": [
+          101
+        ],
+        "variant": "Standard",
+        "effect": "It stores electrical energy under very high pressure. It often explodes with little or no provocation.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-21/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-22",
+        "number": "22",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Pidgeotto",
+        "type": "Pokémon",
+        "rarity": "Rare",
+        "pokemonTypes": [
+          "Colorless"
+        ],
+        "pokemonDexNumbers": [
+          17
+        ],
+        "variant": "Standard",
+        "effect": "Very protective of its sprawling territory, this Pokémon will fiercely peck at any intruder.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-22/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-23",
+        "number": "23",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Arcanine",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Fire"
+        ],
+        "pokemonDexNumbers": [
+          59
+        ],
+        "variant": "Standard",
+        "effect": "A Pokémon that has been long admired for its beauty. It runs gracefully, as if on wings.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-23/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-24",
+        "number": "24",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Charmeleon",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Fire"
+        ],
+        "pokemonDexNumbers": [
+          5
+        ],
+        "variant": "Standard",
+        "effect": "When it swings its burning tail, it raises the temperature to unbearably high levels.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-24/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-25",
+        "number": "25",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Dewgong",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Water"
+        ],
+        "pokemonDexNumbers": [
+          87
+        ],
+        "variant": "Standard",
+        "effect": "Stores thermal energy in its body. Swims at a steady 8 knots even in intensely cold waters.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-25/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-26",
+        "number": "26",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Dratini",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Colorless"
+        ],
+        "pokemonDexNumbers": [
+          147
+        ],
+        "variant": "Standard",
+        "effect": "Long considered a mythical Pokémon until recently, when a small colony was found living underwater.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-26/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-27",
+        "number": "27",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Farfetch'd",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Colorless"
+        ],
+        "pokemonDexNumbers": [
+          83
+        ],
+        "variant": "Standard",
+        "effect": "The sprig of green onions it holds is its weapon. This sprig is used much like a metal sword.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-27/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-28",
+        "number": "28",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Growlithe",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Fire"
+        ],
+        "pokemonDexNumbers": [
+          58
+        ],
+        "variant": "Standard",
+        "effect": "Very protective of its territory. It will bark and bite to repel intruders from its space.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-28/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-29",
+        "number": "29",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Haunter",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Psychic"
+        ],
+        "pokemonDexNumbers": [
+          93
+        ],
+        "variant": "Standard",
+        "effect": "Because of its ability to slip through block walls, it is said to be from another dimension.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-29/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-30",
+        "number": "30",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Ivysaur",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          2
+        ],
+        "variant": "Standard",
+        "effect": "When the bulb on its back grows large, the Pokémon seems to lose the ability to stand on its hind legs.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-30/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-31",
+        "number": "31",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Jynx",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Psychic"
+        ],
+        "pokemonDexNumbers": [
+          124
+        ],
+        "variant": "Standard",
+        "effect": "Merely by meditating, the Pokémon launches a powerful psychic energy attack.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-31/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-32",
+        "number": "32",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Kadabra",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Psychic"
+        ],
+        "pokemonDexNumbers": [
+          64
+        ],
+        "variant": "Standard",
+        "effect": "It emits special alpha waves from its body that induce headaches even to those just nearby.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-32/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-33",
+        "number": "33",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Kakuna",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          14
+        ],
+        "variant": "Standard",
+        "effect": "Almost incapable of moving, this Pokémon can only harden its shell to protect itself from predators.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-33/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-34",
+        "number": "34",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Machoke",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Fighting"
+        ],
+        "pokemonDexNumbers": [
+          67
+        ],
+        "variant": "Standard",
+        "effect": "Its muscular body is so powerful that it must wear a power-save belt to help regulate its motions.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-34/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-35",
+        "number": "35",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Magikarp",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Water"
+        ],
+        "pokemonDexNumbers": [
+          129
+        ],
+        "variant": "Standard",
+        "effect": "In the distant past, it was stronger than its horribly weak descendants that exist today.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-35/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-36",
+        "number": "36",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Magmar",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Fire"
+        ],
+        "pokemonDexNumbers": [
+          126
+        ],
+        "variant": "Standard",
+        "effect": "Its body always burns with an orange glow that enables it to hide perfectly among flames.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-36/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-37",
+        "number": "37",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Nidorino",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          33
+        ],
+        "variant": "Standard",
+        "effect": "An aggressive Pokémon that is quick to attack. The horn on its head secretes a powerful venom.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-37/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-38",
+        "number": "38",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Poliwhirl",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Water"
+        ],
+        "pokemonDexNumbers": [
+          61
+        ],
+        "variant": "Standard",
+        "effect": "Capable of living in or out of water. When out of water, it sweats to keep its body slimy.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-38/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-39",
+        "number": "39",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Porygon",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Colorless"
+        ],
+        "pokemonDexNumbers": [
+          137
+        ],
+        "variant": "Standard",
+        "effect": "A Pokémon that consists entirely of programming code. Capable of moving freely in cyberspace.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-39/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-40",
+        "number": "40",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Raticate",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Colorless"
+        ],
+        "pokemonDexNumbers": [
+          20
+        ],
+        "variant": "Standard",
+        "effect": "It uses its whiskers to maintain its balance. It seems to slow down if they are cut off.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-40/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-41",
+        "number": "41",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Seel",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Water"
+        ],
+        "pokemonDexNumbers": [
+          86
+        ],
+        "variant": "Standard",
+        "effect": "The protruding horn on its head is very hard. This horn is used for bashing through thick ice.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-41/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-42",
+        "number": "42",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Wartortle",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Water"
+        ],
+        "pokemonDexNumbers": [
+          8
+        ],
+        "variant": "Standard",
+        "effect": "Often hides in water to stalk unweary prey. When swimming quickly, it moves its ears to maintain balance.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-42/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-43",
+        "number": "43",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Abra",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Psychic"
+        ],
+        "pokemonDexNumbers": [
+          63
+        ],
+        "variant": "Standard",
+        "effect": "Using its ability to read minds, it will identify impending danger and teleport to safety.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-43/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-44",
+        "number": "44",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Bulbasaur",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          1
+        ],
+        "variant": "Standard",
+        "effect": "A strange seed was planted on its back at birth. Thus, a plant sprouted and now grows with this Pokémon.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-44/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-45",
+        "number": "45",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Caterpie",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          10
+        ],
+        "variant": "Standard",
+        "effect": "Its short feet are tipped with suction pads that enable it to tirelessly climb slopes and walls.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-45/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-46",
+        "number": "46",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Charmander",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Fire"
+        ],
+        "pokemonDexNumbers": [
+          4
+        ],
+        "variant": "Standard",
+        "effect": "Obviously prefers hot places. If it gets caught in the rain, steam is said to spout from the tip of its tail.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-46/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-47",
+        "number": "47",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Diglett",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Fighting"
+        ],
+        "pokemonDexNumbers": [
+          50
+        ],
+        "variant": "Standard",
+        "effect": "Lives about three feet underground, where it feeds on plant roots. It sometimes appears above ground.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-47/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-48",
+        "number": "48",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Doduo",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Colorless"
+        ],
+        "pokemonDexNumbers": [
+          84
+        ],
+        "variant": "Standard",
+        "effect": "A bird that makes up for its poor flying with its fast foot speed. Leaves giant footprints.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-48/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-49",
+        "number": "49",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Drowzee",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Psychic"
+        ],
+        "pokemonDexNumbers": [
+          96
+        ],
+        "variant": "Standard",
+        "effect": "Puts enemies to sleep, then eats their dreams. Occasionally gets sick from eating bad dreams.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-49/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-50",
+        "number": "50",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Gastly",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Psychic"
+        ],
+        "pokemonDexNumbers": [
+          92
+        ],
+        "variant": "Standard",
+        "effect": "Almost invisible, this gaseous Pokémon cloaks the target and puts it to sleep without notice.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-50/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-51",
+        "number": "51",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Koffing",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          109
+        ],
+        "variant": "Standard",
+        "effect": "Because it stores several kinds of toxic gases in its body, it is prone to exploding without warning.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-51/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-52",
+        "number": "52",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Machop",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Fighting"
+        ],
+        "pokemonDexNumbers": [
+          66
+        ],
+        "variant": "Standard",
+        "effect": "Loves to build its muscles. It trains in all styles of martial arts to become even stronger.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-52/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-53",
+        "number": "53",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Magnemite",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Lightning"
+        ],
+        "pokemonDexNumbers": [
+          81
+        ],
+        "variant": "Standard",
+        "effect": "Uses anti-gravity to stay suspended. Appears without warning and uses attacks like Thunder Wave.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-53/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-54",
+        "number": "54",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Metapod",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          11
+        ],
+        "variant": "Standard",
+        "effect": "It is vulnerable to attack because its shell is soft, exposing its weak and tender body.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-54/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-55",
+        "number": "55",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Nidoran ♂",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          32
+        ],
+        "variant": "Standard",
+        "effect": "Stiffens its ears to sense danger. The larger, more powerful of its horns secretes venom.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-55/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-56",
+        "number": "56",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Onix",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Fighting"
+        ],
+        "pokemonDexNumbers": [
+          95
+        ],
+        "variant": "Standard",
+        "effect": "As it grows, the stone portions of its body harden to become similar to a diamond, though colored black.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-56/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-57",
+        "number": "57",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Pidgey",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Colorless"
+        ],
+        "pokemonDexNumbers": [
+          16
+        ],
+        "variant": "Standard",
+        "effect": "A common sight in forests and woods. It flaps its wings at ground level to kick up blinding sand.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-57/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-58",
+        "number": "58",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Pikachu",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Lightning"
+        ],
+        "pokemonDexNumbers": [
+          25
+        ],
+        "variant": "Standard",
+        "effect": "When several of these Pokémon gather, their electricity can cause lightning storms.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-58/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-59",
+        "number": "59",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Poliwag",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Water"
+        ],
+        "pokemonDexNumbers": [
+          60
+        ],
+        "variant": "Standard",
+        "effect": "Its newly grown legs prevent it from running. It appears to prefer swimming over trying to stand.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-59/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-60",
+        "number": "60",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Ponyta",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Fire"
+        ],
+        "pokemonDexNumbers": [
+          77
+        ],
+        "variant": "Standard",
+        "effect": "Its hooves are 10 times harder than diamonds. It can trample anything flat in moments.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-60/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-61",
+        "number": "61",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Rattata",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Colorless"
+        ],
+        "pokemonDexNumbers": [
+          19
+        ],
+        "variant": "Standard",
+        "effect": "Bites anything when it attacks. Small and very quick, it is a common sight in many places.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-61/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-62",
+        "number": "62",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Sandshrew",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Fighting"
+        ],
+        "pokemonDexNumbers": [
+          27
+        ],
+        "variant": "Standard",
+        "effect": "Burrows deep underground in arid locations far from water. It only emerges to hunt for food.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-62/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-63",
+        "number": "63",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Squirtle",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Water"
+        ],
+        "pokemonDexNumbers": [
+          7
+        ],
+        "variant": "Standard",
+        "effect": "After birth, its back swells and hardens into a shell. It powerfully sprays foam from its mouth.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-63/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-64",
+        "number": "64",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Starmie",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Water"
+        ],
+        "pokemonDexNumbers": [
+          121
+        ],
+        "variant": "Standard",
+        "effect": "Its central core glows with the seven colors of the rainbow. Some people value this core as a gem.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-64/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-65",
+        "number": "65",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Staryu",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Water"
+        ],
+        "pokemonDexNumbers": [
+          120
+        ],
+        "variant": "Standard",
+        "effect": "An enigmatic Pokémon that can effortlessly regenerate any appendage it loses in battle.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-65/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-66",
+        "number": "66",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Tangela",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          114
+        ],
+        "variant": "Standard",
+        "effect": "Its whole body is swathed with wide vines that are similar to seaweed. These vines shake as it walks.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-66/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-67",
+        "number": "67",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Voltorb",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Lightning"
+        ],
+        "pokemonDexNumbers": [
+          100
+        ],
+        "variant": "Standard",
+        "effect": "Usually found in power plants. Easily mistaken for a Monster Ball, it has zapped many people.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-67/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-68",
+        "number": "68",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Vulpix",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Fire"
+        ],
+        "pokemonDexNumbers": [
+          37
+        ],
+        "variant": "Standard",
+        "effect": "At the time of birth, it has just one tail. Its tail splits from the tip as it grows older.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-68/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-69",
+        "number": "69",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Weedle",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          13
+        ],
+        "variant": "Standard",
+        "effect": "Often found in forests, eating leaves. It has a sharp, venomous stinger on its head.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-69/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-70",
+        "number": "70",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Clefairy Doll",
+        "type": "Trainer",
+        "rarity": "Rare",
+        "pokemonTypes": [],
+        "pokemonDexNumbers": [],
+        "variant": "Standard",
+        "effect": "Play Clefairy Doll as if it were a Basic Pokémon. While in play, Clefairy Doll counts a a Pokémon (instead of a Trainer card). Clefairy Doll has no attacks, can't retreat, and can't be Asleep, Confused, Paralyzed, or Poisoned. If Clefairy Doll is Knocked Out, it doesn't count as a Knocked Out Pokémon. At any time during your turn before your attack, you may discard Clefairy Doll.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-70/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-71",
+        "number": "71",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Computer Search",
+        "type": "Trainer",
+        "rarity": "Rare",
+        "pokemonTypes": [],
+        "pokemonDexNumbers": [],
+        "variant": "Standard",
+        "effect": "Discard 2 of the other cards from your hand in order to search your deck for any card and put it into your hand. Shuffle your deck afterward.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-71/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-72",
+        "number": "72",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Devolution Spray",
+        "type": "Trainer",
+        "rarity": "Rare",
+        "pokemonTypes": [],
+        "pokemonDexNumbers": [],
+        "variant": "Standard",
+        "effect": "Choose 1 of your own Pokémon in play and a Stage of Evolution. Discard all Evolution cards of that Stage or higher attached to that Pokémon. That Pokémon is no longer Asleep, Confused, Paralyzed, Poisoned, or anything else that might be the result of an attack (just as if you had evolved it).",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-72/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-73",
+        "number": "73",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Impostor Professor Oak",
+        "type": "Trainer",
+        "rarity": "Rare",
+        "pokemonTypes": [],
+        "pokemonDexNumbers": [],
+        "variant": "Standard",
+        "effect": "Your opponent shuffles his or her hand into his or her deck, then draws 7 cards.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-73/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-74",
+        "number": "74",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Item Finder",
+        "type": "Trainer",
+        "rarity": "Rare",
+        "pokemonTypes": [],
+        "pokemonDexNumbers": [],
+        "variant": "Standard",
+        "effect": "Discard 2 of the other cards from your hand in order to put a Trainer card from your discard pile into your hand.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-74/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-75",
+        "number": "75",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Lass",
+        "type": "Trainer",
+        "rarity": "Rare",
+        "pokemonTypes": [],
+        "pokemonDexNumbers": [],
+        "variant": "Standard",
+        "effect": "You and your opponent show each other your hands, then shuffle all the Trainer cards from your hands into your decks.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-75/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-76",
+        "number": "76",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Pokémon Breeder",
+        "type": "Trainer",
+        "rarity": "Rare",
+        "pokemonTypes": [],
+        "pokemonDexNumbers": [],
+        "variant": "Standard",
+        "effect": "Put a Stage 2 Evolution card from your hand on the matching Basic Pokémon. You can only play this card when you would be allowed to evolve that Pokémon anyway.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-76/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-77",
+        "number": "77",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Pokémon Trader",
+        "type": "Trainer",
+        "rarity": "Rare",
+        "pokemonTypes": [],
+        "pokemonDexNumbers": [],
+        "variant": "Standard",
+        "effect": "Trade 1 of the Basic Pokémon or Evolution cards in your hand for 1 of the Basic Pokémon or Evolution cards from your deck. Show both cards to your opponent. Shuffle your deck afterward.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-77/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-78",
+        "number": "78",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Scoop Up",
+        "type": "Trainer",
+        "rarity": "Rare",
+        "pokemonTypes": [],
+        "pokemonDexNumbers": [],
+        "variant": "Standard",
+        "effect": "Choose 1 of your Pokémon in play and return its Basic Pokémon card to your hand. (Discard all cards attached to that card.)",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-78/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-79",
+        "number": "79",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Super Energy Removal",
+        "type": "Trainer",
+        "rarity": "Rare",
+        "pokemonTypes": [],
+        "pokemonDexNumbers": [],
+        "variant": "Standard",
+        "effect": "Discard 1 Energy card attached to 1 of your Pokémon in order to choose 1 of your opponent's Pokémon and up to 2 Energy cards attached to it. Discard those Energy cards.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-79/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-80",
+        "number": "80",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Defender",
+        "type": "Trainer",
+        "rarity": "Uncommon",
+        "pokemonTypes": [],
+        "pokemonDexNumbers": [],
+        "variant": "Standard",
+        "effect": "Attach Defender to 1 of your Pokémon. At the end of your opponent's next turn, discard Defender. Damage done to that Pokémon by attacks is reduced by 20 (after applying Weakness and Resistance).",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-80/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-81",
+        "number": "81",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Energy Retrieval",
+        "type": "Trainer",
+        "rarity": "Uncommon",
+        "pokemonTypes": [],
+        "pokemonDexNumbers": [],
+        "variant": "Standard",
+        "effect": "Trade 1 of the other cards in your hand for up to 2 basic Energy cards from your discard pile.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-81/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-82",
+        "number": "82",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Full Heal",
+        "type": "Trainer",
+        "rarity": "Uncommon",
+        "pokemonTypes": [],
+        "pokemonDexNumbers": [],
+        "variant": "Standard",
+        "effect": "Your Active Pokémon is no longer Asleep, Confused, Paralyzed, or Poisoned.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-82/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-83",
+        "number": "83",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Maintenance",
+        "type": "Trainer",
+        "rarity": "Uncommon",
+        "pokemonTypes": [],
+        "pokemonDexNumbers": [],
+        "variant": "Standard",
+        "effect": "Shuffle 2 of the other cards from your hand into your deck in order to draw a card.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-83/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-84",
+        "number": "84",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "PlusPower",
+        "type": "Trainer",
+        "rarity": "Uncommon",
+        "pokemonTypes": [],
+        "pokemonDexNumbers": [],
+        "variant": "Standard",
+        "effect": "Attach PlusPower to your Active Pokémon. At the end of your turn, discard PlusPower. If this Pokémon's attack does damage to the Defending Pokémon (after applying Weakness and Resistance), the attack does 10 more damage to the Defending Pokémon.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-84/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-85",
+        "number": "85",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Pokémon Center",
+        "type": "Trainer",
+        "rarity": "Uncommon",
+        "pokemonTypes": [],
+        "pokemonDexNumbers": [],
+        "variant": "Standard",
+        "effect": "Remove all damage counters from all of your own Pokémon with damage counters on them, then discard all Energy cards attached to those Pokémon.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-85/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-86",
+        "number": "86",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Pokémon Flute",
+        "type": "Trainer",
+        "rarity": "Uncommon",
+        "pokemonTypes": [],
+        "pokemonDexNumbers": [],
+        "variant": "Standard",
+        "effect": "Choose 1 Basic Pokémon card from your opponent's discard pile and put it onto his or her Bench. (You can't play Pokémon Flute if your opponent's Bench is full.)",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-86/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-87",
+        "number": "87",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Pokédex",
+        "type": "Trainer",
+        "rarity": "Uncommon",
+        "pokemonTypes": [],
+        "pokemonDexNumbers": [],
+        "variant": "Standard",
+        "effect": "Look at up to 5 cards from the top of your deck and rearrange them as you like.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-87/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-88",
+        "number": "88",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Professor Oak",
+        "type": "Trainer",
+        "rarity": "Uncommon",
+        "pokemonTypes": [],
+        "pokemonDexNumbers": [],
+        "variant": "Standard",
+        "effect": "Discard your hand, then draw 7 cards.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-88/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-89",
+        "number": "89",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Revive",
+        "type": "Trainer",
+        "rarity": "Uncommon",
+        "pokemonTypes": [],
+        "pokemonDexNumbers": [],
+        "variant": "Standard",
+        "effect": "Put 1 Basic Pokémon card from your discard pile onto your Bench. Put damage counters on that Pokémon equal to half its HP (rounded down to the nearest 10). (You can't play Revive if your Bench is full.)",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-89/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-90",
+        "number": "90",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Super Potion",
+        "type": "Trainer",
+        "rarity": "Uncommon",
+        "pokemonTypes": [],
+        "pokemonDexNumbers": [],
+        "variant": "Standard",
+        "effect": "Discard 1 Energy card attached to your own Pokémon in order to remove up to 4 damage counters from that Pokémon.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-90/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-91",
+        "number": "91",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Bill",
+        "type": "Trainer",
+        "rarity": "Common",
+        "pokemonTypes": [],
+        "pokemonDexNumbers": [],
+        "variant": "Standard",
+        "effect": "Draw 2 cards.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-91/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-92",
+        "number": "92",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Energy Removal",
+        "type": "Trainer",
+        "rarity": "Common",
+        "pokemonTypes": [],
+        "pokemonDexNumbers": [],
+        "variant": "Standard",
+        "effect": "Choose 1 Energy card attached to 1 of your opponent's Pokémon and discard it.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-92/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-93",
+        "number": "93",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Gust of Wind",
+        "type": "Trainer",
+        "rarity": "Common",
+        "pokemonTypes": [],
+        "pokemonDexNumbers": [],
+        "variant": "Standard",
+        "effect": "Choose 1 of your opponent's Benched Pokémon and switch it with his or her Active Pokémon.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-93/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-94",
+        "number": "94",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Potion",
+        "type": "Trainer",
+        "rarity": "Common",
+        "pokemonTypes": [],
+        "pokemonDexNumbers": [],
+        "variant": "Standard",
+        "effect": "Remove up to 2 damage counters from 1 of your Pokémon.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-94/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-95",
+        "number": "95",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Switch",
+        "type": "Trainer",
+        "rarity": "Common",
+        "pokemonTypes": [],
+        "pokemonDexNumbers": [],
+        "variant": "Standard",
+        "effect": "Switch 1 of your own Benched Pokémon with your Active Pokémon.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-95/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-96",
+        "number": "96",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Double Colorless Energy",
+        "type": "Energy",
+        "rarity": "Uncommon",
+        "pokemonTypes": [],
+        "pokemonDexNumbers": [],
+        "variant": "Standard",
+        "effect": "Provides ColorlessColorless energy.\nDoesn't count as a basic Energy card.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-96/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-97",
+        "number": "97",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Fighting Energy",
+        "type": "Energy",
+        "rarity": "Unknown Rarity",
+        "pokemonTypes": [],
+        "pokemonDexNumbers": [],
+        "variant": "Standard",
+        "effect": "",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-97/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-98",
+        "number": "98",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Fire Energy",
+        "type": "Energy",
+        "rarity": "Unknown Rarity",
+        "pokemonTypes": [],
+        "pokemonDexNumbers": [],
+        "variant": "Standard",
+        "effect": "",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-98/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-99",
+        "number": "99",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Grass Energy",
+        "type": "Energy",
+        "rarity": "Unknown Rarity",
+        "pokemonTypes": [],
+        "pokemonDexNumbers": [],
+        "variant": "Standard",
+        "effect": "",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-99/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-100",
+        "number": "100",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Lightning Energy",
+        "type": "Energy",
+        "rarity": "Unknown Rarity",
+        "pokemonTypes": [],
+        "pokemonDexNumbers": [],
+        "variant": "Standard",
+        "effect": "",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-100/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-101",
+        "number": "101",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Psychic Energy",
+        "type": "Energy",
+        "rarity": "Unknown Rarity",
+        "pokemonTypes": [],
+        "pokemonDexNumbers": [],
+        "variant": "Standard",
+        "effect": "",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-101/small",
+        "setReleaseDate": "1999/01/09"
+      },
+      {
+        "id": "base1-102",
+        "number": "102",
+        "game": "Pokemon",
+        "set": "Base",
+        "name": "Water Energy",
+        "type": "Energy",
+        "rarity": "Unknown Rarity",
+        "pokemonTypes": [],
+        "pokemonDexNumbers": [],
+        "variant": "Standard",
+        "effect": "",
+        "imageUrl": "https://images.scrydex.com/pokemon/base1-102/small",
+        "setReleaseDate": "1999/01/09"
+      }
+    ],
+    "base2": [
+      {
+        "id": "base2-1",
+        "number": "1",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Clefable",
+        "type": "Pokémon",
+        "rarity": "Rare Holo",
+        "pokemonTypes": [
+          "Colorless"
+        ],
+        "pokemonDexNumbers": [
+          36
+        ],
+        "variant": "Standard",
+        "effect": "A timid Fairy Pokémon that is rarely seen. It will run and hide the moment it senses people.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-1/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-2",
+        "number": "2",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Electrode",
+        "type": "Pokémon",
+        "rarity": "Rare Holo",
+        "pokemonTypes": [
+          "Lightning"
+        ],
+        "pokemonDexNumbers": [
+          101
+        ],
+        "variant": "Standard",
+        "effect": "It stores electrical energy under very high pressure. It often explodes with little or no provocation.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-2/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-3",
+        "number": "3",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Flareon",
+        "type": "Pokémon",
+        "rarity": "Rare Holo",
+        "pokemonTypes": [
+          "Fire"
+        ],
+        "pokemonDexNumbers": [
+          136
+        ],
+        "variant": "Standard",
+        "effect": "When storing thermal energy in its body, its temperature could soar to over 1600 degrees.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-3/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-4",
+        "number": "4",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Jolteon",
+        "type": "Pokémon",
+        "rarity": "Rare Holo",
+        "pokemonTypes": [
+          "Lightning"
+        ],
+        "pokemonDexNumbers": [
+          135
+        ],
+        "variant": "Standard",
+        "effect": "It accumulates negative ions from the atmosphere to blast out 10,000-volt lightning bolts.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-4/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-5",
+        "number": "5",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Kangaskhan",
+        "type": "Pokémon",
+        "rarity": "Rare Holo",
+        "pokemonTypes": [
+          "Colorless"
+        ],
+        "pokemonDexNumbers": [
+          115
+        ],
+        "variant": "Standard",
+        "effect": "The infant rarely ventures out of its mother's protective pouch until it is three years old.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-5/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-6",
+        "number": "6",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Mr. Mime",
+        "type": "Pokémon",
+        "rarity": "Rare Holo",
+        "pokemonTypes": [
+          "Psychic"
+        ],
+        "pokemonDexNumbers": [
+          122
+        ],
+        "variant": "Standard",
+        "effect": "If interrupted while miming, it will slap around the enemy with its broad hands.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-6/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-7",
+        "number": "7",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Nidoqueen",
+        "type": "Pokémon",
+        "rarity": "Rare Holo",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          31
+        ],
+        "variant": "Standard",
+        "effect": "Its hard scales provide strong protection. It uses its hefty bulk to execute powerful moves.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-7/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-8",
+        "number": "8",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Pidgeot",
+        "type": "Pokémon",
+        "rarity": "Rare Holo",
+        "pokemonTypes": [
+          "Colorless"
+        ],
+        "pokemonDexNumbers": [
+          18
+        ],
+        "variant": "Standard",
+        "effect": "When hunting, it skims the surface of water at high speed to pick off unwary prey such as Magikarp.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-8/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-9",
+        "number": "9",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Pinsir",
+        "type": "Pokémon",
+        "rarity": "Rare Holo",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          127
+        ],
+        "variant": "Standard",
+        "effect": "If it fails to crush the victim in its pincers, it will swing its victim around and toss it hard.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-9/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-10",
+        "number": "10",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Scyther",
+        "type": "Pokémon",
+        "rarity": "Rare Holo",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          123
+        ],
+        "variant": "Standard",
+        "effect": "With ninja-like agility and speed, it can create the illusion that there is more than one of it.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-10/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-11",
+        "number": "11",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Snorlax",
+        "type": "Pokémon",
+        "rarity": "Rare Holo",
+        "pokemonTypes": [
+          "Colorless"
+        ],
+        "pokemonDexNumbers": [
+          143
+        ],
+        "variant": "Standard",
+        "effect": "Very lazy. Just eats and sleeps. As its rotund bulk builds, it becomes steadily more slothful.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-11/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-12",
+        "number": "12",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Vaporeon",
+        "type": "Pokémon",
+        "rarity": "Rare Holo",
+        "pokemonTypes": [
+          "Water"
+        ],
+        "pokemonDexNumbers": [
+          134
+        ],
+        "variant": "Standard",
+        "effect": "Lives close to water. Its long tail is ridged with a fin that is often mistaken for a mermaid's.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-12/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-13",
+        "number": "13",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Venomoth",
+        "type": "Pokémon",
+        "rarity": "Rare Holo",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          49
+        ],
+        "variant": "Standard",
+        "effect": "The dust-like scales covering its wings are color coded to indicate the kinds of poison it has.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-13/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-14",
+        "number": "14",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Victreebel",
+        "type": "Pokémon",
+        "rarity": "Rare Holo",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          71
+        ],
+        "variant": "Standard",
+        "effect": "Said to live in huge colonies deep in jungles, although no one has ever returned from there.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-14/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-15",
+        "number": "15",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Vileplume",
+        "type": "Pokémon",
+        "rarity": "Rare Holo",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          45
+        ],
+        "variant": "Standard",
+        "effect": "The larger its petals, the more toxic pollen it contains. Its big head is heavy and hard to hold up.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-15/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-16",
+        "number": "16",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Wigglytuff",
+        "type": "Pokémon",
+        "rarity": "Rare Holo",
+        "pokemonTypes": [
+          "Colorless"
+        ],
+        "pokemonDexNumbers": [
+          40
+        ],
+        "variant": "Standard",
+        "effect": "The body is soft and rubbery. When angered, it will suck in air and inflate itself to an enormous size.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-16/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-17",
+        "number": "17",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Clefable",
+        "type": "Pokémon",
+        "rarity": "Rare",
+        "pokemonTypes": [
+          "Colorless"
+        ],
+        "pokemonDexNumbers": [
+          36
+        ],
+        "variant": "Standard",
+        "effect": "A timid Fairy Pokémon that is rarely seen. It will run and hide the moment it senses people.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-17/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-18",
+        "number": "18",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Electrode",
+        "type": "Pokémon",
+        "rarity": "Rare",
+        "pokemonTypes": [
+          "Lightning"
+        ],
+        "pokemonDexNumbers": [
+          101
+        ],
+        "variant": "Standard",
+        "effect": "It stores electrical energy under very high pressure. It often explodes with little or no provocation.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-18/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-19",
+        "number": "19",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Flareon",
+        "type": "Pokémon",
+        "rarity": "Rare",
+        "pokemonTypes": [
+          "Fire"
+        ],
+        "pokemonDexNumbers": [
+          136
+        ],
+        "variant": "Standard",
+        "effect": "When storing thermal energy in its body, its temperature could soar to over 1600 degrees.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-19/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-20",
+        "number": "20",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Jolteon",
+        "type": "Pokémon",
+        "rarity": "Rare",
+        "pokemonTypes": [
+          "Lightning"
+        ],
+        "pokemonDexNumbers": [
+          135
+        ],
+        "variant": "Standard",
+        "effect": "It accumulates negative ions from the atmosphere to blast out 10,000-volt lightning bolts.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-20/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-21",
+        "number": "21",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Kangaskhan",
+        "type": "Pokémon",
+        "rarity": "Rare",
+        "pokemonTypes": [
+          "Colorless"
+        ],
+        "pokemonDexNumbers": [
+          115
+        ],
+        "variant": "Standard",
+        "effect": "The infant rarely ventures out of its mother's protective pouch until it is three years old.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-21/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-22",
+        "number": "22",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Mr. Mime",
+        "type": "Pokémon",
+        "rarity": "Rare",
+        "pokemonTypes": [
+          "Psychic"
+        ],
+        "pokemonDexNumbers": [
+          122
+        ],
+        "variant": "Standard",
+        "effect": "If interrupted while miming, it will slap around the enemy with its broad hands.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-22/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-23",
+        "number": "23",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Nidoqueen",
+        "type": "Pokémon",
+        "rarity": "Rare",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          31
+        ],
+        "variant": "Standard",
+        "effect": "Its hard scales provide strong protection. It uses its hefty bulk to execute powerful moves.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-23/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-24",
+        "number": "24",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Pidgeot",
+        "type": "Pokémon",
+        "rarity": "Rare",
+        "pokemonTypes": [
+          "Colorless"
+        ],
+        "pokemonDexNumbers": [
+          18
+        ],
+        "variant": "Standard",
+        "effect": "When hunting, it skims the surface of water at high speed to pick off unwary prey such as Magikarp.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-24/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-25",
+        "number": "25",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Pinsir",
+        "type": "Pokémon",
+        "rarity": "Rare",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          127
+        ],
+        "variant": "Standard",
+        "effect": "If it fails to crush the victim in its pincers, it will swing its victim around and toss it hard.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-25/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-26",
+        "number": "26",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Scyther",
+        "type": "Pokémon",
+        "rarity": "Rare",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          123
+        ],
+        "variant": "Standard",
+        "effect": "With ninja-like agility and speed, it can create the illusion that there is more than one of it.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-26/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-27",
+        "number": "27",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Snorlax",
+        "type": "Pokémon",
+        "rarity": "Rare",
+        "pokemonTypes": [
+          "Colorless"
+        ],
+        "pokemonDexNumbers": [
+          143
+        ],
+        "variant": "Standard",
+        "effect": "Very lazy. Just eats and sleeps. As its rotund bulk builds, it becomes steadily more slothful.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-27/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-28",
+        "number": "28",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Vaporeon",
+        "type": "Pokémon",
+        "rarity": "Rare",
+        "pokemonTypes": [
+          "Water"
+        ],
+        "pokemonDexNumbers": [
+          134
+        ],
+        "variant": "Standard",
+        "effect": "Lives close to water. Its long tail is ridged with a fin that is often mistaken for a mermaid's.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-28/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-29",
+        "number": "29",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Venomoth",
+        "type": "Pokémon",
+        "rarity": "Rare",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          49
+        ],
+        "variant": "Standard",
+        "effect": "The dust-like scales covering its wings are color coded to indicate the kinds of poison it has.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-29/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-30",
+        "number": "30",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Victreebel",
+        "type": "Pokémon",
+        "rarity": "Rare",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          71
+        ],
+        "variant": "Standard",
+        "effect": "Said to live in huge colonies deep in jungles, although no one has ever returned from there.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-30/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-31",
+        "number": "31",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Vileplume",
+        "type": "Pokémon",
+        "rarity": "Rare",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          45
+        ],
+        "variant": "Standard",
+        "effect": "The larger its petals, the more toxic pollen it contains. Its big head is heavy and hard to hold up.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-31/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-32",
+        "number": "32",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Wigglytuff",
+        "type": "Pokémon",
+        "rarity": "Rare",
+        "pokemonTypes": [
+          "Colorless"
+        ],
+        "pokemonDexNumbers": [
+          40
+        ],
+        "variant": "Standard",
+        "effect": "The body is soft and rubbery. When angered, it will suck in air and inflate itself to an enormous size.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-32/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-33",
+        "number": "33",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Butterfree",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          12
+        ],
+        "variant": "Standard",
+        "effect": "In battle, it flaps its wings at high speed to release highly toxic dust into the air.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-33/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-34",
+        "number": "34",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Dodrio",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Colorless"
+        ],
+        "pokemonDexNumbers": [
+          85
+        ],
+        "variant": "Standard",
+        "effect": "Uses its three brains to execute complex plans. While two heads sleep, one head stays awake.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-34/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-35",
+        "number": "35",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Exeggutor",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          103
+        ],
+        "variant": "Standard",
+        "effect": "Legend has it that on rare occasions, one of its heads will drop off and continue on as an Exeggcute.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-35/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-36",
+        "number": "36",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Fearow",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Colorless"
+        ],
+        "pokemonDexNumbers": [
+          22
+        ],
+        "variant": "Standard",
+        "effect": "With its huge and magnificent wings, it can keep aloft without ever having to land for rest.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-36/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-37",
+        "number": "37",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Gloom",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          44
+        ],
+        "variant": "Standard",
+        "effect": "The fluid that oozes from its mouth isn't drool; it is a nectar that is used to attract prey.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-37/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-38",
+        "number": "38",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Lickitung",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Colorless"
+        ],
+        "pokemonDexNumbers": [
+          108
+        ],
+        "variant": "Standard",
+        "effect": "Its tongue can be extended like a chameleon's. It leaves a stinging sensation when it licks enemies.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-38/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-39",
+        "number": "39",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Marowak",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Fighting"
+        ],
+        "pokemonDexNumbers": [
+          105
+        ],
+        "variant": "Standard",
+        "effect": "The bone it holds is its key weapon. It throws the bone skillfully like a boomerang to K.O. targets.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-39/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-40",
+        "number": "40",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Nidorina",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          30
+        ],
+        "variant": "Standard",
+        "effect": "The female's horn develops slowly. Prefers physical attacks such as clawing and biting.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-40/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-41",
+        "number": "41",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Parasect",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          47
+        ],
+        "variant": "Standard",
+        "effect": "A host-parasite pair in which the parasite mushroom has taken over the host bug. Prefers damp places.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-41/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-42",
+        "number": "42",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Persian",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Colorless"
+        ],
+        "pokemonDexNumbers": [
+          53
+        ],
+        "variant": "Standard",
+        "effect": "Although its fur has many admirers, it is tough to raise as a pet because of its fickle meanness.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-42/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-43",
+        "number": "43",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Primeape",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Fighting"
+        ],
+        "pokemonDexNumbers": [
+          57
+        ],
+        "variant": "Standard",
+        "effect": "Always furious and tenacious to boot. It will not abandon chasing its quarry until its quarry is caught.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-43/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-44",
+        "number": "44",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Rapidash",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Fire"
+        ],
+        "pokemonDexNumbers": [
+          78
+        ],
+        "variant": "Standard",
+        "effect": "Very competitive, this Pokémon will chase anything that moves fast in the hopes of racing it.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-44/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-45",
+        "number": "45",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Rhydon",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Fighting"
+        ],
+        "pokemonDexNumbers": [
+          112
+        ],
+        "variant": "Standard",
+        "effect": "Protected by an armor-like hide, it is capable of living in molten lava of 3600 degrees.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-45/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-46",
+        "number": "46",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Seaking",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Water"
+        ],
+        "pokemonDexNumbers": [
+          119
+        ],
+        "variant": "Standard",
+        "effect": "In the autumn spawning season, they can be seen swimming powerfully up rivers and creeks.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-46/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-47",
+        "number": "47",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Tauros",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Colorless"
+        ],
+        "pokemonDexNumbers": [
+          128
+        ],
+        "variant": "Standard",
+        "effect": "When it targets an enemy, it charges furiously while whipping its body with its long tails.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-47/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-48",
+        "number": "48",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Weepinbell",
+        "type": "Pokémon",
+        "rarity": "Uncommon",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          70
+        ],
+        "variant": "Standard",
+        "effect": "It spits out poisonpowder to immobilize the enemy, and then finishes the enemy with a spray of acid.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-48/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-49",
+        "number": "49",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Bellsprout",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          69
+        ],
+        "variant": "Standard",
+        "effect": "A carnivorous Pokémon that traps and eats bugs. It uses its root feet to soak up needed moisture.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-49/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-50",
+        "number": "50",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Cubone",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Fighting"
+        ],
+        "pokemonDexNumbers": [
+          104
+        ],
+        "variant": "Standard",
+        "effect": "Because it never removes its skull helmet, no one has ever seen this Pokémon's real face.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-50/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-51",
+        "number": "51",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Eevee",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Colorless"
+        ],
+        "pokemonDexNumbers": [
+          133
+        ],
+        "variant": "Standard",
+        "effect": "Its genetic code is irregular. It may mutate if it is exposed to radiation from elemental stones.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-51/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-52",
+        "number": "52",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Exeggcute",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          102
+        ],
+        "variant": "Standard",
+        "effect": "Often mistaken for eggs. When disturbed, they quickly gather and attack in swarms.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-52/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-53",
+        "number": "53",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Goldeen",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Water"
+        ],
+        "pokemonDexNumbers": [
+          118
+        ],
+        "variant": "Standard",
+        "effect": "Its tail fin billows like an elegant ballroom dress, giving it the nickname \"Water Queen.\"",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-53/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-54",
+        "number": "54",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Jigglypuff",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Colorless"
+        ],
+        "pokemonDexNumbers": [
+          39
+        ],
+        "variant": "Standard",
+        "effect": "When its huge eyes light up, it sings a mysteriously soothing melody that lulls its enemies to sleep.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-54/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-55",
+        "number": "55",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Mankey",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Fighting"
+        ],
+        "pokemonDexNumbers": [
+          56
+        ],
+        "variant": "Standard",
+        "effect": "Extremely quick to anger. It could be docile one moment, then thrashing away the next.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-55/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-56",
+        "number": "56",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Meowth",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Colorless"
+        ],
+        "pokemonDexNumbers": [
+          52
+        ],
+        "variant": "Standard",
+        "effect": "Adores circular objects. Wanders the streets on a nightly basis to look for dropped loose change.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-56/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-57",
+        "number": "57",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Nidoran ♀",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          29
+        ],
+        "variant": "Standard",
+        "effect": "Although small, its venomous barbs make this Pokémon dangerous. The female has smaller horns.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-57/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-58",
+        "number": "58",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Oddish",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          43
+        ],
+        "variant": "Standard",
+        "effect": "During the day, it keeps its face buried in the ground. At night, it wanders around sowing its seeds.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-58/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-59",
+        "number": "59",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Paras",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          46
+        ],
+        "variant": "Standard",
+        "effect": "Burrows to suck tree roots. The mushrooms on its back grow by drawing nutrients from the bug host.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-59/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-60",
+        "number": "60",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Pikachu",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Lightning"
+        ],
+        "pokemonDexNumbers": [
+          25
+        ],
+        "variant": "Standard",
+        "effect": "When several of these Pokémon gather, their electricity can build and cause lightning storms.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-60/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-61",
+        "number": "61",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Rhyhorn",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Fighting"
+        ],
+        "pokemonDexNumbers": [
+          111
+        ],
+        "variant": "Standard",
+        "effect": "Its massive bones are 1,000 times harder than human bones. It can easily knock a trailer flying.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-61/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-62",
+        "number": "62",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Spearow",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Colorless"
+        ],
+        "pokemonDexNumbers": [
+          21
+        ],
+        "variant": "Standard",
+        "effect": "Eats bugs in grassy areas. It has to flap its short wings at high speeds to stay airborne.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-62/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-63",
+        "number": "63",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Venonat",
+        "type": "Pokémon",
+        "rarity": "Common",
+        "pokemonTypes": [
+          "Grass"
+        ],
+        "pokemonDexNumbers": [
+          48
+        ],
+        "variant": "Standard",
+        "effect": "Lives in the shadows of tall trees where it eats insects. It is attracted by light at night.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-63/small",
+        "setReleaseDate": "1999/06/16"
+      },
+      {
+        "id": "base2-64",
+        "number": "64",
+        "game": "Pokemon",
+        "set": "Jungle",
+        "name": "Poké Ball",
+        "type": "Trainer",
+        "rarity": "Common",
+        "pokemonTypes": [],
+        "pokemonDexNumbers": [],
+        "variant": "Standard",
+        "effect": "Flip a coin. If heads, you may search your deck for any Basic Pokémon or Evolution card. Show that card to your opponent, then put it into your hand. Shuffle your deck afterward.",
+        "imageUrl": "https://images.scrydex.com/pokemon/base2-64/small",
+        "setReleaseDate": "1999/06/16"
       }
     ]
   }

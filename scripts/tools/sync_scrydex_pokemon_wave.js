@@ -12,7 +12,8 @@ const WAVES = {
         batches: {
             1: ["Fossil", "Team Rocket", "Gym Heroes"],
             2: ["Gym Challenge", "Neo Genesis", "Neo Discovery", "Neo Revelation", "Neo Destiny"],
-            3: ["Legendary Collection", "Expedition Base Set", "Aquapolis", "Skyridge", "Wizards Black Star Promos"]
+            3: ["Legendary Collection", "Expedition Base Set", "Aquapolis", "Skyridge", "Wizards Black Star Promos"],
+            4: ["Base", "Jungle"]
         }
     },
     2: {

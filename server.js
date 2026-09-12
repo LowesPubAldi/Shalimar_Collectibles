@@ -21,7 +21,8 @@ const SCRYDEX_TEAM_ID = process.env.SCRYDEX_TEAM_ID || "";
 const SCRYDEX_POKEMON_SETS_CACHE_PATH = path.join(__dirname, "data", "pokemon-sets-scrydex.json");
 const SCRYDEX_POKEMON_CACHE_DIR = path.join(__dirname, "data");
 const SCRYDEX_POKEMON_SET_ID_BY_NAME = new Map([
-    ["Base", "base1"]
+    ["Base", "base1"],
+    ["Jungle", "base2"]
 ]);
 const EBAY_SCOPES = ["https://api.ebay.com/oauth/api_scope"]; 
 const EBAY_API_BASE_URLS = {
