@@ -38,10 +38,63 @@ const WAVES = {
             2: ["Call of Legends", "BW Black Star Promos", "Black & White", "McDonald's Collection 2011", "Emerging Powers", "BW Trainer Kit Zoroark", "BW Trainer Kit Excadrill"],
             3: ["Noble Victories", "Next Destinies", "Dark Explorers", "McDonald's Collection 2012", "Dragons Exalted", "Dragon Vault", "Boundaries Crossed"]
         }
+    },
+    5: {
+        label: "Late Black & White / XY",
+        batches: {
+            1: ["Plasma Storm", "Plasma Freeze", "Plasma Blast", "XY Black Star Promos", "Legendary Treasures", "Kalos Starter Set", "XY"],
+            2: ["XY Trainer Kit Sylveon", "XY Trainer Kit Noivern", "Flashfire", "McDonald's Collection 2014", "Furious Fists", "XY Trainer Kit Wigglytuff", "XY Trainer Kit Bisharp"],
+            3: ["Phantom Forces", "Primal Clash", "XY Trainer Kit Latios", "XY Trainer Kit Latias", "Roaring Skies", "Ancient Origins", "BREAKthrough"],
+            4: ["Double Crisis", "McDonald's Collection 2015", "BREAKpoint", "Generations", "XY Trainer Kit Suicune", "XY Trainer Kit Pikachu Libre", "Fates Collide", "Steam Siege"]
+        }
+    },
+    6: {
+        label: "Late XY / Early Sun & Moon",
+        batches: {
+            1: ["McDonald's Collection 2016", "Evolutions", "Sun & Moon", "SM Black Star Promos", "SM Trainer Kit Lycanroc", "SM Trainer Kit Alolan Raichu", "Guardians Rising", "Burning Shadows", "Shining Legends", "Crimson Invasion", "McDonald's Collection 2017", "Ultra Prism", "Forbidden Light", "Celestial Storm"]
+        }
+    },
+    7: {
+        label: "Late Sun & Moon",
+        batches: {
+            1: ["Dragon Majesty", "McDonald's Collection 2018", "Lost Thunder", "Team Up", "Detective Pikachu", "Unbroken Bonds"],
+            2: ["Unified Minds", "Hidden Fates", "Hidden Fates Shiny Vault", "McDonald's Collection 2019", "Cosmic Eclipse"],
+            3: ["SWSH Black Star Promos"]
+        }
+    },
+    8: {
+        label: "Sword & Shield",
+        batches: {
+            1: ["Sword & Shield", "Rebel Clash", "Darkness Ablaze", "Pokémon Futsal Collection", "Champion's Path", "Vivid Voltage", "McDonald's Collection 2021"],
+            2: ["Shining Fates", "Shining Fates Shiny Vault", "Battle Styles", "Chilling Reign", "Evolving Skies", "Fusion Strike", "Brilliant Stars", "Brilliant Stars Trainer Gallery"],
+            3: ["Celebrations", "Celebrations: Classic Collection", "Astral Radiance", "Astral Radiance Trainer Gallery", "Pokémon GO", "McDonald's Collection 2022", "Lost Origin", "Lost Origin Trainer Gallery"],
+            4: ["Silver Tempest", "Silver Tempest Trainer Gallery", "Scarlet & Violet Black Star Promos", "Crown Zenith", "Crown Zenith Galarian Gallery"]
+        }
+    },
+    9: {
+        label: "Scarlet & Violet and Later",
+        batches: {
+            1: ["Scarlet & Violet", "Scarlet & Violet Energies", "Paldea Evolved", "Obsidian Flames", "McDonald's Collection 2023", "151", "Paradox Rift"],
+            2: ["Pokémon TCG Classic - Blastoise", "Pokémon TCG Classic - Charizard", "Pokémon TCG Classic - Venusaur", "Paldean Fates", "Temporal Forces", "Twilight Masquerade", "Shrouded Fable", "Stellar Crown"],
+            3: ["Genetic Apex", "Promo-A", "Surging Sparks", "Mythical Island", "Prismatic Evolutions", "McDonald's Collection 2024", "Space-Time Smackdown", "Triumphant Light", "Shining Revelry"],
+            4: ["Journey Together", "Celestial Guardians", "Extradimensional Crisis", "Destined Rivals", "Eevee Grove", "Black Bolt", "White Flare"],
+            5: ["Wisdom of Sea and Sky", "Secluded Springs", "Mega Evolution", "Mega Evolution Black Star Promos", "Mega Evolution Energies", "Deluxe Pack ex"],
+            6: ["Mega Rising", "Promo-B", "Phantasmal Flames", "Crimson Blaze", "Fantastical Parade", "Ascended Heroes", "Paldean Wonders", "Mega Shine"],
+            7: ["Perfect Order", "Pulsing Aura", "Chaos Rising", "Paradox Drive", "Everyday Wonders", "Pitch Black", "Ruler of the Skies", "Team Rocket's Ambition"]
+        }
+    },
+    10: {
+        label: "Supplemental Products",
+        batches: {
+            1: ["Miscellaneous", "Base Set 2", "Southern Islands", "Best of Game", "Nintendo Black Star Promos", "EX Trainer Kit Latias", "EX Trainer Kit Latios", "Poké Card Creator Pack"],
+            2: ["POP Series 1", "POP Series 2", "EX Trainer Kit 2 Minun", "EX Trainer Kit 2 Plusle", "POP Series 3", "POP Series 4", "POP Series 5", "DP Black Star Promos"],
+            3: ["DP Trainer Kit Lucario", "DP Trainer Kit Manaphy", "POP Series 6", "POP Series 7", "POP Series 8", "POP Series 9", "Pokémon Rumble"]
+        }
     }
 };
 const waveArgumentIndex = process.argv.indexOf("--wave");
 const batchArgumentIndex = process.argv.indexOf("--batch");
+const syncExpansionsOnly = process.argv.includes("--sync-expansions-only");
 const waveNumber = Number(waveArgumentIndex >= 0 ? process.argv[waveArgumentIndex + 1] : 1);
 const batchNumber = Number(batchArgumentIndex >= 0 ? process.argv[batchArgumentIndex + 1] : 1);
 const waveConfig = WAVES[waveNumber];
@@ -100,6 +153,17 @@ function normalizeExpansion(expansion) {
     };
 }
 
+function deduplicateExpansions(expansions) {
+    const expansionsById = new Map();
+    for (const expansion of expansions) {
+        const id = String(expansion?.id || "").trim();
+        if (id) {
+            expansionsById.set(id, expansion);
+        }
+    }
+    return Array.from(expansionsById.values());
+}
+
 function normalizeCard(card) {
     const frontImage = Array.isArray(card.images)
         ? card.images.find((image) => image?.type === "front") || card.images[0]
@@ -124,23 +188,40 @@ function normalizeCard(card) {
 
 async function fetchAllExpansions() {
     const expansions = [];
+    const fetchedExpansionIds = new Set();
+    let recordsFetched = 0;
     let page = 1;
     let total = Number.POSITIVE_INFINITY;
 
-    while (expansions.length < total) {
+    while (recordsFetched < total) {
         const payload = await fetchScrydex("expansions", {
             page,
             pageSize: PAGE_SIZE,
-            orderBy: "releaseDate",
+            orderBy: "id",
             select: "id,name,release_date,printed_total,total,language"
         });
         const items = Array.isArray(payload?.data) ? payload.data : [];
-        expansions.push(...items.filter(isEnglish));
-        total = payloadTotal(payload, expansions.length);
+        recordsFetched += items.length;
+        for (const expansion of items.filter(isEnglish)) {
+            const id = String(expansion?.id || "").trim();
+            if (!id) {
+                throw new Error(`Expansion page ${page} returned a record without an id`);
+            }
+            if (fetchedExpansionIds.has(id)) {
+                throw new Error(`Expansion pagination returned duplicate id ${id} on page ${page}`);
+            }
+            fetchedExpansionIds.add(id);
+            expansions.push(expansion);
+        }
+        total = payloadTotal(payload, recordsFetched);
         if (items.length < PAGE_SIZE) {
             break;
         }
         page += 1;
+    }
+
+    if (recordsFetched < total) {
+        throw new Error(`Expansion pagination ended after ${recordsFetched} of ${total} records`);
     }
 
     return expansions;
@@ -202,13 +283,27 @@ async function readJsonIfPresent(filePath) {
 }
 
 async function main() {
+    if (!apiKey || !teamId) {
+        throw new Error("SCRYDEX_API_KEY and SCRYDEX_TEAM_ID must be set in .env.local");
+    }
+
+    const setsCachePath = path.join(DATA_DIR, "pokemon-sets-scrydex.json");
+    if (syncExpansionsOnly) {
+        const expansionRecords = await fetchAllExpansions();
+        const expansions = deduplicateExpansions(expansionRecords).map(normalizeExpansion);
+        await fs.mkdir(DATA_DIR, { recursive: true });
+        await writeJsonAtomic(setsCachePath, {
+            syncedAt: new Date().toISOString(),
+            language: "en",
+            items: expansions
+        });
+        console.log(JSON.stringify({ status: "success", scrydexRequests: requestCount, expansionsImported: expansions.length }, null, 2));
+        return;
+    }
     if (!Array.isArray(WAVE.sets)) {
         const availableWaves = Object.keys(WAVES).join(", ");
         const availableBatches = waveConfig ? Object.keys(waveConfig.batches).join(", ") : "none";
         throw new Error(`Unknown wave ${waveNumber}, batch ${batchNumber}. Available waves: ${availableWaves}; batches for this wave: ${availableBatches}`);
-    }
-    if (!apiKey || !teamId) {
-        throw new Error("SCRYDEX_API_KEY and SCRYDEX_TEAM_ID must be set in .env.local");
     }
 
     const startedAt = new Date().toISOString();
@@ -226,13 +321,12 @@ async function main() {
         sets: [],
         errors: []
     };
-    const setsCachePath = path.join(DATA_DIR, "pokemon-sets-scrydex.json");
     const cardsCachePath = path.join(DATA_DIR, `pokemon-cards-scrydex-wave-${WAVE.number}.json`);
     const existingSetsCache = await readJsonIfPresent(setsCachePath);
     const existingCardsCache = await readJsonIfPresent(cardsCachePath);
-    const expansionRecords = Array.isArray(existingSetsCache?.items) && existingSetsCache.items.length > 0
+    const expansionRecords = deduplicateExpansions(Array.isArray(existingSetsCache?.items) && existingSetsCache.items.length > 0
         ? existingSetsCache.items
-        : await fetchAllExpansions();
+        : await fetchAllExpansions());
     const expansions = expansionRecords.map(normalizeExpansion);
     const expansionByName = new Map(expansionRecords.map((expansion) => [String(expansion.name || "").trim().toLowerCase(), expansion]));
     const cardsByExpansionId = { ...(existingCardsCache?.cardsByExpansionId || {}) };

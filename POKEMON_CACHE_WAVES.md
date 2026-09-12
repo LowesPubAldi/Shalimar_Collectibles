@@ -44,6 +44,7 @@ scripts/tools/sync_scrydex_pokemon_wave.js --wave 1
 Expected behavior:
 
 - Load `SCRYDEX_API_KEY` and `SCRYDEX_TEAM_ID` from `.env.local`.
+- Refresh expansion metadata independently with `npm run pokemon:sync-expansions`.
 - Fetch English expansion metadata first.
 - Resolve each planned set to a Scrydex expansion id.
 - Fetch each set's cards with `pageSize=100` until all pages are complete.
@@ -255,7 +256,322 @@ Batch 3: 630 cards imported in 12 Scrydex requests
 
 Wave 4 complete: 21 sets and 1,621 cards imported in 31 Scrydex requests.
 
-Running cache total: 6,336 cards, about 25.3% of the projected 25,010-card catalog.
+Running cache total through Wave 4: 6,336 cards, about 25.3% of the projected 25,010-card catalog.
+
+## Wave 5: Late Black & White / XY
+
+Completed batch 1 on 2026-09-12: 7 sets/products and 906 cards imported in 14 Scrydex requests.
+
+```text
+Plasma Storm
+Plasma Freeze
+Plasma Blast
+XY Black Star Promos
+Legendary Treasures
+Kalos Starter Set
+XY
+```
+
+Completed batch 2 on 2026-09-12: 7 sets/products and 356 cards imported in 9 Scrydex requests.
+
+```text
+XY Trainer Kit Sylveon
+XY Trainer Kit Noivern
+Flashfire
+McDonald's Collection 2014
+Furious Fists
+XY Trainer Kit Wigglytuff
+XY Trainer Kit Bisharp
+```
+
+Completed batch 3 on 2026-09-12: 7 sets/products and 726 cards imported in 12 Scrydex requests.
+
+```text
+Phantom Forces
+Primal Clash
+XY Trainer Kit Latios
+XY Trainer Kit Latias
+Roaring Skies
+Ancient Origins
+BREAKthrough
+```
+
+Completed batch 4 on 2026-09-12: the final 8 sets/products and 594 cards imported in 12 Scrydex requests.
+
+```text
+Double Crisis
+McDonald's Collection 2015
+BREAKpoint
+Generations
+XY Trainer Kit Suicune
+XY Trainer Kit Pikachu Libre
+Fates Collide
+Steam Siege
+```
+
+Wave 5 complete: 29 sets/products and 2,582 cards imported.
+
+Running cache total: 8,918 cards, about 35.7% of the projected 25,010-card catalog.
+
+## Wave 6: Late XY / Early Sun & Moon
+
+Completed Wave 6 on 2026-09-12: one batch of 14 sets/products and 1,700 cards imported in 24 Scrydex requests.
+
+```text
+McDonald's Collection 2016
+Evolutions
+Sun & Moon
+SM Black Star Promos
+SM Trainer Kit Lycanroc
+SM Trainer Kit Alolan Raichu
+Guardians Rising
+Burning Shadows
+Shining Legends
+Crimson Invasion
+McDonald's Collection 2017
+Ultra Prism
+Forbidden Light
+Celestial Storm
+```
+
+Running cache total: 10,618 cards, about 42.5% of the projected 25,010-card catalog.
+
+## Wave 7: Late Sun & Moon
+
+Completed batch 1 on 2026-09-12: 6 sets/products and 786 cards imported in 11 Scrydex requests.
+
+```text
+Dragon Majesty
+McDonald's Collection 2018
+Lost Thunder
+Team Up
+Detective Pikachu
+Unbroken Bonds
+```
+
+Completed batch 2 on 2026-09-12: 5 sets/products and 708 cards imported in 9 Scrydex requests.
+
+```text
+Unified Minds
+Hidden Fates
+Hidden Fates Shiny Vault
+McDonald's Collection 2019
+Cosmic Eclipse
+```
+
+Completed boundary repair batch 3 on 2026-09-12: SWSH Black Star Promos added 307 cards in 4 Scrydex requests, matching the Inventory date grouping.
+
+Wave 7 complete: 12 sets/products and 1,801 cards imported.
+
+Running cache total: 12,419 cards, about 49.7% of the projected 25,010-card catalog.
+
+## Wave 8: Sword & Shield
+
+Completed batch 1 on 2026-09-12: 7 sets/products and 939 cards imported in 15 Scrydex requests.
+
+```text
+Sword & Shield
+Rebel Clash
+Darkness Ablaze
+Pokémon Futsal Collection
+Champion's Path
+Vivid Voltage
+McDonald's Collection 2021
+```
+
+Running cache total: 13,358 cards, about 53.4% of the projected 25,010-card catalog.
+
+Completed batch 2 on 2026-09-12: 8 sets/products and 1,348 cards imported in 17 Scrydex requests.
+
+```text
+Shining Fates
+Shining Fates Shiny Vault
+Battle Styles
+Chilling Reign
+Evolving Skies
+Fusion Strike
+Brilliant Stars
+Brilliant Stars Trainer Gallery
+```
+
+Running cache total: 14,706 cards, about 58.8% of the projected 25,010-card catalog.
+
+Completed batch 3 on 2026-09-12: 8 sets/products and 646 cards imported in 12 Scrydex requests.
+
+```text
+Celebrations
+Celebrations: Classic Collection
+Astral Radiance
+Astral Radiance Trainer Gallery
+Pokémon GO
+McDonald's Collection 2022
+Lost Origin
+Lost Origin Trainer Gallery
+```
+
+Completed batch 4 on 2026-09-12: 5 sets/products and 700 cards imported in 10 Scrydex requests.
+
+```text
+Silver Tempest
+Silver Tempest Trainer Gallery
+Scarlet & Violet Black Star Promos
+Crown Zenith
+Crown Zenith Galarian Gallery
+```
+
+Wave 8 complete: all 28 Inventory sets/products and 3,633 cards are locally cached.
+
+Running cache total: 16,052 cards, about 64.2% of the projected 25,010-card catalog.
+
+## Wave 9: Scarlet & Violet and Later
+
+Completed batch 1 on 2026-09-12: 7 sets/products and 1,279 cards imported in 17 Scrydex requests.
+
+```text
+Scarlet & Violet
+Scarlet & Violet Energies
+Paldea Evolved
+Obsidian Flames
+McDonald's Collection 2023
+151
+Paradox Rift
+```
+
+Running cache total: 17,331 cards, about 69.3% of the projected 25,010-card catalog.
+
+Completed batch 2 on 2026-09-12: 8 sets/products and 1,065 cards imported in 15 Scrydex requests.
+
+```text
+Pokémon TCG Classic - Blastoise
+Pokémon TCG Classic - Charizard
+Pokémon TCG Classic - Venusaur
+Paldean Fates
+Temporal Forces
+Twilight Masquerade
+Shrouded Fable
+Stellar Crown
+```
+
+Running cache total: 18,396 cards, about 73.6% of the projected 25,010-card catalog.
+
+Completed batch 3 on 2026-09-12: 9 sets/products and 1,349 cards imported in 18 Scrydex requests.
+
+```text
+Genetic Apex
+Promo-A
+Surging Sparks
+Mythical Island
+Prismatic Evolutions
+McDonald's Collection 2024
+Space-Time Smackdown
+Triumphant Light
+Shining Revelry
+```
+
+Running cache total: 19,745 cards, about 79.0% of the projected 25,010-card catalog.
+
+Completed batch 4 on 2026-09-12: 7 sets/products and 1,228 cards imported in 16 Scrydex requests.
+
+```text
+Journey Together
+Celestial Guardians
+Extradimensional Crisis
+Destined Rivals
+Eevee Grove
+Black Bolt
+White Flare
+```
+
+Running cache total: 20,973 cards, about 83.9% of the projected 25,010-card catalog.
+
+Completed batch 5 on 2026-09-12: 6 sets/products and 1,033 cards imported in 14 Scrydex requests.
+
+```text
+Wisdom of Sea and Sky
+Secluded Springs
+Mega Evolution
+Mega Evolution Black Star Promos
+Mega Evolution Energies
+Deluxe Pack ex
+```
+
+Running cache total: 22,006 cards, about 88.0% of the projected 25,010-card catalog.
+
+Completed batch 6 on 2026-09-12: 8 sets/products and 1,352 cards imported in 19 Scrydex requests.
+
+```text
+Mega Rising
+Promo-B
+Phantasmal Flames
+Crimson Blaze
+Fantastical Parade
+Ascended Heroes
+Paldean Wonders
+Mega Shine
+```
+
+Running cache total: 23,358 cards, about 93.4% of the projected 25,010-card catalog.
+
+Completed batch 7 on 2026-09-12: 8 sets/products and 1,157 cards imported in 18 Scrydex requests. Ruler of the Skies returned 232 cards despite its cached expansion metadata listing 233.
+
+```text
+Perfect Order
+Pulsing Aura
+Chaos Rising
+Paradox Drive
+Everyday Wonders
+Pitch Black
+Ruler of the Skies
+Team Rocket's Ambition
+```
+
+Wave 9 complete: all 53 Inventory sets/products and 8,463 cards are locally cached.
+
+Running cache total: 24,515 cards, about 98.0% of the projected 25,010-card catalog.
+
+## Wave 10: Supplemental Products
+
+Completed batch 1 on 2026-09-12: 8 products and 223 cards imported in 9 Scrydex requests.
+
+```text
+Miscellaneous
+Base Set 2
+Southern Islands
+Best of Game
+Nintendo Black Star Promos
+EX Trainer Kit Latias
+EX Trainer Kit Latios
+Poké Card Creator Pack
+```
+
+Completed batch 2 on 2026-09-12: 8 products and 165 cards imported in 8 Scrydex requests.
+
+```text
+POP Series 1
+POP Series 2
+EX Trainer Kit 2 Minun
+EX Trainer Kit 2 Plusle
+POP Series 3
+POP Series 4
+POP Series 5
+DP Black Star Promos
+```
+
+Completed batch 3 on 2026-09-12: 7 products and 107 cards imported in 7 Scrydex requests.
+
+```text
+DP Trainer Kit Lucario
+DP Trainer Kit Manaphy
+POP Series 6
+POP Series 7
+POP Series 8
+POP Series 9
+Pokémon Rumble
+```
+
+Wave 10 complete: all 23 supplemental Inventory products and 495 cards are locally cached.
+
+Pokemon Inventory cache complete: all 222 products and 25,010 unique cards are locally cached.
 
 ## Later Waves
 

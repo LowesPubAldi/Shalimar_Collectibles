@@ -681,5 +681,1607 @@
       }
     ],
     "errors": []
+  },
+  {
+    "wave": 5,
+    "batch": 1,
+    "label": "Late Black & White / XY - Batch 1",
+    "startedAt": "2026-09-12T15:37:35.401Z",
+    "finishedAt": "2026-09-12T15:37:40.405Z",
+    "status": "success",
+    "scrydexRequests": 14,
+    "setsRequested": 7,
+    "setsImported": 7,
+    "cardsImported": 906,
+    "sets": [
+      {
+        "id": "bw8",
+        "name": "Plasma Storm",
+        "expectedTotal": 138,
+        "cardsImported": 138,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "bw9",
+        "name": "Plasma Freeze",
+        "expectedTotal": 122,
+        "cardsImported": 122,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "bw10",
+        "name": "Plasma Blast",
+        "expectedTotal": 105,
+        "cardsImported": 105,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "xyp",
+        "name": "XY Black Star Promos",
+        "expectedTotal": 216,
+        "cardsImported": 216,
+        "pagesFetched": 3,
+        "status": "success"
+      },
+      {
+        "id": "bw11",
+        "name": "Legendary Treasures",
+        "expectedTotal": 140,
+        "cardsImported": 140,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "xy0",
+        "name": "Kalos Starter Set",
+        "expectedTotal": 39,
+        "cardsImported": 39,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "xy1",
+        "name": "XY",
+        "expectedTotal": 146,
+        "cardsImported": 146,
+        "pagesFetched": 2,
+        "status": "success"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "wave": 5,
+    "batch": 2,
+    "label": "Late Black & White / XY - Batch 2",
+    "startedAt": "2026-09-12T15:55:29.512Z",
+    "finishedAt": "2026-09-12T15:55:32.902Z",
+    "status": "success",
+    "scrydexRequests": 9,
+    "setsRequested": 7,
+    "setsImported": 7,
+    "cardsImported": 356,
+    "sets": [
+      {
+        "id": "tk6a",
+        "name": "XY Trainer Kit Sylveon",
+        "expectedTotal": 30,
+        "cardsImported": 30,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "tk6b",
+        "name": "XY Trainer Kit Noivern",
+        "expectedTotal": 30,
+        "cardsImported": 30,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "xy2",
+        "name": "Flashfire",
+        "expectedTotal": 110,
+        "cardsImported": 110,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "mcd14",
+        "name": "McDonald's Collection 2014",
+        "expectedTotal": 12,
+        "cardsImported": 12,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "xy3",
+        "name": "Furious Fists",
+        "expectedTotal": 114,
+        "cardsImported": 114,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "tk7a",
+        "name": "XY Trainer Kit Wigglytuff",
+        "expectedTotal": 30,
+        "cardsImported": 30,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "tk7b",
+        "name": "XY Trainer Kit Bisharp",
+        "expectedTotal": 30,
+        "cardsImported": 30,
+        "pagesFetched": 1,
+        "status": "success"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "wave": 5,
+    "batch": 3,
+    "label": "Late Black & White / XY - Batch 3",
+    "startedAt": "2026-09-12T15:58:24.366Z",
+    "finishedAt": "2026-09-12T15:58:29.068Z",
+    "status": "success",
+    "scrydexRequests": 12,
+    "setsRequested": 7,
+    "setsImported": 7,
+    "cardsImported": 726,
+    "sets": [
+      {
+        "id": "xy4",
+        "name": "Phantom Forces",
+        "expectedTotal": 124,
+        "cardsImported": 124,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "xy5",
+        "name": "Primal Clash",
+        "expectedTotal": 164,
+        "cardsImported": 164,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "tk8a",
+        "name": "XY Trainer Kit Latios",
+        "expectedTotal": 30,
+        "cardsImported": 30,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "tk8b",
+        "name": "XY Trainer Kit Latias",
+        "expectedTotal": 30,
+        "cardsImported": 30,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "xy6",
+        "name": "Roaring Skies",
+        "expectedTotal": 112,
+        "cardsImported": 112,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "xy7",
+        "name": "Ancient Origins",
+        "expectedTotal": 101,
+        "cardsImported": 101,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "xy8",
+        "name": "BREAKthrough",
+        "expectedTotal": 165,
+        "cardsImported": 165,
+        "pagesFetched": 2,
+        "status": "success"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "wave": 5,
+    "batch": 4,
+    "label": "Late Black & White / XY - Batch 4",
+    "startedAt": "2026-09-12T15:59:54.041Z",
+    "finishedAt": "2026-09-12T15:59:58.507Z",
+    "status": "success",
+    "scrydexRequests": 12,
+    "setsRequested": 8,
+    "setsImported": 8,
+    "cardsImported": 594,
+    "sets": [
+      {
+        "id": "dc1",
+        "name": "Double Crisis",
+        "expectedTotal": 34,
+        "cardsImported": 34,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "mcd15",
+        "name": "McDonald's Collection 2015",
+        "expectedTotal": 12,
+        "cardsImported": 12,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "xy9",
+        "name": "BREAKpoint",
+        "expectedTotal": 126,
+        "cardsImported": 126,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "g1",
+        "name": "Generations",
+        "expectedTotal": 117,
+        "cardsImported": 117,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "tk9a",
+        "name": "XY Trainer Kit Suicune",
+        "expectedTotal": 30,
+        "cardsImported": 30,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "tk9b",
+        "name": "XY Trainer Kit Pikachu Libre",
+        "expectedTotal": 30,
+        "cardsImported": 30,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "xy10",
+        "name": "Fates Collide",
+        "expectedTotal": 129,
+        "cardsImported": 129,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "xy11",
+        "name": "Steam Siege",
+        "expectedTotal": 116,
+        "cardsImported": 116,
+        "pagesFetched": 2,
+        "status": "success"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "wave": 6,
+    "batch": 1,
+    "label": "Late XY / Early Sun & Moon - Batch 1",
+    "startedAt": "2026-09-12T16:01:57.423Z",
+    "finishedAt": "2026-09-12T16:02:13.963Z",
+    "status": "success",
+    "scrydexRequests": 24,
+    "setsRequested": 14,
+    "setsImported": 14,
+    "cardsImported": 1700,
+    "sets": [
+      {
+        "id": "mcd16",
+        "name": "McDonald's Collection 2016",
+        "expectedTotal": 12,
+        "cardsImported": 12,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "xy12",
+        "name": "Evolutions",
+        "expectedTotal": 113,
+        "cardsImported": 113,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "sm1",
+        "name": "Sun & Moon",
+        "expectedTotal": 173,
+        "cardsImported": 173,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "smp",
+        "name": "SM Black Star Promos",
+        "expectedTotal": 251,
+        "cardsImported": 251,
+        "pagesFetched": 3,
+        "status": "success"
+      },
+      {
+        "id": "tk10a",
+        "name": "SM Trainer Kit Lycanroc",
+        "expectedTotal": 30,
+        "cardsImported": 30,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "tk10b",
+        "name": "SM Trainer Kit Alolan Raichu",
+        "expectedTotal": 30,
+        "cardsImported": 30,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "sm2",
+        "name": "Guardians Rising",
+        "expectedTotal": 180,
+        "cardsImported": 180,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "sm3",
+        "name": "Burning Shadows",
+        "expectedTotal": 177,
+        "cardsImported": 177,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "sm35",
+        "name": "Shining Legends",
+        "expectedTotal": 81,
+        "cardsImported": 81,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "sm4",
+        "name": "Crimson Invasion",
+        "expectedTotal": 126,
+        "cardsImported": 126,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "mcd17",
+        "name": "McDonald's Collection 2017",
+        "expectedTotal": 12,
+        "cardsImported": 12,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "sm5",
+        "name": "Ultra Prism",
+        "expectedTotal": 178,
+        "cardsImported": 178,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "sm6",
+        "name": "Forbidden Light",
+        "expectedTotal": 150,
+        "cardsImported": 150,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "sm7",
+        "name": "Celestial Storm",
+        "expectedTotal": 187,
+        "cardsImported": 187,
+        "pagesFetched": 2,
+        "status": "success"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "wave": 7,
+    "batch": 1,
+    "label": "Late Sun & Moon - Batch 1",
+    "startedAt": "2026-09-12T16:05:47.926Z",
+    "finishedAt": "2026-09-12T16:05:52.141Z",
+    "status": "success",
+    "scrydexRequests": 11,
+    "setsRequested": 6,
+    "setsImported": 6,
+    "cardsImported": 786,
+    "sets": [
+      {
+        "id": "sm75",
+        "name": "Dragon Majesty",
+        "expectedTotal": 80,
+        "cardsImported": 80,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "mcd18",
+        "name": "McDonald's Collection 2018",
+        "expectedTotal": 12,
+        "cardsImported": 12,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "sm8",
+        "name": "Lost Thunder",
+        "expectedTotal": 240,
+        "cardsImported": 240,
+        "pagesFetched": 3,
+        "status": "success"
+      },
+      {
+        "id": "sm9",
+        "name": "Team Up",
+        "expectedTotal": 198,
+        "cardsImported": 198,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "det1",
+        "name": "Detective Pikachu",
+        "expectedTotal": 18,
+        "cardsImported": 18,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "sm10",
+        "name": "Unbroken Bonds",
+        "expectedTotal": 238,
+        "cardsImported": 238,
+        "pagesFetched": 3,
+        "status": "success"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "wave": 7,
+    "batch": 2,
+    "label": "Late Sun & Moon - Batch 2",
+    "startedAt": "2026-09-12T16:13:15.141Z",
+    "finishedAt": "2026-09-12T16:13:19.088Z",
+    "status": "success",
+    "scrydexRequests": 9,
+    "setsRequested": 5,
+    "setsImported": 5,
+    "cardsImported": 708,
+    "sets": [
+      {
+        "id": "sm11",
+        "name": "Unified Minds",
+        "expectedTotal": 261,
+        "cardsImported": 261,
+        "pagesFetched": 3,
+        "status": "success"
+      },
+      {
+        "id": "sm115",
+        "name": "Hidden Fates",
+        "expectedTotal": 69,
+        "cardsImported": 69,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "sma",
+        "name": "Hidden Fates Shiny Vault",
+        "expectedTotal": 94,
+        "cardsImported": 94,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "mcd19",
+        "name": "McDonald's Collection 2019",
+        "expectedTotal": 12,
+        "cardsImported": 12,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "sm12",
+        "name": "Cosmic Eclipse",
+        "expectedTotal": 272,
+        "cardsImported": 272,
+        "pagesFetched": 3,
+        "status": "success"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "wave": 7,
+    "batch": 3,
+    "label": "Late Sun & Moon - Batch 3",
+    "startedAt": "2026-09-12T16:15:06.069Z",
+    "finishedAt": "2026-09-12T16:15:07.893Z",
+    "status": "success",
+    "scrydexRequests": 4,
+    "setsRequested": 1,
+    "setsImported": 1,
+    "cardsImported": 307,
+    "sets": [
+      {
+        "id": "swshp",
+        "name": "SWSH Black Star Promos",
+        "expectedTotal": 307,
+        "cardsImported": 307,
+        "pagesFetched": 4,
+        "status": "success"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "wave": 8,
+    "batch": 1,
+    "label": "Sword & Shield - Batch 1",
+    "startedAt": "2026-09-12T16:20:27.692Z",
+    "finishedAt": "2026-09-12T16:20:33.713Z",
+    "status": "success",
+    "scrydexRequests": 15,
+    "setsRequested": 7,
+    "setsImported": 7,
+    "cardsImported": 939,
+    "sets": [
+      {
+        "id": "swsh1",
+        "name": "Sword & Shield",
+        "expectedTotal": 216,
+        "cardsImported": 216,
+        "pagesFetched": 3,
+        "status": "success"
+      },
+      {
+        "id": "swsh2",
+        "name": "Rebel Clash",
+        "expectedTotal": 209,
+        "cardsImported": 209,
+        "pagesFetched": 3,
+        "status": "success"
+      },
+      {
+        "id": "swsh3",
+        "name": "Darkness Ablaze",
+        "expectedTotal": 201,
+        "cardsImported": 201,
+        "pagesFetched": 3,
+        "status": "success"
+      },
+      {
+        "id": "fut20",
+        "name": "Pokémon Futsal Collection",
+        "expectedTotal": 5,
+        "cardsImported": 5,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "swsh35",
+        "name": "Champion's Path",
+        "expectedTotal": 80,
+        "cardsImported": 80,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "swsh4",
+        "name": "Vivid Voltage",
+        "expectedTotal": 203,
+        "cardsImported": 203,
+        "pagesFetched": 3,
+        "status": "success"
+      },
+      {
+        "id": "mcd21",
+        "name": "McDonald's Collection 2021",
+        "expectedTotal": 25,
+        "cardsImported": 25,
+        "pagesFetched": 1,
+        "status": "success"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "wave": 8,
+    "batch": 2,
+    "label": "Sword & Shield - Batch 2",
+    "startedAt": "2026-09-12T16:27:16.577Z",
+    "finishedAt": "2026-09-12T16:27:23.188Z",
+    "status": "success",
+    "scrydexRequests": 17,
+    "setsRequested": 8,
+    "setsImported": 8,
+    "cardsImported": 1348,
+    "sets": [
+      {
+        "id": "swsh45",
+        "name": "Shining Fates",
+        "expectedTotal": 73,
+        "cardsImported": 73,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "swsh45sv",
+        "name": "Shining Fates Shiny Vault",
+        "expectedTotal": 122,
+        "cardsImported": 122,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "swsh5",
+        "name": "Battle Styles",
+        "expectedTotal": 183,
+        "cardsImported": 183,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "swsh6",
+        "name": "Chilling Reign",
+        "expectedTotal": 233,
+        "cardsImported": 233,
+        "pagesFetched": 3,
+        "status": "success"
+      },
+      {
+        "id": "swsh7",
+        "name": "Evolving Skies",
+        "expectedTotal": 237,
+        "cardsImported": 237,
+        "pagesFetched": 3,
+        "status": "success"
+      },
+      {
+        "id": "swsh8",
+        "name": "Fusion Strike",
+        "expectedTotal": 284,
+        "cardsImported": 284,
+        "pagesFetched": 3,
+        "status": "success"
+      },
+      {
+        "id": "swsh9",
+        "name": "Brilliant Stars",
+        "expectedTotal": 186,
+        "cardsImported": 186,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "swsh9tg",
+        "name": "Brilliant Stars Trainer Gallery",
+        "expectedTotal": 30,
+        "cardsImported": 30,
+        "pagesFetched": 1,
+        "status": "success"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "wave": 8,
+    "batch": 3,
+    "label": "Sword & Shield - Batch 3",
+    "startedAt": "2026-09-12T16:32:24.083Z",
+    "finishedAt": "2026-09-12T16:32:28.587Z",
+    "status": "success",
+    "scrydexRequests": 12,
+    "setsRequested": 8,
+    "setsImported": 8,
+    "cardsImported": 646,
+    "sets": [
+      {
+        "id": "cel25",
+        "name": "Celebrations",
+        "expectedTotal": 25,
+        "cardsImported": 25,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "cel25c",
+        "name": "Celebrations: Classic Collection",
+        "expectedTotal": 25,
+        "cardsImported": 25,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "swsh10",
+        "name": "Astral Radiance",
+        "expectedTotal": 216,
+        "cardsImported": 216,
+        "pagesFetched": 3,
+        "status": "success"
+      },
+      {
+        "id": "swsh10tg",
+        "name": "Astral Radiance Trainer Gallery",
+        "expectedTotal": 30,
+        "cardsImported": 30,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "pgo",
+        "name": "Pokémon GO",
+        "expectedTotal": 88,
+        "cardsImported": 88,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "mcd22",
+        "name": "McDonald's Collection 2022",
+        "expectedTotal": 15,
+        "cardsImported": 15,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "swsh11",
+        "name": "Lost Origin",
+        "expectedTotal": 217,
+        "cardsImported": 217,
+        "pagesFetched": 3,
+        "status": "success"
+      },
+      {
+        "id": "swsh11tg",
+        "name": "Lost Origin Trainer Gallery",
+        "expectedTotal": 30,
+        "cardsImported": 30,
+        "pagesFetched": 1,
+        "status": "success"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "wave": 8,
+    "batch": 4,
+    "label": "Sword & Shield - Batch 4",
+    "startedAt": "2026-09-12T16:32:47.875Z",
+    "finishedAt": "2026-09-12T16:32:53.069Z",
+    "status": "success",
+    "scrydexRequests": 10,
+    "setsRequested": 5,
+    "setsImported": 5,
+    "cardsImported": 700,
+    "sets": [
+      {
+        "id": "swsh12",
+        "name": "Silver Tempest",
+        "expectedTotal": 215,
+        "cardsImported": 215,
+        "pagesFetched": 3,
+        "status": "success"
+      },
+      {
+        "id": "swsh12tg",
+        "name": "Silver Tempest Trainer Gallery",
+        "expectedTotal": 30,
+        "cardsImported": 30,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "svp",
+        "name": "Scarlet & Violet Black Star Promos",
+        "expectedTotal": 225,
+        "cardsImported": 225,
+        "pagesFetched": 3,
+        "status": "success"
+      },
+      {
+        "id": "swsh12pt5",
+        "name": "Crown Zenith",
+        "expectedTotal": 160,
+        "cardsImported": 160,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "swsh12pt5gg",
+        "name": "Crown Zenith Galarian Gallery",
+        "expectedTotal": 70,
+        "cardsImported": 70,
+        "pagesFetched": 1,
+        "status": "success"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "wave": 9,
+    "batch": 1,
+    "label": "Scarlet & Violet and Later - Batch 1",
+    "startedAt": "2026-09-12T16:36:42.018Z",
+    "finishedAt": "2026-09-12T16:36:48.661Z",
+    "status": "success",
+    "scrydexRequests": 17,
+    "setsRequested": 7,
+    "setsImported": 7,
+    "cardsImported": 1279,
+    "sets": [
+      {
+        "id": "sv1",
+        "name": "Scarlet & Violet",
+        "expectedTotal": 258,
+        "cardsImported": 258,
+        "pagesFetched": 3,
+        "status": "success"
+      },
+      {
+        "id": "sve",
+        "name": "Scarlet & Violet Energies",
+        "expectedTotal": 24,
+        "cardsImported": 24,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "sv2",
+        "name": "Paldea Evolved",
+        "expectedTotal": 279,
+        "cardsImported": 279,
+        "pagesFetched": 3,
+        "status": "success"
+      },
+      {
+        "id": "sv3",
+        "name": "Obsidian Flames",
+        "expectedTotal": 230,
+        "cardsImported": 230,
+        "pagesFetched": 3,
+        "status": "success"
+      },
+      {
+        "id": "mcd23",
+        "name": "McDonald's Collection 2023",
+        "expectedTotal": 15,
+        "cardsImported": 15,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "sv3pt5",
+        "name": "151",
+        "expectedTotal": 207,
+        "cardsImported": 207,
+        "pagesFetched": 3,
+        "status": "success"
+      },
+      {
+        "id": "sv4",
+        "name": "Paradox Rift",
+        "expectedTotal": 266,
+        "cardsImported": 266,
+        "pagesFetched": 3,
+        "status": "success"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "wave": 9,
+    "batch": 2,
+    "label": "Scarlet & Violet and Later - Batch 2",
+    "startedAt": "2026-09-12T16:44:46.686Z",
+    "finishedAt": "2026-09-12T16:44:53.541Z",
+    "status": "success",
+    "scrydexRequests": 15,
+    "setsRequested": 8,
+    "setsImported": 8,
+    "cardsImported": 1065,
+    "sets": [
+      {
+        "id": "clb",
+        "name": "Pokémon TCG Classic - Blastoise",
+        "expectedTotal": 34,
+        "cardsImported": 34,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "clc",
+        "name": "Pokémon TCG Classic - Charizard",
+        "expectedTotal": 34,
+        "cardsImported": 34,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "clv",
+        "name": "Pokémon TCG Classic - Venusaur",
+        "expectedTotal": 34,
+        "cardsImported": 34,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "sv4pt5",
+        "name": "Paldean Fates",
+        "expectedTotal": 245,
+        "cardsImported": 245,
+        "pagesFetched": 3,
+        "status": "success"
+      },
+      {
+        "id": "sv5",
+        "name": "Temporal Forces",
+        "expectedTotal": 218,
+        "cardsImported": 218,
+        "pagesFetched": 3,
+        "status": "success"
+      },
+      {
+        "id": "sv6",
+        "name": "Twilight Masquerade",
+        "expectedTotal": 226,
+        "cardsImported": 226,
+        "pagesFetched": 3,
+        "status": "success"
+      },
+      {
+        "id": "sv6pt5",
+        "name": "Shrouded Fable",
+        "expectedTotal": 99,
+        "cardsImported": 99,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "sv7",
+        "name": "Stellar Crown",
+        "expectedTotal": 175,
+        "cardsImported": 175,
+        "pagesFetched": 2,
+        "status": "success"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "wave": 9,
+    "batch": 3,
+    "label": "Scarlet & Violet and Later - Batch 3",
+    "startedAt": "2026-09-12T16:49:11.267Z",
+    "finishedAt": "2026-09-12T16:49:18.506Z",
+    "status": "success",
+    "scrydexRequests": 18,
+    "setsRequested": 9,
+    "setsImported": 9,
+    "cardsImported": 1349,
+    "sets": [
+      {
+        "id": "tcgp-A1",
+        "name": "Genetic Apex",
+        "expectedTotal": 285,
+        "cardsImported": 285,
+        "pagesFetched": 3,
+        "status": "success"
+      },
+      {
+        "id": "tcgp-PA",
+        "name": "Promo-A",
+        "expectedTotal": 117,
+        "cardsImported": 117,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "sv8",
+        "name": "Surging Sparks",
+        "expectedTotal": 252,
+        "cardsImported": 252,
+        "pagesFetched": 3,
+        "status": "success"
+      },
+      {
+        "id": "tcgp-A1a",
+        "name": "Mythical Island",
+        "expectedTotal": 86,
+        "cardsImported": 86,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "sv8pt5",
+        "name": "Prismatic Evolutions",
+        "expectedTotal": 180,
+        "cardsImported": 180,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "mcd24",
+        "name": "McDonald's Collection 2024",
+        "expectedTotal": 15,
+        "cardsImported": 15,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "tcgp-A2",
+        "name": "Space-Time Smackdown",
+        "expectedTotal": 207,
+        "cardsImported": 207,
+        "pagesFetched": 3,
+        "status": "success"
+      },
+      {
+        "id": "tcgp-A2a",
+        "name": "Triumphant Light",
+        "expectedTotal": 96,
+        "cardsImported": 96,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "tcgp-A2b",
+        "name": "Shining Revelry",
+        "expectedTotal": 111,
+        "cardsImported": 111,
+        "pagesFetched": 2,
+        "status": "success"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "wave": 9,
+    "batch": 4,
+    "label": "Scarlet & Violet and Later - Batch 4",
+    "startedAt": "2026-09-12T16:55:34.622Z",
+    "finishedAt": "2026-09-12T16:55:40.957Z",
+    "status": "success",
+    "scrydexRequests": 16,
+    "setsRequested": 7,
+    "setsImported": 7,
+    "cardsImported": 1228,
+    "sets": [
+      {
+        "id": "sv9",
+        "name": "Journey Together",
+        "expectedTotal": 190,
+        "cardsImported": 190,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "tcgp-A3",
+        "name": "Celestial Guardians",
+        "expectedTotal": 239,
+        "cardsImported": 239,
+        "pagesFetched": 3,
+        "status": "success"
+      },
+      {
+        "id": "tcgp-A3a",
+        "name": "Extradimensional Crisis",
+        "expectedTotal": 103,
+        "cardsImported": 103,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "sv10",
+        "name": "Destined Rivals",
+        "expectedTotal": 244,
+        "cardsImported": 244,
+        "pagesFetched": 3,
+        "status": "success"
+      },
+      {
+        "id": "tcgp-A3b",
+        "name": "Eevee Grove",
+        "expectedTotal": 107,
+        "cardsImported": 107,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "zsv10pt5",
+        "name": "Black Bolt",
+        "expectedTotal": 172,
+        "cardsImported": 172,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "rsv10pt5",
+        "name": "White Flare",
+        "expectedTotal": 173,
+        "cardsImported": 173,
+        "pagesFetched": 2,
+        "status": "success"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "wave": 9,
+    "batch": 5,
+    "label": "Scarlet & Violet and Later - Batch 5",
+    "startedAt": "2026-09-12T16:59:10.809Z",
+    "finishedAt": "2026-09-12T16:59:15.881Z",
+    "status": "success",
+    "scrydexRequests": 14,
+    "setsRequested": 6,
+    "setsImported": 6,
+    "cardsImported": 1033,
+    "sets": [
+      {
+        "id": "tcgp-A4",
+        "name": "Wisdom of Sea and Sky",
+        "expectedTotal": 241,
+        "cardsImported": 241,
+        "pagesFetched": 3,
+        "status": "success"
+      },
+      {
+        "id": "tcgp-A4a",
+        "name": "Secluded Springs",
+        "expectedTotal": 105,
+        "cardsImported": 105,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "me1",
+        "name": "Mega Evolution",
+        "expectedTotal": 188,
+        "cardsImported": 188,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "mep",
+        "name": "Mega Evolution Black Star Promos",
+        "expectedTotal": 112,
+        "cardsImported": 112,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "mee",
+        "name": "Mega Evolution Energies",
+        "expectedTotal": 8,
+        "cardsImported": 8,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "tcgp-A4b",
+        "name": "Deluxe Pack ex",
+        "expectedTotal": 379,
+        "cardsImported": 379,
+        "pagesFetched": 4,
+        "status": "success"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "wave": 9,
+    "batch": 6,
+    "label": "Scarlet & Violet and Later - Batch 6",
+    "startedAt": "2026-09-12T17:04:02.856Z",
+    "finishedAt": "2026-09-12T17:04:09.956Z",
+    "status": "success",
+    "scrydexRequests": 19,
+    "setsRequested": 8,
+    "setsImported": 8,
+    "cardsImported": 1352,
+    "sets": [
+      {
+        "id": "tcgp-B1",
+        "name": "Mega Rising",
+        "expectedTotal": 331,
+        "cardsImported": 331,
+        "pagesFetched": 4,
+        "status": "success"
+      },
+      {
+        "id": "tcgp-PB",
+        "name": "Promo-B",
+        "expectedTotal": 11,
+        "cardsImported": 11,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "me2",
+        "name": "Phantasmal Flames",
+        "expectedTotal": 130,
+        "cardsImported": 130,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "tcgp-B1a",
+        "name": "Crimson Blaze",
+        "expectedTotal": 103,
+        "cardsImported": 103,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "tcgp-B2",
+        "name": "Fantastical Parade",
+        "expectedTotal": 234,
+        "cardsImported": 234,
+        "pagesFetched": 3,
+        "status": "success"
+      },
+      {
+        "id": "me2pt5",
+        "name": "Ascended Heroes",
+        "expectedTotal": 295,
+        "cardsImported": 295,
+        "pagesFetched": 3,
+        "status": "success"
+      },
+      {
+        "id": "tcgp-B2a",
+        "name": "Paldean Wonders",
+        "expectedTotal": 131,
+        "cardsImported": 131,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "tcgp-B2b",
+        "name": "Mega Shine",
+        "expectedTotal": 117,
+        "cardsImported": 117,
+        "pagesFetched": 2,
+        "status": "success"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "wave": 9,
+    "batch": 7,
+    "label": "Scarlet & Violet and Later - Batch 7",
+    "startedAt": "2026-09-12T17:07:53.433Z",
+    "finishedAt": "2026-09-12T17:07:59.329Z",
+    "status": "success",
+    "scrydexRequests": 18,
+    "setsRequested": 8,
+    "setsImported": 8,
+    "cardsImported": 1157,
+    "sets": [
+      {
+        "id": "me3",
+        "name": "Perfect Order",
+        "expectedTotal": 124,
+        "cardsImported": 124,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "tcgp-B3",
+        "name": "Pulsing Aura",
+        "expectedTotal": 234,
+        "cardsImported": 234,
+        "pagesFetched": 3,
+        "status": "success"
+      },
+      {
+        "id": "me4",
+        "name": "Chaos Rising",
+        "expectedTotal": 122,
+        "cardsImported": 122,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "tcgp-B3a",
+        "name": "Paradox Drive",
+        "expectedTotal": 109,
+        "cardsImported": 109,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "tcgp-B3b",
+        "name": "Everyday Wonders",
+        "expectedTotal": 106,
+        "cardsImported": 106,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "me5",
+        "name": "Pitch Black",
+        "expectedTotal": 120,
+        "cardsImported": 120,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "tcgp-B4",
+        "name": "Ruler of the Skies",
+        "expectedTotal": 232,
+        "cardsImported": 232,
+        "pagesFetched": 3,
+        "status": "success"
+      },
+      {
+        "id": "tcgp-B4a",
+        "name": "Team Rocket's Ambition",
+        "expectedTotal": 110,
+        "cardsImported": 110,
+        "pagesFetched": 2,
+        "status": "success"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "wave": 10,
+    "batch": 1,
+    "label": "Supplemental Products - Batch 1",
+    "startedAt": "2026-09-12T17:09:59.703Z",
+    "finishedAt": "2026-09-12T17:10:04.538Z",
+    "status": "success",
+    "scrydexRequests": 9,
+    "setsRequested": 8,
+    "setsImported": 8,
+    "cardsImported": 223,
+    "sets": [
+      {
+        "id": "miscp",
+        "name": "Miscellaneous",
+        "expectedTotal": 1,
+        "cardsImported": 1,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "base4",
+        "name": "Base Set 2",
+        "expectedTotal": 130,
+        "cardsImported": 130,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "si1",
+        "name": "Southern Islands",
+        "expectedTotal": 18,
+        "cardsImported": 18,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "bp",
+        "name": "Best of Game",
+        "expectedTotal": 9,
+        "cardsImported": 9,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "np",
+        "name": "Nintendo Black Star Promos",
+        "expectedTotal": 40,
+        "cardsImported": 40,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "tk1a",
+        "name": "EX Trainer Kit Latias",
+        "expectedTotal": 10,
+        "cardsImported": 10,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "tk1b",
+        "name": "EX Trainer Kit Latios",
+        "expectedTotal": 10,
+        "cardsImported": 10,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "wb1",
+        "name": "Poké Card Creator Pack",
+        "expectedTotal": 5,
+        "cardsImported": 5,
+        "pagesFetched": 1,
+        "status": "success"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "wave": 10,
+    "batch": 2,
+    "label": "Supplemental Products - Batch 2",
+    "startedAt": "2026-09-12T17:10:37.835Z",
+    "finishedAt": "2026-09-12T17:10:41.215Z",
+    "status": "success",
+    "scrydexRequests": 8,
+    "setsRequested": 8,
+    "setsImported": 8,
+    "cardsImported": 165,
+    "sets": [
+      {
+        "id": "pop1",
+        "name": "POP Series 1",
+        "expectedTotal": 17,
+        "cardsImported": 17,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "pop2",
+        "name": "POP Series 2",
+        "expectedTotal": 17,
+        "cardsImported": 17,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "tk2b",
+        "name": "EX Trainer Kit 2 Minun",
+        "expectedTotal": 12,
+        "cardsImported": 12,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "tk2a",
+        "name": "EX Trainer Kit 2 Plusle",
+        "expectedTotal": 12,
+        "cardsImported": 12,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "pop3",
+        "name": "POP Series 3",
+        "expectedTotal": 17,
+        "cardsImported": 17,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "pop4",
+        "name": "POP Series 4",
+        "expectedTotal": 17,
+        "cardsImported": 17,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "pop5",
+        "name": "POP Series 5",
+        "expectedTotal": 17,
+        "cardsImported": 17,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "dpp",
+        "name": "DP Black Star Promos",
+        "expectedTotal": 56,
+        "cardsImported": 56,
+        "pagesFetched": 1,
+        "status": "success"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "wave": 10,
+    "batch": 3,
+    "label": "Supplemental Products - Batch 3",
+    "startedAt": "2026-09-12T17:11:17.795Z",
+    "finishedAt": "2026-09-12T17:11:20.434Z",
+    "status": "success",
+    "scrydexRequests": 7,
+    "setsRequested": 7,
+    "setsImported": 7,
+    "cardsImported": 107,
+    "sets": [
+      {
+        "id": "tk3b",
+        "name": "DP Trainer Kit Lucario",
+        "expectedTotal": 11,
+        "cardsImported": 11,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "tk3a",
+        "name": "DP Trainer Kit Manaphy",
+        "expectedTotal": 12,
+        "cardsImported": 12,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "pop6",
+        "name": "POP Series 6",
+        "expectedTotal": 17,
+        "cardsImported": 17,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "pop7",
+        "name": "POP Series 7",
+        "expectedTotal": 17,
+        "cardsImported": 17,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "pop8",
+        "name": "POP Series 8",
+        "expectedTotal": 17,
+        "cardsImported": 17,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "pop9",
+        "name": "POP Series 9",
+        "expectedTotal": 17,
+        "cardsImported": 17,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "ru1",
+        "name": "Pokémon Rumble",
+        "expectedTotal": 16,
+        "cardsImported": 16,
+        "pagesFetched": 1,
+        "status": "success"
+      }
+    ],
+    "errors": []
   }
 ]
