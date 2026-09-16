@@ -302,45 +302,31 @@ let spotlightViewerElements = null;
 const ygoSpotlightThumbCache = new Map();
 const pokemonSpotlightThumbCache = new Map();
 const pokemonSpotlightThumbRequests = new Map();
-const POKEMON_SPOTLIGHT_STATIC_THUMBS = {
-	"charizard": "https://assets.tcgdex.net/en/base/base1/4/low.webp",
-	"volcanion": "https://assets.tcgdex.net/en/xy/xy11/25/low.webp",
-	"metagross": "https://assets.tcgdex.net/en/pop/pop1/2/low.webp",
-	"steven": "https://assets.tcgdex.net/en/xy/xy6/90/low.webp",
-	"espeon": "https://assets.tcgdex.net/en/neo/neo2/1/low.webp",
-	"morty s conviction": "https://assets.tcgdex.net/en/sv/sv05/155/low.webp",
-	"sceptile": "https://assets.tcgdex.net/en/pop/pop1/4/low.webp",
-	"grass energy": "https://assets.tcgdex.net/en/xy/g1/75/low.webp",
-	"decidueye": "https://assets.tcgdex.net/en/sv/sv06.5/005/low.webp",
-	"hau": "https://assets.tcgdex.net/en/tcgp/A3b/068/low.webp",
-	"tinkaton": "https://assets.tcgdex.net/en/sv/svp/020/low.webp",
-	"double turbo energy": "https://assets.tcgdex.net/en/swsh/swsh9/151/low.webp",
-	"infernape": "https://assets.tcgdex.net/en/dp/dp7/3/low.webp",
-	"fire energy": "https://assets.tcgdex.net/en/xy/g1/76/low.webp",
-	"braviary": "https://assets.tcgdex.net/en/sv/sv10.5b/078/low.webp",
-	"skyla": "https://assets.tcgdex.net/en/swsh/swsh4.5/72/low.webp",
-	"cinderace": "https://assets.tcgdex.net/en/swsh/swsh1/35/low.webp",
-	"leon": "https://assets.tcgdex.net/en/swsh/swsh12.5/134/low.webp",
-	"trevenant": "https://assets.tcgdex.net/en/xy/xy1/55/low.webp",
-	"gothitelle": "https://assets.tcgdex.net/en/xy/xy3/41/low.webp",
-	"appletun": "https://assets.tcgdex.net/en/tcgp/A3b/007/low.webp",
-	"milo": "https://assets.tcgdex.net/en/swsh/swsh3.5/57/low.webp",
-	"articuno": "https://assets.tcgdex.net/en/dp/dp5/1/low.webp",
-	"battle frontier": "https://assets.tcgdex.net/en/ex/ex16/71/low.webp"
-};
-const POKEMON_SECONDARY_SPOTLIGHTS = {
-	"metagross": { card: "Steven", person: "Trainer: Steven Stone" },
-	"espeon": { card: "Morty's Conviction", person: "Trainer: Morty" },
-	"sceptile": { card: "Grass Energy", person: "Basic Energy" },
-	"decidueye": { card: "Hau", person: "Trainer: Hau" },
-	"tinkaton": { card: "Double Turbo Energy", person: "Special Energy" },
-	"infernape": { card: "Fire Energy", person: "Basic Energy" },
-	"braviary": { card: "Skyla", person: "Trainer: Skyla" },
-	"charizard": { card: "Volcanion", person: "Fire Pokemon" },
-	"cinderace": { card: "Leon", person: "Trainer: Leon" },
-	"trevenant": { card: "Gothitelle", person: "Ability: Trainer Lock" },
-	"appletun": { card: "Milo", person: "Trainer: Milo" },
-	"articuno": { card: "Battle Frontier", person: "Stadium: Noland's Frontier" }
+const POKEMON_SPOTLIGHT_CARD_IDS = {
+	"charizard": "base1-4",
+	"volcanion": "xy11-25",
+	"metagross": "pop1-2",
+	"steven": "xy6-90",
+	"espeon": "neo2-1",
+	"morty s conviction": "sv5-155",
+	"sceptile": "pop1-4",
+	"grass energy": "g1-75",
+	"decidueye": "sv6pt5-5",
+	"hau": "tcgp-A3b-68",
+	"tinkaton": "svp-20",
+	"double turbo energy": "swsh9-151",
+	"infernape": "dp7-3",
+	"fire energy": "g1-76",
+	"braviary": "sv10pt5b-78",
+	"skyla": "swsh45-72",
+	"cinderace": "swsh1-35",
+	"leon": "swsh12pt5-134",
+	"trevenant": "xy1-55",
+	"gothitelle": "xy3-41",
+	"appletun": "tcgp-A3b-7",
+	"milo": "swsh35-57",
+	"articuno": "dp5-1",
+	"battle frontier": "ex16-71"
 };
 const HOME_SEARCH_FALLBACK_DATA_URLS = [
 	"data/yyh-cards-full.json",
@@ -745,10 +731,6 @@ const STATIC_THUMB_PLACEHOLDER = `data:image/svg+xml;charset=utf-8,${encodeURICo
   <rect x="14" y="51" width="30" height="4" rx="2" fill="#64748b"/>
 </svg>`)}`;
 
-function makeThumbDataUri() {
-	return STATIC_THUMB_PLACEHOLDER;
-}
-
 function resolveSpotlightThumb(entry) {
 	if (!entry) {
 		return STATIC_THUMB_PLACEHOLDER;
@@ -859,7 +841,6 @@ async function hydratePokemonSpotlightThumb(listElement, entries) {
 		return;
 	}
 
-	const cacheKey = normalizeForSearch(entry.card);
 	const imageUrl = await fetchPokemonSpotlightThumb(entry.card);
 
 	if (!imageUrl) {
@@ -896,11 +877,6 @@ async function hydratePokemonSpotlightCards(listElement, entries) {
 
 async function fetchPokemonSpotlightThumb(cardName) {
 	const cacheKey = normalizeForSearch(cardName);
-	const staticImage = POKEMON_SPOTLIGHT_STATIC_THUMBS[cacheKey];
-	if (staticImage) {
-		return staticImage;
-	}
-
 	const cachedImage = pokemonSpotlightThumbCache.get(cacheKey);
 	if (typeof cachedImage !== "undefined") {
 		return cachedImage;
@@ -913,15 +889,17 @@ async function fetchPokemonSpotlightThumb(cardName) {
 
 	const request = (async () => {
 		try {
-			const endpoint = new URL("https://api.tcgdex.net/v2/en/cards");
-			endpoint.searchParams.set("name", cardName);
+			const endpoint = new URL("/api/pokemon/cards", window.location.origin);
+			endpoint.searchParams.set("cached", "all");
+			endpoint.searchParams.set("q", cardName);
+			endpoint.searchParams.set("limit", "5000");
 			const response = await fetch(endpoint.toString(), { cache: "no-store" });
-			const payload = response.ok ? await response.json() : [];
-			const exactMatch = Array.isArray(payload)
-				? payload.find((card) => normalizeForSearch(card?.name) === cacheKey && card?.image)
-				: null;
-			const imageBase = resolveFirstNonEmpty(exactMatch?.image, payload?.find((card) => card?.image)?.image);
-			const imageUrl = imageBase ? `${imageBase}/low.webp` : "";
+			const payload = response.ok ? await response.json() : {};
+			const items = Array.isArray(payload?.items) ? payload.items : [];
+			const preferredId = POKEMON_SPOTLIGHT_CARD_IDS[cacheKey];
+			const exactMatch = items.find((card) => card?.id === preferredId)
+				|| items.find((card) => normalizeForSearch(card?.name) === cacheKey && card?.imageUrl);
+			const imageUrl = resolveFirstNonEmpty(exactMatch?.imageUrl, items.find((card) => card?.imageUrl)?.imageUrl);
 			if (imageUrl) {
 				pokemonSpotlightThumbCache.set(cacheKey, imageUrl);
 			}
@@ -1104,7 +1082,7 @@ function setActiveMonthDot(container, monthIndex) {
 	});
 }
 
-function renderSpotlightItems(listElement, spotlight, options = {}) {
+function renderSpotlightItems(listElement, spotlight) {
 	listElement.innerHTML = "";
 	const isTripleSpotlight = Array.isArray(spotlight) && spotlight.length >= 3;
 	listElement.classList.toggle("hero__season-list--triple", isTripleSpotlight);
@@ -1531,10 +1509,13 @@ function initHomeSearch() {
 			if (item.cardNumber) {
 				metaParts.push(item.cardNumber);
 			}
-			button.innerHTML = `
-				<span class="hero__search-suggestion-name">${item.name}</span>
-				<span class="hero__search-suggestion-meta">${metaParts.join(" • ")}</span>
-			`;
+			const name = document.createElement("span");
+			name.className = "hero__search-suggestion-name";
+			name.textContent = item.name;
+			const meta = document.createElement("span");
+			meta.className = "hero__search-suggestion-meta";
+			meta.textContent = metaParts.join(" • ");
+			button.append(name, meta);
 
 			button.addEventListener("click", () => {
 				searchInput.value = item.name;
@@ -1643,9 +1624,10 @@ function initHomeSearch() {
 	};
 
 	const fetchPokemonSuggestions = async (query, signal) => {
-		const endpoint = new URL("https://api.tcgdex.net/v2/en/cards");
-		endpoint.searchParams.set("name", query);
-		endpoint.searchParams.set("pagination:itemsPerPage", String(POKEMON_SUGGESTION_LIMIT));
+		const endpoint = new URL("/api/pokemon/cards", window.location.origin);
+		endpoint.searchParams.set("cached", "all");
+		endpoint.searchParams.set("q", query);
+		endpoint.searchParams.set("limit", String(POKEMON_SUGGESTION_LIMIT));
 
 		const response = await fetch(endpoint.toString(), {
 			cache: "no-store",
@@ -1657,7 +1639,7 @@ function initHomeSearch() {
 		}
 
 		const payload = await response.json();
-		return mapPokemonApiItems(payload);
+		return mapPokemonApiItems(payload?.items);
 	};
 
 	const fetchSuggestions = async (query) => {
@@ -1800,7 +1782,7 @@ function initHomeSearch() {
 
 function initHomeSetSelects() {
 	const YGO_CARD_SETS_API_URL = "https://db.ygoprodeck.com/api/v7/cardsets.php";
-	const POKEMON_SETS_API_URL = "https://api.tcgdex.net/v2/en/sets";
+	const POKEMON_SETS_API_URL = "/api/pokemon/sets";
 	const YGO_HOME_SET_LIMIT = 9;
 	const POKEMON_HOME_SET_LIMIT = 12;
 	const HOME_SET_SELECT_PLACEHOLDER_TEXT = "Select a Set";
@@ -1937,16 +1919,16 @@ function initHomeSetSelects() {
 			}
 
 			const payload = await response.json();
-			if (!Array.isArray(payload)) {
-				throw new Error("Pokemon set payload was not an array");
+			if (!Array.isArray(payload?.setMetadata)) {
+				throw new Error("Pokemon set metadata was not an array");
 			}
 
-			const setRows = payload
+			const setRows = payload.setMetadata
 				.map((item) => ({
 					setId: String(item?.id || "").trim(),
 					setName: String(item?.name || "").trim(),
-					cardCount: Number(item?.cardCount?.total || 0),
-					logo: String(item?.logo || "").trim()
+					cardCount: Number(item?.total || item?.printedTotal || 0),
+					dateValue: parseSetDateValue(item?.releaseDate)
 				}))
 				.filter((item) => item.setId && item.setName);
 
@@ -1954,7 +1936,11 @@ function initHomeSetSelects() {
 				throw new Error("No Pokemon sets found in payload");
 			}
 
-			const newestSlice = setRows.slice(-POKEMON_HOME_SET_LIMIT).reverse();
+			const newestSlice = setRows
+				.filter((item) => Number.isFinite(item.dateValue))
+				.sort((a, b) => b.dateValue - a.dateValue || a.setName.localeCompare(b.setName))
+				.slice(0, POKEMON_HOME_SET_LIMIT)
+				.reverse();
 			replaceSelectOptions(select, [
 				{ value: "", label: HOME_SET_SELECT_PLACEHOLDER_TEXT, disabled: true, selected: true },
 				...newestSlice.map((row) => ({

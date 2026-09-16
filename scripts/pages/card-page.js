@@ -1,4 +1,5 @@
 const CARD_API_URL = "/api/yyh/cards";
+const POKEMON_CARD_API_URL = "/api/pokemon/cards";
 const YGO_CARDINFO_API_URL = "https://db.ygoprodeck.com/api/v7/cardinfo.php";
 const CARD_FALLBACK_DATA_URLS = [
     "data/yyh-cards-full.json",
@@ -163,6 +164,10 @@ function normalizeYgoCardRecord(cardPayload, setEntry) {
 
 function isYgoGame(value) {
     return normalizeForSearch(value) === "yu gi oh";
+}
+
+function isPokemonGame(value) {
+    return normalizeForSearch(value) === "pokemon";
 }
 
 function getCardPageNavConfig(gameName) {
@@ -686,6 +691,25 @@ async function fetchCards(query) {
         throw new Error(`Failed to load Yu-Gi-Oh card data (${lastStatus || 400})`);
     }
 
+    if (isPokemonGame(query.game)) {
+        const url = new URL(POKEMON_CARD_API_URL, window.location.origin);
+        url.searchParams.set("cached", "all");
+        url.searchParams.set("limit", "5000");
+        if (query.q) url.searchParams.set("q", query.q);
+        if (query.set) url.searchParams.set("set", query.set);
+        if (query.dex) url.searchParams.set("dex", query.dex);
+
+        const response = await fetch(url.toString(), { cache: "no-store" });
+        if (!response.ok) {
+            throw new Error(`Failed to load local Pokemon card data (${response.status})`);
+        }
+
+        const payload = await response.json();
+        return Array.isArray(payload.items)
+            ? payload.items.map((record) => ({ ...record, source: "Local Pokemon cache" }))
+            : [];
+    }
+
     const url = new URL(CARD_API_URL, window.location.origin);
 
     if (query.game) {
@@ -823,8 +847,22 @@ function resolvePricingEntry(pricingPayload, card) {
 
 function buildVariantOptions(records, options = {}) {
     const byLabel = new Map();
-    const normalizedCardName = normalizeForSearch(records[0]?.name);
     const isGroupedYgoCard = options.groupByRarity === true;
+
+    if (options.groupByPrinting === true) {
+        return [...records].sort((left, right) => {
+            const leftDate = new Date(String(left.setReleaseDate || "").replaceAll("/", "-")).getTime();
+            const rightDate = new Date(String(right.setReleaseDate || "").replaceAll("/", "-")).getTime();
+            if (Number.isFinite(leftDate) && Number.isFinite(rightDate) && leftDate !== rightDate) {
+                return leftDate - rightDate;
+            }
+            return String(left.id || "").localeCompare(String(right.id || ""), undefined, { numeric: true });
+        }).map((record) => ({
+            name: `${resolveFirstNonEmpty(record.set, "Unknown Set")} | #${resolveFirstNonEmpty(record.number, record.id, "Unknown")}`,
+            imageCandidates: record.imageUrl ? [record.imageUrl] : buildCardImageCandidates(record),
+            record
+        }));
+    }
 
     if (isGroupedYgoCard) {
         const byRarity = new Map();
@@ -907,30 +945,38 @@ function createDetailItem(label, value, valueId = "") {
     return item;
 }
 
-function createVariantTag(label) {
-    const button = document.createElement("button");
-    button.className = "card-variant-tag";
-    button.type = "button";
-
-    button.innerHTML = `
-        <span class="card-variant-tag__name">${escapeHtml(label.name)}</span>
-        <span class="card-variant-tag__preview" aria-hidden="true">
-            <img src="${escapeHtml(label.image)}" alt="${escapeHtml(label.name)} card thumbnail" loading="lazy" />
-            <span class="card-variant-tag__preview-name">${escapeHtml(label.name)}</span>
-        </span>
-    `;
-
-    return button;
-}
-
-function createVariantControl(variant, selectedName) {
+function createVariantControl(variant, selectedName, options = {}) {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "card-variant-controls__button";
     button.dataset.variant = variant.name;
     button.setAttribute("aria-pressed", String(variant.name === selectedName));
-    button.textContent = variant.name;
+    if (options.pokemonPrinting === true) {
+        const imageUrl = variant.imageCandidates?.[0] || "";
+        const setName = resolveFirstNonEmpty(variant.record?.set, "Unknown Set");
+        const cardNumber = resolveFirstNonEmpty(variant.record?.number, variant.record?.id, "Unknown");
+        button.classList.add("card-variant-controls__button--pokemon");
+        button.setAttribute("aria-label", `Show ${setName} card ${cardNumber}`);
+        button.innerHTML = `
+            <img src="${escapeHtml(imageUrl)}" alt="" loading="lazy" />
+            <span>${escapeHtml(setName)}</span>
+            <small>#${escapeHtml(cardNumber)}</small>
+        `;
+    } else {
+        button.textContent = variant.name;
+    }
     return button;
+}
+
+function splitPokemonVariantGroups(variants) {
+    if (variants.length <= 18) {
+        return [variants];
+    }
+
+    return Array.from(
+        { length: Math.ceil(variants.length / 18) },
+        (_, index) => variants.slice(index * 18, (index + 1) * 18)
+    );
 }
 
 function renderNotFoundState(context) {
@@ -979,6 +1025,8 @@ function renderCardPage(cardContext) {
     const cardVariantMeta = document.getElementById("cardVariantMeta");
     const cardVariantStage = document.querySelector(".card-variant-stage");
     const cardPage = document.querySelector(".card-page");
+    const isPokemonCard = isPokemonGame(card.game);
+    cardPage?.classList.toggle("card-page--pokemon", isPokemonCard);
 
     const pricing = cardContext.pricing;
     const priceValue = toMaybeNumber(pricing?.priceUsd);
@@ -994,21 +1042,21 @@ function renderCardPage(cardContext) {
     cardTitle.textContent = card.title;
     cardIntro.textContent = card.intro;
     cardFacts.innerHTML = `
-        <li>Set: ${escapeHtml(card.set)}</li>
-        <li>Card number: ${escapeHtml(card.cardNumber)}</li>
+        <li>Set: <span id="cardFactSet">${escapeHtml(card.set)}</span></li>
+        <li>Card number: <span id="cardFactNumber">${escapeHtml(card.cardNumber)}</span></li>
         <li>Type: ${escapeHtml(card.type)}</li>
-        <li>Rarity: ${escapeHtml(card.rarity)}</li>
+        <li>Rarity: <span id="cardFactRarity">${escapeHtml(card.rarity)}</span></li>
     `;
     cardVariantsIntro.textContent = "Pick the scan you want to view.";
     cardDetailsIntro.textContent = "Set, card number, type, and variant details are listed below.";
     cardNotesIntro.textContent = "Pricing and source notes for this card are shown below.";
 
     const details = [
-        ["Set", card.set],
-        ["Card number", card.cardNumber],
+        ["Set", card.set, "cardDetailsSetValue"],
+        ["Card number", card.cardNumber, "cardDetailsNumberValue"],
         ["Type", card.type],
-        ["Rarity", card.rarity],
-        ["Variant", card.variant],
+        ["Rarity", card.rarity, "cardDetailsRarityValue"],
+        ["Variant", card.variant, "cardDetailsVariantValue"],
         ["Game", card.game]
     ];
 
@@ -1020,12 +1068,17 @@ function renderCardPage(cardContext) {
 
     const detailsList = document.getElementById("cardDetailsList");
     detailsList.innerHTML = "";
-    details.forEach(([label, value]) => {
-        const valueId = label === "Variant" ? "cardDetailsVariantValue" : "";
+    details.forEach(([label, value, valueId = ""]) => {
         detailsList.appendChild(createDetailItem(label, value, valueId));
     });
 
     const cardDetailsVariantValue = document.getElementById("cardDetailsVariantValue");
+    const cardDetailsSetValue = document.getElementById("cardDetailsSetValue");
+    const cardDetailsNumberValue = document.getElementById("cardDetailsNumberValue");
+    const cardDetailsRarityValue = document.getElementById("cardDetailsRarityValue");
+    const cardFactSet = document.getElementById("cardFactSet");
+    const cardFactNumber = document.getElementById("cardFactNumber");
+    const cardFactRarity = document.getElementById("cardFactRarity");
 
     const noteLines = [];
     if (card.effect) {
@@ -1043,12 +1096,28 @@ function renderCardPage(cardContext) {
 
     const variantOptions = cardContext.variantOptions;
     let selectedVariantName = cardContext.selectedVariantName;
+    const pokemonVariantGroups = isPokemonCard ? splitPokemonVariantGroups(variantOptions) : [variantOptions];
+    let selectedPokemonGroupIndex = Math.max(0, pokemonVariantGroups.findIndex((group) => (
+        group.some((variant) => variant.name === selectedVariantName)
+    )));
+    let pokemonGroupControls = document.getElementById("pokemonVariantGroups");
+    if (isPokemonCard && !pokemonGroupControls) {
+        pokemonGroupControls = document.createElement("div");
+        pokemonGroupControls.id = "pokemonVariantGroups";
+        pokemonGroupControls.className = "pokemon-variant-groups";
+        pokemonGroupControls.setAttribute("aria-label", "Choose a printing group");
+        cardVariantControls.insertAdjacentElement("beforebegin", pokemonGroupControls);
+    }
     const isBlueEyesVariantPicker = Array.isArray(variantOptions[0]?.variants);
     const isBlueEyesWhitePicker = normalizeForSearch(card.title) === "blue eyes white dragon";
     if (isBlueEyesVariantPicker) {
         const printingCount = variantOptions.reduce((total, rarity) => total + (rarity.variants?.length || 0), 0);
         const artworkCount = variantOptions[0]?.artworkCandidates?.length || 0;
         cardVariantsIntro.textContent = `${variantOptions.length} rarities | ${printingCount} set printings | ${artworkCount} alternate artworks`;
+    } else if (isPokemonCard) {
+        cardVariantsIntro.textContent = pokemonVariantGroups.length > 1
+            ? `${variantOptions.length} printings in ${pokemonVariantGroups.length} groups. Pick a group, then a thumbnail.`
+            : `${variantOptions.length} printings from the local Pokemon catalog. Pick a thumbnail to inspect its scan.`;
     }
     let selectedRarityName = isBlueEyesVariantPicker
         ? (variantOptions.find((variant) => variant.name === selectedVariantName)?.name || variantOptions[0]?.name || "")
@@ -1227,16 +1296,78 @@ function renderCardPage(cardContext) {
         }
 
         applyImageCandidates(cardVariantImage, selectedVariant.imageCandidates, `${selectedVariant.name} scan`);
-        cardVariantName.textContent = selectedVariant.name;
-        cardVariantMeta.textContent = `${selectedVariant.record?.set || card.set} | ${selectedVariant.record?.number || card.cardNumber}`;
+        const selectedRecord = selectedVariant.record || {};
+        const selectedSet = selectedRecord.set || card.set;
+        const selectedNumber = selectedRecord.id || selectedRecord.number || card.cardNumber;
+        const selectedRarity = selectedRecord.rarity || card.rarity;
+        cardVariantName.textContent = selectedRecord.name || selectedVariant.name;
+        cardVariantMeta.textContent = `${selectedSet} | ${selectedRecord.number || card.cardNumber} | ${selectedRarity}`;
         if (cardDetailsVariantValue) {
             cardDetailsVariantValue.textContent = selectedVariant.name;
         }
+        if (cardDetailsSetValue) {
+            cardDetailsSetValue.textContent = selectedSet;
+        }
+        if (cardDetailsNumberValue) {
+            cardDetailsNumberValue.textContent = selectedNumber;
+        }
+        if (cardDetailsRarityValue) {
+            cardDetailsRarityValue.textContent = selectedRarity;
+        }
+        if (isPokemonCard) {
+            if (cardFactSet) cardFactSet.textContent = selectedSet;
+            if (cardFactNumber) cardFactNumber.textContent = selectedNumber;
+            if (cardFactRarity) cardFactRarity.textContent = selectedRarity;
+            const badges = cardBadges.querySelectorAll(".card-badge");
+            if (badges[0]) badges[0].textContent = selectedSet;
+            if (badges[1]) badges[1].textContent = selectedRarity;
+            cardNotes.innerHTML = [
+                selectedRecord.effect ? `<p>Effect text: ${escapeHtml(selectedRecord.effect)}</p>` : "",
+                "<p>Price: Unpriced</p>",
+                `<p>Source: ${escapeHtml(selectedRecord.source || card.source)}</p>`
+            ].filter(Boolean).join("");
+        }
+    };
+
+    const renderPokemonPrintingControls = () => {
+        cardVariantControls.innerHTML = "";
+        const activeGroup = pokemonVariantGroups[selectedPokemonGroupIndex] || pokemonVariantGroups[0] || [];
+        activeGroup.forEach((variant) => {
+            const button = createVariantControl(variant, selectedVariantName, { pokemonPrinting: true });
+            button.addEventListener("click", () => renderSelectedVariant(variant.name));
+            cardVariantControls.appendChild(button);
+        });
+
+        if (!pokemonGroupControls) {
+            return;
+        }
+        pokemonGroupControls.hidden = pokemonVariantGroups.length <= 1;
+        pokemonGroupControls.innerHTML = "";
+        let printingOffset = 0;
+        pokemonVariantGroups.forEach((group, index) => {
+            const start = printingOffset + 1;
+            const end = printingOffset + group.length;
+            printingOffset = end;
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "pokemon-variant-groups__button";
+            button.setAttribute("aria-pressed", String(index === selectedPokemonGroupIndex));
+            button.textContent = `Printings ${start}-${end}`;
+            button.addEventListener("click", () => {
+                selectedPokemonGroupIndex = index;
+                selectedVariantName = group[0]?.name || selectedVariantName;
+                renderPokemonPrintingControls();
+                renderSelectedVariant(selectedVariantName);
+            });
+            pokemonGroupControls.appendChild(button);
+        });
     };
 
     cardVariantControls.innerHTML = "";
     if (isDropdownVariantPicker) {
         renderSwordsControls(variantOptions.find((variant) => variant.name === selectedRarityName) || variantOptions[0]);
+    } else if (isPokemonCard) {
+        renderPokemonPrintingControls();
     } else {
         variantOptions.forEach((variant) => {
             const button = createVariantControl(variant, selectedVariantName);
@@ -1297,27 +1428,37 @@ async function buildCardContext(context) {
         return null;
     }
 
-    const normalizedSelectedName = normalizeForSearch(selected.name);
-    const isBlueEyesCard = normalizedSelectedName === "blue eyes ultimate dragon" || normalizedSelectedName === "blue eyes white dragon";
-    const isHighReprintCard = HIGH_REPRINT_CARD_NAMES.has(normalizedSelectedName);
     const isGroupedYgoCard = isYgoGame(selected.game);
+    const isPokemonCard = isPokemonGame(selected.game);
+    const pokemonDexNumber = isPokemonCard && Array.isArray(selected.pokemonDexNumbers)
+        ? selected.pokemonDexNumbers.find((value) => Number.isFinite(Number(value)))
+        : null;
     const relatedCards = await fetchCards({
-        q: selected.name,
+        q: isPokemonCard && pokemonDexNumber ? "" : selected.name,
         id: selected.passcode,
         game: selected.game,
-        ...(isGroupedYgoCard ? {} : { set: selected.set })
+        dex: pokemonDexNumber,
+        ...((isGroupedYgoCard || isPokemonCard) ? {} : { set: selected.set })
     });
 
     const exactRelated = relatedCards.filter((card) => normalizeForSearch(card.name) === normalizeForSearch(selected.name));
-    const variantBase = exactRelated.length > 0 ? exactRelated : [selected];
-    const variantOptions = buildVariantOptions(variantBase, { groupByRarity: isGroupedYgoCard });
-    const fallbackVariant = variantOptions[0]?.name || "Standard";
+    const variantBase = isPokemonCard
+        ? relatedCards
+        : exactRelated.length > 0 ? exactRelated : [selected];
+    const variantOptions = buildVariantOptions(variantBase, {
+        groupByRarity: isGroupedYgoCard,
+        groupByPrinting: isPokemonCard
+    });
+    const selectedPrinting = isPokemonCard
+        ? variantOptions.find((option) => normalizeForSearch(option.record?.id) === normalizeForSearch(selected.id))
+        : null;
+    const fallbackVariant = selectedPrinting?.name || variantOptions[0]?.name || "Standard";
     const selectedVariantName = variantOptions.some((option) => normalizeForSearch(option.name) === normalizeForSearch(context.variantQuery))
         ? variantOptions.find((option) => normalizeForSearch(option.name) === normalizeForSearch(context.variantQuery)).name
         : fallbackVariant;
 
     let pricing = selected.pricing || null;
-    if (!isYgoGame(selected.game)) {
+    if (!isYgoGame(selected.game) && !isPokemonCard) {
         const pricingPayload = await loadSetPricing(selected.set);
         pricing = resolvePricingEntry(pricingPayload, {
             id: selected.id,
@@ -1330,7 +1471,9 @@ async function buildCardContext(context) {
     return {
         card: {
             title: resolveFirstNonEmpty(selected.name, "Unnamed Card"),
-            intro: isYgoGame(selected.game)
+            intro: isPokemonCard
+                ? "Choose a printing from the complete local Pokemon catalog."
+                : isYgoGame(selected.game)
                 ? (selected.effect ? "Card details loaded from the Yu-Gi-Oh API for this specific print." : "Card details loaded from the Yu-Gi-Oh API.")
                 : (selected.effect ? "Card details loaded from the YYH catalog for this specific card." : "Card details loaded from the YYH catalog."),
             game: resolveFirstNonEmpty(selected.game, "Yu Yu Hakusho"),
@@ -1339,7 +1482,7 @@ async function buildCardContext(context) {
             type: resolveFirstNonEmpty(selected.type, "Unknown Type"),
             rarity: resolveFirstNonEmpty(selected.rarity, "Unknown Rarity"),
             variant: resolveFirstNonEmpty(selected.variant, "Standard"),
-            source: resolveFirstNonEmpty(selected.source, isYgoGame(selected.game) ? "YGOPRODeck API" : "YYH catalog"),
+            source: resolveFirstNonEmpty(selected.source, isPokemonCard ? "Local Pokemon cache" : isYgoGame(selected.game) ? "YGOPRODeck API" : "YYH catalog"),
             effect: resolveFirstNonEmpty(selected.effect)
         },
         pricing,

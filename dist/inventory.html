@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shalimar Collectibles | Inventory</title>
+    <script src="scripts/components/mobile-nav.js?v=5" defer></script>
+    <script src="scripts/components/game-mode.js?v=1" defer></script>
+  <script type="module" crossorigin src="/assets/inventory-B5uu3YPG.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/inventory-CMqXsXuz.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="logo-link" aria-label="Go to homepage">
+                <img
+                    src="/assets/logo-v4-DhR52I-v.svg?v=3"
+                    alt="Shalimar Collectibles logo"
+                    class="logo"
+                />
+            </a>
+            <form class="nav-search" id="navSearch" role="search">
+                <label class="sr-only" for="navSearchInput">Search inventory</label>
+                <input id="navSearchInput" type="search" placeholder="Search cards" autocomplete="off" />
+                <button type="submit" aria-label="Search inventory">Search</button>
+            </form>
+            <div class="game-mode-controls">
+                <label class="game-mode-select-wrap" for="gameModeSelect">
+                    <span class="sr-only">Game</span>
+                    <select class="game-mode-select" id="gameModeSelect" aria-label="Select game">
+                        <option value="yyh">Yu Yu Hakusho</option>
+                        <option value="ygo">Yu-Gi-Oh</option>
+                        <option value="pokemon">Pokemon</option>
+                    </select>
+                </label>
+            </div>
+            <button
+                class="mobile-nav-toggle"
+                id="mobileNavToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="primaryNavLinks"
+            >
+                <span class="mobile-nav-toggle__bar" aria-hidden="true"></span>
+                <span class="mobile-nav-toggle__bar" aria-hidden="true"></span>
+                <span class="mobile-nav-toggle__bar" aria-hidden="true"></span>
+            </button>
+            <ul class="nav__links" id="primaryNavLinks">
+                <li><a href="contributors.html">Contributors</a></li>
+                <li><a href="inventory.html" aria-current="page">Inventory</a></li>
+                <li><a href="sets.html">Sets</a></li>
+                <li><a href="kings.html">Kings</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="mobile-nav-overlay" id="mobileNavOverlay" type="button" aria-label="Close navigation menu"></button>
+    </header>
+
+    <main class="main">
+        <section class="inventory-shell" aria-label="Inventory">
+            <div class="inventory-hero">
+                <h1>Inventory</h1>
+                <p>Browse live card records across supported games with search, filters, pricing context, and set-aware sorting.</p>
+            </div>
+
+            <form class="inventory-controls" aria-label="Inventory filters">
+                <div class="inventory-control-wrap">
+                    <span class="inventory-badge" aria-hidden="true">01</span>
+                    <input
+                        class="inventory-control"
+                        id="inventory-search-filter"
+                        type="search"
+                        placeholder="Search by card name or card ID"
+                        aria-label="Search by card name or card ID"
+                    />
+                </div>
+                <div class="inventory-control-wrap">
+                    <span class="inventory-badge" aria-hidden="true">02</span>
+                    <select class="inventory-control" id="inventory-game-filter" aria-label="Filter by game">
+                        <option>All Games</option>
+                        <option>Yu Yu Hakusho</option>
+                        <option>Yu-Gi-Oh</option>
+                        <option>Pokemon</option>
+                    </select>
+                </div>
+                <div class="inventory-control-wrap">
+                    <span class="inventory-badge" aria-hidden="true">03</span>
+                    <select class="inventory-control" id="inventory-set-filter" aria-label="Filter by set">
+                        <option selected>All Sets</option>
+                        <option>Ghost Files</option>
+                        <option>Dark Tournament</option>
+                        <option>Exile</option>
+                        <option>Betrayal</option>
+                        <option>Alliance</option>
+                        <option>Gateway</option>
+                        <option>Pre-Release Cards</option>
+                        <option>Products</option>
+                        <option>Extra Cards</option>
+                    </select>
+                </div>
+                <div class="inventory-control-wrap">
+                    <span class="inventory-badge" aria-hidden="true">04</span>
+                    <select class="inventory-control" id="inventory-type-filter" aria-label="Filter by type">
+                        <option>All Types</option>
+                    </select>
+                </div>
+                <div class="inventory-control-wrap">
+                    <span class="inventory-badge" aria-hidden="true">05</span>
+                    <select class="inventory-control" id="inventory-archetype-filter" aria-label="Filter by archetype">
+                        <option>All Archetypes</option>
+                    </select>
+                </div>
+                <div class="inventory-control-wrap">
+                    <span class="inventory-badge" aria-hidden="true">06</span>
+                    <select class="inventory-control" id="inventory-rarity-filter" aria-label="Filter by attribute">
+                        <option>All Attributes</option>
+                    </select>
+                </div>
+                <div class="inventory-control-wrap">
+                    <span class="inventory-badge" aria-hidden="true">07</span>
+                    <select class="inventory-control" id="inventory-edition-filter" aria-label="Filter by edition">
+                        <option selected>All Editions</option>
+                        <option>Unlimited / Not Marked</option>
+                        <option>1st Edition</option>
+                        <option>Unspecified / Likely Both</option>
+                    </select>
+                </div>
+                <div class="inventory-control-wrap">
+                    <span class="inventory-badge" aria-hidden="true">08</span>
+                    <select class="inventory-control" id="inventory-variant-focus-filter" aria-label="Filter by finish">
+                        <option selected>All Finishes</option>
+                        <option>Standard Only</option>
+                        <option>Foils Only</option>
+                        <option>Rainbow Only</option>
+                    </select>
+                </div>
+                <div class="inventory-control-wrap">
+                    <span class="inventory-badge" aria-hidden="true">09</span>
+                    <select class="inventory-control" id="inventory-price-status-filter" aria-label="Filter by price status">
+                        <option selected>All Price Statuses</option>
+                        <option>Unpriced</option>
+                        <option>Priced</option>
+                        <option>Needs Review</option>
+                    </select>
+                </div>
+                <div class="inventory-control-wrap">
+                    <span class="inventory-badge" aria-hidden="true">10</span>
+                    <select class="inventory-control" id="inventory-gameplay-status-filter" aria-label="Filter by gameplay status">
+                        <option selected>All Gameplay Statuses</option>
+                        <option>Banned</option>
+                        <option>Limit 1 per Deck</option>
+                    </select>
+                </div>
+                <div class="inventory-control-wrap">
+                    <span class="inventory-badge" aria-hidden="true">11</span>
+                    <select class="inventory-control" id="inventory-sort-filter" aria-label="Sort cards">
+                        <option selected>Card Number (Low-High)</option>
+                        <option>Card Number (High-Low)</option>
+                        <option>Name (A-Z)</option>
+                        <option>Name (Z-A)</option>
+                        <option>Rarity (A-Z)</option>
+                        <option>Set (A-Z)</option>
+                        <option>Price (High-Low)</option>
+                        <option>Price (Low-High)</option>
+                        <option>Variant Premium (High-Low)</option>
+                    </select>
+                </div>
+                <div class="inventory-control-wrap inventory-control-wrap--toggle">
+                    <span class="inventory-badge" aria-hidden="true">12</span>
+                    <div class="inventory-variants-toggle-wrap">
+                        <label class="inventory-variants-toggle" for="inventory-variants-toggle">
+                            <input id="inventory-variants-toggle" type="checkbox" />
+                            <span>Show all variants</span>
+                        </label>
+                        <p class="inventory-variants-summary" id="inventory-variants-summary">Collapsed view groups printings into one card entry.</p>
+                    </div>
+                </div>
+                <div class="inventory-control-wrap inventory-control-wrap--toggle" hidden>
+                    <span class="inventory-badge" aria-hidden="true">12</span>
+                    <div class="inventory-variants-toggle-wrap">
+                        <label class="inventory-variants-toggle" for="inventory-pokemon-cached-toggle">
+                            <input id="inventory-pokemon-cached-toggle" type="checkbox" />
+                            <span>Show all cached sets</span>
+                        </label>
+                        <p class="inventory-variants-summary">Uses local wave caches only.</p>
+                    </div>
+                </div>
+            </form>
+
+            <div class="inventory-filter-notes" aria-label="Filter notes">
+                <p class="inventory-filter-note">Search note: enter 3+ characters for names, or use short card IDs like P2 directly.</p>
+                <p class="inventory-filter-note">Search note: card IDs like P2, C56, ST1, or C156/176 also work here.</p>
+                <p class="inventory-filter-note">Game note: reserved for V1 guidance.</p>
+                <p class="inventory-filter-note">Set note: set-specific pricing context appears below when available.</p>
+                <p class="inventory-filter-note">Type note: reserved for V1 guidance.</p>
+                <p class="inventory-filter-note">Rarity note: options are game-specific and update based on selected game.</p>
+                <p class="inventory-filter-note">Edition note: use this for 1st vs unlimited print runs.</p>
+                <p class="inventory-filter-note">Finish note: quick isolate standard, foil, and rainbow cards.</p>
+                <p class="inventory-filter-note">Pricing note: load a set pricing file to mark priced cards and sort by value.</p>
+                <p class="inventory-filter-note" id="inventory-gameplay-note" hidden></p>
+                <p class="inventory-filter-note">Sort note: ordering applies across all loaded pages.</p>
+                <p class="inventory-filter-note" id="inventory-data-note" hidden></p>
+            </div>
+
+            <section class="inventory-set-context" id="inventory-set-context" aria-label="Set pricing context" hidden></section>
+
+            <div class="inventory-results-head">
+                <h2>Results</h2>
+                <p class="inventory-results-meta" id="inventory-results-meta">Loading records...</p>
+            </div>
+
+            <section class="inventory-grid" id="inventory-results-grid" aria-label="Inventory card results"></section>
+            <div class="inventory-load-more-wrap">
+                <button class="inventory-load-more" id="inventory-load-more" type="button" hidden>Load More Cards</button>
+                <p class="inventory-load-more-progress" id="inventory-load-more-progress" hidden></p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer" aria-label="Site footer">
+        <div class="site-footer__inner">
+            <p class="site-footer__brand">Shalimar Collectibles</p>
+            <p class="site-footer__meta">Live card inventory with game-aware search, filters, and set browsing.</p>
+            <p class="site-footer__copyright">&copy; 2026 Shalimar Collectibles. All rights reserved.</p>
+            <nav class="site-footer__nav" aria-label="Footer navigation">
+                <a href="inventory.html">Inventory</a>
+                <a href="sets.html">Sets</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </footer>
+</body>
+</html>

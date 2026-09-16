@@ -279,7 +279,7 @@ body.game-mode-modal-open {
 }
 
 .nav__links a {
-    color: var(--text-main);
+    color: var(--text-main, #f8fafc);
     text-decoration: none;
     font-size: 16px;
     font-weight: 600;
@@ -288,7 +288,7 @@ body.game-mode-modal-open {
 
 .nav__links a:hover,
 .nav__links a[aria-current="page"] {
-    color: var(--brand-cyan);
+    color: var(--brand-cyan, #00d9ff);
     text-shadow: 0 0 10px rgba(0, 217, 255, 0.75);
 }
 
@@ -311,7 +311,7 @@ body.game-mode-modal-open {
     width: 18px;
     height: 2px;
     border-radius: 999px;
-    background: var(--brand-cyan);
+    background: var(--brand-cyan, #00d9ff);
     transition: transform 220ms ease, opacity 180ms ease;
 }
 
@@ -525,6 +525,235 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
 
     .game-mode-modal--global .game-mode-modal__panel {
         padding: 18px;
+    }
+}
+
+/* Floating global navigation */
+body {
+    padding-top: 120px;
+}
+
+.header {
+    position: fixed;
+    inset: 18px 20px auto;
+    z-index: 1200;
+    width: auto;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    pointer-events: none;
+}
+
+.nav {
+    position: relative;
+    z-index: 1200;
+    display: grid;
+    grid-template-columns: minmax(220px, 1fr) minmax(180px, 220px) auto minmax(220px, 1fr);
+    width: min(1400px, 100%);
+    min-height: 84px;
+    margin: 0 auto;
+    padding: 12px 14px 12px 20px;
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    border-radius: 999px;
+    background: rgba(5, 9, 13, 0.72);
+    box-shadow: 0 16px 42px rgba(0, 0, 0, 0.24);
+    backdrop-filter: blur(18px) saturate(135%);
+    pointer-events: auto;
+    transition: background 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.header--scrolled .nav {
+    border-color: rgba(148, 163, 184, 0.42);
+    background: rgba(5, 9, 13, 0.93);
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.42);
+}
+
+.logo {
+    width: clamp(190px, 20vw, 280px);
+    height: 58px;
+    object-fit: contain;
+}
+
+.nav-search {
+    width: 100%;
+}
+
+.mobile-nav-toggle {
+    justify-self: end;
+}
+
+.mobile-nav-toggle {
+    position: relative;
+    z-index: 1211;
+    display: inline-flex;
+    flex: 0 0 46px;
+    width: 46px;
+    height: 46px;
+    margin: 0;
+    flex-direction: column;
+    border-radius: 50%;
+}
+
+.nav__links {
+    position: absolute;
+    inset: calc(100% + 14px) 0 auto auto;
+    z-index: 1210;
+    display: flex;
+    width: min(420px, calc(100vw - 40px));
+    height: min(620px, calc(100vh - 126px));
+    margin: 0;
+    padding: 76px 30px 30px;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0;
+    overflow-y: auto;
+    border: 1px solid rgba(0, 217, 255, 0.32);
+    border-radius: 28px;
+    background: linear-gradient(155deg, rgba(7, 14, 23, 0.99), rgba(10, 13, 24, 0.97));
+    box-shadow: -20px 24px 60px rgba(0, 0, 0, 0.52);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateX(24px);
+    transition: transform 320ms ease;
+}
+
+.nav__links::before {
+    position: absolute;
+    top: 28px;
+    left: 30px;
+    content: "Explore Shalimar";
+    color: var(--brand-cyan, #00d9ff);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.nav__links li {
+    width: 100%;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+}
+
+.nav__links a {
+    display: flex;
+    min-height: 58px;
+    align-items: center;
+    justify-content: space-between;
+    font-size: clamp(20px, 2.2vw, 28px);
+    font-weight: 650;
+}
+
+.nav__links a::after {
+    content: "\2197";
+    color: var(--text-soft, #94a3b8);
+    font-size: 18px;
+    transition: color 180ms ease, transform 180ms ease;
+}
+
+.nav__links a:hover::after,
+.nav__links a:focus-visible::after {
+    color: var(--brand-cyan, #00d9ff);
+    transform: translate(3px, -3px);
+}
+
+.mobile-nav-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1190;
+    display: block;
+    border: 0;
+    background: rgba(1, 5, 10, 0.68);
+    backdrop-filter: blur(4px);
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
+
+body.is-mobile-nav-open .nav__links {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(0);
+}
+
+body.is-mobile-nav-open .mobile-nav-overlay {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+@media (max-width: 960px) {
+    .nav {
+        display: flex;
+    }
+
+    .logo {
+        width: 170px;
+        height: 48px;
+    }
+
+    .mobile-nav-toggle {
+        margin-left: auto;
+    }
+}
+
+@media (max-width: 720px) {
+    body {
+        padding-top: 92px;
+    }
+
+    .header {
+        inset: 10px 10px auto;
+    }
+
+    .nav {
+        min-height: 66px;
+        gap: 6px;
+        padding: 9px 10px 9px 14px;
+    }
+
+    .logo {
+        width: clamp(88px, 24vw, 126px);
+        height: 42px;
+    }
+
+    .nav-search button {
+        display: none;
+    }
+
+    .game-mode-select {
+        max-width: 78px;
+    }
+
+    .mobile-nav-toggle {
+        flex-basis: 42px;
+        width: 42px;
+        height: 42px;
+    }
+
+    .nav__links {
+        inset: calc(100% + 12px) 0 auto;
+        width: 100%;
+        height: calc(100vh - 100px);
+        padding: 66px 24px 24px;
+        border-radius: 24px;
+        transform: none;
+    }
+
+    .nav__links::before {
+        top: 24px;
+        left: 24px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .nav,
+    .nav__links,
+    .mobile-nav-overlay,
+    .nav__links a::after {
+        transition: none;
     }
 }
 

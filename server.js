@@ -372,13 +372,6 @@ async function fetchEbayAccessToken(forceRefresh = false) {
     return accessToken;
 }
 
-function userTokenIsFresh() {
-    return Boolean(
-        ebayUserTokenCache.accessToken &&
-        ebayUserTokenCache.expiresAt - Date.now() > EBAY_TOKEN_EXPIRY_BUFFER_MS
-    );
-}
-
 async function exchangeEbayAuthorizationCode(code, redirectUri = EBAY_AUTH_REDIRECT_URI) {
     if (!code) {
         throw new Error("Missing authorization code from eBay callback");
@@ -1504,21 +1497,93 @@ async function readCachedPokemonCards(query) {
     const search = typeof query.q === "string" ? query.q.trim().toLowerCase() : "";
     const type = typeof query.type === "string" ? query.type.trim().toLowerCase() : "";
     const rarity = typeof query.rarity === "string" ? query.rarity.trim().toLowerCase() : "";
+    const dexNumber = Number(query.dex);
     return cachedCards.filter((card) => {
         const matchesSearch = !search
             || String(card.id || "").toLowerCase() === search
             || String(card.name || "").toLowerCase().includes(search);
         const matchesType = !type || String(card.type || "").toLowerCase() === type;
         const matchesRarity = !rarity || String(card.rarity || "").toLowerCase() === rarity;
-        return matchesSearch && matchesType && matchesRarity;
+        const matchesDex = !Number.isInteger(dexNumber)
+            || (Array.isArray(card.pokemonDexNumbers) && card.pokemonDexNumbers.some((value) => Number(value) === dexNumber));
+        return matchesSearch && matchesType && matchesRarity && matchesDex;
+    });
+}
+
+const POKEMON_TYPE_ROUTE_RANKS = new Map([
+    ["grass", 0],
+    ["fire", 1],
+    ["water", 2],
+    ["normal", 3],
+    ["colorless", 3],
+    ["electric", 4],
+    ["lightning", 4],
+    ["fighting", 5],
+    ["psychic", 6],
+    ["darkness", 7],
+    ["metal", 8],
+    ["dragon", 9],
+    ["fairy", 10]
+]);
+
+function getPokemonTypeRouteRank(card) {
+    for (const type of Array.isArray(card?.pokemonTypes) ? card.pokemonTypes : []) {
+        const rank = POKEMON_TYPE_ROUTE_RANKS.get(String(type || "").trim().toLowerCase());
+        if (Number.isFinite(rank)) {
+            return rank;
+        }
+    }
+
+    const supertype = String(card?.type || "").trim().toLowerCase();
+    if (supertype === "trainer") {
+        return 11;
+    }
+    if (supertype === "energy") {
+        return 12;
+    }
+    return 13;
+}
+
+function getPokemonDexRank(card) {
+    const dexNumber = (Array.isArray(card?.pokemonDexNumbers) ? card.pokemonDexNumbers : [])
+        .find((value) => Number.isFinite(Number(value)));
+    return Number.isFinite(Number(dexNumber)) ? Number(dexNumber) : Number.POSITIVE_INFINITY;
+}
+
+function sortCachedPokemonCards(cards, sortOption) {
+    if (!Array.isArray(cards) || sortOption !== "Pokemon Type Route") {
+        return cards;
+    }
+
+    return [...cards].sort((left, right) => {
+        const typeRankDiff = getPokemonTypeRouteRank(left) - getPokemonTypeRouteRank(right);
+        if (typeRankDiff !== 0) {
+            return typeRankDiff;
+        }
+
+        const dexRankDiff = getPokemonDexRank(left) - getPokemonDexRank(right);
+        if (dexRankDiff !== 0) {
+            return dexRankDiff;
+        }
+
+        const nameCompare = String(left?.name || "").localeCompare(String(right?.name || ""));
+        if (nameCompare !== 0) {
+            return nameCompare;
+        }
+
+        return String(left?.id || "").localeCompare(String(right?.id || ""), undefined, { numeric: true });
     });
 }
 
 app.get("/api/pokemon/cards", async (req, res) => {
     try {
-        const limit = clampLimit(req.query.limit, 24, 100);
+        const maximumLimit = String(req.query.cached || "").toLowerCase() === "all" ? 5000 : 100;
+        const limit = clampLimit(req.query.limit, 24, maximumLimit);
         const offset = parseNonNegativeInt(req.query.offset, 0);
-        const cachedCards = await readCachedPokemonCards(req.query);
+        const cachedCards = sortCachedPokemonCards(
+            await readCachedPokemonCards(req.query),
+            String(req.query.sort || "")
+        );
         if (cachedCards) {
             const items = cachedCards.slice(offset, offset + limit);
             res.json({
@@ -1579,7 +1644,9 @@ app.get("/api/pokemon/sets", async (req, res) => {
             const setMetadata = Array.from(new Map(cachedSets.items.map((set) => [String(set.id || ""), {
                 id: String(set.id || ""),
                 name: String(set.name || "").trim(),
-                releaseDate: String(set.releaseDate || "")
+                releaseDate: String(set.releaseDate || ""),
+                printedTotal: Number(set.printedTotal || 0),
+                total: Number(set.total || 0)
             }])).values()).filter((set) => set.id && set.name);
             const items = Array.from(new Set(setMetadata.map((set) => set.name)));
             res.json({ items, setMetadata, total: items.length, source: "cache" });
@@ -1602,7 +1669,7 @@ app.get("/api/pokemon/sets", async (req, res) => {
             endpoint.searchParams.set("page", String(page));
             endpoint.searchParams.set("pageSize", "100");
             endpoint.searchParams.set("orderBy", "-releaseDate");
-            endpoint.searchParams.set("select", "id,name,release_date");
+            endpoint.searchParams.set("select", "id,name,release_date,printed_total,total");
             const response = await fetch(endpoint, { headers: scrydexHeaders() });
             if (!response.ok) {
                 throw new Error(`Scrydex API request failed with status ${response.status}`);
@@ -1618,7 +1685,9 @@ app.get("/api/pokemon/sets", async (req, res) => {
                     itemsByName.set(name, {
                         id: String(set?.id || ""),
                         name,
-                        releaseDate: String(set?.release_date || "")
+                        releaseDate: String(set?.release_date || ""),
+                        printedTotal: Number(set?.printed_total || 0),
+                        total: Number(set?.total || 0)
                     });
                 }
             }

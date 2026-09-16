@@ -28,7 +28,7 @@ Assign creator-associated Pokemon by species debut generation, even when an inte
 
 ### Curator Picks
 
-- Appears after both creator sections and contains roughly four or five of Josh's personal selections.
+- Appears after both creator sections and contains six of Josh's personal selections.
 - Type spread: the current four share no types, covering Fighting/Steel, Rock/Dark, Psychic, and Ice/Bug across seven distinct types. Mega Lucario and Mega Tyranitar preserve their base typings.
 - First pick: Lucario, connecting its Gen 4 debut and Mega Evolution with Sean Schemmel's English performance in *Lucario and the Mystery of Mew* and his voice work in *Yu-Gi-Oh!*.
 - Second pick: Tyranitar, a non-Dragon pseudo-legendary built around Sand Stream and Mega Evolution. Its entrance engulfs the scene in a sandstorm, exposes the Rock-type special-defense boost within the storm, and then intensifies both the armor and weather as Tyranitar Mega Evolves.
@@ -43,17 +43,30 @@ Assign creator-associated Pokemon by species debut generation, even when an inte
 | Creator | YouTube Channel | Pokemon Picks |
 | --- | --- | --- |
 | John | [PM7](https://www.youtube.com/@PM7) | Machamp and Palossand |
-| Catherine | [Shiny Catherine](https://www.youtube.com/@ShinyCatherine) | Umbreon and Dustox |
+| Catherine | [Shiny Catherine](https://www.youtube.com/@ShinyCatherine) | Dudunsparce and Dustox |
 | Steve | [PKMNcast](https://www.youtube.com/@PKMNcast) | Cramorant and Shelgon |
 | Purplecliffe | [Purplecliffe](https://www.youtube.com/@Purplecliffe) | Ditto and Buneary |
 | Michael | [MandJTV](https://www.youtube.com/@MandJTV) | Castform and Lanturn |
 | Wolfe Glick | [WolfeyVGC](https://www.youtube.com/@WolfeyVGC) | Gothitelle and Exeggutor |
 | Vintendo | [Vintendo](https://www.youtube.com/@Vintendo) | Raichu and Houndoom |
 | Philly | [PhillyBeatzU](https://www.youtube.com/@PhillyBeatzU) | Charizard and Tyrantrum |
-| Dan | [aDrive](https://www.youtube.com/@aDrive) | Shiny Mothim and Mega Aggron |
+| Dan | [aDrive](https://www.youtube.com/@aDrive) | Mothim and Aggron |
 | WILD/CARD collective | [WILD/CARD](https://www.youtube.com/@WILDCARDorg) | Aegislash and Varoom |
 | Jacob | [Alpharad](https://www.youtube.com/@Alpharad) | Absol and Scizor |
-
+| Mystic | [Mystic Umbreon](https://www.youtube.com/@MysticUmbreon) | Umbreon and Tapu Lele |
+| Fawful | [Fawful's Minion](https://www.youtube.com/@Fawful'sMinion) | Blastoise and Darkrai |
+| PokeaimMD | [PokeaimMD](https://www.youtube.com/@pokeaimMd) | Suicune and Centiskorch |
+| Patterz | [Patterrz](https://www.youtube.com/@Patterrz) | Farigiraf and Falinks |
+| RoyalPear | [RoyalPear](https://www.youtube.com/@RoyalPear) | Tropius and Kyogre |
+| MunchingOrange | [MunchingOrange](https://www.youtube.com/@MunchingOrange) | Snorlax and Ninetales |
+| DigitalTy | [DigitalTy](https://www.youtube.com/@DigitalTy) | Greninja and Togedemaru |
+| TreeckoBro | [TreeckoBro](https://www.youtube.com/@TreeckoBro) | Treecko and Gallade |
+| Ceelibi | [Ceelibi](https://www.youtube.com/@Ceelibi) | Entei and Cincinno  |
+| Certified Poke-Moments | [Certified Poke-Moments](https://www.youtube.com/@Certified Poke-Moments) | Minior and Breloom |
+| ShepskyDad | [ShepskyDad](https://www.youtube.com/@Shepskydad) | Heracross and Arcanine  |
+| Saffron City TV | [Saffron City TV](https://www.youtube.com/@SaffronCityTV) | Espeon and Gengar |
+| Rusty Gold Renders | [Rusty Gold Renders](https://www.youtube.com/@RustyGoldRenders) | Milotic and Mewtwo |
+ 
 ## Current Creators
 
 ### John / PM7
@@ -68,9 +81,9 @@ Assign creator-associated Pokemon by species debut generation, even when an inte
 
 ### Catherine / Shiny Catherine
 
-#### Umbreon
+#### Dudunsparce
 
-- Interaction: A moonlit scene dims around Umbreon as its rings pulse from yellow to shiny blue, ending with the blue light reflected across the ground.
+- Interaction: Evolve Dunspare 2 ways must have the attack Hyper Drill, 2 segment form (Common) or 3 segment form (Rare, 1 in 100).  Allow to reset.  3 Segment form is considered the tallest Normal-type Pokemon.  
 
 #### Dustox
 
@@ -201,3 +214,5 @@ Assign creator-associated Pokemon by species debut generation, even when an inte
 - Josh nominates two Pokemon after watching a creator's videos.
 - Confirm that each association is reasonable and that every planned form, ability, or evolution is canonical.
 - Add the creator after both Pokemon have distinct interaction concepts, or approve one feature-depth centerpiece as an explicit exception.
+- Active: Research Mystic Umbreon with Umbreon as the anchor candidate and identify a distinct second pick.
+- Revisit Shiny Catherine after current applications to resolve the Umbreon overlap through the stronger personal associations rather than featuring the same species twice.

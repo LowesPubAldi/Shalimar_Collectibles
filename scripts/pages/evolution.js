@@ -2,8 +2,6 @@ const POKEMON_ART_ROOT = "https://raw.githubusercontent.com/PokeAPI/sprites/mast
 const POKEMON_FORM_ART_ROOT = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork";
 const POKEMON_FORM_SPRITE_ROOT = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon";
 const POKEMON_SPECIES_CSV_URL = "https://raw.githubusercontent.com/PokeAPI/pokeapi/master/data/v2/csv/pokemon_species.csv";
-const GEN1_BASIC_V1_IDS = new Set([83, 128, 132, 143, 144, 145, 146, 151]);
-const GEN1_ONE_STAGE_V1_IDS = new Set([19, 21, 23, 27, 37, 46, 48, 50, 54, 58, 72, 77, 84, 86, 88, 90, 95, 96, 100, 102, 104, 108, 109, 114, 118, 129]);
 const GEN1_ONE_STAGE_MAP_EXTRAS = [
     { generation: 0, label: "Evolution family (B)", pokemon: [{ id: 52, name: "Meowth", stage: "Basic" }, { id: 53, name: "Persian", stage: "Stage 1" }], regional: null },
     { generation: 0, label: "Evolution family (B)", pokemon: [{ id: 79, name: "Slowpoke", stage: "Basic" }, { id: 80, name: "Slowbro", stage: "Stage 1" }], regional: null },
@@ -509,7 +507,6 @@ function initBasicCarousel() {
         return `<p>${display.group}</p>${toggle}<img src="${pokemonArtUrl(display.id)}" alt="${display.name}" /><h3>${display.name}</h3><small>${display.stage}</small>`;
     };
     const render = () => {
-        const generation = POKEMON_GENERATION_MARKERS[selectedGenerationIndex];
         const pokemon = BASIC_ONLY_POKEMON.filter((entry) => getGenerationIndex(entry) === selectedGenerationIndex && (selectedGenerationIndex !== 1 || GEN2_BASIC_MAP_IDS.has(entry.dexId || entry.id)) && (selectedGenerationIndex !== 2 || GEN3_BASIC_MAP_IDS.has(entry.dexId || entry.id)) && (selectedGenerationIndex !== 3 || GEN4_BASIC_MAP_IDS.has(entry.dexId || entry.id)) && (selectedGenerationIndex !== 4 || GEN5_BASIC_MAP_IDS.has(entry.dexId || entry.id)) && (selectedGenerationIndex !== 5 || GEN6_BASIC_MAP_IDS.has(entry.dexId || entry.id)) && (selectedGenerationIndex !== 6 || GEN7_BASIC_MAP_IDS.has(entry.dexId || entry.id)) && (selectedGenerationIndex !== 7 || GEN8_BASIC_MAP_IDS.has(entry.dexId || entry.id)) && (selectedGenerationIndex !== 8 || GEN9_BASIC_MAP_IDS.has(entry.dexId || entry.id)));
         const cards = pokemon.map((entry) => `<article class="evolution-basic-carousel__item" tabindex="0" data-basic-family="${entry.id}">${cardContent(entry)}</article>`).join("");
         track.innerHTML = `${cards}${cards}`;
@@ -696,7 +693,6 @@ function initBabyTool() {
     const generations = [...new Set(BABY_POKEMON_FAMILIES.map((family) => family.generation))];
     const specialThreeStageIds = new Set([172, 173, 174, 175, 239, 240, 298, 406, 440]);
     let selectedGeneration = generations[0];
-    const renderPath = (path) => path.map((pokemon) => pokemonNodeMarkup(pokemon, "evolution-specimen--baby")).join("");
     const render = () => {
         controls.innerHTML = generations.map((generation) => { const marker = POKEMON_GENERATION_MARKERS[generation]; return `<button type="button" role="tab" aria-selected="${generation === selectedGeneration}" data-baby-generation="${generation}"><span>${generation + 1}</span>${marker.region}<small>${BABY_POKEMON_FAMILIES.filter((family) => family.generation === generation).length}</small></button>`; }).join("");
         families.innerHTML = BABY_POKEMON_FAMILIES.filter((family) => family.generation === selectedGeneration).map((family) => {

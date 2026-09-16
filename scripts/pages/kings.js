@@ -146,15 +146,15 @@ function isPokemonStartersPage() {
 
 function pokemonStarterSets() {
     return [
-        { generation: "Generation 1", era: "Kanto", name: "Charizard", image: "https://assets.tcgdex.net/en/base/base1/4/low.webp", companion: "Parasect", companionImage: "https://assets.tcgdex.net/en/xy/xy8/2/low.webp" },
-        { generation: "Generation 2", era: "Johto", name: "Feraligatr", image: "https://assets.tcgdex.net/en/sv/sv05/041/low.webp", companion: "Espeon", companionImage: "https://assets.tcgdex.net/en/neo/neo2/1/low.webp" },
-        { generation: "Generation 3", era: "Hoenn", name: "Sceptile", image: "https://assets.tcgdex.net/en/dp/dp4/8/low.webp", companion: "Relicanth", companionImage: "https://assets.tcgdex.net/en/me/me05/017/low.webp" },
-        { generation: "Generation 4", era: "Sinnoh", name: "Empoleon", image: "https://assets.tcgdex.net/en/dp/dpp/DP11/low.webp", companion: "Bidoof", companionImage: "https://assets.tcgdex.net/en/pop/pop6/11/low.webp" },
-        { generation: "Generation 5", era: "Unova", name: "Serperior", image: "https://assets.tcgdex.net/en/tcgp/A1a/070/low.webp", companion: "Scrafty", companionImage: "https://assets.tcgdex.net/en/swsh/swsh3.5/42/low.webp" },
-        { generation: "Generation 6", era: "Kalos", name: "Greninja", image: "https://assets.tcgdex.net/en/tcgp/A3a/093/low.webp", companion: "Goodra", companionImage: "https://assets.tcgdex.net/en/xy/xy7/60/low.webp" },
-        { generation: "Generation 7", era: "Alola", name: "Incineroar", image: "https://assets.tcgdex.net/en/sm/sm10/29/low.webp", middle: "Zeraora", middleImage: "assets/pokemon/zeraora-sm9-52.webp", companion: "Toxapex", companionImage: "https://assets.tcgdex.net/en/swsh/swsh3/52/low.webp" },
-        { generation: "Generation 8", era: "Galar", name: "Cinderace", image: "https://assets.tcgdex.net/en/swsh/swsh1/35/low.webp", companion: "Corviknight", companionImage: "https://assets.tcgdex.net/en/swsh/swsh1/135/low.webp" },
-        { generation: "Generation 9", era: "Paldea", name: "Meowscarada", image: "https://assets.tcgdex.net/en/sv/sv01/015/low.webp", companion: "Garganacl", companionImage: "https://assets.tcgdex.net/en/me/me01/084/low.webp", centered: true }
+        { generation: "Generation 1", era: "Kanto", name: "Charizard", cardId: "base1-4", companion: "Parasect", companionCardId: "xy8-2" },
+        { generation: "Generation 2", era: "Johto", name: "Feraligatr", cardId: "sv5-41", companion: "Espeon", companionCardId: "neo2-1" },
+        { generation: "Generation 3", era: "Hoenn", name: "Sceptile", cardId: "dp4-8", companion: "Relicanth", companionCardId: "me5-17" },
+        { generation: "Generation 4", era: "Sinnoh", name: "Empoleon", cardId: "dpp-DP11", companion: "Bidoof", companionCardId: "pop6-11" },
+        { generation: "Generation 5", era: "Unova", name: "Serperior", cardId: "tcgp-A1a-70", companion: "Scrafty", companionCardId: "swsh35-42" },
+        { generation: "Generation 6", era: "Kalos", name: "Greninja", cardId: "tcgp-A3a-93", companion: "Goodra", companionCardId: "xy7-60" },
+        { generation: "Generation 7", era: "Alola", name: "Incineroar", cardId: "sm10-29", middle: "Zeraora", middleImage: "assets/pokemon/zeraora-sm9-52.webp", companion: "Toxapex", companionCardId: "swsh3-52" },
+        { generation: "Generation 8", era: "Galar", name: "Cinderace", cardId: "swsh1-35", companion: "Corviknight", companionCardId: "swsh1-135" },
+        { generation: "Generation 9", era: "Paldea", name: "Meowscarada", cardId: "sv1-15", companion: "Garganacl", companionCardId: "me1-84", centered: true }
     ];
 }
 
@@ -167,21 +167,25 @@ function pokemonEscapeHtml(value) {
         .replace(/'/g, "&#39;");
 }
 
-async function fetchPokemonStarterCards(name) {
+async function fetchPokemonStarterCard(name, preferredId) {
     try {
-        const response = await fetch(`https://api.tcgdex.net/v2/en/cards?name=${encodeURIComponent(name)}`, { cache: "no-store" });
+        const endpoint = new URL("/api/pokemon/cards", window.location.origin);
+        endpoint.searchParams.set("cached", "all");
+        endpoint.searchParams.set("q", name);
+        endpoint.searchParams.set("limit", "5000");
+        const response = await fetch(endpoint.toString(), { cache: "no-store" });
         if (!response.ok) {
-            return [];
+            return null;
         }
 
         const payload = await response.json();
-        return Array.isArray(payload)
-            ? payload
-                .filter((card) => card?.name === name && card?.image)
-                .map((card) => ({ ...card, image: `${card.image}/low.webp` }))
-            : [];
+        const cards = Array.isArray(payload?.items) ? payload.items : [];
+        const card = cards.find((item) => item?.id === preferredId)
+            || cards.find((item) => item?.name === name && item?.imageUrl)
+            || cards.find((item) => item?.imageUrl);
+        return card ? { ...card, image: card.imageUrl } : null;
     } catch {
-        return [];
+        return null;
     }
 }
 
@@ -619,6 +623,14 @@ async function renderPokemonStartersPage() {
     }
 
     const generations = pokemonStarterSets();
+    await Promise.all(generations.map(async (entry) => {
+        const [starterCard, companionCard] = await Promise.all([
+            fetchPokemonStarterCard(entry.name, entry.cardId),
+            entry.companion ? fetchPokemonStarterCard(entry.companion, entry.companionCardId) : null
+        ]);
+        entry.image = starterCard?.image || "assets/Shalimar-card-icon.svg";
+        entry.companionImage = companionCard?.image || "assets/Shalimar-card-icon.svg";
+    }));
 
     document.title = "Shalimar Collectibles | Pokemon Starters";
     const footerMeta = document.querySelector(".site-footer__meta");
@@ -639,7 +651,7 @@ async function renderPokemonStartersPage() {
                 <ul class="kings-hero__list">
                     <li>Generations: 9</li>
                     <li>Featured Pokemon: 9</li>
-                    <li>Source: TCGdex API</li>
+                    <li>Source: Local Scrydex cache</li>
                 </ul>
             </aside>
         </section>

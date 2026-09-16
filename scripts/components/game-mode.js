@@ -53,10 +53,6 @@
         });
     }
 
-    function modeKeyIsYuGiOh(mode) {
-        return mode.searchGame === "Yu-Gi-Oh";
-    }
-
     function navigateFeaturePageIfNeeded(modeKey, mode) {
         const currentFile = window.location.pathname.split("/").pop() || "index.html";
         if (currentFile !== "sets.html" && currentFile !== "kings.html") {
@@ -69,29 +65,6 @@
         if (currentUrl !== destinationUrl) {
             window.location.replace(destination.toString());
         }
-    }
-
-    function buildModal() {
-        const modal = document.createElement("div");
-        modal.className = "game-mode-modal game-mode-modal--global";
-        modal.id = "globalGameModeModal";
-        modal.hidden = true;
-        modal.setAttribute("role", "dialog");
-        modal.setAttribute("aria-modal", "true");
-        modal.setAttribute("aria-labelledby", "globalGameModeModalTitle");
-        modal.innerHTML = `
-            <div class="game-mode-modal__panel">
-                <p class="game-mode-modal__eyebrow">Choose Your Game Mode</p>
-                <h2 class="game-mode-modal__title" id="globalGameModeModalTitle">Select Your TCG Focus</h2>
-                <p class="game-mode-modal__description">Pick a game to keep your inventory and set links focused.</p>
-                <div class="game-mode-modal__options">
-                    <button class="game-mode-modal__option" type="button" data-global-game-mode="yyh">Yu Yu Hakusho</button>
-                    <button class="game-mode-modal__option" type="button" data-global-game-mode="ygo">Yu-Gi-Oh</button>
-                    <button class="game-mode-modal__option" type="button" data-global-game-mode="pokemon">Pokemon</button>
-                </div>
-            </div>`;
-        document.body.appendChild(modal);
-        return modal;
     }
 
     function initGlobalGameMode() {

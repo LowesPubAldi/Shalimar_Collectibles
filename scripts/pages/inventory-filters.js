@@ -1,19 +1,5 @@
-﻿const YGO_VARIANT_ROLLOUT_MAGNIFICENT_MAESTROS_SET = "Magnificent Maestros";
-const YGO_VARIANT_ROLLOUT_MAGNIFICENT_MAESTROS_IDS = new Set([
-    "MAMS-EN001", "MAMS-EN002", "MAMS-EN003", "MAMS-EN004", "MAMS-EN005", "MAMS-EN006", "MAMS-EN007", "MAMS-EN008", "MAMS-EN009", "MAMS-EN010", "MAMS-EN011", "MAMS-EN012", "MAMS-EN013", "MAMS-EN014", "MAMS-EN015", "MAMS-EN016", "MAMS-EN017", "MAMS-EN018", "MAMS-EN120", "MAMS-EN121", "MAMS-EN122", "MAMS-EN123", "MAMS-EN124", "MAMS-EN125"
-]);
-const YGO_VARIANT_ROLLOUT_MAGNIFICENT_MONSTERS_SET = "Magnificent Monsters";
-const YGO_VARIANT_ROLLOUT_MAGNIFICENT_MONSTERS_IDS = new Set([
-    "MAMO-EN001", "MAMO-EN002", "MAMO-EN003", "MAMO-EN004", "MAMO-EN005", "MAMO-EN006", "MAMO-EN007", "MAMO-EN008", "MAMO-EN009", "MAMO-EN010", "MAMO-EN011", "MAMO-EN012", "MAMO-EN013", "MAMO-EN014", "MAMO-EN015", "MAMO-EN016", "MAMO-EN017", "MAMO-EN018", "MAMO-EN019", "MAMO-EN020", "MAMO-EN021", "MAMO-EN022", "MAMO-EN023", "MAMO-EN024", "MAMO-EN025", "MAMO-EN026", "MAMO-EN027", "MAMO-EN028", "MAMO-EN029", "MAMO-EN030", "MAMO-EN031", "MAMO-EN032", "MAMO-EN033", "MAMO-EN034", "MAMO-EN035", "MAMO-EN036", "MAMO-EN037", "MAMO-EN038", "MAMO-EN039", "MAMO-EN040", "MAMO-EN042", "MAMO-EN043", "MAMO-EN044", "MAMO-EN045", "MAMO-EN046", "MAMO-EN047", "MAMO-EN048", "MAMO-EN049", "MAMO-EN050", "MAMO-EN051", "MAMO-EN052", "MAMO-EN053", "MAMO-EN054", "MAMO-EN055", "MAMO-EN056", "MAMO-EN057", "MAMO-EN058", "MAMO-EN059", "MAMO-EN060", "MAMO-EN061", "MAMO-EN062", "MAMO-EN063", "MAMO-EN064", "MAMO-EN065", "MAMO-EN066", "MAMO-EN067", "MAMO-EN068", "MAMO-EN069", "MAMO-EN070", "MAMO-EN071", "MAMO-EN072", "MAMO-EN073", "MAMO-EN074", "MAMO-EN075", "MAMO-EN076", "MAMO-EN077", "MAMO-EN078", "MAMO-EN079", "MAMO-EN080", "MAMO-EN081", "MAMO-EN082", "MAMO-EN083", "MAMO-EN084", "MAMO-EN085", "MAMO-EN086", "MAMO-EN088", "MAMO-EN089", "MAMO-EN090", "MAMO-EN091", "MAMO-EN092", "MAMO-EN093", "MAMO-EN094", "MAMO-EN095", "MAMO-EN096", "MAMO-EN097", "MAMO-EN098", "MAMO-EN099", "MAMO-EN100", "MAMO-EN101", "MAMO-EN102", "MAMO-EN103", "MAMO-EN104", "MAMO-EN105", "MAMO-EN106", "MAMO-EN107", "MAMO-EN109", "MAMO-EN110", "MAMO-EN111", "MAMO-EN112", "MAMO-EN113", "MAMO-EN114", "MAMO-EN115", "MAMO-EN116", "MAMO-EN118", "MAMO-EN119", "MAMO-EN120", "MAMO-EN121", "MAMO-EN122", "MAMO-EN123", "MAMO-EN124", "MAMO-EN125", "MAMO-EN126"
-]);
-const YGO_VARIANT_ROLLOUT_LEGENDARY_ARCV_DECKS_SET = "Legendary Arc-V Decks";
-const YGO_VARIANT_ROLLOUT_LEGENDARY_ARCV_DECKS_IDS = new Set([
-    "LAVD-ENL01", "LAVD-ENL02", "LAVD-ENL03", "LAVD-ENL04", "LAVD-ENL05", "LAVD-ENL06", "LAVD-ENL07", "LAVD-ENL08", "LAVD-ENL09", "LAVD-ENL10", "LAVD-ENL11", "LAVD-ENL12", "LAVD-ENL13", "LAVD-ENL14", "LAVD-ENL15", "LAVD-ENL16", "LAVD-ENL17", "LAVD-ENL18", "LAVD-ENL19", "LAVD-ENL20", "LAVD-ENL21", "LAVD-ENL22", "LAVD-ENL23", "LAVD-ENL24", "LAVD-ENL25", "LAVD-ENL26", "LAVD-ENL27", "LAVD-ENL28", "LAVD-ENL29", "LAVD-ENL30", "LAVD-ENL31", "LAVD-ENL32", "LAVD-ENL33", "LAVD-ENL34", "LAVD-ENL35", "LAVD-ENL36", "LAVD-ENL37", "LAVD-ENL38", "LAVD-ENL39", "LAVD-ENL40", "LAVD-ENL41", "LAVD-ENO01", "LAVD-ENO02", "LAVD-ENO03", "LAVD-ENO04", "LAVD-ENO05", "LAVD-ENO06", "LAVD-ENO07", "LAVD-ENO08", "LAVD-ENO09", "LAVD-ENO10", "LAVD-ENO11", "LAVD-ENO12", "LAVD-ENO13", "LAVD-ENO14", "LAVD-ENO15", "LAVD-ENO16", "LAVD-ENO17", "LAVD-ENO18", "LAVD-ENO19", "LAVD-ENO20", "LAVD-ENO21", "LAVD-ENO22", "LAVD-ENO23", "LAVD-ENO24", "LAVD-ENO25", "LAVD-ENO26", "LAVD-ENO27", "LAVD-ENO28", "LAVD-ENO29", "LAVD-ENO30", "LAVD-ENO31", "LAVD-ENO32", "LAVD-ENO33", "LAVD-ENO34", "LAVD-ENO35", "LAVD-ENO36", "LAVD-ENO37", "LAVD-ENO38", "LAVD-ENS01", "LAVD-ENS02", "LAVD-ENS03", "LAVD-ENS04", "LAVD-ENS05", "LAVD-ENS06", "LAVD-ENS07", "LAVD-ENS08", "LAVD-ENS09", "LAVD-ENS10", "LAVD-ENS11", "LAVD-ENS12", "LAVD-ENS13", "LAVD-ENS14", "LAVD-ENS15", "LAVD-ENS16", "LAVD-ENS17", "LAVD-ENS18", "LAVD-ENS19", "LAVD-ENS20", "LAVD-ENS21", "LAVD-ENS22", "LAVD-ENS23", "LAVD-ENS24", "LAVD-ENS25", "LAVD-ENS26", "LAVD-ENS27", "LAVD-ENS28", "LAVD-ENS29", "LAVD-ENS30", "LAVD-ENS31", "LAVD-ENS32", "LAVD-ENS33", "LAVD-ENS34", "LAVD-ENS35", "LAVD-ENS36"
-]);
-const YGO_VARIANT_ROLLOUT_THANK_YOU_PACK_SET = "THANK YOU PACK";
-const YGO_VARIANT_ROLLOUT_THANK_YOU_PACK_IDS = new Set([
-    "TYP1-EN004", "TYP1-EN008", "TYP1-EN013", "TYP1-EN015", "TYP1-EN018", "TYP1-EN019", "TYP1-EN021", "TYP1-EN024", "TYP1-EN027", "TYP1-EN028", "TYP1-EN029", "TYP1-EN030"
-]);
+﻿import { inventoryStore } from "../state/inventory-store.mjs";
+
 const INVENTORY_API_URL = "/api/yyh/cards";
 const INVENTORY_SETS_API_URL = "/api/yyh/sets";
 const POKEMON_INVENTORY_API_URL = "/api/pokemon/cards";
@@ -48,11 +34,15 @@ const POKEMON_TYPE_SORT_ORDER = new Map([
     ["electric", 4],
     ["lightning", 4],
     ["fighting", 5],
-    ["psychic", 6]
+    ["psychic", 6],
+    ["darkness", 7],
+    ["metal", 8],
+    ["dragon", 9],
+    ["fairy", 10]
 ]);
-const POKEMON_TRAINER_SORT_RANK = 7;
-const POKEMON_ENERGY_SORT_RANK = 8;
-const POKEMON_OTHER_SORT_RANK = 9;
+const POKEMON_TRAINER_SORT_RANK = 11;
+const POKEMON_ENERGY_SORT_RANK = 12;
+const POKEMON_OTHER_SORT_RANK = 13;
 const DEFAULT_EDITION_OPTION = "All Editions";
 const DEFAULT_VARIANT_FOCUS_OPTION = "All Finishes";
 const DEFAULT_PRICE_STATUS_OPTION = "All Price Statuses";
@@ -984,22 +974,6 @@ const YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYEIGHTH_SET = "OTS Tournament Pack 15 (P
 const YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYEIGHTH_IDS = new Set(
     Array.from({ length: 36 }, (_, index) => `OP15-PT${String(index + 1).padStart(3, "0")}`)
 );
-const YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYEIGHTH_SET = "Phantom Rage Premiere! promotional card";
-const YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYEIGHTH_IDS = new Set([
-    "PHRA-ENSP1"
-]);
-const YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYNINTH_SET = "Structure Deck: Spirit Charmers";
-const YGO_VARIANT_ROLLOUT_ONEHUNDREDSEVENTYNINTH_IDS = new Set(
-    Array.from({ length: 41 }, (_, index) => `SDCH-EN${String(index + 1).padStart(3, "0")}`)
-);
-const YGO_VARIANT_ROLLOUT_ONEHUNDREDEIGHTIETH_SET = "The Lost Art Promotion 2020 M";
-const YGO_VARIANT_ROLLOUT_ONEHUNDREDEIGHTIETH_IDS = new Set([
-    "LART-EN025"
-]);
-const YGO_VARIANT_ROLLOUT_ONEHUNDREDEIGHTYFIRST_SET = "OTS Tournament Pack 14";
-const YGO_VARIANT_ROLLOUT_ONEHUNDREDEIGHTYFIRST_IDS = new Set(
-    Array.from({ length: 25 }, (_, index) => `OP14-EN${String(index + 1).padStart(3, "0")}`)
-);
 const YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYNINTH_SET = "OTS Tournament Pack 15";
 const YGO_VARIANT_ROLLOUT_ONEHUNDREDSIXTYNINTH_IDS = new Set(
     Array.from({ length: 26 }, (_, index) => `OP15-EN${String(index + 1).padStart(3, "0")}`)
@@ -1918,19 +1892,6 @@ const YGO_VARIANT_ROLLOUT_ASTRAL_PACK_TWO_SET = "Astral Pack Two";
 const YGO_VARIANT_ROLLOUT_ASTRAL_PACK_TWO_IDS = new Set(
     Array.from({ length: 25 }, (_, index) => `AP02-EN${String(index + 1).padStart(3, "0")}`)
 );
-const YGO_VARIANT_ROLLOUT_ABYSS_RISING_SET = "Abyss Rising";
-const YGO_VARIANT_ROLLOUT_ABYSS_RISING_IDS = new Set(
-    ["ABYR-EN000", ...Array.from({ length: 99 }, (_, index) => `ABYR-EN${String(index + 1).padStart(3, "0")}`)]
-);
-const YGO_VARIANT_ROLLOUT_ABYSS_RISING_SNEAK_SET = "Abyss Rising Sneak Peek Participation Card";
-const YGO_VARIANT_ROLLOUT_ABYSS_RISING_SNEAK_IDS = new Set([
-    "ABYR-ENSP1"
-]);
-const YGO_VARIANT_ROLLOUT_COLLECTIBLE_TINS_2012_WAVE_2_SET = "Collectible Tins 2012 Wave 2";
-const YGO_VARIANT_ROLLOUT_COLLECTIBLE_TINS_2012_WAVE_2_IDS = new Set([
-    "CT09-EN003", "CT09-EN004", "CT09-EN012", "CT09-EN013", "CT09-EN014",
-    "CT09-EN015", "CT09-EN016", "CT09-EN017", "CT09-EN018"
-]);
 const YGO_VARIANT_ROLLOUT_HIDDEN_ARSENAL_6_SET = "Hidden Arsenal 6: Omega Xyz";
 const YGO_VARIANT_ROLLOUT_HIDDEN_ARSENAL_6_IDS = new Set(
     Array.from({ length: 60 }, (_, index) => `HA06-EN${String(index + 1).padStart(3, "0")}`)
@@ -1955,10 +1916,6 @@ const YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_14_SET = "Duelist League 14 participati
 const YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_14_IDS = new Set(
     Array.from({ length: 20 }, (_, index) => `DL14-EN${String(index + 1).padStart(3, "0")}`)
 );
-const YGO_VARIANT_ROLLOUT_WSJ_ALPHA_SEPTEMBER_2012_SET = "Weekly Shonen Jump Alpha September 2012 membership promotional card";
-const YGO_VARIANT_ROLLOUT_WSJ_ALPHA_SEPTEMBER_2012_IDS = new Set([
-    "JUMP-EN062"
-]);
 const YGO_VARIANT_ROLLOUT_5DS_VOLUME_4_SET = "Yu-Gi-Oh! 5D's Volume 4 promotional card";
 const YGO_VARIANT_ROLLOUT_5DS_VOLUME_4_IDS = new Set([
     "YF04-EN001"
@@ -3360,22 +3317,6 @@ const YGO_VARIANT_ROLLOUT_ASTRAL_PACK_FOUR_SET = "Astral Pack Four";
 const YGO_VARIANT_ROLLOUT_ASTRAL_PACK_FOUR_IDS = new Set(
     Array.from({ length: 26 }, (_, index) => `AP04-EN${String(index + 1).padStart(3, "0")}`)
 );
-const YGO_VARIANT_ROLLOUT_COSMO_BLAZER_SET = "Cosmo Blazer";
-const YGO_VARIANT_ROLLOUT_COSMO_BLAZER_IDS = new Set(
-    ["CBLZ-EN000", ...Array.from({ length: 99 }, (_, index) => `CBLZ-EN${String(index + 1).padStart(3, "0")}`)]
-);
-const YGO_VARIANT_ROLLOUT_COSMO_BLAZER_SNEAK_SET = "Cosmo Blazer Sneak Peek Participation Card";
-const YGO_VARIANT_ROLLOUT_COSMO_BLAZER_SNEAK_IDS = new Set([
-    "CBLZ-ENSP1"
-]);
-const YGO_VARIANT_ROLLOUT_COLLECTIBLE_TINS_2012_WAVE_2_5_SET = "Collectible Tins 2012 Wave 2.5";
-const YGO_VARIANT_ROLLOUT_COLLECTIBLE_TINS_2012_WAVE_2_5_IDS = new Set(
-    Array.from({ length: 5 }, (_, index) => `CT09-EN${String(index + 19).padStart(3, "0")}`)
-);
-const YGO_VARIANT_ROLLOUT_WSJ_ALPHA_DECEMBER_2012_SET = "Weekly Shonen Jump Alpha December 2012 membership promotional card";
-const YGO_VARIANT_ROLLOUT_WSJ_ALPHA_DECEMBER_2012_IDS = new Set([
-    "JUMP-EN063"
-]);
 const YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_15_SET = "Duelist League 15 participation cards";
 const YGO_VARIANT_ROLLOUT_DUELIST_LEAGUE_15_IDS = new Set(
     Array.from({ length: 20 }, (_, index) => `DL15-EN${String(index + 1).padStart(3, "0")}`)
@@ -4390,7 +4331,6 @@ function hasLimitOnePerDeckText(effectText) {
         return false;
     }
 
-    // Handles common OCR/typing variants such as "limt 1 per deck" and "limit 1 deck".
     return /\blim(?:it|t)\s+1\s+per\s+deck\b/.test(normalizedEffect)
         || /\blim(?:it|t)\s+1\s+deck\b/.test(normalizedEffect);
 }
@@ -4418,7 +4358,7 @@ function getGameplayStatus(cardRecord) {
         return "";
     }
 
-    return "";
+    return hasLimitOnePerDeckText(cardRecord.effect) ? "Limit 1 per Deck" : "";
 }
 
 function isLikelyCardNumberQuery(value) {
@@ -6340,10 +6280,6 @@ function filterRecords(records, filterState) {
     });
 }
 
-function escapeRegex(value) {
-    return String(value || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
-
 function normalizeForSearch(value) {
     return String(value || "")
         .toLowerCase()
@@ -7035,10 +6971,6 @@ function getCardDisplayKey(cardRecord) {
     return [cardRecord.game, cardRecord.set, cardRecord.id, cardRecord.name]
         .map((value) => String(value || "").trim().toLowerCase())
         .join("||");
-}
-
-function countUniqueCards(records) {
-    return new Set(records.map(getCardDisplayKey)).size;
 }
 
 function getCollisionKey(cardRecord) {
@@ -7907,6 +7839,9 @@ function buildApiQueryString(filterState, offset = INVENTORY_DEFAULT_OFFSET) {
     if (filterState.rarity !== "All Rarities") {
         params.set("rarity", filterState.rarity);
     }
+    if (filterState.sort) {
+        params.set("sort", filterState.sort);
+    }
     params.set("limit", String(pageLimit));
     params.set("offset", String(offset));
 
@@ -7925,40 +7860,6 @@ async function loadAllInventoryRecords() {
         return parsed.items;
     } catch {
         return loadFallbackData();
-    }
-}
-
-async function loadInventoryData(filterState, offset = INVENTORY_DEFAULT_OFFSET) {
-    const queryString = buildApiQueryString(filterState, offset);
-    const requestUrl = queryString ? `${INVENTORY_API_URL}?${queryString}` : INVENTORY_API_URL;
-
-    try {
-        const response = await fetch(requestUrl, { cache: "no-store" });
-        if (!response.ok) {
-            throw new Error(`Request failed with status ${response.status}`);
-        }
-
-        const payload = await response.json();
-        const parsed = parseCardsPayload(payload);
-        const hasMore = typeof payload?.hasMore === "boolean"
-            ? payload.hasMore
-            : offset + parsed.items.length < parsed.total;
-
-        return {
-            ...parsed,
-            hasMore
-        };
-    } catch {
-        const fallbackRecords = await loadFallbackData();
-        const filteredItems = filterRecords(fallbackRecords, filterState);
-        const pageLimit = getInventoryPageLimit();
-        const items = filteredItems.slice(offset, offset + pageLimit);
-
-        return {
-            items,
-            total: filteredItems.length,
-            hasMore: offset + items.length < filteredItems.length
-        };
     }
 }
 
@@ -8006,10 +7907,11 @@ async function initInventoryFilters() {
     await loadYgoArchetypeOptions();
     await loadPokemonSetOptions();
 
-    let renderRequestId = 0;
-    let cardsShown = 0;
-    let canLoadMore = false;
     let pokemonSetBeforeShowAll = POKEMON_DEFAULT_SET;
+
+    inventoryStore.getState().resetPagination();
+    const getCardsShown = () => inventoryStore.getState().cardsShown;
+    const isCurrentRenderRequest = (requestId) => requestId === inventoryStore.getState().renderRequestId;
 
     const setLoadMoreProgress = (shown, total, includeVariants) => {
         loadMoreProgress.hidden = false;
@@ -8049,6 +7951,7 @@ async function initInventoryFilters() {
     };
 
     const updateLoadMoreButtonState = () => {
+        const { cardsShown, canLoadMore } = inventoryStore.getState();
         if (cardsShown === 0) {
             loadMoreButton.hidden = true;
             loadMoreButton.disabled = false;
@@ -8069,21 +7972,20 @@ async function initInventoryFilters() {
     };
 
     const renderResults = async (append = false) => {
-        const requestId = ++renderRequestId;
+        const requestId = inventoryStore.getState().beginRender();
         const filterState = makeFilterState(searchFilter, gameFilter, setFilter, typeFilter, rarityFilter, editionFilter, variantFocusFilter, priceStatusFilter, gameplayStatusFilter, sortFilter, variantsToggle);
         const normalizedQuery = normalizeForSearch(filterState.query);
         const queryTooShort = normalizedQuery.length > 0
             && normalizedQuery.length < MIN_SEARCH_CHARACTERS
             && !isLikelyCardNumberQuery(filterState.query);
-        const offset = append ? cardsShown : INVENTORY_DEFAULT_OFFSET;
+        const offset = append ? getCardsShown() : INVENTORY_DEFAULT_OFFSET;
 
         if (filterState.game === "All Games") {
-            if (requestId !== renderRequestId) {
+            if (!isCurrentRenderRequest(requestId)) {
                 return;
             }
 
-            cardsShown = 0;
-            canLoadMore = false;
+            inventoryStore.getState().resetPagination();
             resultsGrid.classList.remove("inventory-grid--thumbnail-mode");
             updateLoadMoreButtonState();
             hideLoadMoreProgress();
@@ -8095,8 +7997,7 @@ async function initInventoryFilters() {
 
         resultsGrid.hidden = false;
         if (!append) {
-            cardsShown = 0;
-            canLoadMore = false;
+            inventoryStore.getState().resetPagination();
             resultsGrid.classList.remove("inventory-grid--thumbnail-mode");
             updateLoadMoreButtonState();
             hideLoadMoreProgress();
@@ -8117,7 +8018,7 @@ async function initInventoryFilters() {
                     <span class="inventory-card__tag">Search threshold enabled</span>
                 </article>
             `;
-            canLoadMore = false;
+            inventoryStore.getState().setCanLoadMore(false);
             updateLoadMoreButtonState();
             setLoadMoreProgress(0, 0, filterState.includeVariants);
             updateVariantsSummary(filterState, 0);
@@ -8125,7 +8026,7 @@ async function initInventoryFilters() {
             return;
         }
 
-        if (requestId !== renderRequestId) {
+        if (!isCurrentRenderRequest(requestId)) {
             return;
         }
 
@@ -8137,7 +8038,7 @@ async function initInventoryFilters() {
             try {
                 if (normalizedQuery) {
                     const allSearchRecords = await loadAllYgoVariantRecords(filterState);
-                    if (requestId !== renderRequestId) {
+                    if (!isCurrentRenderRequest(requestId)) {
                         return;
                     }
 
@@ -8154,7 +8055,7 @@ async function initInventoryFilters() {
                     ygoHasMore = offset + sourceRecords.length < ygoTotal;
                 } else if (filterState.includeVariants) {
                     const ygoVariantRecords = await loadAllYgoVariantRecords(filterState);
-                    if (requestId !== renderRequestId) {
+                    if (!isCurrentRenderRequest(requestId)) {
                         return;
                     }
 
@@ -8164,7 +8065,7 @@ async function initInventoryFilters() {
                     ygoHasMore = offset + sourceRecords.length < ygoTotal;
                 } else {
                     const ygoResult = await loadYgoInventoryPage(filterState, offset);
-                    if (requestId !== renderRequestId) {
+                    if (!isCurrentRenderRequest(requestId)) {
                         return;
                     }
 
@@ -8192,7 +8093,7 @@ async function initInventoryFilters() {
                         <span class="inventory-card__tag">Searchable inventory</span>
                     </article>
                 `;
-                canLoadMore = false;
+                inventoryStore.getState().setCanLoadMore(false);
                 updateLoadMoreButtonState();
                 setLoadMoreProgress(0, 0, filterState.includeVariants);
                 updateVariantsSummary(filterState, 0);
@@ -8207,11 +8108,11 @@ async function initInventoryFilters() {
                 resultsGrid.innerHTML = sourceRecords.map((cardRecord) => makeInventoryCard(cardRecord, collisionCountMap, variantFamilyCountMap, false, false)).join("");
             }
 
-            cardsShown = append ? cardsShown + sourceRecords.length : sourceRecords.length;
-            canLoadMore = ygoHasMore;
+            inventoryStore.getState().completePage(sourceRecords.length, ygoHasMore, append);
             updateLoadMoreButtonState();
             const projectTotalApplies = !normalizedQuery && filterState.set === "All Sets";
             const displayTotal = projectTotalApplies ? YGO_PROJECT_CARD_RECORD_TOTAL : ygoTotal;
+            const cardsShown = getCardsShown();
             setLoadMoreProgress(cardsShown, displayTotal, filterState.includeVariants);
             updateVariantsSummary(filterState, ygoTotal);
             hydrateInventoryCardImages(resultsGrid);
@@ -8232,7 +8133,7 @@ async function initInventoryFilters() {
                 renderInventoryError(resultsGrid, resultsMeta, `Unable to load Pokemon data (${reason}).`);
                 return;
             }
-            if (requestId !== renderRequestId) {
+            if (!isCurrentRenderRequest(requestId)) {
                 return;
             }
 
@@ -8248,9 +8149,9 @@ async function initInventoryFilters() {
                 resultsGrid.innerHTML = sourceRecords.map((record) => makeInventoryCard(record, collisionCountMap, variantFamilyCountMap, false, false)).join("");
             }
 
-            cardsShown = append ? cardsShown + sourceRecords.length : sourceRecords.length;
-            canLoadMore = Boolean(pokemonResult.hasMore);
+            inventoryStore.getState().completePage(sourceRecords.length, pokemonResult.hasMore, append);
             updateLoadMoreButtonState();
+            const cardsShown = getCardsShown();
             setLoadMoreProgress(cardsShown, pokemonResult.total, filterState.includeVariants);
             updateVariantsSummary(filterState, pokemonResult.total);
             hydrateInventoryCardImages(resultsGrid);
@@ -8263,13 +8164,13 @@ async function initInventoryFilters() {
                 ? await loadAllYyhSetPricingMap(inventoryRecords)
                 : await loadSetPricingMap(filterState.set))
             : createEmptyPricingData();
-        if (requestId !== renderRequestId) {
+        if (!isCurrentRenderRequest(requestId)) {
             return;
         }
         const kingSetNotesMap = filterState.game === "Yu Yu Hakusho"
             ? await loadKingSetNotesMap()
             : new Map();
-        if (requestId !== renderRequestId) {
+        if (!isCurrentRenderRequest(requestId)) {
             return;
         }
         renderSetContext(setContextElement, filterState, setPricingData, kingSetNotesMap);
@@ -8300,7 +8201,7 @@ async function initInventoryFilters() {
                     <span class="inventory-card__tag">Searchable inventory</span>
                 </article>
             `;
-            canLoadMore = false;
+            inventoryStore.getState().setCanLoadMore(false);
             updateLoadMoreButtonState();
             setLoadMoreProgress(0, 0, filterState.includeVariants);
             updateVariantsSummary(filterState, 0);
@@ -8310,7 +8211,7 @@ async function initInventoryFilters() {
 
         const pageLimit = getInventoryPageLimit();
         const renderedItems = sourceRecords.slice(offset, offset + pageLimit);
-        if (requestId !== renderRequestId) {
+        if (!isCurrentRenderRequest(requestId)) {
             return;
         }
 
@@ -8321,9 +8222,11 @@ async function initInventoryFilters() {
             resultsGrid.innerHTML = renderedItems.map((cardRecord) => makeInventoryCard(cardRecord, collisionCountMap, variantFamilyCountMap, showCardIdInMeta, showPricing)).join("");
         }
 
-        cardsShown = append ? cardsShown + renderedItems.length : renderedItems.length;
-        canLoadMore = cardsShown < totalForDisplay;
+        const previousCardsShown = getCardsShown();
+        const nextCardsShown = append ? previousCardsShown + renderedItems.length : renderedItems.length;
+        inventoryStore.getState().completePage(renderedItems.length, nextCardsShown < totalForDisplay, append);
         updateLoadMoreButtonState();
+        const cardsShown = getCardsShown();
         setLoadMoreProgress(cardsShown, totalForDisplay, filterState.includeVariants);
         updateVariantsSummary(filterState, totalForDisplay);
         hydrateInventoryCardImages(resultsGrid);
@@ -8607,7 +8510,7 @@ async function initInventoryFilters() {
         void renderResults(false);
     });
     loadMoreButton.addEventListener("click", () => {
-        if (!canLoadMore || loadMoreButton.disabled) {
+        if (!inventoryStore.getState().canLoadMore || loadMoreButton.disabled) {
             return;
         }
 

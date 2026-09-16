@@ -26,11 +26,8 @@ const SETS_GAME_NAV_CONFIG = {
 };
 
 const YGO_SETS_API_URL = "https://db.ygoprodeck.com/api/v7/cardsets.php";
-const POKEMON_SETS_API_URL = "https://api.tcgdex.net/v2/en/sets";
-const POKEMON_SERIES_API_URL = "https://api.tcgdex.net/v2/en/series";
+const POKEMON_SETS_API_URL = "/api/pokemon/sets";
 const YYH_CARDS_URL = "data/yyh-cards-full.json";
-const YGO_CARDINFO_COUNT_URL = "https://db.ygoprodeck.com/api/v7/cardinfo.php?num=1&offset=0";
-const YGO_CARDINFO_PAGE_SIZE = 100;
 const YGO_PROJECT_CARD_RECORD_TOTAL = 37393;
 const SHOW_CATEGORY_OPTIONS = [
     "Duel Monsters • Sep 2001",
@@ -77,33 +74,6 @@ const POKEMON_GENERATION_OPTIONS = [
     "Generation IX • Paldea"
 ];
 
-const POKEMON_SERIES_GENERATIONS = {
-    base: POKEMON_GENERATION_OPTIONS[0],
-    gym: POKEMON_GENERATION_OPTIONS[0],
-    neo: POKEMON_GENERATION_OPTIONS[1],
-    lc: POKEMON_GENERATION_OPTIONS[1],
-    ecard: POKEMON_GENERATION_OPTIONS[1],
-    ex: POKEMON_GENERATION_OPTIONS[2],
-    dp: POKEMON_GENERATION_OPTIONS[3],
-    pl: POKEMON_GENERATION_OPTIONS[3],
-    hgss: POKEMON_GENERATION_OPTIONS[3],
-    col: POKEMON_GENERATION_OPTIONS[3],
-    bw: POKEMON_GENERATION_OPTIONS[4],
-    xy: POKEMON_GENERATION_OPTIONS[5],
-    sm: POKEMON_GENERATION_OPTIONS[6],
-    swsh: POKEMON_GENERATION_OPTIONS[7],
-    sv: POKEMON_GENERATION_OPTIONS[8],
-    tcgp: POKEMON_GENERATION_OPTIONS[8],
-    me: POKEMON_GENERATION_OPTIONS[8]
-};
-
-const POKEMON_SUPPLEMENTAL_SERIES_DEFAULTS = {
-    misc: POKEMON_GENERATION_OPTIONS[0],
-    pop: POKEMON_GENERATION_OPTIONS[2],
-    tk: POKEMON_GENERATION_OPTIONS[2],
-    mc: POKEMON_GENERATION_OPTIONS[4]
-};
-
 const POKEMON_GENERATION_DATE_BUCKETS = [
     { generation: POKEMON_GENERATION_OPTIONS[0], start: "1996-01-01", end: "2000-12-16" },
     { generation: POKEMON_GENERATION_OPTIONS[1], start: "2000-12-16", end: "2003-07-01" },
@@ -124,12 +94,6 @@ const ALLOWED_SORT_MODES = new Set([
     "alpha-asc",
     "alpha-desc"
 ]);
-
-function normalizeSetKey(value) {
-    return String(value || "")
-        .trim()
-        .toLowerCase();
-}
 
 function getSelectedSetsGame() {
     const params = new URLSearchParams(window.location.search);
@@ -273,10 +237,6 @@ function saveSortMode(mode) {
     }
 }
 
-function makeInventorySetLink(setName) {
-    return makeInventorySetLinkForGame(setName, "Yu-Gi-Oh");
-}
-
 function makeInventorySetLinkForGame(setName, gameName) {
     const params = new URLSearchParams({
         game: gameName,
@@ -346,78 +306,35 @@ async function loadSetSummary() {
 }
 
 async function loadPokemonSetSummary() {
-    const [setsResponse, seriesResponse] = await Promise.all([
-        fetch(POKEMON_SETS_API_URL, { cache: "no-store" }),
-        fetch(POKEMON_SERIES_API_URL, { cache: "no-store" })
-    ]);
-    if (!setsResponse.ok || !seriesResponse.ok) {
-        throw new Error(`Request failed with status ${setsResponse.ok ? seriesResponse.status : setsResponse.status}`);
+    const response = await fetch(POKEMON_SETS_API_URL, { cache: "no-store" });
+    if (!response.ok) {
+        throw new Error(`Request failed with status ${response.status}`);
     }
 
-    const [payload, seriesPayload] = await Promise.all([setsResponse.json(), seriesResponse.json()]);
-    if (!Array.isArray(payload) || !Array.isArray(seriesPayload)) {
+    const payload = await response.json();
+    if (!Array.isArray(payload?.setMetadata)) {
         throw new Error("Invalid Pokemon set response");
     }
 
-    const seriesDetails = await Promise.all(seriesPayload.map(async (series) => {
-        try {
-            const response = await fetch(`${POKEMON_SERIES_API_URL}/${encodeURIComponent(series.id)}`, { cache: "no-store" });
-            return response.ok ? response.json() : null;
-        } catch {
-            return null;
-        }
-    }));
-    const seriesBySetId = new Map();
-    seriesDetails.filter(Boolean).forEach((series) => {
-        (Array.isArray(series.sets) ? series.sets : []).forEach((set, index) => {
-            seriesBySetId.set(String(set?.id || ""), { id: series.id, order: index });
-        });
-    });
-
-    const supplementalItems = payload.filter((item) => {
-        const seriesId = seriesBySetId.get(String(item?.id || ""))?.id || "";
-        return Object.prototype.hasOwnProperty.call(POKEMON_SUPPLEMENTAL_SERIES_DEFAULTS, seriesId);
-    });
-    const supplementalDetails = new Map();
-    for (let index = 0; index < supplementalItems.length; index += 6) {
-        const batch = supplementalItems.slice(index, index + 6);
-        const details = await Promise.all(batch.map(async (item) => {
-            try {
-                const response = await fetch(`${POKEMON_SETS_API_URL}/${encodeURIComponent(item.id)}`, { cache: "no-store" });
-                return response.ok ? response.json() : null;
-            } catch {
-                return null;
-            }
-        }));
-        details.filter(Boolean).forEach((detail) => supplementalDetails.set(String(detail.id || ""), detail));
-    }
-
-    const items = payload.map((item) => {
+    const items = payload.setMetadata.map((item) => {
         const code = String(item?.id || "").trim();
-        const seriesInfo = seriesBySetId.get(code) || { id: "", order: 0 };
-        const detail = supplementalDetails.get(code);
-        const releaseDate = String(detail?.releaseDate || "").trim();
+        const releaseDate = String(item?.releaseDate || "").trim();
         const dateBucket = POKEMON_GENERATION_DATE_BUCKETS.find((bucket) => {
             const releaseValue = parseReleaseDate(releaseDate);
             const startValue = Date.parse(bucket.start);
             const endValue = bucket.end ? Date.parse(bucket.end) : Number.POSITIVE_INFINITY;
             return Number.isFinite(releaseValue) && releaseValue >= startValue && releaseValue < endValue;
         });
-        const generation = POKEMON_SERIES_GENERATIONS[seriesInfo.id]
-            || dateBucket?.generation
-            || POKEMON_SUPPLEMENTAL_SERIES_DEFAULTS[seriesInfo.id]
-            || POKEMON_GENERATION_OPTIONS[8];
+        const generation = dateBucket?.generation || POKEMON_GENERATION_OPTIONS[8];
 
         return {
             set: String(item?.name || "").trim(),
             game: "Pokemon",
             code,
-            cardCount: Number(item?.cardCount?.total ?? item?.cardCount?.official ?? 0),
+            cardCount: Number(item?.total || item?.printedTotal || 0),
             releaseDate,
             generation,
-            seriesId: seriesInfo.id,
-            seriesOrder: seriesInfo.order,
-            source: "TCGdex API"
+            source: "Local Scrydex cache"
         };
     }).filter((item) => item.set);
 
@@ -474,7 +391,7 @@ function applySetsPageCopy(selectedGame) {
         description.textContent = isYyh
             ? "Browse the local Yu Yu Hakusho card catalog, then open any set in a prefiltered Inventory view."
             : isPokemon
-                ? "Browse the live Pokemon TCG set catalog from TCGdex, then open any set in a prefiltered Inventory view."
+                ? "Browse the local Scrydex Pokemon set catalog, then open any set in a prefiltered Inventory view."
                 : "This page pulls the live set list from YGOPRODeck, then links each entry into a prefiltered Inventory view so you can inspect cards by set quickly.";
     }
     if (primaryNote) {
@@ -486,20 +403,20 @@ function applySetsPageCopy(selectedGame) {
         secondaryNote.textContent = isYyh
             ? "Card counts are summarized from the local YYH card catalog."
             : isPokemon
-                ? "Live set counts stay connected to the TCGdex catalog."
+                ? "Set counts are summarized from the local Scrydex cache."
                 : "Live set counts and exact card-record totals stay connected to the YGOPRODeck feed.";
     }
     if (footerMeta) {
         footerMeta.textContent = isYyh
             ? "Yu Yu Hakusho set discovery powered by the local card catalog."
             : isPokemon
-                ? "Pokemon set discovery powered by the live TCGdex set feed."
+                ? "Pokemon set discovery powered by the local Scrydex cache."
                 : "Yu-Gi-Oh set discovery powered by the live YGOPRODeck set feed.";
     }
     if (footerCredit) {
         footerCredit.textContent = isYyh
             ? "Data credit: Shalimar YYH card catalog."
-            : isPokemon ? "Data credit: TCGdex API." : "Data credit: YGOPRODeck API.";
+            : isPokemon ? "Data credit: Scrydex local cache." : "Data credit: YGOPRODeck API.";
     }
     if (heroImage instanceof HTMLImageElement) {
         if (isYyh) {
@@ -638,7 +555,7 @@ async function initSetsPage() {
         <span class="sets-meta__secondary">${setEntryCount} set entries</span>
         <span class="sets-meta__primary">${printingsTotal}</span>
         <span class="sets-meta__secondary">exact card records</span>
-        <span class="sets-meta__source">source: ${isYyh ? "YYH card catalog" : isPokemon ? "TCGdex API" : "YGOPRODeck API"}</span>
+        <span class="sets-meta__source">source: ${isYyh ? "YYH card catalog" : isPokemon ? "Local Scrydex cache" : "YGOPRODeck API"}</span>
     `;
 }
 

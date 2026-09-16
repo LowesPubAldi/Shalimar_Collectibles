@@ -2,21 +2,31 @@ function initMobileNav() {
     const toggle = document.getElementById("mobileNavToggle");
     const links = document.getElementById("primaryNavLinks");
     const overlay = document.getElementById("mobileNavOverlay");
+    const header = document.querySelector(".header");
 
     if (!toggle || !links || !overlay) {
         return;
     }
 
     const closeNav = () => {
+        const wasOpen = document.body.classList.contains("is-mobile-nav-open");
         document.body.classList.remove("is-mobile-nav-open");
         toggle.setAttribute("aria-expanded", "false");
         toggle.setAttribute("aria-label", "Open navigation menu");
+        links.setAttribute("aria-hidden", "true");
+        links.inert = true;
+        if (wasOpen && links.contains(document.activeElement)) {
+            toggle.focus();
+        }
     };
 
     const openNav = () => {
         document.body.classList.add("is-mobile-nav-open");
         toggle.setAttribute("aria-expanded", "true");
         toggle.setAttribute("aria-label", "Close navigation menu");
+        links.setAttribute("aria-hidden", "false");
+        links.inert = false;
+        links.querySelector("a")?.focus();
     };
 
     toggle.addEventListener("click", () => {
@@ -42,17 +52,15 @@ function initMobileNav() {
         }
     });
 
-    const mobileNavQuery = window.matchMedia("(max-width: 768px)");
-    const syncNavState = () => {
-        if (!mobileNavQuery.matches) {
-            closeNav();
-        }
-    };
+    links.setAttribute("aria-hidden", "true");
+    links.inert = true;
 
-    if (typeof mobileNavQuery.addEventListener === "function") {
-        mobileNavQuery.addEventListener("change", syncNavState);
-    } else {
-        mobileNavQuery.addListener(syncNavState);
+    if (header) {
+        const syncHeaderSurface = () => {
+            header.classList.toggle("header--scrolled", window.scrollY > 24);
+        };
+        syncHeaderSurface();
+        window.addEventListener("scroll", syncHeaderSurface, { passive: true });
     }
 }
 
@@ -146,16 +154,18 @@ function initNavSearch() {
                 };
             });
         } else if (game === "Pokemon") {
-            const endpoint = new URL("https://api.tcgdex.net/v2/en/cards");
-            endpoint.searchParams.set("name", query);
+            const endpoint = new URL("/api/pokemon/cards", window.location.origin);
+            endpoint.searchParams.set("cached", "all");
+            endpoint.searchParams.set("q", query);
+            endpoint.searchParams.set("limit", "5");
             const response = await fetch(endpoint.toString(), { cache: "no-store" });
             const payload = await response.json();
-            cards = (Array.isArray(payload) ? payload : []).slice(0, 5).map((card) => ({
+            cards = (Array.isArray(payload?.items) ? payload.items : []).slice(0, 5).map((card) => ({
                 name: card.name,
                 game,
-                set: typeof card.set === "object" ? card.set?.name || card.set?.id || "" : card.set || "",
+                set: card.set || "",
                 id: card.id,
-                image: card.image ? `${card.image}/low.webp` : "assets/Shalimar-card-icon.svg"
+                image: card.imageUrl || "assets/Shalimar-card-icon.svg"
             }));
         }
 
