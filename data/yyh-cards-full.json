@@ -16040,7 +16040,7 @@
     "type": "Event",
     "rarity": "G - Ghost Rare",
     "variant": "Bottom Left",
-    "effect": "Effect: Shinobi Stealth: Switch this character with a character on your Sideline that has the Team Masho Symbol, when this character deals points of damage to your opponent's fighter. Twister: When you use this attack, you can choose to attack the character in your opponent's 2nd or 4th match slot, If you do, this attack's attack value is 3000 instead.",
+    "effect": "Raw Power: For the rest of the game, your Yomi Team Bonus gains +1.",
     "source": "betrayal-checklist.txt"
   },
   {
@@ -16088,7 +16088,7 @@
     "type": "Character",
     "rarity": "U - Uber Rare",
     "variant": "Top Left",
-    "effect": "Effect: Darkness: Your opponent must discard a card from his hand when he deals this character any points of damage. Sword Strike: If you have more spirit than you opponent, your opponent must discard a card from his hand.",
+    "effect": "Heightened Senses: When you play a card from your opponent's Discard Pile, draw a card.",
     "source": "betrayal-checklist.txt"
   },
   {
@@ -18752,7 +18752,7 @@
     "type": "Event",
     "rarity": "TG - Tournament Ghost Rare",
     "variant": "Bottom Right",
-    "effect": "Pay 1 Spirit: Play this card in your Main Step to draw a card, or play this card when your opponent plays a card during your turn to stop all effects of that card.",
+    "effect": "Discard the top 2 cards of your opponent's Deck",
     "source": "betrayal-checklist.txt"
   },
   {

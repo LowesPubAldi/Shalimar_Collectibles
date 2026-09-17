@@ -1,4 +1,4 @@
-import { createStore } from "zustand/vanilla";
+import { createStore } from "https://esm.sh/zustand@5/vanilla";
 
 export function createInventoryStore() {
     return createStore((set) => ({

@@ -1314,6 +1314,50 @@ function renderCardPage(cardContext) {
         if (cardDetailsRarityValue) {
             cardDetailsRarityValue.textContent = selectedRarity;
         }
+        if (cardFactSet) {
+    cardFactSet.textContent = selectedSet;
+}
+
+if (cardFactNumber) {
+    cardFactNumber.textContent = selectedNumber;
+}
+
+if (cardFactRarity) {
+    cardFactRarity.textContent = selectedRarity;
+}
+
+const selectedEffect = selectedRecord.effect || card.effect;
+const selectedSource = selectedRecord.source || card.source;
+
+const updatedNoteLines = [];
+
+if (selectedEffect) {
+    updatedNoteLines.push(
+        `<p>Effect text: ${escapeHtml(selectedEffect)}</p>`
+    );
+}
+
+updatedNoteLines.push(
+    `<p>Price: ${escapeHtml(
+        priceText === "Unpriced"
+            ? priceText
+            : `${priceText} (${priceStatus})`
+    )}</p>`
+);
+
+if (pricing?.notes) {
+    updatedNoteLines.push(
+        `<p>Pricing note: ${escapeHtml(pricing.notes)}</p>`
+    );
+}
+
+if (selectedSource) {
+    updatedNoteLines.push(
+        `<p>Source: ${escapeHtml(selectedSource)}</p>`
+    );
+}
+
+cardNotes.innerHTML = updatedNoteLines.join("");
         if (isPokemonCard) {
             if (cardFactSet) cardFactSet.textContent = selectedSet;
             if (cardFactNumber) cardFactNumber.textContent = selectedNumber;
