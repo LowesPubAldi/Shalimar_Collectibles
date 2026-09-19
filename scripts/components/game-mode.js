@@ -87,12 +87,15 @@
             updateScopedLinks(mode);
 
             const currentFile = window.location.pathname.split("/").pop() || "index.html";
-            if (currentFile === "sets.html" && getModeFromUrl() !== modeKey) {
-                const destination = new URL(window.location.href);
-                destination.searchParams.set("game", mode.searchGame);
-                window.location.replace(destination.toString());
-                return;
-            }
+if (
+    (currentFile === "sets.html" || currentFile === "inventory.html") &&
+    getModeFromUrl() !== modeKey
+) {
+    const destination = new URL(window.location.href);
+    destination.searchParams.set("game", mode.searchGame);
+    window.location.replace(destination.toString());
+    return;
+}
 
             if (currentFile === "kings.html") {
                 navigateFeaturePageIfNeeded(modeKey, mode);
