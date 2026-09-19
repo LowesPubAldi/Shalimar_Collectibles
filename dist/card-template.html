@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shalimar Collectibles | Card</title>
+    <script src="scripts/components/game-mode.js?v=1" defer></script>
+    <script src="scripts/pages/card-page.js?v=14" defer></script>
+  <script type="module" crossorigin src="/assets/mobile-nav-Do0mC4O6.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/mobile-nav-C5FVi4wC.css">
+  <link rel="stylesheet" crossorigin href="/assets/cardTemplate-WX3VsJkH.css">
+  <link rel="stylesheet" crossorigin href="/assets/footer-CHUxG7Mm.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="logo-link" aria-label="Go to homepage">
+                <img
+                    src="/assets/logo-v4-DhR52I-v.svg?v=3"
+                    alt="Shalimar Collectibles logo"
+                    class="logo"
+                />
+            </a>
+            <form class="nav-search" id="navSearch" role="search">
+                <label class="sr-only" for="navSearchInput">Search inventory</label>
+                <input id="navSearchInput" type="search" placeholder="Search cards" autocomplete="off" />
+                <button type="submit" aria-label="Search inventory">Search</button>
+            </form>
+            <div class="game-mode-controls">
+                <label class="game-mode-select-wrap" for="gameModeSelect">
+                    <span class="sr-only">Game</span>
+                    <select class="game-mode-select" id="gameModeSelect" aria-label="Select game">
+                        <option value="yyh">Yu Yu Hakusho</option>
+                        <option value="ygo">Yu-Gi-Oh</option>
+                        <option value="pokemon">Pokemon</option>
+                    </select>
+                </label>
+            </div>
+            <button
+                class="mobile-nav-toggle"
+                id="mobileNavToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="primaryNavLinks"
+            >
+                <span class="mobile-nav-toggle__bar" aria-hidden="true"></span>
+                <span class="mobile-nav-toggle__bar" aria-hidden="true"></span>
+                <span class="mobile-nav-toggle__bar" aria-hidden="true"></span>
+            </button>
+            <ul class="nav__links" id="primaryNavLinks">
+                <li><a href="contributors.html">Contributors</a></li>
+                <li><a href="inventory.html">Inventory</a></li>
+                <li><a href="sets.html">Sets</a></li>
+                <li><a href="kings.html">Kings</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="mobile-nav-overlay" id="mobileNavOverlay" type="button" aria-label="Close navigation menu"></button>
+    </header>
+
+    <main class="main card-page">
+        <div class="card-api-loader" id="cardApiLoader" role="status" aria-live="polite">
+            <div class="card-api-loader__mark" aria-hidden="true">
+                <span class="card-api-loader__ring"></span>
+                <img class="card-api-loader__icon" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgoKPHN2ZwogICB3aWR0aD0iNjAwIgogICBoZWlnaHQ9IjUwMCIKICAgdmlld0JveD0iMCAwIDE1OC43NSAxMzIuMjkxNjciCiAgIHZlcnNpb249IjEuMSIKICAgaWQ9InN2ZzEiCiAgIGlua3NjYXBlOnZlcnNpb249IjEuNC40IChkY2FmM2U3LCAyMDI2LTA1LTA1KSIKICAgc29kaXBvZGk6ZG9jbmFtZT0iU2hhbGltYXItY2FyZC1pY29uLnN2ZyIKICAgeG1sbnM6aW5rc2NhcGU9Imh0dHA6Ly93d3cuaW5rc2NhcGUub3JnL25hbWVzcGFjZXMvaW5rc2NhcGUiCiAgIHhtbG5zOnNvZGlwb2RpPSJodHRwOi8vc29kaXBvZGkuc291cmNlZm9yZ2UubmV0L0RURC9zb2RpcG9kaS0wLmR0ZCIKICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8c29kaXBvZGk6bmFtZWR2aWV3CiAgICAgaWQ9Im5hbWVkdmlldzEiCiAgICAgcGFnZWNvbG9yPSIjZmZmZmZmIgogICAgIGJvcmRlcmNvbG9yPSIjMDAwMDAwIgogICAgIGJvcmRlcm9wYWNpdHk9IjAuMjUiCiAgICAgaW5rc2NhcGU6c2hvd3BhZ2VzaGFkb3c9IjIiCiAgICAgaW5rc2NhcGU6cGFnZW9wYWNpdHk9IjAuMCIKICAgICBpbmtzY2FwZTpwYWdlY2hlY2tlcmJvYXJkPSIwIgogICAgIGlua3NjYXBlOmRlc2tjb2xvcj0iI2QxZDFkMSIKICAgICBpbmtzY2FwZTpkb2N1bWVudC11bml0cz0ibW0iCiAgICAgaW5rc2NhcGU6em9vbT0iMC42MjQ0ODc5MyIKICAgICBpbmtzY2FwZTpjeD0iMzk3LjEyNTM3IgogICAgIGlua3NjYXBlOmN5PSI0MzMuMTU0ODkiCiAgICAgaW5rc2NhcGU6d2luZG93LXdpZHRoPSIxNjgwIgogICAgIGlua3NjYXBlOndpbmRvdy1oZWlnaHQ9Ijk2MSIKICAgICBpbmtzY2FwZTp3aW5kb3cteD0iLTkiCiAgICAgaW5rc2NhcGU6d2luZG93LXk9Ii05IgogICAgIGlua3NjYXBlOndpbmRvdy1tYXhpbWl6ZWQ9IjEiCiAgICAgaW5rc2NhcGU6Y3VycmVudC1sYXllcj0ibGF5ZXIxIiAvPgogIDxkZWZzCiAgICAgaWQ9ImRlZnMxIj4KICAgIDxyZWN0CiAgICAgICB4PSIxODcuMzUzNSIKICAgICAgIHk9IjEzNC41MTAyIgogICAgICAgd2lkdGg9IjQ2Ljg5MTQ0MiIKICAgICAgIGhlaWdodD0iNjQuMzE2OTI1IgogICAgICAgaWQ9InJlY3QxIiAvPgogIDwvZGVmcz4KICA8ZwogICAgIGlua3NjYXBlOmxhYmVsPSJMYXllciAxIgogICAgIGlua3NjYXBlOmdyb3VwbW9kZT0ibGF5ZXIiCiAgICAgaWQ9ImxheWVyMSI+CiAgICA8ZWxsaXBzZQogICAgICAgc3R5bGU9ImZvbnQtdmFyaWF0aW9uLXNldHRpbmdzOidvcHN6JyAzNiwgJ3dnaHQnIDYwMDtmaWxsOiMwMGZmZmY7c3Ryb2tlLXdpZHRoOjEuNTQ0MDQiCiAgICAgICBpZD0icGF0aDEtMCIKICAgICAgIGN4PSI4Mi40MzAxODMiCiAgICAgICBjeT0iNTkuNzQwNjY5IgogICAgICAgcng9IjYwLjAwMDA1IgogICAgICAgcnk9IjU5Ljk5OTk1IgogICAgICAgaW5rc2NhcGU6dHJhbnNmb3JtLWNlbnRlci14PSItMS4wMzI1MDE3IgogICAgICAgaW5rc2NhcGU6dHJhbnNmb3JtLWNlbnRlci15PSItMC41Nzk1ODM3NyIKICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuOTk5OTk1MDUsMC4wMDMxNDU0NSwtMC4wMDI4NzU4MSwwLjk5OTk5NTg2LDAsMCkiIC8+CiAgICA8Y2lyY2xlCiAgICAgICBzdHlsZT0iZm9udC12YXJpYXRpb24tc2V0dGluZ3M6J29wc3onIDM2LCAnd2dodCcgNjAwO2ZpbGw6IzRkNGQ0ZDtzdHJva2Utd2lkdGg6MS4yNTA3NCIKICAgICAgIGlkPSJlbGxpcHNlMSIKICAgICAgIGN4PSI4Mi43MzIzNTMiCiAgICAgICBjeT0iNjAuMTIzMDA5IgogICAgICAgcj0iNTAiIC8+CiAgICA8dGV4dAogICAgICAgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIKICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDIuMDk3NjgyNSwwLDAsMS40MTkyMjg4LC0zNDYuNjUwMjcsLTE3MS4xNTg0MSkiCiAgICAgICBpZD0idGV4dDEiCiAgICAgICBzdHlsZT0iZm9udC1zaXplOjQyLjUzNzJweDtmb250LWZhbWlseTonU2Vnb2UgVUkgVmFyaWFibGUnOy1pbmtzY2FwZS1mb250LXNwZWNpZmljYXRpb246J1NlZ29lIFVJIFZhcmlhYmxlLCBAb3Bzej0zNix3Z2h0PTYwMCc7Zm9udC12YXJpYXRpb24tc2V0dGluZ3M6J29wc3onIDM2LCAnd2dodCcgNjAwO3dyaXRpbmctbW9kZTpsci10YjtkaXJlY3Rpb246bHRyO3doaXRlLXNwYWNlOnByZTtzaGFwZS1pbnNpZGU6dXJsKCNyZWN0MSk7c2hhcGUtcGFkZGluZzo0LjA4Nzk2O2ZpbGw6IzAwZmZmZjtzdHJva2Utd2lkdGg6NS4wNTcwMSI+PHRzcGFuCiAgICAgICAgIHg9IjE5MS40NDE0MSIKICAgICAgICAgeT0iMTc2LjkxMzIzIgogICAgICAgICBpZD0idHNwYW4yIj5TPC90c3Bhbj48L3RleHQ+CiAgPC9nPgo8L3N2Zz4K" alt="" />
+                <img class="card-api-loader__shadow" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgoKPHN2ZwogICB3aWR0aD0iNjAwIgogICBoZWlnaHQ9IjUwMCIKICAgdmlld0JveD0iMCAwIDE1OC43NSAxMzIuMjkxNjciCiAgIHZlcnNpb249IjEuMSIKICAgaWQ9InN2ZzEiCiAgIGlua3NjYXBlOnZlcnNpb249IjEuNC40IChkY2FmM2U3LCAyMDI2LTA1LTA1KSIKICAgc29kaXBvZGk6ZG9jbmFtZT0iU2hhbGltYXItY2FyZC1pY29uLnN2ZyIKICAgeG1sbnM6aW5rc2NhcGU9Imh0dHA6Ly93d3cuaW5rc2NhcGUub3JnL25hbWVzcGFjZXMvaW5rc2NhcGUiCiAgIHhtbG5zOnNvZGlwb2RpPSJodHRwOi8vc29kaXBvZGkuc291cmNlZm9yZ2UubmV0L0RURC9zb2RpcG9kaS0wLmR0ZCIKICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8c29kaXBvZGk6bmFtZWR2aWV3CiAgICAgaWQ9Im5hbWVkdmlldzEiCiAgICAgcGFnZWNvbG9yPSIjZmZmZmZmIgogICAgIGJvcmRlcmNvbG9yPSIjMDAwMDAwIgogICAgIGJvcmRlcm9wYWNpdHk9IjAuMjUiCiAgICAgaW5rc2NhcGU6c2hvd3BhZ2VzaGFkb3c9IjIiCiAgICAgaW5rc2NhcGU6cGFnZW9wYWNpdHk9IjAuMCIKICAgICBpbmtzY2FwZTpwYWdlY2hlY2tlcmJvYXJkPSIwIgogICAgIGlua3NjYXBlOmRlc2tjb2xvcj0iI2QxZDFkMSIKICAgICBpbmtzY2FwZTpkb2N1bWVudC11bml0cz0ibW0iCiAgICAgaW5rc2NhcGU6em9vbT0iMC42MjQ0ODc5MyIKICAgICBpbmtzY2FwZTpjeD0iMzk3LjEyNTM3IgogICAgIGlua3NjYXBlOmN5PSI0MzMuMTU0ODkiCiAgICAgaW5rc2NhcGU6d2luZG93LXdpZHRoPSIxNjgwIgogICAgIGlua3NjYXBlOndpbmRvdy1oZWlnaHQ9Ijk2MSIKICAgICBpbmtzY2FwZTp3aW5kb3cteD0iLTkiCiAgICAgaW5rc2NhcGU6d2luZG93LXk9Ii05IgogICAgIGlua3NjYXBlOndpbmRvdy1tYXhpbWl6ZWQ9IjEiCiAgICAgaW5rc2NhcGU6Y3VycmVudC1sYXllcj0ibGF5ZXIxIiAvPgogIDxkZWZzCiAgICAgaWQ9ImRlZnMxIj4KICAgIDxyZWN0CiAgICAgICB4PSIxODcuMzUzNSIKICAgICAgIHk9IjEzNC41MTAyIgogICAgICAgd2lkdGg9IjQ2Ljg5MTQ0MiIKICAgICAgIGhlaWdodD0iNjQuMzE2OTI1IgogICAgICAgaWQ9InJlY3QxIiAvPgogIDwvZGVmcz4KICA8ZwogICAgIGlua3NjYXBlOmxhYmVsPSJMYXllciAxIgogICAgIGlua3NjYXBlOmdyb3VwbW9kZT0ibGF5ZXIiCiAgICAgaWQ9ImxheWVyMSI+CiAgICA8ZWxsaXBzZQogICAgICAgc3R5bGU9ImZvbnQtdmFyaWF0aW9uLXNldHRpbmdzOidvcHN6JyAzNiwgJ3dnaHQnIDYwMDtmaWxsOiMwMGZmZmY7c3Ryb2tlLXdpZHRoOjEuNTQ0MDQiCiAgICAgICBpZD0icGF0aDEtMCIKICAgICAgIGN4PSI4Mi40MzAxODMiCiAgICAgICBjeT0iNTkuNzQwNjY5IgogICAgICAgcng9IjYwLjAwMDA1IgogICAgICAgcnk9IjU5Ljk5OTk1IgogICAgICAgaW5rc2NhcGU6dHJhbnNmb3JtLWNlbnRlci14PSItMS4wMzI1MDE3IgogICAgICAgaW5rc2NhcGU6dHJhbnNmb3JtLWNlbnRlci15PSItMC41Nzk1ODM3NyIKICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuOTk5OTk1MDUsMC4wMDMxNDU0NSwtMC4wMDI4NzU4MSwwLjk5OTk5NTg2LDAsMCkiIC8+CiAgICA8Y2lyY2xlCiAgICAgICBzdHlsZT0iZm9udC12YXJpYXRpb24tc2V0dGluZ3M6J29wc3onIDM2LCAnd2dodCcgNjAwO2ZpbGw6IzRkNGQ0ZDtzdHJva2Utd2lkdGg6MS4yNTA3NCIKICAgICAgIGlkPSJlbGxpcHNlMSIKICAgICAgIGN4PSI4Mi43MzIzNTMiCiAgICAgICBjeT0iNjAuMTIzMDA5IgogICAgICAgcj0iNTAiIC8+CiAgICA8dGV4dAogICAgICAgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIKICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDIuMDk3NjgyNSwwLDAsMS40MTkyMjg4LC0zNDYuNjUwMjcsLTE3MS4xNTg0MSkiCiAgICAgICBpZD0idGV4dDEiCiAgICAgICBzdHlsZT0iZm9udC1zaXplOjQyLjUzNzJweDtmb250LWZhbWlseTonU2Vnb2UgVUkgVmFyaWFibGUnOy1pbmtzY2FwZS1mb250LXNwZWNpZmljYXRpb246J1NlZ29lIFVJIFZhcmlhYmxlLCBAb3Bzej0zNix3Z2h0PTYwMCc7Zm9udC12YXJpYXRpb24tc2V0dGluZ3M6J29wc3onIDM2LCAnd2dodCcgNjAwO3dyaXRpbmctbW9kZTpsci10YjtkaXJlY3Rpb246bHRyO3doaXRlLXNwYWNlOnByZTtzaGFwZS1pbnNpZGU6dXJsKCNyZWN0MSk7c2hhcGUtcGFkZGluZzo0LjA4Nzk2O2ZpbGw6IzAwZmZmZjtzdHJva2Utd2lkdGg6NS4wNTcwMSI+PHRzcGFuCiAgICAgICAgIHg9IjE5MS40NDE0MSIKICAgICAgICAgeT0iMTc2LjkxMzIzIgogICAgICAgICBpZD0idHNwYW4yIj5TPC90c3Bhbj48L3RleHQ+CiAgPC9nPgo8L3N2Zz4K" alt="" />
+            </div>
+            <span class="card-api-loader__label">Loading card data</span>
+        </div>
+        <section class="card-hero" aria-label="Card overview">
+            <div class="card-hero__content">
+                <p class="card-hero__eyebrow" id="cardEyebrow">Single Card</p>
+                <h1 id="cardTitle">Loading card...</h1>
+                <p id="cardIntro">
+                    Loading the selected card details.
+                </p>
+                <div class="card-hero__badges" id="cardBadges" aria-label="Card badges"></div>
+            </div>
+
+            <aside class="card-hero__panel" aria-label="Card summary">
+                <p class="card-hero__panel-label">Quick Facts</p>
+                <ul class="card-hero__list" id="cardFacts">
+                    <li>Set: Loading...</li>
+                    <li>Card number: Loading...</li>
+                    <li>Type: Loading...</li>
+                    <li>Rarity: Loading...</li>
+                </ul>
+            </aside>
+        </section>
+
+        <section class="card-shell" aria-label="Card detail sections">
+            <article class="card-panel card-panel--image">
+                <div class="card-panel__head">
+                    <h2>Variant Picker</h2>
+                    <p id="cardVariantsIntro">Pick the scan you want to view.</p>
+                </div>
+                <div class="card-variant-controls" id="cardVariantControls" aria-label="Choose a variant to show"></div>
+                <div class="card-variant-stage" aria-label="Selected variant scan">
+                    <img id="cardVariantImage" class="card-variant-stage__image" alt="Selected variant scan" loading="lazy" />
+                    <div class="card-variant-stage__caption">
+                        <span id="cardVariantName">Variant</span>
+                        <span id="cardVariantMeta">Select a variant above</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card-panel card-panel--details">
+                <div class="card-panel__head">
+                    <h2>Card Details</h2>
+                    <p id="cardDetailsIntro">
+                        Card facts, effect text, and collector notes live here.
+                    </p>
+                </div>
+                <ul class="card-details-list" id="cardDetailsList">
+                    <li>Set / collection context</li>
+                    <li>Card number</li>
+                    <li>Type</li>
+                </ul>
+            </article>
+
+            <article class="card-panel card-panel--notes">
+                <div class="card-panel__head">
+                    <h2>Notes</h2>
+                    <p id="cardNotesIntro">
+                        Pricing and source notes for the card are surfaced here.
+                    </p>
+                </div>
+                <div class="card-notes" id="cardNotes">
+                    <p>Loading notes...</p>
+                </div>
+                <a class="card-panel__backlink" href="inventory.html">Back to Inventory</a>
+            </article>
+        </section>
+
+    </main>
+
+    <footer class="site-footer" aria-label="Site footer">
+        <div class="site-footer__inner">
+            <p class="site-footer__brand">Shalimar Collectibles</p>
+            <p class="site-footer__meta">Single-card pages for the Yu Yu Hakusho inventory.</p>
+            <p class="site-footer__copyright">&copy; 2026 Shalimar Collectibles. All rights reserved.</p>
+            <nav class="site-footer__nav" aria-label="Footer navigation">
+                <a href="contributors.html">Contributors</a>
+                <a href="inventory.html">Inventory</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </footer>
+</body>
+</html>

@@ -50,7 +50,7 @@ Assign creator-associated Pokemon by species debut generation, even when an inte
 | Wolfe Glick | [WolfeyVGC](https://www.youtube.com/@WolfeyVGC) | Gothitelle and Exeggutor |
 | Vintendo | [Vintendo](https://www.youtube.com/@Vintendo) | Raichu and Houndoom |
 | Philly | [PhillyBeatzU](https://www.youtube.com/@PhillyBeatzU) | Charizard and Tyrantrum |
-| Dan | [aDrive](https://www.youtube.com/@aDrive) | Mothim and Aggron |
+| Dan | [aDrive](https://www.youtube.com/@aDrive) | Vikavolt and Aggron |
 | WILD/CARD collective | [WILD/CARD](https://www.youtube.com/@WILDCARDorg) | Aegislash and Varoom |
 | Jacob | [Alpharad](https://www.youtube.com/@Alpharad) | Absol and Scizor |
 | Mystic | [Mystic Umbreon](https://www.youtube.com/@MysticUmbreon) | Umbreon and Tapu Lele |
@@ -62,10 +62,29 @@ Assign creator-associated Pokemon by species debut generation, even when an inte
 | DigitalTy | [DigitalTy](https://www.youtube.com/@DigitalTy) | Greninja and Togedemaru |
 | TreeckoBro | [TreeckoBro](https://www.youtube.com/@TreeckoBro) | Treecko and Gallade |
 | Ceelibi | [Ceelibi](https://www.youtube.com/@Ceelibi) | Entei and Cincinno  |
-| Certified Poke-Moments | [Certified Poke-Moments](https://www.youtube.com/@Certified Poke-Moments) | Minior and Breloom |
+| Certified Poke-Moments | [Certified Poke-Moments](https://www.youtube.com/@CertifiedPoke-Moments) | Minior and Breloom |
 | ShepskyDad | [ShepskyDad](https://www.youtube.com/@Shepskydad) | Heracross and Arcanine  |
 | Saffron City TV | [Saffron City TV](https://www.youtube.com/@SaffronCityTV) | Espeon and Gengar |
 | Rusty Gold Renders | [Rusty Gold Renders](https://www.youtube.com/@RustyGoldRenders) | Milotic and Mewtwo |
+| Alazoneia | [Alazoneia](https://www.youtube.com/@Alazoneia) | Arbok and Kecleon |
+| Lockstin & Gnoggin | [Lockstin & Gnoggin](https://www.youtube.com/@Lockstin&Gnoggin) | Krookodile and Roserade |
+| Teal Opal | [Teal Opal](https://www.youtube.com/@TealOpal) | Quagsire and Gardevoir |
+| Truegreen7 | [Truegreen7](https://www.youtube.com/@Truegreen7) | Sceptile and |
+| Scykoh | [Scykoh](https://www.youtube.com/@Scykoh) | 
+| GoodGuyGastly | [GoodGuyGastly](http://www.youtube.com/@GoodGuyGastly) | Gastly |
+| Serebii | [Serebii](https://www.youtube.com/@Serebii) | Celebi |
+| Jubilee Blais | Piplup |
+| HDVee | Eevee |
+| Speqtor | Chandelure |
+| TheKingNappy | Gengar |
+| GlitchxCity | Dragonair |
+| CandyEvie | Yanma |
+| HoopsandHipHop | Cyndaquil |
+| Ace Trainer Liam | Poliwhirl |
+| Hoodlum Scrafty | Shaymin |
+|
+
+| Personal Picks | Tyranitar Lucario Frosmoth 
  
 ## Current Creators
 

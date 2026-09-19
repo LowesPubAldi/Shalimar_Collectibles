@@ -13,7 +13,7 @@ const EBAY_CONFIG = {
     devId: process.env.EBAY_DEV_ID || "",
     clientSecret: process.env.EBAY_CLIENT_SECRET || "",
     environment: (process.env.EBAY_ENV || "sandbox").trim().toLowerCase() === "production" ? "production" : "sandbox",
-    marketplaceId: process.env.EBAY_MARKETPLACE_ID || "EBAY-US"
+    marketplaceId: process.env.EBAY_MARKETPLACE_ID || "EBAY_US"
 };
 const SCRYDEX_API_BASE_URL = "https://api.scrydex.com/pokemon/v1/en";
 const SCRYDEX_API_KEY = process.env.SCRYDEX_API_KEY || "";

@@ -18752,7 +18752,7 @@
     "type": "Event",
     "rarity": "TG - Tournament Ghost Rare",
     "variant": "Bottom Right",
-    "effect": "Discard the top 2 cards of your opponent's Deck",
+    "effect": "Discard the top 2 cards of your opponent's Deck.",
     "source": "betrayal-checklist.txt"
   },
   {

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shalimar Collectibles | About</title>
+    <script>
+        (function () {
+            const params = new URLSearchParams(window.location.search);
+            const preview = params.get("preview");
+            if (preview === "tablet") {
+                document.documentElement.classList.add("preview-tablet");
+            }
+            if (preview === "mobile") {
+                document.documentElement.classList.add("preview-mobile");
+            }
+        }());
+    </script>
+    <script src="scripts/components/game-mode.js?v=1" defer></script>
+    <script src="scripts/pages/about.js?v=1" defer></script>
+  <script type="module" crossorigin src="/assets/mobile-nav-Do0mC4O6.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/mobile-nav-C5FVi4wC.css">
+  <link rel="stylesheet" crossorigin href="/assets/about-xwTnBbDU.css">
+  <link rel="stylesheet" crossorigin href="/assets/footer-CHUxG7Mm.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="logo-link" aria-label="Go to homepage">
+                <img
+                    src="/assets/logo-v4-DhR52I-v.svg?v=3"
+                    alt="Shalimar Collectibles logo"
+                    class="logo"
+                />
+            </a>
+            <form class="nav-search" id="navSearch" role="search">
+                <label class="sr-only" for="navSearchInput">Search inventory</label>
+                <input id="navSearchInput" type="search" placeholder="Search cards" autocomplete="off" />
+                <button type="submit" aria-label="Search inventory">Search</button>
+            </form>
+            <div class="game-mode-controls">
+                <label class="game-mode-select-wrap" for="gameModeSelect">
+                    <span class="sr-only">Game</span>
+                    <select class="game-mode-select" id="gameModeSelect" aria-label="Select game">
+                        <option value="yyh">Yu Yu Hakusho</option>
+                        <option value="ygo">Yu-Gi-Oh</option>
+                        <option value="pokemon">Pokemon</option>
+                    </select>
+                </label>
+            </div>
+            <button
+                class="mobile-nav-toggle"
+                id="mobileNavToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="primaryNavLinks"
+            >
+                <span class="mobile-nav-toggle__bar" aria-hidden="true"></span>
+                <span class="mobile-nav-toggle__bar" aria-hidden="true"></span>
+                <span class="mobile-nav-toggle__bar" aria-hidden="true"></span>
+            </button>
+            <ul class="nav__links" id="primaryNavLinks">
+                <li><a href="contributors.html">Contributors</a></li>
+                <li><a href="inventory.html">Inventory</a></li>
+                <li><a href="sets.html">Sets</a></li>
+                <li><a href="kings.html">Kings</a></li>
+                <li><a href="about.html" aria-current="page">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="mobile-nav-overlay" id="mobileNavOverlay" type="button" aria-label="Close navigation menu"></button>
+    </header>
+
+    <main class="main">
+        <section class="about-hero" aria-label="About Shalimar Collectibles">
+            <div class="about-hero__layout">
+                <div class="about-hero__content">
+                    <p class="about-hero__eyebrow">Why This Exists</p>
+                    <h1>Shalimar Collectibles was made to preserve the cards and stories that shaped my love for collecting.</h1>
+                    <p>
+                        This project started as a place to organize what I could never find in one clean location: card details,
+                        set context, and real collector-focused tools for Yu Yu Hakusho and the games that grew alongside it.
+                        The goal is simple: build something useful first, then make it deeper with community feedback.
+                    </p>
+                </div>
+
+                <aside class="about-hero-fan" aria-label="Staple deck card thumbnails">
+                    <p class="about-hero-fan__label">Staple Deck Snapshot</p>
+                    <div class="about-hero-fan__stage" role="img" aria-label="Five staple Yu Yu Hakusho deck cards fanned out">
+                        <a
+                            class="about-hero-fan__card about-hero-fan__card--one about-card-link"
+                            href="card-template.html?card=Signature%20Moves&id=R91%2F176&set=Ghost%20Files&game=Yu%20Yu%20Hakusho"
+                            aria-label="Open Signature Moves card page"
+                            data-card-preview
+                            data-preview-title="Signature Moves"
+                        >
+                            <img src="/assets/091-DbKzbzpY.jpg" alt="Signature Moves card thumbnail" loading="lazy" />
+                        </a>
+                        <a
+                            class="about-hero-fan__card about-hero-fan__card--two about-card-link"
+                            href="card-template.html?card=Burst%20Of%20Power&id=G178%2F176&set=Ghost%20Files&game=Yu%20Yu%20Hakusho"
+                            aria-label="Open Burst Of Power card page"
+                            data-card-preview
+                            data-preview-title="Burst Of Power"
+                        >
+                            <img src="/assets/178-T_QykhcF.jpg" alt="Burst Of Power card thumbnail" loading="lazy" />
+                        </a>
+                        <a
+                            class="about-hero-fan__card about-hero-fan__card--three about-card-link"
+                            href="card-template.html?card=Recuperation&id=U111%2F176&set=Ghost%20Files&game=Yu%20Yu%20Hakusho"
+                            aria-label="Open Recuperation card page"
+                            data-card-preview
+                            data-preview-title="Recuperation"
+                        >
+                            <img src="/assets/111-COJei-G-.jpg" alt="Recuperation card thumbnail" loading="lazy" />
+                        </a>
+                        <a
+                            class="about-hero-fan__card about-hero-fan__card--four about-card-link"
+                            href="card-template.html?card=Forlorn%20Hope&id=G4&set=Dark%20Tournament&game=Yu%20Yu%20Hakusho"
+                            aria-label="Open Forlorn Hope card page"
+                            data-card-preview
+                            data-preview-title="Forlorn Hope"
+                        >
+                            <img src="/assets/004-Btmie3h5.jpg" alt="Forlorn Hope card thumbnail" loading="lazy" />
+                        </a>
+                        <a
+                            class="about-hero-fan__card about-hero-fan__card--five about-card-link"
+                            href="card-template.html?card=Kurama%27s%20Last%20Stand&id=P2&set=Dark%20Tournament&game=Yu%20Yu%20Hakusho"
+                            aria-label="Open Kurama's Last Stand card page"
+                            data-card-preview
+                            data-preview-title="Kurama's Last Stand"
+                        >
+                            <img src="/assets/P2-BhqZjkHe.jpg" alt="Kurama's Last Stand card thumbnail" loading="lazy" />
+                        </a>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section class="about-story" aria-label="Creator story and site direction">
+            <article class="about-story__panel">
+                <h2>Why Shalimar Collectibles Was Built</h2>
+                <p>
+                    I wanted a card resource that feels practical, honest, and personal. Most platforms are either too generic
+                    or too hard to navigate when you only need specific details. Shalimar Collectibles focuses on clear filters,
+                    reliable set information, and a user experience made for collectors who actually use this data every day.
+                </p>
+                <p>
+                    This is a long-term build. Version 1 is about fundamentals: searchable inventory, set navigation,
+                    and dependable card records. Later versions will expand into community features, richer pricing systems,
+                    and collector workflows that are useful without being overwhelming.
+                </p>
+            </article>
+
+            <aside class="about-audio" aria-label="Audio roadmap">
+                <p class="about-audio__label">Accessibility Roadmap</p>
+                <h3>Audio version coming soon</h3>
+                <p>
+                    This page is text-first right now so the message is clear and editable as the project evolves.
+                    A narrated audio version is planned so visitors can listen instead of read.
+                </p>
+                <ul>
+                    <li>Planned feature: full-page narration</li>
+                    <li>Planned feature: section-by-section playback</li>
+                    <li>Planned feature: transcript sync for accessibility</li>
+                </ul>
+            </aside>
+        </section>
+
+        <section class="about-favorites" aria-label="Favorite Yu Yu Hakusho cards and characters">
+            <div class="about-favorites__head">
+                <p class="about-favorites__kicker">Current Display Focus</p>
+                <h2>Favorite Yu Yu Hakusho Cards and Characters</h2>
+                <p>
+                    Until display-piece photos are ready, this gallery highlights favorite characters and the cards
+                    that represent their impact.
+                </p>
+            </div>
+
+            <div class="about-favorites__grid">
+                <article class="favorite-card">
+                    <p class="favorite-card__tier">Display Focus</p>
+                    <h3>Mukuro Enslaved Soul</h3>
+                    <div class="favorite-card__piece-grid" aria-label="Mukuro Enslaved Soul four-piece display">
+                        <figure class="favorite-card__piece">
+                            <a
+                                class="about-card-link"
+                                href="card-template.html?card=Mukuro%2C%20Enslaved%20Soul&id=TG1&set=Exile&game=Yu%20Yu%20Hakusho&variant=Top%20Left"
+                                aria-label="Open Mukuro, Enslaved Soul top left card page"
+                                data-card-preview
+                                data-preview-title="Mukuro, Enslaved Soul (Top Left)"
+                            >
+                                <img src="/assets/T01-D5vYrN1S.jpg" alt="Mukuro Enslaved Soul top left piece" loading="lazy" />
+                            </a>
+                        </figure>
+                        <figure class="favorite-card__piece">
+                            <a
+                                class="about-card-link"
+                                href="card-template.html?card=Mukuro%2C%20Enslaved%20Soul&id=G9&set=Exile&game=Yu%20Yu%20Hakusho&variant=Top%20Right"
+                                aria-label="Open Mukuro, Enslaved Soul top right card page"
+                                data-card-preview
+                                data-preview-title="Mukuro, Enslaved Soul (Top Right)"
+                            >
+                                <img src="/assets/009-BTRFWDAi.jpg" alt="Mukuro Enslaved Soul top right piece" loading="lazy" />
+                            </a>
+                        </figure>
+                        <figure class="favorite-card__piece">
+                            <a
+                                class="about-card-link"
+                                href="card-template.html?card=Mukuro%2C%20Enslaved%20Soul&id=U18&set=Exile&game=Yu%20Yu%20Hakusho&variant=Bottom%20Left"
+                                aria-label="Open Mukuro, Enslaved Soul bottom left card page"
+                                data-card-preview
+                                data-preview-title="Mukuro, Enslaved Soul (Bottom Left)"
+                            >
+                                <img src="/assets/018-BXVsiOge.jpg" alt="Mukuro Enslaved Soul bottom left piece" loading="lazy" />
+                            </a>
+                        </figure>
+                        <figure class="favorite-card__piece">
+                            <a
+                                class="about-card-link"
+                                href="card-template.html?card=Mukuro%2C%20Enslaved%20Soul&id=U19&set=Exile&game=Yu%20Yu%20Hakusho&variant=Bottom%20Right"
+                                aria-label="Open Mukuro, Enslaved Soul bottom right card page"
+                                data-card-preview
+                                data-preview-title="Mukuro, Enslaved Soul (Bottom Right)"
+                            >
+                                <img src="/assets/019-BnjgLlek.jpg" alt="Mukuro Enslaved Soul bottom right piece" loading="lazy" />
+                            </a>
+                        </figure>
+                    </div>
+                    <p class="favorite-card__layout">A slave turned into royalty.</p>
+                </article>
+
+                <div class="favorite-card-cluster" aria-label="Additional featured cards">
+                    <article class="favorite-card">
+                        <p class="favorite-card__tier">Display Focus</p>
+                        <h3>Bang!</h3>
+                        <figure class="favorite-card__single-art">
+                            <a
+                                class="about-card-link"
+                                href="card-template.html?card=Bang%21&id=U6&set=Gateway&game=Yu%20Yu%20Hakusho&variant=Lined"
+                                aria-label="Open Bang card page"
+                                data-card-preview
+                                data-preview-title="Bang!"
+                            >
+                                <img src="/assets/006L-Bvq_CrI4.jpg" alt="Bang card art (Gateway, lined variant)" loading="lazy" />
+                            </a>
+                        </figure>
+                        <p class="favorite-card__layout">Rose petals vs bombs.</p>
+                    </article>
+
+                    <article class="favorite-card">
+                        <p class="favorite-card__tier">Display Focus</p>
+                        <h3>Youko Kurama</h3>
+                        <figure class="favorite-card__single-art">
+                            <a
+                                class="about-card-link"
+                                href="card-template.html?card=Yoko%2C%20The%20Spirit%20Fox&id=G2&set=Dark%20Tournament&game=Yu%20Yu%20Hakusho"
+                                aria-label="Open Yoko, The Spirit Fox card page"
+                                data-card-preview
+                                data-preview-title="Yoko, The Spirit Fox"
+                            >
+                                <img src="/assets/002-CEDX6fjX.jpg" alt="Youko Kurama card art" loading="lazy" />
+                            </a>
+                        </figure>
+                        <p class="favorite-card__layout">The Legend is back!!</p>
+                    </article>
+
+                    <article class="favorite-card">
+                        <p class="favorite-card__tier">Display Focus</p>
+                        <h3>Yusuke Champion of the People</h3>
+                        <figure class="favorite-card__single-art">
+                            <a
+                                class="about-card-link"
+                                href="card-template.html?card=Yusuke%2C%20Champion%20Of%20The%20People&id=S17&set=Alliance&game=Yu%20Yu%20Hakusho"
+                                aria-label="Open Yusuke, Champion Of The People card page"
+                                data-card-preview
+                                data-preview-title="Yusuke, Champion Of The People"
+                            >
+                                <img src="/assets/017-ClNG7tup.jpg" alt="Yusuke Champion of the People card art" loading="lazy" />
+                            </a>
+                        </figure>
+                        <p class="favorite-card__layout">Teenage delinquent turned to human/demon hybrid.</p>
+                    </article>
+
+                    <article class="favorite-card">
+                        <p class="favorite-card__tier">Display Focus</p>
+                        <h3>Splinter Reshueken</h3>
+                        <figure class="favorite-card__single-art">
+                            <a
+                                class="about-card-link"
+                                href="card-template.html?card=Splinter%20Resshuuken&id=TC19&set=Gateway&game=Yu%20Yu%20Hakusho"
+                                aria-label="Open Splinter Reshueken card page"
+                                data-card-preview
+                                data-preview-title="Splinter Resshuuken"
+                            >
+                                <img src="/assets/T19DR-BHBKzUZB.jpg" alt="Splinter Reshueken card art" loading="lazy" />
+                            </a>
+                        </figure>
+                        <p class="favorite-card__layout">Cannonball kick to 3d minefield.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <aside class="about-card-preview" id="aboutCardPreview" aria-hidden="true">
+            <img id="aboutCardPreviewImage" src="" alt="" />
+            <p id="aboutCardPreviewTitle"></p>
+        </aside>
+    </main>
+
+    <footer class="site-footer" aria-label="Site footer">
+        <div class="site-footer__inner">
+            <p class="site-footer__brand">Shalimar Collectibles</p>
+            <p class="site-footer__meta">Built for collectors who value clear records, trusted context, and long-term community growth.</p>
+            <p class="site-footer__copyright">&copy; 2026 Shalimar Collectibles. All rights reserved.</p>
+            <nav class="site-footer__nav" aria-label="Footer navigation">
+                <a href="contributors.html">Contributors</a>
+                <a href="inventory.html">Inventory</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </footer>
+</body>
+</html>

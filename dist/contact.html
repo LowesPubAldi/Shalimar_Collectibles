@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shalimar Collectibles | Contact</title>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="scripts/components/game-mode.js?v=1" defer></script>
+    <script src="scripts/pages/contact.js?v=1" defer></script>
+  <script type="module" crossorigin src="/assets/mobile-nav-Do0mC4O6.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/mobile-nav-C5FVi4wC.css">
+  <link rel="stylesheet" crossorigin href="/assets/contact-D4CSalFN.css">
+  <link rel="stylesheet" crossorigin href="/assets/footer-CHUxG7Mm.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="logo-link" aria-label="Go to homepage">
+                <img
+                    src="/assets/logo-v4-DhR52I-v.svg?v=3"
+                    alt="Shalimar Collectibles logo"
+                    class="logo"
+                />
+            </a>
+            <form class="nav-search" id="navSearch" role="search">
+                <label class="sr-only" for="navSearchInput">Search inventory</label>
+                <input id="navSearchInput" type="search" placeholder="Search cards" autocomplete="off" />
+                <button type="submit" aria-label="Search inventory">Search</button>
+            </form>
+            <div class="game-mode-controls">
+                <label class="game-mode-select-wrap" for="gameModeSelect">
+                    <span class="sr-only">Game</span>
+                    <select class="game-mode-select" id="gameModeSelect" aria-label="Select game">
+                        <option value="yyh">Yu Yu Hakusho</option>
+                        <option value="ygo">Yu-Gi-Oh</option>
+                        <option value="pokemon">Pokemon</option>
+                    </select>
+                </label>
+            </div>
+            <button
+                class="mobile-nav-toggle"
+                id="mobileNavToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="primaryNavLinks"
+            >
+                <span class="mobile-nav-toggle__bar" aria-hidden="true"></span>
+                <span class="mobile-nav-toggle__bar" aria-hidden="true"></span>
+                <span class="mobile-nav-toggle__bar" aria-hidden="true"></span>
+            </button>
+            <ul class="nav__links" id="primaryNavLinks">
+                <li><a href="contributors.html">Contributors</a></li>
+                <li><a href="inventory.html">Inventory</a></li>
+                <li><a href="sets.html">Sets</a></li>
+                <li><a href="kings.html">Kings</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html" aria-current="page">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="mobile-nav-overlay" id="mobileNavOverlay" type="button" aria-label="Close navigation menu"></button>
+    </header>
+
+    <main class="main">
+        <section class="contact-hero" aria-label="Contact Shalimar Collectibles">
+            <div class="contact-hero__content">
+                <p class="contact-hero__eyebrow">Contact Desk</p>
+                <h1>Open a new request, add a link, and route it straight to the inbox.</h1>
+                <p>
+                    This is the working intake for collector questions and follow-up. It uses the same EmailJS flow
+                    from my portfolio, with attachments and reference links included.
+                </p>
+            </div>
+
+            <aside class="contact-hero__panel" aria-label="Contact routing status">
+                <p class="contact-hero__panel-label">Routing</p>
+                <ul class="contact-hero__list">
+                    <li>EmailJS connected for message delivery</li>
+                    <li>Required fields: name, email address, subject, brief message</li>
+                    <li>Reference links and attachments supported</li>
+                    <li>Replies return to the email you submit</li>
+                </ul>
+            </aside>
+        </section>
+
+        <section class="contact-shell" aria-label="Contact intake form">
+            <article class="contact-shell__details">
+                <div class="contact-shell__status-row">
+                    <p class="contact-shell__status-label">Submission State</p>
+                    <p class="contact-shell__status-pill">Live</p>
+                </div>
+                <h2>Request queue</h2>
+                <p>
+                    Send collector questions, upload supporting files, or hand over a reference link without leaving
+                    the page.
+                </p>
+                <div class="contact-shell__notes">
+                    <p>Accepted inputs</p>
+                    <ul>
+                        <li>collector questions and pricing notes</li>
+                        <li>reference links and listing URLs</li>
+                        <li>images, spreadsheets, and documents</li>
+                        <li>follow-up requests for the inbox queue</li>
+                    </ul>
+                </div>
+
+                <div class="contact-shell__seal" aria-label="Collector seal">
+                    <div class="contact-shell__seal-coin" role="img" aria-label="Shalimar collector seal">
+                        <p class="contact-shell__seal-top">Shalimar Collectibles</p>
+                        <p class="contact-shell__seal-center">Collector Seal</p>
+                        <p class="contact-shell__seal-bottom">Verified Ongoing Updates</p>
+                    </div>
+                </div>
+            </article>
+
+            <section class="contact-updates" aria-label="Development roadmap">
+                <div class="contact-updates__header">
+                    <div>
+                        <p class="contact-updates__eyebrow">Development roadmap</p>
+                        <h2>What I’m building next</h2>
+                    </div>
+                    <p class="contact-updates__meta">Use this as a rough guide for feedback, offers, and feature requests.</p>
+                </div>
+
+                <div class="contact-updates__grid">
+                    <article class="contact-update-card">
+                        <p class="contact-update-card__label">Now</p>
+                        <h3>Inventory cleanup and contact flow polish</h3>
+                        <p>
+                            Tightening the current pages, checking card data paths, and making the contact workflow
+                            feel like a real app instead of a draft.
+                        </p>
+                    </article>
+
+                    <article class="contact-update-card">
+                        <p class="contact-update-card__label">Next</p>
+                        <h3>Buyer and seller inquiry guidance</h3>
+                        <p>
+                            Adding clearer signals for people who want to buy from me, sell to me, or send a reference
+                            link so I can respond faster and with better context.
+                        </p>
+                    </article>
+
+                    <article class="contact-update-card">
+                        <p class="contact-update-card__label">Later</p>
+                        <h3>Feature ideas I already have mapped</h3>
+                        <p>
+                            Update notes, marketplace-style filters, stronger pricing context, and a few page passes that
+                            will turn feedback into concrete follow-ups instead of one-off ideas.
+                        </p>
+                    </article>
+
+                    <article class="contact-update-card">
+                        <p class="contact-update-card__label">V2 + Pricing API</p>
+                        <h3>Version 2 features and eBay pricing refresh</h3>
+                        <p>
+                            Planned Version 2 work includes deeper set pages, stronger filters, and regular eBay API pricing
+                            updates to keep sold-listing signals current for feedback, buy, and sell decisions.
+                        </p>
+                    </article>
+
+                    <article class="contact-update-card">
+                        <p class="contact-update-card__label">Marketplace flow</p>
+                        <h3>Buy and sell intake refinement</h3>
+                        <p>
+                            Adding clearer pathways for people selling collections to me and buyers asking for card lots,
+                            so outreach starts with the details needed to reply quickly.
+                        </p>
+                    </article>
+
+                    <article class="contact-update-card">
+                        <p class="contact-update-card__label">Data cadence</p>
+                        <h3>Roadmap notes and QA pass</h3>
+                        <p>
+                            Posting regular roadmap notes for major changes and running consistency checks across inventory,
+                            set pages, and price context before new updates go live.
+                        </p>
+                    </article>
+                </div>
+            </section>
+
+            <form class="contact-form" data-contact-form aria-label="Contact request form" novalidate>
+                <div class="contact-form__header">
+                    <div>
+                        <p class="contact-form__eyebrow">Contact Intake</p>
+                        <h2>New message</h2>
+                    </div>
+                    <p class="contact-form__header-note">EmailJS connected</p>
+                </div>
+
+                <div class="contact-form__grid">
+                    <label class="contact-field">
+                        <span>Name</span>
+                        <input type="text" name="user_name" autocomplete="name" required />
+                    </label>
+
+                    <label class="contact-field">
+                        <span>Email Address</span>
+                        <input type="email" name="user_email" autocomplete="email" required />
+                    </label>
+                </div>
+
+                <label class="contact-field">
+                    <span>Subject</span>
+                    <input type="text" name="subject" required />
+                </label>
+
+                <label class="contact-field">
+                    <span>Brief Message</span>
+                    <textarea name="message" rows="7" required></textarea>
+                </label>
+
+                <label class="contact-field">
+                    <span>Reference Link</span>
+                    <input type="url" name="referenceLink" placeholder="https://example.com/listing-or-reference" inputmode="url" />
+                </label>
+
+                <label class="contact-field">
+                    <span>Upload Documents or Images</span>
+                    <input
+                        id="contact-attachments"
+                        type="file"
+                        name="attachments"
+                        accept=".pdf,.doc,.docx,.txt,.csv,.png,.jpg,.jpeg,.webp"
+                        multiple
+                    />
+                </label>
+
+                <p class="contact-form__file-summary" data-contact-file-summary>No files selected.</p>
+                <p class="contact-form__note">
+                    Messages route through EmailJS and return to the address you submit.
+                </p>
+
+                <button class="contact-form__submit" type="submit">Send Request</button>
+                <p class="contact-form__status" data-contact-status aria-live="polite"></p>
+            </form>
+        </section>
+    </main>
+
+    <footer class="site-footer" aria-label="Site footer">
+        <div class="site-footer__inner">
+            <p class="site-footer__brand">Shalimar Collectibles</p>
+            <p class="site-footer__meta">Contact requests route through EmailJS with file support enabled.</p>
+            <p class="site-footer__copyright">&copy; 2026 Shalimar Collectibles. All rights reserved.</p>
+            <nav class="site-footer__nav" aria-label="Footer navigation">
+                <a href="contributors.html">Contributors</a>
+                <a href="inventory.html">Inventory</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </footer>
+</body>
+</html>

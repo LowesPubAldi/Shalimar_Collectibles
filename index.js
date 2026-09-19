@@ -172,15 +172,6 @@ const seasonalThemes = {
 	}
 };
 
-// Add overrides here when you want hand-picked changes before future voting/polls.
-// Example:
-// const seasonalOverrides = {
-// 	9: {
-// 		spotlight: [
-// 			{ game: "Pokemon", card: "Gengar", person: "Associated: Acerola", thumbColors: ["#9333ea", "#4c1d95"] }
-// 		]
-// 	}
-// };
 const seasonalOverrides = {};
 
 const YYH_SPOTLIGHT_THUMBNAILS = {
@@ -1285,67 +1276,67 @@ function initGameLanesReveal() {
 	revealWhenHalfwayDownHero();
 }
 
-function initMobileNav() {
-	const toggle = document.getElementById("mobileNavToggle");
-	const links = document.getElementById("primaryNavLinks");
-	const overlay = document.getElementById("mobileNavOverlay");
-	if (!toggle || !links || !overlay) {
-		return;
-	}
+	// function initMobileNav() {
+	// 	const toggle = document.getElementById("mobileNavToggle");
+	// 	const links = document.getElementById("primaryNavLinks");
+	// 	const overlay = document.getElementById("mobileNavOverlay");
+	// 	if (!toggle || !links || !overlay) {
+	// 		return;
+	// 	}
 
-	if (toggle.dataset.mobileNavInitialized === "true") {
-		return;
-	}
-	toggle.dataset.mobileNavInitialized = "true";
+	// 	if (toggle.dataset.mobileNavInitialized === "true") {
+	// 		return;
+	// 	}
+	// 	toggle.dataset.mobileNavInitialized = "true";
 
-	const closeNav = () => {
-		document.body.classList.remove("is-mobile-nav-open");
-		toggle.setAttribute("aria-expanded", "false");
-		toggle.setAttribute("aria-label", "Open navigation menu");
-	};
+	// 	const closeNav = () => {
+	// 		document.body.classList.remove("is-mobile-nav-open");
+	// 		toggle.setAttribute("aria-expanded", "false");
+	// 		toggle.setAttribute("aria-label", "Open navigation menu");
+	// 	};
 
-	const openNav = () => {
-		document.body.classList.add("is-mobile-nav-open");
-		toggle.setAttribute("aria-expanded", "true");
-		toggle.setAttribute("aria-label", "Close navigation menu");
-	};
+	// 	const openNav = () => {
+	// 		document.body.classList.add("is-mobile-nav-open");
+	// 		toggle.setAttribute("aria-expanded", "true");
+	// 		toggle.setAttribute("aria-label", "Close navigation menu");
+	// 	};
 
-	toggle.addEventListener("click", () => {
-		const isOpen = document.body.classList.contains("is-mobile-nav-open");
-		if (isOpen) {
-			closeNav();
-			return;
-		}
-		openNav();
-	});
+	// 	toggle.addEventListener("click", () => {
+	// 		const isOpen = document.body.classList.contains("is-mobile-nav-open");
+	// 		if (isOpen) {
+	// 			closeNav();
+	// 			return;
+	// 		}
+	// 		openNav();
+	// 	});
 
-	overlay.addEventListener("click", closeNav);
+	// overlay.addEventListener("click", closeNav);
 
-	links.addEventListener("click", (event) => {
-		if (event.target instanceof HTMLElement && event.target.closest("a")) {
-			closeNav();
-		}
-	});
+	// links.addEventListener("click", (event) => {
+	// 	if (event.target instanceof HTMLElement && event.target.closest("a")) {
+	// 		closeNav();
+	// 	}
+	// });
 
-	document.addEventListener("keydown", (event) => {
-		if (event.key === "Escape") {
-			closeNav();
-		}
-	});
+	// document.addEventListener("keydown", (event) => {
+	// 	if (event.key === "Escape") {
+	// 		closeNav();
+	// 	}
+	// });
 
-	const mobileNavQuery = window.matchMedia("(max-width: 768px)");
-	const syncNavState = () => {
-		if (!mobileNavQuery.matches) {
-			closeNav();
-		}
-	};
+// 	const mobileNavQuery = window.matchMedia("(max-width: 768px)");
+// 	const syncNavState = () => {
+// 		if (!mobileNavQuery.matches) {
+// 			closeNav();
+// 		}
+// 	};
 
-	if (typeof mobileNavQuery.addEventListener === "function") {
-		mobileNavQuery.addEventListener("change", syncNavState);
-	} else {
-		mobileNavQuery.addListener(syncNavState);
-	}
-}
+// 	if (typeof mobileNavQuery.addEventListener === "function") {
+// 		mobileNavQuery.addEventListener("change", syncNavState);
+// 	} else {
+// 		mobileNavQuery.addListener(syncNavState);
+// 	}
+// }
 
 function initHomeGameModeSelector() {
 	const modeSelect = document.getElementById("homeGameModeSelect");
@@ -2000,13 +1991,13 @@ function runHomeInitializer(label, initializer) {
 
 runHomeInitializer("applySeasonTheme", applySeasonTheme);
 runHomeInitializer("initGameLanesReveal", initGameLanesReveal);
-runHomeInitializer("initMobileNav", initMobileNav);
+// runHomeInitializer("initMobileNav", initMobileNav);
 runHomeInitializer("initHomeSearch", initHomeSearch);
 runHomeInitializer("initHomeSetSelects", initHomeSetSelects);
 runHomeInitializer("initHomeGameModeSelector", initHomeGameModeSelector);
 
 document.addEventListener("DOMContentLoaded", () => {
-	runHomeInitializer("initMobileNav", initMobileNav);
+	// runHomeInitializer("initMobileNav", initMobileNav);
 	runHomeInitializer("initHomeSetSelects", initHomeSetSelects);
 	runHomeInitializer("initHomeGameModeSelector", initHomeGameModeSelector);
 });
