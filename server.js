@@ -60,6 +60,7 @@ const DATA_FILE_PATHS = [
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(__dirname, {
     etag: false,
     lastModified: false,
@@ -73,7 +74,6 @@ app.use(express.static(__dirname, {
     }
 }));
 
-// Allow the frontend to call this API even when the site is served by another local server.
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET,OPTIONS");
