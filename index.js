@@ -115,7 +115,7 @@ const seasonalThemes = {
 			{ game: "Yu Yu Hakusho", card: "Chu Drunken Master", person: "Associated: Yusuke", thumbColors: ["#7c3aed", "#1e293b"] },
 			{ game: "Yu Yu Hakusho", card: "Ogre Killer", person: "Item: Combat Weapon", thumbColors: ["#a78bfa", "#7c3aed"] },
 			{ game: "Yu-Gi-Oh", card: "Number 39: Utopia", person: "Associated: Yuma Tsukumo", thumbColors: ["#67e8f9", "#155e75"] },
-			{ game: "Yu-Gi-Oh", card: "Utopia Rising", person: "Technique: Rank-Up Magic", thumbColors: ["#06b6d4", "#0369a1"] }
+			{ game: "Yu-Gi-Oh", card: "Number 39: Utopia Double", person: "Technique: Rank-Up Magic", thumbColors: ["#06b6d4", "#0369a1"] }
 		]
 	},
 	8: {
@@ -128,7 +128,7 @@ const seasonalThemes = {
 			{ game: "Yu Yu Hakusho", card: "Kazuma Kuwabara", person: "Associated: Yusuke", thumbColors: ["#f59e0b", "#92400e"] },
 			{ game: "Yu Yu Hakusho", card: "Dimensional Sword", person: "Item: Spirit Weapon", thumbColors: ["#fbbf24", "#b45309"] },
 			{ game: "Yu-Gi-Oh", card: "U.A. Midfielder", person: "Associated: Tetsu Trudge", thumbColors: ["#22d3ee", "#164e63"] },
-			{ game: "Yu-Gi-Oh", card: "U.A. Encore", person: "Technique: Sports Play", thumbColors: ["#06b6d4", "#0f766e"] }
+			{ game: "Yu-Gi-Oh", card: "U.A. Stadium", person: "Technique: Sports Play", thumbColors: ["#06b6d4", "#0f766e"] }
 		]
 	},
 	9: {
@@ -776,7 +776,7 @@ async function fetchYugiohSpotlightThumb(entry) {
 	try {
 		const normalizedCardName = normalizeForSearch(cardName);
 		const aliasNames = YGO_SPOTLIGHT_NAME_ALIASES[normalizedCardName] || [];
-		const candidateNames = [cardName, ...aliasNames];
+		const candidateNames = [...aliasNames, cardName];;
 
 		let thumbUrl = null;
 		for (const candidateName of candidateNames) {
