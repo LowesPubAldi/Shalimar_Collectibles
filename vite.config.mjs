@@ -1,9 +1,26 @@
+import { cpSync, existsSync } from "node:fs";
 import { resolve } from "node:path";
 import { defineConfig } from "vite";
 
 const rootDirectory = import.meta.dirname;
 
+function copyYyhPricing() {
+  return {
+    name: "copy-yyh-pricing",
+    closeBundle() {
+      const source = resolve(rootDirectory, "data/pricing/yyh");
+      const destination = resolve(rootDirectory, "dist/data/pricing/yyh");
+
+      if (existsSync(source)) {
+        cpSync(source, destination, { recursive: true });
+      }
+    },
+  };
+}
+
 export default defineConfig({
+  plugins: [copyYyhPricing()],
+
   build: {
     rollupOptions: {
       input: {
