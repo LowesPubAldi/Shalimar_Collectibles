@@ -4623,6 +4623,8 @@ function buildCardImageCandidates(cardRecord) {
     primaryAlias && variantToken ? `${primaryAlias}${variantToken}` : "",
     primaryAlias,
 
+    paddedThreeDigitNumber,
+
     variantToken && paddedThreeDigitNumber ? `${paddedThreeDigitNumber}${variantToken}` : "",
     variantToken && firstNumber ? `${firstNumber}${variantToken}` : "",
     variantToken && firstAlpha && firstNumber ? `${firstAlpha}${firstNumber}${variantToken}` : "",
@@ -4641,9 +4643,6 @@ function buildCardImageCandidates(cardRecord) {
     isGatewayReprintVariant && primaryVariantShortToken && alphaPrefix && paddedTwoDigitNumber
         ? `Reprint${alphaPrefix}${paddedTwoDigitNumber}${primaryVariantShortToken}`
         : "",
-
-    // Standard YYH image filenames such as 001.jpg, 061.jpg, 121.jpg.
-    paddedThreeDigitNumber,
 
     firstAlpha && firstNumber ? `${firstAlpha}${firstNumber.padStart(2, "0")}` : "",
     firstAlpha && firstNumber ? `${firstAlpha}${firstNumber}` : "",
