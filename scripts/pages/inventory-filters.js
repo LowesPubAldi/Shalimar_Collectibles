@@ -4618,40 +4618,54 @@ function buildCardImageCandidates(cardRecord) {
     const primaryAlias = specialAliases[0] || "";
     const isGatewayReprintVariant = normalizedSet === "gateway" && Boolean(primaryVariantShortToken);
 
-    const candidateNames = [
-        primaryAlias && primaryVariantShortToken ? `${primaryAlias}${primaryVariantShortToken}` : "",
-        primaryAlias && variantToken ? `${primaryAlias}${variantToken}` : "",
-        primaryAlias,
-        variantToken && paddedThreeDigitNumber ? `${paddedThreeDigitNumber}${variantToken}` : "",
-        variantToken && firstNumber ? `${firstNumber}${variantToken}` : "",
-        variantToken && firstAlpha && firstNumber ? `${firstAlpha}${firstNumber}${variantToken}` : "",
-        variantToken && alphaPrefix && firstNumber ? `${alphaPrefix}${firstNumber}${variantToken}` : "",
-        variantToken && firstAlpha && paddedTwoDigitNumber ? `${firstAlpha}${paddedTwoDigitNumber}${variantToken}` : "",
-        primaryVariantShortToken && paddedThreeDigitNumber ? `${paddedThreeDigitNumber}${primaryVariantShortToken}` : "",
-        primaryVariantShortToken && firstNumber ? `${firstNumber}${primaryVariantShortToken}` : "",
-        primaryVariantShortToken && firstAlpha && firstNumber ? `${firstAlpha}${firstNumber}${primaryVariantShortToken}` : "",
-        primaryVariantShortToken && alphaPrefix && firstNumber ? `${alphaPrefix}${firstNumber}${primaryVariantShortToken}` : "",
-        primaryVariantShortToken && firstAlpha && paddedTwoDigitNumber ? `${firstAlpha}${paddedTwoDigitNumber}${primaryVariantShortToken}` : "",
-        isGatewayReprintVariant && primaryVariantShortToken && paddedThreeDigitNumber ? `Reprint${paddedThreeDigitNumber}${primaryVariantShortToken}` : "",
-        isGatewayReprintVariant && primaryVariantShortToken && alphaPrefix && paddedTwoDigitNumber ? `Reprint${alphaPrefix}${paddedTwoDigitNumber}${primaryVariantShortToken}` : "",
-        firstAlpha && firstNumber ? `${firstAlpha}${firstNumber.padStart(2, "0")}` : "",
-        firstAlpha && firstNumber ? `${firstAlpha}${firstNumber}` : "",
-        alphaPrefix && firstNumber ? `${alphaPrefix}${firstNumber}` : "",
-        alphaPrefix && firstNumber ? `${alphaPrefix}${firstNumber.padStart(2, "0")}` : "",
-        paddedThreeDigitNumber,
-        variantToken && normalizedId ? `${normalizedId}${variantToken}` : "",
-        variantToken && normalizedNumber ? `${normalizedNumber}${variantToken}` : "",
-        primaryVariantShortToken && normalizedId ? `${normalizedId}${primaryVariantShortToken}` : "",
-        primaryVariantShortToken && normalizedNumber ? `${normalizedNumber}${primaryVariantShortToken}` : "",
-        normalizedId,
-        normalizedNumber,
-        cardId.replace(/\s+/g, ""),
-        cardNumber.replace(/\s+/g, "")
-    ]
-        .map((value) => value.trim())
-        .filter(Boolean);
+   const candidateNames = [
+    primaryAlias && primaryVariantShortToken ? `${primaryAlias}${primaryVariantShortToken}` : "",
+    primaryAlias && variantToken ? `${primaryAlias}${variantToken}` : "",
+    primaryAlias,
 
-    return Array.from(new Set(candidateNames)).map((name) => `${YYH_IMAGE_ROOT}/${setFolder}/${name}.jpg`);
+    variantToken && paddedThreeDigitNumber ? `${paddedThreeDigitNumber}${variantToken}` : "",
+    variantToken && firstNumber ? `${firstNumber}${variantToken}` : "",
+    variantToken && firstAlpha && firstNumber ? `${firstAlpha}${firstNumber}${variantToken}` : "",
+    variantToken && alphaPrefix && firstNumber ? `${alphaPrefix}${firstNumber}${variantToken}` : "",
+    variantToken && firstAlpha && paddedTwoDigitNumber ? `${firstAlpha}${paddedTwoDigitNumber}${variantToken}` : "",
+
+    primaryVariantShortToken && paddedThreeDigitNumber ? `${paddedThreeDigitNumber}${primaryVariantShortToken}` : "",
+    primaryVariantShortToken && firstNumber ? `${firstNumber}${primaryVariantShortToken}` : "",
+    primaryVariantShortToken && firstAlpha && firstNumber ? `${firstAlpha}${firstNumber}${primaryVariantShortToken}` : "",
+    primaryVariantShortToken && alphaPrefix && firstNumber ? `${alphaPrefix}${firstNumber}${primaryVariantShortToken}` : "",
+    primaryVariantShortToken && firstAlpha && paddedTwoDigitNumber ? `${firstAlpha}${paddedTwoDigitNumber}${primaryVariantShortToken}` : "",
+
+    isGatewayReprintVariant && primaryVariantShortToken && paddedThreeDigitNumber
+        ? `Reprint${paddedThreeDigitNumber}${primaryVariantShortToken}`
+        : "",
+    isGatewayReprintVariant && primaryVariantShortToken && alphaPrefix && paddedTwoDigitNumber
+        ? `Reprint${alphaPrefix}${paddedTwoDigitNumber}${primaryVariantShortToken}`
+        : "",
+
+    // Standard YYH image filenames such as 001.jpg, 061.jpg, 121.jpg.
+    paddedThreeDigitNumber,
+
+    firstAlpha && firstNumber ? `${firstAlpha}${firstNumber.padStart(2, "0")}` : "",
+    firstAlpha && firstNumber ? `${firstAlpha}${firstNumber}` : "",
+    alphaPrefix && firstNumber ? `${alphaPrefix}${firstNumber}` : "",
+    alphaPrefix && firstNumber ? `${alphaPrefix}${firstNumber.padStart(2, "0")}` : "",
+
+    variantToken && normalizedId ? `${normalizedId}${variantToken}` : "",
+    variantToken && normalizedNumber ? `${normalizedNumber}${variantToken}` : "",
+    primaryVariantShortToken && normalizedId ? `${normalizedId}${primaryVariantShortToken}` : "",
+    primaryVariantShortToken && normalizedNumber ? `${normalizedNumber}${primaryVariantShortToken}` : "",
+
+    normalizedId,
+    normalizedNumber,
+    cardId.replace(/\s+/g, ""),
+    cardNumber.replace(/\s+/g, "")
+]
+    .map((value) => value.trim())
+    .filter(Boolean);
+
+return Array.from(new Set(candidateNames)).map(
+    (name) => `${YYH_IMAGE_ROOT}/${setFolder}/${name}.jpg`
+);
 }
 
 function hydrateInventoryCardImages(rootElement) {
