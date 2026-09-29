@@ -4629,9 +4629,10 @@ function buildCardImageCandidates(cardRecord) {
     const isGatewayReprintVariant = normalizedSet === "gateway" && Boolean(primaryVariantShortToken);
 
    const candidateNames = [
+    primaryAlias,
     primaryAlias && primaryVariantShortToken ? `${primaryAlias}${primaryVariantShortToken}` : "",
     primaryAlias && variantToken ? `${primaryAlias}${variantToken}` : "",
-    primaryAlias,
+    
 
     normalizedSet === "gateway" && primaryVariantShortToken && paddedThreeDigitNumber
         ? `${paddedThreeDigitNumber}${primaryVariantShortToken}`
