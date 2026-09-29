@@ -10224,42 +10224,6 @@
     "source": "gateway-checklist.txt"
   },
   {
-    "id": "R90/176",
-    "number": "R90/176",
-    "game": "Yu Yu Hakusho",
-    "set": "Gateway",
-    "name": "Rash Brawling",
-    "type": "Unknown Type",
-    "rarity": "R - Rare (standard)",
-    "variant": "Lined",
-    "source": "gateway-checklist.txt",
-    "effect": "Effect text not available in checklist source."
-  },
-  {
-    "id": "R90/176",
-    "number": "R90/176",
-    "game": "Yu Yu Hakusho",
-    "set": "Gateway",
-    "name": "Rash Brawling",
-    "type": "Unknown Type",
-    "rarity": "R - Rare (standard)",
-    "variant": "Cloudy",
-    "source": "gateway-checklist.txt",
-    "effect": "Effect text not available in checklist source."
-  },
-  {
-    "id": "R90/176",
-    "number": "R90/176",
-    "game": "Yu Yu Hakusho",
-    "set": "Gateway",
-    "name": "Rash Brawling",
-    "type": "Unknown Type",
-    "rarity": "R - Rare (standard)",
-    "variant": "Jagged",
-    "source": "gateway-checklist.txt",
-    "effect": "Effect text not available in checklist source."
-  },
-  {
     "id": "C113/176",
     "number": "C113/176",
     "game": "Yu Yu Hakusho",
