@@ -4556,12 +4556,22 @@ function resolveSpecialImageAliases(cardRecord) {
         }
     }
 
-    if (setName === "Dark Tournament") {
-        const darkTournamentTeamBonusAlias = darkTournamentTeamBonusAliasByName[normalizedName] || "";
-        if (darkTournamentTeamBonusAlias) {
-            aliases.push(darkTournamentTeamBonusAlias);
+   if (setName === "Dark Tournament") {
+    if (cardId === "G0") {
+        if (normalizedName.includes("unsigned")) {
+            aliases.push("000Unsigned");
+        } else if (normalizedName.includes("signed")) {
+            aliases.push("000Signed");
+        } else if (normalizedName.includes("reprint")) {
+            aliases.push("000Reprint");
         }
     }
+
+    const darkTournamentTeamBonusAlias = darkTournamentTeamBonusAliasByName[normalizedName] || "";
+    if (darkTournamentTeamBonusAlias) {
+        aliases.push(darkTournamentTeamBonusAlias);
+    }
+}
 
     if (setName === "Betrayal") {
         if (cardId === "TX1" || normalizedName === "grimdetermination") {
@@ -4622,6 +4632,10 @@ function buildCardImageCandidates(cardRecord) {
     primaryAlias && primaryVariantShortToken ? `${primaryAlias}${primaryVariantShortToken}` : "",
     primaryAlias && variantToken ? `${primaryAlias}${variantToken}` : "",
     primaryAlias,
+
+    normalizedSet === "gateway" && primaryVariantShortToken && paddedThreeDigitNumber
+        ? `${paddedThreeDigitNumber}${primaryVariantShortToken}`
+        : "",
 
     paddedThreeDigitNumber,
 
