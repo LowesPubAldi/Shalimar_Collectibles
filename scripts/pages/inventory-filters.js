@@ -4644,16 +4644,22 @@ function buildCardImageCandidates(cardRecord) {
         ? `Reprint${alphaPrefix}${paddedTwoDigitNumber}${primaryVariantShortToken}`
         : "",
     
+    normalizedSet === "gateway" &&
+        cardId === "R2" &&
+        primaryVariantShortToken
+        ? `R2${primaryVariantShortToken}`
+        : "",    
+
+    primaryVariantShortToken && paddedThreeDigitNumber
+        ? `${paddedThreeDigitNumber}${primaryVariantShortToken}`
+        : "",
+
         normalizedSet === "gateway" &&
         alphaPrefix &&
         firstNumber &&
         primaryVariantShortToken
-        ? `${alphaPrefix}${firstNumber}${primaryVariantShortToken}`
-        : "",
-
-        primaryVariantShortToken && paddedThreeDigitNumber 
-        ? `${paddedThreeDigitNumber}${primaryVariantShortToken}` 
-        : "",
+            ? `${alphaPrefix}${firstNumber}${primaryVariantShortToken}`
+            : "",
 
         primaryAlias,
         paddedThreeDigitNumber,
