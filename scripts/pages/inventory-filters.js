@@ -4646,6 +4646,13 @@ function buildCardImageCandidates(cardRecord) {
 
     primaryVariantShortToken && paddedThreeDigitNumber ? `${paddedThreeDigitNumber}${primaryVariantShortToken}` : "",
     
+        normalizedSet === "gateway" &&
+        alphaPrefix &&
+        firstNumber &&
+        primaryVariantShortToken
+        ? `${alphaPrefix}${firstNumber}${primaryVariantShortToken}`
+        : "",
+
         primaryAlias,
         paddedThreeDigitNumber,
 
