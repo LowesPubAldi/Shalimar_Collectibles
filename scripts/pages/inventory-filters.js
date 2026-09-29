@@ -4643,14 +4643,16 @@ function buildCardImageCandidates(cardRecord) {
     isGatewayReprintVariant && primaryVariantShortToken && alphaPrefix && paddedTwoDigitNumber
         ? `Reprint${alphaPrefix}${paddedTwoDigitNumber}${primaryVariantShortToken}`
         : "",
-
-    primaryVariantShortToken && paddedThreeDigitNumber ? `${paddedThreeDigitNumber}${primaryVariantShortToken}` : "",
     
         normalizedSet === "gateway" &&
         alphaPrefix &&
         firstNumber &&
         primaryVariantShortToken
         ? `${alphaPrefix}${firstNumber}${primaryVariantShortToken}`
+        : "",
+
+        primaryVariantShortToken && paddedThreeDigitNumber 
+        ? `${paddedThreeDigitNumber}${primaryVariantShortToken}` 
         : "",
 
         primaryAlias,
