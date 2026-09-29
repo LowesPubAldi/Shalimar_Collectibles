@@ -4626,8 +4626,11 @@ function buildCardImageCandidates(cardRecord) {
     const paddedTwoDigitNumber = firstNumber ? firstNumber.padStart(2, "0") : "";
     const specialAliases = resolveSpecialImageAliases(cardRecord);
     const primaryAlias = specialAliases[0] || "";
-    const isGatewayReprintVariant = normalizedSet === "gateway" && Boolean(primaryVariantShortToken);
-
+    const isGatewayReprintVariant =
+        normalizedSet === "gateway" &&
+        (cardId.includes("/176") || cardId.includes("/22")) &&
+        Boolean(primaryVariantShortToken);
+        
     const candidateNames = [
     normalizedSet === "gateway" && primaryAlias && primaryVariantShortToken
         ? `${primaryAlias}${primaryVariantShortToken}`
@@ -6133,7 +6136,6 @@ function normalizeCardRecord(card) {
     const variant = sourceVariant === "Standard" && inferredVariant ? inferredVariant : sourceVariant;
     const setName = resolveFirstNonEmpty(card.set, card.setName) || "Unknown Set";
 
-    // Gateway data correction: Huh??? standard print is C56, not C57.
     let normalizedId = id;
     if (
         setName === "Gateway"
