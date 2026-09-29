@@ -4630,7 +4630,7 @@ function buildCardImageCandidates(cardRecord) {
         normalizedSet === "gateway" &&
         (cardId.includes("/176") || cardId.includes("/22")) &&
         Boolean(primaryVariantShortToken);
-        
+
     const candidateNames = [
     normalizedSet === "gateway" && primaryAlias && primaryVariantShortToken
         ? `${primaryAlias}${primaryVariantShortToken}`
@@ -4644,6 +4644,8 @@ function buildCardImageCandidates(cardRecord) {
         ? `Reprint${alphaPrefix}${paddedTwoDigitNumber}${primaryVariantShortToken}`
         : "",
 
+    primaryVariantShortToken && paddedThreeDigitNumber ? `${paddedThreeDigitNumber}${primaryVariantShortToken}` : "",
+    
         primaryAlias,
         paddedThreeDigitNumber,
 
@@ -4653,7 +4655,6 @@ function buildCardImageCandidates(cardRecord) {
     variantToken && alphaPrefix && firstNumber ? `${alphaPrefix}${firstNumber}${variantToken}` : "",
     variantToken && firstAlpha && paddedTwoDigitNumber ? `${firstAlpha}${paddedTwoDigitNumber}${variantToken}` : "",
 
-    primaryVariantShortToken && paddedThreeDigitNumber ? `${paddedThreeDigitNumber}${primaryVariantShortToken}` : "",
     primaryVariantShortToken && firstNumber ? `${firstNumber}${primaryVariantShortToken}` : "",
     primaryVariantShortToken && firstAlpha && firstNumber ? `${firstAlpha}${firstNumber}${primaryVariantShortToken}` : "",
     primaryVariantShortToken && alphaPrefix && firstNumber ? `${alphaPrefix}${firstNumber}${primaryVariantShortToken}` : "",
