@@ -4628,17 +4628,16 @@ function buildCardImageCandidates(cardRecord) {
     const primaryAlias = specialAliases[0] || "";
     const isGatewayReprintVariant = normalizedSet === "gateway" && Boolean(primaryVariantShortToken);
 
-   const candidateNames = [
-    primaryAlias,
-    primaryAlias && primaryVariantShortToken ? `${primaryAlias}${primaryVariantShortToken}` : "",
-    primaryAlias && variantToken ? `${primaryAlias}${variantToken}` : "",
-    
+    const candidateNames = [
+        normalizedSet === "gateway" && primaryVariantShortToken && alphaPrefix && firstNumber
+        ? `${alphaPrefix}${firstNumber}${primaryVariantShortToken}`
+        : "",
 
-    normalizedSet === "gateway" && primaryVariantShortToken && paddedThreeDigitNumber
+        normalizedSet === "gateway" && primaryVariantShortToken && paddedThreeDigitNumber
         ? `${paddedThreeDigitNumber}${primaryVariantShortToken}`
         : "",
 
-    paddedThreeDigitNumber,
+        paddedThreeDigitNumber,
 
     variantToken && paddedThreeDigitNumber ? `${paddedThreeDigitNumber}${variantToken}` : "",
     variantToken && firstNumber ? `${firstNumber}${variantToken}` : "",
