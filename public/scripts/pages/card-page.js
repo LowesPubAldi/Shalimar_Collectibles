@@ -487,20 +487,31 @@ function resolveSpecialImageAliases(cardRecord) {
     }
 
     if (setName === "Betrayal") {
-        if (cardId === "TX1" || normalizedName === "grimdetermination") {
-            aliases.push("TX1");
-        }
-
-        if (cardId === "TP4" || normalizedName === "hajime") {
-            aliases.push("TP4");
-        }
-
-        const betrayalTeamBonusAlias = betrayalTeamBonusAliasByName[normalizedName] || "";
-        if (betrayalTeamBonusAlias) {
-            aliases.push(betrayalTeamBonusAlias);
-        }
+    if (cardId === "TX1" || normalizedName === "grimdetermination") {
+        aliases.push("TX1");
     }
 
+    if (cardId === "TP4" || normalizedName === "hajime") {
+        aliases.push("TP4");
+    }
+
+    const betrayalTeamBonusAlias = betrayalTeamBonusAliasByName[normalizedName] || "";
+    if (betrayalTeamBonusAlias) {
+        aliases.push(betrayalTeamBonusAlias);
+    }
+
+    if (normalizedName.startsWith("yomisightlessgod")) {
+    if (cardId === "G1") {
+        aliases.push("001");
+    } else if (cardId === "U5") {
+        aliases.push("005");
+    } else if (cardId === "U6") {
+        aliases.push("006");
+    } else if (cardId === "TG1") {
+        aliases.push("T01");
+    }
+}
+}
     if (setName === "Exile" && normalizedName === "mukuroenslavedsoul") {
         if (normalizedVariant === "topleft") {
             aliases.push("T01");
@@ -533,7 +544,10 @@ function resolveSpecialImageAliases(cardRecord) {
 }
 
 function buildCardImageCandidates(cardRecord) {
-    const setFolder = resolveImageSetFolder(cardRecord.set);
+    const normalizedName = normalizeForSearch(cardRecord.name);
+    const setFolder = normalizedName.startsWith("yomisightlessgod")
+        ? "betrayal"
+        : resolveImageSetFolder(cardRecord.set);
     const cardId = String(cardRecord.id || "").trim();
     const cardNumber = String(cardRecord.number || "").trim();
     const normalizedId = normalizeImageToken(cardId);
@@ -892,19 +906,36 @@ function buildVariantOptions(records, options = {}) {
     }
 
     for (const record of records) {
-        const label = resolveFirstNonEmpty(record.variant, "Standard");
-        if (byLabel.has(label)) {
-            continue;
-        }
+    const normalizedName = normalizeForSearch(record.name);
+    const recordId = String(record.id || record.number || "").toUpperCase();
 
-        byLabel.set(label, {
-            name: label,
-            imageCandidates: record.imageUrl ? [record.imageUrl] : buildCardImageCandidates(record),
-            record
-        });
+    let label = resolveFirstNonEmpty(record.variant, "Standard");
+
+    if (normalizedName.startsWith("yomi sightless god")) {
+        const yomiLabels = {
+            G1: "Bottom Left",
+            U5: "Top Left",
+            U6: "Top Right",
+            TG1: "Bottom Right"
+        };
+
+        label = yomiLabels[recordId] || label;
     }
 
-    return Array.from(byLabel.values());
+    if (byLabel.has(label)) {
+        continue;
+    }
+
+    byLabel.set(label, {
+        name: label,
+        imageCandidates: record.imageUrl
+            ? [record.imageUrl]
+            : buildCardImageCandidates(record),
+        record
+    });
+}
+
+return Array.from(byLabel.values());
 }
 
 function applyImageCandidates(imageElement, candidates, altText) {
@@ -1412,13 +1443,45 @@ cardNotes.innerHTML = updatedNoteLines.join("");
         renderSwordsControls(variantOptions.find((variant) => variant.name === selectedRarityName) || variantOptions[0]);
     } else if (isPokemonCard) {
         renderPokemonPrintingControls();
-    } else {
-        variantOptions.forEach((variant) => {
-            const button = createVariantControl(variant, selectedVariantName);
-            button.addEventListener("click", () => renderSelectedVariant(variant.name));
-            cardVariantControls.appendChild(button);
+} else {
+    variantOptions.forEach((variant) => {
+        const button = createVariantControl(variant, selectedVariantName);
+
+        button.addEventListener("click", () => {
+            const isYomi = normalizeForSearch(card.title).startsWith(
+                "yomi sightless god"
+            );
+
+            if (isYomi) {
+                const variantId = String(
+                    variant.record?.id || variant.record?.number || ""
+                ).toUpperCase();
+
+                if (variantId === "G1") {
+                    applyImageCandidates(
+                        cardVariantImage,
+                        ["assets/seasonal/yyh-source/betrayal/001.jpg"],
+                        "Yomi, Sightless God - Bottom Left"
+                    );
+                    return;
+                }
+
+                if (variantId === "TG1") {
+                    applyImageCandidates(
+                    cardVariantImage,
+                    ["assets/seasonal/yyh-source/betrayal/T01.jpg"],
+                    "Yomi, Sightless God - Bottom Right"
+                    );
+    return;
+}
+            }
+
+            renderSelectedVariant(variant.name);
         });
-    }
+
+        cardVariantControls.appendChild(button);
+    });
+}
 
     renderSelectedVariant(selectedVariantName);
 
@@ -1485,7 +1548,27 @@ async function buildCardContext(context) {
         ...((isGroupedYgoCard || isPokemonCard) ? {} : { set: selected.set })
     });
 
-    const exactRelated = relatedCards.filter((card) => normalizeForSearch(card.name) === normalizeForSearch(selected.name));
+    const isYomiSightlessGod =
+    normalizeForSearch(selected.name).startsWith("yomi sightless god");
+
+let exactRelated;
+
+if (isYomiSightlessGod) {
+    exactRelated = [
+        ...(await fetchCards({
+            q: "Yomi, Sightless God",
+            game: selected.game
+        }))
+    ].filter((card) =>
+        ["G1", "U5", "U6", "TG1"].includes(
+            String(card.id || card.number || "").toUpperCase()
+        )
+    );
+} else {
+    exactRelated = relatedCards.filter((card) =>
+        normalizeForSearch(card.name) === normalizeForSearch(selected.name)
+    );
+}
     const variantBase = isPokemonCard
         ? relatedCards
         : exactRelated.length > 0 ? exactRelated : [selected];
