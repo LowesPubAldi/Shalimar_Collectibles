@@ -208,7 +208,7 @@
     "number": "G1",
     "game": "Yu Yu Hakusho",
     "set": "Code G",
-    "name": "Yomi, Sightless God(lower right)",
+    "name": "Yomi, Sightless God(lower left)",
     "type": "Character",
     "rarity": "Unknown Rarity",
     "variant": "Standard",
@@ -956,7 +956,7 @@
     "type": "Character",
     "rarity": "Unknown Rarity",
     "variant": "Standard",
-    "effect": "Intimidation: Your opponent discards a card at random from his or her hand.Character Yukina, Ice Princess U6 Sideline Effect: Healing Power: When one of your other characters takes points of damage, you may discard 5 cards from your hand to heal 1 point of damage to 1 of your characters. Priceless Tears: This attack cannot deal minimum damage. If you have more heroes on your Sideline than your opponent, draw 3 cards.",
+    "effect": "Intimidation: Your opponent discards a card at random from his or her hand.",
     "source": "yyh-card-library-source.pdf"
   },
   {

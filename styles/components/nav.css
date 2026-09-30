@@ -395,7 +395,6 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
         position: sticky;
         top: 0;
         z-index: 1200;
-        width: 100%;
         max-width: none;
         padding-left: 0;
         padding-right: 0;
@@ -684,6 +683,11 @@ body.is-mobile-nav-open .mobile-nav-overlay {
 }
 
 @media (max-width: 960px) {
+    .header {
+        left: 10px;
+        right: 10px;
+    }
+
     .nav {
         display: flex;
     }
@@ -756,9 +760,15 @@ body.is-mobile-nav-open .mobile-nav-overlay {
     }
 }
 
-@media (max-width: 768px) and (min-width: 561px) {
+@media (max-width: 768px){
     .logo {
         width: 170px;
+    }
+
+    .header {
+        left: 10px;
+        right: 10px;
+        width: auto;
     }
 }
 

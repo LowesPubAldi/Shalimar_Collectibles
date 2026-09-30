@@ -136,8 +136,6 @@
 
         { "id": "R33/176", "name": "Jin", "variant": "Reprint", "priceUsd": 7.5, "compsCount": 0, "status": "Priced", "notes": "$6 - $9" },
         { "id": "C82/176", "name": "Time Out", "variant": "Reprint", "priceUsd": 5.5, "compsCount": 0, "status": "Priced", "notes": "$4 - $7" },
-        { "id": "R86/176", "name": "Kitty Love", "variant": "Reprint", "priceUsd": 5.0, "compsCount": 0, "status": "Priced", "notes": "$4 - $6" },
-        { "id": "R90/176", "name": "Rash Brawling", "variant": "Reprint", "priceUsd": 6.0, "compsCount": 0, "status": "Priced", "notes": "$4 - $8" },
         { "id": "C113/176", "name": "Backyard Dummy", "variant": "Reprint", "priceUsd": 6.5, "compsCount": 0, "status": "Priced", "notes": "$5 - $8" },
         { "id": "C117/176", "name": "Demon Compass", "variant": "Reprint", "priceUsd": 6.0, "compsCount": 0, "status": "Priced", "notes": "$4 - $8" },
         { "id": "R121/176", "name": "Trace-Eyes", "variant": "Reprint", "priceUsd": 7.0, "compsCount": 0, "status": "Priced", "notes": "$5 - $9" },

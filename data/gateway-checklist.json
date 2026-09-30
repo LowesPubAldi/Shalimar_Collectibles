@@ -2004,8 +2004,8 @@
     "source": "gateway-checklist.txt"
   },
   {
-    "id": "C57",
-    "number": "C57",
+    "id": "C56",
+    "number": "C56",
     "game": "Yu Yu Hakusho",
     "set": "Gateway",
     "name": "Huh???",
@@ -4469,37 +4469,37 @@
     "game": "Yu Yu Hakusho",
     "set": "Gateway",
     "name": "Kitty Love",
-    "type": "Unknown Type",
+    "type": "Event",
     "rarity": "R - Rare (standard)",
     "variant": "Lined",
-    "effect": "Effect text not available in checklist source.",
+    "effect": "Pay 4 spirit: Draw 2 cards.",
     "source": "gateway-checklist.txt"
-  },
-  {
+},
+{
     "id": "R86/176",
     "number": "R86/176",
     "game": "Yu Yu Hakusho",
     "set": "Gateway",
     "name": "Kitty Love",
-    "type": "Unknown Type",
+    "type": "Event",
     "rarity": "R - Rare (standard)",
     "variant": "Cloudy",
-    "effect": "Effect text not available in checklist source.",
+    "effect": "Pay 4 spirit: Draw 2 cards.",
     "source": "gateway-checklist.txt"
-  },
-  {
+},
+{
     "id": "R86/176",
     "number": "R86/176",
     "game": "Yu Yu Hakusho",
     "set": "Gateway",
     "name": "Kitty Love",
-    "type": "Unknown Type",
+    "type": "Event",
     "rarity": "R - Rare (standard)",
     "variant": "Jagged",
-    "effect": "Effect text not available in checklist source.",
+    "effect": "Pay 4 spirit: Draw 2 cards.",
     "source": "gateway-checklist.txt"
-  },
-  {
+},
+{
     "id": "R90/176",
     "number": "R90/176",
     "game": "Yu Yu Hakusho",
@@ -4510,8 +4510,8 @@
     "variant": "Lined",
     "effect": "Effect text not available in checklist source.",
     "source": "gateway-checklist.txt"
-  },
-  {
+},
+{
     "id": "R90/176",
     "number": "R90/176",
     "game": "Yu Yu Hakusho",
@@ -4522,8 +4522,8 @@
     "variant": "Cloudy",
     "effect": "Effect text not available in checklist source.",
     "source": "gateway-checklist.txt"
-  },
-  {
+},
+{
     "id": "R90/176",
     "number": "R90/176",
     "game": "Yu Yu Hakusho",
@@ -4534,7 +4534,7 @@
     "variant": "Jagged",
     "effect": "Effect text not available in checklist source.",
     "source": "gateway-checklist.txt"
-  },
+},
   {
     "id": "C113/176",
     "number": "C113/176",

@@ -1157,3 +1157,44 @@
         max-width: 280px;
     }
 }
+
+@media (max-width: 560px) {
+    .inventory-shell {
+        padding: 14px 12px 20px;
+    }
+
+    .inventory-hero {
+        grid-template-columns: 1fr;
+        gap: 0;
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+    }
+
+    .inventory-hero__panel {
+        display: none;
+    }
+
+    .inventory-hero__content {
+        width: 100%;
+        max-width: none;
+    }
+
+    .inventory-hero h1 {
+        width: 100%;
+        max-width: none;
+        font-size: clamp(28px, 8vw, 34px);
+        margin-bottom: 8px;
+    }
+
+    .inventory-hero__copy {
+        width: 100%;
+        max-width: none;
+    }
+
+    .inventory-hero p {
+        font-size: 15px;
+        line-height: 1.4;
+    }
+
+    /* keep the rest of your existing 560px rules */
+}

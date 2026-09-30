@@ -15,7 +15,6 @@ body {
 }
 
 .header {
-    width: 100%;
     padding: 14px 16px;
     background: 05090d;
 }
@@ -1340,13 +1339,6 @@ body {
 }
 
 @media (max-width: 768px) {
-    .header {
-        position: sticky;
-        top: 0;
-        z-index: 1200;
-        padding: 14px 16px;
-    }
-
     .nav {
         flex-direction: row;
         align-items: flex-start;

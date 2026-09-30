@@ -60,7 +60,6 @@ const DATA_FILE_PATHS = [
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(__dirname, {
     etag: false,
     lastModified: false,
@@ -73,6 +72,8 @@ app.use(express.static(__dirname, {
         }
     }
 }));
+
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
