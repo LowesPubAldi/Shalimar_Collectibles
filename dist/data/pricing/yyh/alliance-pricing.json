@@ -1,0 +1,135 @@
+{
+    "set": "Alliance",
+    "currency": "USD",
+    "updatedAt": "2026-08-04",
+    "setNotes": [
+        {
+            "title": "Edition Pricing Note",
+            "notes": "Unlimited cards usually sell at 80% of the 1st Edition value."
+        }
+    ],
+    "fallbackPricing": [
+        {
+            "name": "Non-Foil Common Events/Items/Techs",
+            "minPriceUsd": 2.0,
+            "maxPriceUsd": 5.0,
+            "status": "Priced",
+            "notes": "$2 - $5. Gale Force, Upsurge, Armor of Containment, Koenmatron 5000 are the higher numbers.",
+            "match": {
+                "rarityPrefix": "C - Common",
+                "foil": false,
+                "typeExcludes": ["character"]
+            }
+        },
+        {
+            "name": "Non-Foil Common Characters",
+            "minPriceUsd": 6.0,
+            "maxPriceUsd": 9.0,
+            "status": "Priced",
+            "notes": "$6 - $9. The main cast are typically the higher numbers.",
+            "match": {
+                "rarityPrefix": "C - Common",
+                "foil": false,
+                "typeIncludes": ["character"]
+            }
+        },
+        {
+            "name": "Non-Foil Rare Events/Items/Techs",
+            "minPriceUsd": 4.0,
+            "maxPriceUsd": 7.0,
+            "status": "Priced",
+            "notes": "$4 - $7",
+            "match": {
+                "rarityPrefix": "R - Rare (standard)",
+                "foil": false,
+                "typeExcludes": ["character"]
+            }
+        },
+        {
+            "name": "Non-Foil Rare Characters",
+            "minPriceUsd": 7.0,
+            "maxPriceUsd": 10.0,
+            "status": "Priced",
+            "notes": "$7 - $10. Yusuke is the higher end of this, pushing $15.",
+            "match": {
+                "rarityPrefix": "R - Rare (standard)",
+                "foil": false,
+                "typeIncludes": ["character"]
+            }
+        },
+        {
+            "name": "Foil Common Events/Items/Techs",
+            "minPriceUsd": 10.0,
+            "maxPriceUsd": 15.0,
+            "status": "Priced",
+            "notes": "$10 - $15",
+            "match": {
+                "rarityPrefix": "C - Common",
+                "foil": true,
+                "typeExcludes": ["character"]
+            }
+        },
+        {
+            "name": "Foil Common Characters",
+            "minPriceUsd": 10.0,
+            "maxPriceUsd": 50.0,
+            "status": "Priced",
+            "notes": "$10 - $50. The main cast are typically the higher numbers. Raizen has sold for over $50 before.",
+            "match": {
+                "rarityPrefix": "C - Common",
+                "foil": true,
+                "typeIncludes": ["character"]
+            }
+        },
+        {
+            "name": "Foil Rare Events/Items/Techs",
+            "minPriceUsd": 10.0,
+            "maxPriceUsd": 17.0,
+            "status": "Priced",
+            "notes": "$10 - $17",
+            "match": {
+                "rarityPrefix": "R - Rare (standard)",
+                "foil": true,
+                "typeExcludes": ["character"]
+            }
+        },
+        {
+            "name": "Foil Rare Characters",
+            "minPriceUsd": 15.0,
+            "maxPriceUsd": 75.0,
+            "status": "Priced",
+            "notes": "$15 - $75. Yusuke is the higher end of this. Touya is mid. The others are low.",
+            "match": {
+                "rarityPrefix": "R - Rare (standard)",
+                "foil": true,
+                "typeIncludes": ["character"]
+            }
+        }
+    ],
+    "items": [
+        { "id": "G1", "name": "Raizen, Thunder God", "variant": "Top Left", "priceUsd": 325.0, "compsCount": 0, "status": "Priced", "notes": "$250 - $400. Small # of sales." },
+        { "id": "G2", "name": "No!", "variant": "Standard", "priceUsd": 60.0, "compsCount": 0, "status": "Priced", "notes": "$55 - $65" },
+        { "id": "G3", "name": "Replay", "variant": "Standard", "priceUsd": 60.0, "compsCount": 0, "status": "Priced", "notes": "$55 - $65" },
+        { "id": "G4", "name": "Solitaire", "variant": "Standard", "priceUsd": 67.5, "compsCount": 0, "status": "Priced", "notes": "$60 - $75" },
+
+        { "id": "U5", "name": "Raizen, Thunder God", "variant": "Top Right", "priceUsd": 125.0, "compsCount": 0, "status": "Priced", "notes": "$100 - $150" },
+        { "id": "U6", "name": "Raizen, Thunder God", "variant": "Bottom Left", "priceUsd": 125.0, "compsCount": 0, "status": "Priced", "notes": "$100 - $150" },
+        { "id": "U7", "name": "Shishi Wakamaru, Summoner Of A Thousand Skulls", "variant": "Standard", "priceUsd": 40.0, "compsCount": 0, "status": "Priced", "notes": "$35 - $45" },
+        { "id": "U8", "name": "The Legacy Of One", "variant": "Standard", "priceUsd": 22.5, "compsCount": 0, "status": "Priced", "notes": "$20 - $25" },
+        { "id": "U9", "name": "Winner", "variant": "Standard", "priceUsd": 17.5, "compsCount": 0, "status": "Priced", "notes": "$15 - $20" },
+        { "id": "U10", "name": "Game Cartridge", "variant": "Standard", "priceUsd": 21.5, "compsCount": 0, "status": "Priced", "notes": "$18 - $25" },
+        { "id": "U11", "name": "Sensui's TV", "variant": "Standard", "priceUsd": 19.5, "compsCount": 0, "status": "Priced", "notes": "$17 - $22" },
+
+        { "id": "S12", "name": "Chu, Rugged Assailant", "variant": "Standard", "priceUsd": 30.0, "compsCount": 0, "status": "Priced", "notes": "$25 - $35" },
+        { "id": "S13", "name": "Murugu, The Cunning", "variant": "Standard", "priceUsd": 25.0, "compsCount": 0, "status": "Priced", "notes": "$20 - $30" },
+        { "id": "S14", "name": "Raizen, Thunder God", "variant": "Bottom Right", "priceUsd": 82.5, "compsCount": 0, "status": "Priced", "notes": "$75 - $90" },
+        { "id": "S15", "name": "Ruka, The Captivating", "variant": "Standard", "priceUsd": 34.0, "compsCount": 0, "status": "Priced", "notes": "$30 - $38" },
+        { "id": "S16", "name": "Yomi, The Reformed", "variant": "Standard", "priceUsd": 60.0, "compsCount": 0, "status": "Priced", "notes": "$50 - $70" },
+        { "id": "S17", "name": "Yusuke, Champion Of The People", "variant": "Standard", "priceUsd": 130.0, "compsCount": 0, "status": "Priced", "notes": "$110 - $150" },
+        { "id": "S18", "name": "Audience Participation", "variant": "Standard", "priceUsd": 22.5, "compsCount": 0, "status": "Priced", "notes": "$20 - $25" },
+        { "id": "S19", "name": "Darkness Within", "variant": "Standard", "priceUsd": 20.0, "compsCount": 0, "status": "Priced", "notes": "$17 - $23" },
+        { "id": "S20", "name": "Kaitou's Rules", "variant": "Standard", "priceUsd": 15.0, "compsCount": 0, "status": "Priced", "notes": "$12 - $18" },
+        { "id": "S21", "name": "Mourning", "variant": "Standard", "priceUsd": 12.5, "compsCount": 0, "status": "Priced", "notes": "$10 - $15" },
+        { "id": "S22", "name": "Joystick", "variant": "Standard", "priceUsd": 16.0, "compsCount": 0, "status": "Priced", "notes": "$14 - $18" }
+    ]
+}
