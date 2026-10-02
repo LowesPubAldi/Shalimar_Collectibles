@@ -20,6 +20,28 @@ const SCRYDEX_API_KEY = process.env.SCRYDEX_API_KEY || "";
 const SCRYDEX_TEAM_ID = process.env.SCRYDEX_TEAM_ID || "";
 const SCRYDEX_POKEMON_SETS_CACHE_PATH = path.join(__dirname, "data", "pokemon-sets-scrydex.json");
 const SCRYDEX_POKEMON_CACHE_DIR = path.join(__dirname, "data");
+
+const YYH_IMAGE_ROOT = "assets/seasonal/yyh-source";
+const YYH_IMAGE_PUBLIC_ROOT = path.join(
+    __dirname,
+    "public",
+    "assets",
+    "seasonal",
+    "yyh-source"
+);
+
+const YYH_IMAGE_SET_FOLDERS = {
+    "Alliance": "alliance",
+    "Betrayal": "betrayal",
+    "Dark Tournament": "dark-tournament",
+    "Exile": "exile",
+    "Extra Cards": "extra-cards",
+    "Gateway": "gateway",
+    "Ghost Files": "ghost-files",
+    "Pre-Release Cards": "pre-release-cards",
+    "Products": "products"
+};
+
 const SCRYDEX_POKEMON_SET_ID_BY_NAME = new Map([
     ["Base", "base1"],
     ["Jungle", "base2"]
@@ -199,6 +221,527 @@ function normalizeForSearch(value) {
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, " ")
         .trim();
+}
+
+function slugifySetName(value) {
+    return String(value || "")
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+}
+
+function resolveImageSetFolder(setName) {
+    return YYH_IMAGE_SET_FOLDERS[setName]
+        || slugifySetName(setName)
+        || "unknown-set";
+}
+
+function normalizeImageToken(value) {
+    return String(value || "")
+        .replace(/[^a-zA-Z0-9]+/g, "");
+}
+
+function extractUsefulVariantToken(value) {
+    const normalized = normalizeForSearch(value);
+
+    if (!normalized || normalized === "standard") {
+        return "";
+    }
+
+    if (normalized.includes("score stamped")) {
+        return "ScoreStamped";
+    }
+
+    if (normalized.includes("corrected")) {
+        return "Corrected";
+    }
+
+    if (normalized.includes("lined")) {
+        return "Lined";
+    }
+
+    if (normalized.includes("cloudy")) {
+        return "Cloudy";
+    }
+
+    if (normalized.includes("jagged")) {
+        return "Jagged";
+    }
+
+    if (normalized.includes("team leader")) {
+        return "TeamLeader";
+    }
+
+    if (normalized.includes("alternate")) {
+        return "Alternate";
+    }
+
+    return "";
+}
+
+function extractVariantShortTokens(value) {
+    const normalized = normalizeForSearch(value);
+    const tokens = [];
+
+    if (normalized.includes("lined")) {
+        tokens.push("L");
+    }
+
+    if (normalized.includes("cloudy")) {
+        tokens.push("C");
+    }
+
+    if (normalized.includes("jagged")) {
+        tokens.push("J");
+    }
+
+    if (
+        normalized.includes("dark reprint") ||
+        normalized.includes("darkreprint")
+    ) {
+        tokens.push("DR");
+    }
+
+    if (
+        normalized.includes("score reprint") ||
+        normalized.includes("scorereprint")
+    ) {
+        tokens.push("SR");
+    }
+
+    return tokens;
+}
+
+function resolveSpecialImageAliases(cardRecord) {
+    const normalizedSet = normalizeForSearch(cardRecord.set);
+    const cardId = String(cardRecord.id || cardRecord.number || "").trim();
+    const normalizedName = normalizeForSearch(cardRecord.name);
+    const normalizedVariant = normalizeForSearch(cardRecord.variant);
+    const aliases = [];
+
+    const addAlias = (value) => {
+        const alias = String(value || "").trim();
+
+        if (alias && !aliases.includes(alias)) {
+            aliases.push(alias);
+        }
+    };
+
+    if (normalizedSet === "gateway") {
+        const teamBonusAliases = {
+            "team genkai": "TB01",
+            "team ichigaki": "TB02",
+            "team koenma": "TB03",
+            "team masho": "TB04",
+            "team rokuyukai": "TB05",
+            "team sarayashki": "TB06",
+            "team sensui": "TB07",
+            "team st beasts": "TB08",
+            "team toguro": "TB09",
+            "team urameshi": "TB10",
+            "team uraotogi": "TB11"
+        };
+
+        for (const [name, alias] of Object.entries(teamBonusAliases)) {
+            if (normalizedName.includes(name)) {
+                addAlias(alias);
+            }
+        }
+    }
+
+    if (normalizedSet === "dark tournament") {
+        const teamBonusAliases = {
+            "team genkai": "TB01",
+            "team ichigaki": "TB02",
+            "team masho": "TB03",
+            "team rokuyukai": "TB04",
+            "team sarayashki": "TB05",
+            "team st beasts": "TB06",
+            "team toguro": "TB07",
+            "team urameshi": "TB08",
+            "team uraotogi": "TB09"
+        };
+
+        for (const [name, alias] of Object.entries(teamBonusAliases)) {
+            if (normalizedName.includes(name)) {
+                addAlias(alias);
+            }
+        }
+    }
+
+    if (normalizedSet === "betrayal") {
+        const teamBonusAliases = {
+            "team kuroko": "TB1",
+            "team mukuro": "TB2",
+            "team raizen": "TB3",
+            "spirit defense force": "TB4",
+            "team yomi": "TB5"
+        };
+
+        for (const [name, alias] of Object.entries(teamBonusAliases)) {
+            if (normalizedName.includes(name)) {
+                addAlias(alias);
+            }
+        }
+    }
+
+    /*
+     * Tournament-style IDs use Txx scan filenames.
+     * Example: TG1 -> T01.
+     */
+    const tournamentMatch = cardId.match(/^(?:TG|TU|TS|TR|TC)(\d+)$/i);
+
+    if (tournamentMatch) {
+        addAlias(`T${tournamentMatch[1].padStart(2, "0")}`);
+    }
+
+    if (
+        normalizedSet === "gateway" &&
+        /^TC17$/i.test(cardId) &&
+        normalizedName.includes("virus carriers")
+    ) {
+        if (normalizedVariant.includes("lined")) {
+            addAlias("T17L");
+        }
+
+        if (normalizedVariant.includes("cloudy")) {
+            addAlias("T17C");
+        }
+
+        if (normalizedVariant.includes("jagged")) {
+            addAlias("T17J");
+        }
+
+        if (
+            normalizedVariant.includes("dark reprint") ||
+            normalizedVariant.includes("darkreprint")
+        ) {
+            addAlias("T17DR");
+        }
+
+        addAlias("T17");
+    }
+
+    if (
+        normalizedSet === "gateway" &&
+        /^TR7$/i.test(cardId) &&
+        normalizedName.includes("game battler")
+    ) {
+        addAlias("T07");
+    }
+
+    if (
+        normalizedSet === "gateway" &&
+        /^TR8$/i.test(cardId) &&
+        normalizedName.includes("flight shooter")
+    ) {
+        addAlias("T08");
+    }
+
+    if (
+        normalizedSet === "gateway" &&
+        /^TR9$/i.test(cardId) &&
+        normalizedName.includes("quiz")
+    ) {
+        addAlias("T09");
+    }
+
+    if (
+        normalizedSet === "gateway" &&
+        /^TR10$/i.test(cardId) &&
+        normalizedName.includes("tennis")
+    ) {
+        addAlias("T10");
+    }
+
+    if (
+        normalizedSet === "gateway" &&
+        /^TR11$/i.test(cardId) &&
+        normalizedName.includes("recall")
+    ) {
+        addAlias("T11");
+    }
+
+    if (
+        normalizedSet === "gateway" &&
+        /^TR12$/i.test(cardId) &&
+        normalizedName.includes("sensui")
+    ) {
+        addAlias("T12");
+    }
+
+    if (
+        normalizedSet === "gateway" &&
+        /^C35(?:\/\d+)?$/i.test(cardId) &&
+        normalizedName.includes("hiei")
+    ) {
+        addAlias("Insert01");
+    }
+
+    if (
+        normalizedSet === "gateway" &&
+        normalizedName.includes("join a league")
+    ) {
+        addAlias("Insert02");
+    }
+
+    if (
+        normalizedSet === "dark tournament" &&
+        /^G0$/i.test(cardId)
+    ) {
+        if (normalizedName.includes("unsigned")) {
+            addAlias("000Unsigned");
+        } else if (normalizedName.includes("signed")) {
+            addAlias("000Signed");
+        } else if (normalizedName.includes("reprint")) {
+            addAlias("000Reprint");
+        }
+    }
+
+    if (normalizedSet === "betrayal") {
+        if (
+            /^TX1$/i.test(cardId) &&
+            normalizedName.includes("grim determination")
+        ) {
+            addAlias("TX1");
+        }
+
+        if (
+            /^TP4$/i.test(cardId) &&
+            normalizedName.includes("hajime")
+        ) {
+            addAlias("TP4");
+        }
+    }
+
+    if (normalizedSet === "alliance") {
+        if (normalizedName.includes("raizen") && normalizedName.includes("alliance")) {
+            addAlias("TB02");
+            addAlias("Tb02");
+            addAlias("Tb 02");
+            addAlias("T02");
+        }
+
+        if (normalizedName.includes("team kurama")) {
+            addAlias("TB01");
+            addAlias("Tb01");
+            addAlias("Tb 01");
+            addAlias("T01");
+        }
+    }
+
+    if (
+        normalizedSet === "exile" &&
+        /^TP3$/i.test(cardId) &&
+        normalizedName.includes("the end")
+    ) {
+        addAlias("TP3");
+    }
+
+    return aliases;
+}
+
+function buildYyhCardImageCandidates(cardRecord) {
+    const setFolder = resolveImageSetFolder(cardRecord.set);
+    const normalizedSet = normalizeForSearch(cardRecord.set);
+    const cardId = String(cardRecord.id || "").trim();
+    const cardNumber = String(cardRecord.number || "").trim();
+    const normalizedId = normalizeImageToken(cardId);
+    const normalizedNumber = normalizeImageToken(cardNumber);
+
+    const firstNumberMatch =
+        cardId.match(/\d+/) ||
+        cardNumber.match(/\d+/) ||
+        normalizedId.match(/\d+/);
+
+    const firstNumber = firstNumberMatch
+        ? firstNumberMatch[0]
+        : "";
+
+    const alphaPrefixMatch = cardId.match(/^[A-Za-z]+/);
+    const alphaPrefix = alphaPrefixMatch
+        ? alphaPrefixMatch[0]
+        : "";
+
+    const firstAlpha = alphaPrefix.charAt(0);
+    const variantToken = extractUsefulVariantToken(cardRecord.variant);
+    const variantShortTokens = extractVariantShortTokens(cardRecord.variant);
+    const primaryVariantShortToken = variantShortTokens[0] || "";
+
+    const paddedThreeDigitNumber = firstNumber
+        ? firstNumber.padStart(3, "0")
+        : "";
+
+    const paddedTwoDigitNumber = firstNumber
+        ? firstNumber.padStart(2, "0")
+        : "";
+
+    const specialAliases = resolveSpecialImageAliases(cardRecord);
+    const primaryAlias = specialAliases[0] || "";
+
+    const isGatewayReprintVariant =
+        normalizedSet === "gateway" &&
+        (cardId.includes("/176") || cardId.includes("/22")) &&
+        Boolean(primaryVariantShortToken);
+
+    const candidateNames = [
+        normalizedSet === "gateway" &&
+        primaryAlias &&
+        primaryVariantShortToken
+            ? `${primaryAlias}${primaryVariantShortToken}`
+            : "",
+
+        isGatewayReprintVariant &&
+        primaryVariantShortToken &&
+        paddedThreeDigitNumber
+            ? `Reprint${paddedThreeDigitNumber}${primaryVariantShortToken}`
+            : "",
+
+        isGatewayReprintVariant &&
+        primaryVariantShortToken &&
+        alphaPrefix &&
+        paddedTwoDigitNumber
+            ? `Reprint${alphaPrefix}${paddedTwoDigitNumber}${primaryVariantShortToken}`
+            : "",
+
+        normalizedSet === "gateway" &&
+        cardId === "R2" &&
+        primaryVariantShortToken
+            ? `R2${primaryVariantShortToken}`
+            : "",
+
+        primaryVariantShortToken && paddedThreeDigitNumber
+            ? `${paddedThreeDigitNumber}${primaryVariantShortToken}`
+            : "",
+
+        normalizedSet === "gateway" &&
+        alphaPrefix &&
+        firstNumber &&
+        primaryVariantShortToken
+            ? `${alphaPrefix}${firstNumber}${primaryVariantShortToken}`
+            : "",
+
+        primaryAlias,
+        ...specialAliases.slice(1),
+        paddedThreeDigitNumber,
+
+        variantToken && paddedThreeDigitNumber
+            ? `${paddedThreeDigitNumber}${variantToken}`
+            : "",
+
+        variantToken && firstNumber
+            ? `${firstNumber}${variantToken}`
+            : "",
+
+        variantToken && firstAlpha && firstNumber
+            ? `${firstAlpha}${firstNumber}${variantToken}`
+            : "",
+
+        variantToken && alphaPrefix && firstNumber
+            ? `${alphaPrefix}${firstNumber}${variantToken}`
+            : "",
+
+        variantToken && firstAlpha && paddedTwoDigitNumber
+            ? `${firstAlpha}${paddedTwoDigitNumber}${variantToken}`
+            : "",
+
+        primaryVariantShortToken && firstNumber
+            ? `${firstNumber}${primaryVariantShortToken}`
+            : "",
+
+        primaryVariantShortToken && firstAlpha && firstNumber
+            ? `${firstAlpha}${firstNumber}${primaryVariantShortToken}`
+            : "",
+
+        primaryVariantShortToken && alphaPrefix && firstNumber
+            ? `${alphaPrefix}${firstNumber}${primaryVariantShortToken}`
+            : "",
+
+        primaryVariantShortToken && firstAlpha && paddedTwoDigitNumber
+            ? `${firstAlpha}${paddedTwoDigitNumber}${primaryVariantShortToken}`
+            : "",
+
+        isGatewayReprintVariant &&
+        primaryVariantShortToken &&
+        paddedThreeDigitNumber
+            ? `Reprint${paddedThreeDigitNumber}${primaryVariantShortToken}`
+            : "",
+
+        isGatewayReprintVariant &&
+        primaryVariantShortToken &&
+        alphaPrefix &&
+        paddedTwoDigitNumber
+            ? `Reprint${alphaPrefix}${paddedTwoDigitNumber}${primaryVariantShortToken}`
+            : "",
+
+        firstAlpha && firstNumber
+            ? `${firstAlpha}${firstNumber.padStart(2, "0")}`
+            : "",
+
+        firstAlpha && firstNumber
+            ? `${firstAlpha}${firstNumber}`
+            : "",
+
+        alphaPrefix && firstNumber
+            ? `${alphaPrefix}${firstNumber}`
+            : "",
+
+        alphaPrefix && firstNumber
+            ? `${alphaPrefix}${firstNumber.padStart(2, "0")}`
+            : "",
+
+        variantToken && normalizedId
+            ? `${normalizedId}${variantToken}`
+            : "",
+
+        variantToken && normalizedNumber
+            ? `${normalizedNumber}${variantToken}`
+            : "",
+
+        primaryVariantShortToken && normalizedId
+            ? `${normalizedId}${primaryVariantShortToken}`
+            : "",
+
+        primaryVariantShortToken && normalizedNumber
+            ? `${normalizedNumber}${primaryVariantShortToken}`
+            : "",
+
+        normalizedId,
+        normalizedNumber,
+        cardId.replace(/\s+/g, ""),
+        cardNumber.replace(/\s+/g, "")
+    ]
+        .map((value) => String(value || "").trim())
+        .filter(Boolean);
+
+    return Array.from(new Set(candidateNames)).map(
+        (name) => `${YYH_IMAGE_ROOT}/${setFolder}/${name}.jpg`
+    );
+}
+
+async function resolveYyhCardImageUrl(cardRecord) {
+    const candidates = buildYyhCardImageCandidates(cardRecord);
+
+    for (const candidate of candidates) {
+        const relativePath = candidate
+            .replace(`${YYH_IMAGE_ROOT}/`, "")
+            .split("/")
+            .filter(Boolean);
+
+        const filePath = path.join(
+            YYH_IMAGE_PUBLIC_ROOT,
+            ...relativePath
+        );
+
+        try {
+            await fs.access(filePath);
+            return candidate;
+        } catch {
+            // Try the next candidate.
+        }
+    }
+
+    return "";
 }
 
 function getSearchTokens(value) {
@@ -1382,7 +1925,14 @@ app.get("/api/yyh/cards", async (req, res) => {
         const total = filteredCards.length;
         const limit = clampLimit(req.query.limit, total || 1, 5000);
         const offset = parseNonNegativeInt(req.query.offset, 0);
-        const items = filteredCards.slice(offset, offset + limit);
+        const pagedCards = filteredCards.slice(offset, offset + limit);
+
+        const items = await Promise.all(
+            pagedCards.map(async (card) => ({
+                ...card,
+                imageUrl: await resolveYyhCardImageUrl(card)
+            }))
+        );
 
         res.json({
             items,
