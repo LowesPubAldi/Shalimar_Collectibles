@@ -22,11 +22,6 @@
                     class="logo"
                 />
             </a>
-            <form class="nav-search" id="navSearch" role="search">
-                <label class="sr-only" for="navSearchInput">Search inventory</label>
-                <input id="navSearchInput" type="search" placeholder="Search cards" autocomplete="off" />
-                <button type="submit" aria-label="Search inventory">Search</button>
-            </form>
             <div class="game-mode-controls">
                 <label class="game-mode-select-wrap" for="gameModeSelect">
                     <span class="sr-only">Game</span>
@@ -50,6 +45,24 @@
                 <span class="mobile-nav-toggle__bar" aria-hidden="true"></span>
             </button>
             <ul class="nav__links" id="primaryNavLinks">
+                <li class="nav__search-item">
+                    <form class="nav-search" id="navSearch" role="search">
+                        <label class="sr-only" for="navSearchInput">Search inventory</label>
+                        <input
+                            id="navSearchInput"
+                            type="search"
+                            placeholder="Search cards"
+                            autocomplete="off"
+                        />
+                        <button
+                            type="submit"
+                            class="nav-search__submit"
+                            aria-label="Search inventory"
+                        >
+                            <span aria-hidden="true">⌕</span>
+                        </button>
+                    </form>
+                </li>
                 <li><a href="contributors.html" aria-current="page">Contributors</a></li>
                 <li><a href="inventory.html">Inventory</a></li>
                 <li><a href="sets.html">Sets</a></li>

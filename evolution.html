@@ -18,11 +18,6 @@
             <a href="index.html?game=Pokemon" class="logo-link" aria-label="Go to Pokemon homepage">
                 <img src="./assets/logo-v4.svg?v=3" alt="Shalimar Collectibles logo" class="logo" />
             </a>
-            <form class="nav-search" id="navSearch" role="search">
-                <label class="sr-only" for="navSearchInput">Search inventory</label>
-                <input id="navSearchInput" type="search" placeholder="Search cards" autocomplete="off" />
-                <button type="submit" aria-label="Search inventory">Search</button>
-            </form>
             <div class="game-mode-controls">
                 <label class="game-mode-select-wrap" for="gameModeSelect">
                     <span class="sr-only">Game</span>
@@ -39,6 +34,24 @@
                 <span class="mobile-nav-toggle__bar" aria-hidden="true"></span>
             </button>
             <ul class="nav__links" id="primaryNavLinks">
+                <li class="nav__search-item">
+                    <form class="nav-search" id="navSearch" role="search">
+                        <label class="sr-only" for="navSearchInput">Search inventory</label>
+                        <input
+                            id="navSearchInput"
+                            type="search"
+                            placeholder="Search cards"
+                            autocomplete="off"
+                        />
+                        <button
+                            type="submit"
+                            class="nav-search__submit"
+                            aria-label="Search inventory"
+                        >
+                            <span aria-hidden="true">⌕</span>
+                        </button>
+                    </form>
+                </li>
                 <li><a href="evolution.html?game=Pokemon" aria-current="page">Evolution</a></li>
                 <li><a href="inventory.html?game=Pokemon">Inventory</a></li>
                 <li><a href="sets.html?game=Pokemon">Sets</a></li>
