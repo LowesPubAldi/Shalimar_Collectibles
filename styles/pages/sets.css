@@ -475,10 +475,10 @@
         padding-right: 0;
         box-sizing: border-box;
     }
-
+    .sets-hero,
     .sets-shell {
-        padding-left: 0;
-        padding-right: 0;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
     .sets-head {
