@@ -15,7 +15,7 @@ const EBAY_CONFIG = {
     environment: (process.env.EBAY_ENV || "sandbox").trim().toLowerCase() === "production" ? "production" : "sandbox",
     marketplaceId: process.env.EBAY_MARKETPLACE_ID || "EBAY_US"
 };
-const SCRYDEX_API_BASE_URL = "https://api.scrydex.com/pokemon/v1/en";
+const SCRYDEX_API_BASE_URL = "https://api.scrydex.com/pokemon/v1";
 const SCRYDEX_API_KEY = process.env.SCRYDEX_API_KEY || "";
 const SCRYDEX_TEAM_ID = process.env.SCRYDEX_TEAM_ID || "";
 const SCRYDEX_POKEMON_SETS_CACHE_PATH = path.join(__dirname, "data", "pokemon-sets-scrydex.json");
@@ -1965,8 +1965,16 @@ function scrydexPokemonQuery(query) {
     const rarity = typeof query.rarity === "string" ? query.rarity.trim().replace(/"/g, "") : "";
 
     if (search) {
-        clauses.push(/^[-\w]+$/.test(search) ? `id:${search}` : `name:\"${search}\"`);
-    }
+        const looksLikeCardId = /^[a-z0-9]+-\d+$/i.test(search);
+
+        clauses.push(
+            looksLikeCardId
+            ? `id:${search}`
+            : search.includes(" ")
+                ? `name:"${search}"`
+                : `name:${search}*`
+            );
+        }
     if (set) {
         const setId = SCRYDEX_POKEMON_SET_ID_BY_NAME.get(set);
         clauses.push(setId ? `expansion.id:${setId}` : `expansion.name:\"${set}\"`);
