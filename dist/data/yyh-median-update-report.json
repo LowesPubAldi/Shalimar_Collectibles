@@ -1,0 +1,68 @@
+{
+  "generatedAt": "2026-08-06T19:27:58.889Z",
+  "writeMode": true,
+  "applySuspicious": false,
+  "markSuspiciousNeedsReview": true,
+  "minSamples": 2,
+  "scoreThreshold": 25,
+  "suspiciousDeltaPct": 25,
+  "fallbackTolerancePercent": 20,
+  "setFilter": null,
+  "csvFiles": [
+    "C:\\Users\\joshv\\OneDrive\\Desktop\\shalimar-cards\\tmp-visible-sold-sample-3.csv"
+  ],
+  "totals": {
+    "csvFiles": 1,
+    "processedRows": 12,
+    "matchedRows": 10,
+    "unmatchedRows": 2,
+    "distinctCardsMatched": 8,
+    "suspiciousCards": 2,
+    "needsReviewPlanned": 2,
+    "needsReviewApplied": 2,
+    "cardsUpdated": 0,
+    "filesUpdated": 2
+  },
+  "files": [
+    {
+      "csvPath": "C:\\Users\\joshv\\OneDrive\\Desktop\\shalimar-cards\\tmp-visible-sold-sample-3.csv",
+      "rows": 12,
+      "matched": 10,
+      "unmatched": 2,
+      "skipped": false
+    }
+  ],
+  "suspicious": [
+    {
+      "set": "Ghost Files",
+      "id": "G178/176",
+      "name": "Burst of Power",
+      "variant": "Standard",
+      "oldPriceUsd": 32.75,
+      "newPriceUsd": 32.75,
+      "baselineMinUsd": 12,
+      "baselineMaxUsd": 18,
+      "compsCount": 2,
+      "observedMinUsd": 15.5,
+      "observedMaxUsd": 50,
+      "deltaPct": 81.94,
+      "reason": "Median is 81.94% above baseline ceiling $18.00"
+    },
+    {
+      "set": "Dark Tournament",
+      "id": "S21",
+      "name": "Yusuke, Unleashed",
+      "variant": "Standard",
+      "oldPriceUsd": 10.5,
+      "newPriceUsd": 10.5,
+      "baselineMinUsd": 15,
+      "baselineMaxUsd": 23,
+      "compsCount": 2,
+      "observedMinUsd": 9,
+      "observedMaxUsd": 12.01,
+      "deltaPct": 30,
+      "reason": "Median is 30% below baseline floor $15.00"
+    }
+  ],
+  "updates": []
+}

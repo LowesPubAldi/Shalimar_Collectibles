@@ -1,0 +1,9 @@
+set,id,name,variant,baselineMinUsd,baselineMaxUsd,baselineMidUsd,observedMedianUsd,observedMinUsd,observedMaxUsd,sampleSize,status,deltaPct
+Ghost Files,G178/176,Burst of Power,Standard,20,50,32.75,32.75,15.5,50,2,in-range,0
+Dark Tournament,S21,"Yusuke, Unleashed",Standard,9,12,10.5,10.5,9,12.01,2,in-range,0
+Exile,L9,Energy Spiral,Standard,12,18,14.99,14.99,14.99,14.99,1,in-range,0
+Dark Tournament,TR7,"Genkai, Young Fighter",Standard,15,21,17.99,17.99,17.99,17.99,1,in-range,0
+Ghost Files,S139/176,School Girl Outfit,Standard,2.5,4,3,3,3,3,1,in-range,0
+Ghost Files,S51/176,"Touya, the Ice Master",Standard,4,6,4.99,4.99,4.99,4.99,1,in-range,0
+Ghost Files,S105/176,Kayko's Promise,Standard,1.5,3,1.99,1.99,1.99,1.99,1,in-range,0
+Gateway,U6,Bang!,Standard,8,12,10,10,10,10,1,in-range,0

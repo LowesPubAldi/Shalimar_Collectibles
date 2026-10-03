@@ -1,0 +1,41 @@
+{
+  "generatedAt": "2026-08-06T19:31:58.808Z",
+  "queueJson": "C:\\Users\\joshv\\OneDrive\\Desktop\\shalimar-cards\\data\\yyh-median-update-report.suspicious.json",
+  "approvalsJson": null,
+  "approveAll": true,
+  "writeMode": false,
+  "totals": {
+    "queueItems": 2,
+    "approved": 2,
+    "changed": 2,
+    "skipped": 0,
+    "unresolved": 0,
+    "filesTouched": 0
+  },
+  "decisions": [
+    {
+      "set": "Ghost Files",
+      "id": "G178/176",
+      "name": "Burst of Power",
+      "variant": "Standard",
+      "approved": true,
+      "changed": true,
+      "reason": "Applied",
+      "approvedPriceUsd": 32.75,
+      "compsCount": 2,
+      "filePath": "C:\\Users\\joshv\\OneDrive\\Desktop\\shalimar-cards\\data\\pricing\\yyh\\ghost-files-pricing.json"
+    },
+    {
+      "set": "Dark Tournament",
+      "id": "S21",
+      "name": "Yusuke, Unleashed",
+      "variant": "Standard",
+      "approved": true,
+      "changed": true,
+      "reason": "Applied",
+      "approvedPriceUsd": 10.5,
+      "compsCount": 2,
+      "filePath": "C:\\Users\\joshv\\OneDrive\\Desktop\\shalimar-cards\\data\\pricing\\yyh\\dark-tournament-pricing.json"
+    }
+  ]
+}

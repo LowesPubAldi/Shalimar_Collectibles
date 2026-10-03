@@ -1,0 +1,4 @@
+set,id,name,variant,baselineMinUsd,baselineMaxUsd,baselineMidUsd,observedMedianUsd,observedMinUsd,observedMaxUsd,sampleSize,status,deltaPct
+Dark Tournament,S14,"Genkai, the Mentor",Standard,4,7,5.5,9.99,9.99,9.99,1,above-range,42.71
+Exile,TR12,"Kurama, Loving Friend",Standard,13,18,15.5,7.99,7.99,7.99,1,below-range,-38.54
+Exile,L3,Villainous Energy,Standard,13,18,15.5,14.99,14.99,14.99,1,in-range,0

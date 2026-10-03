@@ -1,0 +1,62 @@
+{
+  "generatedAt": "2026-08-14T21:23:54.216Z",
+  "csvPath": "C:\\Users\\joshv\\OneDrive\\Desktop\\shalimar-cards\\tmp-yyh-singles-2026-08-09-to-2026-08-14.csv",
+  "matchedRows": 3,
+  "unmatchedRows": 29,
+  "distinctCardsMatched": 3,
+  "summary": {
+    "belowRange": 1,
+    "inRange": 1,
+    "aboveRange": 1
+  },
+  "comparisons": [
+    {
+      "set": "Dark Tournament",
+      "id": "S14",
+      "name": "Genkai, the Mentor",
+      "variant": "Standard",
+      "baselineMinUsd": 4,
+      "baselineMaxUsd": 7,
+      "baselineMidUsd": 5.5,
+      "observedMedianUsd": 9.99,
+      "observedMinUsd": 9.99,
+      "observedMaxUsd": 9.99,
+      "sampleSize": 1,
+      "status": "above-range",
+      "deltaPct": 42.71,
+      "rangeSource": "notes"
+    },
+    {
+      "set": "Exile",
+      "id": "TR12",
+      "name": "Kurama, Loving Friend",
+      "variant": "Standard",
+      "baselineMinUsd": 13,
+      "baselineMaxUsd": 18,
+      "baselineMidUsd": 15.5,
+      "observedMedianUsd": 7.99,
+      "observedMinUsd": 7.99,
+      "observedMaxUsd": 7.99,
+      "sampleSize": 1,
+      "status": "below-range",
+      "deltaPct": -38.54,
+      "rangeSource": "notes"
+    },
+    {
+      "set": "Exile",
+      "id": "L3",
+      "name": "Villainous Energy",
+      "variant": "Standard",
+      "baselineMinUsd": 13,
+      "baselineMaxUsd": 18,
+      "baselineMidUsd": 15.5,
+      "observedMedianUsd": 14.99,
+      "observedMinUsd": 14.99,
+      "observedMaxUsd": 14.99,
+      "sampleSize": 1,
+      "status": "in-range",
+      "deltaPct": 0,
+      "rangeSource": "notes"
+    }
+  ]
+}

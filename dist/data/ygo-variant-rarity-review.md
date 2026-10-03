@@ -1,0 +1,1223 @@
+- Working baseline (2026-08-27): 1,032 YGOPRODeck sets yielded 37,393 exact card records through `cardinfo.php?cardset=...`. This is the project total. The `cardsets.php` metadata sum of 38,469 and the prior 44,953 denominator are excluded because they overcount records.
+- Initial catalog comparison used an overly strict matcher and was superseded. The corrected comparison handles singular card entries and indented ledger lines.
+- Ultimate Tournament Pack 1: 49 cards processed.
+- OTS Tournament Pack 30: 27 cards processed.
+- The Lost Art Promotion 2025 F: 1 card processed.
+- Updated ledger total: 36207 Yu-Gi-Oh cards.
+- OTS Tournament Pack 29: 27 cards processed.
+- OTS Tournament Pack 28: 27 cards processed.
+- OTS Tournament Pack 27: 27 cards processed.
+- Updated ledger total: 36288 Yu-Gi-Oh cards.
+- OTS Tournament Pack 26: 29 cards processed.
+- OTS Tournament Pack 25: 27 cards processed.
+- OTS Tournament Pack 24: 27 cards processed.
+- Updated ledger total: 36371 Yu-Gi-Oh cards.
+- Corrected catalog comparison: all 1,032 exact set names are represented in the ledger.
+- Named remaining-set checklist: [ygo-api-unprocessed-set-checklist.md](ygo-api-unprocessed-set-checklist.md).
+- OTS Tournament Pack 23: 27 cards processed.
+- OTS Tournament Pack 22: 25 cards processed.
+- Phantom Rage: 101 cards processed as a complete set.
+- Updated ledger total: 36524 Yu-Gi-Oh cards.
+- Phantom Rage Premiere! promotional card: 1 card processed.
+- Structure Deck: Spirit Charmers: 41 cards processed.
+- The Lost Art Promotion 2020 M: 1 card processed.
+- OTS Tournament Pack 14: 25 cards processed.
+- Legendary Collection: 3 cards processed.
+- Updated ledger total: 36595 Yu-Gi-Oh cards.
+- Duelist Revolution: 100 cards processed.
+- Shonen Jump May 2010 subscription bonus: 2 cards processed.
+- Yu-Gi-Oh! R Volume 4 promotional card: 1 card processed.
+- Duelist Pack Collection Tin 2010: 10 cards processed.
+- Absolute Powerforce: 100 cards processed.
+- Updated ledger total: 36808 Yu-Gi-Oh cards.
+- Turbo Pack: Booster Two: 21 cards processed.
+- Hidden Arsenal: 30 cards processed.
+- Raging Battle: 100 cards processed.
+- Updated ledger total: 36959 Yu-Gi-Oh cards.
+- Crimson Crisis: 100 cards processed.
+- Duelist Pack: Yusei: 30 cards processed.
+- Starter Deck: Yu-Gi-Oh! 5D's: 43 cards processed.
+- Updated ledger total: 37132 Yu-Gi-Oh cards.
+- Retro Pack: 101 cards processed.
+- Gold Series: 45 cards processed.
+- Tactical Evolution: 90 cards processed as returned by the API.
+- Updated ledger total: 37368 Yu-Gi-Oh cards.
+- Tournament Pack 8: 20 cards processed.
+- Hobby League 2 participation card B: 1 card processed.
+- Hobby League 2 participation card A: 1 card processed.
+- Nike collaboration cards: 2 cards processed.
+- EFootball collaboration cards: 1 card processed.
+- Updated ledger total: 37393 Yu-Gi-Oh cards.
+
+- WCS 2025 Limited Pack: 1 card processed.
+- Battles of Legend: Monster Mayhem: 177 cards processed as a complete set.
+- The Lost Art Promotion N: 1 card processed.
+- SJ Jump Pack Spring 2020 promotional card: 1 card processed.
+- Ignition Assault: 100 cards processed as a complete set.
+- Ignition Assault Sneak Peek Participation Card: 1 card processed.
+- Trials of the Pharaoh - Trials of the Kingdom promotional card: 1 card processed.
+- OTS Tournament Pack 12: 25 cards processed.
+- OTS Tournament Pack 12 (POR): 35 cards processed.
+- Chaos Impact Special Edition: 4 cards processed.
+- Speed Duel: Trials of the Kingdom: 51 cards processed.
+- Speed Duel: Trials of the Kingdom Sneak Peek participation cards: 10 cards processed.
+- Mystic Fighters: 60 cards processed as a complete set.
+- Chaos Impact: 100 cards processed as a complete set.
+- Chaos Impact Sneak Peek Participation Card: 1 card processed.
+- Speed Duel Tournament Pack 2: 18 cards processed.
+- Duel Devastator: 56 cards processed as a complete set.
+- Legendary Duelists: Immortal Destiny: 58 cards processed as a complete set.
+- Yu-Gi-Oh! Advent Calendar (2019): 23 cards processed.
+- Yu-Gi-Oh! Advent Calendar: 1 card processed.
+- Rising Rampage Special Edition: 4 cards processed.
+- Yu-Gi-Oh! ARC-V Volume 6 promotional card: 1 card processed.
+- 2019 Gold Sarcophagus Tin: 14 cards processed.
+- 2019 Gold Sarcophagus Tin Mega Pack: 270 cards processed as a complete set.
+- Yu-Gi-Oh! Championship Series 2019 prize card: 1 card processed.
+- Fists of the Gadgets: 60 cards processed as a complete set.
+- Yu-Gi-Oh! Legacy of the Duelist: Link Evolution promotional cards: 3 cards processed.
+- Speed Duel: Scars of Battle Launch Event participation card: 1 card processed.
+- OTS Tournament Pack 11 (POR): 30 cards processed.
+- OTS Tournament Pack 11: 25 cards processed.
+- Structure Deck: Rokket Revolt: 46 cards processed.
+- Speed Duel: Scars of Battle: 50 cards processed.
+- The Lost Art Promotion L: 1 card processed.
+- Speed Duel Starter Decks: Ultimate Predators: 63 cards processed.
+- Event Pack Speed Duel: 6 cards processed.
+- Rising Rampage: 100 cards processed as a complete set.
+- Rising Rampage Sneak Peek Participation Card: 1 card processed.
+- Battles of Legend: Hero's Revenge: 94 cards processed as a complete set.
+- The Lost Art Promotion K: 1 card processed.
+- Dark Neostorm Special Edition: 4 cards processed.
+- Speed Duel: Attack from the Deep: 50 cards processed.
+- Dark Neostorm: 100 cards processed as a complete set.
+- Dark Neostorm Sneak Peek Participation Card: 1 card processed.
+- Structure Deck: Order of the Spellcasters: 41 cards processed.
+- OTS Tournament Pack 10: 25 cards processed.
+- OTS Tournament Pack 10 (POR): 35 cards processed.
+- Speed Duel Tournament Pack 1: 18 cards processed.
+- Yu-Gi-Oh! Day April 2019 promotional card: 1 card processed.
+- Duel Power: 106 cards processed as a complete set.
+- Speed Duel: Arena of Lost Souls: 50 cards processed.
+- The Infinity Chasers: 60 cards processed as a complete set.
+- Savage Strike Special Edition: 4 cards processed.
+- Yu-Gi-Oh! ARC-V Volume 5 promotional card: 1 card processed.
+- The Lost Art Promotion I: 1 card processed.
+- Structure Deck: Soulburner: 45 cards processed.
+- The Lost Art Promotion M: 1 card processed.
+- The Lost Art Promotion H: 1 card processed.
+- The Lost Art Promotion G: 1 card processed.
+- WSJ Jump Pack Spring 2019 promotional card: 1 card processed.
+- OTS Tournament Pack 9: 26 cards processed.
+- OTS Tournament Pack 9 (POR): 36 cards processed.
+- Soul Fusion Special Edition: 4 cards processed.
+- Hidden Summoners: 60 cards processed as a complete set.
+- Yu-Gi-Oh! ARC-V Volume 4 promotional card: 1 card processed.
+- Structure Deck: Zombie Horde: 42 cards processed.
+- Weekly Shonen Jump December 2018 membership promotional cards: 4 cards processed.
+- Weekly Shonen Jump November 2018 membership promotional card: 1 card processed.
+- Yu-Gi-Oh! Advent Calendar (2018): 24 cards processed.
+- Soul Fusion: 100 cards processed as a complete set.
+- Soul Fusion Sneak Peek Participation Card: 1 card processed.
+- Legendary Hero Decks: 117 cards processed as a complete set.
+- Legendary Duelists: White Dragon Abyss: 56 cards processed as a complete set.
+- Yu-Gi-Oh! World Championship 2019 Japanese National Qualifiers prize cards: 2 cards processed.
+- Yu-Gi-Oh! Championship Series 2018 prize card: 1 card processed.
+- Cybernetic Horizon Special Edition: 4 cards processed.
+- Yu-Gi-Oh! The Dark Side of Dimensions Movie Pack Special Edition: 4 cards processed.
+- WSJ Jump Pack Fall 2018 promotional card: 1 card processed.
+- 2018 Mega-Tin Mega Pack: 233 cards processed as a complete set.
+- 2018 Mega-Tins: 10 cards processed.
+- OTS Tournament Pack 8: 26 cards processed.
+- OTS Tournament Pack 8 (POR): 36 cards processed.
+- Shadows in Valhalla: 60 cards processed as a complete set.
+- Weekly Shonen Jump July 2018 membership promotional card: 1 card processed.
+- Structure Deck: Powercode Link: 42 cards processed.
+- Yu-Gi-Oh! World Championship 2018 prize cards: 2 cards processed.
+- Cybernetic Horizon: 100 cards processed as a complete set.
+- Cybernetic Horizon Sneak Peek Participation Card: 1 card processed.
+- Starter Deck: Codebreaker: 45 cards processed.
+- The Lost Art Promotion F: 1 card processed.
+- Battles of Legend: Relentless Revenge: 105 cards processed as a complete set.
+- Flames of Destruction Special Edition: 4 cards processed.
+- The Lost Art Promotion E: 1 card processed.
+- Dark Saviors: 60 cards processed as a complete set.
+- Flames of Destruction: 100 cards processed as a complete set.
+- Weekly Shonen Jump April 2018 membership promotional card: 1 card processed.
+- The Lost Art Promotion D: 1 card processed.
+- Flames of Destruction Sneak Peek Participation Card: 1 card processed.
+- Structure Deck: Lair of Darkness: 42 cards processed.
+- OTS Tournament Pack 7: 26 cards processed.
+- OTS Tournament Pack 7 (POR): 34 cards processed.
+- The Lost Art Promotion C: 1 card processed.
+- Yugi & Kaiba Collector Box: 1 card processed.
+- Extreme Force Special Edition: 4 cards processed.
+- Legendary Collection Kaiba: 5 cards processed.
+- Star Pack VRAINS: 50 cards processed as a complete set.
+- Legendary Collection Kaiba Mega Pack: 110 cards processed as a complete set.
+- Yu-Gi-Oh! ARC-V Volume 3 promotional card: 1 card processed.
+- The Lost Art Promotion B: 1 card processed.
+- Legendary Duelists: Ancient Millennium: 53 cards processed as a complete set.
+- The Lost Art Promotion A: 1 card processed.
+- Extreme Force: 100 cards processed as a complete set.
+- Extreme Force Sneak Peek Participation Card: 1 card processed.
+- Structure Deck: Wave of Light: 42 cards processed.
+- Advanced Demo Deck Extra Pack: 10 cards processed.
+- WSJ Jump Pack Spring 2018 promotional card: 1 card processed.
+- Weekly Shonen Jump January 2018 membership promotional card: 1 card processed.
+- Circuit Break Special Edition: 4 cards processed.
+- OTS Tournament Pack 6: 26 cards processed.
+- Kaiba's Collector Box: 1 card processed.
+- Spirit Warriors: 60 cards processed as a complete set.
+- Structure Deck: Cyberse Link: 43 cards processed.
+- Weekly Shonen Jump November 2017 membership promotional card: 1 card processed.
+- Circuit Break: 100 cards processed as a complete set.
+- Circuit Break Sneak Peek Participation Card: 1 card processed.
+- Legendary Dragon Decks: 111 cards processed as a complete set.
+- Code of the Duelist Special Edition: 4 cards processed.
+- Yugi's Collector Box: 1 card processed.
+- Legendary Duelists: 52 cards processed as a complete set.
+- Yu-Gi-Oh! ARC-V Volume 2 promotional card: 1 card processed.
+- Yu-Gi-Oh! Championship Series 2017 prize card: 1 card processed.
+- 2017 Mega-Tins: 8 cards processed.
+- 2017 Mega-Tin Mega Pack: 239 cards processed as a complete set.
+- Yu-Gi-Oh! World Championship 2017 prize cards: 2 cards processed.
+- Code of the Duelist: 100 cards processed as a complete set.
+- OTS Tournament Pack 5: 27 cards processed.
+- WSJ Jump Pack Fall 2017 promotional card: 1 card processed.
+- Code of the Duelist Sneak Peek Participation Card: 1 card processed.
+- Starter Deck: Link Strike: 43 cards processed.
+- Battles of Legend: Light's Revenge: 80 cards processed as a complete set.
+- Weekly Shonen Jump July 2017 membership promotional card: 1 card processed.
+- Pendulum Evolution: 60 cards processed as a complete set.
+- Maximum Crisis: Special Edition: 4 cards processed.
+- Yu-Gi-Oh! The Dark Side of Dimensions Blu-ray & DVD promotional card: 1 card processed.
+- Duelist Pack: Dimensional Guardians: 45 cards processed.
+- Maximum Crisis: 100 cards processed as a complete set.
+- Maximum Crisis Sneak Peek Participation Card: 1 card processed.
+- Machine Reactor Structure Deck: 40 cards processed.
+- Dinosmasher's Fury Structure Deck: 39 cards processed.
+- OTS Tournament Pack 4: 27 cards processed.
+- Yu-Gi-Oh! ARC-V Volume 1 promotional card: 1 card processed.
+- Weekly Shonen Jump April 2017 membership promotional card: 1 card processed.
+- Duelist Saga: 100 cards processed as a complete set.
+- Raging Tempest: Special Edition: 4 cards processed.
+- Star Pack Battle Royal: 50 cards processed as a complete set.
+- Fusion Enforcers: 60 cards processed as a complete set.
+- Raging Tempest: 100 cards processed as a complete set.
+- Raging Tempest Sneak Peek Participation Card: 1 card processed.
+- Yu-Gi-Oh! The Dark Side of Dimensions Theater distribution cards: 1 card processed.
+- Pendulum Domination Structure Deck: 43 cards processed.
+- Weekly Shonen Jump January 2017 membership promotional card: 1 card processed.
+- Yu-Gi-Oh! The Dark Side of Dimensions Movie Pack: Gold Edition: 61 cards processed.
+- WSJ Jump Pack Spring 2017 promotional card: 1 card processed.
+- Invasion: Vengeance: Special Edition: 4 cards processed.
+- Destiny Soldiers: 60 cards processed as a complete set.
+- OTS Tournament Pack 3: 27 cards processed.
+- Invasion: Vengeance: 100 cards processed as a complete set.
+- Invasion: Vengeance Sneak Peek Participation Card: 1 card processed.
+- Structure Deck: Yugi Muto: 45 cards processed.
+- Structure Deck: Seto Kaiba: 44 cards processed.
+- Legendary Decks II: 130 cards processed as a complete set.
+- Weekly Shonen Jump October 2016 membership promotional card: 1 card processed.
+- The Dark Illusion: Special Edition: 4 cards processed.
+- Duelist Pack: Rivals of the Pharaoh: 46 cards processed.
+- Yu-Gi-Oh! ZEXAL Volume 9 promotional card: 1 card processed.
+- 2016 Mega-Tins: 12 cards processed.
+- 2016 Mega-Tin Mega Pack: 239 cards processed as a complete set.
+- Yu-Gi-Oh! Championship Series 2016 Prize Card: 1 card processed.
+- Dragons of Legend: Unleashed: 73 cards processed as a complete set.
+- The Dark Illusion: 100 cards processed as a complete set.
+- The Dark Illusion Sneak Peek Participation Card: 1 card processed.
+- Yu-Gi-Oh! The Dark Side of Dimensions Movie Pack: 57 cards processed as a complete set.
+- OTS Tournament Pack 2: 27 cards processed.
+- Rise of the True Dragons Structure Deck: 41 cards processed.
+- Weekly Shonen Jump July 2016 membership promotional card: 1 card processed.
+- WSJ Jump Pack Fall 2016 promotional card: 1 card processed.
+- Shining Victories: Special Edition: 4 cards processed.
+- Starter Deck: Yuya: 43 cards processed.
+- Shining Victories: 100 cards processed as a complete set.
+- Shining Victories Sneak Peek Participation Card: 1 card processed.
+- Weekly Shonen Jump April 2016 membership promotional card: 1 card processed.
+- Millennium Pack: 48 cards processed.
+- Yu-Gi-Oh! 5D's Volume 9 promotional card: 1 card processed.
+- OTS Tournament Pack 1: 27 cards processed.
+- Premium Gold: Infinite Gold: 100 cards processed as a complete set.
+- Yu-Gi-Oh! ZEXAL Volume 8 promotional card: 1 card processed.
+- Breakers of Shadow: Special Edition: 4 cards processed.
+- Wing Raiders: 60 cards processed as a complete set.
+- WSJ Jump Pack Spring 2016 promotional card: 1 card processed.
+- Emperor of Darkness Structure Deck: 41 cards processed.
+- Weekly Shonen Jump January 2016 membership promotional card: 1 card processed.
+- Demo Deck 2016: 20 cards processed.
+- Breakers of Shadow: 100 cards processed as a complete set.
+- Breakers of Shadow Sneak Peek Participation Card: 1 card processed.
+- Clash of Rebellions: Special Edition: 4 cards processed.
+- Dimension of Chaos: Special Edition: 4 cards processed.
+- Master of Pendulum Structure Deck: 43 cards processed.
+- Yugi's Legendary Decks: 125 cards processed as a complete set.
+- Dimension of Chaos: 100 cards processed as a complete set.
+- Dimension of Chaos Sneak Peek Participation Card: 1 card processed.
+- Astral Pack Eight: 27 cards processed.
+- Weekly Shonen Jump October 2015 membership promotional card: 1 card processed.
+- Yu-Gi-Oh! 5D's volume 8 promotional card: 1 card processed.
+- High-Speed Riders: 60 cards processed as a complete set.
+- 2015 Mega-Tin Mega Pack: 247 cards processed as a complete set.
+- 2015 Mega-Tins: 6 cards processed.
+- Yu-Gi-Oh! ZEXAL Volume 7 promotional card: 1 card processed.
+- Yu-Gi-Oh! Championship Series 2015 Prize Card: 1 card processed.
+- Synchron Extreme Structure Deck: 43 cards processed.
+- Clash of Rebellions: 100 cards processed as a complete set.
+- Clash of Rebellions Sneak Peek Participation Card: 1 card processed.
+- Dragons of Legend 2: 45 cards processed.
+- Crossed Souls: Advance Edition: 4 cards processed.
+- Weekly Shonen Jump July 2015 membership promotional card: 1 card processed.
+- Duelist Pack: Battle City: 47 cards processed.
+- Star Pack ARC-V: 50 cards processed as a complete set.
+- Astral Pack Seven: 27 cards processed.
+- Dark Legion Starter Deck: 29 cards processed.
+- Saber Force Starter Deck: 28 cards processed.
+- 2-Player Starter Deck: Yuya & Declan: 42 cards processed.
+- Crossed Souls: 100 cards processed as a complete set.
+- Crossed Souls Sneak Peek Participation Card: 1 card processed.
+- Weekly Shonen Jump April 2015 membership promotional card: 1 card processed.
+- 2013 Collectible Tins Wave 2: 9 cards processed.
+- Yu-Gi-Oh! 5D's Volume 5 promotional card: 1 card processed.
+- Shadow Specters: 100 cards processed as a complete set.
+- Shadow Specters Sneak Peek Participation Card: 1 card processed.
+- Weekly Shonen Jump September 2013 membership promotional card: 1 card processed.
+- Legendary Collection 4: Joey's World: 6 cards processed.
+- Legendary Collection 4: Joey's World Mega Pack: 298 cards processed as a complete set.
+- Judgment of the Light: Deluxe Edition: 4 cards processed.
+- Starter Deck: Kaiba Reloaded: 48 cards processed.
+- Starter Deck: Yugi Reloaded: 46 cards processed.
+- World Superstars: 50 cards processed as a complete set.
+- Demo Deck 2015: 20 cards processed.
+- Premium Gold: Return of the Bling: 91 cards processed as a complete set.
+- Yu-Gi-Oh! 5D's Volume 7 promotional card: 1 card processed.
+- Secrets of Eternity: Super Edition: 14 cards processed.
+- Weekly Shonen Jump February 2015 membership promotional card: 1 card processed.
+- The Secret Forces: 60 cards processed as a complete set.
+- Yu-Gi-Oh! ZEXAL Volume 6 promotional card: 1 card processed.
+- HERO Strike Structure Deck: 45 cards processed.
+- Secrets of Eternity: 100 cards processed as a complete set.
+- Secrets of Eternity Sneak Peek Participation Card: 1 card processed.
+- Astral Pack Six: 28 cards processed.
+- The New Challengers: Super Edition: 14 cards processed.
+- Noble Knights of the Round Table Power-Up Pack: 6 cards processed.
+- Noble Knights of the Round Table Box Set: 38 cards processed.
+- The New Challengers: 100 cards processed as a complete set.
+- The New Challengers Sneak Peek Participation Card: 1 card processed.
+- Legendary Collection 5D's Mega Pack: 256 cards processed as a complete set.
+- Legendary Collection 5D's: 5 cards processed.
+- Geargia Rampage Structure Deck: 35 cards processed.
+- Weekly Shonen Jump November 2014 membership promotional card: 1 card processed.
+- Duelist Alliance: Deluxe Edition: 7 cards processed.
+- Yu-Gi-Oh! Championship Series 2014 Prize Card: 1 card processed.
+- Yu-Gi-Oh! 5D's Volume 6 promotional card: 1 card processed.
+- 2014 Mega-Tins: 6 cards processed.
+- 2014 Mega-Tin Mega Pack: 247 cards processed as a complete set.
+- Weekly Shonen Jump August 2014 membership promotional card: 1 card processed.
+- Duelist Alliance: 100 cards processed as a complete set.
+- Duelist Alliance Sneak Peek Participation Card: 1 card processed.
+- Battle Pack 3: Monster League: 237 cards processed as a complete set.
+- Astral Pack Five: 26 cards processed.
+- Astral Pack Three: 26 cards processed.
+- Saga of Blue-Eyes White Dragon Structure Deck: 40 cards processed.
+- Yu-Gi-Oh! Championship Series 2013 Prize Card: 1 card processed.
+- 2013 Collectible Tins Wave 1: 9 cards processed.
+- Judgment of the Light: 100 cards processed as a complete set.
+- Judgment of the Light Sneak Peek Participation Card: 1 card processed.
+- Number Hunters: 60 cards processed as a complete set.
+- Weekly Shonen Jump July 2013 membership promotional card: 1 card processed.
+- Duelist League 16 participation cards: 20 cards processed.
+- Battle Pack 2: War of the Giants: 215 cards processed as a complete set.
+- Super Starter: V for Victory: 42 cards processed.
+- Super Starter Power-Up Pack: 15 cards processed.
+- Space-Time Showdown Power-Up Pack: 15 cards processed.
+- Super Starter: Space-Time Showdown: 40 cards processed.
+- Yu-Gi-Oh! ZEXAL Volume 3 promotional card: 1 card processed.
+- Lord of the Tachyon Galaxy: 100 cards processed as a complete set.
+- Lord of the Tachyon Galaxy Sneak Peek Participation Card: 1 card processed.
+- Hidden Arsenal 7: Knight of Stars: 70 cards processed as a complete set.
+- Astral Pack Two: 25 cards processed.
+- Yu-Gi-Oh! 5D's Volume 4 promotional card: 1 card processed.
+- Cosmo Blazer: Special Edition: 2 cards processed.
+- Weekly Shonen Jump March 2013 membership promotional card: 1 card processed.
+- Zexal Collection Tin: 24 cards processed.
+- Star Pack 2013: 50 cards processed as a complete set.
+- Onslaught of the Fire Kings Structure Deck: 39 cards processed.
+- Duel Terminal 7b: 49 cards processed.
+- Cosmo Blazer: 100 cards processed as a complete set.
+- Cosmo Blazer Sneak Peek Participation Card: 1 card processed.
+- Collectible Tins 2012 Wave 2.5: 5 cards processed.
+- Weekly Shonen Jump Alpha December 2012 membership promotional card: 1 card processed.
+- Duelist League 15 participation cards: 20 cards processed.
+- Abyss Rising: Special Edition: 2 cards processed.
+- Yu-Gi-Oh! ZEXAL Volume 2 promotional card: 1 card processed.
+- Astral Pack One: 25 cards processed.
+- Abyss Rising: 100 cards processed as a complete set.
+- Abyss Rising Sneak Peek Participation Card: 1 card processed.
+- Collectible Tins 2012 Wave 2: 9 cards processed.
+- Weekly Shonen Jump Alpha September 2012 membership promotional card: 1 card processed.
+- Duel Terminal 7a: 51 cards processed.
+- Turbo Pack: Booster Eight: 21 cards processed.
+- Weekly Shonen Jump Alpha April 2012 membership promotional card: 1 card processed.
+- Battle Pack Tournament Prize Cards: 20 cards processed.
+- Duel Terminal 6b: 50 cards processed.
+- Battle Pack: Epic Dawn: 220 cards processed as a complete set.
+- Galactic Overlord: 100 cards processed as a complete set.
+- Galactic Overlord Sneak Peek Participation Card: 1 card processed.
+- Starter Deck: Xyz Symphony: 43 cards processed.
+- Shonen Jump Vol. 10, Issue 4 promotional card: 1 card processed.
+- Hidden Arsenal 5: Steelswarm Invasion: Special Edition: 2 cards processed.
+- Premium Collection Tin: 25 cards processed.
+- Order of Chaos: Special Edition: 2 cards processed.
+- Shonen Jump Vol. 10, Issue 3 promotional card: 1 card processed.
+- Ra Yellow Mega Pack: 113 cards processed as a complete set.
+- Yu-Gi-Oh! 5D's Volume 2 promotional card: 1 card processed.
+- Duel Terminal 6a: 50 cards processed.
+- Duel Terminal 6: 2 cards processed.
+- Dragons Collide Structure Deck: 40 cards processed.
+- Order of Chaos: 100 cards processed as a complete set.
+- Order of Chaos Sneak Peek Participation Card: 1 card processed.
+- Yu-Gi-Oh! GX Volume 8 promotional card: 1 card processed.
+- Shonen Jump Vol. 10, Issue 1 promotional card: 1 card processed.
+- Turbo Pack: Booster Seven: 21 cards processed.
+- Samurai Assault: 1 card processed.
+- Hidden Arsenal 5: Steelswarm Invasion: 60 cards processed as a complete set.
+- Shonen Jump Vol. 9, Issue 10 promotional card: 1 card processed.
+- Shonen Jump December 2011 subscription bonus: 2 cards processed.
+- Duelist League 13 participation cards: 20 cards processed.
+- Shonen Jump Vol. 9, Issue 6 promotional card: 1 card processed.
+- Shonen Jump June/July 2011 subscription bonus: 2 cards processed.
+- Duel Terminal 5: 2 cards processed.
+- Duel Terminal 5a: 50 cards processed.
+- Photon Shockwave: 100 cards processed as a complete set.
+- Photon Shockwave Sneak Peek Participation Card: 1 card processed.
+- Collectible Tins 2011 Wave 2: 9 cards processed.
+- Gates of the Underworld Structure Deck: 39 cards processed.
+- Legendary Collection 2: The Duel Academy Years: 13 cards processed.
+- Legendary Collection 2: The Duel Academy Years Mega Pack: 266 cards processed as a complete set.
+- Duel Terminal 5b: 50 cards processed.
+- Generation Force: Special Edition: 2 cards processed.
+- Shonen Jump Vol. 9, Issue 8 promotional card: 1 card processed.
+- Collectible Tins 2011 Wave 1: 9 cards processed.
+- Yu-Gi-Oh! GX Volume 7 promotional card: 1 card processed.
+- Generation Force: 100 cards processed as a complete set.
+- Yu-Gi-Oh! GX Volume 9 promotional card: 1 card processed.
+- Yu-Gi-Oh! Championship Series 2011 Prize Card: 1 card processed.
+- Generation Force Sneak Peek Participation Card: 1 card processed.
+- Turbo Pack: Booster Six: 21 cards processed.
+- World Championship 2011 Card Pack: 20 cards processed.
+- Yu-Gi-Oh! 3D Bonds Beyond Time DVD promotional card: 1 card processed.
+- Hidden Arsenal: Special Edition: 2 cards processed.
+- Starter Deck: Dawn of the Xyz: 43 cards processed.
+- Yu-Gi-Oh! 5D's Volume 1 promotional card: 1 card processed.
+- Gold Series 4: Pyramids Edition: 50 cards processed as a complete set.
+- Lost Sanctuary Structure Deck: 38 cards processed.
+- Duelist League 3 participation cards: 19 cards processed.
+- Duelist Pack: Crow: 30 cards processed.
+- Yu-Gi-Oh! 5D's World Championship 2011: Over the Nexus promotional cards: 3 cards processed.
+- Extreme Victory: 100 cards processed as a complete set.
+- Yu-Gi-Oh! World Championship Qualifier National Championships 2011 prize cards: 3 cards processed.
+- Extreme Victory Sneak Peek Participation Card: 1 card processed.
+- Hidden Arsenal 4: Trishula's Triumph: 60 cards processed as a complete set.
+- Turbo Pack: Booster Five: 21 cards processed.
+- Shonen Jump Vol. 9, Issue 4 promotional card: 1 card processed.
+- Duelist Pack Collection Tin 2011: 4 cards processed.
+- Storm of Ragnarok: Special Edition: 2 cards processed.
+- Dragunity Legion Structure Deck: 39 cards processed.
+- Shonen Jump Vol. 9, Issue 3 promotional card: 1 card processed.
+- Yu-Gi-Oh! GX Volume 6 promotional card: 1 card processed.
+- Yu-Gi-Oh! 3D Bonds Beyond Time Theater distribution card: 1 card processed.
+- Yu-Gi-Oh! 3D Bonds Beyond Time Movie Pack: 9 cards processed.
+- Demo Pack: 20 cards processed.
+- Storm of Ragnarok: 100 cards processed as a complete set.
+- Storm of Ragnarok Sneak Peek Participation Card: 1 card processed.
+- Duel Terminal 4: 100 cards processed as a complete set.
+- Duelist Pack: Yusei 3: 30 cards processed.
+- Shonen Jump Vol. 9, Issue 1 promotional card: 1 card processed.
+- Shonen Jump Scholastic Edition Vol. 9, Issue 1 promotional card: 1 card processed.
+- Yu-Gi-Oh! 5D's Duel Transer promotional cards: 3 cards processed.
+- Hidden Arsenal 3: 60 cards processed as a complete set.
+- Shonen Jump December 2010 subscription bonus: 2 cards processed.
+- Duelist League 2 participation cards: 21 cards processed.
+- X-Saber Power-Up: 1 card processed.
+- Turbo Pack: Booster Four: 21 cards processed.
+- Magnificent Maestros: 24 cards processed.
+- Magnificent Monsters: 122 cards processed.
+- Legendary Arc-V Decks: 115 cards processed.
+- THANK YOU PACK: 12 cards processed.
+- Total processed: 28675 Yu-Gi-Oh cards.
+- Starstrike Blast: 100 cards processed as a complete set.
+- Starstrike Blast Sneak Peek Participation Card: 1 card processed.
+- Total processed: 28776 Yu-Gi-Oh cards.
+- Collectible Tins 2010 Wave 2: 10 cards processed.
+- Shonen Jump Vol. 8, Issue 11 promotional card: 1 card processed.
+- Yu-Gi-Oh! 5D's Tag Force 5 Promotional Cards: 3 cards processed.
+- Structure Deck: Marik (TCG): 38 cards processed.
+- Total processed: 28828 Yu-Gi-Oh cards.
+- Yu-Gi-Oh! GX Volume 5 promotional card: 1 card processed.
+- Duel Terminal 3: 100 cards processed as a complete set.
+- Duelist Revolution: Special Edition: 2 cards processed.
+- Shonen Jump Vol. 8, Issue 9 promotional card: 1 card processed.
+- Total processed: 28932 Yu-Gi-Oh cards.
+- Collectible Tins 2010 Wave 1: 15 cards processed.
+- World Championship 2010 Card Pack: 20 cards processed.
+- Total processed: 28967 Yu-Gi-Oh cards.
+- Duelist Revolution Sneak Peek Participation Card: 1 card processed.
+- Hidden Arsenal 2: 60 cards processed as a complete set.
+- Turbo Pack: Booster Three: 21 cards processed.
+- Shonen Jump Vol. 8, Issue 7 promotional card: 1 card processed.
+- Total processed: 29050 Yu-Gi-Oh cards.
+- Gold Series 3: 50 cards processed as a complete set.
+- Yu-Gi-Oh! R Volume 5 promotional card: 1 card processed.
+- Total processed: 29101 Yu-Gi-Oh cards.
+- Starter Deck: Duelist Toolbox: 42 cards processed as a complete set.
+- Duel Terminal 2: 100 cards processed as a complete set.
+- Total processed: 29243 Yu-Gi-Oh cards.
+- Yu-Gi-Oh! Championship Series 2010 Prize Cards: 3 cards processed.
+- The Shining Darkness: 100 cards processed as a complete set.
+- The Shining Darkness Sneak Peek Participation Card: 1 card processed.
+- Shonen Jump Vol. 8, Issue 5 promotional card: 1 card processed.
+- Total processed: 29348 Yu-Gi-Oh cards.
+- Duelist Pack: Kaiba: 40 cards processed as a complete set.
+- Absolute Powerforce: Special Edition: 2 cards processed.
+- Total processed: 29390 Yu-Gi-Oh cards.
+- Shonen Jump Vol. 8, Issue 3 promotional card: 1 card processed.
+- Shonen Jump March 2010 subscription bonus: 2 cards processed.
+- Yu-Gi-Oh! 5D's World Championship 2010: Reverse of Arcadia promotional cards: 3 cards processed.
+- Machina Mayhem Structure Deck: 37 cards processed.
+- Total processed: 29433 Yu-Gi-Oh cards.
+- Absolute Powerforce Sneak Peek Participation Card: 1 card processed.
+- Yu-Gi-Oh! R Volume 3 promotional card: 1 card processed.
+- Duel Terminal 1: 100 cards processed as a complete set.
+- Duelist Pack: Yusei 2: 30 cards processed.
+- Total processed: 29565 Yu-Gi-Oh cards.
+- Ultimate Edition: 1 card processed.
+- Yu-Gi-Oh! GX Volume 4 promotional card: 1 card processed.
+- Twilight Edition: 1 card processed.
+- Shonen Jump Vol. 8, Issue 1 promotional card: 1 card processed.
+- Total processed: 29569 Yu-Gi-Oh cards.
+- Stardust Overdrive: Special Edition: 2 cards processed.
+- Yu-Gi-Oh! 5D's Tag Force 4 promotional cards: 3 cards processed.
+- Stardust Overdrive: 100 cards processed as a complete set.
+- Collectible Tins 2009 Wave 2: 2 cards processed.
+- Total processed: 29676 Yu-Gi-Oh cards.
+- Stardust Overdrive Sneak Peek Participation Card: 1 card processed.
+- Duel Disk - Yusei Version: 1 card processed.
+- Shonen Jump Vol. 7, Issue 11 promotional card: 1 card processed.
+- Warriors' Strike Structure Deck: 38 cards processed.
+- Total processed: 29717 Yu-Gi-Oh cards.
+- Ancient Prophecy: Special Edition: 2 cards processed.
+- Collectible Tins Exclusive 2009: 4 cards processed.
+- Shonen Jump Vol. 7, Issue 9 promotional card: 1 card processed.
+- Ancient Prophecy: 100 cards processed as a complete set.
+- Total processed: 29824 Yu-Gi-Oh cards.
+- Collectible Tins 2009 Wave 1: 2 cards processed.
+- Turbo Pack: Booster One: 21 cards processed.
+- Duelist League 2010 participation cards: 20 cards processed.
+- Ancient Prophecy Sneak Peek Participation Card: 1 card processed.
+- Total processed: 29868 Yu-Gi-Oh cards.
+- Duelist League Demo 2010: 5 cards processed.
+- Retro Pack 2: 101 cards processed as a complete set.
+- Duelist Pack: Yugi: 30 cards processed.
+- Raging Battle: Special Edition: 2 cards processed.
+- Total processed: 30006 Yu-Gi-Oh cards.
+- Duel Terminal - Preview Wave 2: 18 cards processed.
+- Yu-Gi-Oh! R Volume 1 promotional card: 1 card processed.
+- Total processed: 30025 Yu-Gi-Oh cards.
+- Starter Deck: Yu-Gi-Oh! 5D's 2009: 43 cards processed as a complete set.
+- Yu-Gi-Oh! GX Volume 3 promotional card: 1 card processed.
+- Total processed: 30069 Yu-Gi-Oh cards.
+- Shonen Jump Vol. 7, Issue 6 promotional card: 1 card processed.
+- Yu-Gi-Oh! 5D's Stardust Accelerator promotional cards: 2 cards processed.
+- Yu-Gi-Oh! 5D's World Championship 2009: Stardust Accelerator promotional cards: 1 card processed.
+- Yu-Gi-Oh! 5D's Wheelie Breakers Promotional Cards: 3 cards processed.
+- Total processed: 30076 Yu-Gi-Oh cards.
+- Raging Battle Sneak Peek Participation Card: 1 card processed.
+- Shonen Jump Championship 2009 Prize Card: 1 card processed.
+- Gold Series 2009: 50 cards processed as a complete set.
+- Crimson Crisis: Special Edition: 2 cards processed.
+- Total processed: 30130 Yu-Gi-Oh cards.
+- Spellcaster's Command Structure Deck: Special Edition: 1 card processed.
+- Spellcaster's Command Structure Deck: 38 cards processed.
+- Duelist Pack Collection Tin 2009: 7 cards processed.
+- Shonen Jump Vol. 7, Issue 3 promotional card: 1 card processed.
+- Total processed: 30177 Yu-Gi-Oh cards.
+- Crimson Crisis Sneak Peek Participation Card: 1 card processed.
+- Shonen Jump February 2009 subscription bonus: 2 cards processed.
+- Champion Pack: Game Eight: 20 cards processed.
+- Shonen Jump Vol. 7, Issue 1 promotional card: 1 card processed.
+- Total processed: 30201 Yu-Gi-Oh cards.
+- Anniversary Pack: 8 cards processed.
+- Yu-Gi-Oh! GX Tag Force 3 promotional cards: 3 cards processed.
+- Dark Legends: 113 cards processed as a complete set.
+- Crossroads of Chaos: 100 cards processed as a complete set.
+- Total processed: 30425 Yu-Gi-Oh cards.
+- Crossroads of Chaos: Special Edition: 2 cards processed.
+- Shonen Jump Vol. 6, Issue 12 promotional card: 1 card processed.
+- Yu-Gi-Oh! GX Volume 2 promotional card: 1 card processed.
+- Collectible Tins 2008 Wave 2: 2 cards processed.
+- Total processed: 30431 Yu-Gi-Oh cards.
+- Crossroads of Chaos Sneak Peek Participation Card: 1 card processed.
+- Zombie World Structure Deck: 37 cards processed.
+- The Duelist Genesis: Special Edition: 2 cards processed.
+- Collectible Tins Exclusive 2008: 3 cards processed.
+- Total processed: 30474 Yu-Gi-Oh cards.
+- The Duelist Genesis: 100 cards processed as a complete set.
+- Shonen Jump Vol. 6, Issue 9 promotional card: 1 card processed.
+- Total processed: 30575 Yu-Gi-Oh cards.
+- Champion Pack: Game Seven: 20 cards processed.
+- Collectible Tins 2008 Wave 1: 2 cards processed.
+- Total processed: 30597 Yu-Gi-Oh cards.
+- The Duelist Genesis Sneak Peek Participation Card: 1 card processed.
+- Duel Terminal - Preview Wave 1: 20 cards processed.
+- Premium Pack 2 (TCG): 20 cards processed.
+- Light of Destruction: Special Edition: 2 cards processed.
+- Total processed: 30640 Yu-Gi-Oh cards.
+- Light of Destruction: 100 cards processed as a complete set.
+- Champion Pack: Game Six: 20 cards processed.
+- Total processed: 30760 Yu-Gi-Oh cards.
+- Light of Destruction Sneak Peek Participation Card: 1 card processed.
+- Shonen Jump Vol. 6, Issue 5 promotional card: 1 card processed.
+- Shonen Jump May 2008 subscription bonus: 1 card processed.
+- The Dark Emperor Structure Deck: 36 cards processed.
+- Total processed: 30799 Yu-Gi-Oh cards.
+- Duelist Pack Collection Tin: Jaden Yuki: 1 card processed.
+- Phantom Darkness: Special Edition: 2 cards processed.
+- Duelist Pack Collection Tin 2008: 1 card processed.
+- Shonen Jump Championship 2008 Prize Card: 1 card processed.
+- Total processed: 30804 Yu-Gi-Oh cards.
+- Phantom Darkness: 100 cards processed as a complete set.
+- Shonen Jump Vol. 6, Issue 3 promotional card: 1 card processed.
+- Total processed: 30905 Yu-Gi-Oh cards.
+- Phantom Darkness Sneak Peek Participation Card: 1 card processed.
+- Hobby League 6 participation card A: 1 card processed.
+- Limited Edition 1: 4 cards processed.
+- Champion Pack: Game Five: 20 cards processed.
+- Total processed: 30981 Yu-Gi-Oh cards.
+- Hobby League 7 participation card D: 1 card processed.
+- Hobby League 7 participation card C: 1 card processed.
+- Hobby League 7 participation card B: 1 card processed.
+- Shonen Jump Vol. 6, Issue 1 promotional card: 1 card processed.
+- Total processed: 30985 Yu-Gi-Oh cards.
+- Hobby League 6 participation card B: 1 card processed.
+- Hobby League 6 participation card C: 1 card processed.
+- Hobby League 6 participation card D: 1 card processed.
+- Hobby League 6 participation card E: 1 card processed.
+- Total processed: 30989 Yu-Gi-Oh cards.
+- Hobby League 6 participation card F: 1 card processed.
+- Hobby League 7 participation card A: 1 card processed.
+- Hobby League 7 participation card E: 1 card processed.
+- Hobby League 7 participation card F: 1 card processed.
+- Total processed: 30993 Yu-Gi-Oh cards.
+- Gladiator's Assault: Special Edition: 2 cards processed.
+- Yu-Gi-Oh! GX Tag Force Evolution promotional cards: 3 cards processed.
+- Yu-Gi-Oh! World Championship 2008 promotional cards: 3 cards processed.
+- Yu-Gi-Oh! GX Card Almanac promotional cards: 3 cards processed.
+- Total processed: 31004 Yu-Gi-Oh cards.
+- Collectible Tins 2007 Wave 2: 3 cards processed.
+- Light and Darkness Power Pack: 1 card processed.
+- Gladiator's Assault: 95 cards processed as a complete set.
+- Dark Revelation Volume 4: 245 cards processed as a complete set.
+- Total processed: 31348 Yu-Gi-Oh cards.
+- Yu-Gi-Oh! Elemental Hero Collection 1: 4 cards processed.
+- Yu-Gi-Oh! Elemental Hero Collection 2: 4 cards processed.
+- Hobby League 4 participation card E: 1 card processed.
+- Yu-Gi-Oh! GX Volume 1 promotional card: 1 card processed.
+- Total processed: 31358 Yu-Gi-Oh cards.
+- GX Next Generation: 1 card processed.
+- Gladiator's Assault Sneak Peek Participation Card: 1 card processed.
+- Shonen Jump Vol. 5, Issue 11 promotional card: 1 card processed.
+- Rise of the Dragon Lords Structure Deck: 37 cards processed.
+- Total processed: 31398 Yu-Gi-Oh cards.
+- Pharaoh Tour 2007 promotional cards: 2 cards processed.
+- Yu-Gi-Oh! GX Tag Force 2 promotional cards: 3 cards processed.
+- Tactical Evolution: Special Edition: 2 cards processed.
+- Champion Pack: Game Four: 20 cards processed.
+- Total processed: 31425 Yu-Gi-Oh cards.
+- Shonen Jump Vol. 5, Issue 9 promotional card: 1 card processed.
+- Collectible Tins 2007 Wave 1: 3 cards processed.
+- Shonen Jump Championship 2007 Prize Card B: 1 card processed.
+- Hobby League 4 participation card D: 1 card processed.
+- Total processed: 31431 Yu-Gi-Oh cards.
+- Tactical Evolution Sneak Peek Participation Card: 1 card processed.
+- Yu-Gi-Oh! World Championship 2007 prize cards: 3 cards processed.
+- Premium Pack (TCG): 15 cards processed.
+- Starter Deck: Jaden Yuki: 41 cards processed.
+- Total processed: 31491 Yu-Gi-Oh cards.
+- Starter Deck: Syrus Truesdale: 41 cards processed as a complete set.
+- Shonen Jump 2007 subscription bonus: 2 cards processed.
+- Total processed: 31534 Yu-Gi-Oh cards.
+- Force of the Breaker: Special Edition: 2 cards processed.
+- Shonen Jump Vol. 5, Issue 6 promotional card: 1 card processed.
+- Force of the Breaker: 69 cards processed as a complete set.
+- Champion Pack: Game Three: 20 cards processed.
+- Total processed: 31626 Yu-Gi-Oh cards.
+- Force of the Breaker Sneak Peek Participation Card: 1 card processed.
+- Shonen Jump Vol. 5, Issue 4 promotional card: 1 card processed.
+- Yu-Gi-Oh! World Championship 2007 promotional cards: 3 cards processed.
+- Strike of Neos: Special Edition: 2 cards processed.
+- Total processed: 31633 Yu-Gi-Oh cards.
+- Duelist Pack: Zane Truesdale: 30 cards processed.
+- Strike of Neos: 69 cards processed as a complete set.
+- Total processed: 31732 Yu-Gi-Oh cards.
+- Strike of Neos Sneak Peek Participation Card: 1 card processed.
+- Duelist Pack: Jaden Yuki 2: 30 cards processed.
+- Duelist Pack: Aster Phoenix: 30 cards processed.
+- Champion Pack: Game Two: 20 cards processed.
+- Total processed: 31714 Yu-Gi-Oh cards.
+- Shonen Jump Championship 2007 Prize Card A: 1 card processed.
+- Structure Deck: Machine Re-Volt: 37 cards processed.
+- Yu-Gi-Oh! GX Spirit Caller promotional cards: 3 cards processed.
+- Hobby League 5 participation card B: 1 card processed.
+- Total processed: 31756 Yu-Gi-Oh cards.
+- Hobby League 4 participation card A: 1 card processed.
+- Hobby League 4 participation card B: 1 card processed.
+- Hobby League 4 participation card C: 1 card processed.
+- Hobby League 4 participation card F: 1 card processed.
+- Total processed: 31760 Yu-Gi-Oh cards.
+- Hobby League 5 participation card A: 1 card processed.
+- Hobby League 5 participation card C: 1 card processed.
+- Hobby League 5 participation card D: 1 card processed.
+- Hobby League 5 participation card E: 1 card processed.
+- Hobby League 5 participation card F: 1 card processed.
+- Shonen Jump Vol. 5, Issue 1 promotional card: 1 card processed.
+- Total processed: 31766 Yu-Gi-Oh cards.
+- McDonald's Promotional Cards 2: 20 cards processed.
+- Shonen Jump Vol. 4, Issue 12 promotional card: 1 card processed.
+- Total processed: 31787 Yu-Gi-Oh cards.
+- Dark Revelation Volume 3: 240 cards processed as a complete set.
+- Yu-Gi-Oh! GX Tag Force promotional cards: 3 cards processed.
+- Total processed: 32030 Yu-Gi-Oh cards.
+- Cyberdark Impact: 60 cards processed as a complete set.
+- Ultimate Edition 2: 1 card processed.
+- Total processed: 32091 Yu-Gi-Oh cards.
+- Champion Pack: Game One: 20 cards processed.
+- Cyberdark Impact Sneak Peek Participation Card: 1 card processed.
+- Total processed: 32112 Yu-Gi-Oh cards.
+- Shonen Jump Vol. 4, Issue 11 promotional card: 1 card processed.
+- Collectible Tins 2006 Wave 2: 3 cards processed.
+- Pharaoh Tour 2006 promotional cards: 2 cards processed.
+- Structure Deck: Dinosaur's Rage Special Set: 1 card processed.
+- Total processed: 32119 Yu-Gi-Oh cards.
+- Structure Deck: Dinosaur's Rage: 36 cards processed.
+- Collectible Tins 2006 Wave 1: 3 cards processed.
+- Total processed: 32158 Yu-Gi-Oh cards.
+- Power of the Duelist: 60 cards processed as a complete set.
+- Power of the Duelist Sneak Peek Participation Card: 1 card processed.
+- Total processed: 32219 Yu-Gi-Oh cards.
+- San Diego Comic-Con promotional cards: 4 cards processed.
+- Yu-Gi-Oh! GX Ultimate Beginner's Pack: 5 cards processed.
+- Structure Deck: Lord of the Storm: 36 cards processed.
+- Yu-Gi-Oh! World Championship 2006 prize cards: 1 card processed.
+- Total processed: 32265 Yu-Gi-Oh cards.
+ - Enemy of Justice: 60 cards processed as a complete set.
+ - Structure Deck: Invincible Fortress: 32 cards processed.
+ - Total processed: 32357 Yu-Gi-Oh cards.
+- Enemy of Justice Sneak Peek Participation Card: 1 card processed.
+- Shonen Jump Championship 2006 Prize Card: 1 card processed.
+- Shonen Jump May 2006 subscription bonus: 3 cards processed.
+- Duelist League Series 10 participation card: 1 card processed.
+- Total processed: 32363 Yu-Gi-Oh cards.
+- Duelist League Series 2 participation cards: 4 cards processed.
+- Duelist League Series 3 participation card: 1 card processed.
+- Duelist League Series 4 participation card: 1 card processed.
+- Duelist League Series 5 participation card: 1 card processed.
+- Total processed: 32370 Yu-Gi-Oh cards.
+- Shadow of Infinity: Special Edition: 4 cards processed.
+- Yu-Gi-Oh! GX Special Edition: 1 card processed.
+- Total processed: 32375 Yu-Gi-Oh cards.
+- Starter Deck 2006: 40 cards processed as a complete set.
+- Yu-Gi-Oh! Ultimate Masters: World Championship Tournament 2006 promotional cards: 3 cards processed.
+- Duelist Pack: Special Edition: 3 cards processed.
+- Starter Deck 2006: Special Edition: 1 card processed.
+- Total processed: 32422 Yu-Gi-Oh cards.
+- Yu-Gi-Oh! Double Pack promotional cards: 2 cards processed.
+- Shadow of Infinity: 60 cards processed as a complete set.
+- Shadow of Infinity Sneak Peek Participation Card: 1 card processed.
+- Duelist Pack: Chazz Princeton: 30 cards processed.
+- Total processed: 32515 Yu-Gi-Oh cards.
+- Duelist Pack: Jaden Yuki: 30 cards processed.
+- Structure Deck: Spellcaster's Judgment: 36 cards processed.
+- Yu-Gi-Oh! GX Duel Academy promotional cards: 3 cards processed.
+- Duelist League Series 9 participation card: 1 card processed.
+- Total processed: 32585 Yu-Gi-Oh cards.
+- Hobby League 3 participation card A: 1 card processed.
+- Hobby League 3 participation card B: 1 card processed.
+- Hobby League 2 participation card E: 1 card processed.
+- Hobby League 2 participation card D: 1 card processed.
+- Total processed: 32589 Yu-Gi-Oh cards.
+- Hobby League 2 participation card F: 1 card processed.
+- Hobby League 3 participation card C: 1 card processed.
+- Mattel Action Figure promotional cards: Series 1: 1 card processed.
+- Hobby League 3 participation card F: 1 card processed.
+- Total processed: 32593 Yu-Gi-Oh cards.
+- Mattel Action Figure promotional cards: Series 3: 11 cards processed.
+- Hobby League 3 participation card D: 1 card processed.
+- Hobby League 3 participation card E: 1 card processed.
+- Mattel Action Figure promotional cards: Series 2: 4 cards processed.
+- Total processed: 32610 Yu-Gi-Oh cards.
+- Hobby League 2 participation card C: 1 card processed.
+- Hobby League 3 participation card G: 1 card processed.
+- Shonen Jump Vol. 4, Issue 1 promotional card: 1 card processed.
+- Pharaoh Tour 2005 promotional cards: 2 cards processed.
+- Total processed: 32615 Yu-Gi-Oh cards.
+- Elemental Energy: Special Edition: 4 cards processed.
+- Elemental Energy: 60 cards processed as a complete set.
+- Elemental Energy Sneak Peek Participation Card: 1 card processed.
+- Tournament Pack 7: 20 cards processed.
+- Total processed: 32700 Yu-Gi-Oh cards.
+- Swedish Shonen Jump 2005, Issue 12 promotional card: 1 card processed.
+- Structure Deck: Warrior's Triumph: 36 cards processed.
+- Dark Revelation Volume 2: 224 cards processed as a complete set.
+- Master Collection Volume 2: 6 cards processed.
+- Total processed: 32967 Yu-Gi-Oh cards.
+- Forbidden Legacy: 3 cards processed.
+- Collectible Tins 2005: 6 cards processed.
+- Yu-Gi-Oh! Nightmare Troubadour promotional cards: 3 cards processed.
+- Shonen Jump Championship 2005 Prize Card: 1 card processed.
+- Total processed: 32980 Yu-Gi-Oh cards.
+- Cybernetic Revolution: 60 cards processed as a complete set.
+- Yu-Gi-Oh! World Championship 2005 prize cards: 2 cards processed.
+- Cybernetic Revolution Sneak Peek Participation Card: 1 card processed.
+- Make-A-Wish Foundation promotional card: 1 card processed.
+- Total processed: 33044 Yu-Gi-Oh cards.
+- Dark Beginning 2: 250 cards processed as a complete set.
+- Duelist League Series 8 participation card: 1 card processed.
+- The Lost Millennium: Special Edition: 4 cards processed.
+- Tournament Pack 6: 20 cards processed.
+- Total processed: 33319 Yu-Gi-Oh cards.
+- The Lost Millennium: 60 cards processed as a complete set.
+- The Lost Millennium Sneak Peek Participation Card: 1 card processed.
+- Structure Deck: Blaze of Destruction: 31 cards processed.
+- Structure Deck: Fury from the Deep: 32 cards processed.
+- Total processed: 33443 Yu-Gi-Oh cards.
+- Duelist League Series 7 participation card: 1 card processed.
+- Dark Revelation Volume 1: 267 cards processed as a complete set.
+- Flaming Eternity: 60 cards processed as a complete set.
+- Flaming Eternity Sneak Peek Participation Card: 1 card processed.
+- Total processed: 33772 Yu-Gi-Oh cards.
+- Yu-Gi-Oh! 7 Trials to Glory: World Championship Tournament 2005 promotional cards: 3 cards processed.
+- Rise of Destiny: Special Edition: 4 cards processed.
+- Shonen Jump Vol. 3, Issue 1 promotional card: 1 card processed.
+- Hobby League 1 participation cards C: 2 cards processed.
+- Total processed: 33782 Yu-Gi-Oh cards.
+- Structure Deck: Deluxe Edition: 2 cards processed.
+- Structure Deck: Zombie Madness: 28 cards processed.
+- Structure Deck: Dragon's Roar: 28 cards processed.
+- Shonen Jump Championship 2004 Prize Card: 1 card processed.
+- Total processed: 33841 Yu-Gi-Oh cards.
+- Master Collection Volume 1: 6 cards processed.
+- Duelist League Series 6 participation card: 1 card processed.
+- Yu-Gi-Oh! Capsule Monster Coliseum promotional cards: 3 cards processed.
+- Rise of Destiny: 60 cards processed as a complete set.
+- Total processed: 33911 Yu-Gi-Oh cards.
+- Tournament Pack 5: 20 cards processed.
+- Swedish Shonen Jump 2004, Issue 2 promotional card: 1 card processed.
+- Yu-Gi-Oh! Destiny Board Traveler promotional cards: 3 cards processed.
+- Dark Beginning 1: 250 cards processed as a complete set.
+- Total processed: 34185 Yu-Gi-Oh cards.
+- Soul of the Duelist: 60 cards processed as a complete set.
+- Hobby League 1 participation cards A: 2 cards processed.
+- Collectible Tins 2004: 6 cards processed.
+- Movie Pack: 4 cards processed.
+- Total processed: 34257 Yu-Gi-Oh cards.
+- Yu-Gi-Oh! World Championship 2004 prize cards: 3 cards processed.
+- Exclusive Pack: 8 cards processed.
+- Yu-Gi-Oh! Power of Chaos: Joey the Passion promotional cards: 3 cards processed.
+- Yu-Gi-Oh! Reshef of Destruction promotional cards: 3 cards processed.
+- Total processed: 34274 Yu-Gi-Oh cards.
+- Yu-Gi-Oh! Trading Card Game Tour 2004 promotional card: 1 card processed.
+- Ancient Sanctuary: 112 cards processed as a complete set.
+- Kids WB Duel of Destiny promotional card: 1 card processed.
+- Yu-Gi-Oh! Power of Chaos: Kaiba the Revenge promotional cards: 3 cards processed.
+- Total processed: 34391 Yu-Gi-Oh cards.
+- Invasion of Chaos: Special Edition: 4 cards processed.
+- Yu-Gi-Oh! The Dawn of Destiny promotional cards: 3 cards processed.
+- Starter Deck: Kaiba Evolution: 50 cards processed.
+- Starter Deck: Yugi Evolution: 50 cards processed.
+- Total processed: 34498 Yu-Gi-Oh cards.
+- Invasion of Chaos: 112 cards processed as returned by the API.
+- Yu-Gi-Oh! World Championship Tournament 2004 promotional cards: 6 cards processed.
+- Hobby League 1 participation cards B: 2 cards processed.
+- Shonen Jump Vol. 2, Issue 1 promotional card: 1 card processed.
+- Total processed: 34619 Yu-Gi-Oh cards.
+- Dark Crisis: 106 cards processed as returned by the API.
+- Yu-Gi-Oh! Power of Chaos: Yugi the Destiny Limited Collector's Edition: 1 card processed.
+- Yu-Gi-Oh! Power of Chaos: Yugi the Destiny promotional cards: 5 cards processed.
+- Yu-Gi-Oh! The Falsebound Kingdom promotional cards: 6 cards processed.
+- Total processed: 34737 Yu-Gi-Oh cards.
+- Yu-Gi-Oh! The Sacred Cards promotional cards: 6 cards processed.
+- Duel Master's Guide promotional cards: 1 card processed.
+- Magician's Force: 108 cards processed as returned by the API.
+- Tournament Pack 4: 20 cards processed.
+- Total processed: 34872 Yu-Gi-Oh cards.
+- Collectible Tins 2003: 6 cards processed.
+- Pharaonic Guardian: 108 cards processed as returned by the API.
+- Legacy of Darkness: 101 cards processed as returned by the API.
+- Yu-Gi-Oh! Worldwide Edition: Stairway to the Destined Duel promotional cards: 6 cards processed.
+- Total processed: 35093 Yu-Gi-Oh cards.
+- Starter Deck: Pegasus: 50 cards processed.
+- Starter Deck: Joey: 50 cards processed.
+- Tournament Pack: 3rd Season: 20 cards processed.
+- Total processed: 35213 Yu-Gi-Oh cards.
+- Labyrinth of Nightmare: 105 cards processed as returned by the API.
+- Yu-Gi-Oh! The Duelists of the Roses promotional cards: 3 cards processed.
+- Duelist League Series 1 participation cards: 4 cards processed.
+- McDonald's Promotional Cards: 15 cards processed.
+- Total processed: 35340 Yu-Gi-Oh cards.
+- Shonen Jump Vol. 1, Issue 1 promotional card: 1 card processed.
+- Yu-Gi-Oh! Forbidden Memories promotional cards: 3 cards processed.
+- Pharaoh's Servant: 105 cards processed as returned by the API.
+- Yu-Gi-Oh! The Eternal Duelist Soul promotional cards: 3 cards processed.
+- Total processed: 35452 Yu-Gi-Oh cards.
+- Booster Pack Collectors Tins 2002: 6 cards processed.
+- Tournament Pack: 2nd Season: 30 cards processed.
+- Spell Ruler: 104 cards processed as returned by the API.
+- Total processed: 35592 Yu-Gi-Oh cards.
+- Magic Ruler: 131 cards processed as returned by the API.
+- Tournament Pack: 1st Season: 30 cards processed.
+- Metal Raiders: 144 cards processed as returned by the API.
+- Total processed: 35897 Yu-Gi-Oh cards.
+- Starter Deck: Yugi: 50 cards processed as returned by the API.
+- Starter Deck: Kaiba: 50 cards processed as returned by the API.
+- Yu-Gi-Oh! Dark Duel Stories promotional cards: 6 cards processed.
+- Legend of Blue Eyes White Dragon: 126 cards processed as returned by the API.
+- Total processed: 36129 Yu-Gi-Oh cards.
+- Summoned Skull Sample promotional card: 1 card processed.
+- Total processed: 36130 Yu-Gi-Oh cards.
+- Duelist Pack: Jaden Yuki 3: 25 cards processed.
+- Duelist Pack: Jesse Anderson: 25 cards processed.
+- Total processed: 30955 Yu-Gi-Oh cards.
+- Legendary Collection 3: Yugi's World: 4 cards processed.
+- Return of the Duelist: Special Edition: 2 cards processed.
+- Yu-Gi-Oh! Championship Series 2012 Prize Card: 1 card processed.
+- Weekly Shonen Jump Alpha July 2012 membership promotional card: 1 card processed.
+- Return of the Duelist: 100 cards processed as a complete set.
+- Return of the Duelist Sneak Peek Participation Card: 1 card processed.
+- Collectible Tins 2012 Wave 1: 9 cards processed.
+- Hidden Arsenal 6: Omega Xyz: 60 cards processed as a complete set.
+- Samurai Warlords Structure Deck: 41 cards processed.
+- Ra Yellow Mega Pack: Special Edition: 1 card processed.
+- Gold Series: Haunted Mine: 55 cards processed as a complete set.
+- Yu-Gi-Oh! ZEXAL Volume 1 promotional card: 1 card processed.
+- Duelist League 14 participation cards: 20 cards processed.
+- Realm of the Sea Emperor Structure Deck: 39 cards processed.
+- Yu-Gi-Oh! 5D's Volume 3 promotional card: 1 card processed.
+- Legendary Collection 3: Yugi's World Mega Pack: 306 cards processed as a complete set.
+- Duel Terminal 7: 1 card processed.
+- Total processed: 26020 Yu-Gi-Oh cards.
+- Total processed: 25215 Yu-Gi-Oh cards.
+- Yu-Gi-Oh! ZEXAL Volume 5 promotional card: 1 card processed.
+- Duelist League 18 participation cards: 20 cards processed.
+- Realm of Light Structure Deck: 36 cards processed.
+- Yu-Gi-Oh! ZEXAL World Duel Carnival promotional cards: 3 cards processed.
+- Primal Origin: Deluxe Edition: 4 cards processed.
+- Primal Origin: 100 cards processed as a complete set.
+- Primal Origin Sneak Peek Participation Card: 1 card processed.
+- Dragons of Legend: 51 cards processed as a complete set.
+- Fire Fists: Special Edition: 1 card processed.
+- Premium Gold: 90 cards processed as a complete set.
+- Weekly Shonen Jump March 2014 membership promotional card: 1 card processed.
+- Legacy of the Valiant: Deluxe Edition: 4 cards processed.
+- Star Pack 2014: 50 cards processed as a complete set.
+- Astral Pack Four: 26 cards processed.
+- Cyber Dragon Revolution Structure Deck: 38 cards processed.
+- Legacy of the Valiant: 100 cards processed as a complete set.
+- Legacy of the Valiant Sneak Peek Participation Card: 1 card processed.
+- War of the Giants Reinforcements: 104 cards processed as a complete set.
+- War of the Giants: Round 2: 103 cards processed as a complete set.
+- Yu-Gi-Oh! ZEXAL Volume 4 promotional card: 1 card processed.
+- Primal Origin Plus: 1 card processed.
+- Weekly Shonen Jump December 2013 membership promotional card: 1 card processed.
+- Shadow Specters: Special Edition: 2 cards processed.
+- Duelist League 17 participation cards: 20 cards processed.
+- Savage Strike: 100 cards processed as a complete set.
+- Total processed: 25060 Yu-Gi-Oh cards.
+- Savage Strike Sneak Peek Participation Card: 1 card processed.
+- Speed Duel Starter Decks: Destiny Masters: 64 cards processed.
+- Speed Duel Starter Decks: Duelists of Tomorrow: 69 cards processed.
+- Legendary Duelists: Sisters of the Rose: 56 cards processed as a complete set.
+- Total processed: 20938 Yu-Gi-Oh cards.
+# Yu-Gi-Oh Rarity Review
+
+## Legendary Arc-V Decks
+
+The YGOPRODeck API reports numeric values instead of named rarities for these cards. These are not alternate-art identifiers. Confirm the correct rarity and provide the matching scan before changing the picker metadata.
+
+| Card | Set code | API rarity |
+| --- | --- | --- |
+| Droll & Lock Bird | LAVD-ENO01 | 2 |
+| Fire Formation - Tenki | LAVD-ENL16 | 3 |
+| Luna Light Perfume | LAVD-ENL17 | 2 |
+| Lunalight Black Sheep | LAVD-ENL02 | 2 |
+| Lunalight Gold Leo | LAVD-ENL11 | 3 |
+| Lunalight Kaleido Chick | LAVD-ENL05 | 2 |
+| Lunalight Leo Dancer | LAVD-ENL32 | 2 |
+| Lunalight Liger Dancer | LAVD-ENL34 | 2 |
+| Lunalight Masquerade | LAVD-ENL26 | 3 |
+| Lunalight Perfume Dancer | LAVD-ENL35 | 2 |
+| Lunalight Silver Hound | LAVD-ENL12 | 2 |
+| Nibiru, the Primal Being | LAVD-ENS10 | 2 |
+| Odd-Eyes Arc Pendulum Dragon | LAVD-ENO11 | 3 |
+| Odd-Eyes Revolution Dragon | LAVD-ENO12 | 3 |
+| Performapal Monkeyboard | LAVD-ENO04 | 3 |
+| Performapal Odd-Eyes Seer | LAVD-ENO17 | 3 |
+| Performapal Skullcrobat Joker | LAVD-ENO03 | 2 |
+| Primite Drillbeam | LAVD-ENO23 | 2 |
+| Primite Lordly Lode | LAVD-ENO21 | 3 |
+| Primite Roar | LAVD-ENO22 | 2 |
+| Sky Iris | LAVD-ENO19 | 3 |
+| Speed Recovery | LAVD-ENS16 | 2 |
+| Speedroid CarTurbo | LAVD-ENS11 | 2 |
+| Speedroid Marble Machine | LAVD-ENS09 | 3 |
+| Speedroid Scratch | LAVD-ENS20 | 3 |
+| Speedroid Taketomborg | LAVD-ENS05 | 2 |
+| Speedroid Terrortop | LAVD-ENS03 | 2 |
+| Speedroid Wheel | LAVD-ENS19 | 3 |
+| Speedroid Wing Synchron | LAVD-ENS14 | 2 |
+
+Source: YGOPRODeck `cardinfo.php?cardset=Legendary Arc-V Decks`, scanned 2026-08-19.
+
+## Rollout Progress
+
+- Legendary Arc-V Decks: 115 cards processed as a complete set.
+- THANK YOU PACK: 12 cards processed in the next phase (the set contains fewer than 50 cards).
+- Winner's Pack 2026-2027: 40 cards processed.
+- Chaos Origins: 100 cards processed.
+- Ultimate Tournament Pack 1: 49 cards processed (the set contains fewer than 50 cards).
+- Battles of Legend: Glorious Gallery: 146 cards processed as a complete set.
+- Blazing Dominion: 101 cards processed as a complete set.
+- Legendary Modern Decks 2026: 108 cards processed as a complete set.
+- Rarity Collection 5: 150 cards processed as a complete set.
+- Maze of Muertos: 126 cards processed as a complete set.
+- Burst Protocol: 101 cards processed as a complete set.
+- Alliance Insight: 100 cards processed as a complete set.
+- Supreme Darkness: 101 cards processed as a complete set.
+- Rage of the Abyss: 101 cards processed as a complete set.
+- The Infinite Forbidden: 101 cards processed as a complete set.
+- Doom of Dimensions: 101 cards processed as a complete set.
+- Justice Hunters: 60 cards processed as a complete set.
+- Duelist's Advance: 48 cards processed as a complete set.
+- OTS Tournament Pack 28: 27 cards processed (the set contains fewer than 50 cards).
+- OTS Tournament Pack 29: 27 cards processed (the set contains fewer than 50 cards).
+- OTS Tournament Pack 30: 27 cards processed (the set contains fewer than 50 cards).
+- Magnificent Maestros: 24 cards processed.
+- Magnificent Monsters: 18 cards processed.
+- THE CHRONICLES DECK: Spirit Charmers (All-Foil Edition): 50 cards processed as a complete set.
+- The Lost Art Promotion 2025 F: 1 card processed.
+- Phantom Revenge: 60 cards processed as a complete set.
+- The Lost Art Promotion 2025 E: 1 card processed.
+- Legendary 5D&apos;s Decks: 111 cards processed as a complete set.
+- THE CHRONICLES DECK: The Fallen & The Virtuous (All-Foil Edition): 50 cards processed as a complete set.
+- The Lost Art Promotion 2025 D: 1 card processed.
+- The Lost Art Promotion 2025 C: 1 card processed.
+- 2025 Mega-Pack Tin: 450 cards processed as a complete set.
+- Limited Pack World Championship 2025: 21 cards processed.
+- Blazing Vortex: 101 cards processed as a complete set.
+- Blazing Vortex Premiere! promotional card: 1 card processed.
+- Legendary Duelists: Season 2: 131 cards processed as a complete set.
+- The Lost Art Promotion 2021 A: 1 card processed.
+- Yu-Gi-Oh! at Home Sweepstakes: 1 card processed.
+- Genesis Impact: 60 cards processed as a complete set.
+- The Lost Art Promotion 2020 O: 1 card processed.
+- Trials of the Pharaoh - Speed Duel: Battle City Box promotional card: 1 card processed.
+- Speed Duel: Battle City Box: 223 cards processed as a complete set.
+- Maximum Gold: 162 cards processed as a complete set.
+- The Lost Art Promotion 2020 E: 1 card processed.
+- The Lost Art Promotion 2020 F: 1 card processed.
+- Speed Duel Starter Decks: Match of the Millennium: 67 cards processed as a complete set.
+- Speed Duel Starter Decks: Twisted Nightmares: 66 cards processed as a complete set.
+- Eternity Code: 101 cards processed as a complete set.
+- Eternity Code Premiere! promotional card: 1 card processed.
+- Structure Deck: Mechanized Madness: 41 cards processed.
+- Secret Slayers: 60 cards processed as a complete set.
+- Duel Overload: 100 cards processed as a complete set.
+- Ignition Assault Special Edition: 4 cards processed.
+- The Lost Art Promotion O: 1 card processed.
+- Structure Deck: Shaddoll Showdown: 49 cards processed.
+- Yu-Gi-Oh! The Dark Side of Dimensions Movie Pack Secret Edition: 63 cards processed.
+- Legendary Duelists: Magical Hero: 56 cards processed as a complete set.
+- The Lost Art Promotion 2020 K: 1 card processed.
+- Speed Duel Demo Deck 2020: 21 cards processed.
+- Event Pack Speed Duel: 6 cards processed.
+- Rising Rampage: 100 cards processed as a complete set.
+- Speed Duel Demo Deck: 11 cards processed.
+- The Lost Art Promotion J: 1 card processed.
+- Total processed: 14034 Yu-Gi-Oh cards.
+- The Lost Art Promotion 2020 L: 1 card processed.
+- OTS Tournament Pack 14 (POR): 35 cards processed.
+- The Lost Art Promotion 2020 R: 1 card processed.
+- Remote Duel at Home Sweepstakes: 1 card processed.
+- The Lost Art Promotion 2020 J: 1 card processed.
+- The Lost Art Promotion 2020 Q: 1 card processed.
+- Legendary Duelists: Rage of Ra: 57 cards processed as a complete set.
+- The Lost Art Promotion 2020 G: 1 card processed.
+- Dragons of Legend: The Complete Series: 149 cards processed as a complete set.
+- The Lost Art Promotion 2020 P: 1 card processed.
+- KC Grand Tournament prize card: 1 card processed.
+- 2020 Tin of Lost Memories: 6 cards processed.
+- 2020 Tin of Lost Memories Mega Pack: 246 cards processed as a complete set (EN246 absent; EN249 present).
+- The Lost Art Promotion 2020 H: 1 card processed.
+- Rise of the Duelist: 101 cards processed as a complete set.
+- The Lost Art Promotion 2020 N: 1 card processed.
+- Trials of the Pharaoh - Match of the Millennium & Twisted Nightmares promotional card: 1 card processed.
+- Rise of the Duelist Premiere! promotional card: 1 card processed.
+- Battles of Legend: Armageddon: 94 cards processed as a complete set.
+- The Lost Art Promotion 2020 I: 1 card processed.
+- Structure Deck: Sacred Beasts: 48 cards processed.
+- Legendary Duelists: Season 1: 121 cards processed as a complete set.
+- Toon Chaos: 60 cards processed as a complete set.
+- OTS Tournament Pack 13: 25 cards processed.
+- OTS Tournament Pack 13 (POR): 34 cards processed.
+- Yu-Gi-Oh! ARC-V Volume 7 promotional card: 1 card processed.
+- The Lost Art Promotion 2020 D: 1 card processed.
+- OTS Tournament Pack 11 (POR): 30 cards processed.
+- OTS Tournament Pack 11: 25 cards processed.
+- Total processed: 13279 Yu-Gi-Oh cards.
+- The Lost Art Promotion 2025 B: 1 card processed.
+- Yu-Gi-Oh! Championship Series 2025 prize cards: 13 cards processed.
+- The Lost Art Promotion 2025 A: 1 card processed.
+- Quarter Century Stampede: 296 cards processed as a complete set.
+- Maze of the Master: 111 cards processed as a complete set.
+- OTS Tournament Pack 27: 27 cards processed (the set contains fewer than 50 cards).
+- Structure Deck: Blue-Eyes White Destiny: 43 cards processed.
+- The Lost Art Promotion 2024 H: 1 card processed.
+- Crossover Breakers: 60 cards processed as a complete set.
+- Quarter Century Bonanza: 276 cards processed as a complete set.
+- OTS Tournament Pack 26: 29 cards processed (the set contains fewer than 50 cards).
+- 25th Anniversary Tin: Dueling Mirrors: 398 cards processed as a complete set.
+- The Lost Art Promotion 2024 C: 1 card processed.
+- Battles of Legend: Terminal Revenge: 118 cards processed as a complete set.
+- The Lost Art Promotion 2024 B: 1 card processed.
+- OTS Tournament Pack 25: 27 cards processed (the set contains fewer than 50 cards).
+- 25th Anniversary Rarity Collection II: 79 cards processed as a complete set.
+- The Lost Art Promotion 2024 A: 1 card processed.
+- Legacy of Destruction: 101 cards processed as a complete set.
+- 25th Anniversary Ultimate Kaiba Set: 62 cards processed as a complete set.
+- Battles of Legend: Chapter 1: 163 cards processed as a complete set.
+- Adidas collaboration card: 1 card processed.
+- The Lost Art Promotion (series): 62 cards processed.
+- OTS Tournament Pack 24: 27 cards processed (the set contains fewer than 50 cards).
+- The Lost Art Promotion 2023 G: 1 card processed.
+- Phantom Nightmare: 101 cards processed as a complete set.
+- 2-Player Starter Set: 88 cards processed as a complete set.
+- Maze of Millennia: 85 cards processed as a complete set.
+- The Lost Art Promotion 2024: 5 cards processed.
+- Structure Deck: Fire Kings: 48 cards processed.
+- Valiant Smashers: 60 cards processed as a complete set.
+- 25th Anniversary Rarity Collection: 79 cards processed as a complete set.
+- OTS Tournament Pack 23: 27 cards processed (the set contains fewer than 50 cards).
+- Age of Overlord: 101 cards processed as a complete set.
+- Yu-Gi-Oh! Championship Series 2023 prize card: 1 card processed.
+- Structure Deck: The Crimson King: 49 cards processed.
+- 25th Anniversary Tin: Dueling Heroes Mega Pack: 283 cards processed as a complete set.
+- 25th Anniversary Tin: Dueling Heroes: 16 cards processed.
+- Speed Duel Tournament Pack 6: 35 cards processed.
+- The Lost Art Promotion 2023: 5 cards processed.
+- The Lost Art Promotion 2023 I: 1 card processed.
+- The Pot Collection: 15 cards processed.
+- Speed Duel: Streets of Battle City: 193 cards processed as a complete set.
+- Legendary Duelists: Soulburning Volcano: 62 cards processed as a complete set.
+- The Lost Art Promotion 2023 H: 1 card processed.
+- Duelist Nexus: 99 cards processed as a complete set.
+- OTS Tournament Pack 22: 25 cards processed (the set contains fewer than 50 cards).
+- Battles of Legend: Monstrous Revenge: 104 cards processed as a complete set.
+- The Lost Art Promotion 2023 F: 1 card processed.
+- Wild Survivors: 60 cards processed as a complete set.
+- Cyberstorm Access: 101 cards processed as a complete set.
+- The Lost Art Promotion 2023 E: 1 card processed.
+- Legend of Blue Eyes White Dragon (25th Anniversary Edition): 14 cards processed.
+- Pharaoh's Servant (25th Anniversary Edition): 1 card processed.
+- Legendary Collection: 25th Anniversary Edition: 3 cards processed.
+- Dark Crisis (25th Anniversary Edition): 1 card processed.
+- Metal Raiders (25th Anniversary Edition): 14 cards processed.
+- Spell Ruler (25th Anniversary Edition): 14 cards processed.
+- The Lost Art Promotion 2023 D: 1 card processed.
+- Speed Duel GX: Duelists of Shadows: 221 cards processed as a complete set.
+- Speed Duel Tournament Pack 5: 35 cards processed.
+- Maze of Memories: 67 cards processed as a complete set.
+- Structure Deck: Beware of Traptrix: 46 cards processed.
+- Photon Hypernova: 101 cards processed as a complete set.
+- OTS Tournament Pack 21: 26 cards processed.
+- Amazing Defenders: 60 cards processed as a complete set.
+- Structure Deck: Dark World: 45 cards processed.
+- Battles of Legend: Crystal Revenge: 105 cards processed as a complete set.
+- Magnificent Mavens: 114 cards processed as a complete set.
+- OTS Tournament Pack 20: 27 cards processed.
+- Darkwing Blast: 101 cards processed as a complete set.
+- Yu-Gi-Oh! Championship Series 2022 prize card: 1 card processed.
+- Speed Duel GX: Midterm Paradox: 110 cards processed as a complete set.
+- The Lost Art Promotion 2022 K: 1 card processed.
+- Speed Duel Tournament Pack 4: 35 cards processed.
+- Structure Deck: Legend of the Crystal Beasts: 46 cards processed.
+- 2022 Tin of the Pharaoh's Gods: 275 cards processed as a complete set.
+- Tactical Masters: 60 cards processed as a complete set.
+- Power of the Elements: 101 cards processed as a complete set.
+- Legendary Duelists: Season 3: 138 cards processed as a complete set.
+- The Lost Art Promotion 2022 G: 1 card processed.
+- Legendary Duelists: Duels From the Deep: 57 cards processed as a complete set.
+- OTS Tournament Pack 19: 29 cards processed.
+- OTS Tournament Pack 19 (POR): 39 cards processed.
+- Dimension Force: 101 cards processed as a complete set.
+- Ghosts From the Past: The 2nd Haunting: 187 cards processed as a complete set.
+- Structure Deck: Albaz Strike: 46 cards processed.
+- Speed Duel Tournament Pack 3: 34 cards processed.
+- Speed Duel GX: Duel Academy Box: 218 cards processed as a complete set.
+- Hidden Arsenal: Chapter 1: 177 cards processed as a complete set.
+- OTS Tournament Pack 18: 25 cards processed.
+- OTS Tournament Pack 18 (POR): 35 cards processed.
+- Battle of Chaos: 102 cards processed as a complete set.
+- The Grand Creators: 60 cards processed as a complete set.
+- The Lost Art Promotion 2022: 8 cards processed.
+- The Lost Art Promotion 2022 A: 1 card processed.
+- Brothers of Legend: 95 cards processed as a complete set.
+- Blue-Eyes Alternative White Dragon Sweepstakes: 1 card processed.
+- The Lost Art Promotion 2021 L: 1 card processed.
+- Maximum Gold: El Dorado: 152 cards processed as a complete set.
+- Burst of Destiny: 101 cards processed as a complete set.
+- The Lost Art Promotion 2021 K: 1 card processed.
+- Legendary Duelists: Synchro Storm: 56 cards processed as a complete set.
+- Structure Deck: Cyber Strike: 48 cards processed.
+- OTS Tournament Pack 17 (POR): 35 cards processed.
+- OTS Tournament Pack 17: 25 cards processed.
+- The Lost Art Promotion 2021 J: 1 card processed.
+- 2021 Tin of Ancient Battles: 258 cards processed as a complete set.
+- The Lost Art Promotion 2021 I: 1 card processed.
+- KC Grand Tournament 2021 prize card: 1 card processed.
+- Dawn of Majesty: 101 cards processed as a complete set.
+- Dawn of Majesty Premiere! promotional card: 1 card processed.
+- The Lost Art Promotion 2021 H: 1 card processed.
+- King's Court: 65 cards processed as a complete set.
+- The Lost Art Promotion 2021 G: 1 card processed.
+- The Lost Art Promotion 2021 F: 1 card processed.
+- Egyptian God Deck: Obelisk the Tormentor: 35 cards processed.
+- Egyptian God Deck: Slifer the Sky Dragon: 38 cards processed.
+- OTS Tournament Pack 16: 26 cards processed.
+- OTS Tournament Pack 16 (POR): 36 cards processed.
+- Lightning Overdrive: 101 cards processed as a complete set.
+- Palladium Oracle Mahad Sweepstakes: 1 card processed.
+- Lightning Overdrive Premiere! promotional card: 1 card processed.
+- Yu-Gi-Oh! TCG Remote Duel Extravaganza participation card: 1 card processed.
+- The Lost Art Promotion 2021 E: 1 card processed.
+- Ancient Guardians: 60 cards processed as a complete set.
+- Ghosts From the Past: 132 cards processed as a complete set.
+- The Lost Art Promotion 2021 D: 1 card processed.
+- The Lost Art Promotion 2021 C: 1 card processed.
+- The Lost Art Promotion 2021 B: 1 card processed.
+- Structure Deck: Freezing Chains: 46 cards processed.
+- OTS Tournament Pack 15 (POR): 36 cards processed.
+- OTS Tournament Pack 15: 26 cards processed.
+- Total processed: 11458 Yu-Gi-Oh cards.
+
+## Image Availability Review
+
+Some newer or TCG-exclusive printings may have a generic card image in the API but no scan specific to that set printing. Keep these on a fallback-image list for later review.
+
+| Card | Set code | Current API image state |
+| --- | --- | --- |
+| Imposter Shift | CORI-EN088 | Generic card image available; no Chaos Origins-specific scan; [TCGplayer listing](https://www.tcgplayer.com/product/702454/yugioh-chaos-origins-imposter-shift?page=1&Language=English) |
+

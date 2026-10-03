@@ -4,12 +4,12 @@ import { defineConfig } from "vite";
 
 const rootDirectory = import.meta.dirname;
 
-function copyYyhPricing() {
+function copyStaticData() {
   return {
-    name: "copy-yyh-pricing",
+    name: "copy-static-data",
     closeBundle() {
-      const source = resolve(rootDirectory, "data/pricing/yyh");
-      const destination = resolve(rootDirectory, "dist/data/pricing/yyh");
+      const source = resolve(rootDirectory, "data");
+      const destination = resolve(rootDirectory, "dist/data");
 
       if (existsSync(source)) {
         cpSync(source, destination, { recursive: true });
@@ -33,7 +33,7 @@ function copyStaticAssets() {
 }
 
 export default defineConfig({
-  plugins: [copyYyhPricing(), copyStaticAssets()],
+  plugins: [copyStaticData(), copyStaticAssets()],
 
   build: {
     rollupOptions: {

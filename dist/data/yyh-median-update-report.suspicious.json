@@ -1,0 +1,37 @@
+{
+  "generatedAt": "2026-08-06T19:27:58.889Z",
+  "suspiciousDeltaPct": 25,
+  "count": 2,
+  "items": [
+    {
+      "set": "Ghost Files",
+      "id": "G178/176",
+      "name": "Burst of Power",
+      "variant": "Standard",
+      "oldPriceUsd": 32.75,
+      "newPriceUsd": 32.75,
+      "baselineMinUsd": 12,
+      "baselineMaxUsd": 18,
+      "compsCount": 2,
+      "observedMinUsd": 15.5,
+      "observedMaxUsd": 50,
+      "deltaPct": 81.94,
+      "reason": "Median is 81.94% above baseline ceiling $18.00"
+    },
+    {
+      "set": "Dark Tournament",
+      "id": "S21",
+      "name": "Yusuke, Unleashed",
+      "variant": "Standard",
+      "oldPriceUsd": 10.5,
+      "newPriceUsd": 10.5,
+      "baselineMinUsd": 15,
+      "baselineMaxUsd": 23,
+      "compsCount": 2,
+      "observedMinUsd": 9,
+      "observedMaxUsd": 12.01,
+      "deltaPct": 30,
+      "reason": "Median is 30% below baseline floor $15.00"
+    }
+  ]
+}
