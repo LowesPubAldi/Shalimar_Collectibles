@@ -7,8 +7,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="scripts/components/game-mode.js?v=1" defer></script>
     <script src="scripts/pages/contact.js?v=1" defer></script>
-  <script type="module" crossorigin src="/assets/mobile-nav-BPpOlmVZ.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/mobile-nav-CDaxAQH0.css">
+  <script type="module" crossorigin src="/assets/mobile-nav-JNGOnyHY.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/mobile-nav-DV3eAgdh.css">
   <link rel="stylesheet" crossorigin href="/assets/contact-NR_t8col.css">
   <link rel="stylesheet" crossorigin href="/assets/footer-P1XgCgjd.css">
 </head>
@@ -22,11 +22,6 @@
                     class="logo"
                 />
             </a>
-            <form class="nav-search" id="navSearch" role="search">
-                <label class="sr-only" for="navSearchInput">Search inventory</label>
-                <input id="navSearchInput" type="search" placeholder="Search cards" autocomplete="off" />
-                <button type="submit" aria-label="Search inventory">Search</button>
-            </form>
             <div class="game-mode-controls">
                 <label class="game-mode-select-wrap" for="gameModeSelect">
                     <span class="sr-only">Game</span>
@@ -50,6 +45,24 @@
                 <span class="mobile-nav-toggle__bar" aria-hidden="true"></span>
             </button>
             <ul class="nav__links" id="primaryNavLinks">
+                <li class="nav__search-item">
+                    <form class="nav-search" id="navSearch" role="search">
+                        <label class="sr-only" for="navSearchInput">Search inventory</label>
+                        <input
+                            id="navSearchInput"
+                            type="search"
+                            placeholder="Search cards"
+                            autocomplete="off"
+                        />
+                        <button
+                            type="submit"
+                            class="nav-search__submit"
+                            aria-label="Search inventory"
+                        >
+                            <span aria-hidden="true">⌕</span>
+                        </button>
+                    </form>
+                </li>
                 <li><a href="contributors.html">Contributors</a></li>
                 <li><a href="inventory.html">Inventory</a></li>
                 <li><a href="sets.html">Sets</a></li>

@@ -528,36 +528,6 @@ body.is-mobile-nav-open .mobile-nav-toggle__bar:nth-child(3) {
     }
 }
 
-@media (max-width: 560px) {
-    .nav {
-        gap: 4px;
-    }
-
-    .logo {
-        width: 90px;
-    }
-
-    .nav-search {
-        flex-basis: 120px;
-    }
-
-    .game-mode-select {
-        max-width: 82px;
-        padding: 7px 14px 7px 6px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .game-mode-modal--global .game-mode-modal__options {
-        grid-template-columns: 1fr;
-    }
-
-    .game-mode-modal--global .game-mode-modal__panel {
-        padding: 18px;
-    }
-}
-
-/* Floating global navigation */
 body {
     padding-top: 120px;
 }
@@ -793,22 +763,18 @@ body.is-mobile-nav-open .mobile-nav-overlay {
 
 @media (max-width: 768px){
     .logo {
-        width: 170px;
-    }
+        width: clamp(88px, 24vw, 126px);
+}
 
     .header {
-        left: 10px;
-        right: 10px;
+        left: 14px;
+        right: 14px;
         width: auto;
     }
-}
-
-    .nav-search {
-        overflow: visible;
-}
 
     .game-mode-controls {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
+    }
 }

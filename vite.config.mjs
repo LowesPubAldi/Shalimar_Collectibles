@@ -18,8 +18,22 @@ function copyYyhPricing() {
   };
 }
 
+function copyStaticAssets() {
+  return {
+    name: "copy-static-assets",
+    closeBundle() {
+      const source = resolve(rootDirectory, "assets");
+      const destination = resolve(rootDirectory, "dist/assets");
+
+      if (existsSync(source)) {
+        cpSync(source, destination, { recursive: true });
+      }
+    },
+  };
+}
+
 export default defineConfig({
-  plugins: [copyYyhPricing()],
+  plugins: [copyYyhPricing(), copyStaticAssets()],
 
   build: {
     rollupOptions: {
