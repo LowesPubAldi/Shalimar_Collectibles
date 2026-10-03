@@ -349,22 +349,22 @@ const BABY_POKEMON_FAMILIES = [
 ];
 
 const FOSSIL_TRAINERS = [
-    { name: "Brock", note: "Kanto Gym Leader \u2014 TCG: Mysterious Fossil", theme: "brock", portrait: "assets/pokemon/Brock -- Kabutops Or Omastar.jpg" },
-    { name: "Roark", note: "Sinnoh Gym Leader \u2014 Cranidos and Rampardos", theme: "roark", portrait: "assets/pokemon/Roark -- Cranidos And Rampardos.gif" },
-    { name: "Byron", note: "Sinnoh Gym Leader \u2014 Bastiodon and Cradily", theme: "byron", portrait: "assets/pokemon/Byron -- Bastiodon Or Cradily.png" },
-    { name: "Nando", note: "Sinnoh League \u2014 Armaldo", theme: "nando", portrait: "assets/pokemon/Nando -- Armaldo.png" },
-    { name: "Fennel", note: "Unova story \u2014 Archen and Archeops", theme: "fennel", portrait: "assets/pokemon/Fennel -- Archen Or Archeops.png" },
-    { name: "Grant", note: "Kalos Gym Leader \u2014 Tyrunt", theme: "grant", portrait: "assets/pokemon/Grant -- Tyrunt.png" },
-    { name: "Bonnie", note: "Kalos story \u2014 Tyrantrum", theme: "bonnie", portrait: "assets/pokemon/Bonnie -- Tyrantrum.png" },
-    { name: "Thaddeus", note: "Kalos story \u2014 Amaura and Aurorus", theme: "thaddeus", portrait: "assets/pokemon/Thaddeus -- Amaura Or Aurorus.png" },
-    { name: "Bray Zenn", note: "Galar story \u2014 Dracozolt", theme: "bray-zenn", portrait: "assets/pokemon/Bray Zenn -- Dracozolt.png" },
-    { name: "Goh", note: "Galar journey \u2014 Arctozolt", theme: "goh", portrait: "assets/pokemon/Goh -- Arctozolt.webp" },
-    { name: "Cara Liss", note: "Galar story \u2014 Arctovish", theme: "cara-liss", portrait: "assets/pokemon/Cara Liss -- Arctovish.webp" },
-    { name: "Dr. Zager", note: "Unova story \u2014 Tirtouga and Carracosta", theme: "zager", portrait: "assets/pokemon/Dr. Zager -- Tirtouga Or Carracosta.png" },
-    { name: "Ash", note: "Galar journey \u2014 Dracovish", theme: "ash", portrait: "assets/pokemon/Ash -- Dracovish.webp" }
+    { name: "Brock", note: "Kanto Gym Leader \u2014 TCG: Mysterious Fossil", theme: "brock", portrait: "assets/pokemon/Brock.webp" },
+    { name: "Roark", note: "Sinnoh Gym Leader \u2014 Cranidos and Rampardos", theme: "roark", portrait: "assets/pokemon/Roark.webp" },
+    { name: "Byron", note: "Sinnoh Gym Leader \u2014 Bastiodon and Cradily", theme: "byron", portrait: "assets/pokemon/Byron.webp" },
+    { name: "Nando", note: "Sinnoh League \u2014 Armaldo", theme: "nando", portrait: "assets/pokemon/Nando.webp" },
+    { name: "Fennel", note: "Unova story \u2014 Archen and Archeops", theme: "fennel", portrait: "assets/pokemon/Fennel.webp" },
+    { name: "Grant", note: "Kalos Gym Leader \u2014 Tyrunt", theme: "grant", portrait: "assets/pokemon/Grant.webp" },
+    { name: "Bonnie", note: "Kalos story \u2014 Tyrantrum", theme: "bonnie", portrait: "assets/pokemon/Bonnie.webp" },
+    { name: "Thaddeus", note: "Kalos story \u2014 Amaura and Aurorus", theme: "thaddeus", portrait: "assets/pokemon/Thaddeus.webp" },
+    { name: "Bray Zenn", note: "Galar story \u2014 Dracozolt", theme: "bray-zenn", portrait: "assets/pokemon/Bray-Zenn.webp" },
+    { name: "Goh", note: "Galar journey \u2014 Arctozolt", theme: "goh", portrait: "assets/pokemon/Goh.webp" },
+    { name: "Cara Liss", note: "Galar story \u2014 Arctovish", theme: "cara-liss", portrait: "assets/pokemon/Cara-Liss.webp"},
+    { name: "Dr. Zager", note: "Unova story \u2014 Tirtouga and Carracosta", theme: "zager", portrait: "assets/pokemon/Dr-Zager.webp" },
+    { name: "Ash", note: "Galar journey \u2014 Dracovish", theme: "ash", portrait: "assets/pokemon/Ash.webp" }
 ];
 const FOSSIL_WILD_APPEARANCES = [
-    { name: "Aerodactyl", note: "Wild appearance \u2014 carrying Ash", portrait: "assets/pokemon/Aerodactyl Wild -- carrying Ash.avif", theme: "aerodactyl" }
+    { name: "Aerodactyl", note: "Wild appearance \u2014 carrying Ash", portrait: "assets/pokemon/Aerodactyl-Wild.webp", theme: "aerodactyl" }
 ];
 const FOSSIL_FAMILIES = [
     { fossilItems: ["Helix Fossil"], pokemon: [{ id: 138, name: "Omanyte", stage: "Stage 1" }, { id: 139, name: "Omastar", stage: "Stage 2" }], evolutionLevel: 40, trainers: ["Brock"] },
@@ -720,7 +720,7 @@ function initBabyTool() {
                 firstIcon: "happiness%20icon.png",
                 firstLabel: "Pichu evolves into Pikachu through happiness",
                 firstTooltip: "Happiness",
-                secondIcon: "thunderstone%20icon.png",
+                secondIcon: "thunderstone.webp",
                 secondLabel: "Pikachu evolves into Raichu through a Thunder Stone",
                 secondTooltip: "Thunder Stone"
             } : family.baby.id === 173 || family.baby.id === 174 ? {
@@ -728,7 +728,7 @@ function initBabyTool() {
                 firstIcon: "happiness%20icon.png",
                 firstLabel: family.baby.id === 173 ? "Cleffa evolves into Clefairy through happiness" : "Igglybuff evolves into Jigglypuff through happiness",
                 firstTooltip: "Happiness",
-                secondIcon: "moonstone%20icon.png",
+                secondIcon: "moonstone.webp",
                 secondLabel: family.baby.id === 173 ? "Clefairy evolves into Clefable through a Moon Stone" : "Jigglypuff evolves into Wigglytuff through a Moon Stone",
                 secondTooltip: "Moon Stone"
             } : family.baby.id === 175 ? {
@@ -736,7 +736,7 @@ function initBabyTool() {
                 firstIcon: "happiness%20icon.png",
                 firstLabel: "Togepi evolves into Togetic through happiness",
                 firstTooltip: "Happiness",
-                secondIcon: "shinystone%20icon.png",
+                secondIcon: "shiny%20stone%2010326.webp",
                 secondLabel: "Togetic evolves into Togekiss through a Shiny Stone",
                 secondTooltip: "Shiny Stone"
             } : family.baby.id === 239 ? {
@@ -744,7 +744,7 @@ function initBabyTool() {
                 firstIcon: null,
                 firstLabel: "Elekid evolves into Electabuzz at level 30",
                 firstTooltip: "Level 30",
-                secondIcon: "electrizer%20with%20trade%20icon.png",
+                secondIcon: "Electrizer%2010326.webp",
                 secondLabel: "Electabuzz evolves into Electivire by trading with an Electrizer",
                 secondTooltip: "Electrizer + trade"
             } : family.baby.id === 240 ? {
@@ -752,7 +752,7 @@ function initBabyTool() {
                 firstIcon: null,
                 firstLabel: "Magby evolves into Magmar at level 30",
                 firstTooltip: "Level 30",
-                secondIcon: "magmarizer%20with%20trade%20icon.png",
+                secondIcon: "magmarizer%2010326.webp",
                 secondLabel: "Magmar evolves into Magmortar by trading with a Magmarizer",
                 secondTooltip: "Magmarizer + trade"
             } : family.baby.id === 298 ? {
@@ -768,7 +768,7 @@ function initBabyTool() {
                 firstIcon: "happiness%20with%20day%20icon.png",
                 firstLabel: "Budew evolves into Roselia through happiness during the day",
                 firstTooltip: "Happiness + day",
-                secondIcon: "shinystone%20icon.png",
+                secondIcon: "shiny%20stone%2010326.webp",
                 secondLabel: "Roselia evolves into Roserade through a Shiny Stone",
                 secondTooltip: "Shiny Stone"
             } : family.baby.id === 433 ? {
@@ -788,7 +788,7 @@ function initBabyTool() {
                 firstTooltip: "Level up + Mimic"
             } : family.baby.id === 440 ? {
                 className: "baby-family--happiny",
-                firstIcon: "ovalstone%20with%20day%20icon.png",
+                firstIcon: "Oval%20stone%2010326.webp",
                 firstLabel: "Happiny evolves into Chansey with an Oval Stone during the day",
                 firstTooltip: "Oval Stone + day",
                 secondIcon: "happiness%20icon.png",

@@ -32,8 +32,26 @@ function copyStaticAssets() {
   };
 }
 
+function copyStaticScripts() {
+  return {
+    name: "copy-static-scripts",
+    closeBundle() {
+      const source = resolve(rootDirectory, "scripts");
+      const destination = resolve(rootDirectory, "dist/scripts");
+
+      if (existsSync(source)) {
+        cpSync(source, destination, { recursive: true });
+      }
+    },
+  };
+}
+
 export default defineConfig({
-  plugins: [copyStaticData(), copyStaticAssets()],
+  plugins: [
+    copyStaticData(),
+    copyStaticAssets(),
+    copyStaticScripts(),
+  ],
 
   build: {
     rollupOptions: {
