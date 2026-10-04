@@ -225,7 +225,7 @@
 .unusual-item-note { display:block; margin:2px 0 0 10px; color:var(--text-soft); font-size:8px; font-weight:800; text-transform:uppercase; }
 .unusual-trade-tree { gap:8px; }
 .unusual-trade-tree .evolution-tree__trunk { display:flex; justify-content:center; gap:28px; }
-.unusual-item-icon--trade { width:58px; height:42px; margin:0 auto; object-fit:contain; }
+.unusual-item-icon--trade { width:110px; height:76px; margin:0 auto; object-fit:contain; }
 .unusual-item-note--center { margin:0; text-align:center; }
 .unusual-drive-icons { display:flex; justify-content:center; gap:6px; margin-top:10px; }
 .unusual-drive-icons img { width:34px; height:34px; object-fit:contain; }
@@ -312,7 +312,57 @@
 .nincada-split__outcome { opacity:0; transform:translateY(18px) scale(.86); animation:wurmple-split-outcome 8s ease-in-out infinite; }
 .nincada-split__outcome .evolution-node img { height:86px; }
 .nincada-split__outcome--ninjask { grid-column:1; margin-top:104px; animation-delay:.08s; }
-.nincada-split__outcome--shedinja { grid-column:2; margin-top:104px; animation-delay:.18s; }
+.nincada-split__outcome--shedinja { grid-column:2; margin-top:104px; animation-delay:.18s; } .nincada-split__center {
+    animation: nincada-center-shift 8s ease-in-out infinite;
+}
+
+.nincada-split__pokeballs {
+    position: absolute;
+    top: 8px;
+    right: 120px;
+    z-index: 1;
+    display: grid;
+    justify-items: center;
+    gap: 3px;
+    opacity: 0;
+    transform: translateY(12px) scale(.9);
+    animation: nincada-pokeballs-reveal 8s ease-in-out infinite;
+}
+
+.nincada-split__pokeballs img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+}
+
+.nincada-split__pokeballs small {
+    color: var(--evo-yellow);
+    font-size: 8px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+@keyframes nincada-center-shift {
+    0%, 48%, 100% {
+        transform: translateX(-50%);
+    }
+
+    62%, 86% {
+        transform: translate(-90%, -55px);
+    }
+}
+
+@keyframes nincada-pokeballs-reveal {
+    0%, 48%, 100% {
+        opacity: 0;
+        transform: translateY(12px) scale(.9);
+    }
+
+    62%, 86% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
 @media (prefers-reduced-motion: reduce) { .nincada-split__progress b,.nincada-split__outcome { animation:none; } .nincada-split__progress b { width:100%; } .nincada-split__outcome { opacity:1; transform:none; } }
 .kyurem-branch { display:grid; grid-template-columns:1fr 1.4fr 1fr; grid-template-rows:auto 18px auto; align-items:center; gap:8px; min-height:225px; }
 .kyurem-branch__source { align-self:end; }
@@ -341,7 +391,44 @@
 .type-shift-line .evolution-transition .evolution-transition__method-icon[src*="waterstone"] { left:2px; bottom:0; width:132px; height:62px; }
 .type-shift-line .evolution-transition .evolution-transition__method-icon[src*="prisonbottle"] { left:0; bottom:0; width:100px; height:64px; }
 .type-shift-line .evolution-transition .evolution-transition__method-icon[src*="black%20augurite"] { left:0; bottom:0; width:100px; height:64px; }
-.type-shift-line .evolution-transition .evolution-transition__method-icon[src*="peatblock"] { left:0; bottom:0; width:100px; height:64px; }
+.type-shift-line
+.evolution-transition
+.evolution-transition__method-icon[src*="metalalloy"] {
+    left: 0;
+    bottom: 0;
+    width: 100px;
+    height: 64px;
+}
+.type-shift-line
+.evolution-transition
+.evolution-transition__method-icon[src*="syrupyapple"] {
+    left: 0;
+    bottom: 0;
+    width: 100px;
+    height: 64px;
+}
+.type-shift-line
+.evolution-transition
+.evolution-transition__method-icon[src*="Leaderscrest10426"] {
+    left: 0;
+    bottom: 0;
+    width: 100px;
+    height: 64px;
+}
+.type-shift-line
+.evolution-transition
+.evolution-transition__method-icon[src*="firestone"] {
+    left: 0;
+    bottom: 0;
+    width: 100px;
+    height: 64px;
+}
+.type-shift-line .evolution-transition .evolution-transition__method-icon[src*="peatblock"] {
+    left: 0;
+    bottom: 0;
+    width: 120px;
+    height: 76px;
+}
 .type-shift-line .evolution-transition .evolution-transition__method-icon[src*="leafstone"],
 .type-shift-line .evolution-transition .evolution-transition__method-icon[src*="icestone"] {
     left: 0;
@@ -362,6 +449,18 @@
     height: 64px;
 }
 .type-shift-line .evolution-transition .evolution-transition__method-icon[src*="dawn%20stone"] {
+    left: 0;
+    bottom: 0;
+    width: 100px;
+    height: 64px;
+}
+.type-shift-line .evolution-transition .evolution-transition__method-icon[src*="razorclaw"] {
+    left: 0;
+    bottom: 0;
+    width: 100px;
+    height: 64px;
+}
+.type-shift-line .evolution-transition .evolution-transition__method-icon[src*="sunstone"] {
     left: 0;
     bottom: 0;
     width: 100px;
@@ -397,8 +496,87 @@
 .vivillon-lab__display img { width:100%; height:150px; object-fit:contain; image-rendering:auto; filter:drop-shadow(0 10px 14px rgba(0,0,0,.36)); }
 .vivillon-lab__display img.is-changing { animation:castform-weather-change .45s ease-out; }
 .vivillon-lab__display strong,.vivillon-lab__display small { display:block; }.vivillon-lab__display strong { font-size:22px; }.vivillon-lab__display small { margin-top:5px; color:var(--text-muted); font-size:10px; }
-.pumpkaboo-card p { margin-top:6px; color:var(--text-muted); font-size:10px; }.pumpkaboo-forms { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; margin-top:16px; }.pumpkaboo-form { display:grid; justify-items:center; gap:5px; padding:8px 4px; border:1px solid var(--border-soft); border-radius:7px; background:rgba(8,15,21,.5); }.pumpkaboo-form img { width:100%; height:62px; object-fit:contain; image-rendering:auto; }.pumpkaboo-form strong { font-size:11px; color:var(--evo-yellow); }.pumpkaboo-form small { color:var(--text-muted); font-size:8px; }.pumpkaboo-form__pair { display:grid; grid-template-columns:1fr 32px 1fr; align-items:center; width:100%; gap:2px; }.pumpkaboo-form__pair span { color:var(--evo-yellow); font-size:8px; font-weight:900; text-align:center; text-transform:uppercase; }
-.pumpkaboo-form:nth-child(1) img { transform:scale(.68); }.pumpkaboo-form:nth-child(2) img { transform:scale(.84); }.pumpkaboo-form:nth-child(3) img { transform:scale(1); }.pumpkaboo-form:nth-child(4) img { transform:scale(1.16); }
+.pumpkaboo-card p {
+    margin-top: 6px;
+    color: var(--text-muted);
+    font-size: 10px;
+}
+
+.pumpkaboo-forms {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.pumpkaboo-form {
+    display: grid;
+    justify-items: center;
+    gap: 5px;
+    padding: 8px 4px;
+    border: 1px solid var(--border-soft);
+    border-radius: 7px;
+    background: rgba(8, 15, 21, .5);
+}
+
+.pumpkaboo-form img {
+    width: 100%;
+    height: 82px;
+    object-fit: contain;
+    image-rendering: auto;
+}
+
+.pumpkaboo-form strong {
+    font-size: 11px;
+    color: var(--evo-yellow);
+}
+
+.pumpkaboo-form small {
+    color: var(--text-muted);
+    font-size: 8px;
+}
+
+.pumpkaboo-form__pair {
+    display: grid;
+    grid-template-columns: 1fr 32px 1fr;
+    align-items: center;
+    width: 100%;
+    gap: 2px;
+}
+
+.pumpkaboo-form__pair span {
+    color: var(--evo-yellow);
+    font-size: 8px;
+    font-weight: 900;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.pumpkaboo-form__pair img:first-child {
+    justify-self: end;
+    margin-right: 10px;
+}
+
+.pumpkaboo-form__pair img:last-child {
+    justify-self: start;
+    margin-left: 10px;
+}
+
+.pumpkaboo-form:nth-child(1) img {
+    transform: scale(.68);
+}
+
+.pumpkaboo-form:nth-child(2) img {
+    transform: scale(.84);
+}
+
+.pumpkaboo-form:nth-child(3) img {
+    transform: scale(1);
+}
+
+.pumpkaboo-form:nth-child(4) img {
+    transform: scale(1.16);
+}
 .zygarde-card p { margin-top:6px; color:var(--text-muted); font-size:10px; }.zygarde-forms { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin-top:16px; }.zygarde-form { display:grid; justify-items:center; gap:5px; padding:8px 4px; border:1px solid var(--border-soft); border-radius:7px; background:rgba(8,15,21,.5); text-align:center; }.zygarde-form img { width:100%; height:125px; object-fit:contain; }.zygarde-form strong { font-size:11px; color:var(--evo-yellow); }.zygarde-form small:not(.type-chip) { color:var(--text-muted); font-size:8px; }.zygarde-form .type-chips { margin-top:0; }
 .necrozma-forms { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; margin-top:16px; }.necrozma-form { display:grid; justify-items:center; gap:5px; padding:8px 4px; border:1px solid var(--border-soft); border-radius:7px; background:rgba(8,15,21,.5); text-align:center; }.necrozma-form > img:first-child { width:100%; height:110px; object-fit:contain; }.necrozma-form strong { font-size:10px; color:var(--evo-yellow); }.necrozma-form small { color:var(--text-muted); font-size:8px; }.necrozma-form__item { width:58px; height:34px; object-fit:contain; }
 .lycanroc-lab p { margin-top:6px; color:var(--text-muted); font-size:10px; }.lycanroc-evolution { display:grid; grid-template-columns:minmax(0,1fr) 76px minmax(0,1fr); align-items:center; gap:8px; margin-top:16px; }.lycanroc-evolution > .evolution-node,.lycanroc-result { text-align:center; }.lycanroc-evolution > .evolution-node img,.lycanroc-result img { width:100%; height:150px; object-fit:contain; filter:drop-shadow(0 8px 12px rgba(0,0,0,.35)); }.lycanroc-evolution > .evolution-node strong,.lycanroc-result strong { display:block; font-size:16px; }.lycanroc-result small:not(.type-chip) { display:block; margin-top:5px; color:var(--text-muted); font-size:9px; }.lycanroc-evolution .evolution-transition__progress { display:grid; align-content:center; justify-items:center; gap:5px; color:var(--evo-yellow); }.lycanroc-evolution .evolution-transition__progress i { width:100%; height:2px; background:var(--evo-yellow); position:relative; }.lycanroc-evolution .evolution-transition__progress i::after { content:""; position:absolute; right:0; top:-4px; border-left:7px solid var(--evo-yellow); border-top:5px solid transparent; border-bottom:5px solid transparent; }.lycanroc-lab__controls { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px; margin-top:12px; }.lycanroc-lab__controls button { border:1px solid var(--border-soft); border-radius:5px; padding:8px 5px; background:rgba(10,18,27,.78); color:var(--text-muted); cursor:pointer; font-size:10px; font-weight:800; }.lycanroc-lab__controls button[aria-pressed="true"] { border-color:var(--evo-yellow); background:rgba(62,49,17,.5); color:#fff6d8; }.lycanroc-result img.is-changing { animation:castform-weather-change .45s ease-out; }
