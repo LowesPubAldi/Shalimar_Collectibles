@@ -169,8 +169,8 @@
 .baby-family--tyrogue .baby-family__tyrogue-outcomes .evolution-specimen--baby img { height:70px; }
 .baby-family--tyrogue .baby-family__tyrogue-outcomes .evolution-specimen--baby h3 { font-size:9px; line-height:1.05; white-space:nowrap; }
 .baby-family__tyrogue-condition { margin-top:3px; color:var(--text-soft); font-size:7px; font-weight:800; line-height:1.2; text-align:center; text-transform:uppercase; }
-.baby-family__method { position:relative; display:grid; justify-items:center; width:44px; cursor:help; outline:none; }
-.baby-family__method img { width:26px; height:26px; object-fit:contain; filter:drop-shadow(0 4px 6px rgba(0,0,0,.4)); }
+.baby-family__method { position:relative; display:grid; justify-items:center; width:64px; cursor:help; outline:none; }
+.baby-family__method img { width:52px; height:52px; object-fit:contain; filter:drop-shadow(0 4px 6px rgba(0,0,0,.4)); }
 .baby-family__method-level { display:grid; place-items:center; min-width:34px; height:26px; border:1px solid rgba(243,202,102,.58); border-radius:999px; color:var(--evo-yellow); font-size:8px; font-weight:900; }
 .baby-family__method-dual { display:flex; align-items:center; gap:2px; }
 .baby-family__method-dual img { width:24px; height:24px; }
@@ -241,7 +241,7 @@
 .unusual-history-note { display:block; margin-top:12px; color:var(--text-soft); font-size:9px; line-height:1.35; text-align:center; }
 .gloom-branch { display:grid; grid-template-columns:1fr 1.2fr 1fr; grid-template-rows:auto 18px auto; align-items:center; gap:4px 10px; min-height:225px; }
 .gloom-branch__stone { display:grid; justify-items:center; gap:2px; align-self:end; }
-.gloom-branch__stone img { width:72px; height:54px; object-fit:contain; filter:drop-shadow(0 5px 8px rgba(0,0,0,.4)); }
+.gloom-branch__stone img { width:72px; height:72px; object-fit:contain; filter:drop-shadow(0 5px 8px rgba(0,0,0,.4)); }
 .gloom-branch__stone small { color:var(--text-soft); font-size:8px; font-weight:800; text-transform:uppercase; }
 .gender-branch__condition { min-height:54px; align-content:center; }.gender-branch__condition strong { color:var(--evo-yellow); font-size:14px; }.gender-branch__condition small { color:var(--text-soft); font-size:9px; font-weight:800; }
 .gloom-branch__pokemon { grid-column:2; grid-row:1 / span 2; align-self:center; justify-self:center; }
@@ -272,6 +272,21 @@
 .slowpoke-branch__outcome--slowking { grid-column:3; grid-row:3; }
 .slowpoke-line { display:grid; grid-template-columns:minmax(0,1fr) 24px minmax(0,1fr) 24px minmax(0,1fr); align-items:center; gap:3px; min-height:225px; }
 .slowpoke-line .type-shift-arrow { font-size:22px; }
+.slowpoke-line .type-shift-arrow--kings-rock {
+    display: grid;
+    justify-items: center;
+    gap: 2px;
+}
+
+.slowpoke-line .type-shift-arrow--kings-rock img {
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+}
+
+.slowpoke-line .type-shift-arrow--kings-rock span {
+    line-height: 1;
+}
 .slowpoke-line .evolution-node img { height:84px; }
 .slowpoke-line .evolution-node strong { font-size:13px; }
 .slowpoke-line .evolution-node { min-width:0; }
@@ -327,6 +342,31 @@
 .type-shift-line .evolution-transition .evolution-transition__method-icon[src*="prisonbottle"] { left:0; bottom:0; width:100px; height:64px; }
 .type-shift-line .evolution-transition .evolution-transition__method-icon[src*="black%20augurite"] { left:0; bottom:0; width:100px; height:64px; }
 .type-shift-line .evolution-transition .evolution-transition__method-icon[src*="peatblock"] { left:0; bottom:0; width:100px; height:64px; }
+.type-shift-line .evolution-transition .evolution-transition__method-icon[src*="leafstone"],
+.type-shift-line .evolution-transition .evolution-transition__method-icon[src*="icestone"] {
+    left: 0;
+    bottom: 0;
+    width: 100px;
+    height: 64px;
+}
+.type-shift-line .evolution-transition .evolution-transition__method-icon[src*="dragon%20scale"] {
+    left: 0;
+    bottom: 0;
+    width: 100px;
+    height: 64px;
+}
+.type-shift-line .evolution-transition .evolution-transition__method-icon[src*="metal%20coat"] {
+    left: 0;
+    bottom: 0;
+    width: 100px;
+    height: 64px;
+}
+.type-shift-line .evolution-transition .evolution-transition__method-icon[src*="dawn%20stone"] {
+    left: 0;
+    bottom: 0;
+    width: 100px;
+    height: 64px;
+}
 .full-moon-marker { position:absolute; left:108px; bottom:7px; z-index:2; display:grid; place-items:center; width:38px; height:38px; border:1px solid rgba(243,202,102,.7); border-radius:50%; background:#f3ca66; color:#2a2412; font-size:6px; font-weight:900; line-height:1.1; text-align:center; text-transform:uppercase; box-shadow:0 0 12px rgba(243,202,102,.45); }
 .evolution-transition__progress i { display:block; width:76px; height:5px; overflow:hidden; border:1px solid rgba(243,202,102,.6); border-radius:999px; background:rgba(8,15,21,.8); }
 .evolution-transition__progress b { display:block; width:0; height:100%; border-radius:inherit; background:var(--evo-yellow); animation:charmeleon-evolution-xp 8s ease-in-out infinite; }

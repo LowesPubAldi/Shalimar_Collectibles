@@ -1467,12 +1467,36 @@ function initSilvallyLab() {
 function initGenesectLab() {
     const lab = document.querySelector("[data-genesect-lab]");
     if (!(lab instanceof HTMLElement)) return;
-    const forms = {
-        none: { drive: "No Drive", type: "Normal", typeClass: "normal", icon: "" },
-        burn: { drive: "Burn Drive", type: "Fire", typeClass: "fire", icon: "assets/pokemon/burndrive.png" },
-        chill: { drive: "Chill Drive", type: "Ice", typeClass: "ice", icon: "assets/pokemon/chilldrive.png" },
-        douse: { drive: "Douse Drive", type: "Water", typeClass: "water", icon: "assets/pokemon/dousedrive.png" },
-        shock: { drive: "Shock Drive", type: "Electric", typeClass: "electric", icon: "assets/pokemon/shockdrive.png" }
+const forms = {
+    none: {
+        drive: "No Drive",
+        type: "Normal",
+        typeClass: "normal",
+    },
+    burn: {
+        drive: "Burn Drive",
+        type: "Fire",
+        typeClass: "fire",
+        icon: "assets/pokemon/burn%20drive%2010326.webp"
+    },
+    chill: {
+        drive: "Chill Drive",
+        type: "Ice",
+        typeClass: "ice",
+        icon: "assets/pokemon/chill%20drive%2010326.webp"
+    },
+    douse: {
+        drive: "Douse Drive",
+        type: "Water",
+        typeClass: "water",
+        icon: "assets/pokemon/dousedrive10326.webp"
+    },
+    shock: {
+        drive: "Shock Drive",
+        type: "Electric",
+        typeClass: "electric",
+        icon: "assets/pokemon/shock%20drive%2010326.webp"
+    }
     };
     const art = lab.querySelector("[data-genesect-art]");
     const driveArt = lab.querySelector("[data-genesect-drive-art]");
@@ -1487,9 +1511,16 @@ function initGenesectLab() {
         lab.querySelectorAll("[data-genesect-drive]").forEach((entry) => entry.setAttribute("aria-selected", String(entry === button)));
         art.classList.remove("is-changing");
         void art.offsetWidth;
-        art.src = pokemonArtUrl(649);
-        driveArt.src = form.icon;
-        driveArt.alt = form.drive === "No Drive" ? "" : form.drive;
+        art.src = "assets/pokemon/Genesect%20without%20drive%2010326.webp";
+        if (form.icon) {
+            driveArt.src = form.icon;
+            driveArt.alt = form.drive;
+            driveArt.hidden = false;
+        } else {
+            driveArt.removeAttribute("src");
+            driveArt.alt = "";
+            driveArt.hidden = true;
+        }
         driveName.textContent = form.drive;
         type.textContent = form.type;
         type.className = `type-chip type-chip--${form.typeClass}`;
