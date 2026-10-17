@@ -204,7 +204,6 @@ function syncCardPageNav(gameName) {
     };
 
     updateLinkSet(document.getElementById("primaryNavLinks"));
-    updateLinkSet(document.querySelector(".site-footer__nav"));
 
     const footerMeta = document.querySelector(".site-footer__meta");
     if (footerMeta instanceof HTMLElement) {
@@ -1038,6 +1037,29 @@ function renderNotFoundState(context) {
     `;
 }
 
+function getGhostFilesCollectorNote(setName, cardNumber) {
+    if (setName !== "Ghost Files") {
+        return "";
+    }
+
+    const notes = {
+        "ST9/176":
+            "Demo Deck Pack: Yusuke also appears as a non-foil printing. " +
+            "The finish of the original starter-deck printing has not been verified.",
+
+        "C116/176":
+            "Ghost Files lists Communication Mirror, while the Demo Deck Pack " +
+            "lists Pocket Communicator. The exact name-correction history " +
+            "has not been verified.",
+
+        "C154/176":
+            "Spirit Gun Double also has a stamped printing. " +
+            "The stamp's purpose and distribution history have not been verified."
+    };
+
+    return notes[String(cardNumber || "").trim()] || "";
+}
+
 function renderCardPage(cardContext) {
     document.getElementById("cardApiLoader")?.classList.add("is-complete");
     const card = cardContext.card;
@@ -1063,6 +1085,8 @@ function renderCardPage(cardContext) {
     const priceValue = toMaybeNumber(pricing?.priceUsd);
     const priceText = formatCurrency(priceValue);
     const priceStatus = normalizePriceStatus(pricing?.status);
+
+
 
     document.title = `Shalimar Collectibles | ${card.title}`;
     cardPage.dataset.cardSlug = slugifySetName(card.name || card.id || "card");
@@ -1112,6 +1136,9 @@ function renderCardPage(cardContext) {
     const cardFactRarity = document.getElementById("cardFactRarity");
 
     const noteLines = [];
+
+
+
     if (card.effect) {
         noteLines.push(`<p>Effect text: ${escapeHtml(card.effect)}</p>`);
     }
@@ -1361,6 +1388,17 @@ const selectedEffect = selectedRecord.effect || card.effect;
 const selectedSource = selectedRecord.source || card.source;
 
 const updatedNoteLines = [];
+
+const collectorNote = getGhostFilesCollectorNote(
+    selectedSet,
+    selectedRecord.number || selectedRecord.id || card.cardNumber
+);
+
+if (collectorNote) {
+    updatedNoteLines.push(
+        `<p><strong>Collector's Note:</strong> ${escapeHtml(collectorNote)}</p>`
+    );
+}
 
 if (selectedEffect) {
     updatedNoteLines.push(

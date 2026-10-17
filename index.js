@@ -507,7 +507,6 @@ function applyHomeGameModeUi(modeKey, options = {}) {
 	}
 
 	updateNavLinkSet(document.getElementById("primaryNavLinks"), modeConfig);
-	updateNavLinkSet(document.querySelector(".site-footer__nav"), modeConfig);
 
 	const gameLanes = document.querySelector(".game-lanes");
 	const laneCards = document.querySelectorAll(".game-lane[data-game-mode]");
@@ -1509,10 +1508,24 @@ function initHomeSearch() {
 			button.append(name, meta);
 
 			button.addEventListener("click", () => {
-				searchInput.value = item.name;
-				closeSuggestions();
-				navigateToInventory(item.name, item.game);
-			});
+    searchInput.value = item.name;
+    closeSuggestions();
+
+    const destination = new URL("card-template.html", window.location.href);
+
+    destination.searchParams.set("q", item.name);
+    destination.searchParams.set("game", item.game);
+
+    if (item.set) {
+        destination.searchParams.set("set", item.set);
+    }
+
+    if (item.cardNumber) {
+        destination.searchParams.set("id", item.cardNumber);
+    }
+
+    window.location.href = destination.toString();
+});
 
 			row.appendChild(button);
 			suggestionList.appendChild(row);
@@ -1763,12 +1776,54 @@ function initHomeSearch() {
 	});
 
 	searchForm.addEventListener("submit", (event) => {
-		event.preventDefault();
+        event.preventDefault();
 
-		const query = String(searchInput.value || "").trim();
-		closeSuggestions();
-		navigateToInventory(query);
-	});
+        const query = String(searchInput.value || "").trim();
+        const normalizedQuery = normalizeForSearch(query);
+        const activeGame = normalizeForSearch(getActiveSearchGameName());
+
+        const exactMatches = currentSuggestions.filter((item) =>
+                normalizeForSearch(item.name) === normalizedQuery &&
+                normalizeForSearch(item.game) === activeGame
+        );
+
+        const uniqueCards = new Map();
+
+        exactMatches.forEach((item) => {
+                const key = [
+                        normalizeForSearch(item.name),
+                        normalizeForSearch(item.set),
+                        normalizeForSearch(item.cardNumber)
+                ].join("|");
+
+                if (!uniqueCards.has(key)) {
+                        uniqueCards.set(key, item);
+                }
+        });
+
+        closeSuggestions();
+
+        if (uniqueCards.size === 1) {
+                const card = uniqueCards.values().next().value;
+                const destination = new URL("card-template.html", window.location.href);
+
+                destination.searchParams.set("q", card.name);
+                destination.searchParams.set("game", card.game);
+
+                if (card.set) {
+                        destination.searchParams.set("set", card.set);
+                }
+
+                if (card.cardNumber) {
+                        destination.searchParams.set("id", card.cardNumber);
+                }
+
+                window.location.href = destination.toString();
+                return;
+        }
+
+        navigateToInventory(query);
+});
 }
 
 function initHomeSetSelects() {
@@ -1989,12 +2044,12 @@ function runHomeInitializer(label, initializer) {
 	}
 }
 
+runHomeInitializer("initHomeGameModeSelector", initHomeGameModeSelector);
 runHomeInitializer("applySeasonTheme", applySeasonTheme);
 runHomeInitializer("initGameLanesReveal", initGameLanesReveal);
 // runHomeInitializer("initMobileNav", initMobileNav);
 runHomeInitializer("initHomeSearch", initHomeSearch);
 runHomeInitializer("initHomeSetSelects", initHomeSetSelects);
-runHomeInitializer("initHomeGameModeSelector", initHomeGameModeSelector);
 
 document.addEventListener("DOMContentLoaded", () => {
 	// runHomeInitializer("initMobileNav", initMobileNav);

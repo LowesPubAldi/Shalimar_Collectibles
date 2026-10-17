@@ -168,7 +168,7 @@
 [ ] C55 Hiei's Peaceful Stance
 [ ] C56 Huh??? (Single Rainbow)
 [ ] C56 Huh??? (Double Rainbow)
-[ ] C57 Huh???
+[ ] C56 Huh???
 [ ] C57 Intensive Discipline (Single Rainbow)
 [ ] C57 Intensive Discipline (Double Rainbow)
 [ ] C57 Intensive Discipline

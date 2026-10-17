@@ -10223,8 +10223,6 @@
     "effect": "Pay 4 spirit: Draw 2 cards.",
     "source": "gateway-checklist.txt"
   },
-  
-
   {
     "id": "C113/176",
     "number": "C113/176",
@@ -22092,5 +22090,53 @@
     "variant": "Standard",
     "effect": "Team Bonus insert card effect text pending source verification.",
     "source": "manual-team-bonus-insert-checklist-2026-08-09"
+  },
+  {
+    "id": "R90/176",
+    "number": "R90/176",
+    "game": "Yu Yu Hakusho",
+    "set": "Gateway",
+    "name": "Rash Brawling",
+    "type": "Unknown Type",
+    "rarity": "R - Rare (standard)",
+    "variant": "Lined",
+    "effect": "Effect text not available in checklist source.",
+    "source": "gateway-checklist.txt"
+  },
+  {
+    "id": "R90/176",
+    "number": "R90/176",
+    "game": "Yu Yu Hakusho",
+    "set": "Gateway",
+    "name": "Rash Brawling",
+    "type": "Unknown Type",
+    "rarity": "R - Rare (standard)",
+    "variant": "Cloudy",
+    "effect": "Effect text not available in checklist source.",
+    "source": "gateway-checklist.txt"
+  },
+  {
+    "id": "R90/176",
+    "number": "R90/176",
+    "game": "Yu Yu Hakusho",
+    "set": "Gateway",
+    "name": "Rash Brawling",
+    "type": "Unknown Type",
+    "rarity": "R - Rare (standard)",
+    "variant": "Jagged",
+    "effect": "Effect text not available in checklist source.",
+    "source": "gateway-checklist.txt"
+  },
+  {
+    "id": "C154/176",
+    "number": "C154/176",
+    "game": "Yu Yu Hakusho",
+    "set": "Ghost Files",
+    "name": "Spirit Gun Double",
+    "type": "Technique",
+    "rarity": "C - Common",
+    "variant": "Stamped",
+    "effect": "You may pay 2 Spirit Energy to have this attack gain +3000 Attack Value for this turn.",
+    "source": "ghost-files-checklist.txt"
   }
 ]
