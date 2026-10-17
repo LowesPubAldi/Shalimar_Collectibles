@@ -303,67 +303,27 @@
 @keyframes wurmple-split-xp { 0%,18% { width:0; } 46%,56% { width:100%; } 68%,100% { width:0; } }
 @keyframes wurmple-split-outcome { 0%,48% { opacity:0; transform:translateY(18px) scale(.86); } 62%,86% { opacity:1; transform:translateY(0) scale(1); } 100% { opacity:0; transform:translateY(-4px) scale(.96); } }
 @media (prefers-reduced-motion: reduce) { .wurmple-split__progress b,.wurmple-split__outcome { animation:none; } .wurmple-split__progress b { width:100%; } .wurmple-split__outcome { opacity:1; transform:none; } }
-.nincada-split { position:relative; min-height:250px; display:grid; grid-template-columns:1fr 1fr; align-items:center; overflow:hidden; }
-.nincada-split__center { position:absolute; left:50%; top:34px; z-index:2; display:grid; justify-items:center; transform:translateX(-50%); }
+/* Nincada: Level 20 evolution, with a small spare Poké Ball thumbnail. */
+.nincada-split { position:relative; min-height:250px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); align-items:center; overflow:hidden; }
+.nincada-split__center { position:absolute; left:50%; top:34px; z-index:2; display:grid; justify-items:center; transform:translateX(-50%); animation:nincada-before 8s ease-in-out infinite; }
 .nincada-split__center .evolution-node img { height:104px; }
 .nincada-split__progress { display:grid; justify-items:center; gap:3px; margin-top:3px; color:var(--evo-yellow); font-size:8px; font-weight:900; letter-spacing:.08em; text-transform:uppercase; }
 .nincada-split__progress i { display:block; width:76px; height:5px; overflow:hidden; border:1px solid rgba(243,202,102,.6); border-radius:999px; background:rgba(8,15,21,.8); }
-.nincada-split__progress b { display:block; width:0; height:100%; border-radius:inherit; background:var(--evo-yellow); animation:wurmple-split-xp 8s ease-in-out infinite; }
-.nincada-split__outcome { opacity:0; transform:translateY(18px) scale(.86); animation:wurmple-split-outcome 8s ease-in-out infinite; }
+.nincada-split__progress b { display:block; width:0; height:100%; border-radius:inherit; background:var(--evo-yellow); animation:nincada-xp 8s ease-in-out infinite; }
+.nincada-split__pokeballs { position:absolute; top:44px; left:50%; transform:translateX(-50%); z-index:2; display:grid; justify-items:center; gap:2px; width:110px; opacity:0; animation:nincada-ball-reveal 8s ease-in-out infinite; }
+.nincada-split__pokeballs img { display:block; width:96px; height:96px; object-fit:contain; }
+.nincada-split__pokeballs small { color:var(--evo-yellow); font-size:7px; font-weight:900; text-align:center; text-transform:uppercase; }
+.nincada-split__outcome { opacity:0; transform:translateY(18px) scale(.86); animation:nincada-outcome 8s ease-in-out infinite; }
 .nincada-split__outcome .evolution-node img { height:86px; }
-.nincada-split__outcome--ninjask { grid-column:1; margin-top:104px; animation-delay:.08s; }
-.nincada-split__outcome--shedinja { grid-column:2; margin-top:104px; animation-delay:.18s; } .nincada-split__center {
-    animation: nincada-center-shift 8s ease-in-out infinite;
-}
-
-.nincada-split__pokeballs {
-    position: absolute;
-    top: 8px;
-    right: 120px;
-    z-index: 1;
-    display: grid;
-    justify-items: center;
-    gap: 3px;
-    opacity: 0;
-    transform: translateY(12px) scale(.9);
-    animation: nincada-pokeballs-reveal 8s ease-in-out infinite;
-}
-
-.nincada-split__pokeballs img {
-    width: 120px;
-    height: 120px;
-    object-fit: contain;
-}
-
-.nincada-split__pokeballs small {
-    color: var(--evo-yellow);
-    font-size: 8px;
-    font-weight: 900;
-    text-transform: uppercase;
-}
-
-@keyframes nincada-center-shift {
-    0%, 48%, 100% {
-        transform: translateX(-50%);
-    }
-
-    62%, 86% {
-        transform: translate(-90%, -55px);
-    }
-}
-
-@keyframes nincada-pokeballs-reveal {
-    0%, 48%, 100% {
-        opacity: 0;
-        transform: translateY(12px) scale(.9);
-    }
-
-    62%, 86% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-@media (prefers-reduced-motion: reduce) { .nincada-split__progress b,.nincada-split__outcome { animation:none; } .nincada-split__progress b { width:100%; } .nincada-split__outcome { opacity:1; transform:none; } }
+.nincada-split__outcome--ninjask { grid-column:1; margin-top:104px; }
+.nincada-split__outcome--shedinja { grid-column:2; margin-top:104px; animation-name:nincada-shedinja; }
+@keyframes nincada-ball-reveal { 0%,53% { opacity:0; } 62%,88% { opacity:1; } 96%,100% { opacity:0; } }
+@keyframes nincada-xp { 0%,18% { width:0; } 48%,58% { width:100%; } 70%,100% { width:0; } }
+@keyframes nincada-before { 0%,48% { opacity:1; transform:translateX(-50%) scale(1); } 58%,90% { opacity:0; transform:translateX(-50%) scale(.82); } 100% { opacity:1; transform:translateX(-50%) scale(1); } }
+@keyframes nincada-outcome { 0%,54% { opacity:0; transform:translateY(18px) scale(.86); } 64%,87% { opacity:1; transform:translateY(0) scale(1); } 100% { opacity:0; transform:translateY(-4px) scale(.96); } }
+@keyframes nincada-shedinja { 0%,59% { opacity:0; transform:translateY(18px) scale(.86); } 69%,87% { opacity:1; transform:translateY(0) scale(1); } 100% { opacity:0; transform:translateY(-4px) scale(.96); } }
+@media (max-width:400px) { .nincada-split__pokeballs { left:50%; width:90px; } .nincada-split__pokeballs img { width:80px; height:80px; } }
+@media (prefers-reduced-motion:reduce) { .nincada-split__center,.nincada-split__progress b,.nincada-split__outcome,.nincada-split__pokeballs { animation:none; } .nincada-split__pokeballs { opacity:1; } .nincada-split__center { opacity:1; transform:translateX(-50%); } .nincada-split__progress b { width:100%; } .nincada-split__outcome { opacity:1; transform:none; } }
 .kyurem-branch { display:grid; grid-template-columns:1fr 1.4fr 1fr; grid-template-rows:auto 18px auto; align-items:center; gap:8px; min-height:225px; }
 .kyurem-branch__source { align-self:end; }
 .kyurem-branch__source .evolution-node img { height:76px; }
@@ -652,8 +612,8 @@
 @media (prefers-reduced-motion: reduce) { .milcery-lab__origin.is-spinning img,.milcery-lab__result.is-revealing { animation:none; }.milcery-lab__result.is-evolving { opacity:1; transform:none; } }
 .milcery-lab__sweets .milcery-sweet--love > span { color:#ee77ae; font-size:30px; line-height:38px; text-shadow:0 0 8px rgba(238,119,174,.5); }
 .silvally-lab { display:grid; gap:14px; }.silvally-lab p { margin-top:6px; color:var(--text-muted); font-size:10px; }.silvally-lab__display { display:grid; grid-template-columns:minmax(0,1fr) 70px minmax(0,1fr); align-items:center; gap:10px; min-height:210px; padding:12px 18px; border:1px solid var(--border-soft); border-radius:8px; background:rgba(8,15,21,.5); }.silvally-lab__origin,.silvally-lab__form { text-align:center; }.silvally-lab__origin img,.silvally-lab__form img { width:100%; height:165px; object-fit:contain; filter:drop-shadow(0 10px 14px rgba(0,0,0,.36)); }.silvally-lab__form img.is-changing { animation:castform-weather-change .45s ease-out; }.silvally-lab__origin strong,.silvally-lab__form strong { display:block; font-size:17px; }.silvally-lab__origin small,.silvally-lab__form small:not(.type-chip) { display:block; margin-top:4px; color:var(--text-muted); font-size:9px; }.silvally-lab__arrow { display:grid; place-items:center; width:52px; height:52px; border:1px solid rgba(243,202,102,.6); border-radius:50%; color:var(--evo-yellow); font-size:10px; font-weight:900; }.silvally-lab__controls { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:5px; }.silvally-lab__controls button { min-height:52px; border:1px solid var(--border-soft); border-radius:5px; padding:5px 3px; background:rgba(10,18,27,.78); color:var(--text-muted); cursor:pointer; font-size:9px; font-weight:800; }.silvally-lab__controls button img { width:30px; height:24px; object-fit:contain; vertical-align:middle; margin-right:3px; }.silvally-lab__controls button span,.silvally-lab__controls button small { display:block; }.silvally-lab__controls button small { margin-top:3px; font-size:8px; }.silvally-lab__controls button[aria-pressed="true"] { border-color:var(--evo-green); background:rgba(15,35,29,.94); color:#effff3; }
-.unusual-grid > .silvally-lab { grid-column:1 / -1; }.silvally-lab__display { grid-template-columns:minmax(0,1fr) 132px minmax(0,1fr); min-height:240px; }.silvally-lab__origin img,.silvally-lab__form img { height:190px; }.silvally-lab__arrow { position:relative; }.silvally-lab__arrow::after { content:""; position:absolute; left:64px; top:50%; width:52px; height:52px; transform:translateY(-50%); background:url("../../assets/pokemon/happiness%20icon.png") center / contain no-repeat; filter:drop-shadow(0 5px 9px rgba(0,0,0,.35)); }
-.silvally-lab__origin { animation:silvally-evolution-before 8s ease-in-out infinite; }.silvally-lab__form { opacity:0; animation:silvally-evolution-after 8s ease-in-out infinite; }.silvally-lab__arrow { animation:silvally-evolution-cue 8s ease-in-out infinite; }.silvally-lab__arrow::after { animation:silvally-evolution-happiness 8s ease-in-out infinite; }
+.unusual-grid > .silvally-lab { grid-column:1 / -1; }.silvally-lab__display { grid-template-columns:minmax(0,1fr) 132px minmax(0,1fr); min-height:240px; }.silvally-lab__origin img,.silvally-lab__form img { height:190px; }.silvally-lab__arrow { position:relative; }
+.silvally-lab__origin { animation:silvally-evolution-before 8s ease-in-out infinite; }.silvally-lab__form { opacity:0; animation:silvally-evolution-after 8s ease-in-out infinite; }.silvally-lab__arrow { animation:silvally-evolution-cue 8s ease-in-out infinite; }
 @keyframes silvally-evolution-before { 0%,48% { opacity:1; transform:scale(1); } 56%,100% { opacity:0; transform:scale(.92); } }
 @keyframes silvally-evolution-after { 0%,52% { opacity:0; transform:scale(1.08); } 64%,88% { opacity:1; transform:scale(1); } 100% { opacity:0; transform:scale(.96); } }
 @keyframes silvally-evolution-cue { 0%,18% { opacity:.28; transform:scale(.85); } 46%,62% { opacity:1; transform:scale(1); } 74%,100% { opacity:.28; transform:scale(.85); } }
@@ -731,3 +691,20 @@
 @keyframes eevee-charm-cry { 0%,26% { opacity:0; transform:translate(-50%,10px) scale(.7); } 40%,70% { opacity:1; transform:translate(-50%,-26px) scale(1.15); } 100% { opacity:0; transform:translate(-50%,-46px) scale(1.3); } }
 @keyframes eevee-charm-glow { 0%,20% { filter:drop-shadow(0 12px 18px rgba(0,0,0,.36)); } 36%,68% { filter:drop-shadow(0 0 18px rgba(238,119,174,.95)); } 100% { filter:drop-shadow(0 12px 18px rgba(0,0,0,.36)); } }
 @media (prefers-reduced-motion: reduce) { .eevee-lab__center--charm,.eevee-lab__center--charm::before,.eevee-lab__center--charm::after,.eevee-lab__center--charm img { animation:none; } }
+/* Silvally friendship evolution — Soothe Bell */
+.silvally-lab__arrow::after {
+    content: none;
+}
+
+.silvally-lab__arrow img {
+    display: block;
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    filter: drop-shadow(0 5px 9px rgba(0, 0, 0, .35));
+}/* Match friendship icons to Eevee evolution stones */
+.evolution-section--eevee .eevee-lab__branches button img[src*="Soothe"] {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+}

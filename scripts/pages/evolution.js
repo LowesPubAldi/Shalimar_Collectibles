@@ -717,25 +717,25 @@ function initBabyTool() {
             const adultHasRegionalVariant = adultStage.id === 26;
             const evolutionMethods = family.baby.id === 172 ? {
                 className: "baby-family--pikachu",
-                firstIcon: "happiness%20icon.png",
-                firstLabel: "Pichu evolves into Pikachu through happiness",
-                firstTooltip: "Happiness",
+                firstIcon: "Soothe%20Bell%2010626.webp",
+                firstLabel: "Pichu evolves into Pikachu through High friendship",
+                firstTooltip: "High friendship",
                 secondIcon: "thunderstone.webp",
                 secondLabel: "Pikachu evolves into Raichu through a Thunder Stone",
                 secondTooltip: "Thunder Stone"
             } : family.baby.id === 173 || family.baby.id === 174 ? {
                 className: "baby-family--happiness-moonstone",
-                firstIcon: "happiness%20icon.png",
-                firstLabel: family.baby.id === 173 ? "Cleffa evolves into Clefairy through happiness" : "Igglybuff evolves into Jigglypuff through happiness",
-                firstTooltip: "Happiness",
+                firstIcon: "Soothe%20Bell%2010626.webp",
+                firstLabel: family.baby.id === 173 ? "Cleffa evolves into Clefairy through High friendship" : "Igglybuff evolves into Jigglypuff through High friendship",
+                firstTooltip: "High friendship",
                 secondIcon: "moonstone.webp",
                 secondLabel: family.baby.id === 173 ? "Clefairy evolves into Clefable through a Moon Stone" : "Jigglypuff evolves into Wigglytuff through a Moon Stone",
                 secondTooltip: "Moon Stone"
             } : family.baby.id === 175 ? {
                 className: "baby-family--happiness-shinystone",
-                firstIcon: "happiness%20icon.png",
-                firstLabel: "Togepi evolves into Togetic through happiness",
-                firstTooltip: "Happiness",
+                firstIcon: "Soothe%20Bell%2010626.webp",
+                firstLabel: "Togepi evolves into Togetic through High friendship",
+                firstTooltip: "High friendship",
                 secondIcon: "shiny%20stone%2010326.webp",
                 secondLabel: "Togetic evolves into Togekiss through a Shiny Stone",
                 secondTooltip: "Shiny Stone"
@@ -757,25 +757,25 @@ function initBabyTool() {
                 secondTooltip: "Magmarizer + trade"
             } : family.baby.id === 298 ? {
                 className: "baby-family--azurill",
-                firstIcon: "happiness%20icon.png",
-                firstLabel: "Azurill evolves into Marill through happiness",
-                firstTooltip: "Happiness",
+                firstIcon: "Soothe%20Bell%2010626.webp",
+                firstLabel: "Azurill evolves into Marill through High friendship",
+                firstTooltip: "High friendship",
                 secondIcon: null,
                 secondLabel: "Marill evolves into Azumarill at level 18",
                 secondTooltip: "Level 18"
             } : family.baby.id === 406 ? {
                 className: "baby-family--budew",
-                firstIcon: "happiness%20with%20day%20icon.png",
-                firstLabel: "Budew evolves into Roselia through happiness during the day",
-                firstTooltip: "Happiness + day",
+                firstIcon: "Soothe%20Bell%2010626.webp",
+                firstLabel: "Budew evolves into Roselia through High friendship during the day",
+                firstTooltip: "High friendship - day only",
                 secondIcon: "shiny%20stone%2010326.webp",
                 secondLabel: "Roselia evolves into Roserade through a Shiny Stone",
                 secondTooltip: "Shiny Stone"
             } : family.baby.id === 433 ? {
                 className: "baby-family--chingling",
-                firstIcon: "happiness%20with%20night%20icon.png",
-                firstLabel: "Chingling evolves into Chimecho through happiness at night",
-                firstTooltip: "Happiness + night"
+                firstIcon: "Soothe%20Bell%2010626.webp",
+                firstLabel: "Chingling evolves into Chimecho through High friendship at night",
+                firstTooltip: "High friendship - night only"
             } : family.baby.id === 438 ? {
                 className: "baby-family--bonsly",
                 firstIcon: "lv%20%2B%20with%20mimic%20icon.png",
@@ -791,19 +791,19 @@ function initBabyTool() {
                 firstIcon: "Oval%20stone%2010326.webp",
                 firstLabel: "Happiny evolves into Chansey with an Oval Stone during the day",
                 firstTooltip: "Oval Stone + day",
-                secondIcon: "happiness%20icon.png",
-                secondLabel: "Chansey evolves into Blissey through happiness",
-                secondTooltip: "Happiness"
+                secondIcon: "Soothe%20Bell%2010626.webp",
+                secondLabel: "Chansey evolves into Blissey through High friendship",
+                secondTooltip: "High friendship"
             } : family.baby.id === 446 ? {
                 className: "baby-family--munchlax",
-                firstIcon: "happiness%20icon.png",
-                firstLabel: "Munchlax evolves into Snorlax through happiness",
-                firstTooltip: "Happiness"
+                firstIcon: "Soothe%20Bell%2010626.webp",
+                firstLabel: "Munchlax evolves into Snorlax through High friendship",
+                firstTooltip: "High friendship"
             } : family.baby.id === 447 ? {
                 className: "baby-family--riolu",
-                firstIcon: "happiness%20icon.png",
-                firstLabel: "Riolu evolves into Lucario through happiness",
-                firstTooltip: "Happiness"
+                firstIcon: "Soothe%20Bell%2010626.webp",
+                firstLabel: "Riolu evolves into Lucario through High friendship",
+                firstTooltip: "High friendship"
             } : family.baby.id === 458 ? {
                 className: "baby-family--mantyke",
                 firstIcon: null,
@@ -889,6 +889,7 @@ function initEeveeLab() {
     const name = lab?.querySelector("[data-eevee-result-name]");
     const method = lab?.querySelector("[data-eevee-result-method]");
     const center = lab?.querySelector(".eevee-lab__center");
+    const partnerMoves = lab?.querySelector("[data-partner-eevee-moves]");
     const centerArt = center?.querySelector("img");
     const defaultEeveeArt = pokemonArtUrl(133);
     let sylveonTimer;
@@ -898,6 +899,11 @@ function initEeveeLab() {
         if (!(button instanceof HTMLButtonElement)) return;
         lab.querySelectorAll("[data-eeveelution]").forEach((entry) => entry.classList.toggle("is-selected", entry === button));
         lab.setAttribute("data-selected-eeveelution", button.dataset.eeveelution || "");
+        const isPartnerEevee = button.dataset.eeveelution === "Partner Eevee";
+        if (partnerMoves instanceof HTMLElement) {
+        partnerMoves.hidden = !isPartnerEevee;
+        partnerMoves.classList.toggle("is-hidden", !isPartnerEevee);
+}
         if (!(art instanceof HTMLImageElement) || !(name instanceof HTMLElement) || !(method instanceof HTMLElement)) return;
         window.clearTimeout(sylveonTimer);
         if (centerArt instanceof HTMLImageElement) {
