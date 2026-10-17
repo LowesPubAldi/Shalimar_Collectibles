@@ -340,6 +340,77 @@ Separate:
 - **Fictional auction value**
 - **Modern collector analogy**
 
+## Younger Toguro Power Scaling — Demo²
+
+### Concept
+
+Use Younger Toguro's increasing power percentages as a recurring Dark Tournament narrative thread rather than containing him within one isolated experience.
+
+The feature begins immediately after the Hiruiseki/Tarukane material, establishing Toguro as the overwhelming force behind the previous arc before following his increasingly revealed strength through the Dark Tournament.
+
+### Demo² — Parking Garage Demolition
+
+Replace a long recreation of Toguro's parking-garage demonstration with a compact coded sequence.
+
+A stylized parking garage appears with Toguro represented by a silhouette or minimal character asset. As Toguro powers up, the structure reacts through progressively stronger shaking, cracking, debris, and structural failure.
+
+The sequence culminates at approximately 60% power with the garage being demolished.
+
+Title the interaction:
+
+**Demo²**
+
+The name intentionally combines Toguro's power **demonstration** with the **demolition** of the structure.
+
+Prefer HTML/CSS/JavaScript animation and reusable structural elements over storing a large video clip when the same story beat can be communicated interactively.
+
+### Power-Scaling Structure
+
+Treat Toguro's percentages as an escalating timeline.
+
+Working sequence to verify against the anime and manga before implementation:
+
+- Concealed/restrained strength during the Tarukane material.
+- Parking-garage demonstration culminating around 60%.
+- First-round Dark Tournament five-on-one fight.
+- Pause the Toguro feature while the Team Masho/Shinobi section occurs.
+- Resume Toguro's power progression afterward.
+- Continue through the later Dark Tournament confrontations.
+- Finish with the final escalation against Yusuke and Toguro's maximum demonstrated power.
+
+The interruption by Team Masho should be intentional. Toguro remains a continuing threat while the tournament progresses around him rather than consuming the entire Dark Tournament section at once.
+
+### Dragon Ball Comparison
+
+Use Frieza as a recognizable comparison for the concept of a villain deliberately revealing progressively greater levels of power.
+
+The English-dub casting creates an additional connection worth researching and presenting as optional trivia:
+
+- Linda Young voices Genkai and Frieza.
+- Dameon Clarke voices Younger Toguro and Cell.
+
+Genkai may serve as a natural observer of Toguro's escalating power because of their history and her ability to perceive spiritual energy. Any specific claim that she senses a particular percentage increase must be verified against the source before presenting it as canon.
+
+The Dragon Ball comparison should support the explanation of Toguro's power progression rather than overwhelm the Yu Yu Hakusho material.
+
+### Data And Assets
+
+- Exact episode/chapter references for every stated Toguro percentage.
+- Parking-garage sequence reference.
+- First-round five-on-one reference.
+- Later Toguro transformation/power states.
+- Yusuke versus Toguro references.
+- Genkai reaction/reference material where canonically appropriate.
+- Relevant Younger Toguro TCG cards.
+- References needed to verify the English-dub voice-actor comparison.
+
+### Canon Policy
+
+Verify every percentage and its placement in the story before publication.
+
+Clearly distinguish directly stated power percentages from visual estimates or interpretations.
+
+The Frieza comparison is a cross-series explanatory comparison, not a claim that the characters use identical power systems.
 
 ## Team Masho Shinobi Boss Rush
 
@@ -514,108 +585,171 @@ Gameplay timing, controls, health values, and scoring are abstractions.
 
 Any summarized character observation must be checked against the source before publication.
 
-
-## Hagiri Territory: Reverse Sniper Encounter
+## Hagiri Territory: The Most Dangerous Game
 
 ### Concept
 
-Create a Chapter Black encounter that initially makes the player believe they are the sniper.
+Reframe Hagiri's Territory encounter around the central idea of Richard Connell's *The Most Dangerous Game*: the hunter becomes the hunted.
 
-The interface begins with a targeting reticle.
+The player does not control Hagiri.
 
-The player naturally assumes the reticle represents their aim.
+The player is Hagiri's marked target and must survive while he turns the surrounding environment into ammunition.
 
-Then the environment begins attacking them.
+Use a forest setting inspired by the environment at the beginning of Hagiri's anime encounter. This allows the experience to preserve the feeling of being hunted while creating a distinct gameplay space rather than directly recreating the later urban sequence.
 
-A vehicle or object changes direction toward the player. Smaller projectiles begin tracking them. The player gradually realizes:
+### Opening Sequence
 
-**The reticle is not showing where you are aiming.**
+Begin with a brief Hagiri introduction establishing that he enjoys the hunt.
 
-**It is showing where Hagiri has marked you.**
+Use one or two canon-supported poses or expressions from Episode 80 that communicate his confidence and enjoyment.
 
-The experience then shifts from apparent shooting mechanics to survival, deduction, and locating Hagiri.
+Show Hagiri marking Yusuke/the player.
 
-### Experience Flow
+Instead of recreating the anime marking exactly, investigate using the YYH TCG card **Bullseye** as the visual bridge between the anime and the card game.
 
-1. Reticle appears.
-2. Player attempts to aim or inspect the environment.
-3. First environmental projectile unexpectedly tracks toward the marked position.
-4. Additional objects begin homing toward the player.
-5. Territory explanation appears only after the player experiences the effect.
-6. Hagiri remains mostly distant or hidden.
-7. Player identifies the sniper's location.
-8. Final objective changes from avoiding projectiles to reaching or exposing Hagiri.
+Working sequence:
 
-### Design Principle
+1. Hagiri appears.
+2. Hagiri establishes or describes his Territory.
+3. Bullseye card/marking visual appears.
+4. The player becomes the marked target.
+5. The forest hunt begins.
 
-Do not explain the mechanic before the player experiences it.
+Episode 80 should receive a targeted timestamp pass for:
 
-The reveal is the mechanic.
+- the moment Hagiri marks Yusuke,
+- one or two poses/expressions showing that Hagiri enjoys the hunt,
+- the exchange where Hagiri describes what he is doing as establishing/making his territory and Yusuke responds angrily.
+
+Verify exact dialogue before publication rather than relying on remembered wording.
+
+### Core Mechanic — Reverse Paddle
+
+Prototype the experience first as a simple 2D avoidance game.
+
+The player controls a character or target zone along one portion of the screen while environmental objects travel toward them.
+
+Unlike Pong or Breakout, the objective is not to intercept the incoming object.
+
+The objective is to move out of its path and allow it to pass safely.
+
+This creates a reverse-paddle mechanic:
+
+**Do not hit the projectile. Avoid it.**
+
+If the 2D prototype is mechanically enjoyable but visually too flat, preserve the same controls while upgrading the presentation to a 2.5D environment using parallax, depth, shadows, environmental layers, impact effects, and screen shake.
+
+Do not add 3D complexity unless the prototype demonstrates that additional depth materially improves the experience.
+
+### Projectile Escalation
+
+Replace the anime encounter's urban objects with forest-based gameplay abstractions.
+
+Begin with small believable objects and progressively become more absurd:
+
+- berries,
+- nuts or acorns,
+- pinecones,
+- twigs,
+- branches,
+- rocks,
+- logs.
+
+The final escalation is deliberately ridiculous:
+
+**GIANT SEQUOIA**
+
+The giant sequoia serves the same gameplay role as the extreme escalation of Hagiri weaponizing increasingly dangerous environmental objects, while remaining consistent with the forest theme.
+
+Clearly label these forest projectiles as gameplay abstractions rather than claiming Hagiri uses these exact objects in canon.
+
+### Ending
+
+The player does not need to defeat Hagiri.
+
+The canonical conclusion in which Hiei intervenes does not need to be recreated for this activity.
+
+Victory means surviving the hunt, culminating in successfully avoiding the giant sequoia.
+
+This keeps the experience focused on Hagiri's Territory and the feeling of being hunted rather than turning the ending into another combat encounter.
+
+### Literary Connection
+
+Use *The Most Dangerous Game* as thematic inspiration rather than attempting to retell Richard Connell's story.
+
+The useful parallel is simple:
+
+**A capable person accustomed to danger becomes the target of another hunter.**
+
+Hagiri's enjoyment of pursuing a marked target makes the comparison useful for framing the interaction.
+
+Keep the literary reference concise enough that the YYH experience remains the primary focus.
 
 ### User Value
 
-- Teaches Territory through experience instead of exposition.
-- Reverses a familiar sniper-game interface.
-- Represents Hagiri without turning the encounter into a generic shooting gallery.
-- Fits Chapter Black's emphasis on unusual rules and abilities.
-- Provides a dramatically different interaction from Dark Tournament combat.
+- Turns Hagiri's Territory into a survival mechanic rather than a conventional shooting game.
+- Makes the player experience being marked and hunted.
+- Creates a literary connection without replacing the Yu Yu Hakusho material.
+- Integrates the YYH TCG through the Bullseye card.
+- Provides a mechanically different Chapter Black activity.
+- Allows escalating comedy without misrepresenting the forest projectiles as canon.
 
 ### Data And Assets
 
 #### Canon Research
 
 - Exact rules of Hagiri's Territory.
-- How targets are marked.
-- Objects/projectiles demonstrated in canon.
-- Effective range if stated.
-- Limitations and counters.
-- Anime episode and manga chapter.
-- Relevant cards.
+- Exact method used to mark Yusuke.
+- Episode 80 timestamp for the marking.
+- Episode 80 Hagiri hunting/enjoyment poses.
+- Episode 80 territory dialogue.
+- Canon objects/projectiles used during the encounter.
+- Effective range and limitations if stated.
+- Corresponding manga chapter.
+- Bullseye TCG card and gameplay text.
+- Anime/manga differences.
 
-#### Visual Assets
+#### Prototype Assets
 
-**Stage 1 — Planning Assets**
+- Forest background.
+- Player/Yusuke dodge state.
+- Hagiri hunting pose.
+- Bullseye card/marking visual.
+- Small forest projectiles.
+- Branch and rock assets.
+- Log asset.
+- Giant sequoia asset.
+- Basic impact indicators.
 
-- Hagiri reference image.
-- Hagiri aiming/attack reference.
-- Bullseye/target-mark reference.
-- Street/environment references from the encounter.
-- Reference images for every canon projectile/object being considered.
+#### Polish Assets
 
-**Stage 2 — Prototype Assets**
-
-- Street background.
-- Target reticle.
-- Bullseye marker.
-- Hagiri distant silhouette.
-- Vehicle/object projectile.
-- Several smaller projectile assets.
-- Yusuke/player hit or dodge state.
-
-**Stage 3 — Polish Assets**
-
-- Multiple environmental layers for parallax.
-- Reflections/windows where Hagiri may briefly appear.
-- Additional canon-supported projectile types.
+- Multiple forest layers for parallax.
+- Hagiri reaction/observation states.
+- Projectile shadows.
 - Impact effects.
-- Camera shake.
+- Screen shake.
+- Environmental movement.
 - Relevant TCG cards.
 - Optional sound cues for incoming objects.
 
 ### Open Questions
 
-- First-person, over-the-shoulder, or abstract player perspective?
-- How long should the player believe they control the reticle?
-- Should Hagiri's location change between sessions?
-- Should the player defeat Hagiri or merely identify/reach him?
-- How much assistance should be given after repeated failed dodges?
+- Should the player control Yusuke directly or an abstract marked target?
+- How many projectile stages are necessary before the giant sequoia payoff?
+- Does the 2D prototype provide enough visual depth?
+- Should difficulty affect projectile speed, quantity, or both?
+- How prominently should *The Most Dangerous Game* comparison appear?
+- Should Bullseye appear only during the opening or remain visible as part of the HUD?
 
 ### Canon Policy
 
-The targeting rules and projectile behavior must remain grounded in Hagiri's demonstrated Territory.
+Hagiri's Territory rules, marking ability, and characterization must remain grounded in canon.
 
-Do not add arbitrary homing objects solely for gameplay spectacle unless clearly labeled as gameplay abstractions.
+The forest setting and forest projectiles are gameplay abstractions inspired by the encounter and must not be presented as objects Hagiri canonically uses.
 
+The giant sequoia is intentionally exaggerated gameplay spectacle.
+
+The *Most Dangerous Game* comparison is literary analysis, not a claim of direct canonical inspiration.
 
 ## Mukuro And Shigure: Lost Chapter
 
@@ -892,6 +1026,183 @@ Every topic must distinguish:
 
 Popularity is not evidence.
 
+## Episode And Asset-Mining Guide
+
+Use this guide to narrow future rewatches to episodes and scenes that directly support planned V2 experiences.
+
+The goal is not to catalog all 112 episodes. Identify the smallest useful episode range, then record exact timestamps when a specific moment is needed.
+
+When an exact timestamp provides enough visual and narrative reference to recreate a moment with still assets, cards, HTML/CSS, or JavaScript, prefer that approach over storing unnecessary video footage.
+
+### Genkai Tournament / Rando
+
+**Episodes 9–13**
+
+Primary research range for Rando and the Genkai Tournament.
+
+The full five-episode range may eventually require review for technique references, but additional rewatching is not currently a priority because the material has been reviewed recently.
+
+### Saint Beasts
+
+**Episodes 14–21**
+
+Primary Saint Beasts research range.
+
+**Episodes 18–21** are the priority range for Suzaku and Murugu.
+
+Earlier episodes primarily establish Makai, the Saint Beasts threat, and Suzaku's role. More useful character and encounter material for Suzaku/Murugu appears around Episodes 18–21.
+
+### Yukina / Tarukane
+
+Begin with **Episode 22 onward through the conclusion of the short Yukina/Tarukane storyline**.
+
+The arc is compact enough for a focused pass rather than requiring detailed episode-by-episode planning in advance.
+
+Collect:
+
+- Yukina/Hiruiseki material.
+- Tarukane.
+- Black Black Club context.
+- Hiruiseki value/desirability references.
+- Relevant Toguro setup.
+
+### Younger Toguro — Demo²
+
+**Episode 26**
+
+Priority source for Toguro's parking-garage power demonstration and the planned **Demo²** sequence.
+
+Use the source primarily to establish:
+
+- Toguro's appearance and pose.
+- Garage/building structure.
+- Power-up presentation.
+- Structural destruction.
+- Stated power percentage and dialogue.
+
+The final interactive version should favor coded demolition over reproducing the complete footage.
+
+### Younger Toguro — First Round
+
+**Episode 33**
+
+Priority source for Younger Toguro's five-on-one Dark Tournament fight.
+
+This forms the first major continuation of the Toguro power-scaling feature after Demo².
+
+### Team Masho / Shinobi
+
+**Episodes 37–42**
+
+Primary research range for:
+
+- Gama.
+- Toya.
+- Bakken.
+- Jin.
+- Risho.
+
+Collect each opponent's major technique, useful pose, battlefield state, matchup, and important tactical observation.
+
+Pay particular attention to Toya's observation about Kurama's unusual experience because it can foreshadow later Youko Kurama material.
+
+### Younger Toguro — Later Dark Tournament
+
+**Approximately Episodes 58/59–65**
+
+Working research range for the later Toguro material and final escalation.
+
+Exact episode boundaries and percentage milestones must be verified during the focused rewatch.
+
+Track every explicitly stated Toguro percentage separately from visually inferred power changes.
+
+### Kaitou / Forbidden Word Game
+
+**Episode 69**
+
+This episode has already been narrowed sufficiently for the planned material and does not require a complete rewatch unless additional concepts are added.
+
+Recorded timestamps:
+
+- **5:37–5:39** — Kuwabara accidentally produces the forbidden sequence through the phrase "each other."
+- **6:15–6:20** — Botan directly says "hot" and loses.
+- **12:45** — useful landmark for the later Kaitou game sequence.
+- **18:52–19:20** — complete setup and payoff surrounding Kaitou's loss.
+- **18:54–18:59** — Kaitou uses "Baaaaaa" while restricted to B and A.
+- **Approximately 19:16** — Kaitou says Kurama's human name, **Shuichi Minamino**.
+
+Important mechanic:
+
+"Baaaaaa" itself does not cause Kaitou to lose because B and A are still legal.
+
+Kurama makes a strange expression that causes Kaitou to laugh. The resulting laugh produces an illegal sound/letter and causes Kaitou to lose.
+
+The audience receives only a limited glimpse of Kurama's expression, so do not invent a definitive recreation of the face without additional source evidence.
+
+Episode 69 can currently be considered **asset-research complete** for these concepts.
+
+### Sensui
+
+Sensui should remain a broader research pass because his material is distributed throughout Chapter Black.
+
+Working landmarks:
+
+- **Episode 71** — Sensui begins directly confronting/rattling Yusuke.
+- **Episodes 77–79** — longer Sensui material.
+- **Episodes 83–93** — Sensui appears heavily throughout the final portion of the arc, ending with his death in Episode 93.
+
+Do not force Sensui into isolated timestamp-only research when understanding the surrounding sequence is important to the planned case study.
+
+### Hagiri
+
+**Episode 80**
+
+Do not perform a complete asset-mining pass unless additional Hagiri material becomes necessary.
+
+Target only:
+
+- the moment Hagiri marks Yusuke,
+- one or two poses/expressions showing Hagiri enjoying the hunt,
+- the exchange where Hagiri describes establishing/making his Territory and Yusuke responds angrily.
+
+Record exact timestamps during the next Episode 80 pass.
+
+The **Bullseye** TCG card should be investigated as the visual representation of the marking mechanic for the interactive experience.
+
+### Raizen / Yusuke
+
+**Episodes 91–94**
+
+Useful range when researching Yusuke under Raizen's influence, including the altered hair/tattoo appearance.
+
+**Episodes 98 and 103**
+
+Priority episodes for Raizen appearing directly rather than merely being discussed.
+
+### Yomi / Kurama
+
+**Episodes 101–102**
+
+Priority research range for Yomi and Kurama material.
+
+Use these episodes when collecting material for Yomi's history, blindness, hearing-based combat presentation, and his relationship with Kurama.
+
+### Asset-Mining Principle
+
+For every useful scene, record:
+
+- Episode.
+- Exact timestamp or narrow timestamp range.
+- Character.
+- Scene purpose.
+- Required visual asset.
+- Required dialogue context.
+- Relevant TCG card if applicable.
+- Whether the final feature requires video or can recreate the concept through code/stills.
+
+A timestamp is itself a useful asset reference.
+
+Do not store a video clip merely because one exists.
 
 ## V2 Asset Acquisition Plan
 
