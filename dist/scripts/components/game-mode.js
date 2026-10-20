@@ -31,7 +31,7 @@
 
     function updateScopedLinks(mode) {
         const game = encodeURIComponent(mode.searchGame);
-        document.querySelectorAll("#primaryNavLinks a, .site-footer__nav a").forEach((link) => {
+        document.querySelectorAll("#primaryNavLinks a").forEach((link) => {
             const label = String(link.textContent || "").trim();
             const linkWrapper = link.closest("li") || link;
             if (label === "Contributors" || label === "Evolution") {

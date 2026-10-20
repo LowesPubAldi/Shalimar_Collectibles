@@ -204,7 +204,6 @@ function syncCardPageNav(gameName) {
     };
 
     updateLinkSet(document.getElementById("primaryNavLinks"));
-    updateLinkSet(document.querySelector(".site-footer__nav"));
 
     const footerMeta = document.querySelector(".site-footer__meta");
     if (footerMeta instanceof HTMLElement) {
@@ -1112,6 +1111,9 @@ function renderCardPage(cardContext) {
     const cardFactRarity = document.getElementById("cardFactRarity");
 
     const noteLines = [];
+
+    
+
     if (card.effect) {
         noteLines.push(`<p>Effect text: ${escapeHtml(card.effect)}</p>`);
     }

@@ -2283,5 +2283,44 @@
       }
     ],
     "errors": []
+  },
+  {
+    "wave": 9,
+    "batch": 8,
+    "label": "Scarlet & Violet and Later - Batch 8",
+    "startedAt": "2026-10-20T00:27:00.718Z",
+    "finishedAt": "2026-10-20T00:27:04.163Z",
+    "status": "success",
+    "scrydexRequests": 8,
+    "setsRequested": 3,
+    "setsImported": 3,
+    "cardsImported": 614,
+    "sets": [
+      {
+        "id": "me55",
+        "name": "30th Celebration",
+        "expectedTotal": 161,
+        "cardsImported": 161,
+        "pagesFetched": 2,
+        "status": "success"
+      },
+      {
+        "id": "me55c",
+        "name": "30th Celebration: Classic Collection",
+        "expectedTotal": 30,
+        "cardsImported": 30,
+        "pagesFetched": 1,
+        "status": "success"
+      },
+      {
+        "id": "tcgp-B4b",
+        "name": "Deluxe Pack: Mega",
+        "expectedTotal": 423,
+        "cardsImported": 423,
+        "pagesFetched": 5,
+        "status": "success"
+      }
+    ],
+    "errors": []
   }
 ]

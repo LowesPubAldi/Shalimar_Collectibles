@@ -1,0 +1,77 @@
+{
+    "items":  [
+                  {
+                      "set":  "Alliance",
+                      "query":  "Alliance yu yu hakusho tcg booster box sealed",
+                      "sampleCount":  0,
+                      "medianPrice":  null,
+                      "currency":  "USD",
+                      "source":  "ebay-browse-live",
+                      "inspectedCount":  0,
+                      "startDate":  null,
+                      "endDate":  null
+                  },
+                  {
+                      "set":  "Betrayal",
+                      "query":  "Betrayal yu yu hakusho tcg booster box sealed",
+                      "sampleCount":  0,
+                      "medianPrice":  null,
+                      "currency":  "USD",
+                      "source":  "ebay-browse-live",
+                      "inspectedCount":  0,
+                      "startDate":  null,
+                      "endDate":  null
+                  },
+                  {
+                      "set":  "Dark Tournament",
+                      "query":  "Dark Tournament yu yu hakusho tcg booster box sealed",
+                      "sampleCount":  0,
+                      "medianPrice":  null,
+                      "currency":  "USD",
+                      "source":  "ebay-browse-live",
+                      "inspectedCount":  0,
+                      "startDate":  null,
+                      "endDate":  null
+                  },
+                  {
+                      "set":  "Exile",
+                      "query":  "Exile yu yu hakusho tcg booster box sealed",
+                      "sampleCount":  0,
+                      "medianPrice":  null,
+                      "currency":  "USD",
+                      "source":  "ebay-browse-live",
+                      "inspectedCount":  0,
+                      "startDate":  null,
+                      "endDate":  null
+                  },
+                  {
+                      "set":  "Gateway",
+                      "query":  "Gateway yu yu hakusho tcg booster box sealed",
+                      "sampleCount":  0,
+                      "medianPrice":  null,
+                      "currency":  "USD",
+                      "source":  "ebay-browse-live",
+                      "inspectedCount":  0,
+                      "startDate":  null,
+                      "endDate":  null
+                  },
+                  {
+                      "set":  "Ghost Files",
+                      "query":  "Ghost Files yu yu hakusho tcg booster box sealed",
+                      "sampleCount":  1,
+                      "medianPrice":  450,
+                      "currency":  "USD",
+                      "source":  "ebay-browse-live",
+                      "inspectedCount":  1,
+                      "startDate":  null,
+                      "endDate":  null
+                  }
+              ],
+    "totalSets":  6,
+    "source":  "ebay-browse-live",
+    "startDate":  null,
+    "endDate":  null,
+    "csvPath":  null,
+    "maxPages":  3,
+    "fetchedAt":  "2026-10-20T00:17:54.062Z"
+}

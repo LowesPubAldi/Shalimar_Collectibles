@@ -1,5 +1,5 @@
 {
-  "syncedAt": "2026-09-12T17:11:20.427Z",
+  "syncedAt": "2026-10-20T00:27:04.125Z",
   "language": "en",
   "items": [
     {
@@ -584,11 +584,25 @@
       "total": 120
     },
     {
+      "id": "me55",
+      "name": "30th Celebration",
+      "releaseDate": "2026/09/16",
+      "printedTotal": 128,
+      "total": 161
+    },
+    {
+      "id": "me55c",
+      "name": "30th Celebration: Classic Collection",
+      "releaseDate": "2026/09/16",
+      "printedTotal": null,
+      "total": 30
+    },
+    {
       "id": "mee",
       "name": "Mega Evolution Energies",
       "releaseDate": "2025/09/26",
       "printedTotal": null,
-      "total": 8
+      "total": 16
     },
     {
       "id": "mep",
@@ -1289,6 +1303,13 @@
       "releaseDate": "2026/08/26",
       "printedTotal": null,
       "total": 110
+    },
+    {
+      "id": "tcgp-B4b",
+      "name": "Deluxe Pack: Mega",
+      "releaseDate": "2026/09/29",
+      "printedTotal": null,
+      "total": 429
     },
     {
       "id": "tcgp-PA",

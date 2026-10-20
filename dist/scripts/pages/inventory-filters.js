@@ -6863,7 +6863,6 @@ function syncInventoryNav(selectedGame) {
     };
 
     updateLinkSet(document.getElementById("primaryNavLinks"));
-    updateLinkSet(document.querySelector(".site-footer__nav"));
 }
 
 function syncYgoFilterLabels(rarityFilter, editionFilter, variantFocusFilter, priceStatusFilter, gameplayStatusFilter) {

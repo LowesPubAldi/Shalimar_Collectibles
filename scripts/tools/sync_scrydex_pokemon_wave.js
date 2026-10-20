@@ -80,7 +80,8 @@ const WAVES = {
             4: ["Journey Together", "Celestial Guardians", "Extradimensional Crisis", "Destined Rivals", "Eevee Grove", "Black Bolt", "White Flare"],
             5: ["Wisdom of Sea and Sky", "Secluded Springs", "Mega Evolution", "Mega Evolution Black Star Promos", "Mega Evolution Energies", "Deluxe Pack ex"],
             6: ["Mega Rising", "Promo-B", "Phantasmal Flames", "Crimson Blaze", "Fantastical Parade", "Ascended Heroes", "Paldean Wonders", "Mega Shine"],
-            7: ["Perfect Order", "Pulsing Aura", "Chaos Rising", "Paradox Drive", "Everyday Wonders", "Pitch Black", "Ruler of the Skies", "Team Rocket's Ambition"]
+            7: ["Perfect Order", "Pulsing Aura", "Chaos Rising", "Paradox Drive", "Everyday Wonders", "Pitch Black", "Ruler of the Skies", "Team Rocket's Ambition"],
+            8: ["30th Celebration", "30th Celebration: Classic Collection", "Deluxe Pack: Mega"]
         }
     },
     10: {

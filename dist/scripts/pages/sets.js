@@ -131,7 +131,6 @@ function syncSetsNav(selectedGame) {
     };
 
     updateLinkSet(document.getElementById("primaryNavLinks"));
-    updateLinkSet(document.querySelector(".site-footer__nav"));
 }
 
 function escapeHtml(value) {
