@@ -561,6 +561,26 @@ body {
     transition: background 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
 }
 
+/* Explicit desktop navigation alignment */
+@media (min-width: 961px) {
+    .nav > .logo-link {
+        grid-column: 1;
+        justify-self: start;
+    }
+
+    .nav > .game-mode-controls {
+        grid-column: 2;
+        justify-self: center;
+        margin-left: 0;
+    }
+
+    .nav > .mobile-nav-toggle {
+        grid-column: 3;
+        justify-self: end;
+        margin-left: 0;
+    }
+}
+
 .header--scrolled .nav {
     border-color: rgba(148, 163, 184, 0.42);
     background: rgba(5, 9, 13, 0.93);
